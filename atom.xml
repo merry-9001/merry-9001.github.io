@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>韶华_blog</title>
-    <updated>2019-10-22T09:32:08.540Z</updated>
+    <updated>2019-10-22T14:51:53.979Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -11,12 +11,98 @@
     <icon>https://merry-9001.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 韶华_blog</rights>
     <entry>
+        <title type="html"><![CDATA[题目]]></title>
+        <id>https://merry-9001.github.io/post/ti-mu</id>
+        <link href="https://merry-9001.github.io/post/ti-mu">
+        </link>
+        <updated>2019-10-22T11:35:01.000Z</updated>
+        <content type="html"><![CDATA[ <h1>Doctype作用？标准模式与兼容模式各有什么区别? </h1>
+<p>（1）、&lt;!DOCTYPE&gt;声明位于位于HTML文档中的第一行，处于 <html> 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。<br>
+（2）、标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。</p>
+ <h1>HTML5 为什么只需要写 </h1>
+<pre><code>&lt;!DOCTYPE HTML&gt;？
+</code></pre>
+<p>HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；<br>
+而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。<br>
+标准通用标记语言<br>
+Standard Generalized Markup language（SGM或SGML）（以下简称“通用标言”）<br>
+文档类型定义（DTD，Document Type Definition）是一种特殊文档，它规定、约束符合标准通用标示语言（SGML）或SGML子集可扩展标示语言（XML）规则的定义和陈述。</p>
+ <h1>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</h1>
+首先：CSS规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如div的display默认值为“block”，则为“块级”元素；span默认display属性值为“inline”，是“行内”元素。
+<p>（1）行内元素有：a b span img input select strong（强调的语气）<br>
+（2）块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p</p>
+<p>（3）常见的空元素：</p>
+<pre><code>&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;
+</code></pre>
+<p>meta 的属性有两种：name和http-equiv作用name属性主要用于描述网页，对应于content（网页内容），以便于搜索引擎机器人查找</p>
+ <h1>页面导入样式时，使用link和@import有什么区别？</h1>
+（1）link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;
+<p>（2）页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;</p>
+<p>（3）import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题;<br>
+html与xhtml<br>
+XHTML 元素必须被正确地嵌套。<br>
+XHTML 元素必须被关闭。<br>
+标签名必须用小写字母。<br>
+XHTML 文档必须拥有根元素。</p>
+ <h1>浏览器的内核分别是什么?</h1>
+<p>IE浏览器的内核Trident、Mozilla的Gecko、Chrome的Blink（WebKit的分支</p>
+<h1>html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML和HTML5？</h1>
+<p>HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。</p>
+<p>绘画 canvas<br>
+用于媒介回放的 video 和 audio 元素<br>
+本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；<br>
+sessionStorage 的数据在浏览器关闭后自动删除</p>
+<p>语意化更好的内容元素，比如 article、footer、header、nav、section<br>
+表单控件，calendar、date、time、email、url、search<br>
+新的技术webworker, websockt, Geolocation</p>
+<p>移除的元素</p>
+<p>纯表现的元素：basefont，big，center，font, s，strike，tt，u；(可以用css来代替)</p>
+<p>对可用性产生负面影响的元素：frame，frameset，noframes；</p>
+<p>支持HTML5新标签：</p>
+<p>IE8/IE7/IE6支持通过document.createElement方法产生的标签，<br>
+可以利用这一特性让这些浏览器支持HTML5新标签，</p>
+<p>浏览器支持新标签后，还需要添加标签默认的样式：</p>
+<p>当然最好的方式是直接使用成熟的框架、使用最多的是html5shim框架</p>
+<!--[if lt IE 9]>
+<script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
+<![endif]-->
+<p>如何区分： DOCTYPE声明\新增的结构元素\功能元素</p>
+ <h1>语义化的理解？</h1>
+<p>用正确的标签做正确的事情！<br>
+html语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析；<br>
+在没有样式CCS情况下也以一种文档格式显示，并且是容易阅读的。<br>
+搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于 SEO。<br>
+使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。</p>
+   <h1> HTML5的离线储存？</h1>
+<p>localStorage    长期存储数据，浏览器关闭后数据不丢失；<br>
+sessionStorage  数据在浏览器关闭后自动删除。</p>
+<h1>iframe有那些缺点？</h1>
+<p>*iframe会阻塞主页面的Onload事件；</p>
+<h1>请描述一下 cookies，sessionStorage 和 localStorage 的区别？</h1>
+<p>cookie在浏览器和服务器间来回传递。 sessionStorage和localStorage不会<br>
+sessionStorage和localStorage的存储空间更大；<br>
+sessionStorage和localStorage有更多丰富易用的接口；<br>
+sessionStorage和localStorage各自独立的存储空间；</p>
+<h1> webSocket如何兼容低浏览器？</h1>
+<p>Adobe Flash Socket 、 ActiveX HTMLFile (IE) 、 基于 multipart 编码发送 XHR 、 基于长轮询的 XHR<br>
+WebSocket是HTML5新增的协议，它的目的是在浏览器和服务器之间建立一个不受限的双向通信的通道，</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[css3]]></title>
         <id>https://merry-9001.github.io/post/css3</id>
         <link href="https://merry-9001.github.io/post/css3">
         </link>
         <updated>2019-10-22T03:09:48.000Z</updated>
-        <content type="html"><![CDATA[<h1>css 中ul li 与 ul>li的区别</h1>
+        <content type="html"><![CDATA[<h1>常用属性</h1>
+visible	默认值。内容不会被修剪，会呈现在元素框之外。
+<p>hidden	内容会被修剪，并且其余内容是不可见的。<br>
+scroll	内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。<br>
+auto	如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。<br>
+inherit	规定应该从父元素继承 overflow 属性的值。</p>
+<pre><code>overflow:scroll;
+</code></pre>
+<h1>css 中ul li 与 ul>li的区别</h1>
 <p>ul li ：后代选择器，ul 里所有的 li 元素，包括 ol 里的 li<br>
 ul&gt;li ：子代选择器，下一级的DOM节点，不包括 ol 里的 li<br>
 ul&gt;ol&gt;li ：子代选择器必须一代接一代</p>
@@ -195,6 +281,43 @@ background-color: hsla(300,100%,50%,0.1
 <p>如果想设置四个角点的不同方向上的不同圆角值<br>
 分别是水平方向的：左上，右上，右下，左下 / 垂直方向的：左上，右上，右下，左下</p>
 <pre><code>border-radius: 100px 0px 0px 0px/20px 0px 0px 0px;
+</code></pre>
+<h1>渐变</h1>
+线性渐变
+方向：
+<p>to top:0deg<br>
+to right:90deg<br>
+to bottom:180deg --默认值<br>
+to left:270deg</p>
+<pre><code>linear-gradient(方向，开始颜色 位置，颜色2 位置，颜色3 位置...)
+background: linear-gradient(to right, red 0%, red 50%, blue 50%, blue 100%);
+</code></pre>
+<p>径向渐变<br>
+形状shape:circle:产生正方形的渐变色<br>
+ellipse:适配当前的形状,如果是正方形的容器，两者效果一样.如果宽高不一样，默认效果切换到ellipse<br>
+at position:坐标，默认在正中心。可以赋值坐标（参照元素的左上角），也可以赋值关键字(left center right top bottom)</p>
+<p>大小size: closest-side：最近边；<br>
+farthest-side：最远边；<br>
+closest-corner：最近角；<br>
+farthest-corner：最远角。<br>
+默认是最远的角farthest-corner</p>
+<pre><code>background: radial-gradient(red,blue);
+语法：radial-gradient(形状 大小 坐标,颜色1，颜色2...)
+</code></pre>
+<h1>背景</h1>
+1.添加背景颜色
+<pre><code>background-color: skyblue;
+</code></pre>
+<p>2.添加背影图片<br>
+如果图片大于容器，那么默认就从容器左上角开始放置<br>
+如果图片小于容器，那么图片默认会平铺</p>
+<pre><code>background-image: url(&quot;../images/share1.png&quot;)
+</code></pre>
+<p>3.设置背景平铺<br>
+round:会将图片进行缩放之后再平铺<br>
+space:图片不会缩放平铺，只是会在图片之间产生相同的间距值<br>
+no-repeat：</p>
+<pre><code>background-repeat: space;
 </code></pre>
 ]]></content>
     </entry>

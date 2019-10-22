@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571736726001">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571755910781">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1571736726001" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1571755910781" class="site-logo">
         <h1 class="site-title">韶华_blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -94,7 +94,15 @@
             <div class="post-date">2019-10-22</div>
             
             <div class="post-content">
-              <h1>css 中ul li 与 ul>li的区别</h1>
+              <h1>常用属性</h1>
+visible	默认值。内容不会被修剪，会呈现在元素框之外。
+<p>hidden	内容会被修剪，并且其余内容是不可见的。<br>
+scroll	内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。<br>
+auto	如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。<br>
+inherit	规定应该从父元素继承 overflow 属性的值。</p>
+<pre><code>overflow:scroll;
+</code></pre>
+<h1>css 中ul li 与 ul>li的区别</h1>
 <p>ul li ：后代选择器，ul 里所有的 li 元素，包括 ol 里的 li<br>
 ul&gt;li ：子代选择器，下一级的DOM节点，不包括 ol 里的 li<br>
 ul&gt;ol&gt;li ：子代选择器必须一代接一代</p>
@@ -273,6 +281,43 @@ background-color: hsla(300,100%,50%,0.1
 <p>如果想设置四个角点的不同方向上的不同圆角值<br>
 分别是水平方向的：左上，右上，右下，左下 / 垂直方向的：左上，右上，右下，左下</p>
 <pre><code>border-radius: 100px 0px 0px 0px/20px 0px 0px 0px;
+</code></pre>
+<h1>渐变</h1>
+线性渐变
+方向：
+<p>to top:0deg<br>
+to right:90deg<br>
+to bottom:180deg --默认值<br>
+to left:270deg</p>
+<pre><code>linear-gradient(方向，开始颜色 位置，颜色2 位置，颜色3 位置...)
+background: linear-gradient(to right, red 0%, red 50%, blue 50%, blue 100%);
+</code></pre>
+<p>径向渐变<br>
+形状shape:circle:产生正方形的渐变色<br>
+ellipse:适配当前的形状,如果是正方形的容器，两者效果一样.如果宽高不一样，默认效果切换到ellipse<br>
+at position:坐标，默认在正中心。可以赋值坐标（参照元素的左上角），也可以赋值关键字(left center right top bottom)</p>
+<p>大小size: closest-side：最近边；<br>
+farthest-side：最远边；<br>
+closest-corner：最近角；<br>
+farthest-corner：最远角。<br>
+默认是最远的角farthest-corner</p>
+<pre><code>background: radial-gradient(red,blue);
+语法：radial-gradient(形状 大小 坐标,颜色1，颜色2...)
+</code></pre>
+<h1>背景</h1>
+1.添加背景颜色
+<pre><code>background-color: skyblue;
+</code></pre>
+<p>2.添加背影图片<br>
+如果图片大于容器，那么默认就从容器左上角开始放置<br>
+如果图片小于容器，那么图片默认会平铺</p>
+<pre><code>background-image: url(&quot;../images/share1.png&quot;)
+</code></pre>
+<p>3.设置背景平铺<br>
+round:会将图片进行缩放之后再平铺<br>
+space:图片不会缩放平铺，只是会在图片之间产生相同的间距值<br>
+no-repeat：</p>
+<pre><code>background-repeat: space;
 </code></pre>
 
             </div>

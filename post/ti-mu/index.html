@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>题目 | 韶华_blog</title>
+<meta name="description" content="学习是一辈子的事">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571755910781">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://merry-9001.github.io">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1571755910781" class="site-logo">
+        <h1 class="site-title">韶华_blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/merry-9001" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      学习是一辈子的事
+    </div>
+    <div class="site-footer">
+      739211562@qq.com | <a class="rss" href="https://merry-9001.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">题目</h2>
+            <div class="post-date">2019-10-22</div>
+            
+            <div class="post-content">
+               <h1>Doctype作用？标准模式与兼容模式各有什么区别? </h1>
+<p>（1）、&lt;!DOCTYPE&gt;声明位于位于HTML文档中的第一行，处于 <html> 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。<br>
+（2）、标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。</p>
+ <h1>HTML5 为什么只需要写 </h1>
+<pre><code>&lt;!DOCTYPE HTML&gt;？
+</code></pre>
+<p>HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；<br>
+而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。<br>
+标准通用标记语言<br>
+Standard Generalized Markup language（SGM或SGML）（以下简称“通用标言”）<br>
+文档类型定义（DTD，Document Type Definition）是一种特殊文档，它规定、约束符合标准通用标示语言（SGML）或SGML子集可扩展标示语言（XML）规则的定义和陈述。</p>
+ <h1>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</h1>
+首先：CSS规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如div的display默认值为“block”，则为“块级”元素；span默认display属性值为“inline”，是“行内”元素。
+<p>（1）行内元素有：a b span img input select strong（强调的语气）<br>
+（2）块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p</p>
+<p>（3）常见的空元素：</p>
+<pre><code>&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;
+</code></pre>
+<p>meta 的属性有两种：name和http-equiv作用name属性主要用于描述网页，对应于content（网页内容），以便于搜索引擎机器人查找</p>
+ <h1>页面导入样式时，使用link和@import有什么区别？</h1>
+（1）link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;
+<p>（2）页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;</p>
+<p>（3）import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题;<br>
+html与xhtml<br>
+XHTML 元素必须被正确地嵌套。<br>
+XHTML 元素必须被关闭。<br>
+标签名必须用小写字母。<br>
+XHTML 文档必须拥有根元素。</p>
+ <h1>浏览器的内核分别是什么?</h1>
+<p>IE浏览器的内核Trident、Mozilla的Gecko、Chrome的Blink（WebKit的分支</p>
+<h1>html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML和HTML5？</h1>
+<p>HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。</p>
+<p>绘画 canvas<br>
+用于媒介回放的 video 和 audio 元素<br>
+本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；<br>
+sessionStorage 的数据在浏览器关闭后自动删除</p>
+<p>语意化更好的内容元素，比如 article、footer、header、nav、section<br>
+表单控件，calendar、date、time、email、url、search<br>
+新的技术webworker, websockt, Geolocation</p>
+<p>移除的元素</p>
+<p>纯表现的元素：basefont，big，center，font, s，strike，tt，u；(可以用css来代替)</p>
+<p>对可用性产生负面影响的元素：frame，frameset，noframes；</p>
+<p>支持HTML5新标签：</p>
+<p>IE8/IE7/IE6支持通过document.createElement方法产生的标签，<br>
+可以利用这一特性让这些浏览器支持HTML5新标签，</p>
+<p>浏览器支持新标签后，还需要添加标签默认的样式：</p>
+<p>当然最好的方式是直接使用成熟的框架、使用最多的是html5shim框架</p>
+<!--[if lt IE 9]>
+<script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
+<![endif]-->
+<p>如何区分： DOCTYPE声明\新增的结构元素\功能元素</p>
+ <h1>语义化的理解？</h1>
+<p>用正确的标签做正确的事情！<br>
+html语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析；<br>
+在没有样式CCS情况下也以一种文档格式显示，并且是容易阅读的。<br>
+搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于 SEO。<br>
+使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。</p>
+   <h1> HTML5的离线储存？</h1>
+<p>localStorage    长期存储数据，浏览器关闭后数据不丢失；<br>
+sessionStorage  数据在浏览器关闭后自动删除。</p>
+<h1>iframe有那些缺点？</h1>
+<p>*iframe会阻塞主页面的Onload事件；</p>
+<h1>请描述一下 cookies，sessionStorage 和 localStorage 的区别？</h1>
+<p>cookie在浏览器和服务器间来回传递。 sessionStorage和localStorage不会<br>
+sessionStorage和localStorage的存储空间更大；<br>
+sessionStorage和localStorage有更多丰富易用的接口；<br>
+sessionStorage和localStorage各自独立的存储空间；</p>
+<h1> webSocket如何兼容低浏览器？</h1>
+<p>Adobe Flash Socket 、 ActiveX HTMLFile (IE) 、 基于 multipart 编码发送 XHR 、 基于长轮询的 XHR<br>
+WebSocket是HTML5新增的协议，它的目的是在浏览器和服务器之间建立一个不受限的双向通信的通道，</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://merry-9001.github.io/post/css3">
+                  <h3 class="post-title">
+                    css3
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
