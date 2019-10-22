@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>韶华_blog</title>
-    <updated>2019-10-22T03:23:38.761Z</updated>
+    <updated>2019-10-22T09:32:08.540Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -16,7 +16,11 @@
         <link href="https://merry-9001.github.io/post/css3">
         </link>
         <updated>2019-10-22T03:09:48.000Z</updated>
-        <content type="html"><![CDATA[<h1>属性选择器</h1>
+        <content type="html"><![CDATA[<h1>css 中ul li 与 ul>li的区别</h1>
+<p>ul li ：后代选择器，ul 里所有的 li 元素，包括 ol 里的 li<br>
+ul&gt;li ：子代选择器，下一级的DOM节点，不包括 ol 里的 li<br>
+ul&gt;ol&gt;li ：子代选择器必须一代接一代</p>
+<h1>属性选择器</h1>
 1.E[attr]:查找指定的拥有attr属性的E标签。如查找拥有style属性的li标签
 <pre><code>li[style]
 }
@@ -35,7 +39,163 @@
 </code></pre>
 <p>5.E[attr$=value]:查找拥有指定的attr属性并且属性值以value开结束的E标签</p>
 <pre><code>li[class$=blue]{
-}</code></pre>
+}
+</code></pre>
+<h1>兄弟选择器</h1>
++：获取当前元素的相邻的满足条件的元素
+<p>~：获取当前元素的满足条件的兄弟元素</p>
+<p>下面这句样式说明查找 ：添加了.first样式的标签的相邻的li元素<br>
+1.相邻<br>
+2.必须是指定类型的元素</p>
+<pre><code>.first + li{
+}
+</code></pre>
+<p>下面样式查找添加了.first样式的元素的所有兄弟li元素<br>
+1.必须是指定类型的元素</p>
+<pre><code>.first ~ li{
+
+}
+</code></pre>
+<p>必须都是li元素，如果中间插入了其他元素，则+表示相邻的li元素，所以会不起作用</p>
+<h1>伪类选择器</h1>
+<b style="color:red">相对于父元素的结构伪类</b>
+<p>E:first-child:查找E元素的父级元素中的第一个E元素。在查找的时候并不会限制查找的元素的类型<br>
+使用E说明为如何类型</p>
+<p>下面这句样式查找：li的父元素中的第一个li元素<br>
+1.相对于当前指定元素的父元素<br>
+2.查找的类型必须是指定的类型</p>
+<pre><code>li:first-child{
+color: red;
+}
+</code></pre>
+<p>2.在查找的时候只会查找满足类型条件的元素，过渡掉其它类型的元素</p>
+<pre><code>li:first-of-type{
+color: red;
+}
+li:last-of-type{
+color: orange;
+}
+</code></pre>
+<h3>:first-child 匹配的是某父元素的第一个子元素，可以说是结构上的第一个子元素。</h3>
+<h3>:first-of-type 匹配的是某父元素下相同类型子元素中的第一个，比如 p:first-of-type，就是指所有类型为p的子元素中的第一个。这里不再限制是第一个子元素了，只要是该类型元素的第一个就行了。</h3>
+<p>指定索引位置 nth-child(从1开始的索引||关键字||表达式</p>
+<pre><code>li:nth-child(5){
+
+
+}
+li:nth-child(even){
+    background-color: orange;
+}
+li:nth-child(odd){
+    background-color: pink;
+}
+li:nth-of-type(even){
+    background-color: orange;
+}
+li:nth-of-type(odd){
+    background-color: pink;
+}
+</code></pre>
+<p>想为前面的5个元素添加样式</p>
+<pre><code>li:nth-last-of-type(-n+5){
+    font-size: 30px;    
+}
+li:nth-of-type(-n+5){
+    font-size: 30px;
+}
+</code></pre>
+<p>空值:没有任何的内容，连空格都没有</p>
+<pre><code>li:empty{
+    background-color: red;
+}
+</code></pre>
+<p>E:target:可以为锚点目标元素添加样式，当目标元素被触发为当前锚链接的目标时，调用此伪类样式</p>
+<pre><code>h2:target{
+    color: red;
+}
+&lt;a href=&quot;#title1&quot;&gt;CSS (层叠样式表)&lt;/a&gt;
+&lt;h2 id=&quot;title1&quot;&gt;CSS (层叠样式表)&lt;/h2&gt;
+</code></pre>
+<h1>伪元素</h1>
+<pre><code>div:nth-of-type(2)::before{
+    /*必须添加content属性，否则后期不可见*/
+    content: &quot;&quot;;
+    /*默认是行级元素，如果想设置宽高，就必须转换为块级元素*/
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    left: -10px;
+    top: -10px;
+}
+div:nth-of-type(2)::after{
+
+}
+</code></pre>
+<p>获取第一个字符：实现首字下</p>
+<pre><code>p::first-letter
+    float: left;/*文本环绕*/
+}
+</code></pre>
+<p>获取第一行内容:如果设置了::first-letter,那么无法同时设置它的样式</p>
+<pre><code>p::first-line{
+
+}
+</code></pre>
+<p>设置当前选中内容的样式<br>
+它只能设置显示的样式，而不能设置内容大小</p>
+<pre><code>p::selection{
+    background-color: pink;
+}
+</code></pre>
+<h1>颜色</h1>
+hsl(颜色(0~360)，饱和度(0%~100%)，明度(0%~100%))，a表示透明度 0~1
+<pre><code>background-color: rgba(255,0,255,0.2)
+background-color: hsla(300,100%,50%,0.1
+</code></pre>
+<h1>字体</h1>
+<p>字体属性的顺序：字体风格→字体粗细→字体大小→字体类型</p>
+<p>比如p span{font:oblique bold 12px &quot;楷体&quot;;}</p>
+<h1>阴影</h1>
+添加阴影 text-shadow:offsetX offsetY blur color
+<p>多层阴影效果</p>
+<pre><code>.demo3{
+    text-shadow: 0px 0px 30px #fff,0px 0px 50px red,0px 0px 70px #fff;
+}
+</code></pre>
+<p>浮雕立体</p>
+<pre><code>.demo5{
+    color: #fff;
+    text-shadow: -1px -1px 0px #eee,-2px -2px 0px #ddd,-3px -3px 0px #ccc;
+}
+</code></pre>
+<p>可以添加一层阴影，也可以添加多层阴影</p>
+<h1>盒模型</h1>
+<p>content-box:你设置的width属性值仅仅是内容的宽度，盒子的最终的宽高值在width的基础上再加上padding和border的宽度(默认)</p>
+<p>border-box:你设置的width属性值就是盒子的最终的宽度，包含了border和padding和内容。如果添加了padding和border,那么真正放置内容的区域会减小--但是它可以稳固页面的结构</p>
+<pre><code>box-sizing: border-box;
+</code></pre>
+<h1>圆角矩形</h1>
+1.设置一个值：四个角的圆角值都一样
+<pre><code>border-radius: 10px;
+</code></pre>
+<p>2.设置两个值:第一个值控制左上/右下，第二个值控制右上/左下</p>
+<pre><code>border-radius: 10px 30px;
+</code></pre>
+<p>3.设置三个值：第一个值控制左上，第二值控制右上/左下，第三个值控制右下</p>
+<pre><code>border-radius: 10px 40px 60px;
+</code></pre>
+<p>4.设置四个值：左上  右上 右下 左</p>
+<pre><code>border-radius: 10px 30px 60px 100px;
+</code></pre>
+<p>添加/是用来设置当前个不同方向的半径值  水平x方向/垂直y方向</p>
+<pre><code>border-radius: 100px/50px;
+</code></pre>
+<p>如果想设置四个角点的不同方向上的不同圆角值<br>
+分别是水平方向的：左上，右上，右下，左下 / 垂直方向的：左上，右上，右下，左下</p>
+<pre><code>border-radius: 100px 0px 0px 0px/20px 0px 0px 0px;
+</code></pre>
 ]]></content>
     </entry>
     <entry>
