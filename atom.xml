@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>韶华_blog</title>
-    <updated>2019-10-22T01:51:57.406Z</updated>
+    <updated>2019-10-22T03:23:38.761Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -11,27 +11,157 @@
     <icon>https://merry-9001.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 韶华_blog</rights>
     <entry>
-        <title type="html"><![CDATA[sad]]></title>
+        <title type="html"><![CDATA[css3]]></title>
+        <id>https://merry-9001.github.io/post/css3</id>
+        <link href="https://merry-9001.github.io/post/css3">
+        </link>
+        <updated>2019-10-22T03:09:48.000Z</updated>
+        <content type="html"><![CDATA[<h1>属性选择器</h1>
+1.E[attr]:查找指定的拥有attr属性的E标签。如查找拥有style属性的li标签
+<pre><code>li[style]
+}
+</code></pre>
+<p>2.E[attr=value]:查找拥有指定的Attr属性并且属性值为value的E标签。如想查找拥有class属性并且值为Red的li标签   =是严格匹配</p>
+<pre><code>li[class=red]{
+}
+</code></pre>
+<p>3.E[attr*=value]:查找拥有指定的attr属性并且属性值中包含(可以在任意位置)value的E标签</p>
+<pre><code>li[class*=red]{
+}
+</code></pre>
+<p>4.E[attr^=value]:查找拥有指定的attr属性并且属性值以value开头的E标签</p>
+<pre><code>li[class^=blue]{
+}
+</code></pre>
+<p>5.E[attr$=value]:查找拥有指定的attr属性并且属性值以value开结束的E标签</p>
+<pre><code>li[class$=blue]{
+}</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[JavaScript]]></title>
+        <id>https://merry-9001.github.io/post/javascript</id>
+        <link href="https://merry-9001.github.io/post/javascript">
+        </link>
+        <updated>2019-10-22T02:38:52.000Z</updated>
+        <content type="html"><![CDATA[<h1>网络连接</h1>
+ononline:网络连通的时候触发这个事件
+<pre><code>window.addEventListener(&quot;online&quot;,function(){
+    alert(&quot;网络连通了&quot;);
+});
+</code></pre>
+<p>onoffline:网络断开时触发</p>
+<pre><code>window.addEventListener(&quot;offline&quot;,function(){
+    alert(&quot;网络断开了&quot;);
+})
+</code></pre>
+<h1>全屏与退出全屏</h1>
+<p>全屏</p>
+<pre><code>if(div.webkitRequestFullScreen){
+    div.webkitRequestFullScreen();
+}
+else if(div.mozRequestFullScreen){
+    div.mozRequestFullScreen();
+}
+else if(div.msRequestFullScreen){
+    div.msRequestFullScreen();
+}
+</code></pre>
+<p>退出全屏</p>
+<pre><code>document.mozCancelFullScreen();
+</code></pre>
+<p>不同浏览器需要加前缀才能做到兼容</p>
+<h1>读取图片显示</h1>
+<pre><code>&lt;input type=&quot;file&quot; name=&quot;myFile&quot; id=&quot;myFile&quot; onchange=&quot;getFileContent();&quot;&gt; &lt;br&gt;
+&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;
+function getFileContent(){
+var reader=new FileReader();
+var file=document.querySelector(&quot;#myFile&quot;).files;
+reader.readAsDataURL(file[0]);
+reader.onload=function(){
+    document.querySelector(&quot;img&quot;).src=reader.result;
+}
+</code></pre>
+<h1>拖拽</h1>
+首先需要在标签加入拖拽属性
+<pre><code>&lt;p id=&quot;pe&quot; draggable=&quot;true&quot;&gt;试着把我拖过去&lt;/p&gt;  
+</code></pre>
+<p>应用于被拖拽元素的事件<br>
+ondrag         应用于拖拽元素，整个拖拽过程都会调用--持续<br>
+ondragstart    应用于拖拽元素，当拖拽开始时调用<br>
+ondragleave    应用于拖拽元素，当鼠标离开拖拽元素时调用<br>
+ondragend      应用于拖拽元素，当拖拽结束时调用</p>
+<p>应用于目标元素的事件<br>
+ondragenter    应用于目标元素，当拖拽元素进入时调用<br>
+ondragover    应用于目标元素，当停留在目标元素上时调用<br>
+ondrop        应用于目标元素，当在目标元素上松开鼠标时调用<br>
+ondragleave    应用于目标元素，当鼠标离开目标元素时调用</p>
+<p>浏览器默认会阻止ondrop事件：我们必须在ondragover中阻止浏览器的默认行</p>
+<p>可以通过函数内的e来确定目标<br>
+/<em>添加元素</em>/<br>
+//e.target.appendChild(obj);<br>
+/<em>通过e.dataTransfer.setData存储的数据，只能在drop事件中获取</em>/</p>
+<pre><code>document.ondrop=function(e){
+    var id=e.dataTransfer.getData(&quot;text/html&quot;);
+    e.target.appendChild(document.getElementById(id));
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[html5]]></title>
         <id>https://merry-9001.github.io/post/abouts</id>
         <link href="https://merry-9001.github.io/post/abouts">
         </link>
         <updated>2019-10-21T10:31:13.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>   &lt;div class=&quot;rightContainer&quot;&gt;
-        &lt;router-view&gt;&lt;/router-view&gt;
-    &lt;/div&gt;😇😇😇😇 
+        <summary type="html"><![CDATA[<h1>datalist标签：</h1>
+<pre><code>&lt;datalist id=&quot;subjects&quot;&gt;
+    &lt;!--创建选项值：value:具体的值 label:提示信息，辅助值--&gt;
+    &lt;option value=&quot;英语&quot; label=&quot;不会&quot;/&gt;
+    &lt;option value=&quot;前端与移动开发&quot; label=&quot;前景非常好&quot;&gt;&lt;/option&gt;
+&lt;/datalist&gt;
+可选择，可填写
 </code></pre>
-<p>爱神的箭</p>
-<div class="rightContainer">
-<router-view></router-view>
-</div>😇😇😇😇 
-<pre><code>    萨的痕迹看
-    &lt;header&gt;头部&lt;/header&gt;
-    &lt;nav&gt;导航&lt;/nav&gt;
-    &lt;main&gt;
-        &lt;article&gt;左边&lt;/article&gt;
-        &lt;aside&gt;右边&lt;/aside&gt;
-    &lt;/main&gt;
-    &lt;footer&gt;底部&lt;/footer&gt;</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571709581609.jpg" alt=""></figure>
+]]></summary>
+        <content type="html"><![CDATA[<h1>datalist标签：</h1>
+<pre><code>&lt;datalist id=&quot;subjects&quot;&gt;
+    &lt;!--创建选项值：value:具体的值 label:提示信息，辅助值--&gt;
+    &lt;option value=&quot;英语&quot; label=&quot;不会&quot;/&gt;
+    &lt;option value=&quot;前端与移动开发&quot; label=&quot;前景非常好&quot;&gt;&lt;/option&gt;
+&lt;/datalist&gt;
+可选择，可填写
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571709581609.jpg" alt=""></figure>
+<!-- more -->
+<!-- more -->
+<h1>progress与meter</h1>
+progress:一般记录下载进度
+<progress max="100" value="100"></progress>   
+<pre><code>&lt;progress max=&quot;100&quot; value=&quot;100&quot;&gt;&lt;/progress&gt;
+</code></pre>
+<p>meter度量器：衡量当前进度值</p>
+<pre><code>&lt;meter max=&quot;100&quot; min=&quot;0&quot; high=&quot;80&quot; low=&quot;40&quot; value=&quot;30&quot;&gt;&lt;/meter&gt;
+</code></pre>
+<p><meter max="100" min="0" high="80" low="40" value="60"></meter></p>
+<p>3.音视频</p>
+<p>audio:音频<br>
+controls:音频播放器的控制器面板<br>
+autoplay:自动播放<br>
+loop:循环播放<br>
+<audio src="../mp3/aa.mp3" controls></audio></p>
+<pre><code>&lt;audio src=&quot;../mp3/aa.mp3&quot; controls&gt;&lt;/audio&gt;
+</code></pre>
+<p>视频<br>
+poster:指定视频还没有完全下载完毕，或者用户没有点击播放前显示的封面。 默认显示当前视频文件的第一副图像<br>
+width:视频的宽度</p>
+<pre><code>&lt;video controls&gt;
+    &lt;!--视频源，可以有多个源--&gt;
+        &lt;source src=&quot;../mp3/flv.flv&quot; type=&quot;video/flv&quot;&gt;
+        &lt;source src=&quot;../mp3/mp4.mp4&quot; type=&quot;video/mp4&quot;&gt;
+&lt;/video&gt;
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://merry-9001.github.io/post-images/1571710483692.jpg" alt=""></figure>
 ]]></content>
     </entry>
 </feed>

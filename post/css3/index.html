@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>文章归档 | 韶华_blog</title>
+<title>css3 | 韶华_blog</title>
 <meta name="description" content="学习是一辈子的事">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -89,50 +89,48 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          
+          <div class="post-detail">
+            <h2 class="post-title">css3</h2>
+            <div class="post-date">2019-10-22</div>
+            
+            <div class="post-content">
+              <h1>属性选择器</h1>
+1.E[attr]:查找指定的拥有attr属性的E标签。如查找拥有style属性的li标签
+<pre><code>li[style]
+}
+</code></pre>
+<p>2.E[attr=value]:查找拥有指定的Attr属性并且属性值为value的E标签。如想查找拥有class属性并且值为Red的li标签   =是严格匹配</p>
+<pre><code>li[class=red]{
+}
+</code></pre>
+<p>3.E[attr*=value]:查找拥有指定的attr属性并且属性值中包含(可以在任意位置)value的E标签</p>
+<pre><code>li[class*=red]{
+}
+</code></pre>
+<p>4.E[attr^=value]:查找拥有指定的attr属性并且属性值以value开头的E标签</p>
+<pre><code>li[class^=blue]{
+}
+</code></pre>
+<p>5.E[attr$=value]:查找拥有指定的attr属性并且属性值以value开结束的E标签</p>
+<pre><code>li[class$=blue]{
+}</code></pre>
 
-          <h2 class="archives-title">文章归档</h2>
-          <div class="archives-container">
+            </div>
             
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2019</h2>
-              
-                
-                  <article class="post">
-                    <a href="https://merry-9001.github.io/post/css3">
-                      <h2 class="post-title">
-                        css3
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://merry-9001.github.io/post/javascript">
-                      <h2 class="post-title">
-                        JavaScript
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://merry-9001.github.io/post/abouts">
-                      <h2 class="post-title">
-                        html5
-                      </h2>
-                    </a>
-                  </article>
-                
-              
             
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://merry-9001.github.io/post/javascript">
+                  <h3 class="post-title">
+                    JavaScript
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
           </div>
-
-          <div class="pagination-container">
-  
-  
-</div>
 
         </div>
       </div>
