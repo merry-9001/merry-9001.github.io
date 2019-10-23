@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>韶华_blog</title>
-    <updated>2019-10-23T12:30:12.221Z</updated>
+    <updated>2019-10-23T15:01:50.974Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -754,6 +754,28 @@ round:会将图片进行缩放之后再平铺<br>
 space:图片不会缩放平铺，只是会在图片之间产生相同的间距值<br>
 no-repeat：</p>
 <pre><code>background-repeat: space;
+</code></pre>
+<h1>过渡</h1>
+简写：transition:属性名称 过渡时间  时间函数  延迟
+<pre><code>transition: left 2s linear 0s;
+</code></pre>
+<p>为多个样式同时添加过渡效</p>
+<pre><code>transition: left 2s linear 0s,background-color 5s linear 0s; 
+</code></pre>
+<p>1.所有样式的过渡效果一样<br>
+2.效率低下，它会去查询所有添加的样式<br>
+3.建议：以后不要这么写<br>
+4.steps(4):可以让过渡效果分为指定的几次来完成  等于说是一帧一帧的跳动</p>
+<pre><code>transition:all 2s steps(4); 
+</code></pre>
+<h1>HTML5-transform二维变换</h1>
+使用transform实现元素的移动 a.移动是参照元素的左上角 b.执行完毕之后会恢复到原始状态
+    /*transform: translate(400px,500px);*/ X,Y轴的移动
+    transform:translateY(300px);
+    transform:scaleY(0.5); 放大和缩小，1为灵界点
+<pre><code>transform-origin: left top; 可以设置旋转的中心
+transform: translateX(700px) rotate(-90deg);
+transform:skew(-30deg);斜切
 </code></pre>
 ]]></content>
     </entry>
