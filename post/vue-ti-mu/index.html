@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>vue题目 | 韶华_blog</title>
+<meta name="description" content="学习是一辈子的事">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571833806876">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://merry-9001.github.io">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1571833806876" class="site-logo">
+        <h1 class="site-title">韶华_blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/merry-9001" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      学习是一辈子的事
+    </div>
+    <div class="site-footer">
+      739211562@qq.com | <a class="rss" href="https://merry-9001.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">vue题目</h2>
+            <div class="post-date">2019-10-23</div>
+            
+            <div class="post-content">
+              <h1>Vue 响应式原理</h1>
+Vue 采用数据劫持结合发布—订阅模式的方法，通过 Object.defineProperty() 来劫持各个属性的 setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。
+<p>前端路由原理<br>
+本质：监听 URL 的变化，然后匹配路由规则，并且无需刷新页面。</p>
+<p>基于 Hash —— 兼容性更好，但存在 '#' 不够美观</p>
+<p>点击跳转或浏览器历史跳转：触发 hashchange 事件 -&gt; 解析 url -&gt;  匹配到对应的路由规则<br>
+手动刷新： 触发 load 事件 -&gt; ...</p>
+<p>基于 History API —— HTML5 新路由方案，更加方便可读，兼容性较差</p>
+<p>浏览器动作，如前进后退：触发 popstate 事件 -&gt; 解析 url -&gt;  匹配到对应的路由规则<br>
+点击跳转：调用 pushState 函数向浏览器历史添加一个状态 -&gt; ...<br>
+刷新页面或输入 URL：会向服务器请求，所以使用 history 需要后端配合重定向 -&gt; ...</p>
+<h1>Vue 生命周期</h1>
+指创建初始化数据、编译模板、挂载 DOM、渲染、更新、卸载一系列的过程。
+<p>beforeCreate：组件实例被创建之初，组件的属性生效之前<br>
+created：组件实例已经完全创建，属性也绑定，但真实DOM还未生成，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi><mi>l</mi><mi mathvariant="normal">不</mi><mi mathvariant="normal">可</mi><mi mathvariant="normal">用</mi><mi>b</mi><mi>e</mi><mi>f</mi><mi>o</mi><mi>r</mi><mi>e</mi><mi>M</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi><mo>:</mo><mi mathvariant="normal">在</mi><mi mathvariant="normal">挂</mi><mi mathvariant="normal">载</mi><mi mathvariant="normal">开</mi><mi mathvariant="normal">始</mi><mi mathvariant="normal">之</mi><mi mathvariant="normal">前</mi><mi mathvariant="normal">被</mi><mi mathvariant="normal">调</mi><mi mathvariant="normal">用</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">相</mi><mi mathvariant="normal">关</mi><mi mathvariant="normal">的</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>r</mi><mi mathvariant="normal">函</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">首</mi><mi mathvariant="normal">次</mi><mi mathvariant="normal">被</mi><mi mathvariant="normal">调</mi><mi mathvariant="normal">用</mi><mi>m</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi><mi>e</mi><mi>d</mi><mo>:</mo><mi>e</mi><mi>l</mi><mi mathvariant="normal">被</mi><mi mathvariant="normal">创</mi><mi mathvariant="normal">建</mi><mi mathvariant="normal">的</mi><mi>v</mi><mi>m</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">el不可用
+beforeMount: 在挂载开始之前被调用，相关的render函数首次被调用
+mounted: el被创建的vm.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord cjk_fallback">不</span><span class="mord cjk_fallback">可</span><span class="mord cjk_fallback">用</span><span class="mord mathdefault">b</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord cjk_fallback">在</span><span class="mord cjk_fallback">挂</span><span class="mord cjk_fallback">载</span><span class="mord cjk_fallback">开</span><span class="mord cjk_fallback">始</span><span class="mord cjk_fallback">之</span><span class="mord cjk_fallback">前</span><span class="mord cjk_fallback">被</span><span class="mord cjk_fallback">调</span><span class="mord cjk_fallback">用</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">相</span><span class="mord cjk_fallback">关</span><span class="mord cjk_fallback">的</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord cjk_fallback">函</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">首</span><span class="mord cjk_fallback">次</span><span class="mord cjk_fallback">被</span><span class="mord cjk_fallback">调</span><span class="mord cjk_fallback">用</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord cjk_fallback">被</span><span class="mord cjk_fallback">创</span><span class="mord cjk_fallback">建</span><span class="mord cjk_fallback">的</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">m</span><span class="mord">.</span></span></span></span>el替换，并挂载到实例上去之后调用<br>
+beforeUpdate: 组件数据更新之前调用，发生在虚拟DOM打补丁之前<br>
+update：组件数据更新之后<br>
+activited：keep-alive专属，组件被激活时调用<br>
+deadctivated： keep-alive专属，组件被销毁时调用<br>
+beforeDestory：组件销毁前调用<br>
+destoryed：组件销毁后调用</p>
+<h1>computed 和 watch 的区别</h1>
+<p>computed：常用于比较消耗性能的计算场景，具有缓存性，getter执行后会被缓存，只有它依赖的属性值变化后，下一次获取的computed值才会重新计算<br>
+watch：常用于某些数据的监听，观察props、 $emit或本组件值的变化来执行回调进行后续操作，无缓存性，页面重新渲染时值不变化也会执行。</p>
+<h1>vue 组件间通信的方法</h1>
+<p>props / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi><mi>m</mi><mi>i</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">emit
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span></span></span></span>children / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">—</mi><mi mathvariant="normal">—</mi><mi mathvariant="normal">父</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">件</mi><mi mathvariant="normal">中</mi><mi mathvariant="normal">用</mi><mi>t</mi><mi>h</mi><mi>i</mi><mi>s</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">parent —— 父组件中用 this.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord" style="margin-right:0.02778em;">—</span><span class="mord" style="margin-right:0.02778em;">—</span><span class="mord cjk_fallback">父</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">件</span><span class="mord cjk_fallback">中</span><span class="mord cjk_fallback">用</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord">.</span></span></span></span>children 获取到子组件实例数组，子组件中可以使用 this.$parent 获取父组件实例对象。</p>
+<p>tips：在 #app 上获取 $parent 得到的是 new Vue()的实例，在这之上再获取 $parent 则是 undefined ；而底层子组件获取 $children 得到的是空数组。</p>
+<p>provide / inject —— vue2.2 新增的 api ，父组件通过 provide 属性来提供变量，然后在子组件中用 inject 来注入变量。<br>
+ref / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>e</mi><mi>f</mi><mi>s</mi><mi mathvariant="normal">—</mi><mi mathvariant="normal">—</mi><mi>r</mi><mi>e</mi><mi>f</mi><mi mathvariant="normal">在</mi><mi mathvariant="normal">普</mi><mi mathvariant="normal">通</mi><mi>D</mi><mi>O</mi><mi>M</mi><mi mathvariant="normal">元</mi><mi mathvariant="normal">素</mi><mi mathvariant="normal">上</mi><mi mathvariant="normal">使</mi><mi mathvariant="normal">用</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">引</mi><mi mathvariant="normal">用</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">就</mi><mi mathvariant="normal">是</mi><mi>D</mi><mi>O</mi><mi>M</mi><mi mathvariant="normal">元</mi><mi mathvariant="normal">素</mi><mi mathvariant="normal">；</mi><mi mathvariant="normal">如</mi><mi mathvariant="normal">果</mi><mi mathvariant="normal">在</mi><mi mathvariant="normal">子</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">件</mi><mi mathvariant="normal">上</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">引</mi><mi mathvariant="normal">用</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">是</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">件</mi><mi mathvariant="normal">实</mi><mi mathvariant="normal">例</mi></mrow><annotation encoding="application/x-tex">refs —— ref 在普通 DOM 元素上使用，引用的就是 DOM 元素；如果在子组件上，引用的是组件实例
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span><span class="mord" style="margin-right:0.02778em;">—</span><span class="mord" style="margin-right:0.02778em;">—</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord cjk_fallback">在</span><span class="mord cjk_fallback">普</span><span class="mord cjk_fallback">通</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord cjk_fallback">元</span><span class="mord cjk_fallback">素</span><span class="mord cjk_fallback">上</span><span class="mord cjk_fallback">使</span><span class="mord cjk_fallback">用</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">引</span><span class="mord cjk_fallback">用</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">就</span><span class="mord cjk_fallback">是</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord cjk_fallback">元</span><span class="mord cjk_fallback">素</span><span class="mord cjk_fallback">；</span><span class="mord cjk_fallback">如</span><span class="mord cjk_fallback">果</span><span class="mord cjk_fallback">在</span><span class="mord cjk_fallback">子</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">件</span><span class="mord cjk_fallback">上</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">引</span><span class="mord cjk_fallback">用</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">件</span><span class="mord cjk_fallback">实</span><span class="mord cjk_fallback">例</span></span></span></span>attrs / $listeners —— vue2.4新增，可以进行跨级的组件通信</p>
+<h1>vue 项目性能优化</h1>
+合理适用 v-if 和 v-show
+区分 computed 和 watch 的使用
+v-for 遍历为 item 添加 key
+v-for 遍历避免同时使用 v-if
+通过 addEventListener 添加的事件在组件销毁时要用 removeEventListener 手动移除这些事件的监听
+图片懒加载
+路由懒加载
+第三方插件按需引入
+SSR服务端渲染，首屏加载速度快，SEO效果好
+<h1>css实现一个三角形？</h1>
+<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571833487462.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://merry-9001.github.io/post-images/1571833492673.png" alt=""></figure>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://merry-9001.github.io/post/ti-mu-http">
+                  <h3 class="post-title">
+                    题目(http)
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

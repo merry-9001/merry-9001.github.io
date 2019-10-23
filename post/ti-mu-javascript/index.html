@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>题目(JavaScript) | 韶华_blog</title>
+<meta name="description" content="学习是一辈子的事">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571833806876">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://merry-9001.github.io">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1571833806876" class="site-logo">
+        <h1 class="site-title">韶华_blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/merry-9001" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      学习是一辈子的事
+    </div>
+    <div class="site-footer">
+      739211562@qq.com | <a class="rss" href="https://merry-9001.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">题目(JavaScript)</h2>
+            <div class="post-date">2019-10-23</div>
+            
+            <div class="post-content">
+              <p>tips: NaN 也属于 number 类型，并且 NaN 不等于自身。</p>
+<h1>JavaScript原型，原型链 ? 有什么特点？</h1>
+<p>每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，<br>
+如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，于是就这样一直找下去，也就是我们平时所说的原型链的概念。</p>
+<p>特点：<br>
+JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。<br>
+当我们需要一个属性的时，Javascript引擎会先看当前对象中是否有这个属性， 如果没有的话，<br>
+就会查找他的Prototype对象是否有这个属性，如此递推下去，一直检索到 Object 内建对象。</p>
+<h1>说几条写JavaScript的基本规范？</h1>
+<p>1.不要在同一行声明多个变量。<br>
+2.请使用 ===/!==来比较true/false或者数值<br>
+3.使用对象字面量替代new Array这种形式<br>
+4.不要使用全局函数。<br>
+5.Switch语句必须带有default分支<br>
+6.函数不应该有时候有返回值，有时候没有返回值。<br>
+7.For循环必须使用大括号<br>
+8.If语句必须使用大括号<br>
+9.for-in循环中的变量 应该使用var关键字明确限定作用域，从而避免作用域污染。</p>
+<h1>eval是做什么的？</h1>
+<p>它的功能是把对应的字符串解析成JS代码并运行；<br>
+应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）。</p>
+<h1>undefined 和 null 区别</h1>
+<p>null： Null类型，代表“空值”，代表一个空对象指针，使用typeof运算得到 “object”，所以你可以认为它是一个特殊的对象值。</p>
+<p>undefined： Undefined类型，当一个声明了一个变量未初始化时，得到的就是undefined。</p>
+<p>null是javascript的关键字，可以认为是对象类型，它是一个空对象指针，和其它语言一样都是代表“空值”，不过 undefined 却是javascript才有的。undefined是在ECMAScript第三版引入的，为了区分空指针对象和未初始化的变量，它是一个预定义的全局变量。没有返回值的函数返回为undefined，没有实参的形参也是undefined。</p>
+<h1>Node.js的适用场景？</h1>
+<p>高并发、聊天、实时消息推送</p>
+<h1>介绍js的基本数据类型。</h1>
+<p>number,string,boolean,object,undefined</p>
+<h1>Javascript如何实现继承？</h1>
+<p>通过原型和构造器</p>
+<p>原型对象是属于构造函数的，不属于实例；<br>
+实例只能共享原型对象中的属性和方法（当然也可以有自己的属性和方法，或者覆盖原型中同名的属性和方法）；<br>
+构造器constructor属于原型的，不属于实例；<br>
+实例之所以能有constructor属性是因为它共享了原型对象的所有成员，包括原型对象的constructor属性；</p>
+<h1>谈谈This对象的理解。</h1>
+<p>this是js的一个关键字，随着函数使用场合不同，this的值会发生变化。</p>
+<p>但是有一个总原则，那就是this指的是调用函数的那个对象。</p>
+<p>this一般情况下：是全局对象Global。 作为方法调用，那么this就是指这个对象</p>
+<h1>IE与火狐的事件机制有什么区别？ 如何阻止冒泡？</h1>
+<p>我们在网页中的某个操作（有的操作对应多个事件）。例如：当我们点击一个按钮就会产生一个事件。是可以被 JavaScript 侦测到的行为。</p>
+<p>事件处理机制：IE是事件冒泡、火狐是 事件捕获；</p>
+<p>ev.stopPropagation();</p>
+<h1>什么是闭包（closure），为什么要用它？</h1>
+闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。
+<p>闭包的特性：</p>
+<p>1.函数内再嵌套函数<br>
+2.内部函数可以引用外层的参数和变量<br>
+3.参数和变量不会被垃圾回收机制回收</p>
+<p>闭包是指有权访问另一个函数作用域中的变量的函数。<br>
+闭包会使得函数内部的变量都被保存在内存中，造成较大的内存开销，因此不要滥用闭包。解决的方法是在退出函数之前将不使用的局部变量置为 null ；</p>
+ <h1>如何判断一个对象是否属于某个类？</h1>
+<pre><code>   使用instanceof （待完善）
+
+   if(a instanceof Person){
+       alert('yes');
+   }
+</code></pre>
+ <h1>Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？</h1>
+<pre><code>    hasOwnProperty :用来查询自身是否有这个函数的
+
+
+    JSON 的了解？
+</code></pre>
+ <h1>JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。</h1>
+它是基于JavaScript的一个子集。数据格式简单, 易于读写, 占用带宽小
+{"age":"12", "name":"back"} 
+ <h1>针对 jQuery 的优化方法？</h1>
+<p>*基于Class的选择性的性能相对于Id选择器开销很大，因为需遍历所有DOM元素。</p>
+<p>*频繁操作的DOM，先缓存起来再操作。用Jquery的链式调用更好。<br>
+比如：var str=$(&quot;a&quot;).attr(&quot;href&quot;);</p>
+<pre><code>*for (var i = size; i &lt; arr.length; i++) {}
+</code></pre>
+<p>for 循环每一次循环都查找了数组 (arr) 的.length 属性，在开始循环的时候设置一个变量来存储这个数字，可以让循环跑得更快：<br>
+for (var i = size, length = arr.length; i &lt; length; i++) {}</p>
+ <h1>如何编写高性能的JavaScript？</h1>
+ 遵循严格模式：”use strict”;
+<p>将js脚本放在页面底部，加快渲染页面;</p>
+<p>将js脚本成组打包，减少请求;</p>
+<p>使用非阻塞方式下载js脚本;</p>
+<p>尽量使用局部变量来保存全局变量;</p>
+<p>尽量减少使用闭包;</p>
+<p>使用window对象属性方法时省略window;</p>
+<p>尽量减少对象成员嵌套;</p>
+<p>缓存DOM节点的访问;</p>
+<p>通过避免使用eval和function()构造器;</p>
+<p>给setTimeout()和setInterval()传递函数而不是字符作为参数;</p>
+<p>尽量使用直接量创建对象和数组;</p>
+<h1>防抖和节流的实现</h1>
+<p>防抖：触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间</p>
+<pre><code>funtion debounce(fn) {
+// 创建一个标记用来存放定时器的返回值
+let timeout = null;
+return function() {
+// 每次触发事件时都取消之前的延时调用方法
+clearTimeout(timeout);
+// 然后又创建一个新的 setTimeout, 这样就能保证 1000ms 间隔内如果重复触发就不会执行 fn 函数
+timeout = setTimeout(() =&gt; {
+fn.apply(this, arguments);
+}, 1000);
+};
+}
+</code></pre>
+<p>节流：高频事件触发，但在n秒内只会执行一次，所以节流会稀释函数的执行频率</p>
+<pre><code>function throttle(fn) {
+// 通过闭包保存一个标记
+let canRun = true;
+return function(){
+// 每次开始执行函数时都先判断标记是否为 true，不为 true 则 return
+if (!canRun) return;
+// 上一次定时器执行完后 canRun 为 true，所以要先设置为false
+canRun = false;
+setTimeout(() =&gt; {
+fn.apply(this, arguments);
+// 最后在 setTimeout 执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是 false，在开头被 return 掉
+canRun = true;
+}, 1000)
+}
+</code></pre>
+<p>}</p>
+<h1>var、let 和 const </h1>
+var 和 let 用以声明变量，const 用于声明只读的常量；
+<p>var 声明的变量，不存在块级作用域，在全局范围内都有效，let 和 const 声明的，只在它所在的代码块内有效；</p>
+<p>let 和 const 不存在像 var 那样的 “变量提升” 现象，所以 var 定义变量可以先使用，后声明，而 let 和 const 只可先声明，后使用；</p>
+<p>let 声明的变量存在暂时性死区，即只要块级作用域中存在 let，那么它所声明的变量就绑定了这个区域，不再受外部的影响。</p>
+<p>let 不允许在相同作用域内，重复声明同一个变量；</p>
+<p>const 在声明时必须初始化赋值，一旦声明，其声明的值就不允许改变，更不允许重复声明；</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://merry-9001.github.io/post/ti-mu-css">
+                  <h3 class="post-title">
+                    题目(css)
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

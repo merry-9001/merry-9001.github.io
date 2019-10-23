@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>题目(http) | 韶华_blog</title>
+<meta name="description" content="学习是一辈子的事">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571833806876">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://merry-9001.github.io">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1571833806876" class="site-logo">
+        <h1 class="site-title">韶华_blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/merry-9001" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      学习是一辈子的事
+    </div>
+    <div class="site-footer">
+      739211562@qq.com | <a class="rss" href="https://merry-9001.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">题目(http)</h2>
+            <div class="post-date">2019-10-23</div>
+            
+            <div class="post-content">
+               <h1>http状态码有那些？分别代表是什么意思？ </h1>
+<p>100-199 用于指定客户端应相应的某些动作。<br>
+200-299 用于表示请求成功。<br>
+300-399 用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。<br>
+400-499 用于指出客户端的错误。400    1、语义有误，当前请求无法被服务器理解。401    当前请求需要用户验证 403    服务器已经理解请求，但是拒绝执行它。<br>
+500-599 用于支持服务器错误。 503 – 服务不可用</p>
+<h1>一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好</h1>
+<p>查找浏览器缓存<br>
+DNS解析、查找该域名对应的IP地址、重定向（301）、发出第二个GET请求<br>
+进行HTTP协议会话<br>
+客户端发送报头(请求报头)<br>
+服务器回馈报头(响应报头)<br>
+html文档开始下载<br>
+文档树建立，根据标记请求所需指定MIME类型的文件<br>
+文件显示<br>
+[<br>
+浏览器这边做的工作大致分为以下几步：</p>
+<p>加载：根据请求的URL进行域名解析，向服务器发起请求，接收文件（HTML、JS、CSS、图象等）。</p>
+<p>解析：对加载到的资源（HTML、JS、CSS等）进行语法解析，建议相应的内部数据结构（比如HTML的DOM树，JS的（对象）属性表，CSS的样式规则等等）<br>
+}</p>
+<h1>POST 和 GET 的区别</h1>
+<p>GET在浏览器回退时是无害的，而POST会再次提交请求 *<br>
+GET请求会被浏览器主动缓存，而POST不会，除非手动设置 *<br>
+GET请求参数会被完整保留在浏览器的历史记录里，而POST中的参数不会被保留 *<br>
+GET请求在URL中传送的参数是有长度限制的，而POST没有限制 *<br>
+GET参数通过URL传递，POST放在Request body中 *<br>
+GET请求只能进行 url 编码，而POST支持多种编码方式<br>
+GET产生的URL地址可以被收藏，而POST不可以<br>
+对参数的数据类型，GET只接受ASCII字符，而POST没有限制<br>
+GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息</p>
+<h1>TCP</h1>
+三次握手建立连接
+主机 A 相与主机 B 建立连接，主机 A 会首先发送一个 SYN 包给主机 B。主机 B 会返回 确认应答 ACK 或者否定应答 NACK。如果这时主机 A 长时间没有收到主机 B 的应答，主机 A 会重发 SYN 包给主机 B，实现了重发数据包的功能。当主机 B 发送 ACK 给主机 A 后，主机 A 也会发送一个 ACK 包给主机 B，这时建立连接。
+TCP有顺序控制的功能，通过一个序列号来确认发送的数据。在发送 SYN 包前，假设主机 A 的初始序列号为1000，以该序号依次往下进行数据编号，然后告诉主机 B 初始序列，同时主机 B 会对 A 的序列号进行确认，假如主机 B 返回一个2000的序列号，则代表字节编号为1000 — 1999，表明主机 B 收到1000字节。
+为什么不是两次握手
+两次握手就建立连接，假如主机 A 发送的 SYN 因网络问题迟迟没有到达主机 B，这时候会重发另一个 SYN 包给 B，当 A 接受到 B 的 ACK 包时建立连接。这时如果第一个 SYN 到达 B 时，主机 B 会认为主机 A 希望再次建立连接，会返回一个 ACK 包给 A。当 A 收到 ACK 时会抛弃掉这个包，因为 A 并不想建立连接，这时主机 B 认为连接已经建立，会一直等待主机 A 发送数据，这样会导致主机 B 的性能损耗。
+四次握手断开连接
+主机 A 发送 FIN（请求切断连接），主机 B 收到后回复 ACK 和 FIN 包，主机 A 收到主机 B 的 FIN  和 ACK 后发送 ACK 包
+<h1>用户输入 url 到页面呈现的过程</h1>
+<p>用户输入url<br>
+浏览器查找域名的 IP 地址 域名解析(DNS解析)<br>
+找到 IP 地址后，建立 TCP 三次握手 ,与目标服务器建立连接<br>
+握手成功后，通过规定的协议（http），浏览器向目标主机发送 http 请求，请求数据包<br>
+服务器处理收到的请求，将数据返回至浏览器<br>
+浏览器收到 HTTP 响应报文<br>
+关闭连接 浏览器解析文档<br>
+读取页面内容，浏览器渲染，解析html源码<br>
+生成 Dom 树、解析 css 样式、js 交互<br>
+在生成 Render 树的过程中，浏览器就开始调用 GPU 绘制，合成图层，将内容显示在屏幕上了</p>
+<h1>事件机制</h1>
+event.preventDefault()              // 阻止默认事件,例如a标签的跳转行为
+event.stopPropagation()             // 阻止冒泡
+event.stopImmediatePropagation()    // 事件响应优先级：例如同一元素绑定不同事件时，触发a事件不让b事件触发
+event.currentTarget                 // 当前绑定事件的元素
+event.target                        // 当前被点击的元素
+<h1>跨域的几种解决方法：</h1>
+<pre><code>JSONP —— 利用 &lt;script&gt; 标签没有跨域限制的特点，
+通过 &lt;script&gt; 标签指向一个需要访问的地址并提供一个回调函数来接收数据。
+CORS —— 服务端设置 Access-Control-Allow-Origin 就可以开启 CORS。 
+该属性表示哪些域名可以访问资源，如果设置通配符则表示所有网站都可以访问资源。
+</code></pre>
+<h1>优化渲染过程</h1>
+代码层面的优化（参考浏览器篇如何减少重绘和回流）
+懒执行 —— 将某些逻辑放到使用时再进行，可以通过定时器或事件进行唤醒
+懒加载 —— 将不关键的资源延后加载，如图片、视频资源等。
+<h1>图片优化：</h1>
+<p>可以用 css 模拟代替的尽量不要用图片<br>
+小图片用 base64 格式<br>
+雪碧图<br>
+选择正确的图片格式<br>
+选择使用 WebP 格式，体积较小，缺点是兼容性不好<br>
+小图使用 PNG ，图标类可以使用 SVG 代替<br>
+照片使用 JPEG</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://merry-9001.github.io/post/ti-mu-javascript">
+                  <h3 class="post-title">
+                    题目(JavaScript)
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
