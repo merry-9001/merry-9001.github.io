@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571913579996">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571925487751">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1571913579996" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1571925487751" class="site-logo">
         <h1 class="site-title">韶华_blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -94,7 +94,11 @@
             <div class="post-date">2019-10-23</div>
             
             <div class="post-content">
-              <p>tips: NaN 也属于 number 类型，并且 NaN 不等于自身。</p>
+              <h1>bind、call、apply的区别</h1>
+三者都是用于改变函数体内this的指向，但是bind与apply和call的最大的区别是：bind不会立即调用，而是返回一个新函数，称为绑定函数，其内的this指向为创建它时传入bind的第一个参数，而传入bind的第二个及以后的参数作为原函数的参数来调用原函数。
+apply和call都是为了改变某个函数运行时的上下文而存在的（就是为了改变函数内部this的指向）；apply和call的调用返回函数执行结果；
+<p>如果使用apply或call方法，那么this指向他们的第一个参数，apply的第二个参数是一个参数数组，call的第二个及其以后的参数都是数组里面的元素，就是说要全部列举出来；</p>
+<p>tips: NaN 也属于 number 类型，并且 NaN 不等于自身。</p>
 <h1>JavaScript原型，原型链 ? 有什么特点？</h1>
 <p>每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，<br>
 如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，于是就这样一直找下去，也就是我们平时所说的原型链的概念。</p>

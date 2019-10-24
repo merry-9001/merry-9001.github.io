@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>韶华_blog</title>
-    <updated>2019-10-24T10:39:44.513Z</updated>
+    <updated>2019-10-24T13:58:10.113Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -10,6 +10,88 @@
     <logo>https://merry-9001.github.io/images/avatar.png</logo>
     <icon>https://merry-9001.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 韶华_blog</rights>
+    <entry>
+        <title type="html"><![CDATA[ES6]]></title>
+        <id>https://merry-9001.github.io/post/es6</id>
+        <link href="https://merry-9001.github.io/post/es6">
+        </link>
+        <updated>2019-10-24T11:04:57.000Z</updated>
+        <content type="html"><![CDATA[<h1>let和const</h1>
+<p>解决问题<br>
+var不能用于定义常量<br>
+var可以重复声明变量<br>
+var存在变量提升<br>
+var不支持块级作用域</p>
+<p>不可以重复声明变量</p>
+<pre><code>let site = 'itLike';
+let site = 'itLike'; 
+console.log(site);
+</code></pre>
+<p>不存在变量提升</p>
+<pre><code>console.log(site);
+let site = 'itLike';
+</code></pre>
+<p>const用来定义常量</p>
+<pre><code>const E = 2.718;
+</code></pre>
+<p>块级作用域用一组大括号定义一个块，使用 let 定义的变量在大括号的外部是访问不到的，此外，let声明的变量不会污染全局作用域。（let拥有块级作用域）</p>
+<p>{let site = 'itLike';}</p>
+<h1>解构赋值</h1>
+<pre><code>let [name1, name2, name3] = nameArr;
+let {name: lkName, age: lkAge, sex: lkSex}= {name: '小煤球', age: 1, sex: '公'};
+</code></pre>
+<h1>函数操作</h1>
+设置默认参数
+<pre><code>function logPerson(name, sex = '男', age = 20) {
+    console.log(name);
+    console.log(sex);
+    console.log(age);
+}
+undefined 男 20
+logPerson();
+</code></pre>
+<p>延展参数转化</p>
+<pre><code>let logName = function (arg1, ...arg2) {
+
+    console.log(arg1, arg2);
+
+};
+
+// 宋小宝 , [&quot;赵薇&quot;, &quot;王菲&quot;, &quot;那英&quot;]
+logName('宋小宝', '赵薇', '王菲', '那英');
+</code></pre>
+<h1>super</h1>
+<p>通过super可以调用prototype上的属性或方法。</p>
+<h1>类操作</h1>
+<p>在之前定义类是通过构造函数来操作的，es6新增了class关键字，此时，我们也可以像其它语言一样来创建各种类了。</p>
+<pre><code>class Person{
+    constructor(name, age){
+        this.name = name;
+        this.age = age;
+    }
+    print(){
+        console.log('我叫' + this.name + ',今年' + this.age + '岁');
+    }
+}
+</code></pre>
+<h1>集合操作</h1>
+1）set
+<p>一个Set是一堆东西的集合，Set有点像数组，不过跟数组不一样的是，Set里面不能有重复的内容；</p>
+<ol start="2">
+<li>map 两个值</li>
+</ol>
+<p>Map结构提供了“值—值”的对应，是一种更完善的Hash结构实现。</p>
+<p>如果你需要“键值对”的数据结构，Map比Object更合适。</p>
+<p>它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。</p>
+<p>实例属性和方法：size、set、get、has、delete、clear</p>
+<h1>重载</h1>
+<p>什么时重载？<br>
+ES6带来了Proxy和Reflect，配合使用可以实现重载。</p>
+<p>Proxy用于修改某些操作的默认行为，相当于对原始想进行的操作进行“包装”；</p>
+<p>Reflect对象的方法与Proxy对象的方法一一对应，这使得Proxy对象可以方便的调用对应的Reflect方法完成默认行为。</p>
+<p>简单说，就是函数或者方法有相同的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[各类函数]]></title>
         <id>https://merry-9001.github.io/post/ge-lei-han-shu</id>
@@ -405,7 +487,10 @@ SSR服务端渲染，首屏加载速度快，SEO效果好
         <link href="https://merry-9001.github.io/post/ti-mu-http">
         </link>
         <updated>2019-10-23T11:53:17.000Z</updated>
-        <content type="html"><![CDATA[ <h1>http状态码有那些？分别代表是什么意思？ </h1>
+        <content type="html"><![CDATA[ <h1>cookie和session </h1>
+ cookie存储的数据量有限，不同的浏览器有不同的存储大小，但一般不超过4KB。因此使用cookie只能存储一些小量的数据。
+ cookie是存储在本地浏览器，而session存储在服务器。
+ <h1>http状态码有那些？分别代表是什么意思？ </h1>
 <p>100-199 用于指定客户端应相应的某些动作。<br>
 200-299 用于表示请求成功。<br>
 300-399 用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。<br>
@@ -486,7 +571,11 @@ CORS —— 服务端设置 Access-Control-Allow-Origin 就可以开启 CORS。
         <link href="https://merry-9001.github.io/post/ti-mu-javascript">
         </link>
         <updated>2019-10-23T11:06:06.000Z</updated>
-        <content type="html"><![CDATA[<p>tips: NaN 也属于 number 类型，并且 NaN 不等于自身。</p>
+        <content type="html"><![CDATA[<h1>bind、call、apply的区别</h1>
+三者都是用于改变函数体内this的指向，但是bind与apply和call的最大的区别是：bind不会立即调用，而是返回一个新函数，称为绑定函数，其内的this指向为创建它时传入bind的第一个参数，而传入bind的第二个及以后的参数作为原函数的参数来调用原函数。
+apply和call都是为了改变某个函数运行时的上下文而存在的（就是为了改变函数内部this的指向）；apply和call的调用返回函数执行结果；
+<p>如果使用apply或call方法，那么this指向他们的第一个参数，apply的第二个参数是一个参数数组，call的第二个及其以后的参数都是数组里面的元素，就是说要全部列举出来；</p>
+<p>tips: NaN 也属于 number 类型，并且 NaN 不等于自身。</p>
 <h1>JavaScript原型，原型链 ? 有什么特点？</h1>
 <p>每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，<br>
 如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，于是就这样一直找下去，也就是我们平时所说的原型链的概念。</p>
@@ -779,84 +868,6 @@ div{
 <h1>transition 和 animate 有何区别?</h1>
 transition：用于做过渡效果，没有帧概念，只有开始和结束状态，性能开销较小
 animate：用于做动画，有帧的概念，可以重复触发且有中间状态，性能开销较大
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题目（html）]]></title>
-        <id>https://merry-9001.github.io/post/ti-mu</id>
-        <link href="https://merry-9001.github.io/post/ti-mu">
-        </link>
-        <updated>2019-10-22T11:35:01.000Z</updated>
-        <content type="html"><![CDATA[ <h1>Doctype作用？标准模式与兼容模式各有什么区别? </h1>
-<p>（1）、&lt;!DOCTYPE&gt;声明位于位于HTML文档中的第一行，处于 <html> 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。<br>
-（2）、标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。</p>
- <h1>HTML5 为什么只需要写 </h1>
-<pre><code>&lt;!DOCTYPE HTML&gt;？
-</code></pre>
-<p>HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；<br>
-而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。<br>
-标准通用标记语言<br>
-Standard Generalized Markup language（SGM或SGML）（以下简称“通用标言”）<br>
-文档类型定义（DTD，Document Type Definition）是一种特殊文档，它规定、约束符合标准通用标示语言（SGML）或SGML子集可扩展标示语言（XML）规则的定义和陈述。</p>
- <h1>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</h1>
-首先：CSS规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如div的display默认值为“block”，则为“块级”元素；span默认display属性值为“inline”，是“行内”元素。
-<p>（1）行内元素有：a b span img input select strong（强调的语气）<br>
-（2）块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p</p>
-<p>（3）常见的空元素：</p>
-<pre><code>&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;
-</code></pre>
-<p>meta 的属性有两种：name和http-equiv作用name属性主要用于描述网页，对应于content（网页内容），以便于搜索引擎机器人查找</p>
- <h1>页面导入样式时，使用link和@import有什么区别？</h1>
-（1）link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;
-<p>（2）页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;</p>
-<p>（3）import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题;<br>
-html与xhtml<br>
-XHTML 元素必须被正确地嵌套。<br>
-XHTML 元素必须被关闭。<br>
-标签名必须用小写字母。<br>
-XHTML 文档必须拥有根元素。</p>
- <h1>浏览器的内核分别是什么?</h1>
-<p>IE浏览器的内核Trident、Mozilla的Gecko、Chrome的Blink（WebKit的分支</p>
-<h1>html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML和HTML5？</h1>
-<p>HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。</p>
-<p>绘画 canvas<br>
-用于媒介回放的 video 和 audio 元素<br>
-本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；<br>
-sessionStorage 的数据在浏览器关闭后自动删除</p>
-<p>语意化更好的内容元素，比如 article、footer、header、nav、section<br>
-表单控件，calendar、date、time、email、url、search<br>
-新的技术webworker, websockt, Geolocation</p>
-<p>移除的元素</p>
-<p>纯表现的元素：basefont，big，center，font, s，strike，tt，u；(可以用css来代替)</p>
-<p>对可用性产生负面影响的元素：frame，frameset，noframes；</p>
-<p>支持HTML5新标签：</p>
-<p>IE8/IE7/IE6支持通过document.createElement方法产生的标签，<br>
-可以利用这一特性让这些浏览器支持HTML5新标签，</p>
-<p>浏览器支持新标签后，还需要添加标签默认的样式：</p>
-<p>当然最好的方式是直接使用成熟的框架、使用最多的是html5shim框架</p>
-<!--[if lt IE 9]>
-<script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
-<![endif]-->
-<p>如何区分： DOCTYPE声明\新增的结构元素\功能元素</p>
- <h1>语义化的理解？</h1>
-<p>用正确的标签做正确的事情！<br>
-html语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析；<br>
-在没有样式CCS情况下也以一种文档格式显示，并且是容易阅读的。<br>
-搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于 SEO。<br>
-使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。</p>
-   <h1> HTML5的离线储存？</h1>
-<p>localStorage    长期存储数据，浏览器关闭后数据不丢失；<br>
-sessionStorage  数据在浏览器关闭后自动删除。</p>
-<h1>iframe有那些缺点？</h1>
-<p>*iframe会阻塞主页面的Onload事件；</p>
-<h1>请描述一下 cookies，sessionStorage 和 localStorage 的区别？</h1>
-<p>cookie在浏览器和服务器间来回传递。 sessionStorage和localStorage不会<br>
-sessionStorage和localStorage的存储空间更大；<br>
-sessionStorage和localStorage有更多丰富易用的接口；<br>
-sessionStorage和localStorage各自独立的存储空间；</p>
-<h1> webSocket如何兼容低浏览器？</h1>
-<p>Adobe Flash Socket 、 ActiveX HTMLFile (IE) 、 基于 multipart 编码发送 XHR 、 基于长轮询的 XHR<br>
-WebSocket是HTML5新增的协议，它的目的是在浏览器和服务器之间建立一个不受限的双向通信的通道，</p>
 ]]></content>
     </entry>
 </feed>
