@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>html5 | 韶华_blog</title>
+<title>各类函数 | 韶华_blog</title>
 <meta name="description" content="学习是一辈子的事">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -90,51 +90,107 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">html5</h2>
-            <div class="post-date">2019-10-21</div>
+            <h2 class="post-title">各类函数</h2>
+            <div class="post-date">2019-10-24</div>
             
             <div class="post-content">
-              <h1>datalist标签：</h1>
-<pre><code>&lt;datalist id=&quot;subjects&quot;&gt;
-    &lt;!--创建选项值：value:具体的值 label:提示信息，辅助值--&gt;
-    &lt;option value=&quot;英语&quot; label=&quot;不会&quot;/&gt;
-    &lt;option value=&quot;前端与移动开发&quot; label=&quot;前景非常好&quot;&gt;&lt;/option&gt;
-&lt;/datalist&gt;
-可选择，可填写
+              <h1>构造函数</h1>
+<pre><code>function Person(name , age , gender){
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+    this.sayName = function(){
+        alert(this.name);
+    };
+}
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571709581609.jpg" alt=""></figure>
-<!-- more -->
-<!-- more -->
-<h1>progress与meter</h1>
-progress:一般记录下载进度
-<progress max="100" value="100"></progress>   
-<pre><code>&lt;progress max=&quot;100&quot; value=&quot;100&quot;&gt;&lt;/progress&gt;
+ <h1>回调函数</h1>   
+<p>1). 你定义的<br>
+2). 你没有调<br>
+3). 但最终它执行了(在某个时刻或某个条件下)</p>
+<pre><code>setTimeout(function () { // 定时器回调函数
+alert('到点了'+this)
+}, 2000)
 </code></pre>
-<p>meter度量器：衡量当前进度值</p>
-<pre><code>&lt;meter max=&quot;100&quot; min=&quot;0&quot; high=&quot;80&quot; low=&quot;40&quot; value=&quot;30&quot;&gt;&lt;/meter&gt;
+<h1>立即执行函数和匿名函数</h1>
+<p>函数定义完，立即被调用，这种函数叫做立即执行函数<br>
+立即执行函数往往只会执行一次</p>
+<pre><code>(function(){
+    alert(&quot;我是一个匿名函数~~~&quot;);
+})();
+
+(function(a,b){
+    console.log(&quot;a = &quot;+a);
+    console.log(&quot;b = &quot;+b);
+})(123,456);
 </code></pre>
-<p><meter max="100" min="0" high="80" low="40" value="60"></meter></p>
-<p>3.音视频</p>
-<p>audio:音频<br>
-controls:音频播放器的控制器面板<br>
-autoplay:自动播放<br>
-loop:循环播放<br>
-<audio src="../mp3/aa.mp3" controls></audio></p>
-<pre><code>&lt;audio src=&quot;../mp3/aa.mp3&quot; controls&gt;&lt;/audio&gt;
+<h1>闭包函数</h1>
+ 当一个嵌套的内部(子)函数引用了嵌套的外部(父)函数的变量(函数)时, 就产生了闭包
+<p>函数嵌套<br>
+内部函数引用了外部函数的数据(变量/函数)</p>
+<pre><code>function fn1 () {
+    var a = 2
+    var b = 'abc'
+    function fn2 () { //执行函数定义就会产生闭包(不用调用内部函数)
+    console.log(a)
+    }
+    // fn2()
+}
+function showDelay(msg, time) {
+    setTimeout(function () {
+    alert(msg)
+    }, time)
+}
 </code></pre>
-<p>视频<br>
-poster:指定视频还没有完全下载完毕，或者用户没有点击播放前显示的封面。 默认显示当前视频文件的第一副图像<br>
-width:视频的宽度</p>
-<pre><code>&lt;video controls&gt;
-    &lt;!--视频源，可以有多个源--&gt;
-        &lt;source src=&quot;../mp3/flv.flv&quot; type=&quot;video/flv&quot;&gt;
-        &lt;source src=&quot;../mp3/mp4.mp4&quot; type=&quot;video/mp4&quot;&gt;
-&lt;/video&gt;
+<p>作用</p>
+<ol>
+<li>
+<p>使用函数内部的变量在函数执行完后, 仍然存活在内存中(延长了局部变量的生命周期)</p>
+</li>
+<li>
+<p>让函数外部可以操作(读写)到函数内部的数据(变量/函数)</p>
+</li>
+<li>
+<p>缺点</p>
+</li>
+</ol>
+<ul>
+<li>函数执行完后, 函数内的局部变量没有释放, 占用内存时间会变长</li>
+<li>容易造成内存泄露</li>
+</ul>
+<ol start="2">
+<li>解决</li>
+</ol>
+<ul>
+<li>能不用闭包就不用</li>
+<li>及时释放<br>
+f = null //让内部函数成为垃圾对象--&gt;回收闭包</li>
+</ul>
+<h1>箭头函数</h1>
+如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。
+<pre><code>var f = () =&gt; 5;
+// 等同于
+var f = function ()
+{ return 5 };
+
+var sum = (num1, num2) =&gt; num1 + num2;
+// 等同于
+var sum = function(num1, num2) {
+return num1 + num2;
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="https://merry-9001.github.io/post-images/1571710483692.jpg" alt=""></figure>
+<p>函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
 
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://merry-9001.github.io/post/javascriptbom">
+                  <h3 class="post-title">
+                    JavaScript（BOM）
+                  </h3>
+                </a>
+              </div>
             
 
             

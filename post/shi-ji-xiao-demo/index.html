@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>html5 | 韶华_blog</title>
+<title>实际小demo | 韶华_blog</title>
 <meta name="description" content="学习是一辈子的事">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -90,51 +90,84 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">html5</h2>
-            <div class="post-date">2019-10-21</div>
+            <h2 class="post-title">实际小demo</h2>
+            <div class="post-date">2019-10-24</div>
             
             <div class="post-content">
-              <h1>datalist标签：</h1>
-<pre><code>&lt;datalist id=&quot;subjects&quot;&gt;
-    &lt;!--创建选项值：value:具体的值 label:提示信息，辅助值--&gt;
-    &lt;option value=&quot;英语&quot; label=&quot;不会&quot;/&gt;
-    &lt;option value=&quot;前端与移动开发&quot; label=&quot;前景非常好&quot;&gt;&lt;/option&gt;
-&lt;/datalist&gt;
-可选择，可填写
-</code></pre>
-<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571709581609.jpg" alt=""></figure>
-<!-- more -->
-<!-- more -->
-<h1>progress与meter</h1>
-progress:一般记录下载进度
-<progress max="100" value="100"></progress>   
-<pre><code>&lt;progress max=&quot;100&quot; value=&quot;100&quot;&gt;&lt;/progress&gt;
-</code></pre>
-<p>meter度量器：衡量当前进度值</p>
-<pre><code>&lt;meter max=&quot;100&quot; min=&quot;0&quot; high=&quot;80&quot; low=&quot;40&quot; value=&quot;30&quot;&gt;&lt;/meter&gt;
-</code></pre>
-<p><meter max="100" min="0" high="80" low="40" value="60"></meter></p>
-<p>3.音视频</p>
-<p>audio:音频<br>
-controls:音频播放器的控制器面板<br>
-autoplay:自动播放<br>
-loop:循环播放<br>
-<audio src="../mp3/aa.mp3" controls></audio></p>
-<pre><code>&lt;audio src=&quot;../mp3/aa.mp3&quot; controls&gt;&lt;/audio&gt;
-</code></pre>
-<p>视频<br>
-poster:指定视频还没有完全下载完毕，或者用户没有点击播放前显示的封面。 默认显示当前视频文件的第一副图像<br>
-width:视频的宽度</p>
-<pre><code>&lt;video controls&gt;
-    &lt;!--视频源，可以有多个源--&gt;
-        &lt;source src=&quot;../mp3/flv.flv&quot; type=&quot;video/flv&quot;&gt;
-        &lt;source src=&quot;../mp3/mp4.mp4&quot; type=&quot;video/mp4&quot;&gt;
-&lt;/video&gt;
-</code></pre>
-<figure data-type="image" tabindex="2"><img src="https://merry-9001.github.io/post-images/1571710483692.jpg" alt=""></figure>
+              <h1>图片轮播图</h1>'
+<pre><code>&lt;div&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/1.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/2.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/3.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/4.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/5.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/6.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/7.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/1.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/2.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/3.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/4.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/5.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/6.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;../images/7.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+div{
+    width: 882px;
+    height: 86px;
+    margin:100px auto;
+    background-color: #ddd;
+    overflow: hidden;
+}
+    div ul{
+    width: 200%;
+    list-style: none;
+    /*1.设置的名称*/
+    animation-name: move;
+    /*2.设置动画的耗时*/
+    animation-duration: 7s;
+    /*3.市场无限循环*/
+    animation-iteration-count: infinite;
+    /*4.设置时间函数*/
+    animation-timing-function: linear;
+}
+
+div  ul  li{
+    width:126px;
+    float: left;
+}
+div  ul  li　 img{
+    width:100%;
+}
+/*鼠标上移，停止动画*/
+div:hover  ul{
+    cursor: pointer;
+    animation-play-state: paused;
+}
+
+/*创建动画*/
+@keyframes move {
+    from{
+    transform:translateX(0);
+    }
+    to{
+    transform:translateX(-882px);
+    }
+}</code></pre>
 
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://merry-9001.github.io/post/vue-ti-mu">
+                  <h3 class="post-title">
+                    vue题目
+                  </h3>
+                </a>
+              </div>
             
 
             

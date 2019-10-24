@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>html5 | 韶华_blog</title>
+<title>JavaScript(dom) | 韶华_blog</title>
 <meta name="description" content="学习是一辈子的事">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -90,51 +90,71 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">html5</h2>
-            <div class="post-date">2019-10-21</div>
+            <h2 class="post-title">JavaScript(dom)</h2>
+            <div class="post-date">2019-10-24</div>
             
             <div class="post-content">
-              <h1>datalist标签：</h1>
-<pre><code>&lt;datalist id=&quot;subjects&quot;&gt;
-    &lt;!--创建选项值：value:具体的值 label:提示信息，辅助值--&gt;
-    &lt;option value=&quot;英语&quot; label=&quot;不会&quot;/&gt;
-    &lt;option value=&quot;前端与移动开发&quot; label=&quot;前景非常好&quot;&gt;&lt;/option&gt;
-&lt;/datalist&gt;
-可选择，可填写
+              <pre><code>//获取到button对象
+var btn = document.getElementById(&quot;btn&quot;);
+
+//修改按钮的文字
+btn.innerHTML = &quot;I'm Button&quot;;
+
+/查找所有li节点
+//getElementsByTagName()可以根据标签名来获取一组元素节点对象
+//这个方法会给我们返回一个类数组对象，所有查询到的元素都会封装到对象中
+//即使查询到的元素只有一个，也会封装到数组中返回
+var lis = document.getElementsByTagName(&quot;li&quot;);  
+得到是数组
+
+//var box1 = document.getElementsByClassName(&quot;box1&quot;); 
+根据class的名字来查询
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571709581609.jpg" alt=""></figure>
-<!-- more -->
-<!-- more -->
-<h1>progress与meter</h1>
-progress:一般记录下载进度
-<progress max="100" value="100"></progress>   
-<pre><code>&lt;progress max=&quot;100&quot; value=&quot;100&quot;&gt;&lt;/progress&gt;
+<p>document.querySelector()<br>
+需要一个选择器的字符串作为参数，可以根据一个CSS选择器来查询一个元素节点对象<br>
+虽然IE8中没有getElementsByClassName()但是可以使用querySelector()代替<br>
+使用该方法总会返回唯一的一个元素，如果满足条件的元素有多个，那么它只会返回第一个<br>
+document.querySelectorAll()<br>
+该方法和querySelector()用法类似，不同的是它会将符合条件的元素封装到一个数组中返回<br>
+即使符合条件的元素只有一个，它也会返回数组</p>
+<h1>创建节点</h1>
+<pre><code>var li = document.createElement(&quot;li&quot;);
+var gzText = document.createTextNode(&quot;广州&quot;);
+li.appendChild(gzText);
 </code></pre>
-<p>meter度量器：衡量当前进度值</p>
-<pre><code>&lt;meter max=&quot;100&quot; min=&quot;0&quot; high=&quot;80&quot; low=&quot;40&quot; value=&quot;30&quot;&gt;&lt;/meter&gt;
+<p>获取id为bj的节点</p>
+<pre><code>var bj = document.getElementById(&quot;bj&quot;);
 </code></pre>
-<p><meter max="100" min="0" high="80" low="40" value="60"></meter></p>
-<p>3.音视频</p>
-<p>audio:音频<br>
-controls:音频播放器的控制器面板<br>
-autoplay:自动播放<br>
-loop:循环播放<br>
-<audio src="../mp3/aa.mp3" controls></audio></p>
-<pre><code>&lt;audio src=&quot;../mp3/aa.mp3&quot; controls&gt;&lt;/audio&gt;
+<p>获取city</p>
+<pre><code>var city = document.getElementById(&quot;city&quot;);
 </code></pre>
-<p>视频<br>
-poster:指定视频还没有完全下载完毕，或者用户没有点击播放前显示的封面。 默认显示当前视频文件的第一副图像<br>
-width:视频的宽度</p>
-<pre><code>&lt;video controls&gt;
-    &lt;!--视频源，可以有多个源--&gt;
-        &lt;source src=&quot;../mp3/flv.flv&quot; type=&quot;video/flv&quot;&gt;
-        &lt;source src=&quot;../mp3/mp4.mp4&quot; type=&quot;video/mp4&quot;&gt;
-&lt;/video&gt;
+<p>insertBefore()<br>
+可以在指定的子节点前插入新的子节点<br>
+语法：<br>
+父节点.insertBefore(新节点,旧节点);</p>
+<pre><code>city.insertBefore(li , bj);
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="https://merry-9001.github.io/post-images/1571710483692.jpg" alt=""></figure>
+<h1>使用DOM操作CSS</h1>
+赋值
+<pre><code>box1.style.width = &quot;300px&quot;;
+box1.style.height = &quot;300px&quot;;
+box1.style.backgroundColor = &quot;yellow&quot;;
+</code></pre>
+<p>读值</p>
+<pre><code>alert(box1.style.width);
+</code></pre>
 
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://merry-9001.github.io/post/flex-bu-ju">
+                  <h3 class="post-title">
+                    flex布局
+                  </h3>
+                </a>
+              </div>
             
 
             

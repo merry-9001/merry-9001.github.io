@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571842906999">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571913579996">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1571842906999" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1571913579996" class="site-logo">
         <h1 class="site-title">韶华_blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -341,6 +341,59 @@ no-repeat：</p>
 transform: translateX(700px) rotate(-90deg);
 transform:skew(-30deg);斜切
 </code></pre>
+<h1>动画</h1>
+添加动画效果
+<p>1.animation-name:指定动画名称<br>
+animation-name: moveTest;<br>
+2.设置动画的总耗时<br>
+animation-duration: 2s;<br>
+3.设置动画的播放次数，默认为1次  可以指定具体的数值，也可以指定infinite(无限次)<br>
+animation-iteration-count: 1/infinite;<br>
+4.设置交替动画  alternate:来回交替<br>
+animation-direction: alternate;<br>
+5.设置动画的延迟<br>
+animation-delay: 2s;<br>
+5.设置动画结束时的状态：默认情况下，动画执行完毕之后，会回到原始状态<br>
+forwards:会保留动画结束时的状态，在有延迟的情况下，并不会立刻进行到动画的初始状态<br>
+backwards:不会保留动画结束时的状态，在添加了动画延迟的前提下，如果动画有初始状态，那么会立刻进行到初始状态<br>
+both:会保留动画的结束时状态，在有延迟的情况下也会立刻进入到动画的初始状态<br>
+animation-fill-mode: both;<br>
+6.动画的时间函数<br>
+animation-timing-function: linear; （这个表示匀速，可以开始比较满或者快或者）<br>
+设置动画的播放状态  paused:暂停   running:播放<br>
+animation-play-state: running;</p>
+<pre><code>@keyframes moveTest {
+百分比是指整个动画耗时的百分比  10s
+from{
+    transform: translate(0,0) rotate(45deg);
+}
+50%{
+    transform: translate(0,500px);
+}
+to{
+    transform: translate(500px,600px);
+    }
+}
+</code></pre>
+<h1>多列布局</h1>
+<p>1.设置列数</p>
+<pre><code>column-count: 3;
+</code></pre>
+<p>2.添加列间隙样式,与边框样式的添加一样</p>
+<pre><code>column-rule: dashed 3px red;
+</code></pre>
+<p>3。设置列间隙大小</p>
+<pre><code>column-gap: 50px;
+</code></pre>
+<p>4.设置列宽<br>
+原则：取大优先<br>
+1.如果人为设置宽度更大，则取更大的值，但是会填充整个屏幕，意味最终的宽度可能也会大于设置的宽度--填充满整个屏幕<br>
+2.如果人为设置宽度更小，使用默认计算的宽度</p>
+<pre><code>column-width: 200px;
+</code></pre>
+<p>设置上面这些属性应该在文字的盒子上</p>
+<p>设置跨列显示  1  / all<br>
+column-span: all;</p>
 
             </div>
             
@@ -349,7 +402,7 @@ transform:skew(-30deg);斜切
                 <div class="next">下一篇</div>
                 <a href="https://merry-9001.github.io/post/javascript">
                   <h3 class="post-title">
-                    JavaScript
+                    JavaScript（基本用法）
                   </h3>
                 </a>
               </div>
