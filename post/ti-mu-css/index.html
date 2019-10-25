@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571925487751">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1571978740799">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1571925487751" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1571978740799" class="site-logo">
         <h1 class="site-title">韶华_blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -94,7 +94,25 @@
             <div class="post-date">2019-10-23</div>
             
             <div class="post-content">
-              <h1>CSS 选择符有哪些？哪些属性可以继承？优先级算法如何计算？ CSS3新增伪类有那些？</h1>
+              <h1>如何清除浮动？</h1>
+<p>给父级添加overflow:hidden 清除浮动方法<br>
+父级设置成inline-block，其margin: 0 auto居中方式失效<br>
+万能清除法 after伪类 清浮动（现在主流方法，推荐使用）<br>
+float_div:after{<br>
+content:&quot;.&quot;;<br>
+clear:both;<br>
+display:block;<br>
+height:0;<br>
+overflow:hidden;<br>
+visibility:hidden;<br>
+}<br>
+.float_div{<br>
+zoom:1<br>
+}</p>
+<h1>img中alt和title的区别</h1>
+<p>图片中的 alt属性是在图片不能正常显示时出现的文本提示。<br>
+图片中的 title属性是在鼠标在移动到元素上的文本提示。</p>
+<h1>CSS 选择符有哪些？哪些属性可以继承？优先级算法如何计算？ CSS3新增伪类有那些？</h1>
 <p>1.id选择器（ # myid）</p>
 <p>2.类选择器（.myclassname）<br>
 3.标签选择器（div, h1, p）<br>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>html5 | 韶华_blog</title>
+<title>git操作 | 韶华_blog</title>
 <meta name="description" content="学习是一辈子的事">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -90,55 +90,51 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">html5</h2>
-            <div class="post-date">2019-10-21</div>
-            
-              <div class="feature-container" style="background-image: url('https://merry-9001.github.io/post-images/abouts.jpg')">
-              </div>
+            <h2 class="post-title">git操作</h2>
+            <div class="post-date">2019-10-25</div>
             
             <div class="post-content">
-              <!-- more -->
-<h1>datalist标签：</h1>
-<pre><code>&lt;datalist id=&quot;subjects&quot;&gt;
-    &lt;!--创建选项值：value:具体的值 label:提示信息，辅助值--&gt;
-    &lt;option value=&quot;英语&quot; label=&quot;不会&quot;/&gt;
-    &lt;option value=&quot;前端与移动开发&quot; label=&quot;前景非常好&quot;&gt;&lt;/option&gt;
-&lt;/datalist&gt;
-可选择，可填写
-</code></pre>
-<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571709581609.jpg" alt=""></figure>
-<!-- more -->
-<!-- more -->
-<h1>progress与meter</h1>
-progress:一般记录下载进度
-<progress max="100" value="100"></progress>   
-<pre><code>&lt;progress max=&quot;100&quot; value=&quot;100&quot;&gt;&lt;/progress&gt;
-</code></pre>
-<p>meter度量器：衡量当前进度值</p>
-<pre><code>&lt;meter max=&quot;100&quot; min=&quot;0&quot; high=&quot;80&quot; low=&quot;40&quot; value=&quot;30&quot;&gt;&lt;/meter&gt;
-</code></pre>
-<p><meter max="100" min="0" high="80" low="40" value="60"></meter></p>
-<p>3.音视频</p>
-<p>audio:音频<br>
-controls:音频播放器的控制器面板<br>
-autoplay:自动播放<br>
-loop:循环播放<br>
-<audio src="../mp3/aa.mp3" controls></audio></p>
-<pre><code>&lt;audio src=&quot;../mp3/aa.mp3&quot; controls&gt;&lt;/audio&gt;
-</code></pre>
-<p>视频<br>
-poster:指定视频还没有完全下载完毕，或者用户没有点击播放前显示的封面。 默认显示当前视频文件的第一副图像<br>
-width:视频的宽度</p>
-<pre><code>&lt;video controls&gt;
-    &lt;!--视频源，可以有多个源--&gt;
-        &lt;source src=&quot;../mp3/flv.flv&quot; type=&quot;video/flv&quot;&gt;
-        &lt;source src=&quot;../mp3/mp4.mp4&quot; type=&quot;video/mp4&quot;&gt;
-&lt;/video&gt;
-</code></pre>
-<figure data-type="image" tabindex="2"><img src="https://merry-9001.github.io/post-images/1571710483692.jpg" alt=""></figure>
+              <p>git 需要配置邮箱 账号</p>
+<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571969004460.jpg" alt=""></figure>
+<p>然后设置公钥（在github里面）</p>
+<p>查看仓库<br>
+git remote</p>
+<p>创建仓库<br>
+git remote add origin 地址</p>
+<p>创建分支<br>
+git checkout -b &quot;dev&quot;</p>
+<p>查看状态<br>
+git status</p>
+<p>添加<br>
+git add .</p>
+<p>提交（注释）<br>
+git commit -m &quot;内容&quot;</p>
+<p>切换分支<br>
+git checkout master</p>
+<p>合并分支<br>
+git merge dev --no-ff</p>
+<p>退出注释<br>
+: q</p>
+<p>查看日志<br>
+git log</p>
+<p>上传至github<br>
+git push origin master</p>
+<p>查看分支<br>
+git branch</p>
+<p>删除<br>
+git branch -d dev</p>
 
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://merry-9001.github.io/post/vue">
+                  <h3 class="post-title">
+                    vue
+                  </h3>
+                </a>
+              </div>
             
 
             

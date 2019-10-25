@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>韶华_blog</title>
-    <updated>2019-10-24T13:58:10.113Z</updated>
+    <updated>2019-10-25T04:45:43.772Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -10,6 +10,87 @@
     <logo>https://merry-9001.github.io/images/avatar.png</logo>
     <icon>https://merry-9001.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 韶华_blog</rights>
+    <entry>
+        <title type="html"><![CDATA[npm]]></title>
+        <id>https://merry-9001.github.io/post/npm</id>
+        <link href="https://merry-9001.github.io/post/npm">
+        </link>
+        <updated>2019-10-25T02:08:52.000Z</updated>
+        <content type="html"><![CDATA[<p>下载node获得npm</p>
+<p>可以安装nrm<br>
+npm i nrm -g</p>
+<p>样可以下包使用cnpm<br>
+npm i cnpm -g这</p>
+<p>可以查看<br>
+nrm ls</p>
+<p>可以使用cnpm管理<br>
+nrm use npm</p>
+<p>使用淘宝镜像的命令：</p>
+<p>npm install -g cnpm --registry=https://registry.npm.taobao.org</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[git操作]]></title>
+        <id>https://merry-9001.github.io/post/git-cao-zuo</id>
+        <link href="https://merry-9001.github.io/post/git-cao-zuo">
+        </link>
+        <updated>2019-10-25T02:02:53.000Z</updated>
+        <content type="html"><![CDATA[<p>git 需要配置邮箱 账号</p>
+<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571969004460.jpg" alt=""></figure>
+<p>然后设置公钥（在github里面）</p>
+<p>查看仓库<br>
+git remote</p>
+<p>创建仓库<br>
+git remote add origin 地址</p>
+<p>创建分支<br>
+git checkout -b &quot;dev&quot;</p>
+<p>查看状态<br>
+git status</p>
+<p>添加<br>
+git add .</p>
+<p>提交（注释）<br>
+git commit -m &quot;内容&quot;</p>
+<p>切换分支<br>
+git checkout master</p>
+<p>合并分支<br>
+git merge dev --no-ff</p>
+<p>退出注释<br>
+: q</p>
+<p>查看日志<br>
+git log</p>
+<p>上传至github<br>
+git push origin master</p>
+<p>查看分支<br>
+git branch</p>
+<p>删除<br>
+git branch -d dev</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[vue]]></title>
+        <id>https://merry-9001.github.io/post/vue</id>
+        <link href="https://merry-9001.github.io/post/vue">
+        </link>
+        <updated>2019-10-25T01:39:05.000Z</updated>
+        <content type="html"><![CDATA[<h1>router-link高亮</h1>
+<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571968592828.jpg" alt=""></figure>
+<h1>vue修改json传过来的data</h1>
+<figure data-type="image" tabindex="2"><img src="https://merry-9001.github.io/post-images/1571968640410.jpg" alt=""></figure>
+<h1>vue-rend渲染简写</h1>
+<p><img src="https://merry-9001.github.io/post-images/1571968666697.jpg" alt=""><br>
+<img src="https://merry-9001.github.io/post-images/1571968670196.jpg" alt=""></p>
+<h1>vue-cli创建</h1>
+<p>npm install -g @vue/cli</p>
+<p>vue create &quot;项目名&quot;</p>
+<p>最后一个自定义配置</p>
+<p>babel router vuex css 选中四个 （开发相关） 回车</p>
+<p>y</p>
+<p>选第一种sass</p>
+<p>选中package.json</p>
+<p>预设配置 不需要拍</p>
+<p>npm i -s axios</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ES6]]></title>
         <id>https://merry-9001.github.io/post/es6</id>
@@ -433,7 +514,21 @@ div:hover  ul{
         <link href="https://merry-9001.github.io/post/vue-ti-mu">
         </link>
         <updated>2019-10-23T12:14:31.000Z</updated>
-        <content type="html"><![CDATA[<h1>Vue 响应式原理</h1>
+        <content type="html"><![CDATA[<h1>为什么css放在顶部而js写在后面</h1>
+<p>1.浏览器预先加载css后，可以不必等待HTML加载完毕就可以渲染页面了<br>
+2.其实HTML渲染并不会等到完全加载完在渲染页面，而是一边解析DOM一边渲染。<br>
+3.js写在尾部，主要是因为js主要扮演事件处理的功能，一方面很多操作是在页面渲染后才执行的。另一方面可以节省加载时间，使页面能够更加的加载，提高用户的良好体验</p>
+<p>但是随着JS技术的发展，JS也开始承担页面渲染的工作。比如我们的UI其实可以分被对待，把渲染页面的js放在前面，时间处理的js放在后面</p>
+<h1>为什么虚拟DOM会提高性能</h1>
+<p>虚拟DOM相当于在js和真实dom中间加了一个缓存，利用dom diff算法避免了没有必要的doom操作，从而提高性能<br>
+具体实现步骤：<br>
+·用JavaScript对象结构表示DOM树的结构；然后用这个树构建一个真正的DOM树，插到文档中<br>
+·当状态变更的时候，重新构造一棵树的对象树，然后用新的树和旧的树进行对比，记录两棵树差异<br>
+·把2所记录的差异应用到步骤1所构建的真正的DOM树上，试图就更新了。</p>
+<h1>$route和$router的区别</h1>
+$route是“路由信息对象”，包括path，params，hash，query，fullPath，matched，name等路由信息参数。
+$router是“路由实例”对象包括了路由的跳转方法，钩子函数等。
+<h1>Vue 响应式原理</h1>
 Vue 采用数据劫持结合发布—订阅模式的方法，通过 Object.defineProperty() 来劫持各个属性的 setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。
 <p>前端路由原理<br>
 本质：监听 URL 的变化，然后匹配路由规则，并且无需刷新页面。</p>
@@ -479,395 +574,6 @@ SSR服务端渲染，首屏加载速度快，SEO效果好
 <h1>css实现一个三角形？</h1>
 <figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571833487462.png" alt=""></figure>
 <figure data-type="image" tabindex="2"><img src="https://merry-9001.github.io/post-images/1571833492673.png" alt=""></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题目(http)]]></title>
-        <id>https://merry-9001.github.io/post/ti-mu-http</id>
-        <link href="https://merry-9001.github.io/post/ti-mu-http">
-        </link>
-        <updated>2019-10-23T11:53:17.000Z</updated>
-        <content type="html"><![CDATA[ <h1>cookie和session </h1>
- cookie存储的数据量有限，不同的浏览器有不同的存储大小，但一般不超过4KB。因此使用cookie只能存储一些小量的数据。
- cookie是存储在本地浏览器，而session存储在服务器。
- <h1>http状态码有那些？分别代表是什么意思？ </h1>
-<p>100-199 用于指定客户端应相应的某些动作。<br>
-200-299 用于表示请求成功。<br>
-300-399 用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。<br>
-400-499 用于指出客户端的错误。400    1、语义有误，当前请求无法被服务器理解。401    当前请求需要用户验证 403    服务器已经理解请求，但是拒绝执行它。<br>
-500-599 用于支持服务器错误。 503 – 服务不可用</p>
-<h1>一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好</h1>
-<p>查找浏览器缓存<br>
-DNS解析、查找该域名对应的IP地址、重定向（301）、发出第二个GET请求<br>
-进行HTTP协议会话<br>
-客户端发送报头(请求报头)<br>
-服务器回馈报头(响应报头)<br>
-html文档开始下载<br>
-文档树建立，根据标记请求所需指定MIME类型的文件<br>
-文件显示<br>
-[<br>
-浏览器这边做的工作大致分为以下几步：</p>
-<p>加载：根据请求的URL进行域名解析，向服务器发起请求，接收文件（HTML、JS、CSS、图象等）。</p>
-<p>解析：对加载到的资源（HTML、JS、CSS等）进行语法解析，建议相应的内部数据结构（比如HTML的DOM树，JS的（对象）属性表，CSS的样式规则等等）<br>
-}</p>
-<h1>POST 和 GET 的区别</h1>
-<p>GET在浏览器回退时是无害的，而POST会再次提交请求 *<br>
-GET请求会被浏览器主动缓存，而POST不会，除非手动设置 *<br>
-GET请求参数会被完整保留在浏览器的历史记录里，而POST中的参数不会被保留 *<br>
-GET请求在URL中传送的参数是有长度限制的，而POST没有限制 *<br>
-GET参数通过URL传递，POST放在Request body中 *<br>
-GET请求只能进行 url 编码，而POST支持多种编码方式<br>
-GET产生的URL地址可以被收藏，而POST不可以<br>
-对参数的数据类型，GET只接受ASCII字符，而POST没有限制<br>
-GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息</p>
-<h1>TCP</h1>
-三次握手建立连接
-主机 A 相与主机 B 建立连接，主机 A 会首先发送一个 SYN 包给主机 B。主机 B 会返回 确认应答 ACK 或者否定应答 NACK。如果这时主机 A 长时间没有收到主机 B 的应答，主机 A 会重发 SYN 包给主机 B，实现了重发数据包的功能。当主机 B 发送 ACK 给主机 A 后，主机 A 也会发送一个 ACK 包给主机 B，这时建立连接。
-TCP有顺序控制的功能，通过一个序列号来确认发送的数据。在发送 SYN 包前，假设主机 A 的初始序列号为1000，以该序号依次往下进行数据编号，然后告诉主机 B 初始序列，同时主机 B 会对 A 的序列号进行确认，假如主机 B 返回一个2000的序列号，则代表字节编号为1000 — 1999，表明主机 B 收到1000字节。
-为什么不是两次握手
-两次握手就建立连接，假如主机 A 发送的 SYN 因网络问题迟迟没有到达主机 B，这时候会重发另一个 SYN 包给 B，当 A 接受到 B 的 ACK 包时建立连接。这时如果第一个 SYN 到达 B 时，主机 B 会认为主机 A 希望再次建立连接，会返回一个 ACK 包给 A。当 A 收到 ACK 时会抛弃掉这个包，因为 A 并不想建立连接，这时主机 B 认为连接已经建立，会一直等待主机 A 发送数据，这样会导致主机 B 的性能损耗。
-四次握手断开连接
-主机 A 发送 FIN（请求切断连接），主机 B 收到后回复 ACK 和 FIN 包，主机 A 收到主机 B 的 FIN  和 ACK 后发送 ACK 包
-<h1>用户输入 url 到页面呈现的过程</h1>
-<p>用户输入url<br>
-浏览器查找域名的 IP 地址 域名解析(DNS解析)<br>
-找到 IP 地址后，建立 TCP 三次握手 ,与目标服务器建立连接<br>
-握手成功后，通过规定的协议（http），浏览器向目标主机发送 http 请求，请求数据包<br>
-服务器处理收到的请求，将数据返回至浏览器<br>
-浏览器收到 HTTP 响应报文<br>
-关闭连接 浏览器解析文档<br>
-读取页面内容，浏览器渲染，解析html源码<br>
-生成 Dom 树、解析 css 样式、js 交互<br>
-在生成 Render 树的过程中，浏览器就开始调用 GPU 绘制，合成图层，将内容显示在屏幕上了</p>
-<h1>事件机制</h1>
-event.preventDefault()              // 阻止默认事件,例如a标签的跳转行为
-event.stopPropagation()             // 阻止冒泡
-event.stopImmediatePropagation()    // 事件响应优先级：例如同一元素绑定不同事件时，触发a事件不让b事件触发
-event.currentTarget                 // 当前绑定事件的元素
-event.target                        // 当前被点击的元素
-<h1>跨域的几种解决方法：</h1>
-<pre><code>JSONP —— 利用 &lt;script&gt; 标签没有跨域限制的特点，
-通过 &lt;script&gt; 标签指向一个需要访问的地址并提供一个回调函数来接收数据。
-CORS —— 服务端设置 Access-Control-Allow-Origin 就可以开启 CORS。 
-该属性表示哪些域名可以访问资源，如果设置通配符则表示所有网站都可以访问资源。
-</code></pre>
-<h1>优化渲染过程</h1>
-代码层面的优化（参考浏览器篇如何减少重绘和回流）
-懒执行 —— 将某些逻辑放到使用时再进行，可以通过定时器或事件进行唤醒
-懒加载 —— 将不关键的资源延后加载，如图片、视频资源等。
-<h1>图片优化：</h1>
-<p>可以用 css 模拟代替的尽量不要用图片<br>
-小图片用 base64 格式<br>
-雪碧图<br>
-选择正确的图片格式<br>
-选择使用 WebP 格式，体积较小，缺点是兼容性不好<br>
-小图使用 PNG ，图标类可以使用 SVG 代替<br>
-照片使用 JPEG</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题目(JavaScript)]]></title>
-        <id>https://merry-9001.github.io/post/ti-mu-javascript</id>
-        <link href="https://merry-9001.github.io/post/ti-mu-javascript">
-        </link>
-        <updated>2019-10-23T11:06:06.000Z</updated>
-        <content type="html"><![CDATA[<h1>bind、call、apply的区别</h1>
-三者都是用于改变函数体内this的指向，但是bind与apply和call的最大的区别是：bind不会立即调用，而是返回一个新函数，称为绑定函数，其内的this指向为创建它时传入bind的第一个参数，而传入bind的第二个及以后的参数作为原函数的参数来调用原函数。
-apply和call都是为了改变某个函数运行时的上下文而存在的（就是为了改变函数内部this的指向）；apply和call的调用返回函数执行结果；
-<p>如果使用apply或call方法，那么this指向他们的第一个参数，apply的第二个参数是一个参数数组，call的第二个及其以后的参数都是数组里面的元素，就是说要全部列举出来；</p>
-<p>tips: NaN 也属于 number 类型，并且 NaN 不等于自身。</p>
-<h1>JavaScript原型，原型链 ? 有什么特点？</h1>
-<p>每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，<br>
-如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，于是就这样一直找下去，也就是我们平时所说的原型链的概念。</p>
-<p>特点：<br>
-JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。<br>
-当我们需要一个属性的时，Javascript引擎会先看当前对象中是否有这个属性， 如果没有的话，<br>
-就会查找他的Prototype对象是否有这个属性，如此递推下去，一直检索到 Object 内建对象。</p>
-<h1>说几条写JavaScript的基本规范？</h1>
-<p>1.不要在同一行声明多个变量。<br>
-2.请使用 ===/!==来比较true/false或者数值<br>
-3.使用对象字面量替代new Array这种形式<br>
-4.不要使用全局函数。<br>
-5.Switch语句必须带有default分支<br>
-6.函数不应该有时候有返回值，有时候没有返回值。<br>
-7.For循环必须使用大括号<br>
-8.If语句必须使用大括号<br>
-9.for-in循环中的变量 应该使用var关键字明确限定作用域，从而避免作用域污染。</p>
-<h1>eval是做什么的？</h1>
-<p>它的功能是把对应的字符串解析成JS代码并运行；<br>
-应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）。</p>
-<h1>undefined 和 null 区别</h1>
-<p>null： Null类型，代表“空值”，代表一个空对象指针，使用typeof运算得到 “object”，所以你可以认为它是一个特殊的对象值。</p>
-<p>undefined： Undefined类型，当一个声明了一个变量未初始化时，得到的就是undefined。</p>
-<p>null是javascript的关键字，可以认为是对象类型，它是一个空对象指针，和其它语言一样都是代表“空值”，不过 undefined 却是javascript才有的。undefined是在ECMAScript第三版引入的，为了区分空指针对象和未初始化的变量，它是一个预定义的全局变量。没有返回值的函数返回为undefined，没有实参的形参也是undefined。</p>
-<h1>Node.js的适用场景？</h1>
-<p>高并发、聊天、实时消息推送</p>
-<h1>介绍js的基本数据类型。</h1>
-<p>number,string,boolean,object,undefined</p>
-<h1>Javascript如何实现继承？</h1>
-<p>通过原型和构造器</p>
-<p>原型对象是属于构造函数的，不属于实例；<br>
-实例只能共享原型对象中的属性和方法（当然也可以有自己的属性和方法，或者覆盖原型中同名的属性和方法）；<br>
-构造器constructor属于原型的，不属于实例；<br>
-实例之所以能有constructor属性是因为它共享了原型对象的所有成员，包括原型对象的constructor属性；</p>
-<h1>谈谈This对象的理解。</h1>
-<p>this是js的一个关键字，随着函数使用场合不同，this的值会发生变化。</p>
-<p>但是有一个总原则，那就是this指的是调用函数的那个对象。</p>
-<p>this一般情况下：是全局对象Global。 作为方法调用，那么this就是指这个对象</p>
-<h1>IE与火狐的事件机制有什么区别？ 如何阻止冒泡？</h1>
-<p>我们在网页中的某个操作（有的操作对应多个事件）。例如：当我们点击一个按钮就会产生一个事件。是可以被 JavaScript 侦测到的行为。</p>
-<p>事件处理机制：IE是事件冒泡、火狐是 事件捕获；</p>
-<p>ev.stopPropagation();</p>
-<h1>什么是闭包（closure），为什么要用它？</h1>
-闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。
-<p>闭包的特性：</p>
-<p>1.函数内再嵌套函数<br>
-2.内部函数可以引用外层的参数和变量<br>
-3.参数和变量不会被垃圾回收机制回收</p>
-<p>闭包是指有权访问另一个函数作用域中的变量的函数。<br>
-闭包会使得函数内部的变量都被保存在内存中，造成较大的内存开销，因此不要滥用闭包。解决的方法是在退出函数之前将不使用的局部变量置为 null ；</p>
- <h1>如何判断一个对象是否属于某个类？</h1>
-<pre><code>   使用instanceof （待完善）
-
-   if(a instanceof Person){
-       alert('yes');
-   }
-</code></pre>
- <h1>Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？</h1>
-<pre><code>    hasOwnProperty :用来查询自身是否有这个函数的
-
-
-    JSON 的了解？
-</code></pre>
- <h1>JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。</h1>
-它是基于JavaScript的一个子集。数据格式简单, 易于读写, 占用带宽小
-{"age":"12", "name":"back"} 
- <h1>针对 jQuery 的优化方法？</h1>
-<p>*基于Class的选择性的性能相对于Id选择器开销很大，因为需遍历所有DOM元素。</p>
-<p>*频繁操作的DOM，先缓存起来再操作。用Jquery的链式调用更好。<br>
-比如：var str=$(&quot;a&quot;).attr(&quot;href&quot;);</p>
-<pre><code>*for (var i = size; i &lt; arr.length; i++) {}
-</code></pre>
-<p>for 循环每一次循环都查找了数组 (arr) 的.length 属性，在开始循环的时候设置一个变量来存储这个数字，可以让循环跑得更快：<br>
-for (var i = size, length = arr.length; i &lt; length; i++) {}</p>
- <h1>如何编写高性能的JavaScript？</h1>
- 遵循严格模式：”use strict”;
-<p>将js脚本放在页面底部，加快渲染页面;</p>
-<p>将js脚本成组打包，减少请求;</p>
-<p>使用非阻塞方式下载js脚本;</p>
-<p>尽量使用局部变量来保存全局变量;</p>
-<p>尽量减少使用闭包;</p>
-<p>使用window对象属性方法时省略window;</p>
-<p>尽量减少对象成员嵌套;</p>
-<p>缓存DOM节点的访问;</p>
-<p>通过避免使用eval和function()构造器;</p>
-<p>给setTimeout()和setInterval()传递函数而不是字符作为参数;</p>
-<p>尽量使用直接量创建对象和数组;</p>
-<h1>防抖和节流的实现</h1>
-<p>防抖：触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间</p>
-<pre><code>funtion debounce(fn) {
-// 创建一个标记用来存放定时器的返回值
-let timeout = null;
-return function() {
-// 每次触发事件时都取消之前的延时调用方法
-clearTimeout(timeout);
-// 然后又创建一个新的 setTimeout, 这样就能保证 1000ms 间隔内如果重复触发就不会执行 fn 函数
-timeout = setTimeout(() =&gt; {
-fn.apply(this, arguments);
-}, 1000);
-};
-}
-</code></pre>
-<p>节流：高频事件触发，但在n秒内只会执行一次，所以节流会稀释函数的执行频率</p>
-<pre><code>function throttle(fn) {
-// 通过闭包保存一个标记
-let canRun = true;
-return function(){
-// 每次开始执行函数时都先判断标记是否为 true，不为 true 则 return
-if (!canRun) return;
-// 上一次定时器执行完后 canRun 为 true，所以要先设置为false
-canRun = false;
-setTimeout(() =&gt; {
-fn.apply(this, arguments);
-// 最后在 setTimeout 执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是 false，在开头被 return 掉
-canRun = true;
-}, 1000)
-}
-</code></pre>
-<p>}</p>
-<h1>var、let 和 const </h1>
-var 和 let 用以声明变量，const 用于声明只读的常量；
-<p>var 声明的变量，不存在块级作用域，在全局范围内都有效，let 和 const 声明的，只在它所在的代码块内有效；</p>
-<p>let 和 const 不存在像 var 那样的 “变量提升” 现象，所以 var 定义变量可以先使用，后声明，而 let 和 const 只可先声明，后使用；</p>
-<p>let 声明的变量存在暂时性死区，即只要块级作用域中存在 let，那么它所声明的变量就绑定了这个区域，不再受外部的影响。</p>
-<p>let 不允许在相同作用域内，重复声明同一个变量；</p>
-<p>const 在声明时必须初始化赋值，一旦声明，其声明的值就不允许改变，更不允许重复声明；</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题目(css)]]></title>
-        <id>https://merry-9001.github.io/post/ti-mu-css</id>
-        <link href="https://merry-9001.github.io/post/ti-mu-css">
-        </link>
-        <updated>2019-10-23T09:30:27.000Z</updated>
-        <content type="html"><![CDATA[<h1>CSS 选择符有哪些？哪些属性可以继承？优先级算法如何计算？ CSS3新增伪类有那些？</h1>
-<p>1.id选择器（ # myid）</p>
-<p>2.类选择器（.myclassname）<br>
-3.标签选择器（div, h1, p）<br>
-4.相邻选择器（h1 + p）<br>
-5.子选择器（ul &gt; li）<br>
-6.后代选择器（li a）<br>
-7.通配符选择器（ * ）<br>
-8.属性选择器（a[rel = &quot;external&quot;]）<br>
-9.伪类选择器（a: hover, li: nth - child）<br>
-可继承的样式： font-size font-family color</p>
-<p>不可继承的样式：border padding margin width height ;</p>
-<p>优先级就近原则，同权重情况下样式定义最近者为准;</p>
-<p>载入样式以最后载入的定位为准;</p>
-<p>优先级为:</p>
-<pre><code>  !important &gt;  id &gt; class &gt; tag
-
-  important 比 内联优先级高
-</code></pre>
-<p>CSS3新增伪类举例：</p>
-<pre><code>p:first-of-type    选择属于其父元素的首个 &lt;p&gt; 元素的每个 &lt;p&gt; 元素。
-p:last-of-type    选择属于其父元素的最后 &lt;p&gt; 元素的每个 &lt;p&gt; 元素。
-p:only-of-type    选择属于其父元素唯一的 &lt;p&gt; 元素的每个 &lt;p&gt; 元素。
-p:only-child    选择属于其父元素的唯一子元素的每个 &lt;p&gt; 元素。
-p:nth-child(2)    选择属于其父元素的第二个子元素的每个 &lt;p&gt; 元素。
-:enabled  :disabled 控制表单控件的禁用状态。
-:checked        单选框或复选框被选中。
-</code></pre>
-<p>列出display的值，说明他们的作用。position的值， relative和absolute定位原点是？</p>
-<ol>
-<li></li>
-</ol>
-<p>block 象块类型元素一样显示。<br>
-none 缺省值。象行内元素类型一样显示。<br>
-inline-block 象行内元素一样显示，但其内容象块类型元素一样显示。<br>
-list-item 象块类型元素一样显示，并添加样式列表标记。</p>
-<ol start="2">
-<li></li>
-</ol>
-<p>*absolute<br>
-生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。</p>
-<p>*fixed （老IE不支持）<br>
-生成绝对定位的元素，相对于浏览器窗口进行定位。</p>
-<p>*relative<br>
-生成相对定位的元素，相对于其正常位置进行定位。<br>
-static 默认值。没有定位，元素出现在正常的流中<br>
-*（忽略 top, bottom, left, right z-index 声明）。</p>
-<p>inherit 规定从父元素继承 position 属性的值。</p>
-<h1>经常遇到的CSS的兼容性有哪些？原因，解决方法是什么？</h1>
-<p>各浏览器不同标签margin,padding不同</p>
-<p>居中问题，div里的内容，IE默认为居中，而Firefox默认为左对齐</p>
-<p>IE浮动 margin产生的双倍距离</p>
-<p>ul标签在FF中默认是有 padding值的，而在IE中只有margin有值，还有缩进问题</p>
-<p>4.解决方案</p>
-<ol>
-<li>各浏览器不同标签margin,padding不同</li>
-</ol>
-<p>解决：*{margin:0;padding:0;}</p>
-<ol start="2">
-<li>居中问题，div里的内容，IE默认为居中，而Firefox默认为左对齐</li>
-</ol>
-<p>解决：margin: 0 auto;</p>
-<ol start="3">
-<li>IE浮动 margin产生的双倍距离</li>
-</ol>
-<p>解决：<br>
-#box {<br>
-        float:left;<br>
-        width:100px;<br>
-        margin:0 0 0 100px; //这种情况之下IE会产生200px的距离<br>
-        display:inline; //使浮动忽略<br>
-}</p>
-<ol start="4">
-<li>ul标签在FF中默认是有 padding值的，而在IE中只有margin有值，还有缩进问题<br>
-解决：{list-style:none;margin:0px;padding:0px;}</li>
-</ol>
-<h1>为什么要初始化CSS样式。</h1>
-<p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。</p>
-<p>当然，初始化样式会对SEO有一定的影响，但鱼和熊掌不可兼得，但力求影响最小的情况下初始化。</p>
-<h1>position跟display、margin collapse、overflow、float这些特性相互叠加后会怎么样？</h1>
-<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571828111464.png" alt=""></figure>
-<h1>BFC规范</h1>
-<p><strong>BFC有一下特性：</strong></p>
-<p>1、内部的Box会在垂直方向，从顶部开始一个接一个地放置。<br>
-2、Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生叠加<br>
-3、每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。<br>
-4、BFC的区域不会与float box叠加。<br>
-5、BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然。<br>
-6、计算BFC的高度时，浮动元素也参与计算。</p>
-<p><strong>那么我们怎样做就可以触发BFC呢</strong></p>
-<ul>
-<li>float 除了none以外的值 overflow 除了visible 以外的值（hidden，auto，scroll ）</li>
-<li>display (table-cell，table-caption，inline-block, flex, inline-flex)</li>
-<li>position值为（absolute，fixed） fieldset元素</li>
-<li>fieldset元素<br>
-在以上情况下可以创建BFC</li>
-</ul>
-<p>BFC可以解决的问题<br>
-1、margin叠加的问题，我们将某个元素放到我们新建的BFC里面就可以避免margin叠加、<br>
-2、对于左右布局的元素，我们可以给右侧的元素添加overflow:hidden或者auto，左侧的是float:left<br>
-3、可以清除浮动，计算BFC高度，浮动元素不会撑开父元素的高度，我们可以让父元素触发BFC,即使用overflow:hidden</p>
-<h1>css定义的权重</h1>
-<p>以下是权重的规则：标签的权重为1，class的权重为10，id的权重为100，以下例子是演示各种定义的权重值：</p>
-<pre><code>权重为1
-div{
-}
-权重为10
-.class1{
-}
-权重为100
-#id1{
-}
-权重为100+1=101
-#id1 div{
-}
-权重为10+1=11
-.class1 div{
-}
-权重为10+10+1=21
-.class1 .class2 div{
-}
-</code></pre>
-<p>如果权重相同，则最后定义的样式会起作用，但是应该避免这种情况出现</p>
-<h1>解释下浮动和它的工作原理？清除浮动的技巧？</h1>
-<p>浮动元素脱离文档流，不占据空间。浮动元素碰到包含它的边框或者浮动元素的边框停留。<br>
-(1)、使用空标签清除浮动。<br>
-这种方法是在所有浮动标签后面添加一个空标签 定义css clear:both. 弊端就是增加了无意义标签。<br>
-(2)、使用overflow。<br>
-给包含浮动元素的父标签添加css属性 overflow:auto; zoom:1; zoom:1用于兼容IE6。</p>
-<h1>用过媒体查询，针对移动端的布局吗？</h1>
-<pre><code>@media all and （min-width：500px）{
-     body{
-         background:red;
-     }
-}
-
-@media all and （min-width：700px）{
-     body{
-         background:green;
-     }
-}
-
-@media all and （min-width：900px）{
-     body{
-         background:black;
-     }
-}
-</code></pre>
-<p>那么rem是什么呢？</p>
-<p>rem(font size of the root element)是指相对于根元素 (html)的字体大小的单位。</p>
-<p>如果一个页面中html{font-size:16px;},那么1rem = 16px，2rem = 32px;</p>
-<h1>分析比较 opacity: 0、visibility: hidden、display: none 优劣和适用场景。</h1>
-<p>结构上：display:none 会从渲染树中消失，元素不占据空间且无法点击；visibility: hidden 不会从渲染树中消失，元素继续占据空间但无法点击；opacity: 0 不会从渲染树消失，元素占据空间且可点击。<br>
-继承性：display: none 和 opacity: 0 是非继承属性；父元素设置了 display:none 或 opacity: 0，子元素无论怎么设置都无法显示；visibility: hidden 会被子元素继承，并且子元素可以通过设置设置 visibility: visible; 来取消隐藏。<br>
-性能：display: none 会引起重排，性能消耗较大；visibility: hidden 会引起重绘，性能消耗相对较小； opacity: 0 会重建图层，性能较高</p>
-<h1>transition 和 animate 有何区别?</h1>
-transition：用于做过渡效果，没有帧概念，只有开始和结束状态，性能开销较小
-animate：用于做动画，有帧的概念，可以重复触发且有中间状态，性能开销较大
 ]]></content>
     </entry>
 </feed>
