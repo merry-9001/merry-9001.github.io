@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>node.js | 韶华_blog</title>
+<meta name="description" content="学习是一辈子的事">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1573217987763">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://merry-9001.github.io">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1573217987763" class="site-logo">
+        <h1 class="site-title">韶华_blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/merry-9001" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      学习是一辈子的事
+    </div>
+    <div class="site-footer">
+      739211562@qq.com | <a class="rss" href="https://merry-9001.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">node.js</h2>
+            <div class="post-date">2019-11-08</div>
+            
+            <div class="post-content">
+              <h2 id="没有dom和bom操作">没有dom和bom操作</h2>
+<h2 id="使用-require-方法加载-fs-核心模块">使用 require 方法加载 fs 核心模块</h2>
+<p>fs 是 file-system 的简写，就是文件系统的意思</p>
+<pre><code>var fs = require('fs')
+</code></pre>
+<h2 id="读取文件">读取文件</h2>
+<p>第一个参数就是要读取的文件路径<br>
+第二个参数是一个回调函数</p>
+<p>成功<br>
+data 数据<br>
+error null</p>
+<p>失败<br>
+data undefined没有数据<br>
+error 错误对象</p>
+<pre><code>fs.readFile('./data/a.txt', function (error, data) {
+
+if (error) {
+    console.log('读取文件失败了')
+} else {
+    console.log(data.toString())
+}
+})
+</code></pre>
+<h2 id="创建web服务器">创建web服务器</h2>
+<p>1.加载 http 核心模块</p>
+<pre><code>var http = require('http')
+</code></pre>
+<p>2.使用 http.createServer() 方法创建一个 Web 服务器<br>
+返回一个 Server 实例</p>
+<pre><code>var server = http.createServer()
+</code></pre>
+<p>3.服务器操作</p>
+<pre><code>server.on('request', function () {
+console.log('收到客户端的请求了')
+})
+</code></pre>
+<p>4.绑定端口号，启动服务器</p>
+<pre><code>server.listen(3000, function () {
+console.log('服务器启动成功了，可以通过 http://127.0.0.1:3000/ 来进行访问')
+})
+</code></pre>
+<h2 id="服务器接收参数">服务器接收参数</h2>
+<p>Request 请求对象<br>
+请求对象可以用来获取客户端的一些请求信息，例如请求路径<br>
+Response 响应对象<br>
+响应对象可以用来给客户端发送响应消息</p>
+<h2 id="服务器操作">服务器操作</h2>
+<p>在 http 协议中，Content-Type 就是用来告知对方我给你发送的数据内容是什么类型</p>
+<pre><code>var url = req.url
+
+if (url === '/plain') {
+    // text/plain 就是普通文本
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+    res.end('hello 世界')
+} else if (url === '/html') {
+    // 如果你发送的是 html 格式的字符串，则也要告诉浏览器我给你发送是 text/html 格式的内容
+    res.setHeader('Content-Type', 'text/html; charset=utf-8')
+    res.end('&lt;p&gt;hello html &lt;a href=&quot;&quot;&gt;点我&lt;/a&gt;&lt;/p&gt;')
+}
+</code></pre>
+<p>可以采用读取图片的方式，然后如果文件读取成功的话,end返回一个（data），data就是数据</p>
+<pre><code>fs.readFile('./resource/ab2.jpg', function (err, data) {
+  if (err) {
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+    res.end('文件读取失败，请稍后重试！')
+  } else {
+    // data 默认是二进制数据，可以通过 .toString 转为咱们能识别的字符串
+    // res.end() 支持两种数据类型，一种是二进制，一种是字符串
+    // 图片就不需要指定编码了，因为我们常说的编码一般指的是：字符编码
+    res.setHeader('Content-Type', 'image/jpeg')
+    res.end(data)
+  }
+})
+</code></pre>
+<h2 id="nodejs核心模块">node.js核心模块</h2>
+<p>用来获取机器信息的</p>
+<pre><code>var os = require('os')
+</code></pre>
+<p>用来操作路径的</p>
+<pre><code>var path = require('path')
+</code></pre>
+<p>获取当前机器的 CPU 信息</p>
+<pre><code>console.log(os.cpus())
+</code></pre>
+<p>memory 内存</p>
+<pre><code>console.log(os.totalmem())
+</code></pre>
+<p>获取一个路径中的扩展名部分</p>
+<pre><code>extname extension name
+console.log(path.extname('c:/a/b/c/d/hello.txt'))
+</code></pre>
+<h2 id="nodejs理论细节">node.js理论细节</h2>
+<p>在 Node 中没有全局作用域的概念<br>
+在 Node 中，只能通过 require 方法来加载执行多个 JavaScript 脚本文件<br>
+require 加载只能是执行其中的代码，文件与文件之间由于是模块作用域，所以不会有污染的问题<br>
+- 模块完全是封闭的<br>
+- 外部无法访问内部<br>
+- 内部也无法访问外部<br>
+模块作用域固然带来了一些好处，可以加载执行多个文件，可以完全避免变量命名冲突污染的问题<br>
+* 但是某些情况下，模块与模块是需要进行通信的<br>
+* 在每个模块中，都提供了一个对象：<code>exports</code><br>
+* 该对象默认是一个空对象<br>
+* 你要做的就是把需要被外部访问使用的成员手动的挂载到 <code>exports</code> 接口对象中<br>
+* 然后谁来 <code>require</code> 这个模块，谁就可以得到模块内部的 <code>exports</code> 接口对象</p>
+<ul>
+<li>核心模块
+<ul>
+<li>核心模块是由 Node 提供的一个个的具名的模块，它们都有自己特殊的名称标识，例如
+<ul>
+<li>fs 文件操作模块</li>
+<li>http 网络服务构建模块</li>
+<li>os 操作系统信息模块</li>
+<li>path 路径处理模块</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>http</p>
+<ul>
+<li>Content-Type
+<ul>
+<li>服务器最好把每次响应的数据是什么内容类型都告诉客户端，而且要正确的告诉</li>
+<li>不同的资源对应的 Content-Type 是不一样，具体参照：http://tool.oschina.net/commons</li>
+<li>对于文本类型的数据，最好都加上编码，目的是为了防止中文解析乱码问题</li>
+</ul>
+</li>
+<li>通过网络发送文件
+<ul>
+<li>发送的并不是文件，本质上来讲发送是文件的内容</li>
+<li>当浏览器收到服务器响应内容之后，就会根据你的 Content-Type 进行对应的解析处理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://merry-9001.github.io/post/bi-ye-she-ji-wen-xian">
+                  <h3 class="post-title">
+                    毕业设计文献
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

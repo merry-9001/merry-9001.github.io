@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>韶华_blog</title>
-    <updated>2019-10-27T11:01:09.884Z</updated>
+    <updated>2019-11-08T12:59:52.979Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -10,6 +10,189 @@
     <logo>https://merry-9001.github.io/images/avatar.png</logo>
     <icon>https://merry-9001.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 韶华_blog</rights>
+    <entry>
+        <title type="html"><![CDATA[node.js]]></title>
+        <id>https://merry-9001.github.io/post/nodejs</id>
+        <link href="https://merry-9001.github.io/post/nodejs">
+        </link>
+        <updated>2019-11-08T12:33:29.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="没有dom和bom操作">没有dom和bom操作</h2>
+<h2 id="使用-require-方法加载-fs-核心模块">使用 require 方法加载 fs 核心模块</h2>
+<p>fs 是 file-system 的简写，就是文件系统的意思</p>
+<pre><code>var fs = require('fs')
+</code></pre>
+<h2 id="读取文件">读取文件</h2>
+<p>第一个参数就是要读取的文件路径<br>
+第二个参数是一个回调函数</p>
+<p>成功<br>
+data 数据<br>
+error null</p>
+<p>失败<br>
+data undefined没有数据<br>
+error 错误对象</p>
+<pre><code>fs.readFile('./data/a.txt', function (error, data) {
+
+if (error) {
+    console.log('读取文件失败了')
+} else {
+    console.log(data.toString())
+}
+})
+</code></pre>
+<h2 id="创建web服务器">创建web服务器</h2>
+<p>1.加载 http 核心模块</p>
+<pre><code>var http = require('http')
+</code></pre>
+<p>2.使用 http.createServer() 方法创建一个 Web 服务器<br>
+返回一个 Server 实例</p>
+<pre><code>var server = http.createServer()
+</code></pre>
+<p>3.服务器操作</p>
+<pre><code>server.on('request', function () {
+console.log('收到客户端的请求了')
+})
+</code></pre>
+<p>4.绑定端口号，启动服务器</p>
+<pre><code>server.listen(3000, function () {
+console.log('服务器启动成功了，可以通过 http://127.0.0.1:3000/ 来进行访问')
+})
+</code></pre>
+<h2 id="服务器接收参数">服务器接收参数</h2>
+<p>Request 请求对象<br>
+请求对象可以用来获取客户端的一些请求信息，例如请求路径<br>
+Response 响应对象<br>
+响应对象可以用来给客户端发送响应消息</p>
+<h2 id="服务器操作">服务器操作</h2>
+<p>在 http 协议中，Content-Type 就是用来告知对方我给你发送的数据内容是什么类型</p>
+<pre><code>var url = req.url
+
+if (url === '/plain') {
+    // text/plain 就是普通文本
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+    res.end('hello 世界')
+} else if (url === '/html') {
+    // 如果你发送的是 html 格式的字符串，则也要告诉浏览器我给你发送是 text/html 格式的内容
+    res.setHeader('Content-Type', 'text/html; charset=utf-8')
+    res.end('&lt;p&gt;hello html &lt;a href=&quot;&quot;&gt;点我&lt;/a&gt;&lt;/p&gt;')
+}
+</code></pre>
+<p>可以采用读取图片的方式，然后如果文件读取成功的话,end返回一个（data），data就是数据</p>
+<pre><code>fs.readFile('./resource/ab2.jpg', function (err, data) {
+  if (err) {
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+    res.end('文件读取失败，请稍后重试！')
+  } else {
+    // data 默认是二进制数据，可以通过 .toString 转为咱们能识别的字符串
+    // res.end() 支持两种数据类型，一种是二进制，一种是字符串
+    // 图片就不需要指定编码了，因为我们常说的编码一般指的是：字符编码
+    res.setHeader('Content-Type', 'image/jpeg')
+    res.end(data)
+  }
+})
+</code></pre>
+<h2 id="nodejs核心模块">node.js核心模块</h2>
+<p>用来获取机器信息的</p>
+<pre><code>var os = require('os')
+</code></pre>
+<p>用来操作路径的</p>
+<pre><code>var path = require('path')
+</code></pre>
+<p>获取当前机器的 CPU 信息</p>
+<pre><code>console.log(os.cpus())
+</code></pre>
+<p>memory 内存</p>
+<pre><code>console.log(os.totalmem())
+</code></pre>
+<p>获取一个路径中的扩展名部分</p>
+<pre><code>extname extension name
+console.log(path.extname('c:/a/b/c/d/hello.txt'))
+</code></pre>
+<h2 id="nodejs理论细节">node.js理论细节</h2>
+<p>在 Node 中没有全局作用域的概念<br>
+在 Node 中，只能通过 require 方法来加载执行多个 JavaScript 脚本文件<br>
+require 加载只能是执行其中的代码，文件与文件之间由于是模块作用域，所以不会有污染的问题<br>
+- 模块完全是封闭的<br>
+- 外部无法访问内部<br>
+- 内部也无法访问外部<br>
+模块作用域固然带来了一些好处，可以加载执行多个文件，可以完全避免变量命名冲突污染的问题<br>
+* 但是某些情况下，模块与模块是需要进行通信的<br>
+* 在每个模块中，都提供了一个对象：<code>exports</code><br>
+* 该对象默认是一个空对象<br>
+* 你要做的就是把需要被外部访问使用的成员手动的挂载到 <code>exports</code> 接口对象中<br>
+* 然后谁来 <code>require</code> 这个模块，谁就可以得到模块内部的 <code>exports</code> 接口对象</p>
+<ul>
+<li>核心模块
+<ul>
+<li>核心模块是由 Node 提供的一个个的具名的模块，它们都有自己特殊的名称标识，例如
+<ul>
+<li>fs 文件操作模块</li>
+<li>http 网络服务构建模块</li>
+<li>os 操作系统信息模块</li>
+<li>path 路径处理模块</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>http</p>
+<ul>
+<li>Content-Type
+<ul>
+<li>服务器最好把每次响应的数据是什么内容类型都告诉客户端，而且要正确的告诉</li>
+<li>不同的资源对应的 Content-Type 是不一样，具体参照：http://tool.oschina.net/commons</li>
+<li>对于文本类型的数据，最好都加上编码，目的是为了防止中文解析乱码问题</li>
+</ul>
+</li>
+<li>通过网络发送文件
+<ul>
+<li>发送的并不是文件，本质上来讲发送是文件的内容</li>
+<li>当浏览器收到服务器响应内容之后，就会根据你的 Content-Type 进行对应的解析处理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[毕业设计文献]]></title>
+        <id>https://merry-9001.github.io/post/bi-ye-she-ji-wen-xian</id>
+        <link href="https://merry-9001.github.io/post/bi-ye-she-ji-wen-xian">
+        </link>
+        <updated>2019-11-08T12:32:04.000Z</updated>
+        <content type="html"><![CDATA[<p>基于PHP技术的校园综合服务网站的建设<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2018&amp;filename=JYJU201844038&amp;uid=WEEvREcwSlJHSldRa1FhdkJkVG5heFhtWnVEWFBUZXJFRFIxSmYzbi9ydz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MDM2OTkxRnJDVVJMT2VaK1JvRnl2Z1ZyektMelRCZTdHNEg5bklxNDlHYklSOGVYMUx1eFlTN0RoMVQzcVRyV00=</p>
+<p>毕业季私人定制服务营销策略浅析<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2018&amp;filename=ZQGZ201806023&amp;uid=WEEvREcwSlJHSldRa1FhdkJkVG5heFhtWnVEWE5kK3FTK09mL2JsMXNibz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MjM0OThNMUZyQ1VSTE9lWitSb0Z5dmhVNy9QUHp6TWRMRzRIOW5NcVk5SFo0UjhlWDFMdXhZUzdEaDFUM3FUclc=</p>
+<p>基于Liferay平台的私人订制功能及应用<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CMFD&amp;dbname=CMFD201702&amp;filename=1017193354.nh&amp;uid=WEEvREcwSlJHSldRa1FhdkJkVG5heFhtWnVEV3RzN3ZsRlFFQjQraUdDRT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MjIwNDIxTHV4WVM3RGgxVDNxVHJXTTFGckNVUkxPZVorUm9GeXZoVWIvQlZGMjZHYkt4SGRMSnE1RWJQSVI4ZVg=</p>
+<p>[1]杨嘉鑫.校园最后一公里配送服务研究——以A大学城为例[J].价值工程,2019,38(24):232-233.<br>
+校园最后一公里配送服务研究——以A大学城为例<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2019&amp;filename=JZGC201924097&amp;uid=WEEvREcwSlJHSldRa1FhdkJkVG5heFhtWnVEV3RzN3ZsRlFFQjQraUdDRT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MTk4MjFYMUx1eFlTN0RoMVQzcVRyV00xRnJDVVJMT2VaK1JvRnl2aFY3L0xMemZNYmJHNEg5ak9xNDlNWTRSOGU=</p>
+<p>基于java语言的校园服务平台设计<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2017&amp;filename=RJDJ201710035&amp;uid=WEEvREcwSlJHSldRa1FhdkJkVG5heFhtWnVEV3N1eXNhaUdRbkovOFFQVT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MDkwMzJUM3FUcldNMUZyQ1VSTE9lWitSb0Z5cmxVN3JJTnlmUFpMRzRIOWJOcjQ5R1lZUjhlWDFMdXhZUzdEaDE=</p>
+<p>基于Vue.js框架的掌上零售系统的设计与实现<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CMFD&amp;dbname=CMFD201901&amp;filename=1019601282.nh&amp;uid=WEEvREcwSlJHSldRa1FhdkJkVG5heFhtWnVFRk1DMU5tbHY3NEVEemhDYz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MjY2MjFyQ1VSTE9lWitSb0Z5cmxWNy9KVkYyNkY3VzRIOVBFclpFYlBJUjhlWDFMdXhZUzdEaDFUM3FUcldNMUY=</p>
+<p>一种校园生活一站式服务平台的设计与实现<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2019&amp;filename=XXDL201910026&amp;uid=WEEvREcwSlJHSldRa1FhdkJkVG5heFhtWnVFRk1DMU5tbHY3NEVEemhDYz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MjI1MDk5ak5yNDlIWW9SOGVYMUx1eFlTN0RoMVQzcVRyV00xRnJDVVJMT2VaK1JvRnlybVU3N05QVFhQWXJHNEg=</p>
+<p>智慧校园移动系统数据库设计<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2018&amp;filename=AYSF201802015&amp;uid=WEEvREcwSlJHSldRa1FhdkJkVG5heFhtWnVFR2paYklwblFIQjhUcEh2UT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MDA5Njk5bk1yWTlFWVlSOGVYMUx1eFlTN0RoMVQzcVRyV00xRnJDVVJMT2VaK1JvRnlybVVMckpKRFRZYUxHNEg=</p>
+<p>校园网二级网站建设数据库设计<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2016&amp;filename=DZRU201609156&amp;uid=WEEvREcwSlJHSldRa1FhdkJkVG5heFhtWnVFR2psdVFVUVNwM3lVUk5lND0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MDkzOTBoMVQzcVRyV00xRnJDVVJMT2VaK1JvRnlybVViM0JJVGZaZTdHNEg5Zk1wbzVBWW9SOGVYMUx1eFlTN0Q=</p>
+<p>基于HTML5响应式页面的研究与应用<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2018&amp;filename=NMKJ201818031&amp;uid=WEEvREdxOWJmbC9oM1NjYkZCbDdrNXcxeGc0Mjd1bU1iTDMwSCtLeEhGVXM=$R1yZ0H6jyaa0en3RxVUd8df-oHi7XMMDo7mtKT6mSmEvTuk11l2gFA!!&amp;v=MDczNDdTN0RoMVQzcVRyV00xRnJDVVJMT2VaK1JvRnk3aFY3ek9LeURBWkxHNEg5bk5wNDlHWllSOGVYMUx1eFk=</p>
+<p>基于Vue.js的后台单页应用管理系统的研究与实现<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2017&amp;filename=XDJS201730011&amp;uid=WEEvREcwSlJHSldRa1FhdkJkVG5heFhtWnVVVVFQb0tLMWpjNnpNTUMrTT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MTMxMzlLUFNuQmZiRzRIOWJQcjQ5RVpZUjhlWDFMdXhZUzdEaDFUM3FUcldNMUZyQ1VSTE9lWitSb0Z5N2hXcjc=</p>
+<p>纸媒突围:提供订制服务<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2015&amp;filename=PXWS201412009&amp;uid=WEEvREcwSlJHSldRa1FhdkJkVG5heFhtWnVVVVFQb0tLMWpjNnpNTUMrTT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MDg3OTkxRnJDVVJMT2VaK1JvRnlIa1ZML09OVFhjZmJHNEg5WE5yWTlGYllSOGVYMUx1eFlTN0RoMVQzcVRyV00=</p>
+<p>MySQL数据库备份及恢复方法解析<br>
+https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDTEMP&amp;filename=WLAQ201910038&amp;uid=WEEvREcwSlJHSldRa1Fhb09jT0lPd1RLUG54SzhxYUFTWlpDZ3Yrcm00cz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MTYyNTJGeURoVkwvSU1pSEtmN0c0SDlqTnI0OUdiSVI4ZVgxTHV4WVM3RGgxVDNxVHJXTTFGckNVUkxPZVorUm8=</p>
+<p>Using collaborative filtering to support college students’ hu2014</p>
+<p>use of online forum for English learning wang2012</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[npm]]></title>
         <id>https://merry-9001.github.io/post/npm</id>
@@ -436,144 +619,6 @@ align-items: center;
 
 align-self: flex-start; 子元素内可以再次单独调整位置
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[实际小demo]]></title>
-        <id>https://merry-9001.github.io/post/shi-ji-xiao-demo</id>
-        <link href="https://merry-9001.github.io/post/shi-ji-xiao-demo">
-        </link>
-        <updated>2019-10-24T02:11:26.000Z</updated>
-        <content type="html"><![CDATA[<h1>图片轮播图</h1>'
-<pre><code>&lt;div&gt;
-&lt;ul&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/1.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/2.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/3.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/4.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/5.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/6.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/7.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/1.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/2.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/3.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/4.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/5.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/6.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;img src=&quot;../images/7.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-div{
-    width: 882px;
-    height: 86px;
-    margin:100px auto;
-    background-color: #ddd;
-    overflow: hidden;
-}
-    div ul{
-    width: 200%;
-    list-style: none;
-    /*1.设置的名称*/
-    animation-name: move;
-    /*2.设置动画的耗时*/
-    animation-duration: 7s;
-    /*3.市场无限循环*/
-    animation-iteration-count: infinite;
-    /*4.设置时间函数*/
-    animation-timing-function: linear;
-}
-
-div  ul  li{
-    width:126px;
-    float: left;
-}
-div  ul  li　 img{
-    width:100%;
-}
-/*鼠标上移，停止动画*/
-div:hover  ul{
-    cursor: pointer;
-    animation-play-state: paused;
-}
-
-/*创建动画*/
-@keyframes move {
-    from{
-    transform:translateX(0);
-    }
-    to{
-    transform:translateX(-882px);
-    }
-}</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[vue题目]]></title>
-        <id>https://merry-9001.github.io/post/vue-ti-mu</id>
-        <link href="https://merry-9001.github.io/post/vue-ti-mu">
-        </link>
-        <updated>2019-10-23T12:14:31.000Z</updated>
-        <content type="html"><![CDATA[<h1>为什么css放在顶部而js写在后面</h1>
-<p>1.浏览器预先加载css后，可以不必等待HTML加载完毕就可以渲染页面了<br>
-2.其实HTML渲染并不会等到完全加载完在渲染页面，而是一边解析DOM一边渲染。<br>
-3.js写在尾部，主要是因为js主要扮演事件处理的功能，一方面很多操作是在页面渲染后才执行的。另一方面可以节省加载时间，使页面能够更加的加载，提高用户的良好体验</p>
-<p>但是随着JS技术的发展，JS也开始承担页面渲染的工作。比如我们的UI其实可以分被对待，把渲染页面的js放在前面，时间处理的js放在后面</p>
-<h1>为什么虚拟DOM会提高性能</h1>
-<p>虚拟DOM相当于在js和真实dom中间加了一个缓存，利用dom diff算法避免了没有必要的doom操作，从而提高性能<br>
-具体实现步骤：<br>
-·用JavaScript对象结构表示DOM树的结构；然后用这个树构建一个真正的DOM树，插到文档中<br>
-·当状态变更的时候，重新构造一棵树的对象树，然后用新的树和旧的树进行对比，记录两棵树差异<br>
-·把2所记录的差异应用到步骤1所构建的真正的DOM树上，试图就更新了。</p>
-<h1>$route和$router的区别</h1>
-$route是“路由信息对象”，包括path，params，hash，query，fullPath，matched，name等路由信息参数。
-$router是“路由实例”对象包括了路由的跳转方法，钩子函数等。
-<h1>Vue 响应式原理</h1>
-Vue 采用数据劫持结合发布—订阅模式的方法，通过 Object.defineProperty() 来劫持各个属性的 setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。
-<p>前端路由原理<br>
-本质：监听 URL 的变化，然后匹配路由规则，并且无需刷新页面。</p>
-<p>基于 Hash —— 兼容性更好，但存在 '#' 不够美观</p>
-<p>点击跳转或浏览器历史跳转：触发 hashchange 事件 -&gt; 解析 url -&gt;  匹配到对应的路由规则<br>
-手动刷新： 触发 load 事件 -&gt; ...</p>
-<p>基于 History API —— HTML5 新路由方案，更加方便可读，兼容性较差</p>
-<p>浏览器动作，如前进后退：触发 popstate 事件 -&gt; 解析 url -&gt;  匹配到对应的路由规则<br>
-点击跳转：调用 pushState 函数向浏览器历史添加一个状态 -&gt; ...<br>
-刷新页面或输入 URL：会向服务器请求，所以使用 history 需要后端配合重定向 -&gt; ...</p>
-<h1>Vue 生命周期</h1>
-指创建初始化数据、编译模板、挂载 DOM、渲染、更新、卸载一系列的过程。
-<p>beforeCreate：组件实例被创建之初，组件的属性生效之前<br>
-created：组件实例已经完全创建，属性也绑定，但真实DOM还未生成，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi><mi>l</mi><mi mathvariant="normal">不</mi><mi mathvariant="normal">可</mi><mi mathvariant="normal">用</mi><mi>b</mi><mi>e</mi><mi>f</mi><mi>o</mi><mi>r</mi><mi>e</mi><mi>M</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi><mo>:</mo><mi mathvariant="normal">在</mi><mi mathvariant="normal">挂</mi><mi mathvariant="normal">载</mi><mi mathvariant="normal">开</mi><mi mathvariant="normal">始</mi><mi mathvariant="normal">之</mi><mi mathvariant="normal">前</mi><mi mathvariant="normal">被</mi><mi mathvariant="normal">调</mi><mi mathvariant="normal">用</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">相</mi><mi mathvariant="normal">关</mi><mi mathvariant="normal">的</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>r</mi><mi mathvariant="normal">函</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">首</mi><mi mathvariant="normal">次</mi><mi mathvariant="normal">被</mi><mi mathvariant="normal">调</mi><mi mathvariant="normal">用</mi><mi>m</mi><mi>o</mi><mi>u</mi><mi>n</mi><mi>t</mi><mi>e</mi><mi>d</mi><mo>:</mo><mi>e</mi><mi>l</mi><mi mathvariant="normal">被</mi><mi mathvariant="normal">创</mi><mi mathvariant="normal">建</mi><mi mathvariant="normal">的</mi><mi>v</mi><mi>m</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">el不可用
-beforeMount: 在挂载开始之前被调用，相关的render函数首次被调用
-mounted: el被创建的vm.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord cjk_fallback">不</span><span class="mord cjk_fallback">可</span><span class="mord cjk_fallback">用</span><span class="mord mathdefault">b</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord cjk_fallback">在</span><span class="mord cjk_fallback">挂</span><span class="mord cjk_fallback">载</span><span class="mord cjk_fallback">开</span><span class="mord cjk_fallback">始</span><span class="mord cjk_fallback">之</span><span class="mord cjk_fallback">前</span><span class="mord cjk_fallback">被</span><span class="mord cjk_fallback">调</span><span class="mord cjk_fallback">用</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">相</span><span class="mord cjk_fallback">关</span><span class="mord cjk_fallback">的</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord cjk_fallback">函</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">首</span><span class="mord cjk_fallback">次</span><span class="mord cjk_fallback">被</span><span class="mord cjk_fallback">调</span><span class="mord cjk_fallback">用</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord cjk_fallback">被</span><span class="mord cjk_fallback">创</span><span class="mord cjk_fallback">建</span><span class="mord cjk_fallback">的</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">m</span><span class="mord">.</span></span></span></span>el替换，并挂载到实例上去之后调用<br>
-beforeUpdate: 组件数据更新之前调用，发生在虚拟DOM打补丁之前<br>
-update：组件数据更新之后<br>
-activited：keep-alive专属，组件被激活时调用<br>
-deadctivated： keep-alive专属，组件被销毁时调用<br>
-beforeDestory：组件销毁前调用<br>
-destoryed：组件销毁后调用</p>
-<h1>computed 和 watch 的区别</h1>
-<p>computed：常用于比较消耗性能的计算场景，具有缓存性，getter执行后会被缓存，只有它依赖的属性值变化后，下一次获取的computed值才会重新计算<br>
-watch：常用于某些数据的监听，观察props、 $emit或本组件值的变化来执行回调进行后续操作，无缓存性，页面重新渲染时值不变化也会执行。</p>
-<h1>vue 组件间通信的方法</h1>
-<p>props / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi><mi>m</mi><mi>i</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">emit
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span></span></span></span>children / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">—</mi><mi mathvariant="normal">—</mi><mi mathvariant="normal">父</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">件</mi><mi mathvariant="normal">中</mi><mi mathvariant="normal">用</mi><mi>t</mi><mi>h</mi><mi>i</mi><mi>s</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">parent —— 父组件中用 this.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord" style="margin-right:0.02778em;">—</span><span class="mord" style="margin-right:0.02778em;">—</span><span class="mord cjk_fallback">父</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">件</span><span class="mord cjk_fallback">中</span><span class="mord cjk_fallback">用</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord">.</span></span></span></span>children 获取到子组件实例数组，子组件中可以使用 this.$parent 获取父组件实例对象。</p>
-<p>tips：在 #app 上获取 $parent 得到的是 new Vue()的实例，在这之上再获取 $parent 则是 undefined ；而底层子组件获取 $children 得到的是空数组。</p>
-<p>provide / inject —— vue2.2 新增的 api ，父组件通过 provide 属性来提供变量，然后在子组件中用 inject 来注入变量。<br>
-ref / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>e</mi><mi>f</mi><mi>s</mi><mi mathvariant="normal">—</mi><mi mathvariant="normal">—</mi><mi>r</mi><mi>e</mi><mi>f</mi><mi mathvariant="normal">在</mi><mi mathvariant="normal">普</mi><mi mathvariant="normal">通</mi><mi>D</mi><mi>O</mi><mi>M</mi><mi mathvariant="normal">元</mi><mi mathvariant="normal">素</mi><mi mathvariant="normal">上</mi><mi mathvariant="normal">使</mi><mi mathvariant="normal">用</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">引</mi><mi mathvariant="normal">用</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">就</mi><mi mathvariant="normal">是</mi><mi>D</mi><mi>O</mi><mi>M</mi><mi mathvariant="normal">元</mi><mi mathvariant="normal">素</mi><mi mathvariant="normal">；</mi><mi mathvariant="normal">如</mi><mi mathvariant="normal">果</mi><mi mathvariant="normal">在</mi><mi mathvariant="normal">子</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">件</mi><mi mathvariant="normal">上</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">引</mi><mi mathvariant="normal">用</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">是</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">件</mi><mi mathvariant="normal">实</mi><mi mathvariant="normal">例</mi></mrow><annotation encoding="application/x-tex">refs —— ref 在普通 DOM 元素上使用，引用的就是 DOM 元素；如果在子组件上，引用的是组件实例
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span><span class="mord" style="margin-right:0.02778em;">—</span><span class="mord" style="margin-right:0.02778em;">—</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord cjk_fallback">在</span><span class="mord cjk_fallback">普</span><span class="mord cjk_fallback">通</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord cjk_fallback">元</span><span class="mord cjk_fallback">素</span><span class="mord cjk_fallback">上</span><span class="mord cjk_fallback">使</span><span class="mord cjk_fallback">用</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">引</span><span class="mord cjk_fallback">用</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">就</span><span class="mord cjk_fallback">是</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord cjk_fallback">元</span><span class="mord cjk_fallback">素</span><span class="mord cjk_fallback">；</span><span class="mord cjk_fallback">如</span><span class="mord cjk_fallback">果</span><span class="mord cjk_fallback">在</span><span class="mord cjk_fallback">子</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">件</span><span class="mord cjk_fallback">上</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">引</span><span class="mord cjk_fallback">用</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">件</span><span class="mord cjk_fallback">实</span><span class="mord cjk_fallback">例</span></span></span></span>attrs / $listeners —— vue2.4新增，可以进行跨级的组件通信</p>
-<h1>vue 项目性能优化</h1>
-合理适用 v-if 和 v-show
-区分 computed 和 watch 的使用
-v-for 遍历为 item 添加 key
-v-for 遍历避免同时使用 v-if
-通过 addEventListener 添加的事件在组件销毁时要用 removeEventListener 手动移除这些事件的监听
-图片懒加载
-路由懒加载
-第三方插件按需引入
-SSR服务端渲染，首屏加载速度快，SEO效果好
-<h1>css实现一个三角形？</h1>
-<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571833487462.png" alt=""></figure>
-<figure data-type="image" tabindex="2"><img src="https://merry-9001.github.io/post-images/1571833492673.png" alt=""></figure>
 ]]></content>
     </entry>
 </feed>
