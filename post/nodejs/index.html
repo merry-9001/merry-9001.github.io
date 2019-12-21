@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" >
 
-<title>node.js | 韶华_blog</title>
+<title>node.js笔记 | 韶华_blog</title>
 <meta name="description" content="学习是一辈子的事">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1576890578438">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1576920627521">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1576890578438" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1576920627521" class="site-logo">
         <h1 class="site-title">韶华_blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -90,11 +90,33 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">node.js</h2>
+            <h2 class="post-title">node.js笔记</h2>
             <div class="post-date">2019-11-08</div>
             
             <div class="post-content">
-              <h2 id="没有dom和bom操作">没有dom和bom操作</h2>
+              <h1 id="nodejs">node.js</h1>
+<ul>
+<li>node.js没有dom和bom操作</li>
+<li>Node.js 是什么
+<ul>
+<li>JavaScript 运行时</li>
+<li>既不是语言，也不是框架，它是一个平台</li>
+</ul>
+</li>
+<li>Node.js 中的 JavaScript
+<ul>
+<li>没有 BOM、DOM</li>
+<li>EcmaScript 基本的 JavaScript 语言部分</li>
+<li>在 Node 中为 JavaScript 提供了一些服务器级别的 API
+<ul>
+<li>文件操作的能力</li>
+<li>http 服务的能力</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
 <h2 id="使用-require-方法加载-fs-核心模块">使用 require 方法加载 fs 核心模块</h2>
 <p>fs 是 file-system 的简写，就是文件系统的意思</p>
 <pre><code>var fs = require('fs')
@@ -168,6 +190,28 @@ if (url === '/plain') {
   }
 })
 </code></pre>
+<h2 id="一个json数据类型接口">一个json数据类型接口</h2>
+<pre><code>    var products = [{
+        name: '苹果 X',
+        price: 8888
+    },
+    {
+        name: '菠萝 X',
+        price: 5000
+    },
+    {
+        name: '小辣椒 X',
+        price: 1999
+    }
+    ]
+
+    // 响应内容只能是二进制数据或者字符串
+    //  数字
+    //  对象
+    //  数组
+    //  布尔值
+    res.end(JSON.stringify(products))
+</code></pre>
 <h2 id="nodejs核心模块">node.js核心模块</h2>
 <p>用来获取机器信息的</p>
 <pre><code>var os = require('os')
@@ -188,33 +232,30 @@ console.log(path.extname('c:/a/b/c/d/hello.txt'))
 <h2 id="nodejs理论细节">node.js理论细节</h2>
 <p>在 Node 中没有全局作用域的概念<br>
 在 Node 中，只能通过 require 方法来加载执行多个 JavaScript 脚本文件<br>
-require 加载只能是执行其中的代码，文件与文件之间由于是模块作用域，所以不会有污染的问题<br>
-- 模块完全是封闭的<br>
-- 外部无法访问内部<br>
-- 内部也无法访问外部<br>
-模块作用域固然带来了一些好处，可以加载执行多个文件，可以完全避免变量命名冲突污染的问题<br>
-* 但是某些情况下，模块与模块是需要进行通信的<br>
-* 在每个模块中，都提供了一个对象：<code>exports</code><br>
-* 该对象默认是一个空对象<br>
-* 你要做的就是把需要被外部访问使用的成员手动的挂载到 <code>exports</code> 接口对象中<br>
-* 然后谁来 <code>require</code> 这个模块，谁就可以得到模块内部的 <code>exports</code> 接口对象</p>
+require 加载只能是执行其中的代码，文件与文件之间由于是模块作用域，所以不会有污染的问题</p>
 <ul>
-<li>核心模块
+<li>模块完全是封闭的</li>
+<li>外部无法访问内部</li>
+<li>内部也无法访问外部<br>
+模块作用域固然带来了一些好处，可以加载执行多个文件，可以完全避免变量命名冲突污染的问题</li>
+</ul>
 <ul>
-<li>核心模块是由 Node 提供的一个个的具名的模块，它们都有自己特殊的名称标识，例如
+<li>但是某些情况下，模块与模块是需要进行通信的</li>
+<li>在每个模块中，都提供了一个对象：<code>exports</code></li>
+<li>该对象默认是一个空对象</li>
+<li>你要做的就是把需要被外部访问使用的成员手动的挂载到 <code>exports</code> 接口对象中</li>
+<li>然后谁来 <code>require</code> 这个模块，谁就可以得到模块内部的 <code>exports</code> 接口对象</li>
+</ul>
+<h2 id="核心模块">核心模块</h2>
+<pre><code>核心模块是由 Node 提供的一个个的具名的模块，它们都有自己特殊的名称标识，例如
+</code></pre>
 <ul>
 <li>fs 文件操作模块</li>
 <li>http 网络服务构建模块</li>
 <li>os 操作系统信息模块</li>
 <li>path 路径处理模块</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>
-<p>http</p>
+<h2 id="http">http</h2>
 <ul>
 <li>Content-Type
 <ul>
@@ -230,8 +271,550 @@ require 加载只能是执行其中的代码，文件与文件之间由于是模
 </ul>
 </li>
 </ul>
+<h2 id="关于js代码是否使用分号">关于js代码是否使用分号</h2>
+<p>建议如果一行代码是以 (、[、` 开头的，则最好都在其前面补上一个分号。</p>
+<h2 id="art-template模板">art-template模板</h2>
+<ol>
+<li>安装 npm install art-template</li>
+<li>在需要使用的文件模块中加载 art-template<br>
+只需要使用 require 方法加载就可以了：require('art-template')<br>
+参数中的 art-template 就是你下载的包的名字<br>
+也就是说你 isntall 的名字是什么，则你 require 中的就是什么</li>
+<li>查文档，使用模板引擎的 API</li>
+</ol>
+<h2 id="服务端渲染和客户端渲染的区别">服务端渲染和客户端渲染的区别</h2>
+<ul>
+<li>客户端渲染不利于 SEO 搜索引擎优化</li>
+<li>服务端渲染是可以被爬虫抓取到的，客户端异步渲染是很难被爬虫抓取到的</li>
+<li>所以你会发现真正的网站既不是纯异步也不是纯服务端渲染出来的</li>
+<li>而是两者结合来做的</li>
+<li>例如京东的商品列表就采用的是服务端渲染，目的了为了 SEO 搜索引擎优化</li>
+<li>而它的商品评论列表为了用户体验，而且也不需要 SEO 优化，所以采用是客户端渲染</li>
+</ul>
+<h2 id="moduleexports和exports">module.exports和exports</h2>
+<p>谁 require 我，谁就得到 module.exports<br>
+默认在代码的最后有一句：<br>
+一定要记住，最后 return 的是 module.exports，而不是 exports<br>
+可以只使用module.exports</p>
+<h2 id="moduleexports-和-exports-的区别">module.exports 和 exports 的区别</h2>
+<ul>
+<li>每个模块中都有一个 module 对象</li>
+<li>module 对象中有一个 exports 对象</li>
+<li>我们可以把需要导出的成员都挂载到 module.exports 接口对象中</li>
+<li>也就是：<code>moudle.exports.xxx = xxx</code> 的方式</li>
+<li>但是每次都 <code>moudle.exports.xxx = xxx</code> 很麻烦，点儿的太多了</li>
+<li>所以 Node 为了你方便，同时在每一个模块中都提供了一个成员叫：<code>exports</code></li>
+<li><code>exports === module.exports</code> 结果为  <code>true</code>s</li>
+<li>所以对于：<code>moudle.exports.xxx = xxx</code> 的方式 完全可以：<code>expots.xxx = xxx</code></li>
+<li>当一个模块需要导出单个成员的时候，这个时候必须使用：<code>module.exports = xxx</code> 的方式</li>
+<li>不要使用 <code>exports = xxx</code> 不管用</li>
+<li>因为每个模块最终向外 <code>return</code> 的是 <code>module.exports</code></li>
+<li>而 <code>exports</code> 只是 <code>module.exports</code> 的一个引用</li>
+<li>所以即便你为 <code>exports = xx</code> 重新赋值，也不会影响 <code>module.exports</code></li>
+<li>但是有一种赋值方式比较特殊：<code>exports = module.exports</code> 这个用来重新建立引用关系的</li>
+</ul>
+<hr>
+<ul>
+<li>exports 只是 module.exports 的一个引用而已，目的只是为了简化写法</li>
+<li>每个模块最终 return 的是 module.exports</li>
+</ul>
+<h2 id="加载模块">加载模块</h2>
+<ul>
+<li>
+<p>路径形式的模块：<br>
+./ 当前目录，不可省略<br>
+../ 上一级目录，不可省略</p>
+</li>
+<li>
+<p>核心模块：<br>
+核心模块的本质也是文件<br>
+核心模块文件已经被编译到了二进制文件中了，我们只需要按照名字来加载就可以了<br>
+require('fs')<br>
+require('http')</p>
+</li>
+<li>
+<p>第三方模块<br>
+凡是第三方模块都必须通过 npm 来下载<br>
+使用的时候就可以通过 require('包名') 的方式来进行加载才可以使用<br>
+不可能有任何一个第三方包和核心模块的名字是一样的<br>
+既不是核心模块、也不是路径形式的模块</p>
 </li>
 </ul>
+<h1 id="express">Express</h1>
+<h2 id="介绍">介绍</h2>
+<ul>
+<li>第三方 Web 开发框架</li>
+<li>高度封装了 http 模块</li>
+<li>更加专注于业务，而非底层细节</li>
+<li>知其所以然</li>
+</ul>
+<ul>
+<li>增删改查
+<ul>
+<li>使用文件来保存数据（锻炼异步编码）</li>
+</ul>
+</li>
+<li>MongoDB
+<ul>
+<li>（所有方法都封装好了）</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用">使用</h2>
+<ol>
+<li>
+<p>安装npm</p>
+</li>
+<li>
+<p>引包</p>
+<p>var express = require('express')</p>
+</li>
+<li>
+<p>创建你服务器应用程序</p>
+<p>var app = express()</p>
+</li>
+</ol>
+<h3 id="开放资源">开放资源</h3>
+<p>只要这样做了，你就可以直接通过 /public/xx 的方式访问 public 目录中的所有资源了</p>
+<pre><code>app.use('/public/', express.static('./public/'))
+</code></pre>
+<p>用户访问public地址的时候，给他显示public接口</p>
+<h3 id="get请求">get请求</h3>
+<pre><code>app.get('/about', function (req, res) {
+// 在 Express 中可以直接 req.query 来获取查询字符串参数
+console.log(req.query)
+res.send('你好，我是 Express!')
+})
+</code></pre>
+<h3 id="开启接口">开启接口</h3>
+<p>相当于 server.listen</p>
+<pre><code>app.listen(3000, function () {
+console.log('app is running at port 3000.')
+})
+</code></pre>
+<h2 id="使用模板">使用模板</h2>
+<ol>
+<li>
+<p>安装express-art-template和art-template</p>
+</li>
+<li>
+<p>配置 html表示使用的是html结尾的模板才能使用</p>
+<p>app.engine('html', require('express-art-template'))</p>
+<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1576909355217.png" alt=""></figure>
+</li>
+</ol>
+<h2 id="获取表单内容">获取表单内容</h2>
+<ol>
+<li>
+<p>安装body-parser</p>
+</li>
+<li>
+<p>配置</p>
+<p>var bodyParser = require('body-parser')<br>
+// 配置模板引擎和 body-parser 一定要在 app.use(router) 挂载路由之前<br>
+// parse application/x-www-form-urlencoded<br>
+app.use(bodyParser.urlencoded({ extended: false }))<br>
+// parse application/json<br>
+app.use(bodyParser.json())</p>
+</li>
+</ol>
+<h1 id="回调函数">回调函数</h1>
+<h2 id="如果需要获取一个函数中异步操作的结果则必须通过回调函数来获取">如果需要获取一个函数中异步操作的结果，则必须通过回调函数来获取</h2>
+<pre><code>function fn(callback) {
+    setTimeout(function() {
+        var data = 'hello'
+        callback(data)
+    }, 1000)
+}
+fn(function(data) {
+    console.log(data)
+})
+</code></pre>
+<p>如果想取到data的数据进行处理，就只能进行回调函数，因为定时器是异步的，函数不会等待执行完毕就直接结束了，只有在调用的时候传递一个函数给里面的定时器才行</p>
+<h2 id="异步">异步</h2>
+<h2 id="一般情况下把函数作为参数的目的就是为了获取函数内部的异步操作结果javascript-单线程-事件循环">一般情况下，把函数作为参数的目的就是为了获取函数内部的异步操作结果<br>
+JavaScript 单线程、事件循环</h2>
+<p>异步操作的函数</p>
+<ul>
+<li>setTimeout</li>
+<li>readFile</li>
+<li>writeFile</li>
+<li>ajax</li>
+</ul>
+<h2 id="promise">Promise</h2>
+<p><img src="https://merry-9001.github.io/post-images/1576911008130.png" alt=""><br>
+<img src="https://merry-9001.github.io/post-images/1576911012957.png" alt=""></p>
+<h3 id="特点">特点</h3>
+<h4 id="对象的状态不受外界影响-3种状态">对象的状态不受外界影响 （3种状态）</h4>
+<ul>
+<li>Pending状态（进行中）</li>
+<li>Fulfilled状态（已成功）</li>
+<li>Rejected状态（已失败）</li>
+</ul>
+<h4 id="一旦状态改变就不会再变-两种状态改变成功或失败">一旦状态改变就不会再变 （两种状态改变：成功或失败）</h4>
+<ul>
+<li>Pending -&gt; Fulfilled</li>
+<li>Pending -&gt; Rejected</li>
+</ul>
+<h3 id="例子">例子</h3>
+<pre><code>var p1 = new Promise(function (resolve, reject) {
+fs.readFile('./data/a.txt', 'utf8', function (err, data) {
+    if (err) {
+    reject(err)
+    } else {
+    resolve(data)
+    }
+})
+})
+
+var p2 = new Promise(function (resolve, reject) {
+fs.readFile('./data/b.txt', 'utf8', function (err, data) {
+    if (err) {
+    reject(err)
+    } else {
+    resolve(data)
+    }
+})
+})
+
+var p3 = new Promise(function (resolve, reject) {
+fs.readFile('./data/c.txt', 'utf8', function (err, data) {
+    if (err) {
+    reject(err)
+    } else {
+    resolve(data)
+    }
+})
+})
+
+p1
+.then(function (data) {
+    console.log(data)
+    return p2
+}, function (err) {
+    console.log('读取文件失败了', err)
+})
+.then(function (data) {
+    console.log(data)
+    return p3
+})
+.then(function (data) {
+    console.log(data)
+    console.log('end')
+})
+</code></pre>
+<h2 id="当-p1-读取成功的时候当前函数中-return-的结果就可以在后面的-then-中-function-接收到当你-return-123-后面就接收到-123">当 p1 读取成功的时候<br>
+当前函数中 return 的结果就可以在后面的 then 中 function 接收到<br>
+当你 return 123 后面就接收到 123</h2>
+<p>我们可以 return 一个 Promise 对象<br>
+当 return 一个 Promise 对象的时候，后续的 then 中的 方法的第一个参数会作为 p2 的 resolve</p>
+<h3 id="我觉得利用promise之后就不用层层嵌套了而且执行的顺序依旧是按照代码的顺序来执行不会乱">我觉得利用promise之后就不用层层嵌套了，而且执行的顺序依旧是按照代码的顺序来执行，不会乱</h3>
+<pre><code>function pReadFile(filePath) {
+    return new Promise(function (resolve, reject) {
+        fs.readFile(filePath, 'utf8', function (err, data) {
+        if (err) {
+            reject(err)
+        } else {
+            resolve(data)
+        }
+        })
+    })
+}
+
+pReadFile('./data/a.txt')
+.then(function (data) {
+    console.log(data)
+    return pReadFile('./data/b.txt')
+})
+.then(function (data) {
+    console.log(data)
+    return pReadFile('./data/c.txt')
+})
+.then(function (data) {
+    console.log(data)
+})
+</code></pre>
+<h1 id="__dirname-和-__filename">__dirname 和 __filename</h1>
+<ul>
+<li>动态的获取当前文件或者文件所处目录的绝对路径</li>
+<li>用来解决文件操作路劲的相对路径问题</li>
+<li>因为在文件操作中，相对路径相对于执行 <code>node</code> 命令所处的目录</li>
+<li>所以为了尽量避免这个问题，都建议文件操作的相对路劲都转为：<strong>动态的绝对路径</strong></li>
+<li>方式：<code>path.join(__dirname, '文件名')</code></li>
+</ul>
+<p>用了这个他就会帮助你获取当前的电脑的绝对路径，避免了相对路径会遇到的问题也不至于会写死<br>
+__dirname是用来获取文件的目录<br>
+__filename可以用来获取当前的文件名<br>
+就是专门用来动态的获取当前文件以及文件所属目录的绝对路径</p>
+<h1 id="mysql">Mysql</h1>
+<h2 id="例子-2">例子</h2>
+<p>先导包(npm)<br>
+再使用<br>
+var mysql = require('mysql');</p>
+<pre><code>// 1. 创建连接
+var connection = mysql.createConnection({
+host: 'localhost',
+user: 'root',
+password: 'root',
+database: 'users' // 对不起，我一不小心把数据库名字和表名起成一样的，你知道就行
+});
+
+// 2. 连接数据库 打开冰箱门
+connection.connect();
+
+// 3. 执行数据操作 把大象放到冰箱
+connection.query('SELECT * FROM `users`', function (error, results, fields) {
+if (error) throw error;
+console.log('The solution is: ', results);
+});
+
+// connection.query('INSERT INTO users VALUES(NULL, &quot;admin&quot;, &quot;123456&quot;)', function (error, results, fields) {
+//   if (error) throw error;
+//   console.log('The solution is: ', results);
+// });
+
+// 4. 关闭连接 关闭冰箱门
+connection.end();
+</code></pre>
+<h1 id="mongodb-数据库">MongoDB 数据库</h1>
+<h2 id="mongodb-的数据存储结构">MongoDB 的数据存储结构</h2>
+<ul>
+<li>数据库</li>
+<li>集合（表）</li>
+<li>文档（表记录）</li>
+</ul>
+<h2 id="mongodb-官方有一个-mongodb-的包可以用来操作-mongodb-数据库">MongoDB 官方有一个 mongodb 的包可以用来操作 MongoDB 数据库</h2>
+<ul>
+<li>这个确实和强大，但是比较原始，麻烦，所以咱们不使用它</li>
+</ul>
+<h2 id="mongoose">mongoose</h2>
+<ul>
+<li>真正在公司进行开发，使用的是 mongoose 这个第三方包</li>
+<li>它是基于 MongoDB 官方的 mongodb 包进一步做了封装</li>
+<li>可以提高开发效率</li>
+<li>让你操作 MongoDB 数据库更方便</li>
+</ul>
+<h2 id="安装mongodb数据库">安装mongodb数据库</h2>
+<ol>
+<li>
+<p>解压文件</p>
+</li>
+<li>
+<p>配置环境变量<br>
+<img src="https://merry-9001.github.io/post-images/1576913007511.png" alt=""></p>
+<p>C:\Users\six\Downloads\mongodb\mongodb-win32-x86_64-2008plus-ssl-4.0.3\bin</p>
+</li>
+<li>
+<p>cmd里面输入 mongo -version测试</p>
+</li>
+</ol>
+<h2 id="启动mongodb数据库">启动mongodb数据库</h2>
+<pre><code>cmd中输入mongod(cmd1)
+mongo show dbs(cmd2)
+</code></pre>
+<h2 id="mongoose包">mongoose包</h2>
+<ol>
+<li>
+<p>安装</p>
+</li>
+<li>
+<p>引入</p>
+<p>var mongoose = require('mongoose')</p>
+</li>
+</ol>
+<h3 id="例子-3">例子</h3>
+<pre><code>var mongoose = require('mongoose')
+
+// 连接数据库
+mongoose.connect('mongodb://localhost/test', { useMongoClient: true })
+
+var Schema = mongoose.Schema
+
+var userSchema = new Schema({
+email: {
+    type: String,
+    required: true
+},
+nickname: {
+    type: String,
+    required: true
+}
+})
+
+module.exports = mongoose.model('User', userSchema)
+</code></pre>
+<p>只需要执行代码就会创建使用，如果存在的话就可以直接用.<br>
+localhost/表名</p>
+<h2 id="操作数据库">操作数据库</h2>
+<h3 id="mongodb数据库自己会创建一个主键唯一标识">mongodb数据库自己会创建一个主键（唯一标识）</h3>
+<h3 id="select-了解一下">select * 了解一下</h3>
+<pre><code>Student.find(function(err, students) {
+    if (err) {
+        return res.status(500).send('Server error.')
+    }
+    res.render('index.html', {
+        fruits: [
+            '苹果',
+            '香蕉',
+            '橘子'
+        ],
+        students: students
+    })
+})
+</code></pre>
+<h3 id="条件查询">条件查询</h3>
+<pre><code>var body = req.body
+
+User.findOne({
+    email: body.email,
+    password: md5(md5(body.password))
+}, function (err, user) {
+    if (err) {
+    return res.status(500).json({
+        err_code: 500,
+        message: err.message
+    })
+}
+
+{
+    $or: [{
+        email: body.email
+    },
+    {
+        nickname: body.nickname
+    }
+    ]
+}
+</code></pre>
+<p>or条件与and条件</p>
+<h3 id="插入">插入</h3>
+<pre><code>new Student(req.body).save(function(err) {
+    if (err) {
+        return res.status(500).send('Server error.')
+    }
+    res.redirect('/students')
+})
+</code></pre>
+<h3 id="查询一条记录">查询一条记录</h3>
+<pre><code>Student.findById(req.query.id.replace(/&quot;/g, ''), function(err, student) {
+    if (err) {
+        console.log(err)
+        return res.status(500).send('Server error.')
+    }
+    res.render('edit.html', {
+        student: student
+    })
+})
+</code></pre>
+<h3 id="更新数据">更新数据</h3>
+<pre><code>var id = req.body.id.replace(/&quot;/g, '')
+Student.findByIdAndUpdate(id, req.body, function(err) {
+    if (err) {
+        return res.status(500).send('Server error.')
+    }
+    res.redirect('/students')
+})
+</code></pre>
+<h3 id="删除数据">删除数据</h3>
+<pre><code>var id = req.query.id.replace(/&quot;/g, '')
+Student.findByIdAndRemove(id, function(err) {
+    if (err) {
+        return res.status(500).send('Server error.')
+    }
+    res.redirect('/students')
+})        
+</code></pre>
+<p>查找一条数据，第一个参数传条件，第二参数是一个函数，用来执行回调方法</p>
+<h1 id="session">session</h1>
+<h3 id="装包引用包">装包，引用包</h3>
+<pre><code>var session = require('express-session')
+</code></pre>
+<h3 id="配置">配置</h3>
+<pre><code>app.use(session({
+    // 配置加密字符串，它会在原有加密基础之上和这个字符串拼起来去加密
+    // 目的是为了增加安全性，防止客户端恶意伪造
+    secret: 'itcast',
+    resave: false,
+    saveUninitialized: false // 无论你是否使用 Session ，我都默认直接给你分配一把钥匙
+}))
+</code></pre>
+<h3 id="使用-2">使用</h3>
+<pre><code>当把这个插件配置好之后，我们就可以通过 req.session 来发访问和设置 Session 成员了
+添加 Session 数据：req.session.foo = 'bar'
+访问 Session 数据：req.session.foo
+</code></pre>
+<h3 id="例子-4">例子</h3>
+<pre><code>res.render('index.html', {
+    user: req.session.user
+})
+
+req.session.user = user
+
+// 清除登陆状态
+req.session.user = null
+</code></pre>
+<h1 id="packagejson">package.json</h1>
+<h2 id="介绍-2">介绍</h2>
+<ul>
+<li>就是产品的说明书</li>
+<li><code>dependencies</code> 属性，用来保存项目的第三方包依赖项信息</li>
+<li>所以建议每个项目都要有且只有一个 package.json (存放在项目的根目录)</li>
+<li>我们可以通过 <code>npm init [--yes]</code> 来生成 package.json 文件</li>
+<li>同样的，为了保存依赖项信息，我们每次安装第三方包的时候都要加上：<code>--save</code> 选项。</li>
+</ul>
+<p>在文件夹cmd中输入npm init，获取package.json文件<br>
+然后你使用npm装包就可以看见，package.json-lock可以帮助锁定版本，也可以提高速速</p>
+<h1 id="模板继承">模板继承</h1>
+<h2 id="art-template例子">art-template例子</h2>
+<p>layout.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Document&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/node_modules/bootstrap/dist/css/bootstrap.css&quot;&gt;
+{{ block 'head' }}{{ /block }}
+&lt;/head&gt;
+&lt;body&gt;
+{{ include './header.html' }}
+&lt;!-- 留一个坑，将要留给孩子去填坑 --&gt;
+
+{{ block 'content' }}
+    &lt;h1&gt;默认内容&lt;/h1&gt;
+{{ /block }}
+
+{{ include './footer.html' }}
+&lt;script src=&quot;/node_modules/jquery/dist/jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/node_modules/bootstrap/dist/js/bootstrap.js&quot;&gt;&lt;/script&gt;
+{{ block 'script' }}{{ /block }}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>index.html</p>
+<pre><code>{{extend './layout.html'}}
+
+{{ block 'head' }}
+&lt;style&gt;
+body {
+    background-color: skyblue;
+}
+&lt;/style&gt;
+{{ /block }}
+
+{{ block 'content' }}
+&lt;div&gt;
+&lt;h1&gt;index 页面填坑内容&lt;/h1&gt;
+&lt;/div&gt;
+{{ /block }}
+
+{{ block 'script' }}
+&lt;script&gt;
+window.alert('index 页面自己的 js 脚本')
+&lt;/script&gt;
+{{ /block }}
+</code></pre>
+<p>这样使用以后，加载index.html的时候就可以自动先去找layout，非常好用，<strong>方便复用</strong></p>
+<h1 id="中间件">中间件</h1>
 
             </div>
             
