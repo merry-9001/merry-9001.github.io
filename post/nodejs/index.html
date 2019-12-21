@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1576920627521">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1576929674832">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1576920627521" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1576929674832" class="site-logo">
         <h1 class="site-title">韶华_blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -247,8 +247,7 @@ require 加载只能是执行其中的代码，文件与文件之间由于是模
 <li>然后谁来 <code>require</code> 这个模块，谁就可以得到模块内部的 <code>exports</code> 接口对象</li>
 </ul>
 <h2 id="核心模块">核心模块</h2>
-<pre><code>核心模块是由 Node 提供的一个个的具名的模块，它们都有自己特殊的名称标识，例如
-</code></pre>
+<p>核心模块是由 Node 提供的一个个的具名的模块，它们都有自己特殊的名称标识，例如</p>
 <ul>
 <li>fs 文件操作模块</li>
 <li>http 网络服务构建模块</li>
@@ -766,55 +765,57 @@ req.session.user = null
 然后你使用npm装包就可以看见，package.json-lock可以帮助锁定版本，也可以提高速速</p>
 <h1 id="模板继承">模板继承</h1>
 <h2 id="art-template例子">art-template例子</h2>
-<p>layout.html</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;title&gt;Document&lt;/title&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;/node_modules/bootstrap/dist/css/bootstrap.css&quot;&gt;
-{{ block 'head' }}{{ /block }}
-&lt;/head&gt;
-&lt;body&gt;
-{{ include './header.html' }}
-&lt;!-- 留一个坑，将要留给孩子去填坑 --&gt;
-
-{{ block 'content' }}
-    &lt;h1&gt;默认内容&lt;/h1&gt;
-{{ /block }}
-
-{{ include './footer.html' }}
-&lt;script src=&quot;/node_modules/jquery/dist/jquery.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;/node_modules/bootstrap/dist/js/bootstrap.js&quot;&gt;&lt;/script&gt;
-{{ block 'script' }}{{ /block }}
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<p>index.html</p>
-<pre><code>{{extend './layout.html'}}
-
-{{ block 'head' }}
-&lt;style&gt;
-body {
-    background-color: skyblue;
-}
-&lt;/style&gt;
-{{ /block }}
-
-{{ block 'content' }}
-&lt;div&gt;
-&lt;h1&gt;index 页面填坑内容&lt;/h1&gt;
-&lt;/div&gt;
-{{ /block }}
-
-{{ block 'script' }}
-&lt;script&gt;
-window.alert('index 页面自己的 js 脚本')
-&lt;/script&gt;
-{{ /block }}
-</code></pre>
+<p>layout.html<br>
+<img src="https://merry-9001.github.io/post-images/1576921668859.png" alt=""></p>
+<p>index.html<br>
+<img src="https://merry-9001.github.io/post-images/1576921676633.png" alt=""></p>
 <p>这样使用以后，加载index.html的时候就可以自动先去找layout，非常好用，<strong>方便复用</strong></p>
 <h1 id="中间件">中间件</h1>
+<h3 id="中间件处理请求的本质就是个函数">中间件：处理请求的，本质就是个函数</h3>
+<p>当请求进来，会从第一个中间件开始进行匹配</p>
+<ul>
+<li>如果匹配，则进来
+<ul>
+<li>如果请求进入中间件之后，没有调用 next 则代码会停在当前中间件</li>
+<li>如果调用了 next 则继续向后找到第一个匹配的中间件</li>
+</ul>
+</li>
+<li>如果不匹配，则继续判断匹配下一个中间件</li>
+</ul>
+<p><strong>不关心请求路径和请求方法的中间件</strong></p>
+<p><strong>也就是说任何请求都会进入这个中间件</strong></p>
+<p>中间件本身是一个方法，该方法接收三个参数：<br>
+Request 请求对象<br>
+Response 响应对象<br>
+next     下一个中间件</p>
+<p>通配</p>
+<pre><code>app.use(function (req, res, next) {
+console.log(1)
+next()
+})
+</code></pre>
+<p>以 /a 开头的路径中间件</p>
+<pre><code>app.use('/a', function (req, res, next) {
+console.log('a')
+next()
+})
+</code></pre>
+<p>精准匹配<br>
+app.get('/abc', function(req, res, next) {<br>
+console.log('abc')<br>
+next()<br>
+})</p>
+<h3><font color="red">如果不写next()就不会继续执行下个中间件
+其实之前用的很多插件使用use的配置都是采用了中间件，然后next()到下一个
+所以才能使用那些方法
+</font></h3>
+<p>配置错误处理中间件</p>
+<pre><code>next(err)
+app.use(function (err, req, res, next) {
+    es.status(500).send(err.message)
+})
+</code></pre>
+<p>如果使用中间的next()里面传递了参数，那么就会直接进入错误处理中间件，这个中间件必须拥有四个参数</p>
 
             </div>
             
