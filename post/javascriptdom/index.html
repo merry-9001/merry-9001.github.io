@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1576929674832">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1577089803655">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1576929674832" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1577089803655" class="site-logo">
         <h1 class="site-title">韶华_blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -94,54 +94,208 @@
             <div class="post-date">2019-10-24</div>
             
             <div class="post-content">
-              <pre><code>//获取到button对象
-var btn = document.getElementById(&quot;btn&quot;);
+              <h2 id="通过id获取dom对象">通过id获取dom对象</h2>
+<h3 id="获取到button对象">获取到button对象</h3>
+<pre><code>    var btn = document.getElementById(&quot;btn&quot;);
+</code></pre>
+<h3 id="修改按钮的文字">修改按钮的文字</h3>
+<p>​    //修改按钮的文字</p>
+<pre><code>    btn.innerHTML = &quot;I'm Button&quot;;
+</code></pre>
+<h3 id="绑定一个单击事件">绑定一个单击事件</h3>
+<pre><code>    btn.onclick = function(){
+    	alert(&quot;你还点~~~&quot;);
+    };
+</code></pre>
+<h2 id="通过标签获取dom对象">通过标签获取dom对象</h2>
+<h3 id="查找所有li节点">查找所有li节点</h3>
+<p>getElementsByTagName()可以根据标签名来获取一组元素节点对象</p>
+<p>这个方法会给我们返回一个类数组对象，所有查询到的元素都会封装到对象中</p>
+<p>得到是数组</p>
+<pre><code>          var lis = document.getElementsByTagName(&quot;li&quot;);
 
-//修改按钮的文字
-btn.innerHTML = &quot;I'm Button&quot;;
+​          //alert(lis.length);
 
-/查找所有li节点
-//getElementsByTagName()可以根据标签名来获取一组元素节点对象
-//这个方法会给我们返回一个类数组对象，所有查询到的元素都会封装到对象中
-//即使查询到的元素只有一个，也会封装到数组中返回
-var lis = document.getElementsByTagName(&quot;li&quot;);  
-得到是数组
 
-//var box1 = document.getElementsByClassName(&quot;box1&quot;); 
-根据class的名字来查询
+​          for(var i=0 ; i&lt;lis.length ; i++){
+
+​            alert(lis[i].innerHTML);
+
+​          }
 </code></pre>
-<p>document.querySelector()<br>
-需要一个选择器的字符串作为参数，可以根据一个CSS选择器来查询一个元素节点对象<br>
-虽然IE8中没有getElementsByClassName()但是可以使用querySelector()代替<br>
-使用该方法总会返回唯一的一个元素，如果满足条件的元素有多个，那么它只会返回第一个<br>
-document.querySelectorAll()<br>
-该方法和querySelector()用法类似，不同的是它会将符合条件的元素封装到一个数组中返回<br>
-即使符合条件的元素只有一个，它也会返回数组</p>
-<h1>创建节点</h1>
-<pre><code>var li = document.createElement(&quot;li&quot;);
-var gzText = document.createTextNode(&quot;广州&quot;);
-li.appendChild(gzText);
+<h2 id="通过name获取dom对象">通过name获取dom对象</h2>
+<p>查找name=gender的所有节点</p>
+<p>得到的也是一个数组</p>
+<pre><code>     var inputs = document.getElementsByName(&quot;gender&quot;);
 </code></pre>
-<p>获取id为bj的节点</p>
-<pre><code>var bj = document.getElementById(&quot;bj&quot;);
+<h2 id="innerhtml">innerHTML</h2>
+<p>用于获取元素内部的HTML代码的</p>
+<p>对于自结束标签，这个属性没有意义</p>
+<h2 id="读取元素节点属性">读取元素节点属性</h2>
+<p>元素.id 元素.name 元素.value</p>
+<p>读取class属性时需要使用 元素.className</p>
+<h2 id="获取相邻元素">获取相邻元素</h2>
+<h3 id="childnodes">childNodes</h3>
+<p>childNodes属性会获取包括文本节点在呢的所有节点</p>
+<pre><code>var cns = city.childNodes;
 </code></pre>
-<p>获取city</p>
-<pre><code>var city = document.getElementById(&quot;city&quot;);
+<h3 id="children">children</h3>
+<p>可以获取当前元素的所有子元素</p>
+<pre><code>var cns2 = city.children;
 </code></pre>
-<p>insertBefore()<br>
-可以在指定的子节点前插入新的子节点<br>
-语法：<br>
-父节点.insertBefore(新节点,旧节点);</p>
+<h3 id="parentnode">parentNode</h3>
+<p>父节点</p>
+<pre><code>var pn = bj.parentNode;
+</code></pre>
+<p><strong>以上属性都是返回一个数组</strong></p>
+<h3 id="previoussibling">previousSibling</h3>
+<p>前一个兄弟节点</p>
+<pre><code>     var ps = and.previousSibling;
+</code></pre>
+<h2 id="根据class属性值查询节点对象">根据class属性值查询节点对象</h2>
+<pre><code>    var box1 = document.getElementsByClassName(&quot;box1&quot;); 
+</code></pre>
+<p>​    根据class的名字来查询，返回一组</p>
+<pre><code>        var div = document.querySelector(&quot;.box1 div&quot;);
+</code></pre>
+<p>使用该方法总会返回唯一的一个元素，如果满足条件的元素有多个，那么它只会返回第一个</p>
+<pre><code>box1 = document.querySelectorAll(&quot;#box2&quot;);
+</code></pre>
+<p>该方法和querySelector()用法类似，不同的是它会将符合条件的元素封装到一个数组中返回</p>
+<p>即使符合条件的元素只有一个，它也会返回数组</p>
+<h2 id="dom增删改">dom增删改</h2>
+<h3 id="增">增</h3>
+<p>​	创建一个元素节点对象</p>
+<pre><code>    var li = document.createElement(&quot;li&quot;);
+</code></pre>
+<p>创建一个文本节点对象</p>
+<pre><code>   var gzText = document.createTextNode(&quot;广州&quot;);
+</code></pre>
+<p>向一个父节点中添加一个新的子节点</p>
+<pre><code>    li.appendChild(gzText);
+</code></pre>
+<hr>
+<p>获取id为city的节点</p>
+<pre><code>          var city = document.getElementById(&quot;city&quot;);
+</code></pre>
+<p>将广州添加到city下</p>
+<pre><code>          city.appendChild(li);
+
+
+</code></pre>
+<hr>
+<p>insertBefore()</p>
+<p>可以在指定的子节点前插入新的子节点</p>
 <pre><code>city.insertBefore(li , bj);
+
 </code></pre>
-<h1>使用DOM操作CSS</h1>
-赋值
-<pre><code>box1.style.width = &quot;300px&quot;;
-box1.style.height = &quot;300px&quot;;
-box1.style.backgroundColor = &quot;yellow&quot;;
+<h3 id="改">改</h3>
+<p>replaceChild()</p>
+<p>可以使用指定的子节点替换已有的子节点</p>
+<pre><code>city.replaceChild(li , bj);
+
 </code></pre>
-<p>读值</p>
-<pre><code>alert(box1.style.width);
+<h3 id="删">删</h3>
+<p>removeChild</p>
+<pre><code>bj.parentNode.removeChild(bj);
+
+</code></pre>
+<h2 id="使用dom操作css">使用DOM操作CSS</h2>
+<h3 id="赋值">赋值</h3>
+<p>获取box1</p>
+<pre><code>        var box1 = document.getElementById(&quot;box1&quot;);
+
+</code></pre>
+<p>为按钮绑定单击响应函数</p>
+<pre><code>        var btn01 = document.getElementById(&quot;btn01&quot;);
+
+</code></pre>
+<p>赋值</p>
+<pre><code>     box1.style.width = &quot;300px&quot;;
+
+​    box1.style.height = &quot;300px&quot;;
+
+</code></pre>
+<h3 id="读值">读值</h3>
+<pre><code>   alert(box1.style.width);
+
+</code></pre>
+<p>currentStyle</p>
+<p>getStyle</p>
+<pre><code>          alert(box1.currentStyle.backgroundColor);
+
+​          var w = getStyle(box1,&quot;width&quot;);
+
+​          alert(w);
+
+</code></pre>
+<h2 id="冒泡">冒泡</h2>
+<p>事件的冒泡（Bubble）</p>
+<p>所谓的冒泡指的就是事件的向上传导，当后代元素上的事件被触发时，其祖先元素的相同事件也会被触发</p>
+<pre><code>            s1.onclick = function(event) {
+
+​                //可以将事件对象的cancelBubble设置为true，即可取消冒泡
+
+​                // event.cancelBubble = true;
+
+​            };
+
+</code></pre>
+<pre><code>document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;mouseover&quot;, myFunction);
+
+</code></pre>
+<h2 id="委派">委派</h2>
+<p>将事件统一绑定给元素<strong>共同的祖先元素</strong>（后代元素事件触发时，通过冒泡，通过祖先元素的响应函数来处理事件）<br>
+这样可以只绑定一次，即可应用到多个元素上</p>
+<p>事件委派是利用了冒泡，通过委派可以减少事件绑定的次数，提高程序的性能</p>
+<hr>
+<p>为ul绑定一个单击响应函数</p>
+<pre><code>	u1.onclick = function(event) {
+                /*
+                 * target
+                 * 	- event中的target表示的触发事件的对象
+                 */
+                alert(event.target.innerHTML);
+                //如果触发事件的对象是我们期望的元素，则执行否则不执行
+                if (event.target.className == &quot;link&quot;) {
+                    alert(&quot;我是ul的单击响应函数&quot;);
+                } else {
+                    alert(&quot;asd&quot;);
+                }
+
+            };
+
+</code></pre>
+<p>这样以后，点击ul里面class=link的就会走if，否则else</p>
+<p>这样就不用给每一个内部都添加方法了</p>
+<h2 id="各类事件">各类事件</h2>
+<h3 id="onkeydown">onkeydown</h3>
+<p>按键被按下</p>
+<h3 id="onkeyup">onkeyup</h3>
+<p>按键被松开</p>
+<pre><code>        var input = document.getElementsByTagName(&quot;input&quot;)[0];
+
+​        input.onkeydown = function(event){
+​          event = event || window.event;
+​          //console.log(event.keyCode);
+
+​          //数字 48 - 57
+
+​          //使文本框中不能输入数字
+
+​          if(event.keyCode &gt;= 48 &amp;&amp; event.keyCode &lt;= 57){
+
+​            //在文本框中输入内容，属于onkeydown的默认行为
+
+​            //如果在onkeydown中取消了默认行为，则输入的内容，不会出现在文本框中
+​            return false;
+
+​          }
+
+​        };
+
+​      };
+
 </code></pre>
 
             </div>
