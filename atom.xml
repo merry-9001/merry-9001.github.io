@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>看风听歌</title>
-    <updated>2019-12-24T04:36:19.132Z</updated>
+    <updated>2019-12-24T11:22:36.266Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -10,6 +10,101 @@
     <logo>https://merry-9001.github.io/images/avatar.png</logo>
     <icon>https://merry-9001.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 看风听歌</rights>
+    <entry>
+        <title type="html"><![CDATA[tp5]]></title>
+        <id>https://merry-9001.github.io/post/tp5</id>
+        <link href="https://merry-9001.github.io/post/tp5">
+        </link>
+        <updated>2019-12-24T11:22:08.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="tp5">tp5</h1>
+<h2 id="路径">路径</h2>
+<p>http://localhost:8000/library/public/admin/users/index.html</p>
+<pre><code>admin/users/index.html
+</code></pre>
+<p>admin下的控制器里面的User.php里面的方法名</p>
+<pre><code>public function index()
+{
+
+		$selectResult=Db::table('book_user')//热点精选
+			-&gt;join('book_role','book_user.role_id = 				book_role.role_id')
+		    -&gt;select();
+		$this-&gt;assign('user',$selectResult);
+	//	return dump($selectResult);
+   return $this-&gt;fetch('index');
+}
+</code></pre>
+<h2 id="前台传入后台值通过form">前台传入后台值（通过form）</h2>
+<form class="form-auth-small" method="post" action="{:Url('admin/index/login')}">
+<pre><code>&lt;form class=&quot;form-auth-small&quot; method=&quot;post&quot; action={:Url('admin/index/login')}&quot;&gt;
+</code></pre>
+<pre><code>if(request()-&gt;isPost())
+
+</code></pre>
+<p>控制器用来判断是否是form表单提交过来的请求 如果是的话会走if</p>
+<h2 id="返回前台代码">返回前台代码</h2>
+<pre><code> return $this-&gt;fetch('login');
+</code></pre>
+<h2 id="获取表单数据">获取表单数据</h2>
+<pre><code> $data = input(&quot;post.&quot;);
+</code></pre>
+<p>这样是获取到所有数据</p>
+<pre><code>// return dump($data[&quot;name&quot;]);
+</code></pre>
+<p>这样可以获取到每一条的数据</p>
+<h2 id="调试打印">调试打印</h2>
+<hr>
+<pre><code>    return dump($data);
+</code></pre>
+<h2 id="database">database</h2>
+<p>application的下database用来操作数据库</p>
+<pre><code>'type'            =&gt; 'mysql',
+// 服务器地址
+'hostname'        =&gt; 'usxjsj.cn',
+// 数据库名
+'database'        =&gt; 'db16147230',
+// 用户名
+'username'        =&gt; 'u16147230',
+// 密码
+'password'        =&gt; 'xg1511',
+</code></pre>
+<h2 id="数据库操作">数据库操作</h2>
+<h3 id="增">增</h3>
+<pre><code>				   if($data['type1']=='学生')
+				   {
+
+					Db::name(&quot;book_admin&quot;)-&gt;insert([
+						'admin_account'=&gt;$data['name'],
+						'admin_password'=&gt;$data['password'], 
+						]
+					);
+</code></pre>
+<p>name(表名)</p>
+<p>'admin_account'=&gt;$data['name'],</p>
+<p>表里面的字段名=&gt;插入的名字</p>
+<h3 id="改">改</h3>
+<pre><code>$res` `= Db::name(``'style'``)-&gt;where(``'id'``,4)-&gt;update([``'name_cn'``=&gt;``'李四'``]);
+</code></pre>
+<p>where(数据库字段名,（值）)逗号表示等于</p>
+<h3 id="查">查</h3>
+<pre><code>				$s=Db::table('book_borrow')//热点精选
+				-&gt;where('book_state',1)
+				 -&gt;select();
+</code></pre>
+<p>$s拿到的就是叫table的表名里面的数据 ,where里面写条件</p>
+<pre><code>			$s=Db::table('book_borrow')//热点精选
+			-&gt;join('book_info','book_book.book_id = book_info.book_id')
+			//-&gt;whereTime('drop_litter_time', 'month')
+			-&gt;where('book_state',1)
+			 -&gt;select();
+</code></pre>
+<p>$s拿到的就是叫table的表名里面的数据 ,where里面写条件,join用来连接表，要查两张表里面的接起来的内容</p>
+<h2 id=""></h2>
+<h3 id="删">删</h3>
+<pre><code>$res = Db::name('style')-&gt;where('id',2)-&gt;delete();
+</code></pre>
+<p>按照条件删除</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[正则表达式]]></title>
         <id>https://merry-9001.github.io/post/zheng-ze-biao-da-shi</id>
@@ -1548,81 +1643,6 @@ var sum = function(num1, num2) {
 return num1 + num2;
 </code></pre>
 <p>函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[JavaScript（BOM）]]></title>
-        <id>https://merry-9001.github.io/post/javascriptbom</id>
-        <link href="https://merry-9001.github.io/post/javascriptbom">
-        </link>
-        <updated>2019-10-24T09:18:20.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="介绍">介绍</h2>
-<p>浏览器对象模型</p>
-<p>BOM可以使我们通过JS来操作浏览器</p>
-<p>在BOM中为我们提供了一组对象，用来完成对浏览器的操作</p>
-<h2 id="属性">属性</h2>
-<h3 id="window">Window</h3>
-<p>代表的是整个浏览器的窗口，同时window也是网页中的全局对象</p>
-<h3 id="navigator">Navigator</h3>
-<p>代表的当前浏览器的信息，通过该对象可以来识别不同的浏览器</p>
-<h3 id="location">Location</h3>
-<p>代表当前浏览器的地址栏信息，通过Location可以获取地址栏信息，或者操作浏览器跳转页面</p>
-<pre><code>location.assign(&quot;http://www.baidu.com&quot;);//跳转
-
-location.reload(true);//刷新
-</code></pre>
-<h3 id="history">History</h3>
-<p>代表浏览器的历史记录，可以通过该对象来操作浏览器的历史记录</p>
-<p>由于隐私原因，该对象不能获取到具体的历史记录，只能操作浏览器向前或向后翻页</p>
-<p>而且该操作只在当次访问时有效</p>
-<p>可以用来回退到上一个页面，作用和浏览器的回退按钮一样</p>
-<pre><code>history.back()
-</code></pre>
-<p>可以跳转下一个页面，作用和浏览器的前进按钮一样</p>
-<pre><code>history.forward()
-</code></pre>
-<p>可以前进或者后退几个页面</p>
-<pre><code>history.go(-2);
-</code></pre>
-<h3 id="screen">Screen</h3>
-<p>代表用户的屏幕的信息，通过该对象可以获取到用户的显示器的相关的信息</p>
-<h2 id="定时器和延时器">定时器和延时器</h2>
-<p>定时器 setInterval 周期性触发；</p>
-<p>延时器 setTimeout 一段事件后触发；</p>
-<p>clearInterval();//关闭定时器</p>
-<p>clearTimeout(timer);关闭延时器</p>
-<p>关闭延时器，因为本身也就执行一次，关闭就不执行了</p>
-<pre><code>        var timer = setInterval(function(){
-
-​          count.innerHTML = num++;
-
-​          if(num == 11){
-
-​            //关闭定时器
-
-​            clearInterval(timer);
-
-​          }
-
-​        },1000);
-
-
-</code></pre>
-<h2 id="json">JSON</h2>
-<p>JSON</p>
-<p>JavaScript Object Notation JS对象表示法</p>
-<p>JSON和JS对象的格式一样，只不过 <strong>JSON字符串中的属性名必须加双引号</strong></p>
-<p>其他的和JS语法一致</p>
-<h2 id="json-js对象">json --&gt; js对象</h2>
-<p>JSON.parse()</p>
-<p>可以将以JSON字符串转换为js对象</p>
-<p>它需要一个JSON字符串作为参数，会将该字符串转换为JS对象并返回</p>
-<p>​    var o = JSON.parse(json);</p>
-<h2 id="js对象-json">JS对象 ---&gt; JSON</h2>
-<p>JSON.stringify()</p>
-<p>可以将一个JS对象转换为JSON字符串</p>
-<p>需要一个js对象作为参数，会返回一个JSON字符串</p>
-<p>​    var str = JSON.stringify(obj3);</p>
 ]]></content>
     </entry>
 </feed>
