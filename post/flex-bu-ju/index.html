@@ -9,10 +9,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1577186539268">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1577593945199">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -30,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1577186539268" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1577593945199" class="site-logo">
         <h1 class="site-title">看风听歌</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -94,67 +100,71 @@
             <div class="post-date">2019-10-24</div>
             
             <div class="post-content">
-              <p>设置父容器为伸缩盒子：会使每一个子元素自动变成伸缩项</p>
-<pre><code>display: flex;
+              <h2 id="伸缩盒子">伸缩盒子</h2>
+<p>设置父容器为伸缩盒子：会使每一个子元素自动变成伸缩项</p>
+<pre><code>    display: flex;
 </code></pre>
+<h2 id="排列方式">排列方式</h2>
 <p>设置子元素的排列方式</p>
-<pre><code>flex-start:让子元素从父容器的起始位置开始排列
-flex-end:让子元素从父容器的结束位置开始排列
-center:让子元素从父容器的中间位置开始排列
-space-between:左右对齐父容器的开始和结束，中间平均分页，产生相同的间距
-space-around:将多余的空间平均的分页在每一个子元素的两边
-margin:0 auto.造成中间盒子的间距是左右两边盒子间距的两倍
-justify-content: space-around;
+<p>​    flex-start:让子元素从父容器的起始位置开始排列</p>
+<p>​    flex-end:让子元素从父容器的结束位置开始排列</p>
+<p>​    center:让子元素从父容器的中间位置开始排列</p>
+<p>​    space-between:左右对齐父容器的开始和结束，中间平均分页，产生相同的间距</p>
+<p>​    space-around:将多余的空间平均的分页在每一个子元素的两边</p>
+<p>​    margin:0 auto.造成中间盒子的间距是左右两边盒子间距的两倍</p>
+<pre><code>    justify-content: space-around;
 </code></pre>
+<h2 id="控制换行">控制换行</h2>
 <p>flex-wrap:控制子元素是否换行显示，默认不换行</p>
-<pre><code>nowrap:不换行--则收缩
-wrap:换行
-wrap-reverse:翻转，原来是从上到下，翻转后就是从下到上来排列
-flex-wrap: wrap;
+<p>​    nowrap:不换行--则收缩</p>
+<p>​    wrap:换行</p>
+<p>​    wrap-reverse:翻转，原来是从上到下，翻转后就是从下到上来排列</p>
+<pre><code>    flex-wrap: wrap;
 </code></pre>
 <p>flex-direction：设置子元素的排列方向：就是用来主轴方向，默认主轴方向是row(水平方向)</p>
-<pre><code>row:水平排列方向，从左到右
-row-reverse:水平排列方向，从右到左
-column:垂直排列方向，从上到下
-column-reverse：垂直排列方向，从下到上
-flex-direction: column-reverse;
+<p>​    row:水平排列方向，从左到右</p>
+<p>​    row-reverse:水平排列方向，从右到左</p>
+<p>​    column:垂直排列方向，从上到下</p>
+<p>​    column-reverse：垂直排列方向，从下到上</p>
+<pre><code>    flex-direction: column-reverse;
 </code></pre>
 <p>flex-flow:是flex-wrap和flex-direction的综合</p>
-<pre><code>flex-flow: row wrap;
+<pre><code>    flex-flow: row wrap;
 </code></pre>
-<h2>子元素属性</h2>
-flow-grow:可以来扩展子元素的宽度：设置当前元素应该占据剩余空间的比例值
-<p>比例值计算 ：当前空间的flex-grow/所有兄弟元素的flex-grow的和<br>
-flex-grow的默认是0:说明子元素并不会去占据剩余的空间</p>
-<pre><code>flex-grow: 1;
+<h2 id="子元素属性">子元素属性</h2>
+<p>flow-grow:可以来扩展子元素的宽度：设置当前元素应该占据剩余空间的比例值</p>
+<p>比例值计算 ：当前空间的flex-grow/所有兄弟元素的flex-grow的和</p>
+<p>flex-grow的默认是0:说明子元素并不会去占据剩余的空间</p>
+<pre><code>
+​    flex-grow: 1;
 </code></pre>
-<p>flex-shrink:定义收缩比例，通过设置的值来计算收缩空间<br>
-比例值计算 ：当前空间的flex-shrink/所有兄弟元素的flex-shrink的和<br>
-默认值为1</p>
+<p>flex-shrink:定义收缩比例，通过设置的值来计算收缩空间</p>
+<p>比例值计算 ：当前空间的flex-shrink/所有兄弟元素的flex-shrink的和</p>
+<p>默认值为1</p>
 <pre><code>flex-shrink: 3;
 </code></pre>
 <p>flex是用来设置当前伸缩子项占据剩余空间的比例值</p>
-<pre><code>flex: 1;
+<pre><code>    flex: 1;
 </code></pre>
-<p>文字居中<br>
-flex-start：与交叉轴的起点对齐；<br>
-flex-end： 与交叉轴的终点对齐；<br>
-center：居中对齐；<br>
-space-between：与交叉轴两端对齐，轴线之间的距离相等；<br>
-space-around：每根轴线两侧的间隔都相等，所以轴线与轴线之间的间隔是轴线与边框之间间隔的两倍；<br>
-stretch（默认值）：如果项目未设置高度或者为 auto，项目将占满整个容器的高度。</p>
-<pre><code>align-items: center; 
+<h2 id="文字居中">文字居中</h2>
+<p>flex-start：与交叉轴的起点对齐；</p>
+<p>flex-end： 与交叉轴的终点对齐；</p>
+<p>center：居中对齐；</p>
+<p>space-between：与交叉轴两端对齐，轴线之间的距离相等；</p>
+<p>space-around：每根轴线两侧的间隔都相等，所以轴线与轴线之间的间隔是轴线与边框之间间隔的两倍；</p>
+<p>stretch（默认值）：如果项目未设置高度或者为 auto，项目将占满整个容器的高度。</p>
+<pre><code>    align-items: center; 
 </code></pre>
+<h2 id="侧轴方向上的对齐方式">侧轴方向上的对齐方式</h2>
 <p>align-items:设置子元素(伸缩项)在侧轴方向上的对齐方式</p>
-<pre><code>center:设置在侧轴方向上居中对齐
-flex-start:设置在侧轴方向上顶对齐
-flex-end:设置在侧轴方向上底对齐
-stretch:拉伸：让子元素在侧轴方向上进行拉伸，填充满整个侧轴方向&gt;&gt; 默认值
-baseline:文本基线
-align-items: center;
-
-align-self: flex-start; 子元素内可以再次单独调整位置
+<p>​    center:设置在侧轴方向上居中对齐</p>
+<p>​    flex-start:设置在侧轴方向上顶对齐</p>
+<p>​    flex-end:设置在侧轴方向上底对齐</p>
+<p>​    stretch:拉伸：让子元素在侧轴方向上进行拉伸，填充满整个侧轴方向&gt;&gt; 默认值</p>
+<p>​    baseline:文本基线</p>
+<pre><code>    align-items: center;
 </code></pre>
+<p>​    <strong>align-self: flex-start; 子元素内可以再次单独调整位置</strong></p>
 
             </div>
             
@@ -169,6 +179,12 @@ align-self: flex-start; 子元素内可以再次单独调整位置
               </div>
             
 
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
             
 
           </div>
@@ -193,6 +209,29 @@ var app = new Vue({
 })
 
 </script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 
