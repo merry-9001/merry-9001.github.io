@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1577593945199">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1577597976179">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1577593945199" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1577597976179" class="site-logo">
         <h1 class="site-title">看风听歌</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -100,48 +100,73 @@
             <div class="post-date">2019-10-23</div>
             
             <div class="post-content">
-              <h1>网络连接</h1>
+              <h1 id="网络连接">网络连接</h1>
 <p>ononline:网络连通的时候触发这个事件</p>
-<p>​    window.addEventListener(&quot;online&quot;,function(){</p>
-<p>​        alert(&quot;网络连通了&quot;);</p>
-<p>​    });</p>
+<pre><code>    window.addEventListener(&quot;online&quot;,function(){
+
+​        alert(&quot;网络连通了&quot;);
+
+​    });
+</code></pre>
 <p>onoffline:网络断开时触发</p>
-<p>​    window.addEventListener(&quot;offline&quot;,function(){</p>
-<p>​        alert(&quot;网络断开了&quot;);</p>
-<p>​    })</p>
-<h1>全屏与退出全屏</h1>
+<pre><code>    window.addEventListener(&quot;offline&quot;,function(){
+
+​        alert(&quot;网络断开了&quot;);
+
+​    })
+</code></pre>
+<h1 id="全屏与退出全屏">全屏与退出全屏</h1>
 <p>全屏</p>
-<p>if(div.webkitRequestFullScreen){</p>
-<p>​        div.webkitRequestFullScreen();</p>
-<p>​    }</p>
-<p>​    else if(div.mozRequestFullScreen){</p>
-<p>​        div.mozRequestFullScreen();</p>
-<p>​    }</p>
-<p>​    else if(div.msRequestFullScreen){</p>
-<p>​        div.msRequestFullScreen();</p>
-<p>​    }</p>
+<pre><code>  if(div.webkitRequestFullScreen){
+
+​        div.webkitRequestFullScreen();
+
+​    }
+
+​    else if(div.mozRequestFullScreen){
+
+​        div.mozRequestFullScreen();
+
+​    }
+
+​    else if(div.msRequestFullScreen){
+
+​        div.msRequestFullScreen();
+
+​    }
+</code></pre>
 <p>退出全屏</p>
-<p>​    document.mozCancelFullScreen();</p>
+<pre><code>    document.mozCancelFullScreen();
+</code></pre>
 <p>不同浏览器需要加前缀才能做到兼容</p>
-<h1>读取图片显示</h1>
-<p>​    <input type="file" name="myFile" id="myFile" onchange="getFileContent();"> <br></p>
-<p>​    <img src="" alt=""></p>
-<p>​    function getFileContent(){</p>
-<p>​    var reader=new FileReader();</p>
-<p>​    var file=document.querySelector(&quot;#myFile&quot;).files;</p>
-<p>​    reader.readAsDataURL(file[0]);</p>
-<p>​    reader.onload=function(){</p>
-<p>​        document.querySelector(&quot;img&quot;).src=reader.result;</p>
-<p>​    }</p>
-<h1>拖拽</h1>
+<h1 id="读取图片显示">读取图片显示</h1>
+<pre><code>    &lt;input type=&quot;file&quot; name=&quot;myFile&quot; id=&quot;myFile&quot; onchange=&quot;getFileContent();&quot;&gt; &lt;br&gt;
+
+​    &lt;img src=&quot;&quot; alt=&quot;&quot;&gt;
+
+​    function getFileContent(){
+
+​    var reader=new FileReader();
+
+​    var file=document.querySelector(&quot;#myFile&quot;).files;
+
+​    reader.readAsDataURL(file[0]);
+
+​    reader.onload=function(){
+
+​        document.querySelector(&quot;img&quot;).src=reader.result;
+
+​    }
+</code></pre>
+<h1 id="拖拽">拖拽</h1>
 <p>首先需要在标签加入拖拽属性</p>
-<pre><code>&lt;p id=&quot;pe&quot; draggable=&quot;true&quot;&gt;试着把我拖过去&lt;/p&gt;  
+<pre><code>    &lt;p id=&quot;pe&quot; draggable=&quot;true&quot;&gt;试着把我拖过去&lt;/p&gt;  
 </code></pre>
 <p>应用于被拖拽元素的事件</p>
 <p>ondrag         应用于拖拽元素，整个拖拽过程都会调用--持续</p>
 <p>ondragstart    应用于拖拽元素，当拖拽开始时调用</p>
 <p>ondragleave    应用于拖拽元素，当鼠标离开拖拽元素时调用</p>
-<p>ondragend      应用于拖拽元素，当拖拽结束时调用</p>
+<p>ondragend      应用于拖拽元素当拖拽结束时调用</p>
 <p>应用于目标元素的事件</p>
 <p>ondragenter    应用于目标元素，当拖拽元素进入时调用</p>
 <p>ondragover    应用于目标元素，当停留在目标元素上时调用</p>
@@ -149,62 +174,78 @@
 <p>ondragleave    应用于目标元素，当鼠标离开目标元素时调用</p>
 <p>浏览器默认会阻止ondrop事件：我们必须在ondragover中阻止浏览器的默认行</p>
 <p>可以通过函数内的e来确定目标</p>
-<p>/<em>添加元素</em>/</p>
-<p>//e.target.appendChild(obj);</p>
-<p>/<em>通过e.dataTransfer.setData存储的数据，只能在drop事件中获取</em>/</p>
-<p>​    document.ondrop=function(e){</p>
-<p>​        var id=e.dataTransfer.getData(&quot;text/html&quot;);</p>
-<p>​        e.target.appendChild(document.getElementById(id));</p>
-<p>​    }</p>
-<h1>原生ajax</h1>
+<p>/<strong>添加元素</strong>/</p>
+<pre><code>//e.target.appendChild(obj);
+</code></pre>
+<p>/<strong>通过e.dataTransfer.setData存储的数据，只能在drop事件中获取</strong>/</p>
+<pre><code>        document.ondrop=function(e){
+
+​        var id=e.dataTransfer.getData(&quot;text/html&quot;);
+
+​        e.target.appendChild(document.getElementById(id));
+
+​    }
+</code></pre>
+<h1 id="原生ajax">原生ajax</h1>
 <p>​    //步骤一:创建异步对象</p>
-<p>​    var ajax = new XMLHttpRequest();</p>
+<pre><code>    var ajax = new XMLHttpRequest();
+</code></pre>
 <p>​    //步骤二:设置请求的url参数,参数一是请求的类型,</p>
 <p>​    参数二是请求的url,可以带参数,</p>
 <p>​    动态的传递参数starName到服务端</p>
-<p>​    ajax.open('get','getStar.php?starName='+name);</p>
+<pre><code>    ajax.open('get','getStar.php?starName='+name);
+</code></pre>
 <p>​    //步骤三:发送请求</p>
-<p>​    ajax.send();</p>
-<p>​    //步骤四:注册事件 onreadystatechange 状态改变就会调用</p>
-<p>​    ajax.onreadystatechange = function () {</p>
-<p>​    if (ajax.readyState<mark>4 &amp;&amp;ajax.status</mark>200) {</p>
-<p>​        //步骤五 如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的</p>
-<p>​    　　　　console.log(ajax.responseText);//输入相应的内容</p>
-<p>​    　　}</p>
-<p>​    }</p>
-<h1>前端有哪些页面优化方法?</h1>
-<p>减少 HTTP请求数</p>
-<p>从设计实现层面简化页面</p>
-<p>合理设置 HTTP缓存</p>
-<p>资源合并与压缩</p>
-<p>合并 CSS图片，减少请求数的又一个好办法。</p>
-<p>将外部脚本置底（将脚本内容在页面信息内容加载后再加载）</p>
-<p>多图片网页使用图片懒加载。</p>
-<p>在js中尽量减少闭包的使用</p>
-<p>尽量合并css和js文件</p>
-<p>尽量使用字体图标或者SVG图标，来代替传统的PNG等格式的图片</p>
-<p>减少对DOM的操作</p>
-<p>在JS中避免“嵌套循环”和 “死循环”</p>
-<p>尽可能使用事件委托（事件代理）来处理事件绑定的操作</p>
-<h1>浏览器渲染的主要流程是什么?</h1>
-<p>将html代码按照深度优先遍历来生成DOM树。</p>
-<p>css文件下载完后也会进行渲染，生成相应的CSSOM。</p>
-<p>当所有的css文件下载完且所有的CSSOM构建结束后，就会和DOM一起生成Render Tree。</p>
-<p>接下来，浏览器就会进入Layout环节，将所有的节点位置计算出来。</p>
-<p>最后，通过Painting环节将所有的节点内容呈现到屏幕上。</p>
-<h1>js继承方式有哪些？</h1>
-<p>原型链继承</p>
+<pre><code>    ajax.send();
+</code></pre>
+<p>​    //步骤四:注册事件 onreadystatechange 状态改变就会调用，如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的</p>
+<pre><code>    ajax.onreadystatechange = function () {
+
+​    if (ajax.readyState==4 &amp;&amp;ajax.status==200) {
+
+​    　　　　console.log(ajax.responseText);//输入相应的内容
+
+​    　　}
+
+​    }
+</code></pre>
+<h1 id="前端有哪些页面优化方法">前端有哪些页面优化方法?</h1>
+<ul>
+<li>减少 HTTP请求数</li>
+<li>从设计实现层面简化页面</li>
+<li>合理设置 HTTP缓存</li>
+<li>资源合并与压缩</li>
+<li>合并 CSS图片，减少请求数的又一个好办法。</li>
+<li>将外部脚本置底（将脚本内容在页面信息内容加载后再加载）</li>
+<li>多图片网页使用图片懒加载。</li>
+<li>在js中尽量减少闭包的使用</li>
+<li>尽量合并css和js文件</li>
+<li>尽量使用字体图标或者SVG图标，来代替传统的PNG等格式的图片</li>
+<li>减少对DOM的操作</li>
+<li>在JS中避免“嵌套循环”和 “死循环”</li>
+<li>尽可能使用事件委托（事件代理）来处理事件绑定的操作</li>
+</ul>
+<h1 id="浏览器渲染的主要流程是什么">浏览器渲染的主要流程是什么?</h1>
+<ul>
+<li>将html代码按照深度优先遍历来生成DOM树。</li>
+<li>css文件下载完后也会进行渲染，生成相应的CSSOM。</li>
+<li>当所有的css文件下载完且所有的CSSOM构建结束后，就会和DOM一起生成Render Tree。</li>
+<li>接下来，浏览器就会进入Layout环节，将所有的节点位置计算出来。</li>
+<li>最后，通过Painting环节将所有的节点内容呈现到屏幕上。</li>
+</ul>
+<h1 id="js继承方式有哪些">js继承方式有哪些？</h1>
+<h2 id="原型链继承">原型链继承</h2>
 <p>核心： 将父类的实例作为子类的原型</p>
-<p>构造继承</p>
+<h2 id="构造继承">构造继承</h2>
 <p>核心：使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类</p>
-<p>实例继承</p>
+<h2 id="实例继承">实例继承</h2>
 <p>核心：为父类实例添加新特性，作为子类实例返回</p>
-<p>拷贝继承</p>
-<p>组合继承</p>
+<h2 id="拷贝继承">拷贝继承</h2>
+<h2 id="组合继承">组合继承</h2>
 <p>核心：通过调用父类构造，继承父类的属性并保留传参的优点，然后通过将父类实例作为子类原型，实现 函数复用</p>
-<p>寄生组合继承</p>
+<h2 id="寄生组合继承">寄生组合继承</h2>
 <p>核心：通过寄生方式，砍掉父类的实例属性，这样，在调用两次父类的构造的时候，就不会初始化两次实 例方法/属性，避免的组合继承的缺点</p>
-<h1>说几条写JavaScript的基本规范？</h1>
+<h1 id="说几条写javascript的基本规范">说几条写JavaScript的基本规范？</h1>
 <p>1.不要在同一行声明多个变量。</p>
 <p>2.请使用 ===/!==来比较true/false或者数值</p>
 <p>3.使用对象字面量替代new Array这种形式</p>
@@ -214,30 +255,30 @@
 <p>7.For循环必须使用大括号</p>
 <p>8.If语句必须使用大括号</p>
 <p>9.for-in循环中的变量 应该使用var关键字明确限定作用域，从而避免作用域污染。</p>
-<h1>eval是做什么的？</h1>
+<h1 id="eval是做什么的">eval是做什么的？</h1>
 <p>它的功能是把对应的字符串解析成JS代码并运行；</p>
 <p>应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）。</p>
-<h1>undefined 和 null 区别</h1>
+<h1 id="undefined-和-null-区别">undefined 和 null 区别</h1>
 <p>null： Null类型，代表“空值”，代表一个空对象指针，使用typeof运算得到 “object”，所以你可以认为它是一个特殊的对象值。</p>
 <p>undefined： Undefined类型，当一个声明了一个变量未初始化时，得到的就是undefined。</p>
 <p>null是javascript的关键字，可以认为是对象类型，它是一个空对象指针，和其它语言一样都是代表“空值”，不过 undefined 却是javascript才有的。undefined是在ECMAScript第三版引入的，为了区分空指针对象和未初始化的变量，它是一个预定义的全局变量。没有返回值的函数返回为undefined，没有实参的形参也是undefined。</p>
-<h1>Node.js的适用场景？</h1>
+<h1 id="nodejs的适用场景">Node.js的适用场景</h1>
 <p>高并发、聊天、实时消息推送</p>
-<h1>Javascript如何实现继承？</h1>
+<h1 id="javascript如何实现继承">Javascript如何实现继承？</h1>
 <p>通过原型和构造器</p>
 <p>原型对象是属于构造函数的，不属于实例；</p>
 <p>实例只能共享原型对象中的属性和方法（当然也可以有自己的属性和方法，或者覆盖原型中同名的属性和方法）；</p>
 <p>构造器constructor属于原型的，不属于实例；</p>
 <p>实例之所以能有constructor属性是因为它共享了原型对象的所有成员，包括原型对象的constructor属性；</p>
-<h1>谈谈This对象的理解。</h1>
+<h1 id="谈谈this对象的理解">谈谈This对象的理解</h1>
 <p>this是js的一个关键字，随着函数使用场合不同，this的值会发生变化。</p>
 <p>但是有一个总原则，那就是this指的是调用函数的那个对象。</p>
 <p>this一般情况下：是全局对象Global。 作为方法调用，那么this就是指这个对象</p>
-<h1>IE与火狐的事件机制有什么区别？ 如何阻止冒泡？</h1>
+<h1 id="ie与火狐的事件机制有什么区别-如何阻止冒泡">IE与火狐的事件机制有什么区别？ 如何阻止冒泡？</h1>
 <p>我们在网页中的某个操作（有的操作对应多个事件）。例如：当我们点击一个按钮就会产生一个事件。是可以被 JavaScript 侦测到的行为。</p>
 <p>事件处理机制：IE是事件冒泡、火狐是 事件捕获；</p>
 <p>ev.stopPropagation();</p>
-<h1>什么是闭包（closure），为什么要用它？</h1>
+<h1 id="什么是闭包closure为什么要用它">什么是闭包（closure），为什么要用它？</h1>
 <p>闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。</p>
 <p>闭包的特性：</p>
 <p>1.函数内再嵌套函数</p>
@@ -245,67 +286,95 @@
 <p>3.参数和变量不会被垃圾回收机制回收</p>
 <p>闭包是指有权访问另一个函数作用域中的变量的函数。</p>
 <p>闭包会使得函数内部的变量都被保存在内存中，造成较大的内存开销，因此不要滥用闭包。解决的方法是在退出函数之前将不使用的局部变量置为 null ；</p>
- <h1>如何判断一个对象是否属于某个类？</h1>
-<p>​       使用instanceof （待完善）</p>
-<p>​       if(a instanceof Person){</p>
-<p>​           alert('yes');</p>
-<p>​       }</p>
- <h1>Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？</h1>
-<p>​        hasOwnProperty :用来查询自身是否有这个函数的</p>
-<p>​        JSON 的了解？</p>
- <h1>JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。</h1>
+<h1 id="javascript中有一个函数执行时对象查找时永远不会去查找原型这个函数是">Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？</h1>
+<p>hasOwnProperty :用来查询自身是否有这个函数的</p>
+<h1 id="json-的了解">JSON 的了解？</h1>
+<p>JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。</p>
 <p>它是基于JavaScript的一个子集。数据格式简单, 易于读写, 占用带宽小</p>
-<p>{&quot;age&quot;:&quot;12&quot;, &quot;name&quot;:&quot;back&quot;}</p>
- <h1>针对 jQuery 的优化方法？</h1>
+<pre><code>{&quot;age&quot;:&quot;12&quot;, &quot;name&quot;:&quot;back&quot;} 
+</code></pre>
+<h1 id="针对-jquery-的优化方法">针对 jQuery 的优化方法？</h1>
 <p>*基于Class的选择性的性能相对于Id选择器开销很大，因为需遍历所有DOM元素。</p>
 <p>*频繁操作的DOM，先缓存起来再操作。用Jquery的链式调用更好。</p>
-<p>比如：var str=$(&quot;a&quot;).attr(&quot;href&quot;);</p>
-<p>​    *for (var i = size; i &lt; arr.length; i++) {}</p>
+<pre><code>比如：var str=$(&quot;a&quot;).attr(&quot;href&quot;);
+
+​    *for (var i = size; i &lt; arr.length; i++) {}
+</code></pre>
 <p>for 循环每一次循环都查找了数组 (arr) 的.length 属性，在开始循环的时候设置一个变量来存储这个数字，可以让循环跑得更快：</p>
-<p>​    for (var i = size, length = arr.length; i &lt; length; i++) {}</p>
- <h1>如何编写高性能的JavaScript？</h1>
-<p>遵循严格模式：”use strict”;</p>
-<p>将js脚本放在页面底部，加快渲染页面;</p>
-<p>将js脚本成组打包，减少请求;</p>
-<p>使用非阻塞方式下载js脚本;</p>
-<p>尽量使用局部变量来保存全局变量;</p>
-<p>尽量减少使用闭包;</p>
-<p>使用window对象属性方法时省略window;</p>
-<p>尽量减少对象成员嵌套;</p>
-<p>缓存DOM节点的访问;</p>
-<p>通过避免使用eval和function()构造器;</p>
-<p>给setTimeout()和setInterval()传递函数而不是字符作为参数;</p>
-<p>尽量使用直接量创建对象和数组;</p>
-<h1>防抖和节流的实现</h1>
+<pre><code>    for (var i = size, length = arr.length; i &lt; length; i++) {}
+</code></pre>
+<h1 id="如何编写高性能的javascript">如何编写高性能的JavaScript？</h1>
+<ul>
+<li>遵循严格模式：”use strict”;</li>
+<li>将js脚本放在页面底部，加快渲染页面;</li>
+<li>将js脚本成组打包，减少请求;</li>
+<li>使用非阻塞方式下载js脚本;</li>
+<li>尽量使用局部变量来保存全局变量;</li>
+<li>尽量减少使用闭包;</li>
+<li>使用window对象属性方法时省略window;</li>
+<li>尽量减少对象成员嵌套;</li>
+<li>缓存DOM节点的访问;</li>
+<li>通过避免使用eval和function()构造器;</li>
+<li>给setTimeout()和setInterval()传递函数而不是字符作为参数;</li>
+<li>尽量使用直接量创建对象和数组;</li>
+</ul>
+<h1 id="防抖和节流的实现">防抖和节流的实现</h1>
 <p>防抖：触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间</p>
-<p>​    funtion debounce(fn) {</p>
-<p>​    // 创建一个标记用来存放定时器的返回值</p>
-<p>​    let timeout = null;</p>
-<p>​    return function() {</p>
-<p>​    // 每次触发事件时都取消之前的延时调用方法</p>
-<p>​    clearTimeout(timeout);</p>
-<p>​    // 然后又创建一个新的 setTimeout, 这样就能保证 1000ms 间隔内如果重复触发就不会执行 fn 函数</p>
-<p>​    timeout = setTimeout(() =&gt; {</p>
-<p>​    fn.apply(this, arguments);</p>
-<p>​    }, 1000);</p>
-<p>​    };</p>
-<p>​    }</p>
+<pre><code>    funtion debounce(fn) {
+
+​    // 创建一个标记用来存放定时器的返回值
+
+​    let timeout = null;
+
+​    return function() {
+
+​    // 每次触发事件时都取消之前的延时调用方法
+
+​    clearTimeout(timeout);
+
+​    // 然后又创建一个新的 setTimeout, 这样就能保证 1000ms 间隔内如果重复触发就不会执行 fn 函数
+
+​    timeout = setTimeout(() =&gt; {
+
+​    fn.apply(this, arguments);
+
+​    }, 1000);
+
+​    };
+
+​    }
+</code></pre>
 <p>节流：高频事件触发，但在n秒内只会执行一次，所以节流会稀释函数的执行频率</p>
-<p>​    function throttle(fn) {</p>
-<p>​    // 通过闭包保存一个标记</p>
-<p>​    let canRun = true;</p>
-<p>​    return function(){</p>
-<p>​    // 每次开始执行函数时都先判断标记是否为 true，不为 true 则 return</p>
-<p>​    if (!canRun) return;</p>
-<p>​    // 上一次定时器执行完后 canRun 为 true，所以要先设置为false</p>
-<p>​    canRun = false;</p>
-<p>​    setTimeout(() =&gt; {</p>
-<p>​    fn.apply(this, arguments);</p>
-<p>​    // 最后在 setTimeout 执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是 false，在开头被 return 掉</p>
-<p>​    canRun = true;</p>
-<p>​    }, 1000)</p>
-<p>​    }</p>
-<p>}</p>
+<pre><code>    function throttle(fn) {
+
+​    // 通过闭包保存一个标记
+
+​    let canRun = true;
+
+​    return function(){
+
+​    // 每次开始执行函数时都先判断标记是否为 true，不为 true 则 return
+
+​    if (!canRun) return;
+
+​    // 上一次定时器执行完后 canRun 为 true，所以要先设置为false
+
+​    canRun = false;
+
+​    setTimeout(() =&gt; {
+
+​    fn.apply(this, arguments);
+
+​    // 最后在 setTimeout 执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是 false，在开头被 return 掉
+
+​    canRun = true;
+
+​    }, 1000)
+
+​    }
+
+}
+</code></pre>
 
             </div>
             
