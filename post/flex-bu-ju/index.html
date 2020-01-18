@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1578292886873">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1579326696809">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1578292886873" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1579326696809" class="site-logo">
         <h1 class="site-title">看风听歌</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -100,6 +100,9 @@
 </code></pre>
 <h2 id="排列方式">排列方式</h2>
 <p>设置子元素的排列方式</p>
+<pre><code>            justify-content
+                - 如何分配主轴上的空白空间（主轴上的元素如何排列）
+</code></pre>
 <p>​    flex-start:让子元素从父容器的起始位置开始排列</p>
 <p>​    flex-end:让子元素从父容器的结束位置开始排列</p>
 <p>​    center:让子元素从父容器的中间位置开始排列</p>
@@ -125,12 +128,27 @@
 <p>flex-flow:是flex-wrap和flex-direction的综合</p>
 <pre><code>    flex-flow: row wrap;
 </code></pre>
+<h2 id="侧轴方向上的对齐方式垂直居中">侧轴方向上的对齐方式（垂直居中）</h2>
+<pre><code>            - 元素在辅轴上如何对齐
+            - 元素间的关系
+</code></pre>
+<p>align-items:设置子元素(伸缩项)在侧轴方向上的对齐方式</p>
+<p>​    center:设置在侧轴方向上居中对齐</p>
+<p>​    flex-start:设置在侧轴方向上顶对齐</p>
+<p>​    flex-end:设置在侧轴方向上底对齐</p>
+<p>​    stretch:拉伸：让子元素在侧轴方向上进行拉伸，填充满整个侧轴方向&gt;&gt; 默认值</p>
+<p>​    baseline:文本基线</p>
+<pre><code>    align-items: center;
+</code></pre>
+<p><strong>align-content</strong>属性值就是align-items的值</p>
+<p>align-content:center对单行是没有效果的,而align-items:center不管是对单行还是多行都有效果,而在我们日常开发中用的比较多的就是align-items.</p>
+<h2>以上都是给display:flex盒子设置的，以下是子元素的属性
+<h2>一个元素可以既是弹性盒子，又是子元素
 <h2 id="子元素属性">子元素属性</h2>
 <p>flow-grow:可以来扩展子元素的宽度：设置当前元素应该占据剩余空间的比例值</p>
 <p>比例值计算 ：当前空间的flex-grow/所有兄弟元素的flex-grow的和</p>
 <p>flex-grow的默认是0:说明子元素并不会去占据剩余的空间</p>
-<pre><code>
-​    flex-grow: 1;
+<pre><code>    flex-grow: 1;
 </code></pre>
 <p>flex-shrink:定义收缩比例，通过设置的值来计算收缩空间</p>
 <p>比例值计算 ：当前空间的flex-shrink/所有兄弟元素的flex-shrink的和</p>
@@ -140,25 +158,19 @@
 <p>flex是用来设置当前伸缩子项占据剩余空间的比例值</p>
 <pre><code>    flex: 1;
 </code></pre>
-<h2 id="文字居中">文字居中</h2>
-<p>flex-start：与交叉轴的起点对齐；</p>
-<p>flex-end： 与交叉轴的终点对齐；</p>
-<p>center：居中对齐；</p>
-<p>space-between：与交叉轴两端对齐，轴线之间的距离相等；</p>
-<p>space-around：每根轴线两侧的间隔都相等，所以轴线与轴线之间的间隔是轴线与边框之间间隔的两倍；</p>
-<p>stretch（默认值）：如果项目未设置高度或者为 auto，项目将占满整个容器的高度。</p>
-<pre><code>    align-items: center; 
+<pre><code>            flex 可以设置弹性元素所有的三个样式
+            flex 增长 缩减 基础;
+            initial &quot;flex: 0 1 auto&quot;.
+            auto  &quot;flex: 1 1 auto&quot;
+            none &quot;flex: 0 0 auto&quot; 弹性元素没有弹性
 </code></pre>
-<h2 id="侧轴方向上的对齐方式">侧轴方向上的对齐方式</h2>
-<p>align-items:设置子元素(伸缩项)在侧轴方向上的对齐方式</p>
+<p>​    <strong>align-self: flex-start; 子元素内可以再次单独调整位置</strong></p>
+<p>align-self: 用来覆盖当前弹性元素上的align-items ，属性值就是align-items的值</p>
 <p>​    center:设置在侧轴方向上居中对齐</p>
 <p>​    flex-start:设置在侧轴方向上顶对齐</p>
 <p>​    flex-end:设置在侧轴方向上底对齐</p>
 <p>​    stretch:拉伸：让子元素在侧轴方向上进行拉伸，填充满整个侧轴方向&gt;&gt; 默认值</p>
 <p>​    baseline:文本基线</p>
-<pre><code>    align-items: center;
-</code></pre>
-<p>​    <strong>align-self: flex-start; 子元素内可以再次单独调整位置</strong></p>
 
             </div>
             
