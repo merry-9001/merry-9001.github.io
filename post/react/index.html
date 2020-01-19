@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>react | 看风听歌</title>
+<meta name="description" content="学习是一辈子的事">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1579418956244">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://merry-9001.github.io">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1579418956244" class="site-logo">
+        <h1 class="site-title">看风听歌</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/merry-9001" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      学习是一辈子的事
+    </div>
+    <div class="site-footer">
+      739211562@qq.com | <a class="rss" href="https://merry-9001.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">react</h2>
+            <div class="post-date">2020-01-19</div>
+            
+            <div class="post-content">
+              <h1 id="基本概念">基本概念</h1>
+<h2 id="引入">引入</h2>
+<p>三个文件</p>
+<pre><code>  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react.development.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react-dom.development.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/babel.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h2 id="使用">使用</h2>
+<pre><code>  &lt;script type=&quot;text/babel&quot;&gt; //必须声明babel
+    // 创建虚拟DOM元素
+    const vDom = &lt;h1&gt;Hello React&lt;/h1&gt; // 千万不要加引号
+    // 渲染虚拟DOM到页面真实DOM容器中
+    ReactDOM.render(vDom, document.getElementById('test'))
+  &lt;/script&gt;
+</code></pre>
+<p>script标签类型设置为text/babel</p>
+<p>使用JSX创建虚拟DOM</p>
+<h2 id="遍历li">遍历li</h2>
+<p>两种方法</p>
+<pre><code>var names = ['jquery', 'zeptoo', 'angular', 'react全家桶', 'vue全家桶']
+</code></pre>
+<p>一</p>
+<pre><code>    var lis = []
+    names.forEach((name, index) =&gt; lis.push(&lt;li key={index}&gt;{name}&lt;/li&gt;))
+    // 创建虚拟DOM
+    const ul = &lt;ul&gt;{lis}&lt;/ul&gt;
+    // 渲染虚拟DOM
+    ReactDOM.render(ul, document.getElementById('example1'))
+</code></pre>
+<p>二</p>
+<pre><code>    const ul2 = &lt;ul&gt;{
+      names.map((name, index) =&gt; &lt;li key={index}&gt;{name}&lt;/li&gt;)
+    }&lt;/ul&gt;
+    ReactDOM.render(ul2, document.getElementById('example2'))
+</code></pre>
+<h2 id="括号">括号</h2>
+<p>{：表示要使用js了</p>
+<p>&lt;：表示要使用HTML</p>
+<h2 id="定义组件">定义组件</h2>
+<p>​    <em>方式1: 工厂函数组件(简单组件)</em>/</p>
+<pre><code>    function MyComponent () {
+
+​      return &lt;h2&gt;工厂函数组件(简单组件)&lt;/h2&gt;
+
+​    }
+</code></pre>
+<p>​    <em>方式2: ES6类组件(复杂组件)</em>/</p>
+<pre><code>    class MyComponent2 extends React.Component {
+
+​      render () {
+
+​        console.log(this) // MyComponent2的实例对象
+
+​        return &lt;h2&gt;ES6类组件(复杂组件)&lt;/h2&gt;
+
+​      }
+
+​    }
+</code></pre>
+<p>渲染组件标签</p>
+<pre><code>   ReactDOM.render(&lt;MyComponent /&gt;, document.getElementById('example1'))
+
+​  ReactDOM.render(&lt;MyComponent2 /&gt;, document.getElementById('example2'))
+</code></pre>
+<h2 id="state">state</h2>
+<p>一个标签 点一下进行切换</p>
+<pre><code>  class Like extends React.Component {
+    constructor (props) {
+      super(props)
+      // 初始化状态
+      this.state = {
+        isLikeMe: true
+      }
+      // 绑定this为组件对象
+      this.change = this.change.bind(this)
+    }
+    change () {
+      // 更新状态: this.setState()
+      // this.state.isLikeMe = !this.state.isLikeMe // 不能更新更新某个状态
+      this.setState({
+        isLikeMe: !this.state.isLikeMe
+      })
+    }
+    render () {
+      console.log('render()')
+      const text = this.state.isLikeMe ? '你喜欢我' : '我喜欢你'
+      return &lt;h2 onClick={this.change}&gt;{text}&lt;/h2&gt;
+    }
+  }
+</code></pre>
+<p>​</p>
+<p>​	是为了改变This指向，这样change函数里面就可以正常使用这个类了，通过this</p>
+<pre><code>  this.change = this.change.bind(this)
+</code></pre>
+<p>必须赋值完以后还要setstate后才有效果</p>
+<pre><code>  this.setState({
+    isLikeMe: !this.state.isLikeMe
+  })
+</code></pre>
+<p>通过{this.change}（不加括号来绑定事件）</p>
+<pre><code>return &lt;h2 onClick={this.change}&gt;{text}&lt;/h2&gt;
+</code></pre>
+<h2 id="props">props</h2>
+<p>往组件内传值</p>
+<p>组件</p>
+<pre><code>  class Person extends React.Component {
+    render() {
+      console.log(this)
+      return (
+        &lt;ul&gt;
+          &lt;li&gt;姓名: {this.props.name}&lt;/li&gt;
+          &lt;li&gt;性别: {this.props.sex}&lt;/li&gt;
+          &lt;li&gt;年龄: {this.props.age}&lt;/li&gt;
+        &lt;/ul&gt;
+      )
+    }
+  }
+</code></pre>
+<pre><code>传值方法一
+</code></pre>
+<pre><code>  const person = {
+
+​    name: 'Tom',
+
+​    sex: '女',
+
+​    age: 18
+
+  }
+
+  ReactDOM.render(&lt;Person {...person}/&gt;, document.getElementById('example1'))
+</code></pre>
+<p>传值方法二</p>
+<pre><code>  const person2 = {
+
+​    myName: 'JACK',
+
+​    age: 17
+
+  }
+
+  ReactDOM.render(&lt;Person name={person2.myName} age={person2.age}/&gt;,
+
+​    document.getElementById('example2'))
+</code></pre>
+<p>对标签属性进行限制</p>
+<p>Person.propTypes = {</p>
+<p>​    name: PropTypes.string.isRequired,</p>
+<p>​    sex: PropTypes.string,</p>
+<p>​    age: PropTypes.number</p>
+<p>}</p>
+<p>指定属性的默认值</p>
+<p>Person.defaultProps = {</p>
+<p>​    sex: '男',</p>
+<p>​    age: 18</p>
+<p>}</p>
+<h2 id="refs">refs</h2>
+<p>获取页面中的值</p>
+<p>定义组件</p>
+<pre><code>  class MyComponent extends React.Component {
+      constructor(props) {
+        super(props) // 调用父类(Component)的构造函数
+        // 将自定义的函数强制绑定为组件对象
+        this.handleClick = this.handleClick.bind(this)
+      }
+      // 自定义的方法中的this默认为null
+      handleClick () {
+        // alert(this) //this默认是null, 而不是组件对象
+        // 得到绑定在当前组件对象上的input的值
+        alert(this.msgInput.value)
+      }
+      handleBlur (event) {
+        alert(event.target.value)
+      }
+      render () {
+        return (
+          &lt;div&gt;
+            &lt;input type=&quot;text&quot; ref={input =&gt; this.msgInput = input}/&gt;{' '}
+            &lt;button onClick={this.handleClick}&gt;提示输入数据&lt;/button&gt;{' '}
+            &lt;input type=&quot;text&quot; placeholder=&quot;失去焦点提示数据&quot; onBlur={this.handleBlur}/&gt;
+          &lt;/div&gt;
+        )
+      }
+    }
+</code></pre>
+<p><strong>自定义的方法中的this默认为null</strong></p>
+<p>取值方式一</p>
+<pre><code>&lt;input type=&quot;text&quot; ref={input =&gt; this.msgInput = input}/&gt;
+</code></pre>
+<p>取值方式二</p>
+<pre><code>&lt;input type=&quot;text&quot; placeholder=&quot;失去焦点提示数据&quot; onBlur={this.handleBlur}/&gt;
+</code></pre>
+<h2 id="综合运用父子组件通信">综合运用（父子组件通信）</h2>
+<p>主组件</p>
+<pre><code> class App extends React.Component {
+      constructor (props) {
+        super(props)
+        // 初始化状态
+        this.state = {
+          todos: ['吃饭', '睡觉', '打豆豆']
+        }
+        this.add = this.add.bind(this)
+      }
+      add (todo) {
+        const {todos} = this.state
+        todos.unshift(todo)
+        //更新状态
+        this.setState({todos})
+      }
+      render () {
+        const {todos} = this.state
+        return (
+          &lt;div&gt;
+            &lt;TodoAdd add={this.add} count={todos.length} /&gt;
+            &lt;TodoList todos={todos} /&gt;
+          &lt;/div&gt;
+        )
+      }
+    }
+</code></pre>
+<p>两个子组件</p>
+<p>1.传入一个方法，一个长度属性</p>
+<p>2.给List数据</p>
+<pre><code>        &lt;TodoAdd add={this.add} count={todos.length} /&gt;
+        &lt;TodoList todos={todos} /&gt;
+</code></pre>
+<p>TodoAdd组件</p>
+<pre><code>    // 添加todo组件
+    class TodoAdd extends React.Component {
+      constructor (props) {
+        super(props)
+        this.addTodo = this.addTodo.bind(this)
+      }
+      addTodo () {
+        // 读取输入数据
+        const text = this.input.value.trim()
+        // 查检
+        if(!text) {
+          return
+        }
+        // 保存到todos
+        this.props.add(text)
+        // 清除输入
+        this.input.value = ''
+      }
+      render () {
+        return (
+          &lt;div&gt;
+            &lt;h2&gt;Simple TODO List&lt;/h2&gt;
+            &lt;input type=&quot;text&quot; ref={input =&gt; this.input=input}/&gt;
+            &lt;button onClick={this.addTodo}&gt;Add #{this.props.count}&lt;/button&gt;
+          &lt;/div&gt;
+        )
+      }
+    }
+</code></pre>
+<p>使用父组件的方法</p>
+<pre><code>       this.props.add(text)
+</code></pre>
+<p>使用父组件传来的值</p>
+<pre><code>&lt;button onClick={this.addTodo}&gt;Add #{this.props.count}&lt;/button&gt;
+</code></pre>
+<p>todoList</p>
+<pre><code>    class TodoList extends React.Component {
+      render () {
+        const {todos} = this.props
+        return (
+          &lt;ul&gt;
+            {
+              todos.map((todo, index) =&gt; &lt;li key={index}&gt;{todo}&lt;/li&gt;)
+            }
+          &lt;/ul&gt;
+        )
+      }
+    }
+</code></pre>
+<p>取到父组件传来的值，然后进行循环输出ui&gt;li</p>
+<h2 id="表单上传">表单上传</h2>
+<pre><code> class LoginForm extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        username: ''
+      }
+      this.handleSubmit = this.handleSubmit.bind(this)
+      this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(event) {
+      this.setState({username: event.target.value})
+    }
+
+    handleSubmit(event) {
+      alert(`准备提交的用户名为: ${this.state.username}, 密码:${this.pwdInput.value}`)
+
+      // 阻止事件的默认行为: 提交表单
+      event.preventDefault()
+    }
+    render () {
+
+      return (
+        &lt;form onSubmit={this.handleSubmit} action=&quot;/test&quot;&gt;
+          &lt;label&gt;
+            用户名:
+            &lt;input type=&quot;text&quot; value={this.state.username} onChange={this.handleChange} /&gt;
+          &lt;/label&gt;&amp;nbsp;
+          &lt;label&gt;
+            密码:
+            &lt;input type=&quot;password&quot; ref={(input) =&gt; this.pwdInput = input} /&gt;
+          &lt;/label&gt;&amp;nbsp;
+          &lt;input type=&quot;submit&quot; value=&quot;登陆&quot; /&gt;
+        &lt;/form&gt;
+      )
+    }
+  }
+</code></pre>
+<p>方法一</p>
+<pre><code> &lt;input type=&quot;text&quot; value={this.state.username} onChange={this.handleChange} /&gt;
+</code></pre>
+<pre><code>  this.state = {
+    username: ''
+  }
+</code></pre>
+<p>方法二</p>
+<pre><code> &lt;input type=&quot;password&quot; ref={(input) =&gt; this.pwdInput = input} /&gt;
+</code></pre>
+<p>获取值</p>
+<pre><code>handleSubmit(event) {
+  alert(`准备提交的用户名为: ${this.state.username}, 密码:${this.pwdInput.value}`)
+}
+</code></pre>
+<p>阻止事件的默认行为: 提交表单</p>
+<pre><code>  event.preventDefault()
+</code></pre>
+<h2 id="生命周期">生命周期</h2>
+<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5Csix%5CDesktop%5C360%E6%88%AA%E5%9B%BE20200119150140321.jpg" alt="" loading="lazy"></figure>
+<pre><code>render(): 初始化渲染或更新渲染调用
+componentDidMount(): 开启监听, 发送 ajax 请求
+componentWillUnmount(): 做一些收尾工作, 如: 清理定时器
+</code></pre>
+<pre><code>    componentWillMount () {
+      console.log('componentWillMount(): 初始化将要挂载')
+    }
+</code></pre>
+<pre><code>    componentDidMount () {// 在此方法中启动定时器/绑定监听/发送ajax请求
+      console.log('componentDidMount(): 初始化已经挂载')
+      }
+</code></pre>
+<pre><code>    componentWillUpdate () {
+      console.log('componentWillUpdate(): 将要更新')
+    }
+</code></pre>
+<pre><code>    componentDidUpdate () {
+      console.log('componentDidUpdate(): 已经更新')
+    }
+</code></pre>
+<pre><code>    componentWillUnmount () {
+      console.log('componentWillUnmount(): 将要被移除')
+    }
+</code></pre>
+<pre><code>    removeComponent () {//移除
+      
+    }
+</code></pre>
+<pre><code>    render() {
+      console.log('render() 渲染组件')
+      return (
+        &lt;div&gt;
+          &lt;h2 style={{opacity:this.state.opacity}}&gt;{this.props.content}&lt;/h2&gt;
+          &lt;button onClick={this.removeComponent}&gt;不活了&lt;/button&gt;
+        &lt;/div&gt;
+      )
+    }
+</code></pre>
+<p>style使用state里面的值</p>
+<pre><code>&lt;h2 style={{opacity:this.state.opacity}}&gt;{this.props.content}&lt;/h2&gt;
+</code></pre>
+<h2 id="虚拟dom算法">虚拟dom算法</h2>
+<figure data-type="image" tabindex="2"><img src="C:%5CUsers%5Csix%5CDesktop%5C360%E6%88%AA%E5%9B%BE20200119150439146.jpg" alt="" loading="lazy"></figure>
+<h2 id="axios">axios</h2>
+<p>使用方法跟在vue里面一样</p>
+<pre><code> axios.get(url)
+        .then(response =&gt; {
+          const result = response.data
+          console.log(result)
+          const repo = result.items[0]
+          this.setState({
+            repoName: repo.name,
+            repoUrl: repo.html_url
+          })
+        })
+        .catch(error =&gt; {
+          // debugger
+          console.log(error)
+          alert('请求失败 '+ error.message)
+        })
+</code></pre>
+<p>字符串里面使用react的变量${this.props.searchWord}</p>
+<pre><code>  const url = `https://api.github.com/search/repositories?q=${this.props.searchWord}&amp;sort=stars`
+</code></pre>
+<h1 id="脚手架">脚手架</h1>
+<h2 id="使用-2">使用</h2>
+<pre><code>npm install -g create-react-app 安装
+create-react-app hello-react  创建
+cd hello-react 进入
+npm start 运行
+</code></pre>
+<h2 id="订阅与发布">订阅与发布</h2>
+<p><strong>用与父子通信、兄弟组件之间的传值</strong></p>
+<p>下载、引用</p>
+<figure data-type="image" tabindex="3"><img src="C:%5CUsers%5Csix%5CDesktop%5C360%E6%88%AA%E5%9B%BE20200119151432497.jpg" alt="" loading="lazy"></figure>
+<p>发布</p>
+<figure data-type="image" tabindex="4"><img src="C:%5CUsers%5Csix%5CDesktop%5C360%E6%88%AA%E5%9B%BE20200119151412329.jpg" alt="" loading="lazy"></figure>
+<p>订阅</p>
+<figure data-type="image" tabindex="5"><img src="C:%5CUsers%5Csix%5CDesktop%5C360%E6%88%AA%E5%9B%BE20200119151345888.jpg" alt="" loading="lazy"></figure>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://merry-9001.github.io/post/hmtl-css">
+                  <h3 class="post-title">
+                    hmtl-css
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

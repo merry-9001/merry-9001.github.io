@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>看风听歌</title>
-    <updated>2020-01-18T05:51:42.216Z</updated>
+    <updated>2020-01-19T07:29:22.488Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -10,6 +10,429 @@
     <logo>https://merry-9001.github.io/images/avatar.png</logo>
     <icon>https://merry-9001.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 看风听歌</rights>
+    <entry>
+        <title type="html"><![CDATA[react]]></title>
+        <id>https://merry-9001.github.io/post/react</id>
+        <link href="https://merry-9001.github.io/post/react">
+        </link>
+        <updated>2020-01-19T07:29:00.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="基本概念">基本概念</h1>
+<h2 id="引入">引入</h2>
+<p>三个文件</p>
+<pre><code>  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react.development.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/react-dom.development.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;../js/babel.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h2 id="使用">使用</h2>
+<pre><code>  &lt;script type=&quot;text/babel&quot;&gt; //必须声明babel
+    // 创建虚拟DOM元素
+    const vDom = &lt;h1&gt;Hello React&lt;/h1&gt; // 千万不要加引号
+    // 渲染虚拟DOM到页面真实DOM容器中
+    ReactDOM.render(vDom, document.getElementById('test'))
+  &lt;/script&gt;
+</code></pre>
+<p>script标签类型设置为text/babel</p>
+<p>使用JSX创建虚拟DOM</p>
+<h2 id="遍历li">遍历li</h2>
+<p>两种方法</p>
+<pre><code>var names = ['jquery', 'zeptoo', 'angular', 'react全家桶', 'vue全家桶']
+</code></pre>
+<p>一</p>
+<pre><code>    var lis = []
+    names.forEach((name, index) =&gt; lis.push(&lt;li key={index}&gt;{name}&lt;/li&gt;))
+    // 创建虚拟DOM
+    const ul = &lt;ul&gt;{lis}&lt;/ul&gt;
+    // 渲染虚拟DOM
+    ReactDOM.render(ul, document.getElementById('example1'))
+</code></pre>
+<p>二</p>
+<pre><code>    const ul2 = &lt;ul&gt;{
+      names.map((name, index) =&gt; &lt;li key={index}&gt;{name}&lt;/li&gt;)
+    }&lt;/ul&gt;
+    ReactDOM.render(ul2, document.getElementById('example2'))
+</code></pre>
+<h2 id="括号">括号</h2>
+<p>{：表示要使用js了</p>
+<p>&lt;：表示要使用HTML</p>
+<h2 id="定义组件">定义组件</h2>
+<p>​    <em>方式1: 工厂函数组件(简单组件)</em>/</p>
+<pre><code>    function MyComponent () {
+
+​      return &lt;h2&gt;工厂函数组件(简单组件)&lt;/h2&gt;
+
+​    }
+</code></pre>
+<p>​    <em>方式2: ES6类组件(复杂组件)</em>/</p>
+<pre><code>    class MyComponent2 extends React.Component {
+
+​      render () {
+
+​        console.log(this) // MyComponent2的实例对象
+
+​        return &lt;h2&gt;ES6类组件(复杂组件)&lt;/h2&gt;
+
+​      }
+
+​    }
+</code></pre>
+<p>渲染组件标签</p>
+<pre><code>   ReactDOM.render(&lt;MyComponent /&gt;, document.getElementById('example1'))
+
+​  ReactDOM.render(&lt;MyComponent2 /&gt;, document.getElementById('example2'))
+</code></pre>
+<h2 id="state">state</h2>
+<p>一个标签 点一下进行切换</p>
+<pre><code>  class Like extends React.Component {
+    constructor (props) {
+      super(props)
+      // 初始化状态
+      this.state = {
+        isLikeMe: true
+      }
+      // 绑定this为组件对象
+      this.change = this.change.bind(this)
+    }
+    change () {
+      // 更新状态: this.setState()
+      // this.state.isLikeMe = !this.state.isLikeMe // 不能更新更新某个状态
+      this.setState({
+        isLikeMe: !this.state.isLikeMe
+      })
+    }
+    render () {
+      console.log('render()')
+      const text = this.state.isLikeMe ? '你喜欢我' : '我喜欢你'
+      return &lt;h2 onClick={this.change}&gt;{text}&lt;/h2&gt;
+    }
+  }
+</code></pre>
+<p>​</p>
+<p>​	是为了改变This指向，这样change函数里面就可以正常使用这个类了，通过this</p>
+<pre><code>  this.change = this.change.bind(this)
+</code></pre>
+<p>必须赋值完以后还要setstate后才有效果</p>
+<pre><code>  this.setState({
+    isLikeMe: !this.state.isLikeMe
+  })
+</code></pre>
+<p>通过{this.change}（不加括号来绑定事件）</p>
+<pre><code>return &lt;h2 onClick={this.change}&gt;{text}&lt;/h2&gt;
+</code></pre>
+<h2 id="props">props</h2>
+<p>往组件内传值</p>
+<p>组件</p>
+<pre><code>  class Person extends React.Component {
+    render() {
+      console.log(this)
+      return (
+        &lt;ul&gt;
+          &lt;li&gt;姓名: {this.props.name}&lt;/li&gt;
+          &lt;li&gt;性别: {this.props.sex}&lt;/li&gt;
+          &lt;li&gt;年龄: {this.props.age}&lt;/li&gt;
+        &lt;/ul&gt;
+      )
+    }
+  }
+</code></pre>
+<pre><code>传值方法一
+</code></pre>
+<pre><code>  const person = {
+
+​    name: 'Tom',
+
+​    sex: '女',
+
+​    age: 18
+
+  }
+
+  ReactDOM.render(&lt;Person {...person}/&gt;, document.getElementById('example1'))
+</code></pre>
+<p>传值方法二</p>
+<pre><code>  const person2 = {
+
+​    myName: 'JACK',
+
+​    age: 17
+
+  }
+
+  ReactDOM.render(&lt;Person name={person2.myName} age={person2.age}/&gt;,
+
+​    document.getElementById('example2'))
+</code></pre>
+<p>对标签属性进行限制</p>
+<p>Person.propTypes = {</p>
+<p>​    name: PropTypes.string.isRequired,</p>
+<p>​    sex: PropTypes.string,</p>
+<p>​    age: PropTypes.number</p>
+<p>}</p>
+<p>指定属性的默认值</p>
+<p>Person.defaultProps = {</p>
+<p>​    sex: '男',</p>
+<p>​    age: 18</p>
+<p>}</p>
+<h2 id="refs">refs</h2>
+<p>获取页面中的值</p>
+<p>定义组件</p>
+<pre><code>  class MyComponent extends React.Component {
+      constructor(props) {
+        super(props) // 调用父类(Component)的构造函数
+        // 将自定义的函数强制绑定为组件对象
+        this.handleClick = this.handleClick.bind(this)
+      }
+      // 自定义的方法中的this默认为null
+      handleClick () {
+        // alert(this) //this默认是null, 而不是组件对象
+        // 得到绑定在当前组件对象上的input的值
+        alert(this.msgInput.value)
+      }
+      handleBlur (event) {
+        alert(event.target.value)
+      }
+      render () {
+        return (
+          &lt;div&gt;
+            &lt;input type=&quot;text&quot; ref={input =&gt; this.msgInput = input}/&gt;{' '}
+            &lt;button onClick={this.handleClick}&gt;提示输入数据&lt;/button&gt;{' '}
+            &lt;input type=&quot;text&quot; placeholder=&quot;失去焦点提示数据&quot; onBlur={this.handleBlur}/&gt;
+          &lt;/div&gt;
+        )
+      }
+    }
+</code></pre>
+<p><strong>自定义的方法中的this默认为null</strong></p>
+<p>取值方式一</p>
+<pre><code>&lt;input type=&quot;text&quot; ref={input =&gt; this.msgInput = input}/&gt;
+</code></pre>
+<p>取值方式二</p>
+<pre><code>&lt;input type=&quot;text&quot; placeholder=&quot;失去焦点提示数据&quot; onBlur={this.handleBlur}/&gt;
+</code></pre>
+<h2 id="综合运用父子组件通信">综合运用（父子组件通信）</h2>
+<p>主组件</p>
+<pre><code> class App extends React.Component {
+      constructor (props) {
+        super(props)
+        // 初始化状态
+        this.state = {
+          todos: ['吃饭', '睡觉', '打豆豆']
+        }
+        this.add = this.add.bind(this)
+      }
+      add (todo) {
+        const {todos} = this.state
+        todos.unshift(todo)
+        //更新状态
+        this.setState({todos})
+      }
+      render () {
+        const {todos} = this.state
+        return (
+          &lt;div&gt;
+            &lt;TodoAdd add={this.add} count={todos.length} /&gt;
+            &lt;TodoList todos={todos} /&gt;
+          &lt;/div&gt;
+        )
+      }
+    }
+</code></pre>
+<p>两个子组件</p>
+<p>1.传入一个方法，一个长度属性</p>
+<p>2.给List数据</p>
+<pre><code>        &lt;TodoAdd add={this.add} count={todos.length} /&gt;
+        &lt;TodoList todos={todos} /&gt;
+</code></pre>
+<p>TodoAdd组件</p>
+<pre><code>    // 添加todo组件
+    class TodoAdd extends React.Component {
+      constructor (props) {
+        super(props)
+        this.addTodo = this.addTodo.bind(this)
+      }
+      addTodo () {
+        // 读取输入数据
+        const text = this.input.value.trim()
+        // 查检
+        if(!text) {
+          return
+        }
+        // 保存到todos
+        this.props.add(text)
+        // 清除输入
+        this.input.value = ''
+      }
+      render () {
+        return (
+          &lt;div&gt;
+            &lt;h2&gt;Simple TODO List&lt;/h2&gt;
+            &lt;input type=&quot;text&quot; ref={input =&gt; this.input=input}/&gt;
+            &lt;button onClick={this.addTodo}&gt;Add #{this.props.count}&lt;/button&gt;
+          &lt;/div&gt;
+        )
+      }
+    }
+</code></pre>
+<p>使用父组件的方法</p>
+<pre><code>       this.props.add(text)
+</code></pre>
+<p>使用父组件传来的值</p>
+<pre><code>&lt;button onClick={this.addTodo}&gt;Add #{this.props.count}&lt;/button&gt;
+</code></pre>
+<p>todoList</p>
+<pre><code>    class TodoList extends React.Component {
+      render () {
+        const {todos} = this.props
+        return (
+          &lt;ul&gt;
+            {
+              todos.map((todo, index) =&gt; &lt;li key={index}&gt;{todo}&lt;/li&gt;)
+            }
+          &lt;/ul&gt;
+        )
+      }
+    }
+</code></pre>
+<p>取到父组件传来的值，然后进行循环输出ui&gt;li</p>
+<h2 id="表单上传">表单上传</h2>
+<pre><code> class LoginForm extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        username: ''
+      }
+      this.handleSubmit = this.handleSubmit.bind(this)
+      this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(event) {
+      this.setState({username: event.target.value})
+    }
+
+    handleSubmit(event) {
+      alert(`准备提交的用户名为: ${this.state.username}, 密码:${this.pwdInput.value}`)
+
+      // 阻止事件的默认行为: 提交表单
+      event.preventDefault()
+    }
+    render () {
+
+      return (
+        &lt;form onSubmit={this.handleSubmit} action=&quot;/test&quot;&gt;
+          &lt;label&gt;
+            用户名:
+            &lt;input type=&quot;text&quot; value={this.state.username} onChange={this.handleChange} /&gt;
+          &lt;/label&gt;&amp;nbsp;
+          &lt;label&gt;
+            密码:
+            &lt;input type=&quot;password&quot; ref={(input) =&gt; this.pwdInput = input} /&gt;
+          &lt;/label&gt;&amp;nbsp;
+          &lt;input type=&quot;submit&quot; value=&quot;登陆&quot; /&gt;
+        &lt;/form&gt;
+      )
+    }
+  }
+</code></pre>
+<p>方法一</p>
+<pre><code> &lt;input type=&quot;text&quot; value={this.state.username} onChange={this.handleChange} /&gt;
+</code></pre>
+<pre><code>  this.state = {
+    username: ''
+  }
+</code></pre>
+<p>方法二</p>
+<pre><code> &lt;input type=&quot;password&quot; ref={(input) =&gt; this.pwdInput = input} /&gt;
+</code></pre>
+<p>获取值</p>
+<pre><code>handleSubmit(event) {
+  alert(`准备提交的用户名为: ${this.state.username}, 密码:${this.pwdInput.value}`)
+}
+</code></pre>
+<p>阻止事件的默认行为: 提交表单</p>
+<pre><code>  event.preventDefault()
+</code></pre>
+<h2 id="生命周期">生命周期</h2>
+<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5Csix%5CDesktop%5C360%E6%88%AA%E5%9B%BE20200119150140321.jpg" alt="" loading="lazy"></figure>
+<pre><code>render(): 初始化渲染或更新渲染调用
+componentDidMount(): 开启监听, 发送 ajax 请求
+componentWillUnmount(): 做一些收尾工作, 如: 清理定时器
+</code></pre>
+<pre><code>    componentWillMount () {
+      console.log('componentWillMount(): 初始化将要挂载')
+    }
+</code></pre>
+<pre><code>    componentDidMount () {// 在此方法中启动定时器/绑定监听/发送ajax请求
+      console.log('componentDidMount(): 初始化已经挂载')
+      }
+</code></pre>
+<pre><code>    componentWillUpdate () {
+      console.log('componentWillUpdate(): 将要更新')
+    }
+</code></pre>
+<pre><code>    componentDidUpdate () {
+      console.log('componentDidUpdate(): 已经更新')
+    }
+</code></pre>
+<pre><code>    componentWillUnmount () {
+      console.log('componentWillUnmount(): 将要被移除')
+    }
+</code></pre>
+<pre><code>    removeComponent () {//移除
+      
+    }
+</code></pre>
+<pre><code>    render() {
+      console.log('render() 渲染组件')
+      return (
+        &lt;div&gt;
+          &lt;h2 style={{opacity:this.state.opacity}}&gt;{this.props.content}&lt;/h2&gt;
+          &lt;button onClick={this.removeComponent}&gt;不活了&lt;/button&gt;
+        &lt;/div&gt;
+      )
+    }
+</code></pre>
+<p>style使用state里面的值</p>
+<pre><code>&lt;h2 style={{opacity:this.state.opacity}}&gt;{this.props.content}&lt;/h2&gt;
+</code></pre>
+<h2 id="虚拟dom算法">虚拟dom算法</h2>
+<figure data-type="image" tabindex="2"><img src="C:%5CUsers%5Csix%5CDesktop%5C360%E6%88%AA%E5%9B%BE20200119150439146.jpg" alt="" loading="lazy"></figure>
+<h2 id="axios">axios</h2>
+<p>使用方法跟在vue里面一样</p>
+<pre><code> axios.get(url)
+        .then(response =&gt; {
+          const result = response.data
+          console.log(result)
+          const repo = result.items[0]
+          this.setState({
+            repoName: repo.name,
+            repoUrl: repo.html_url
+          })
+        })
+        .catch(error =&gt; {
+          // debugger
+          console.log(error)
+          alert('请求失败 '+ error.message)
+        })
+</code></pre>
+<p>字符串里面使用react的变量${this.props.searchWord}</p>
+<pre><code>  const url = `https://api.github.com/search/repositories?q=${this.props.searchWord}&amp;sort=stars`
+</code></pre>
+<h1 id="脚手架">脚手架</h1>
+<h2 id="使用-2">使用</h2>
+<pre><code>npm install -g create-react-app 安装
+create-react-app hello-react  创建
+cd hello-react 进入
+npm start 运行
+</code></pre>
+<h2 id="订阅与发布">订阅与发布</h2>
+<p><strong>用与父子通信、兄弟组件之间的传值</strong></p>
+<p>下载、引用</p>
+<figure data-type="image" tabindex="3"><img src="C:%5CUsers%5Csix%5CDesktop%5C360%E6%88%AA%E5%9B%BE20200119151432497.jpg" alt="" loading="lazy"></figure>
+<p>发布</p>
+<figure data-type="image" tabindex="4"><img src="C:%5CUsers%5Csix%5CDesktop%5C360%E6%88%AA%E5%9B%BE20200119151412329.jpg" alt="" loading="lazy"></figure>
+<p>订阅</p>
+<figure data-type="image" tabindex="5"><img src="C:%5CUsers%5Csix%5CDesktop%5C360%E6%88%AA%E5%9B%BE20200119151345888.jpg" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[hmtl-css]]></title>
         <id>https://merry-9001.github.io/post/hmtl-css</id>
@@ -1655,545 +2078,6 @@ git branch -d dev</p>
 <p>选中package.json</p>
 <p>预设配置 不需要拍</p>
 <p>npm i -s axios</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ES6]]></title>
-        <id>https://merry-9001.github.io/post/es6</id>
-        <link href="https://merry-9001.github.io/post/es6">
-        </link>
-        <updated>2019-10-24T11:04:57.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="es6怎么来的">ES6怎么来的</h1>
-<ul>
-<li>ECMAScript 和 JavaScript
-<ul>
-<li>ECMA 是标准，JS 是实现</li>
-<li>ECMAScript 简称 ECMA 或 ES</li>
-</ul>
-</li>
-</ul>
-<h1 id="let和const">let和const</h1>
-<p>解决问题</p>
-<p>​	var不能用于定义常量</p>
-<p>​	var可以重复声明变量</p>
-<p>​	var存在变量提升</p>
-<p>​	var不支持块级作用域</p>
-<p>不可以重复声明变量</p>
-<pre><code>    let site = 'itLike';
-
-​    let site = 'itLike'; 
-
-​    console.log(site);
-</code></pre>
-<p>不存在变量提升</p>
-<pre><code>    console.log(site);
-
-​    let site = 'itLike';
-</code></pre>
-<p>const用来定义常量</p>
-<pre><code>    const E = 2.718;
-</code></pre>
-<p>块级作用域用一组大括号定义一个块，使用 let 定义的变量在大括号的外部是访问不到的，此外，let声明的变量不会污染全局作用域。（let拥有块级作用域）</p>
-<pre><code>{let site = 'itLike';}
-</code></pre>
-<h1 id="解构赋值">解构赋值</h1>
-<p>对象解构允许我们使用变量的名字匹配对象的属性 匹配成功 将对象属性的值赋值给变量</p>
-<pre><code>    
-
-​    let person = {name: 'lisi', age: 30, sex: '男'};
-
-​    let {name: myName} = person;
-
-​    console.log(myName)
-</code></pre>
-<pre><code>let [a, b, c] = [1, 2, 3]
-console.log(a, b, c)
-
-
-let [json, arr, num, str] = [{ a: 1, b: 2 }, [1, 2, 3], 8, 'str']
-console.log(json, arr, num, str)
-
-let [name1, name2, name3] = nameArr;
-let {name: lkName, age: lkAge, sex: lkSex}= {name: '小煤球', age: 1, sex: '公'};
-</code></pre>
-<ul>
-<li>解构赋值
-<ul>
-<li>左右两个边结构必须一样</li>
-<li>右边必须是个东西</li>
-<li>声明和赋值赋值不能分开，必须在一句话里</li>
-</ul>
-</li>
-</ul>
-<h1 id="函数操作">函数操作</h1>
-<h2 id="获取自身属性">获取自身属性</h2>
-<pre><code>        // 用于获取对象自身所有的属性
-        var obj = {
-            id: 1,
-            pname: '小米',
-            price: 1999,
-            num: 2000
-        };
-        var arr = Object.keys(obj);
-        console.log(arr);
-        arr.forEach(function(value) {
-            console.log(value);
-
-        })
-</code></pre>
-<p>设置默认参数</p>
-<pre><code>    function logPerson(name, sex = '男', age = 20) {
-
-​        console.log(name);
-
-​        console.log(sex);
-
-​        console.log(age);
-
-​    }
-
-​    undefined 男 20
-
-​    logPerson();
-</code></pre>
-<h1 id="函数-参数">函数-参数</h1>
-<pre><code>    let logName = function (arg1, ...arg2) {
-
-​        console.log(arg1, arg2);
-
-​    };
-
-​    // 宋小宝 , [&quot;赵薇&quot;, &quot;王菲&quot;, &quot;那英&quot;]
-
-​    logName('宋小宝', '赵薇', '王菲', '那英');
-</code></pre>
-<ul>
-<li>
-<p>参数扩展／展开</p>
-<pre><code>...args
-</code></pre>
-<ul>
-<li>收集剩余的参数，必须当到最后一个参数位置</li>
-<li>展开数组，简写，效果和直接把数组的内容写在这儿一样</li>
-</ul>
-</li>
-<li>
-<p>默认参数</p>
-</li>
-</ul>
-<pre><code>function show(a, b, ...args) {
-    console.log(a)
-    console.log(b)
-    console.log(args)
-}
-console.log(show(1, 2, 3, 4, 5))
-
-let arr1 = [1, 2, 3]
-let arr2 = [4, 5, 6]
-let arr3 = [...arr1, ...arr2]
-console.log(arr3)
-
-function show2(a, b=5, c=8) {
-    console.log(a, b, c)
-}
-show2(88, 12)
-</code></pre>
-<h1>super</h1>
-<p>通过super可以调用prototype上的属性或方法。</p>
-<h1 id="类操作">类操作</h1>
-<p>在之前定义类是通过构造函数来操作的，es6新增了class关键字，此时，我们也可以像其它语言一样来创建各种类了。</p>
-<pre><code>    class Person{
-
-​        constructor(name, age){
-
-​            this.name = name;
-
-​            this.age = age;
-
-​        }
-
-​        print(){
-
-​            console.log('我叫' + this.name + ',今年' + this.age + '岁');
-
-​        }
-
-​    }
-</code></pre>
-<h2 id="类继承">类继承</h2>
-<pre><code> 		class Father {
-            constructor(x, y) {
-                this.x = x;  //this.x这样这个x函数体内的所有函数都可以访问了
-                this.y = y;
-            }
-            sum() {
-                console.log(this.x + this.y);
-
-            }
-        }
-        class Son extends Father {
-            constructor(x, y) {
-                super(x, y); //调用了父类中的构造函数
-            }
-        }
-        var son = new Son(1, 2);
-        var son1 = new Son(11, 22);
-        son.sum();
-        son1.sum();
-</code></pre>
-<p>继承中的属性或者方法查找原则: 就近原则</p>
-<ol>
-<li>
-<p>继承中,如果实例化子类输出一个方法,先看子类有没有这个方法,如果有就先执行子类的</p>
-</li>
-<li>
-<p>继承中,如果子类里面没有,就去查找父类有没有这个方法,如果有,就执行父类的这个方法(就近原则)</p>
-<pre><code>// super.say() 就是调用父类中的普通函数 say()
-</code></pre>
-<pre><code>// constructor 里面的this 指向的是 创建的实例对象
-</code></pre>
-</li>
-</ol>
-<h1 id="集合操作">集合操作</h1>
-<p>1）set</p>
-<p>一个Set是一堆东西的集合，Set有点像数组，不过跟数组不一样的是，Set里面不能有重复的内容；</p>
-<ol start="2">
-<li>map 两个值</li>
-</ol>
-<p>Map结构提供了“值—值”的对应，是一种更完善的Hash结构实现。</p>
-<p>如果你需要“键值对”的数据结构，Map比Object更合适。</p>
-<p>它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。</p>
-<p>实例属性和方法：size、set、get、has、delete、clear</p>
-<h1 id="重载">重载</h1>
-<p>什么时重载？</p>
-<p>ES6带来了Proxy和Reflect，配合使用可以实现重载。</p>
-<p>Proxy用于修改某些操作的默认行为，相当于对原始想进行的操作进行“包装”；</p>
-<p>Reflect对象的方法与Proxy对象的方法一一对应，这使得Proxy对象可以方便的调用对应的Reflect方法完成默认行为。</p>
-<p>简单说，就是函数或者方法有相同的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。</p>
-<h1 id="数组">数组</h1>
-<h2 id="map">map</h2>
-<ul>
-<li>映射 一个对一个</li>
-</ul>
-<pre><code>let arr = [12, 5, 8]
-let result = arr.map(function (item) {
-    return item*2
-})
-let result2 = arr.map(item=&gt;item*2) // 简写
-console.log(result)
-console.log(result2)
-
-let score = [18, 86, 88, 24]
-let result3 = score.map(item =&gt; item &gt;= 60 ? '及格' : '不及格')
-console.log(result3)
-
-// 结果
-[ 24, 10, 16 ]
-[ 24, 10, 16 ]
-[ '不及格', '及格', '及格', '不及格' ]
-</code></pre>
-<h2 id="reduce">reduce</h2>
-<p>汇总 一堆出来一个</p>
-<ul>
-<li>用于比如，算个总数，算个平均</li>
-</ul>
-<pre><code>var arr = [1, 3, 5, 7]
-var result = arr.reduce(function (tmp, item, index) {
-    //tmp 上次结果，item当前数，index次数1开始
-    console.log(tmp, item, index)
-    return tmp + item
-})
-console.log(result)
-
-var arr = [1, 3, 5, 7]
-var result = arr.reduce(function (tmp, item, index) {
-    if (index != arr.length - 1) { // 不是最后一次
-        return tmp + item
-    } else {
-        return (tmp + item)/arr.length
-    }
-})
-console.log(result)  // 平均值
-</code></pre>
-<h2 id="some">some</h2>
-<pre><code>        var arr1 = ['red', 'pink', 'blue'];
-        var flag1 = arr1.some(function(value) {
-            return value == 'pink';
-        });
-</code></pre>
-<p>filter 也是查找满足条件的元素 返回的是一个数组 而且是把所有满足条件的元素返回回来</p>
-<p>some 也是查找满足条件的元素是否存在  返回的是一个布尔值 如果查找到第一个满足条件的元素就终止循环</p>
-<h2 id="filter">filter</h2>
-<p>过滤器 保留为true的</p>
-<pre><code>var arr = [12, 4, 8, 9]
-var result = arr.filter(item =&gt; (item % 3 === 0) ? true : false)
-console.log(result)
-var result = arr.filter(item =&gt; item % 3 === 0)
-console.log(result)
-
-var arr = [
-    { title: '苹果', price: 10 },
-    { title: '西瓜', price: 20 },
-]
-var result = arr.filter(json =&gt; json.price &gt;= 20)
-console.log(result)
-</code></pre>
-<pre><code>        var arr = [12, 66, 4, 88, 3, 7];
-        var newArr = arr.filter(function(value, index) {
-            // return value &gt;= 20;
-            return value % 2 === 0;
-        });
-        console.log(newArr);
-</code></pre>
-<h2 id="foreach-循环迭代">forEach 循环迭代</h2>
-<pre><code>var arr = [12, 4, 8, 9]
-var result = arr.forEach(item =&gt; console.log(item))
-var result = arr.forEach((item, index)=&gt;console.log(item, index))
-</code></pre>
-<pre><code>    arr.forEach(function(value, index, array) {
-
-        console.log('每个数组元素' + value);
-
-        console.log('每个数组元素的索引号' + index);
-
-        console.log('数组本身' + array);
-
-        sum += value;
-
-    })
-</code></pre>
-<h1 id="字符串">字符串</h1>
-<ul>
-<li>多了两个新方法
-<ul>
-<li><code>startsWith</code></li>
-<li><code>endsWith</code></li>
-</ul>
-</li>
-</ul>
-<pre><code>var url = 'http://qq.com'
-console.log(url.startsWith('http'))
-console.log(url.endsWith('com'))
-// 都是 true
-</code></pre>
-<p>判断是不是开头和结尾 结果是true和false</p>
-<p>repeat可以重复</p>
-<pre><code>		console.log(&quot;y&quot;.repeat(5))
-</code></pre>
-<ul>
-<li>字符串模版
-<ul>
-<li>使用反引号，<code>${变量}</code></li>
-<li>可以折行</li>
-</ul>
-</li>
-</ul>
-<pre><code>let a = 12
-let str1 = `asdf${a}`
-console.log(str1)
-
-let title = '标题'
-let content = '内容'
-let str = `&lt;div&gt;
-&lt;h1&gt;${title}&lt;/h1&gt;
-&lt;p&gt;${content}&lt;/p&gt;
-`
-console.log(str)
-&lt;div&gt;
-&lt;h1&gt;标题&lt;/h1&gt;
-&lt;p&gt;内容&lt;/p&gt;
-</code></pre>
-<h1 id="面向对象-基础">面向对象-基础</h1>
-<ul>
-<li>原来写法
-<ul>
-<li>类和构造函数一样</li>
-<li>属性和方法分开写的</li>
-</ul>
-</li>
-</ul>
-<pre><code>// 老版本
-function User(name, pass) {
-    this.name = name
-    this.pass = pass
-}
-
-User.prototype.showName = function () {
-    console.log(this.name)
-}
-User.prototype.showPass = function () {
-    console.log(this.pass)
-}
-
-var u1 = new User('able', '1233')
-u1.showName()
-u1.showPass()
-// 老版本继承
-function VipUser(name, pass, level) {
-    User.call(this, name, pass)
-    this.level = level
-}
-VipUser.prototype = new User()
-VipUser.prototype.constructor = VipUser
-VipUser.prototype.showLevel = function () {
-    console.log(this.level)
-}
-
-var v1 = new VipUser('blue', '1234', 3)
-v1.showName()
-v1.showLevel()
-</code></pre>
-<ul>
-<li>新版面向对象
-<ul>
-<li>有了 class 关键字、构造器</li>
-<li>class 里面直接加方法</li>
-<li>继承，super 超类==父类</li>
-</ul>
-</li>
-</ul>
-<pre><code>class User {
-    constructor(name, pass) {
-        this.name = name
-        this.pass = pass
-    }
-
-    showName() {
-        console.log(this.name)
-    }
-    showPass() {
-        console.log(this.pass)
-    }
-}
-
-var u1 = new User('able2', '111')
-u1.showName()
-u1.showPass()
-
-// 新版本继承
-class VipUser extends User {
-    constructor(name, pass, level) {
-        super(name, pass)
-        this.level = level
-    }
-    showLevel(){
-        console.log(this.level)
-    }
-}
-
-v1 = new VipUser('blue', '123', 3)
-v1.showLevel()
-</code></pre>
-<h1 id="set数据结构">set数据结构</h1>
-<p>不会重复</p>
-<h2 id="数组去重">数组去重</h2>
-<pre><code>		const s3 = new Set([&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;b&quot;]);
-		console.log(s3.size)
-		const ary = [...s3];
-		console.log(ary)
-</code></pre>
-<h2 id="增删改查">增删改查</h2>
-<pre><code>    const s4 = new Set();
-</code></pre>
-<p>​    向set结构中添加值 使用add方法</p>
-<pre><code>    s4.add('a').add('b');
-
-​    console.log(s4.size)
-</code></pre>
-<p>​    从set结构中删除值 用到的方法是delete</p>
-<pre><code>    const r1 = s4.delete('c');
-</code></pre>
-<pre><code>  console.log(s4.size)
-</code></pre>
-<pre><code>    console.log(r1); //删除成功true，失败false
-</code></pre>
-<p>​    判断某一个值是否是set数据结构中的成员 使用has</p>
-<pre><code>    const r2 = s4.has('d');
-
-​    console.log(r2)
-</code></pre>
-<p>​    清空set数据结构中的值 使用clear方法</p>
-<pre><code>    s4.clear();
-
-​   console.log(s4.size);
-</code></pre>
-<pre><code>## 遍历
-</code></pre>
-<pre><code>    const s5 = new Set(['a', 'b', 'c']);
-
-​    s5.forEach(value =&gt; {
-
-​      console.log(value)
-
-​    })
-</code></pre>
-<h1 id="json">json</h1>
-<ul>
-<li>JSON 格式
-<ul>
-<li>JavaScript Object Notation 的缩写，是一种用于数据交换的文本格式</li>
-<li>JSON 是 JS对象 的严格子集</li>
-<li>JSON 的标准写法</li>
-<li>只能用双引号</li>
-<li>所有的key都必须用双引号包起来</li>
-</ul>
-</li>
-<li>JSON 对象
-<ul>
-<li>JSON 对象是 JavaScript 的原生对象，用来处理 JSON 格式数据，有两个静态方法</li>
-<li>JSON.parse(string) ：接受一个 <strong>JSON 字符串</strong>并将其转换成一个 JavaScript <strong>对象</strong>。</li>
-<li>JSON.stringify(obj) ：接受一个 JavaScript <strong>对象</strong>并将其转换为一个 <strong>JSON 字符串</strong>。</li>
-</ul>
-</li>
-</ul>
-<pre><code>var json = {a: 12, b: 5}
-var str = 'hi,' + JSON.stringify(json)
-var url = 'http://www.xx.com/' + encodeURIComponent(JSON.stringify(json))
-console.log(str)
-console.log(url)
-
-var str = '{&quot;a&quot;: 12, &quot;b&quot;: 4, &quot;c&quot;: &quot;abc&quot;}'
-var json = JSON.parse(str)
-console.log(json)
-hi,{&quot;a&quot;:12,&quot;b&quot;:5}
-http://www.xx.com/%7B%22a%22%3A12%2C%22b%22%3A5%7D
-{ a: 12, b: 4, c: 'abc' }
-</code></pre>
-<ul>
-<li>对象（object）
-<ul>
-<li>是 JavaScript 语言的核心概念，也是最重要的数据类型</li>
-<li>对象就是一组“键值对”（key-value）的集合，是一种无序的复合数据集合</li>
-<li>对象的所有键名都是字符串, 所以加不加引号都可以</li>
-<li>如果键名是数值，会被自动转为字符串</li>
-<li>对象的每一个键名又称为“属性”（property），它的“键值”可以是任何数据类型</li>
-<li>如果一个属性的值为函数，通常把这个属性称为“方法”，它可以像函数那样调用</li>
-<li>in 运算符用于检查对象是否包含某个属性（注意，检查的是键名，不是键值</li>
-<li>for...in循环用来遍历一个对象的全部属性</li>
-</ul>
-</li>
-<li>对象 简写
-<ul>
-<li>key-value 一样时可以简写</li>
-<li>里面函数可以简写, 去掉</li>
-</ul>
-</li>
-</ul>
-<pre><code>var a = 12, b = 5
-console.log({a:a, b:b})
-console.log({a, b})
-console.log({a, b, c:&quot;c&quot;})
-console.log({ a, b, show(){ console.log('a') }})
-{ a: 12, b: 5 }
-{ a: 12, b: 5 }
-{ a: 12, b: 5, c: 'c' }
-{ a: 12, b: 5, show: [Function: show] }
-</code></pre>
-<h1 id="symbol">symbol</h1>
-<p>第七种数据类型</p>
-<p>生成唯一的标识符来避免冲突</p>
-<p>不能被遍历</p>
-<p>可以用于当做私有属性</p>
 ]]></content>
     </entry>
 </feed>
