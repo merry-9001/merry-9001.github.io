@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>看风听歌</title>
-    <updated>2020-01-20T01:45:32.099Z</updated>
+    <updated>2020-01-20T01:47:50.989Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -393,8 +393,6 @@ componentWillUnmount(): 做一些收尾工作, 如: 清理定时器
 
 </code></pre>
 <p>style使用state里面的值</p>
-<pre><code>    &lt;h2 style={{opacity:this.state.opacity}}&gt;{this.props.content}&lt;/h2&gt;
-</code></pre>
 <h2 id="虚拟dom算法">虚拟dom算法</h2>
 <figure data-type="image" tabindex="2"><img src="https://merry-9001.github.io/post-images/1579483940062.jpg" alt="" loading="lazy"></figure>
 <h2 id="axios">axios</h2>
