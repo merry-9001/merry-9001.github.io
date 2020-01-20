@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>看风听歌</title>
-    <updated>2020-01-20T01:33:06.188Z</updated>
+    <updated>2020-01-20T01:38:41.901Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -239,8 +239,8 @@
 <p>两个子组件</p>
 <p>1.传入一个方法，一个长度属性</p>
 <p>2.给List数据</p>
-<pre><code>        &lt;TodoAdd add={this.add} count={todos.length} /&gt;
-        &lt;TodoList todos={todos} /&gt;
+<pre><code>            &lt;TodoAdd add={this.add} count={todos.length} /&gt;
+            &lt;TodoList todos={todos} /&gt;
 </code></pre>
 <p>TodoAdd组件</p>
 <pre><code>    // 添加todo组件
@@ -343,9 +343,9 @@
 <pre><code> &lt;input type=&quot;password&quot; ref={(input) =&gt; this.pwdInput = input} /&gt;
 </code></pre>
 <p>获取值</p>
-<pre><code>handleSubmit(event) {
-  alert(`准备提交的用户名为: ${this.state.username}, 密码:${this.pwdInput.value}`)
-}
+<pre><code>    handleSubmit(event) {
+      alert(`准备提交的用户名为: ${this.state.username}, 密码:${this.pwdInput.value}`)
+    }
 </code></pre>
 <p>阻止事件的默认行为: 提交表单</p>
 <pre><code>  event.preventDefault()
@@ -379,8 +379,7 @@ componentWillUnmount(): 做一些收尾工作, 如: 清理定时器
 <pre><code>    removeComponent () {//移除
       
     }
-</code></pre>
-<pre><code>    render() {
+        render() {
       console.log('render() 渲染组件')
       return (
         &lt;div&gt;
@@ -413,7 +412,9 @@ componentWillUnmount(): 做一些收尾工作, 如: 清理定时器
           alert('请求失败 '+ error.message)
         })
 </code></pre>
-<p>字符串里面使用react的变量${this.props.searchWord}</p>
+<p>字符串里面使用react的变量</p>
+<pre><code>${this.props.searchWord}
+</code></pre>
 <pre><code>  const url = `https://api.github.com/search/repositories?q=${this.props.searchWord}&amp;sort=stars`
 </code></pre>
 <h1 id="脚手架">脚手架</h1>
