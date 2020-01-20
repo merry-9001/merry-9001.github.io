@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>看风听歌</title>
-    <updated>2020-01-20T01:52:02.502Z</updated>
+    <updated>2020-01-20T01:54:59.356Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -400,7 +400,7 @@ componentWillUnmount(): 做一些收尾工作, 如: 清理定时器
 
                     &lt;div&gt;
 
-&lt;h2 style={{opacity:this.state.opacity}}&gt;{this.props.content}&lt;/h2&gt;
+“&lt;h2 style={{opacity:this.state.opacity}}&gt;{this.props.content}&lt;/h2&gt;&quot;
 
 &lt;button onClick={this.removeComponent}&gt;不活了&lt;/button&gt;
 
