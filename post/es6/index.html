@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1579574223295">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1579576856071">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1579574223295" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1579576856071" class="site-logo">
         <h1 class="site-title">看风听歌</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -517,6 +517,9 @@ v1.showLevel()
 </code></pre>
 <h1 id="set数据结构">set数据结构</h1>
 <p>不会重复</p>
+<h3 id="weakset">WeakSet</h3>
+<p>WeakSet 的成员只能是对象，而不能是其他类型的值</p>
+<p>WeakSet 不可遍历</p>
 <h2 id="数组去重">数组去重</h2>
 <pre><code>		const s3 = new Set([&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;b&quot;]);
 		console.log(s3.size)
@@ -620,11 +623,195 @@ console.log({ a, b, show(){ console.log('a') }})
 { a: 12, b: 5, c: 'c' }
 { a: 12, b: 5, show: [Function: show] }
 </code></pre>
+<h1 id="generator">generator</h1>
+<p>形式上，Generator 函数是一个普通函数，但是有两个特征。一是，<code>function</code>关键字与函数名之间有一个星号；二是，函数体内部使用<code>yield</code>表达式，定义不同的内部状态（<code>yield</code>在英语里的意思就是“产出”）。</p>
+<p>认识生成器函数</p>
+<ul>
+<li>generator 生成器函数
+<ul>
+<li>普通函数，一路到底</li>
+<li>generator函数，中间可以停，到哪停呢，用 yield 配合，交出执行权</li>
+<li>yield 有 放弃、退让、退位的意思</li>
+<li>需要调用next()方法启动执行，需要遇到 yield 停, 踹一脚走一步</li>
+<li>generator函数前面加一个 <code>*</code> 两边可以有空格，或靠近函数或<code>function</code></li>
+<li>背后实际生成多个小函数，实现走走停停</li>
+</ul>
+</li>
+</ul>
+<pre><code>function show() {
+    console.log('a')
+    console.log('b')
+}
+show() // 普通函数
+
+function *show2() {
+    console.log('1')
+    yield
+    console.log('2')
+}
+let genObj = show2()
+genObj.next() // 1
+genObj.next() // 2
+genObj.next() // 最后了，没有结果
+</code></pre>
+<h2 id="generator-yield是啥">generator-yield是啥</h2>
+<ul>
+<li><code>yield</code>
+<ul>
+<li>既可传参，又可以返回</li>
+<li>第一个<code>next()</code>传参无效，只用来启动</li>
+</ul>
+</li>
+<li>如果函数前漏掉 <code>*</code>
+<ul>
+<li>就是普通函数</li>
+<li>如果有<code>yield</code>会报错， <code>ReferenceError: yield is not defined</code></li>
+<li>yield 只能在Generator函数内部使用</li>
+</ul>
+</li>
+</ul>
+<pre><code>function * show() {
+    console.log('1')
+    var a = yield
+    console.log('2')
+    console.log(a)
+}
+// yield 传参
+var gen = show()
+gen.next() // 1
+gen.next() // 2 和 undefined 因为没有传参，yield没有返回值
+var gen = show()
+gen.next(10) // 1 第一次执行到yield，但没有执行赋值
+gen.next(20) // 2 和 20
+
+function* show2() {
+    console.log('1')
+    yield 10
+    console.log('2')
+}
+// yield 返回
+var gen = show2()
+var res1 = gen.next()
+console.log(res1) // { value: 10, done: false }
+var res2 = gen.next()
+console.log(res2)
+// { value: undefined, done: true } 最后的value需要return返回
+</code></pre>
+<h2 id="generator-实例">generator-实例</h2>
+<ul>
+<li><strong>Promise 适合一次读一组</strong></li>
+<li><strong>generator 适合逻辑性的</strong></li>
+</ul>
+<pre><code>// 带逻辑-generator
+runner(function * () {
+    let userData = yield $.ajax({url: 'getUserData'})
+
+    if (userData.type == 'VIP') {
+        let items = yield $.ajax({url: 'getVIPItems'})
+    } else {
+        let items = yield $.ajax({url: 'getItems'})
+    }
+})
+// yield 实例，用同步方式写异步
+server.use(function * () {
+    let data = yield db.query(`select * from user_table`)
+    this.body = data
+})
+</code></pre>
+<h1 id="async">async</h1>
+<p>async 函数是什么？一句话，它就是 Generator 函数的语法糖。</p>
 <h1 id="symbol">symbol</h1>
 <p>第七种数据类型</p>
 <p>生成唯一的标识符来避免冲突</p>
 <p>不能被遍历</p>
 <p>可以用于当做私有属性</p>
+<h1 id="proxy">Proxy</h1>
+<p>Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写</p>
+<pre><code>var proxy = new Proxy({}, {
+  get: function(target, propKey) {
+    return 35;
+  }
+});
+
+proxy.time // 35
+proxy.name // 35
+proxy.title // 35
+</code></pre>
+<p>第一个参数是所要代理的目标对象；第二个参数是一个配置对象，对于每一个被代理的操作，需要提供一个对应的处理函数，该函数将拦截对应的操作</p>
+<p>里面可以设置get，set,apply等方法</p>
+<h1 id="reflect">Reflect</h1>
+<p><strong>确保对象的属性能正确赋值，广义上讲，即确保对象的原生行为能够正常进行，这就是Reflect的作用</strong></p>
+<h1 id="es7-预览">ES7 预览</h1>
+<ul>
+<li>数组
+<ul>
+<li><code>arr.includes()</code> 数组是否包含某个东西</li>
+<li>数组的 arr.keys(), arr,entries()</li>
+<li>for ... in 遍历数组 下标 key</li>
+<li>for ... of 遍历数组 值 value, 不能用于json</li>
+</ul>
+</li>
+</ul>
+<pre><code>let arr = ['a', 'b', 'c']
+console.log(arr.includes(1))
+
+for (let i in arr) {
+    console.log(i) // 循环的时下标 key
+}
+
+for (let i of arr) {
+    console.log(i) // 循环的是值 value
+}
+for (let i of arr.keys()) {
+    console.log('&gt;'+i)
+}
+for (let [key, value] of arr.entries()) {
+    console.log('&gt;' + key + value)
+}
+
+let json = { a: 12, b: 5, c: 7 }
+for (let i in json) {
+    console.log(i)
+}
+</code></pre>
+<ul>
+<li>字符串
+<ul>
+<li>padStart()/padEnd() 指定宽度，不够就补空格或指定字符</li>
+</ul>
+</li>
+</ul>
+<pre><code>console.log('=' + 'abcd'.padStart(6, '0') + '=')
+console.log('=' + 'abcd'.padEnd(6, '0') + '=')
+=00abcd=
+=abcd00=
+</code></pre>
+<ul>
+<li>
+<p>容忍度</p>
+<ul>
+<li>[1, 2, 3,] 老版数组最后不能有逗号，新的可以有</li>
+<li>函数参数最后多的逗号也可以</li>
+</ul>
+</li>
+<li>
+<p>async await</p>
+<ul>
+<li>
+<p>和 generator yield 类似</p>
+</li>
+<li>
+<p>generator 不可以写成箭头函数， async 可以</p>
+<pre><code>async function show() {
+    console.log(1)
+    await
+    console.log(2)
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
 
             </div>
             
