@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>看风听歌</title>
-    <updated>2020-01-20T13:38:19.573Z</updated>
+    <updated>2020-01-21T02:37:06.186Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -162,27 +162,16 @@
 ​    document.getElementById('example2'))
 </code></pre>
 <p>对标签属性进行限制</p>
-<pre><code>
-  Person.propTypes = {
-
-​    name: PropTypes.string.isRequired,
-
-​    sex: PropTypes.string,
-
-​    age: PropTypes.number
-
-  }
-</code></pre>
+<p>Person.propTypes = {</p>
+<p>​    name: PropTypes.string.isRequired,</p>
+<p>​    sex: PropTypes.string,</p>
+<p>​    age: PropTypes.number</p>
+<p>}</p>
 <p>指定属性的默认值</p>
-<pre><code>
-  Person.defaultProps = {
-
-​    sex: '男',
-
-​    age: 18
-
-  }
-</code></pre>
+<p>Person.defaultProps = {</p>
+<p>​    sex: '男',</p>
+<p>​    age: 18</p>
+<p>}</p>
 <h2 id="refs">refs</h2>
 <p>获取页面中的值</p>
 <p>定义组件</p>
@@ -250,8 +239,8 @@
 <p>两个子组件</p>
 <p>1.传入一个方法，一个长度属性</p>
 <p>2.给List数据</p>
-<pre><code>            &lt;TodoAdd add={this.add} count={todos.length} /&gt;
-            &lt;TodoList todos={todos} /&gt;
+<pre><code>        &lt;TodoAdd add={this.add} count={todos.length} /&gt;
+        &lt;TodoList todos={todos} /&gt;
 </code></pre>
 <p>TodoAdd组件</p>
 <pre><code>    // 添加todo组件
@@ -354,9 +343,9 @@
 <pre><code> &lt;input type=&quot;password&quot; ref={(input) =&gt; this.pwdInput = input} /&gt;
 </code></pre>
 <p>获取值</p>
-<pre><code>    handleSubmit(event) {
-      alert(`准备提交的用户名为: ${this.state.username}, 密码:${this.pwdInput.value}`)
-    }
+<pre><code>handleSubmit(event) {
+  alert(`准备提交的用户名为: ${this.state.username}, 密码:${this.pwdInput.value}`)
+}
 </code></pre>
 <p>阻止事件的默认行为: 提交表单</p>
 <pre><code>  event.preventDefault()
@@ -387,28 +376,19 @@ componentWillUnmount(): 做一些收尾工作, 如: 清理定时器
       console.log('componentWillUnmount(): 将要被移除')
     }
 </code></pre>
-<pre><code>    removeComponent () {//移除
+<pre><code>   removeComponent () {//移除
       
     }
-
 </code></pre>
-<pre><code>            ​      render() {
-
-            ​      console.log('render() 渲染组件')
-
-            ​      return (
-
-                    &lt;div&gt;
-
-&lt;h2 style=(两个花括号)opacity:this.state.opacity(两个花括号)&gt;{this.props.content}&lt;/h2&gt;
-
-&lt;button onClick={this.removeComponent}&gt;不活了&lt;/button&gt;
-
-            ​        &lt;/div&gt;
-
-            ​      )
-
-            ​    }
+<pre><code>    render() {
+      console.log('render() 渲染组件')
+      return (
+        &lt;div&gt;
+          &lt;h2 style=(两个花括号)opacity:this.state.opacity(两个花括号)&gt;{this.props.content}&lt;/h2&gt;
+          &lt;button onClick={this.removeComponent}&gt;不活了&lt;/button&gt;
+        &lt;/div&gt;
+      )
+    }
 </code></pre>
 <p>style使用state里面的值</p>
 <pre><code>&lt;h2 style=(两个花括号)opacity:this.state.opacity(两个花括号)&gt;{this.props.content}&lt;/h2&gt;
@@ -433,9 +413,7 @@ componentWillUnmount(): 做一些收尾工作, 如: 清理定时器
           alert('请求失败 '+ error.message)
         })
 </code></pre>
-<p>字符串里面使用react的变量</p>
-<pre><code>${this.props.searchWord}
-</code></pre>
+<p>字符串里面使用react的变量${this.props.searchWord}</p>
 <pre><code>  const url = `https://api.github.com/search/repositories?q=${this.props.searchWord}&amp;sort=stars`
 </code></pre>
 <h1 id="脚手架">脚手架</h1>
@@ -453,6 +431,244 @@ npm start 运行
 <figure data-type="image" tabindex="4"><img src="https://merry-9001.github.io/post-images/1579419300291.jpg" alt="" loading="lazy"></figure>
 <p>订阅</p>
 <figure data-type="image" tabindex="5"><img src="https://merry-9001.github.io/post-images/1579419292125.jpg" alt="" loading="lazy"></figure>
+<h2 id="router">router</h2>
+<h3 id="组件">组件</h3>
+<pre><code>&lt;BrowserRouter&gt;
+&lt;HashRouter&gt;
+&lt;Route&gt;
+&lt;Redirect&gt;
+&lt;Link&gt;
+&lt;NavLink&gt;
+&lt;Switch&gt;
+</code></pre>
+<h3 id="准备">准备</h3>
+<pre><code>npm install --save react-router-dom
+</code></pre>
+<p>解构引用，引用需要的路由组件</p>
+<pre><code>import {BrowserRouter, HashRouter} from 'react-router-dom'
+</code></pre>
+<h3 id="使用-3">使用</h3>
+<pre><code>    &lt;BrowserRouter&gt;
+
+​      &lt;App/&gt;
+
+​    &lt;/BrowserRouter&gt;
+</code></pre>
+<p>app为内容，使用BrowserRouter包起来</p>
+<h3 id="路由链接">路由链接</h3>
+<pre><code>export default function MyNavLink(props) {
+  return &lt;NavLink {...props} activeClassName='activeClass'/&gt;
+}
+</code></pre>
+<p>包装</p>
+<pre><code> &lt;MyNavLink className=&quot;list-group-item&quot; to='/about'&gt;About&lt;/MyNavLink&gt;
+</code></pre>
+<p>使用mynavLink包装了navlink，这样以后就可以有些一定要写的属性就可以放进去了</p>
+<h3 id="路由链接跳转">路由链接跳转</h3>
+<pre><code>                &lt;Switch&gt;
+                  &lt;Route path='/about' component={About}/&gt;
+                  &lt;Route path='/home' component={Home}/&gt;
+                  &lt;Redirect to='/about'/&gt;
+                &lt;/Switch&gt;
+</code></pre>
+<p>使用switch表示是路由可以切换</p>
+<p>route表示 什么链接，跳到什么组件</p>
+<p>Redirect表示路由链接都不正确的时候切换成哪个组件</p>
+<h3 id="路由嵌套">路由嵌套</h3>
+<pre><code>          &lt;li&gt;
+            &lt;MyNavLink to='/home/news'&gt;News&lt;/MyNavLink&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;MyNavLink to=&quot;/home/message&quot;&gt;Message&lt;/MyNavLink&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;Switch&gt;
+          &lt;Route path='/home/news' component={News} /&gt;
+          &lt;Route path='/home/message' component={Message} /&gt;
+          &lt;Redirect to='/home/news'/&gt;
+        &lt;/Switch&gt;
+</code></pre>
+<p>这部分代码已经是home组件内了，只需要在/home后面再加上需要的路由就行了</p>
+<h3 id="路由传递动态id">路由传递动态id</h3>
+<ol>
+<li>
+<p>history 对象</p>
+</li>
+<li>
+<p>match 对象</p>
+</li>
+<li>
+<p>withRouter 函数</p>
+</li>
+</ol>
+<p><strong>切换路由的时候会传递这三个对象</strong></p>
+<pre><code>    const path = this.props.match.path
+</code></pre>
+<p>取到当前的路径</p>
+<pre><code>                &lt;li key={index}&gt;
+                  &lt;Link to={`${path}/${m.id}`}&gt;{m.title}&lt;/Link&gt;
+                  &amp;nbsp;&amp;nbsp;&amp;nbsp;
+                  &lt;button onClick={() =&gt; this.ShowDetail(m.id)}&gt;查看详情(push)&lt;/button&gt;&amp;nbsp;
+                  &lt;button onClick={() =&gt; this.ShowDetail2(m.id)}&gt;查看详情(replace)&lt;/button&gt;
+                &lt;/li&gt;
+</code></pre>
+<p>切换路径的时候传入Id</p>
+<p>router接收传递给组件</p>
+<pre><code>&lt;Route path={`${path}/:id`} component={MessageDetail}&gt;&lt;/Route&gt;
+</code></pre>
+<p>组件接收</p>
+<pre><code>  const id = props.match.params.id
+</code></pre>
+<h2 id="ui库">ui库</h2>
+<h3 id="下载">下载</h3>
+<pre><code>npm install antd-mobile --save
+</code></pre>
+<p>蚂蚁金服库</p>
+<h3 id="引入-2">引入</h3>
+<pre><code>import {Button, Toast} from 'antd-mobile'
+</code></pre>
+<p>解构按需引入</p>
+<p>引入整体css</p>
+<pre><code>import 'antd-mobile/dist/antd-mobile.css'
+</code></pre>
+<p>如果要部分引入css需要安装包插件和修改config设置</p>
+<h3 id="使用-4">使用</h3>
+<pre><code>&lt;Button type=&quot;primary&quot; onClick={this.handleClick}&gt;提交&lt;/Button&gt;
+</code></pre>
+<pre><code>  handleClick = () =&gt; {
+
+    Toast.info('提交成功', 2)
+  }
+</code></pre>
+<p>直接使用它的标签就好</p>
+<h2 id="redux">redux</h2>
+<h3 id="介绍">介绍</h3>
+<p>redux 是一个独立专门用于做状态管理的 JS 库(不是 react 插件库)</p>
+<p>它可以用在 react, angular, vue 等项目中, 但基本与 react 配合使用</p>
+<p>作用: 集中式管理 react 应用中多个组件共享的状态</p>
+<h3 id="使用-5">使用</h3>
+<figure data-type="image" tabindex="6"><img src="https://merry-9001.github.io/post-images/1579572733863.jpg" alt="" loading="lazy"></figure>
+<p>使用redux结构</p>
+<p>index.js</p>
+<pre><code>import {Provider} from 'react-redux'
+import App from './containers/app'
+import store from './redux/store'
+</code></pre>
+<pre><code>ReactDOM.render(
+  (
+    &lt;Provider store={store}&gt;
+      &lt;App/&gt;
+    &lt;/Provider&gt;
+  ),
+  document.getElementById('root')
+)
+</code></pre>
+<p>包裹app 状态进行托管</p>
+<hr>
+<p>app.jsx（感觉像是桥梁）</p>
+<pre><code>import React from 'react'
+// 引入连接函数
+import {connect} from 'react-redux'
+// 引入action函数
+import {increment, decrement, incrementAsync} from '../redux/actions'
+import Counter from '../components/counter'
+
+// 向外暴露连接App组件的包装组件
+export default connect(
+  state =&gt; ({count: state.counter}),
+  {increment, decrement, incrementAsync}
+)(Counter)
+</code></pre>
+<p>将redux定义的函数以及值传递给组件</p>
+<p>是从redux的actions.js中去取</p>
+<hr>
+<p>counter.jsx组件值和函数的使用</p>
+<pre><code>import PropTypes from 'prop-types'
+</code></pre>
+<pre><code>  static propTypes = {
+    count: PropTypes.number.isRequired,
+    increment: PropTypes.func.isRequired,
+    decrement: PropTypes.func.isRequired
+  }
+</code></pre>
+<p>使用</p>
+<pre><code>    this.props.increment(number)//函数调用
+</code></pre>
+<pre><code>&lt;button onClick={this.increment}&gt;+&lt;/button&gt;{' '}
+</code></pre>
+<hr>
+<p>redux内部</p>
+<p>action-types.js</p>
+<pre><code>export const INCREMENT = 'increment'
+export const DECREMENT = 'decrement'
+</code></pre>
+<p>定义常量进行使用</p>
+<hr>
+<p>actions.js</p>
+<pre><code>import {INCREMENT,DECREMENT} from './action-types'
+</code></pre>
+<pre><code>export const increment = number =&gt; ({type: INCREMENT, number})
+
+export const decrement = number =&gt; ({type: DECREMENT, number})
+</code></pre>
+<p>引用之前定义的常量</p>
+<p>创建函数 确定函数名，参数和返回值</p>
+<hr>
+<p>reducers.js</p>
+<pre><code>import {combineReducers} from 'redux'
+</code></pre>
+<p>引入，这样可以向外暴露多个函数</p>
+<pre><code>import {INCREMENT,DECREMENT} from './action-types'
+</code></pre>
+<p>引入常量</p>
+<pre><code>function counter(state = 0, action) {
+  console.log('counter', state, action)
+  switch (action.type) {
+    case INCREMENT:
+      return state + action.number
+    case DECREMENT:
+      return state - action.number
+    default:
+      return state
+  }
+}
+
+</code></pre>
+<p>使用combineReducers可以是多个参数</p>
+<pre><code>export default combineReducers({
+  counter
+})
+</code></pre>
+<hr>
+<p>store.js</p>
+<p>主要文件,index.js引入</p>
+<pre><code>import reducers from './reducers'
+</code></pre>
+<p>引入</p>
+<pre><code>import {composeWithDevTools} from 'redux-devtools-extension'
+</code></pre>
+<p>调试用</p>
+<p>创建方法</p>
+<pre><code>import React from 'react'
+import {createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk'
+
+// 根据counter函数创建store对象
+export default createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(thunk)) // 应用上异步中间件
+)
+</code></pre>
+<h3 id="异步方法">异步方法</h3>
+<pre><code>// 异步action creator(返回一个函数)
+export const incrementAsync = number =&gt; {
+  return dispatch =&gt; {
+    setTimeout(() =&gt; {
+      dispatch(increment(number))
+    }, 1000)
+  }
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
