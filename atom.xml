@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://merry-9001.github.io</id>
+    <id>http://localhost:4000</id>
     <title>看风听歌</title>
-    <updated>2020-02-24T08:55:06.577Z</updated>
+    <updated>2021-01-22T12:50:41.649Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://merry-9001.github.io"/>
-    <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
+    <link rel="alternate" href="http://localhost:4000"/>
+    <link rel="self" href="http://localhost:4000/atom.xml"/>
     <subtitle>学习是一辈子的事</subtitle>
-    <logo>https://merry-9001.github.io/images/avatar.png</logo>
-    <icon>https://merry-9001.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, 看风听歌</rights>
+    <logo>http://localhost:4000/images/avatar.png</logo>
+    <icon>http://localhost:4000/favicon.ico</icon>
+    <rights>All rights reserved 2021, 看风听歌</rights>
+    <entry>
+        <title type="html"><![CDATA[大]]></title>
+        <id>http://localhost:4000/post/da</id>
+        <link href="http://localhost:4000/post/da">
+        </link>
+        <updated>2021-01-22T12:50:09.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>   /* 想要div文字变倾斜 加粗 字号设置为16像素 并且 是微软雅黑 */
+</code></pre>
+<p>​       div {</p>
+<p>​           /* font-style: italic;</p>
+<p>​           font-weight: 700;</p>
+<p>​           font-size: 16px;</p>
+<p>​           font-family: 'Microsoft yahei'; */</p>
+<p>​           /* 复合属性: 简写的方式  节约代码 */</p>
+<p>​           /* font: font-style  font-weight  font-size/line-height  font-family; */</p>
+<p>​           /* font: italic 700 16px 'Microsoft yahei'; */</p>
+<p>​           font: 20px '黑体';</p>
+<p>​       }</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[jquery]]></title>
-        <id>https://merry-9001.github.io/post/jquery</id>
-        <link href="https://merry-9001.github.io/post/jquery">
+        <id>http://localhost:4000/post/jquery</id>
+        <link href="http://localhost:4000/post/jquery">
         </link>
         <updated>2020-01-21T06:54:33.000Z</updated>
         <content type="html"><![CDATA[<ul>
@@ -179,8 +199,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[react]]></title>
-        <id>https://merry-9001.github.io/post/react</id>
-        <link href="https://merry-9001.github.io/post/react">
+        <id>http://localhost:4000/post/react</id>
+        <link href="http://localhost:4000/post/react">
         </link>
         <updated>2020-01-19T07:29:00.000Z</updated>
         <content type="html"><![CDATA[<h1 id="基本概念">基本概念</h1>
@@ -518,7 +538,7 @@
 <pre><code>  event.preventDefault()
 </code></pre>
 <h2 id="生命周期">生命周期</h2>
-<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1579483975928.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1579483975928.jpg" alt="" loading="lazy"></figure>
 <pre><code>render(): 初始化渲染或更新渲染调用
 componentDidMount(): 开启监听, 发送 ajax 请求
 componentWillUnmount(): 做一些收尾工作, 如: 清理定时器
@@ -561,7 +581,7 @@ componentWillUnmount(): 做一些收尾工作, 如: 清理定时器
 <pre><code>&lt;h2 style=(两个花括号)opacity:this.state.opacity(两个花括号)&gt;{this.props.content}&lt;/h2&gt;
 </code></pre>
 <h2 id="虚拟dom算法">虚拟dom算法</h2>
-<figure data-type="image" tabindex="2"><img src="https://merry-9001.github.io/post-images/1579483940062.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1579483940062.jpg" alt="" loading="lazy"></figure>
 <h2 id="axios">axios</h2>
 <p>使用方法跟在vue里面一样</p>
 <pre><code> axios.get(url)
@@ -593,11 +613,11 @@ npm start 运行
 <h2 id="订阅与发布">订阅与发布</h2>
 <p><strong>用与父子通信、兄弟组件之间的传值</strong></p>
 <p>下载、引用</p>
-<figure data-type="image" tabindex="3"><img src="https://merry-9001.github.io/post-images/1579419283659.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1579419283659.jpg" alt="" loading="lazy"></figure>
 <p>发布</p>
-<figure data-type="image" tabindex="4"><img src="https://merry-9001.github.io/post-images/1579419300291.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1579419300291.jpg" alt="" loading="lazy"></figure>
 <p>订阅</p>
-<figure data-type="image" tabindex="5"><img src="https://merry-9001.github.io/post-images/1579419292125.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1579419292125.jpg" alt="" loading="lazy"></figure>
 <h2 id="router">router</h2>
 <h3 id="组件">组件</h3>
 <pre><code>&lt;BrowserRouter&gt;
@@ -714,7 +734,7 @@ npm start 运行
 <p>它可以用在 react, angular, vue 等项目中, 但基本与 react 配合使用</p>
 <p>作用: 集中式管理 react 应用中多个组件共享的状态</p>
 <h3 id="使用-5">使用</h3>
-<figure data-type="image" tabindex="6"><img src="https://merry-9001.github.io/post-images/1579572733863.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="http://localhost:4000/post-images/1579572733863.jpg" alt="" loading="lazy"></figure>
 <p>使用redux结构</p>
 <p>index.js</p>
 <pre><code>import {Provider} from 'react-redux'
@@ -840,8 +860,8 @@ export const incrementAsync = number =&gt; {
     </entry>
     <entry>
         <title type="html"><![CDATA[hmtl-css]]></title>
-        <id>https://merry-9001.github.io/post/hmtl-css</id>
-        <link href="https://merry-9001.github.io/post/hmtl-css">
+        <id>http://localhost:4000/post/hmtl-css</id>
+        <link href="http://localhost:4000/post/hmtl-css">
         </link>
         <updated>2020-01-06T06:36:58.000Z</updated>
         <content type="html"><![CDATA[<h1 id="html">html</h1>
@@ -1372,8 +1392,8 @@ div{
     </entry>
     <entry>
         <title type="html"><![CDATA[tp5]]></title>
-        <id>https://merry-9001.github.io/post/tp5</id>
-        <link href="https://merry-9001.github.io/post/tp5">
+        <id>http://localhost:4000/post/tp5</id>
+        <link href="http://localhost:4000/post/tp5">
         </link>
         <updated>2019-12-24T11:22:08.000Z</updated>
         <content type="html"><![CDATA[<h1 id="tp5">tp5</h1>
@@ -1467,8 +1487,8 @@ div{
     </entry>
     <entry>
         <title type="html"><![CDATA[正则表达式]]></title>
-        <id>https://merry-9001.github.io/post/zheng-ze-biao-da-shi</id>
-        <link href="https://merry-9001.github.io/post/zheng-ze-biao-da-shi">
+        <id>http://localhost:4000/post/zheng-ze-biao-da-shi</id>
+        <link href="http://localhost:4000/post/zheng-ze-biao-da-shi">
         </link>
         <updated>2019-12-23T08:29:10.000Z</updated>
         <content type="html"><![CDATA[<h1 id="正则表达式">正则表达式</h1>
@@ -1532,8 +1552,8 @@ var email = &quot;739.211562@qq.com&quot;;
     </entry>
     <entry>
         <title type="html"><![CDATA[markdown标记语言]]></title>
-        <id>https://merry-9001.github.io/post/markdown-biao-ji-yu-yan</id>
-        <link href="https://merry-9001.github.io/post/markdown-biao-ji-yu-yan">
+        <id>http://localhost:4000/post/markdown-biao-ji-yu-yan</id>
+        <link href="http://localhost:4000/post/markdown-biao-ji-yu-yan">
         </link>
         <updated>2019-11-08T13:28:47.000Z</updated>
         <content type="html"><![CDATA[<ul>
@@ -1639,8 +1659,8 @@ var email = &quot;739.211562@qq.com&quot;;
     </entry>
     <entry>
         <title type="html"><![CDATA[node.js笔记]]></title>
-        <id>https://merry-9001.github.io/post/nodejs</id>
-        <link href="https://merry-9001.github.io/post/nodejs">
+        <id>http://localhost:4000/post/nodejs</id>
+        <link href="http://localhost:4000/post/nodejs">
         </link>
         <updated>2019-11-08T12:33:29.000Z</updated>
         <content type="html"><![CDATA[<h1 id="nodejs">node.js</h1>
@@ -1948,7 +1968,7 @@ console.log('app is running at port 3000.')
 <li>
 <p>配置 html表示使用的是html结尾的模板才能使用</p>
 <p>app.engine('html', require('express-art-template'))</p>
-<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1576909355217.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1576909355217.png" alt="" loading="lazy"></figure>
 </li>
 </ol>
 <h2 id="获取表单内容">获取表单内容</h2>
@@ -1990,8 +2010,8 @@ JavaScript 单线程、事件循环</h2>
 <li>ajax</li>
 </ul>
 <h2 id="promise">Promise</h2>
-<p><img src="https://merry-9001.github.io/post-images/1576911008130.png" alt="" loading="lazy"><br>
-<img src="https://merry-9001.github.io/post-images/1576911012957.png" alt="" loading="lazy"></p>
+<p><img src="http://localhost:4000/post-images/1576911008130.png" alt="" loading="lazy"><br>
+<img src="http://localhost:4000/post-images/1576911012957.png" alt="" loading="lazy"></p>
 <h3 id="特点">特点</h3>
 <h4 id="对象的状态不受外界影响-3种状态">对象的状态不受外界影响 （3种状态）</h4>
 <ul>
@@ -2149,7 +2169,7 @@ connection.end();
 </li>
 <li>
 <p>配置环境变量<br>
-<img src="https://merry-9001.github.io/post-images/1576913007511.png" alt="" loading="lazy"></p>
+<img src="http://localhost:4000/post-images/1576913007511.png" alt="" loading="lazy"></p>
 <p>C:\Users\six\Downloads\mongodb\mongodb-win32-x86_64-2008plus-ssl-4.0.3\bin</p>
 </li>
 <li>
@@ -2315,9 +2335,9 @@ req.session.user = null
 <h1 id="模板继承">模板继承</h1>
 <h2 id="art-template例子">art-template例子</h2>
 <p>layout.html<br>
-<img src="https://merry-9001.github.io/post-images/1576921668859.png" alt="" loading="lazy"></p>
+<img src="http://localhost:4000/post-images/1576921668859.png" alt="" loading="lazy"></p>
 <p>index.html<br>
-<img src="https://merry-9001.github.io/post-images/1576921676633.png" alt="" loading="lazy"></p>
+<img src="http://localhost:4000/post-images/1576921676633.png" alt="" loading="lazy"></p>
 <p>这样使用以后，加载index.html的时候就可以自动先去找layout，非常好用，<strong>方便复用</strong></p>
 <h1 id="中间件">中间件</h1>
 <h3 id="中间件处理请求的本质就是个函数">中间件：处理请求的，本质就是个函数</h3>
@@ -2369,8 +2389,8 @@ app.use(function (err, req, res, next) {
     </entry>
     <entry>
         <title type="html"><![CDATA[毕业设计文献]]></title>
-        <id>https://merry-9001.github.io/post/bi-ye-she-ji-wen-xian</id>
-        <link href="https://merry-9001.github.io/post/bi-ye-she-ji-wen-xian">
+        <id>http://localhost:4000/post/bi-ye-she-ji-wen-xian</id>
+        <link href="http://localhost:4000/post/bi-ye-she-ji-wen-xian">
         </link>
         <updated>2019-11-08T12:32:04.000Z</updated>
         <content type="html"><![CDATA[<p>基于PHP技术的校园综合服务网站的建设<br>
@@ -2406,8 +2426,8 @@ https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDTEMP&amp
     </entry>
     <entry>
         <title type="html"><![CDATA[npm]]></title>
-        <id>https://merry-9001.github.io/post/npm</id>
-        <link href="https://merry-9001.github.io/post/npm">
+        <id>http://localhost:4000/post/npm</id>
+        <link href="http://localhost:4000/post/npm">
         </link>
         <updated>2019-10-25T02:08:52.000Z</updated>
         <content type="html"><![CDATA[<p>下载node获得npm</p>
@@ -2421,43 +2441,6 @@ nrm ls</p>
 nrm use npm</p>
 <p>使用淘宝镜像的命令：</p>
 <p>npm install -g cnpm --registry=https://registry.npm.taobao.org</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[git操作]]></title>
-        <id>https://merry-9001.github.io/post/git-cao-zuo</id>
-        <link href="https://merry-9001.github.io/post/git-cao-zuo">
-        </link>
-        <updated>2019-10-25T02:02:53.000Z</updated>
-        <content type="html"><![CDATA[<p>git 需要配置邮箱 账号</p>
-<figure data-type="image" tabindex="1"><img src="https://merry-9001.github.io/post-images/1571969004460.jpg" alt="" loading="lazy"></figure>
-<p>然后设置公钥（在github里面）</p>
-<p>查看仓库<br>
-git remote</p>
-<p>创建仓库<br>
-git remote add origin 地址</p>
-<p>创建分支<br>
-git checkout -b &quot;dev&quot;</p>
-<p>查看状态<br>
-git status</p>
-<p>添加<br>
-git add .</p>
-<p>提交（注释）<br>
-git commit -m &quot;内容&quot;</p>
-<p>切换分支<br>
-git checkout master</p>
-<p>合并分支<br>
-git merge dev --no-ff</p>
-<p>退出注释<br>
-: q</p>
-<p>查看日志<br>
-git log</p>
-<p>上传至github<br>
-git push origin master</p>
-<p>查看分支<br>
-git branch</p>
-<p>删除<br>
-git branch -d dev</p>
 ]]></content>
     </entry>
 </feed>
