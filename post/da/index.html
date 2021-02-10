@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" >
 
-<title>大 | 看风听歌</title>
+<title>2021 | 看风听歌</title>
 <meta name="description" content="学习是一辈子的事">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1611320061943">
+<link rel="shortcut icon" href="https://merry-9001.github.io/favicon.ico?v=1612938820425">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://merry-9001.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://merry-9001.github.io">
-        <img src="https://merry-9001.github.io/images/avatar.png?v=1611320061943" class="site-logo">
+        <img src="https://merry-9001.github.io/images/avatar.png?v=1612938820425" class="site-logo">
         <h1 class="site-title">看风听歌</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -90,12 +90,13 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">大</h2>
+            <h2 class="post-title">2021</h2>
             <div class="post-date">2021-01-22</div>
             
             <div class="post-content">
-              <p>设置字体</p>
-<pre><code>       /* 想要div文字变倾斜 加粗 字号设置为16像素 并且 是微软雅黑 */
+              <h1 id="新的开始">新的开始</h1>
+<p>字体改变</p>
+<pre><code>/* 想要div文字变倾斜 加粗 字号设置为16像素 并且 是微软雅黑 */
 
 ​       div {
 
@@ -116,7 +117,123 @@
 ​           font: 20px '黑体';
 
 ​       }
+
+
 </code></pre>
+<p>缩进</p>
+<pre><code>            /* 文本的第一行首行缩进 多少距离  */
+
+​           /* text-indent: 20px; */
+</code></pre>
+<p>快捷键</p>
+<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210123152705457.png" alt="image-20210123152705457" loading="lazy"></figure>
+<pre><code>    &lt;!-- .demo$*5 --&gt;
+    &lt;!-- 我们想生成的标签里面默认显示几个文字  div{文字}--&gt;
+    &lt;!-- div{$}*5 --&gt;
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210123153744849.png" alt="image-20210123153744849" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210123155349946.png" alt="image-20210123155349946" loading="lazy"></figure>
+<h2 id="背景图片位置">背景图片位置</h2>
+<figure data-type="image" tabindex="4"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210123202417512.png" alt="image-20210123202417512" loading="lazy"></figure>
+<pre><code> background-repeat: no-repeat;
+            /* background-position:  方位名词; */
+            /* background-position: center top; */
+            /* background-position: right center; */
+            /* 如果是方位名词  right center 和 center right 效果是等价的 跟顺序没有关系 */
+            /* background-position: center right; */
+            /* 此时 水平一定是靠右侧对齐  第二个参数省略 y 轴是 垂直居中显示的 */
+            /* background-position: right; */
+            /* 此时 第一个参数一定是 top y轴 顶部对齐   第二个参数省略x  轴是 水平居中显示的 */
+            background-position: top;
+</code></pre>
+<h2 id="背景滚动">背景滚动</h2>
+<pre><code>            /* 把背景图片固定住 */
+
+​            background-attachment: fixed;
+</code></pre>
+<h2 id="背景简写">背景简写</h2>
+<figure data-type="image" tabindex="5"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210123210613700.png" alt="image-20210123210613700" loading="lazy"></figure>
+<p>字体</p>
+<pre><code>font: 12px/1.5 'Microsoft YaHei';//大小-行高-字体类型（行高=12px*1.5）
+</code></pre>
+<h2 id="两个盒子嵌套的塌陷问题">两个盒子嵌套的塌陷问题</h2>
+<pre><code>        .father {
+            width: 400px;
+            height: 400px;
+            background-color: purple;
+            margin-top: 50px;
+            /* border: 1px solid red; */
+            /* border: 1px solid transparent; */
+            /* padding: 1px; */
+            overflow: hidden;
+        }
+        .son {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin-top: 100px;
+        }
+</code></pre>
+<p>加外边框或者内边框或者overflow: hidden;</p>
+<p>塌陷选择大的数字</p>
+<h2 id="行内块元素">行内块元素</h2>
+<p>/* display: inline-block; */</p>
+<p>div之间会存在间隙</p>
+<p>如果父盒子设置text-align:center 元素会居中</p>
+<h2 id="浮动">浮动</h2>
+<p>任何元素都可以浮动。不管原先是什么模式的元素，添加浮动之后具有行内块元素相似的特性</p>
+<h3 id="清除浮动方法">清除浮动方法</h3>
+<figure data-type="image" tabindex="6"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210124162100287.png" alt="image-20210124162100287" loading="lazy"></figure>
+<h2 id="绝对定位">绝对定位</h2>
+<figure data-type="image" tabindex="7"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210124164010400.png" alt="image-20210124164010400" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210124170413568.png" alt="image-20210124170413568" loading="lazy"></figure>
+<p>只有定位的盒子才有z-index属性可以设置</p>
+<p>相对定位会压住标准流和其他盒子</p>
+<p>绝对定位盒子不能居中（相对定位可以）</p>
+<figure data-type="image" tabindex="9"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210124170956913.png" alt="image-20210124170956913" loading="lazy"></figure>
+<p>​            1.浮动的元素不会压住下面标准流的文字</p>
+<p>​            float: left;</p>
+<p>​            \2. 绝对定位（固定定位） 会压住下面标准流所有的内容。</p>
+<h2 id="display">display</h2>
+<figure data-type="image" tabindex="10"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210124214336955.png" alt="image-20210124214336955" loading="lazy"></figure>
+<p>隐藏对象 不占有位置</p>
+<figure data-type="image" tabindex="11"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210124214604210.png" alt="image-20210124214604210" loading="lazy"></figure>
+<p>继续占有位置</p>
+<h2 id="vertical-align属性">vertical-align属性</h2>
+<figure data-type="image" tabindex="12"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210125211711025.png" alt="image-20210125211711025" loading="lazy"></figure>
+<p>属性选择器</p>
+<figure data-type="image" tabindex="13"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210126120738648.png" alt="image-20210126120738648" loading="lazy"></figure>
+<h2 id="图片模糊">图片模糊</h2>
+<pre><code>      /* blur是一个函数 小括号里面数值越大，图片越模糊 注意数值要加px单位 */
+
+​     filter: blur(15px);
+</code></pre>
+<h2 id="过渡动画">过渡动画</h2>
+<figure data-type="image" tabindex="14"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210126153057567.png" alt="image-20210126153057567" loading="lazy"></figure>
+<figure data-type="image" tabindex="15"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210126153230713.png" alt="image-20210126153230713" loading="lazy"></figure>
+<pre><code>transition: all 0.5s;
+</code></pre>
+<h2 id="transformtranslatexy">transform:translate(x,y)</h2>
+<figure data-type="image" tabindex="16"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210126154607136.png" alt="image-20210126154607136" loading="lazy"></figure>
+<p>行内标签没效果</p>
+<p>旋转</p>
+<figure data-type="image" tabindex="17"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210126155740935.png" alt="image-20210126155740935" loading="lazy"></figure>
+<h2 id="透视">透视</h2>
+<pre><code>perspective: 500px;
+</code></pre>
+<p>3D</p>
+<figure data-type="image" tabindex="18"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210127152542190.png" alt="image-20210127152542190" loading="lazy"></figure>
+<p>perspective是d</p>
+<p>translateZ是z   transform: translateZ(0);</p>
+<h2 id="移动布局">移动布局</h2>
+<figure data-type="image" tabindex="19"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210128143849064.png" alt="image-20210128143849064" loading="lazy"></figure>
+<h2 id="flex布局">flex布局</h2>
+<figure data-type="image" tabindex="20"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210128154359877.png" alt="image-20210128154359877" loading="lazy"></figure>
+<figure data-type="image" tabindex="21"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210128154654751.png" alt="image-20210128154654751" loading="lazy"></figure>
+<figure data-type="image" tabindex="22"><img src="C:%5CUsers%5Csix%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210128194219497.png" alt="image-20210128194219497" loading="lazy"></figure>
+<h2 id="em与rem">em与rem</h2>
+<p>/* 1. em相对于父元素 的字体大小来说的 */</p>
+<p>/* 2. rem 相对于 html元素 字体大小来说的 */</p>
 
             </div>
             
