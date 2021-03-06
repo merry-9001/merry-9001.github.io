@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://merry-9001.github.io</id>
     <title>看风听歌</title>
-    <updated>2021-02-10T06:33:48.293Z</updated>
+    <updated>2021-03-06T06:35:43.349Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://merry-9001.github.io"/>
     <link rel="self" href="https://merry-9001.github.io/atom.xml"/>
@@ -10,6 +10,204 @@
     <logo>https://merry-9001.github.io/images/avatar.png</logo>
     <icon>https://merry-9001.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 看风听歌</rights>
+    <entry>
+        <title type="html"><![CDATA[概念]]></title>
+        <id>https://merry-9001.github.io/post/gai-nian</id>
+        <link href="https://merry-9001.github.io/post/gai-nian">
+        </link>
+        <updated>2021-03-06T06:35:17.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="宏任务和微任务">宏任务和微任务</h2>
+<p>但是事件循环中并非只维护着一个队列，事实上是有两个队列：<br>
+（1）宏任务队列（macrotask queue）：ajax、setTimeout、setInterval、DOM监听、UI Rendering等<br>
+（2） 微任务队列（microtask queue）：Promise的then回调、 Mutation Observer API、queueMicrotask()等<br>
+（3）那么事件循环对于两个队列的优先级是怎么样的呢？<br>
+1）main script中的代码优先执行（编写的顶层script代码）；<br>
+2）在执行任何一个宏任务之前（不是队列，是一个宏任务），都会先查看微任务队列中是否有任务需要执行<br>
+3）也就是宏任务执行之前，必须保证微任务队列是空的；<br>
+4） 如果不为空，那么久优先执行微任务队列中的任务（回调）</p>
+<h4 id="同一次事件循环中-微任务永远在宏任务之前执行">同一次事件循环中  微任务永远在宏任务之前执行</h4>
+<ol>
+<li>
+<p>宏任务：当前调用栈中执行的任务称为宏任务。（主代码快，定时器等等）。</p>
+</li>
+<li>
+<p>微任务： 当前（此次事件循环中）宏任务执行完，在下一个宏任务开始之前需要执行的任务为微任务。（可以理解为回调事件，promise.then，proness.nextTick等等）。</p>
+</li>
+<li>
+<p>宏任务中的事件放在callback queue中，由事件触发线程维护；</p>
+<p>微任务的事件放在微任务队列中，由js引擎线程维护。</p>
+</li>
+</ol>
+<pre><code>console.log('start')
+setTimeout(() =&gt; {
+  console.log('setTimeout')
+}, 0)
+new Promise((resolve) =&gt; {
+  console.log('promise')
+  resolve()
+})
+  .then(() =&gt; {
+    console.log('then1')
+  })
+  .then(() =&gt; {
+    console.log('then2')
+  })
+console.log('end')
+
+start 
+promise
+end
+then1
+then2
+setTimeout
+
+</code></pre>
+<h2 id="为什么要三次握手">为什么要三次握手</h2>
+<p>三次握手为了传输正常流畅</p>
+<p>为了通信安全</p>
+<p>两边要确认身份至少需要三次</p>
+<figure data-type="image" tabindex="1"><img src="https://img2018.cnblogs.com/blog/1308525/201901/1308525-20190113115419142-478609043.png" alt="img" loading="lazy"></figure>
+<h2 id="ajax的同步与异步">ajax的同步与异步</h2>
+<p>ajax同步 ： 意味着此时请求Server后，JS代码不再继续执行，等待Server返回后才继续往下执行。</p>
+<p>ajax异步 ： 意味着此时请求Server后，JS代码继续执行，不管Server什么时候返回。</p>
+<h1 id="beforedestroy">beforeDestroy</h1>
+<pre><code>            beforeDestroy () {
+                // 实例销毁前调用：（$destroy方法被调用的时候就会执行）
+                // 运用场景：善后:清除计时器、清除非指令绑定的事件等等
+                console.log('beforeDestroy 调用')
+                console.log('this.msg',this.msg)
+            },
+            destroyed () {
+                // 实例销毁后执行
+                // 实例销毁： 组件的数据绑定、监听...都去掉了,只剩下dom空壳。data，methods 还在，但是已经无法对其进行操作了
+                // 运用场景：这里也可以善后
+</code></pre>
+<p><strong>Cookie具有不可跨域名性</strong></p>
+<p>Cookie实际上是一小段的文本信息</p>
+<p><strong>Cookie机制是通过检查客户身上的“通行证”来确定客户身份的话，那么Session机制就是通过检查服务器上的“客户明细表”来确认客户身份。Session相当于程序在服务器上建立的一份客户档案，客户来访的时候只需要查询客户档案表就可以了。</strong></p>
+<p><strong>1、cookie数据存放在客户的浏览器上，session数据放在服务器上.</strong></p>
+<p>​    简单的说，当你登录一个网站的时候，如果web服务器端使用的是session,那么所有的数据都保存在服务器上面，</p>
+<p>客户端每次请求服务器的时候会发送 当前会话的session_id，服务器根据当前session_id判断相应的用户数据标志，以确定用户是否登录，或具有某种权限。</p>
+<p>由于数据是存储在服务器 上面，所以你不能伪造，但是如果你能够获取某个登录用户的session_id，用特殊的浏览器伪造该用户的请求也是能够成功的。</p>
+<p>session_id是服务器和客户端链接时候随机分配的，一般来说是不会有重复，但如果有大量的并发请求，也不是没有重复的可能性。</p>
+<p>Session是由应用服务器维持的一个服务器端的存储空间，用户在连接服务器时，会由服务器生成一个唯一的SessionID,用该SessionID 为标识符来存取服务器端的Session存储空间。而SessionID这一数据则是保存到客户端，用Cookie保存的，用户提交页面时，会将这一 SessionID提交到服务器端，来存取Session数据。这一过程，是不用开发人员干预的。所以一旦客户端禁用Cookie，那么Session也会失效。</p>
+<p><strong>两者最大的区别在于生存周期，一个是IE启动到IE关闭.(浏览器页面一关 ,session就消失了)，一个是预先设置的生存周期，或永久的保存于本地的文件。(cookie)</strong></p>
+<p>如果用户禁用cookie，则要使用URL重写，可以通过response.encodeURL(url) 进行实现；API对encodeURL的结束为，当浏览器支持Cookie时，url不做任何处理；当浏览器不支持Cookie的时候，将会重写URL将SessionID拼接到访问地址后。</p>
+<p>实现mvvm主要包含两个方面，数据变化更新视图，视图变化更新数据：</p>
+<h1 id="分页">分页</h1>
+<figure data-type="image" tabindex="2"><img src="file:///D:%5Cqq%5Cqq%E4%B8%AA%E4%BA%BA%E8%AE%B0%E5%BD%95%5C739211562%5CImage%5CC2C%5C598C2351375CAD397FD0D6F98197D4AC.jpg" alt="img" loading="lazy"></figure>
+<p>1：总页数（计算的得出）<br>
+2：总记录数（查询得出）<br>
+3：显示行数（用户定义）<br>
+4：当前页数（变量）<br>
+5：开始位置（计算得出）<br>
+6：结束位置（计算得出）</p>
+<pre><code>$(function () {
+    //开始初始化为第一页数据
+    goPage(1, 3); 
+    var tempOption = &quot;&quot;;
+    for (var i = 1; i &lt;= totalPage; i++) {
+        tempOption += '&lt;option value=' + i + '&gt;' + i + '&lt;/option&gt;' //给下拉框传入分页数
+    }
+    $(&quot;#jumpWhere&quot;).html(tempOption);
+})
+
+
+var pageSize = 0; //每页显示行数
+var currentPage_ = 1; //当前页全局变量，用于跳转时判断是否在相同页，在就不跳，否则跳转。
+var totalPage; //总页数
+
+//封装分页函数
+function goPage(pno, psize) {
+    var itable = document.getElementById(&quot;adminTbody&quot;);
+    var num = itable.rows.length; //表格所有行数(所有记录数，这是一个数组)
+
+    pageSize = psize; //每页显示行数
+    //总共分几页,针对相除不为整数的情况作+1操作
+    if (num / pageSize &gt; parseInt(num / pageSize)) {
+        totalPage = parseInt(num / pageSize) + 1;
+    } else {
+        totalPage = parseInt(num / pageSize);
+    }
+    var currentPage = pno; //当前页数
+    currentPage_ = currentPage;
+    var startRow = (currentPage - 1) * pageSize + 1;//计算开始位置
+    var endRow = currentPage * pageSize;//判断结束位置是否为最后一条记录
+    endRow = (endRow &gt; num) ? num : endRow;
+   
+    // 先将所有数据隐藏
+    $(&quot;#adminTbody tr&quot;).hide();
+    // 将符合条件的显示
+    // 数组是从0开始计算的，故而显示下一页的开始要用开始也-1（比如第二页从4开始的，则0 1 2 3，for循环就从3开始）
+    for (var i = startRow - 1; i &lt; endRow; i++) {
+        $(&quot;#adminTbody tr&quot;).eq(i).show();
+    }
+    // 设置提示信息
+    var tempStr = &quot;共&quot; + num + &quot;条记录 分&quot; + totalPage + &quot;页 当前第&quot; + currentPage + &quot;页&quot;;
+    document.getElementById(&quot;barcon1&quot;).innerHTML = tempStr;
+
+    // 先根据当前页的值判断是不是处于第一页
+    if (currentPage &gt; 1) {
+        // 不是就可以点击首页按钮和下一页同时移除灰色样式
+        $(&quot;#firstPage&quot;).on(&quot;click&quot;, function () {
+            goPage(1, psize);
+        }).removeClass(&quot;ban&quot;);
+        // 点击上一页就让当前页-1在调用本身
+        $(&quot;#prePage&quot;).on(&quot;click&quot;, function () {
+            goPage(currentPage - 1, psize);
+        }).removeClass(&quot;ban&quot;);
+    } else {
+        // 当处于首页的时候让首页按钮和第一页按钮无法点击，同时变成灰色
+        $(&quot;#firstPage&quot;).off(&quot;click&quot;).addClass(&quot;ban&quot;);
+        $(&quot;#prePage&quot;).off(&quot;click&quot;).addClass(&quot;ban&quot;);
+    }
+
+    if (currentPage &lt; totalPage) {
+        // 除了最后一页那么都是可以点击下一页和末尾页
+        $(&quot;#nextPage&quot;).on(&quot;click&quot;, function () {
+            // 重新调用本身，让当前页+1（我们初始化了当前页为1，点击下一页就让它+1）
+            goPage(currentPage + 1, psize);
+        }).removeClass(&quot;ban&quot;)
+        $(&quot;#lastPage&quot;).on(&quot;click&quot;, function () {
+            // 直接跳到最后一页
+            goPage(totalPage, psize);
+        }).removeClass(&quot;ban&quot;)
+    } else {
+        // 那么这部分就是处于最后一页了
+        $(&quot;#nextPage&quot;).off(&quot;click&quot;).addClass(&quot;ban&quot;);
+        $(&quot;#lastPage&quot;).off(&quot;click&quot;).addClass(&quot;ban&quot;);
+    }
+    // 把当前页显示在下拉框上
+    $(&quot;#jumpWhere&quot;).val(currentPage);
+}
+
+
+// 快速跳转函数
+function jumpPage() {
+    // 得到用户选择的第几页数，记得要转换成数字
+    var num = parseInt($(&quot;#jumpWhere&quot;).val());
+    // 利用全局变量判断是不是处于相同的页面，是就不跳，不是就跳
+    if (num != currentPage_) {
+        goPage(num, pageSize);
+    }
+}
+</code></pre>
+<h1 id="闭包造成的内存泄露怎么解决">闭包造成的内存泄露怎么解决</h1>
+<p><strong>1什么是内存泄露？</strong></p>
+<ol>
+<li>
+<p>定义：一块被分配的内存既不能使用，也不能回收。从而影响性能，甚至导致程序崩溃。</p>
+</li>
+<li>
+<p>起因：JavaScript的垃圾自动回收机制会按一定的策略找出那些不再继续使用的变量，释放其占有的内存。然而由于一些原因导致在这种机制下内存管理器不能正确解读JavaScript变量的生命周期，从而没有释放其内存，而也没有再被使用。</p>
+</li>
+</ol>
+<p>循环引用是导致以上情况的主要原因之一。</p>
+<p>2 解决办法</p>
+<p>常用的解决方法就是在JavaScript代码段运行完之时将形成循环引用的JavaScript对象手动设置为空，切断引用。</p>
+<figure data-type="image" tabindex="3"><img src="https://img2018.cnblogs.com/blog/1621187/201907/1621187-20190729093055479-1848090725.png" alt="img" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2021]]></title>
         <id>https://merry-9001.github.io/post/da</id>
@@ -2550,25 +2748,6 @@ https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDLAST2015
 https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDTEMP&amp;filename=WLAQ201910038&amp;uid=WEEvREcwSlJHSldRa1Fhb09jT0lPd1RLUG54SzhxYUFTWlpDZ3Yrcm00cz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MTYyNTJGeURoVkwvSU1pSEtmN0c0SDlqTnI0OUdiSVI4ZVgxTHV4WVM3RGgxVDNxVHJXTTFGckNVUkxPZVorUm8=</p>
 <p>Using collaborative filtering to support college students’ hu2014</p>
 <p>use of online forum for English learning wang2012</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[npm]]></title>
-        <id>https://merry-9001.github.io/post/npm</id>
-        <link href="https://merry-9001.github.io/post/npm">
-        </link>
-        <updated>2019-10-25T02:08:52.000Z</updated>
-        <content type="html"><![CDATA[<p>下载node获得npm</p>
-<p>可以安装nrm<br>
-npm i nrm -g</p>
-<p>样可以下包使用cnpm<br>
-npm i cnpm -g这</p>
-<p>可以查看<br>
-nrm ls</p>
-<p>可以使用cnpm管理<br>
-nrm use npm</p>
-<p>使用淘宝镜像的命令：</p>
-<p>npm install -g cnpm --registry=https://registry.npm.taobao.org</p>
 ]]></content>
     </entry>
 </feed>
