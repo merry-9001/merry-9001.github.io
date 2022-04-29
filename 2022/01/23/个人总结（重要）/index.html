@@ -12,7 +12,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="个人总结（重要）">
 <meta property="og:url" content="http://example.com/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="后知后觉的个人主页">
 <meta property="og:description" content="es5 和 es6 的继承有什么区别  class 类内部定义的所有方法都是不可枚举的。这点和 ES5 行为不一致。  类和模块的内部默认使用严格模式，所以不需要使用 use strict 指定运行模式。  类必须使用 new 来调用，否则会报错。  类内部不存在变量提升，这一点与 ES5 完全不同。  事件循环机制 （Event Loop）事件循环机制从整体上告诉了我们 JavaScript 代">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img2018.cnblogs.com/blog/940884/201907/940884-20190717162054267-1200211276.png#crop=0&crop=0&crop=1&crop=1&id=GipjJ&originHeight=148&originWidth=444&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title=">
@@ -68,14 +68,16 @@
 <meta property="og:image" content="https://segmentfault.com/img/bVbCvRV#crop=0&crop=0&crop=1&crop=1&id=kTLO8&originHeight=437&originWidth=542&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title=">
 <meta property="og:image" content="https://segmentfault.com/img/bVbCvZS#crop=0&crop=0&crop=1&crop=1&id=HTc7j&originHeight=374&originWidth=525&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title=">
 <meta property="article:published_time" content="2022-01-23T08:11:20.000Z">
-<meta property="article:modified_time" content="2022-02-20T05:23:10.317Z">
+<meta property="article:modified_time" content="2022-04-28T02:37:35.683Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="前端知识">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img2018.cnblogs.com/blog/940884/201907/940884-20190717162054267-1200211276.png#crop=0&crop=0&crop=1&crop=1&id=GipjJ&originHeight=148&originWidth=444&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title=">
 
 <link rel="shortcut icon" href="/img/favicon.ico">
 <link href="/css/bootstrap.css" rel="stylesheet">
-<link href="/css/reset.css" rel="stylesheet">
+<link href="/css/person.css"  rel="stylesheet">
+<link href="//at.alicdn.com/t/font_2822169_7n9pu9ptxz8.css" rel="stylesheet">
 
     <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
 
@@ -90,7 +92,10 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>个人总结（重要） | Hexo</title>
+<title>
+    个人总结（重要） | 
+    后知后觉的个人主页
+</title>
 
 <script src="/plugins/jquery.min.js"></script>
 <script src="/plugins/clipboard.min.js"></script>
@@ -140,8 +145,6 @@
                         
                             <li><a href="/">主页</a></li>
                         
-                            <li><a href="/archives/">所有文章</a></li>
-                        
                             <li><a href="/tags/">标签云</a></li>
                         
                             <li><a href="/about/">关于我</a></li>
@@ -173,8 +176,6 @@
                 <ul>
                 
                     <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
                 
                     <li><a href="/tags/">标签云</a></li>
                 
@@ -217,6 +218,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" rel="tag">前端知识</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -264,7 +269,7 @@
 
 <p>（2）微任务队列（microtask queue）：Promise 的 then 回调、 Mutation Observer API</p>
 <p>MutationObserverAPI 可以看作一个监听 DOM 所有变化（包含节点、属性、文本内容的变动）的接口。</p>
-<p><strong>主线程任务直接执行</strong><br><strong>​</strong></p>
+<p><strong>主线程任务直接执行</strong></p>
 <p><strong>同一次事件循环中   微任务永远在宏任务之前执行</strong></p>
 <p>宏任务中的事件放在回调队列（callback queue）中，由事件触发线程维护；</p>
 <p>微任务的事件放在微任务队列中，由 js 引擎线程维护。</p>
@@ -400,7 +405,7 @@
 <p>还支持 wheel 事件 还有规范了 textinput 系列事件 keyup keypress keydown 等事件中的参数</p>
 <h1 id="事件代理（Event-Delegation），又称之为事件委托"><a href="#事件代理（Event-Delegation），又称之为事件委托" class="headerlink" title="事件代理（Event Delegation），又称之为事件委托"></a>事件代理（Event Delegation），又称之为事件委托</h1><p>事件的冒泡（Bubble）</p>
 <p>所谓的冒泡指的就是事件的向上传导，当后代元素上的事件被触发时，其祖先元素的相同事件也会被触发</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">            s1.onclick = function(event) &#123;</span><br><span class="line">​                //可以将事件对象的cancelBubble设置为true，即可取消冒泡</span><br><span class="line">​                // event.cancelBubble = true;</span><br><span class="line">​            &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s1.onclick = function(event) &#123;</span><br><span class="line">    //可以将事件对象的cancelBubble设置为true，即可取消冒泡</span><br><span class="line">    // event.cancelBubble = true;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;mouseover&quot;, myFunction);</span><br></pre></td></tr></table></figure>
 
@@ -442,7 +447,7 @@
 <p><img src="https://img2018.cnblogs.com/blog/940884/201907/940884-20190717162125772-1830945749.png#crop=0&crop=0&crop=1&crop=1&id=OENBt&originHeight=176&originWidth=414&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="><br>　　　　重点：用.call()和.apply()将父类构造函数引入子类函数（在子类函数中做了父类函数的自执行（复制）<br>　　　　特点：1、只继承了父类构造函数的属性，没有继承父类原型的属性。<br>　　　　　　　 2、解决了原型链继承缺点 1、2、3。<br>　　　　　　　 3、可以继承多个构造函数属性（call 多个）。<br>　　　　　　　 4、在子实例中可向父实例传参。<br>　　　　缺点：1、只能继承父类构造函数的属性。<br>　　　　　　　 2、无法实现构造函数的复用。（每次用每次都要重新调用）<br>　　　　　　　 3、每个新实例都有父类构造函数的副本，臃肿。</p>
 <h2 id="三、组合继承（组合原型链继承和借用构造函数继承）（常用）"><a href="#三、组合继承（组合原型链继承和借用构造函数继承）（常用）" class="headerlink" title="三、组合继承（组合原型链继承和借用构造函数继承）（常用）"></a>三、组合继承（组合原型链继承和借用构造函数继承）（常用）</h2><p><img src="https://img2018.cnblogs.com/blog/940884/201907/940884-20190717162054267-1200211276.png#crop=0&crop=0&crop=1&crop=1&id=SmMNi&originHeight=148&originWidth=444&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title=">　　　　 <img src="https://img2018.cnblogs.com/blog/940884/201907/940884-20190717162137084-1234623120.png#crop=0&crop=0&crop=1&crop=1&id=Xl0tK&originHeight=157&originWidth=434&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title="><br>重点：结合了两种模式的优点，传参和复用<br>特点：1、可以继承父类原型上的属性，可以传参，可复用。<br>　　　 2、每个新实例引入的构造函数属性是私有的。<br>缺点：调用了两次父类构造函数（耗内存），子类的构造函数会代替原型上的那个父类构造函数。</p>
 <h2 id="类操作继承"><a href="#类操作继承" class="headerlink" title="类操作继承"></a>类操作继承</h2><p>在之前定义类是通过构造函数来操作的，es6 新增了 class 关键字，此时，我们也可以像其它语言一样来创建各种类了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    class Person&#123;</span><br><span class="line">​        constructor(name, age)&#123;</span><br><span class="line">​            this.name = name;</span><br><span class="line">​            this.age = age;</span><br><span class="line">​        &#125;</span><br><span class="line">​        print()&#123;</span><br><span class="line">​            console.log(&#x27;我叫&#x27; + this.name + &#x27;,今年&#x27; + this.age + &#x27;岁&#x27;);</span><br><span class="line">​        &#125;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    constructor(name, age)&#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    print()&#123;</span><br><span class="line">        console.log(&#x27;我叫&#x27; + this.name + &#x27;,今年&#x27; + this.age + &#x27;岁&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="类继承"><a href="#类继承" class="headerlink" title="类继承"></a>类继承</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Father &#123;</span><br><span class="line">         constructor(x, y) &#123;</span><br><span class="line">             this.x = x;  //this.x这样这个x函数体内的所有函数都可以访问了</span><br><span class="line">             this.y = y;</span><br><span class="line">         &#125;</span><br><span class="line">         sum() &#123;</span><br><span class="line">             console.log(this.x + this.y);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     class Son extends Father &#123;</span><br><span class="line">         constructor(x, y) &#123;</span><br><span class="line">             super(x, y); //调用了父类中的构造函数</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     var son = new Son(1, 2);</span><br><span class="line">     var son1 = new Son(11, 22);</span><br><span class="line">     son.sum();</span><br><span class="line">     son1.sum();</span><br></pre></td></tr></table></figure>
 
@@ -654,7 +659,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const r2 = s4.has(&#x27;d&#x27;);</span><br><span class="line">console.log(r2)</span><br></pre></td></tr></table></figure>
 
 <p>清空 set 数据结构中的值 使用 clear 方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    s4.clear();</span><br><span class="line">​   console.log(s4.size);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> s4.clear();</span><br><span class="line">console.log(s4.size);</span><br></pre></td></tr></table></figure>
 
 <h1 id="json"><a href="#json" class="headerlink" title="json"></a>json</h1><ul>
 <li>JSON 格式<ul>
@@ -887,7 +892,7 @@
 <h2 id="混合函数"><a href="#混合函数" class="headerlink" title="混合函数"></a>混合函数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//混合函数 在混合函数中可以直接设置变量</span><br><span class="line">.test(@w:100px,@h:200px,@bg-color:red)&#123;</span><br><span class="line">    width: @w;</span><br><span class="line">    height: @h;</span><br><span class="line">    border: 1px solid @bg-color;</span><br><span class="line">&#125;</span><br><span class="line">div&#123;</span><br><span class="line">    //调用混合函数，按顺序传递参数</span><br><span class="line">    // .test(200px,300px,#bfa);</span><br><span class="line">    .test(300px);</span><br><span class="line">    // .test(@bg-color:red, @h:100px, @w:300px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>就是说可以定义一个函数，然后这个函数里面也可以有默认值，这样的话，使用的时候不传值也能使用。</p>
-<h2 id="运算和引入"><a href="#运算和引入" class="headerlink" title="运算和引入"></a>运算和引入</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;syntax2.less&quot;;</span><br><span class="line">.box1&#123;</span><br><span class="line">​    // 在less中所有的数值都可以直接进行运算</span><br><span class="line">​    // + - * /</span><br><span class="line">​    width: 100px + 100px;</span><br><span class="line">​    height: 100px/2;</span><br><span class="line">​    background-color: #bfa;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="运算和引入"><a href="#运算和引入" class="headerlink" title="运算和引入"></a>运算和引入</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;syntax2.less&quot;;</span><br><span class="line">.box1&#123;</span><br><span class="line">    // 在less中所有的数值都可以直接进行运算</span><br><span class="line">    // + - * /</span><br><span class="line">    width: 100px + 100px;</span><br><span class="line">    height: 100px/2;</span><br><span class="line">    background-color: #bfa;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="Doctype-作用？标准模式与兼容模式各有什么区别"><a href="#Doctype-作用？标准模式与兼容模式各有什么区别" class="headerlink" title="Doctype 作用？标准模式与兼容模式各有什么区别?"></a>Doctype 作用？标准模式与兼容模式各有什么区别?</h1><p>（1）&lt;!DOCTYPE&gt;声明位于位于 HTML 文档中的第一行，处于   标签之前。告知浏览器的解析器用什么文档标准解析这个文档。</p>
 <p>DOCTYPE 不存在或格式不正确会导致文档以兼容模式呈现。</p>
@@ -1260,17 +1265,17 @@
 <p>也会影响原数组，默认会按照 Unicode 编码进行排序</p>
 <p><strong>sort()可以添加一个回调函数</strong></p>
 <p>里面放两个形参</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">        arr = [5, 4, 2, 1, 3, 6, 8, 7];</span><br><span class="line">​        arr.sort(function(a, b) &#123;</span><br><span class="line">​            //降序排列</span><br><span class="line">​            return b - a;</span><br><span class="line">​        &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr = [5, 4, 2, 1, 3, 6, 8, 7];</span><br><span class="line">arr.sort(function(a, b) &#123;</span><br><span class="line">    //降序排列</span><br><span class="line">    return b - a;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h2 id="数组遍历"><a href="#数组遍历" class="headerlink" title="数组遍历"></a>数组遍历</h2><p>第一个参数，就是当前正在遍历的元素</p>
 <p>第二个参数，就是当前正在遍历的元素的索引</p>
 <p>第三个参数，就是正在遍历的数组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.forEach(function(value , index , obj)&#123;</span><br><span class="line">​        console.log(value);</span><br><span class="line">​    &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.forEach(function(value , index , obj)&#123;</span><br><span class="line">        console.log(value);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 
 <h1 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h1><p>在调用函数时，浏览器每次都会传递进两个隐含的参数</p>
 <p>this 和 arguments</p>
 <p>在调用函数时，我们所传递的实参都会在 arguments 中保存</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arguments.length可以用来获取实参的长度</span><br><span class="line">arguments[0] 表示第一个实参</span><br><span class="line">​      function fun(a,b)&#123;</span><br><span class="line">​        console.log(arguments.callee == fun);</span><br><span class="line">​	这个属性对应一个函数对象，就是当前正在指向的函数的对象</span><br><span class="line">​      &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arguments.length可以用来获取实参的长度</span><br><span class="line">arguments[0] 表示第一个实参</span><br><span class="line">      function fun(a,b)&#123;</span><br><span class="line">        console.log(arguments.callee == fun);</span><br><span class="line">	这个属性对应一个函数对象，就是当前正在指向的函数的对象</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="字符串-1"><a href="#字符串-1" class="headerlink" title="字符串"></a>字符串</h1><h2 id="length-属性"><a href="#length-属性" class="headerlink" title="length 属性"></a>length 属性</h2><p>可以用来获取字符串的长度</p>
 <h2 id="indexof"><a href="#indexof" class="headerlink" title="indexof()"></a>indexof()</h2><p>该方法可以检索一个字符串中是否含有指定内容</p>
@@ -1299,7 +1304,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajax.send();</span><br></pre></td></tr></table></figure>
 
 <p>//步骤四:注册事件 onreadystatechange 状态改变就会调用，如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    ajax.onreadystatechange = function () &#123;</span><br><span class="line">​    if (ajax.readyState==4 &amp;&amp;ajax.status==200) &#123;</span><br><span class="line">​    　　　　console.log(ajax.responseText);//输入相应的内容</span><br><span class="line">​    　　&#125;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ajax.onreadystatechange = function () &#123;</span><br><span class="line">if (ajax.readyState==4 &amp;&amp;ajax.status==200) &#123;</span><br><span class="line">　　　　console.log(ajax.responseText);//输入相应的内容</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="前端有哪些页面优化方法"><a href="#前端有哪些页面优化方法" class="headerlink" title="前端有哪些页面优化方法?"></a>前端有哪些页面优化方法?</h1><ul>
 <li>减少 HTTP 请求数</li>
@@ -2291,20 +2296,18 @@
     <div class="scroll" id="post-nav-button">
         
             <a href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/" title="Pre: 各类函数">
-                <i class="fa fa-angle-left"></i>
+                <i class="iconfont icon-jiantouzuo"></i>
             </a>
         
-
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
+        <a title="Mini Archives"><i class="iconfont icon-home"></i></a>
         
             <a href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/" title="Next: 笔试题">
-                <i class="fa fa-angle-right"></i>
+                <i class="iconfont icon-jiantouyou"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E7%BD%91%E5%9D%80!%E6%B5%8F%E8%A7%88%E5%99%A8/">网址/浏览器/</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/flex%E5%B8%83%E5%B1%80/">flex布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机组成思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机网络思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">操作系统思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">数据结构思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E7%BD%91%E5%9D%80!%E6%B5%8F%E8%A7%88%E5%99%A8/">网址/浏览器/</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/flex%E5%B8%83%E5%B1%80/">flex布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">计算机操作系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%83%8C%E8%AF%B5/">操作系统背诵</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E8%8C%83%E6%96%87/">作文范文</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/">作文模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E7%A7%AF%E7%B4%AF/">英语作文积累</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/16/%F0%9F%92%A1%201%20%E5%88%86%E9%92%9F%E7%8E%A9%E8%BD%AC%E8%AF%AD%E9%9B%80%E6%96%87%E6%A1%A3/">💡 1 分钟玩转语雀文档</a></li></ul>
 
 
 
@@ -2317,7 +2320,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
+                <i class="iconfont icon-copyright"></i> 
                 2021-2022 John Doe
             </div>
         </div>
@@ -2344,8 +2347,8 @@
     </script>
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="iconfont icon-shangjiantou"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="iconfont icon-xiajiantou"></i></a>
 </div>
   </div>
 </body>

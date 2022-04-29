@@ -8,21 +8,23 @@
 <meta name="author" content="John Doe" />
 <meta name="referrer" content="no-referrer" />
 
-<meta name="description" content="如何清除浮动？给父级添加 overflow:hidden 清除浮动方法 父级设置成 inline-block，其 margin: 0 auto 居中方式失效 万能清除法 after 伪类 清浮动（现在主流方法，推荐使用） 1234567891011    float_div:after&amp;#123;​        content:&quot;.&quot;;​        clear:both;">
+<meta name="description" content="如何清除浮动？给父级添加 overflow:hidden 清除浮动方法 父级设置成 inline-block，其 margin: 0 auto 居中方式失效 万能清除法 after 伪类 清浮动（现在主流方法，推荐使用） 1234567891011float_div:after&amp;#123;    content:&quot;.&quot;;    clear:both;    display:bl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css理论">
 <meta property="og:url" content="http://example.com/2022/01/23/css%E7%90%86%E8%AE%BA/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="如何清除浮动？给父级添加 overflow:hidden 清除浮动方法 父级设置成 inline-block，其 margin: 0 auto 居中方式失效 万能清除法 after 伪类 清浮动（现在主流方法，推荐使用） 1234567891011    float_div:after&amp;#123;​        content:&quot;.&quot;;​        clear:both;">
+<meta property="og:site_name" content="后知后觉的个人主页">
+<meta property="og:description" content="如何清除浮动？给父级添加 overflow:hidden 清除浮动方法 父级设置成 inline-block，其 margin: 0 auto 居中方式失效 万能清除法 after 伪类 清浮动（现在主流方法，推荐使用） 1234567891011float_div:after&amp;#123;    content:&quot;.&quot;;    clear:both;    display:bl">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-23T07:25:35.000Z">
-<meta property="article:modified_time" content="2022-02-20T05:23:11.349Z">
+<meta property="article:modified_time" content="2022-04-28T02:37:36.681Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="面试知识">
 <meta name="twitter:card" content="summary">
 
 <link rel="shortcut icon" href="/img/favicon.ico">
 <link href="/css/bootstrap.css" rel="stylesheet">
-<link href="/css/reset.css" rel="stylesheet">
+<link href="/css/person.css"  rel="stylesheet">
+<link href="//at.alicdn.com/t/font_2822169_7n9pu9ptxz8.css" rel="stylesheet">
 
     <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
 
@@ -37,7 +39,10 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>css理论 | Hexo</title>
+<title>
+    css理论 | 
+    后知后觉的个人主页
+</title>
 
 <script src="/plugins/jquery.min.js"></script>
 <script src="/plugins/clipboard.min.js"></script>
@@ -87,8 +92,6 @@
                         
                             <li><a href="/">主页</a></li>
                         
-                            <li><a href="/archives/">所有文章</a></li>
-                        
                             <li><a href="/tags/">标签云</a></li>
                         
                             <li><a href="/about/">关于我</a></li>
@@ -120,8 +123,6 @@
                 <ul>
                 
                     <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
                 
                     <li><a href="/tags/">标签云</a></li>
                 
@@ -164,6 +165,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/" rel="tag">面试知识</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -174,7 +179,7 @@
         <h1 id="如何清除浮动？"><a href="#如何清除浮动？" class="headerlink" title="如何清除浮动？"></a>如何清除浮动？</h1><p>给父级添加 overflow:hidden 清除浮动方法</p>
 <p>父级设置成 inline-block，其 margin: 0 auto 居中方式失效</p>
 <p>万能清除法 after 伪类 清浮动（现在主流方法，推荐使用）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    float_div:after&#123;</span><br><span class="line">​        content:&quot;.&quot;;</span><br><span class="line">​        clear:both;</span><br><span class="line">​        display:block;</span><br><span class="line">​        height:0;</span><br><span class="line">​        overflow:hidden;</span><br><span class="line">​        visibility:hidden;</span><br><span class="line">​    &#125;</span><br><span class="line">​    .float_div&#123;</span><br><span class="line">​        zoom:1</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">float_div:after&#123;</span><br><span class="line">    content:&quot;.&quot;;</span><br><span class="line">    clear:both;</span><br><span class="line">    display:block;</span><br><span class="line">    height:0;</span><br><span class="line">    overflow:hidden;</span><br><span class="line">    visibility:hidden;</span><br><span class="line">&#125;</span><br><span class="line">.float_div&#123;</span><br><span class="line">    zoom:1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="img-中-alt-和-title-的区别"><a href="#img-中-alt-和-title-的区别" class="headerlink" title="img 中 alt 和 title 的区别"></a>img 中 alt 和 title 的区别</h1><p>图片中的 alt 属性是在图片不能正常显示时出现的文本提示。</p>
 <p>图片中的 title 属性是在鼠标在移动到元素上的文本提示。</p>
@@ -234,7 +239,7 @@
 <li>IE 浮动 margin 产生的双倍距离</li>
 </ol>
 <p>解决：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    \#box &#123;</span><br><span class="line">​        float:left;</span><br><span class="line">​        width:100px;</span><br><span class="line">​        margin:0 0 0 100px; //这种情况之下IE会产生200px的距离</span><br><span class="line">​        display:inline; //使浮动忽略</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\#box &#123;</span><br><span class="line">    float:left;</span><br><span class="line">    width:100px;</span><br><span class="line">    margin:0 0 0 100px; //这种情况之下IE会产生200px的距离</span><br><span class="line">    display:inline; //使浮动忽略</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol start="4">
 <li>ul 标签在 FF 中默认是有 padding 值的，而在 IE 中只有 margin 有值，还有缩进问题</li>
@@ -267,7 +272,7 @@
 <p>2、对于左右布局的元素，我们可以给右侧的元素添加 overflow:hidden 或者 auto，左侧的是 float:left</p>
 <p>3、可以清除浮动，计算 BFC 高度，浮动元素不会撑开父元素的高度，我们可以让父元素触发 BFC,即使用 overflow:hidden</p>
 <h1 id="css-定义的权重"><a href="#css-定义的权重" class="headerlink" title="css 定义的权重"></a>css 定义的权重</h1><p>以下是权重的规则：标签的权重为 1，class 的权重为 10，id 的权重为 100，以下例子是演示各种定义的权重值：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  权重为1</span><br><span class="line">​    div&#123;</span><br><span class="line">​    &#125;</span><br><span class="line">​    权重为10</span><br><span class="line">​    .class1&#123;</span><br><span class="line">​    &#125;</span><br><span class="line">​    权重为100</span><br><span class="line">​    \#id1&#123;</span><br><span class="line">​    &#125;</span><br><span class="line">​    权重为100+1=101</span><br><span class="line">​    \#id1 div&#123;</span><br><span class="line">​    &#125;</span><br><span class="line">​    权重为10+1=11</span><br><span class="line">​    .class1 div&#123;</span><br><span class="line">​    &#125;</span><br><span class="line">​    权重为10+10+1=21</span><br><span class="line">​    .class1 .class2 div&#123;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">权重为1</span><br><span class="line">  div&#123;</span><br><span class="line">  &#125;</span><br><span class="line">  权重为10</span><br><span class="line">  .class1&#123;</span><br><span class="line">  &#125;</span><br><span class="line">  权重为100</span><br><span class="line">  \#id1&#123;</span><br><span class="line">  &#125;</span><br><span class="line">  权重为100+1=101</span><br><span class="line">  \#id1 div&#123;</span><br><span class="line">  &#125;</span><br><span class="line">  权重为10+1=11</span><br><span class="line">  .class1 div&#123;</span><br><span class="line">  &#125;</span><br><span class="line">  权重为10+10+1=21</span><br><span class="line">  .class1 .class2 div&#123;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <p>如果权重相同，则最后定义的样式会起作用，但是应该避免这种情况出现</p>
 <h1 id="解释下浮动和它的工作原理？清除浮动的技巧？"><a href="#解释下浮动和它的工作原理？清除浮动的技巧？" class="headerlink" title="解释下浮动和它的工作原理？清除浮动的技巧？"></a>解释下浮动和它的工作原理？清除浮动的技巧？</h1><p>浮动元素脱离文档流，不占据空间。浮动元素碰到包含它的边框或者浮动元素的边框停留。</p>
@@ -358,20 +363,18 @@
     <div class="scroll" id="post-nav-button">
         
             <a href="/2022/01/23/DOM/" title="Pre: DOM">
-                <i class="fa fa-angle-left"></i>
+                <i class="iconfont icon-jiantouzuo"></i>
             </a>
         
-
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
+        <a title="Mini Archives"><i class="iconfont icon-home"></i></a>
         
             <a href="/2022/01/23/css3/" title="Next: css3">
-                <i class="fa fa-angle-right"></i>
+                <i class="iconfont icon-jiantouyou"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E7%BD%91%E5%9D%80!%E6%B5%8F%E8%A7%88%E5%99%A8/">网址/浏览器/</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/flex%E5%B8%83%E5%B1%80/">flex布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机组成思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机网络思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">操作系统思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">数据结构思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E7%BD%91%E5%9D%80!%E6%B5%8F%E8%A7%88%E5%99%A8/">网址/浏览器/</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/flex%E5%B8%83%E5%B1%80/">flex布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">计算机操作系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%83%8C%E8%AF%B5/">操作系统背诵</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E8%8C%83%E6%96%87/">作文范文</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/">作文模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E7%A7%AF%E7%B4%AF/">英语作文积累</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/16/%F0%9F%92%A1%201%20%E5%88%86%E9%92%9F%E7%8E%A9%E8%BD%AC%E8%AF%AD%E9%9B%80%E6%96%87%E6%A1%A3/">💡 1 分钟玩转语雀文档</a></li></ul>
 
 
 
@@ -384,7 +387,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
+                <i class="iconfont icon-copyright"></i> 
                 2021-2022 John Doe
             </div>
         </div>
@@ -411,8 +414,8 @@
     </script>
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="iconfont icon-shangjiantou"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="iconfont icon-xiajiantou"></i></a>
 </div>
   </div>
 </body>

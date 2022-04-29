@@ -12,17 +12,19 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="css3">
 <meta property="og:url" content="http://example.com/2022/01/23/css3/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="后知后觉的个人主页">
 <meta property="og:description" content="常用属性overflow visible 默认值。内容不会被修剪，会呈现在元素框之外。 hidden 内容会被修剪，并且其余内容是不可见的。 scroll 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。 auto 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。 inherit 规定应该从父元素继承 overflow 属性的值。  1overflow:scroll;  css 中">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-23T07:24:37.000Z">
-<meta property="article:modified_time" content="2022-02-20T05:23:11.399Z">
+<meta property="article:modified_time" content="2022-04-28T02:37:36.732Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="前端知识">
 <meta name="twitter:card" content="summary">
 
 <link rel="shortcut icon" href="/img/favicon.ico">
 <link href="/css/bootstrap.css" rel="stylesheet">
-<link href="/css/reset.css" rel="stylesheet">
+<link href="/css/person.css"  rel="stylesheet">
+<link href="//at.alicdn.com/t/font_2822169_7n9pu9ptxz8.css" rel="stylesheet">
 
     <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
 
@@ -37,7 +39,10 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>css3 | Hexo</title>
+<title>
+    css3 | 
+    后知后觉的个人主页
+</title>
 
 <script src="/plugins/jquery.min.js"></script>
 <script src="/plugins/clipboard.min.js"></script>
@@ -87,8 +92,6 @@
                         
                             <li><a href="/">主页</a></li>
                         
-                            <li><a href="/archives/">所有文章</a></li>
-                        
                             <li><a href="/tags/">标签云</a></li>
                         
                             <li><a href="/about/">关于我</a></li>
@@ -120,8 +123,6 @@
                 <ul>
                 
                     <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
                 
                     <li><a href="/tags/">标签云</a></li>
                 
@@ -164,6 +165,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" rel="tag">前端知识</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -184,19 +189,19 @@
 <p>ul&gt;li ：子代选择器，下一级的 DOM 节点，不包括 ol 里的 li</p>
 <p>ul&gt;ol&gt;li ：子代选择器必须一代接一代</p>
 <h1 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h1><p>1.E[attr]:查找指定的拥有 attr 属性的 E 标签。如查找拥有 style 属性的 li 标签</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    li[style]&#123;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">li[style]&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>2.E[attr=value]:查找拥有指定的 Attr 属性并且属性值为 value 的 E 标签。如想查找拥有 class 属性并且值为 Red 的 li 标签 =是严格匹配</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    li[class=red]&#123;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">li[class=red]&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>3.E[attr*=value]:查找拥有指定的 attr 属性并且属性值中包含(可以在任意位置)value 的 E 标签</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    li[class*=red]&#123;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">li[class*=red]&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>4.E[attr^=value]:查找拥有指定的 attr 属性并且属性值以 value 开头的 E 标签</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    li[class^=blue]&#123;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">li[class^=blue]&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>5.E[attr$=value]:查找拥有指定的 attr 属性并且属性值以 value 开结束的 E 标签</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    li[class$=blue]&#123;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">li[class$=blue]&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="兄弟选择器"><a href="#兄弟选择器" class="headerlink" title="兄弟选择器"></a>兄弟选择器</h1><ul>
 <li>+：获取当前元素的相邻的满足条件的元素</li>
@@ -204,14 +209,14 @@
 <p>下面这句样式说明查找 ：添加了.first 样式的标签的相邻的 li 元素</p>
 <p>1.相邻</p>
 <p>2.必须是指定类型的元素</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    .first + li&#123;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.first + li&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>~：获取当前元素的满足条件的兄弟元素</li>
 </ul>
 <p>下面样式查找添加了.first 样式的元素的所有兄弟 li 元素</p>
 <p>1.必须是指定类型的元素</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    .first ~ li&#123;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.first ~ li&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>必须都是 li 元素，如果中间插入了其他元素，则+表示相邻的 li 元素，所以会不起作用</p>
 <h1 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h1><p><strong>相对于父元素的结构伪类</strong></p>
@@ -220,39 +225,39 @@
 <p>下面这句样式查找：<strong>li 的父元素中的第一个 li 元素</strong></p>
 <p>1.相对于当前指定元素的父元素</p>
 <p>2.查找的类型必须是指定的类型</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    li:first-child&#123;</span><br><span class="line">​    color: red;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">li:first-child&#123;</span><br><span class="line">color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>:first-child 匹配的是某父元素的第一个子元素，可以说是结构上的第一个子元素。</strong></p>
 <p>2.在查找的时候只会查找满足类型条件的元素，过渡掉其它类型的元素</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    li:first-of-type&#123;</span><br><span class="line">​        color: red;</span><br><span class="line">​    &#125;</span><br><span class="line">​    li:last-of-type&#123;</span><br><span class="line">        color: orange;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">li:first-of-type&#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br><span class="line">li:last-of-type&#123;</span><br><span class="line">    color: orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>:first-of-type 匹配的是某父元素下相同类型子元素中的第一个，比如 p:first-of-type，就是指所有类型为 p 的子元素中的第一个。这里不再限制是第一个子元素了，只要是该类型元素的第一个就行了。</strong></p>
 <p>指定索引位置 nth-child(从 1 开始的索引||关键字||表达式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    li:nth-child(5)&#123;</span><br><span class="line">​    &#125;</span><br><span class="line">​    li:nth-child(even)&#123;</span><br><span class="line">​        background-color: orange;</span><br><span class="line">​    &#125;</span><br><span class="line">​    li:nth-child(odd)&#123;</span><br><span class="line">​        background-color: pink;</span><br><span class="line">​    &#125;</span><br><span class="line">​    li:nth-of-type(even)&#123;</span><br><span class="line">​        background-color: orange;</span><br><span class="line">​    &#125;</span><br><span class="line">​    li:nth-of-type(odd)&#123;</span><br><span class="line">​        background-color: pink;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">li:nth-child(5)&#123;</span><br><span class="line">&#125;</span><br><span class="line">li:nth-child(even)&#123;</span><br><span class="line">    background-color: orange;</span><br><span class="line">&#125;</span><br><span class="line">li:nth-child(odd)&#123;</span><br><span class="line">    background-color: pink;</span><br><span class="line">&#125;</span><br><span class="line">li:nth-of-type(even)&#123;</span><br><span class="line">    background-color: orange;</span><br><span class="line">&#125;</span><br><span class="line">li:nth-of-type(odd)&#123;</span><br><span class="line">    background-color: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>想为前面的 5 个元素添加样式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    li:nth-last-of-type(-n+5)&#123;</span><br><span class="line">​        font-size: 30px;</span><br><span class="line">​    &#125;</span><br><span class="line">​    li:nth-of-type(-n+5)&#123;</span><br><span class="line">​        font-size: 30px;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">li:nth-last-of-type(-n+5)&#123;</span><br><span class="line">    font-size: 30px;</span><br><span class="line">&#125;</span><br><span class="line">li:nth-of-type(-n+5)&#123;</span><br><span class="line">    font-size: 30px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>空值:没有任何的内容，连空格都没有</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    li:empty&#123;</span><br><span class="line">​        background-color: red;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">li:empty&#123;</span><br><span class="line">    background-color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>E:target:可以为锚点目标元素添加样式，当目标元素被触发为当前锚链接的目标时，调用此伪类样式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    h2:target&#123;</span><br><span class="line">​        color: red;</span><br><span class="line">​    &#125;</span><br><span class="line">​    &lt;a href=&quot;#title1&quot;&gt;CSS (层叠样式表)&lt;/a&gt;</span><br><span class="line">​    &lt;h2 id=&quot;title1&quot;&gt;CSS (层叠样式表)&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">h2:target&#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;a href=&quot;#title1&quot;&gt;CSS (层叠样式表)&lt;/a&gt;</span><br><span class="line">&lt;h2 id=&quot;title1&quot;&gt;CSS (层叠样式表)&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
 
-<h1 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    div:nth-of-type(2)::before&#123;</span><br><span class="line">​        /**必须添加content属性，否则后期不可见**/</span><br><span class="line">​        content: &quot;&quot;;</span><br><span class="line">​        /**默认是行级元素，如果想设置宽高，就必须转换为块级元素**/</span><br><span class="line">​        position: absolute;</span><br><span class="line">​        width: 20px;</span><br><span class="line">​        height: 20px;</span><br><span class="line">​        background-color: #fff;</span><br><span class="line">​        border-radius: 10px;</span><br><span class="line">​        left: -10px;</span><br><span class="line">​        top: -10px;</span><br><span class="line">​    &#125;</span><br><span class="line">​    div:nth-of-type(2)::after&#123;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">div:nth-of-type(2)::before&#123;</span><br><span class="line">    /**必须添加content属性，否则后期不可见**/</span><br><span class="line">    content: &quot;&quot;;</span><br><span class="line">    /**默认是行级元素，如果想设置宽高，就必须转换为块级元素**/</span><br><span class="line">    position: absolute;</span><br><span class="line">    width: 20px;</span><br><span class="line">    height: 20px;</span><br><span class="line">    background-color: #fff;</span><br><span class="line">    border-radius: 10px;</span><br><span class="line">    left: -10px;</span><br><span class="line">    top: -10px;</span><br><span class="line">&#125;</span><br><span class="line">div:nth-of-type(2)::after&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>获取第一个字符：实现首字下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    p::first-letter&#123;</span><br><span class="line">​       float: left;/**文本环绕**/</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p::first-letter&#123;</span><br><span class="line">   float: left;/**文本环绕**/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>获取第一行内容:如果设置了::first-letter,那么无法同时设置它的样式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    p::first-line&#123;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p::first-line&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>设置当前选中内容的样式</p>
 <p>它只能设置显示的样式，而不能设置内容大小</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    p::selection&#123;</span><br><span class="line">​        background-color: pink;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p::selection&#123;</span><br><span class="line">    background-color: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h1><p>hsl(颜色(0360)，饱和度(0%100%)，明度(0%<del>100%))，a 表示透明度 0</del>1</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    background-color: rgba(255,0,255,0.2)</span><br><span class="line"></span><br><span class="line">​    background-color: hsla(300,100%,50%,0.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background-color: rgba(255,0,255,0.2)</span><br><span class="line"></span><br><span class="line">background-color: hsla(300,100%,50%,0.1</span><br></pre></td></tr></table></figure>
 
 <h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><p>字体属性的顺序：字体风格 → 字体粗细 → 字体大小 → 字体类型</p>
 <p>比如</p>
@@ -262,10 +267,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text-shadow:offsetX offsetY blur color</span><br></pre></td></tr></table></figure>
 
 <p>多层阴影效果</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    .demo3&#123;</span><br><span class="line">​  text-shadow: 0px 0px 30px #fff,0px 0px 50px red,0px 0px 70px #fff;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  .demo3&#123;</span><br><span class="line">text-shadow: 0px 0px 30px #fff,0px 0px 50px red,0px 0px 70px #fff;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <p>浮雕立体</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    .demo5&#123;</span><br><span class="line">​        color: #fff;</span><br><span class="line">​        text-shadow: -1px -1px 0px #eee,-2px -2px 0px #ddd,-3px -3px 0px #ccc;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.demo5&#123;</span><br><span class="line">    color: #fff;</span><br><span class="line">    text-shadow: -1px -1px 0px #eee,-2px -2px 0px #ddd,-3px -3px 0px #ccc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以添加一层阴影，也可以添加多层阴影</p>
 <h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1><p>content-box:你设置的 width 属性值仅仅是内容的宽度，盒子的最终的宽高值在 width 的基础上再加上 padding 和 border 的宽度(默认)</p>
@@ -294,7 +299,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">border-radius: 100px 0px 0px 0px/20px 0px 0px 0px;</span><br></pre></td></tr></table></figure>
 
 <h1 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h1><h2 id="线性渐变"><a href="#线性渐变" class="headerlink" title="线性渐变"></a>线性渐变</h2><p>方向：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    to top:0deg</span><br><span class="line">​    to right:90deg</span><br><span class="line">​    to bottom:180deg --默认值</span><br><span class="line">​    to left:270deg</span><br><span class="line">​   linear-gradient(方向，开始颜色 位置，颜色2 位置，颜色3 位置...)</span><br><span class="line">​   background: linear-gradient(to right, red 0%, red 50%, blue 50%, blue 100%);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> to top:0deg</span><br><span class="line"> to right:90deg</span><br><span class="line"> to bottom:180deg --默认值</span><br><span class="line"> to left:270deg</span><br><span class="line">linear-gradient(方向，开始颜色 位置，颜色2 位置，颜色3 位置...)</span><br><span class="line">background: linear-gradient(to right, red 0%, red 50%, blue 50%, blue 100%);</span><br></pre></td></tr></table></figure>
 
 <h2 id="径向渐变"><a href="#径向渐变" class="headerlink" title="径向渐变"></a>径向渐变</h2><p>形状 shape:circle:产生正方形的渐变色</p>
 <p>ellipse:适配当前的形状,如果是正方形的容器，两者效果一样.如果宽高不一样，默认效果切换到 ellipse</p>
@@ -304,7 +309,7 @@
 <p>closest-corner：最近角；</p>
 <p>farthest-corner：最远角。</p>
 <p>默认是最远的角 farthest-corner</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    background: radial-gradient(red,blue);</span><br><span class="line">​   语法：radial-gradient(形状 大小 坐标,颜色1，颜色2...)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> background: radial-gradient(red,blue);</span><br><span class="line">语法：radial-gradient(形状 大小 坐标,颜色1，颜色2...)</span><br></pre></td></tr></table></figure>
 
 <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>1.添加背景颜色</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background-color: skyblue;</span><br></pre></td></tr></table></figure>
@@ -333,7 +338,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition:all 2s steps(4);</span><br></pre></td></tr></table></figure>
 
 <h1 id="transform-二维变换"><a href="#transform-二维变换" class="headerlink" title="transform 二维变换"></a>transform 二维变换</h1><p>使用 transform 实现元素的移动 a.移动是参照元素的左上角 b.执行完毕之后会恢复到原始状态</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    /*transform: translate(400px,500px);*/ X,Y轴的移动</span><br><span class="line"></span><br><span class="line">​    transform:translateY(300px);</span><br><span class="line"></span><br><span class="line">​    transform:scaleY(0.5); 放大和缩小，1为灵界点</span><br><span class="line"></span><br><span class="line">​    transform-origin: left top; 可以设置旋转的中心</span><br><span class="line"></span><br><span class="line">​    transform: translateX(700px) rotate(-90deg);</span><br><span class="line"></span><br><span class="line">​    transform:skew(-30deg);斜切</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/*transform: translate(400px,500px);*/ X,Y轴的移动</span><br><span class="line"></span><br><span class="line">transform:translateY(300px);</span><br><span class="line"></span><br><span class="line">transform:scaleY(0.5); 放大和缩小，1为灵界点</span><br><span class="line"></span><br><span class="line">transform-origin: left top; 可以设置旋转的中心</span><br><span class="line"></span><br><span class="line">transform: translateX(700px) rotate(-90deg);</span><br><span class="line"></span><br><span class="line">transform:skew(-30deg);斜切</span><br></pre></td></tr></table></figure>
 
 <h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><p>添加动画效果</p>
 <p>1.animation-name:指定动画名称</p>
@@ -363,7 +368,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animation-play-state: running;</span><br></pre></td></tr></table></figure>
 
 <p>动画 moveTest</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">   @keyframes moveTest &#123;</span><br><span class="line">​    百分比是指整个动画耗时的百分比  10s</span><br><span class="line">​    from&#123;</span><br><span class="line">​        transform: translate(0,0) rotate(45deg);</span><br><span class="line">​    &#125;</span><br><span class="line">​    50%&#123;</span><br><span class="line">​        transform: translate(0,500px);</span><br><span class="line">​    &#125;</span><br><span class="line">​    to&#123;</span><br><span class="line">​        transform: translate(500px,600px);</span><br><span class="line">​        &#125;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@keyframes moveTest &#123;</span><br><span class="line"> 百分比是指整个动画耗时的百分比  10s</span><br><span class="line"> from&#123;</span><br><span class="line">     transform: translate(0,0) rotate(45deg);</span><br><span class="line"> &#125;</span><br><span class="line"> 50%&#123;</span><br><span class="line">     transform: translate(0,500px);</span><br><span class="line"> &#125;</span><br><span class="line"> to&#123;</span><br><span class="line">     transform: translate(500px,600px);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h1><p>1.设置列数</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">column-count: 3;</span><br></pre></td></tr></table></figure>
@@ -440,20 +445,18 @@
     <div class="scroll" id="post-nav-button">
         
             <a href="/2022/01/23/css%E7%90%86%E8%AE%BA/" title="Pre: css理论">
-                <i class="fa fa-angle-left"></i>
+                <i class="iconfont icon-jiantouzuo"></i>
             </a>
         
-
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
+        <a title="Mini Archives"><i class="iconfont icon-home"></i></a>
         
             <a href="/2022/01/23/BOM/" title="Next: BOM">
-                <i class="fa fa-angle-right"></i>
+                <i class="iconfont icon-jiantouyou"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E7%BD%91%E5%9D%80!%E6%B5%8F%E8%A7%88%E5%99%A8/">网址/浏览器/</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/flex%E5%B8%83%E5%B1%80/">flex布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机组成思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机网络思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">操作系统思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">数据结构思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E7%BD%91%E5%9D%80!%E6%B5%8F%E8%A7%88%E5%99%A8/">网址/浏览器/</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/flex%E5%B8%83%E5%B1%80/">flex布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">计算机操作系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%83%8C%E8%AF%B5/">操作系统背诵</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E8%8C%83%E6%96%87/">作文范文</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/">作文模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E7%A7%AF%E7%B4%AF/">英语作文积累</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/16/%F0%9F%92%A1%201%20%E5%88%86%E9%92%9F%E7%8E%A9%E8%BD%AC%E8%AF%AD%E9%9B%80%E6%96%87%E6%A1%A3/">💡 1 分钟玩转语雀文档</a></li></ul>
 
 
 
@@ -466,7 +469,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
+                <i class="iconfont icon-copyright"></i> 
                 2021-2022 John Doe
             </div>
         </div>
@@ -493,8 +496,8 @@
     </script>
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="iconfont icon-shangjiantou"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="iconfont icon-xiajiantou"></i></a>
 </div>
   </div>
 </body>

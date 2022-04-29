@@ -8,21 +8,23 @@
 <meta name="author" content="John Doe" />
 <meta name="referrer" content="no-referrer" />
 
-<meta name="description" content="原生 ajax​    &#x2F;&#x2F;步骤一:创建异步对象 1var ajax &#x3D; new XMLHttpRequest();  ​    &#x2F;&#x2F;步骤二:设置请求的 url 参数,参数一是请求的类型, ​     参数二是请求的 url,可以带参数, ​     动态的传递参数 starName 到服务端 1ajax.open(&amp;#x27;get&amp;#x27;,&amp;#x27;getStar.php?starNam">
+<meta name="description" content="原生 ajax&#x2F;&#x2F;步骤一:创建异步对象 1var ajax &#x3D; new XMLHttpRequest();  &#x2F;&#x2F;步骤二:设置请求的 url 参数,参数一是请求的类型, 参数二是请求的 url,可以带参数, 动态的传递参数 starName 到服务端 1ajax.open(&amp;#x27;get&amp;#x27;,&amp;#x27;getStar.php?starName&#x3D;&amp;#x27;+name);  &#x2F;&#x2F;步骤三">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js理论">
 <meta property="og:url" content="http://example.com/2022/01/23/js%E7%90%86%E8%AE%BA/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="原生 ajax​    &#x2F;&#x2F;步骤一:创建异步对象 1var ajax &#x3D; new XMLHttpRequest();  ​    &#x2F;&#x2F;步骤二:设置请求的 url 参数,参数一是请求的类型, ​     参数二是请求的 url,可以带参数, ​     动态的传递参数 starName 到服务端 1ajax.open(&amp;#x27;get&amp;#x27;,&amp;#x27;getStar.php?starNam">
+<meta property="og:site_name" content="后知后觉的个人主页">
+<meta property="og:description" content="原生 ajax&#x2F;&#x2F;步骤一:创建异步对象 1var ajax &#x3D; new XMLHttpRequest();  &#x2F;&#x2F;步骤二:设置请求的 url 参数,参数一是请求的类型, 参数二是请求的 url,可以带参数, 动态的传递参数 starName 到服务端 1ajax.open(&amp;#x27;get&amp;#x27;,&amp;#x27;getStar.php?starName&#x3D;&amp;#x27;+name);  &#x2F;&#x2F;步骤三">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-23T07:33:46.000Z">
-<meta property="article:modified_time" content="2022-02-20T05:23:10.828Z">
+<meta property="article:modified_time" content="2022-04-28T02:37:36.153Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="面试知识">
 <meta name="twitter:card" content="summary">
 
 <link rel="shortcut icon" href="/img/favicon.ico">
 <link href="/css/bootstrap.css" rel="stylesheet">
-<link href="/css/reset.css" rel="stylesheet">
+<link href="/css/person.css"  rel="stylesheet">
+<link href="//at.alicdn.com/t/font_2822169_7n9pu9ptxz8.css" rel="stylesheet">
 
     <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
 
@@ -37,7 +39,10 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>js理论 | Hexo</title>
+<title>
+    js理论 | 
+    后知后觉的个人主页
+</title>
 
 <script src="/plugins/jquery.min.js"></script>
 <script src="/plugins/clipboard.min.js"></script>
@@ -87,8 +92,6 @@
                         
                             <li><a href="/">主页</a></li>
                         
-                            <li><a href="/archives/">所有文章</a></li>
-                        
                             <li><a href="/tags/">标签云</a></li>
                         
                             <li><a href="/about/">关于我</a></li>
@@ -120,8 +123,6 @@
                 <ul>
                 
                     <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
                 
                     <li><a href="/tags/">标签云</a></li>
                 
@@ -164,6 +165,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/" rel="tag">面试知识</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -171,19 +176,19 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="原生-ajax"><a href="#原生-ajax" class="headerlink" title="原生 ajax"></a>原生 ajax</h1><p>​    //步骤一:创建异步对象</p>
+        <h1 id="原生-ajax"><a href="#原生-ajax" class="headerlink" title="原生 ajax"></a>原生 ajax</h1><p>//步骤一:创建异步对象</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var ajax = new XMLHttpRequest();</span><br></pre></td></tr></table></figure>
 
-<p>​    //步骤二:设置请求的 url 参数,参数一是请求的类型,</p>
-<p>​     参数二是请求的 url,可以带参数,</p>
-<p>​     动态的传递参数 starName 到服务端</p>
+<p>//步骤二:设置请求的 url 参数,参数一是请求的类型,</p>
+<p>参数二是请求的 url,可以带参数,</p>
+<p>动态的传递参数 starName 到服务端</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajax.open(&#x27;get&#x27;,&#x27;getStar.php?starName=&#x27;+name);</span><br></pre></td></tr></table></figure>
 
-<p>​    //步骤三:发送请求</p>
+<p>//步骤三:发送请求</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajax.send();</span><br></pre></td></tr></table></figure>
 
-<p>​    //步骤四:注册事件 onreadystatechange 状态改变就会调用，如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    ajax.onreadystatechange = function () &#123;</span><br><span class="line"></span><br><span class="line">​    if (ajax.readyState==4 &amp;&amp;ajax.status==200) &#123;</span><br><span class="line"></span><br><span class="line">​    　　　　console.log(ajax.responseText);//输入相应的内容</span><br><span class="line"></span><br><span class="line">​    　　&#125;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<p>//步骤四:注册事件 onreadystatechange 状态改变就会调用，如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ajax.onreadystatechange = function () &#123;</span><br><span class="line"></span><br><span class="line">if (ajax.readyState==4 &amp;&amp;ajax.status==200) &#123;</span><br><span class="line"></span><br><span class="line">　　　　console.log(ajax.responseText);//输入相应的内容</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="前端有哪些页面优化方法"><a href="#前端有哪些页面优化方法" class="headerlink" title="前端有哪些页面优化方法?"></a>前端有哪些页面优化方法?</h1><ul>
 <li>减少 HTTP 请求数</li>
@@ -240,7 +245,7 @@
 
 <h1 id="针对-jQuery-的优化方法？"><a href="#针对-jQuery-的优化方法？" class="headerlink" title="针对 jQuery 的优化方法？"></a>针对 jQuery 的优化方法？</h1><p>*基于 Class 的选择性的性能相对于 Id 选择器开销很大，因为需遍历所有 DOM 元素。</p>
 <p>*频繁操作的 DOM，先缓存起来再操作。用 Jquery 的链式调用更好。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">比如：var str=$(&quot;a&quot;).attr(&quot;href&quot;);</span><br><span class="line"></span><br><span class="line">​    *for (var i = size; i &lt; arr.length; i++) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">比如：var str=$(&quot;a&quot;).attr(&quot;href&quot;);</span><br><span class="line"></span><br><span class="line">    *for (var i = size; i &lt; arr.length; i++) &#123;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>for 循环每一次循环都查找了数组 (arr) 的.length 属性，在开始循环的时候设置一个变量来存储这个数字，可以让循环跑得更快：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (var i = size, length = arr.length; i &lt; length; i++) &#123;&#125;</span><br></pre></td></tr></table></figure>
@@ -262,10 +267,10 @@
 <h1 id="防抖和节流的实现"><a href="#防抖和节流的实现" class="headerlink" title="防抖和节流的实现"></a>防抖和节流的实现</h1><p><strong>函数节流是指一定时间内 js 方法只跑一次。</strong>比如人的眨眼睛，就是一定时间内眨一次。这是函数节流最形象的解释。</p>
 <p><strong>函数防抖是指频繁触发的情况下，只有足够的空闲时间，才执行代码一次。</strong>比如生活中的坐公交，就是一定时间内，如果有人陆续刷卡上车，司机就不会开车。只有别人没刷卡了，司机才开车。</p>
 <p>防抖：触发高频事件后 n 秒内函数只会执行一次，如果 n 秒内高频事件再次被触发，则重新计算时间</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    funtion debounce(fn) &#123;</span><br><span class="line">​    // 创建一个标记用来存放定时器的返回值</span><br><span class="line">​    let timeout = null;</span><br><span class="line">​    return function() &#123;</span><br><span class="line">​      // 每次触发事件时都取消之前的延时调用方法</span><br><span class="line">​      clearTimeout(timeout);</span><br><span class="line">​      // 然后又创建一个新的 setTimeout, 这样就能保证 1000ms 间隔内如果重复触发就不会执行 fn 函数</span><br><span class="line">​      timeout = setTimeout(() =&gt; &#123;</span><br><span class="line">​      fn.apply(this, arguments);</span><br><span class="line">​      &#125;, 1000);</span><br><span class="line">​    &#125;;</span><br><span class="line">​    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">funtion debounce(fn) &#123;</span><br><span class="line">// 创建一个标记用来存放定时器的返回值</span><br><span class="line">let timeout = null;</span><br><span class="line">return function() &#123;</span><br><span class="line">  // 每次触发事件时都取消之前的延时调用方法</span><br><span class="line">  clearTimeout(timeout);</span><br><span class="line">  // 然后又创建一个新的 setTimeout, 这样就能保证 1000ms 间隔内如果重复触发就不会执行 fn 函数</span><br><span class="line">  timeout = setTimeout(() =&gt; &#123;</span><br><span class="line">  fn.apply(this, arguments);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>节流：高频事件触发，但在 n 秒内只会执行一次，所以节流会稀释函数的执行频率</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">    function throttle(fn) &#123;</span><br><span class="line">​    // 通过闭包保存一个标记</span><br><span class="line">​    let canRun = true;</span><br><span class="line">​    return function()&#123;</span><br><span class="line">​    // 每次开始执行函数时都先判断标记是否为 true，不为 true 则 return</span><br><span class="line">​    if (!canRun) return;</span><br><span class="line">​    // 上一次定时器执行完后 canRun 为 true，所以要先设置为false</span><br><span class="line">​    canRun = false;</span><br><span class="line">​    setTimeout(() =&gt; &#123;</span><br><span class="line">​    fn.apply(this, arguments);</span><br><span class="line">​    // 最后在 setTimeout 执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是 false，在开头被 return 掉</span><br><span class="line">​    canRun = true;</span><br><span class="line">​    &#125;, 1000)</span><br><span class="line">​    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">    function throttle(fn) &#123;</span><br><span class="line">    // 通过闭包保存一个标记</span><br><span class="line">    let canRun = true;</span><br><span class="line">    return function()&#123;</span><br><span class="line">    // 每次开始执行函数时都先判断标记是否为 true，不为 true 则 return</span><br><span class="line">    if (!canRun) return;</span><br><span class="line">    // 上一次定时器执行完后 canRun 为 true，所以要先设置为false</span><br><span class="line">    canRun = false;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">    fn.apply(this, arguments);</span><br><span class="line">    // 最后在 setTimeout 执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是 false，在开头被 return 掉</span><br><span class="line">    canRun = true;</span><br><span class="line">    &#125;, 1000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -323,20 +328,18 @@
     <div class="scroll" id="post-nav-button">
         
             <a href="/2022/01/23/node/" title="Pre: node">
-                <i class="fa fa-angle-left"></i>
+                <i class="iconfont icon-jiantouzuo"></i>
             </a>
         
-
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
+        <a title="Mini Archives"><i class="iconfont icon-home"></i></a>
         
             <a href="/2022/01/23/jS/" title="Next: jS">
-                <i class="fa fa-angle-right"></i>
+                <i class="iconfont icon-jiantouyou"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E7%BD%91%E5%9D%80!%E6%B5%8F%E8%A7%88%E5%99%A8/">网址/浏览器/</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/flex%E5%B8%83%E5%B1%80/">flex布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机组成思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机网络思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">操作系统思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">数据结构思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E7%BD%91%E5%9D%80!%E6%B5%8F%E8%A7%88%E5%99%A8/">网址/浏览器/</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/flex%E5%B8%83%E5%B1%80/">flex布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">计算机操作系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%83%8C%E8%AF%B5/">操作系统背诵</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E8%8C%83%E6%96%87/">作文范文</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/">作文模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E7%A7%AF%E7%B4%AF/">英语作文积累</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/16/%F0%9F%92%A1%201%20%E5%88%86%E9%92%9F%E7%8E%A9%E8%BD%AC%E8%AF%AD%E9%9B%80%E6%96%87%E6%A1%A3/">💡 1 分钟玩转语雀文档</a></li></ul>
 
 
 
@@ -349,7 +352,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
+                <i class="iconfont icon-copyright"></i> 
                 2021-2022 John Doe
             </div>
         </div>
@@ -376,8 +379,8 @@
     </script>
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="iconfont icon-shangjiantou"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="iconfont icon-xiajiantou"></i></a>
 </div>
   </div>
 </body>

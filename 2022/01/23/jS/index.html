@@ -8,21 +8,23 @@
 <meta name="author" content="John Doe" />
 <meta name="referrer" content="no-referrer" />
 
-<meta name="description" content="输出 12345     alert(&quot;hello&quot;);​    document.write(&quot;hello&quot;);​    console.log(&quot;hello&quot;); &#x2F;&#x2F;该语句用来在控制台输出一个日志    跳出一个弹窗输出  在页面中输出  在控制台中输出  数据类型在 JS 中一共有六种数据类型 String 字符串  转义字符 在">
+<meta name="description" content="输出 12345 alert(&quot;hello&quot;);document.write(&quot;hello&quot;);console.log(&quot;hello&quot;); &#x2F;&#x2F;该语句用来在控制台输出一个日志    跳出一个弹窗输出  在页面中输出  在控制台中输出  数据类型在 JS 中一共有六种数据类型 String 字符串  转义字符 在字符串中我们可以使用\作为转">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jS">
 <meta property="og:url" content="http://example.com/2022/01/23/jS/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="输出 12345     alert(&quot;hello&quot;);​    document.write(&quot;hello&quot;);​    console.log(&quot;hello&quot;); &#x2F;&#x2F;该语句用来在控制台输出一个日志    跳出一个弹窗输出  在页面中输出  在控制台中输出  数据类型在 JS 中一共有六种数据类型 String 字符串  转义字符 在">
+<meta property="og:site_name" content="后知后觉的个人主页">
+<meta property="og:description" content="输出 12345 alert(&quot;hello&quot;);document.write(&quot;hello&quot;);console.log(&quot;hello&quot;); &#x2F;&#x2F;该语句用来在控制台输出一个日志    跳出一个弹窗输出  在页面中输出  在控制台中输出  数据类型在 JS 中一共有六种数据类型 String 字符串  转义字符 在字符串中我们可以使用\作为转">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-23T07:33:41.000Z">
-<meta property="article:modified_time" content="2022-02-20T05:23:10.917Z">
+<meta property="article:modified_time" content="2022-04-28T02:37:36.243Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="前端知识">
 <meta name="twitter:card" content="summary">
 
 <link rel="shortcut icon" href="/img/favicon.ico">
 <link href="/css/bootstrap.css" rel="stylesheet">
-<link href="/css/reset.css" rel="stylesheet">
+<link href="/css/person.css"  rel="stylesheet">
+<link href="//at.alicdn.com/t/font_2822169_7n9pu9ptxz8.css" rel="stylesheet">
 
     <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
 
@@ -37,7 +39,10 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>jS | Hexo</title>
+<title>
+    jS | 
+    后知后觉的个人主页
+</title>
 
 <script src="/plugins/jquery.min.js"></script>
 <script src="/plugins/clipboard.min.js"></script>
@@ -87,8 +92,6 @@
                         
                             <li><a href="/">主页</a></li>
                         
-                            <li><a href="/archives/">所有文章</a></li>
-                        
                             <li><a href="/tags/">标签云</a></li>
                         
                             <li><a href="/about/">关于我</a></li>
@@ -120,8 +123,6 @@
                 <ul>
                 
                     <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
                 
                     <li><a href="/tags/">标签云</a></li>
                 
@@ -164,6 +165,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" rel="tag">前端知识</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -172,7 +177,7 @@
       
           
         <p>输出</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     alert(&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">​    document.write(&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">​    console.log(&quot;hello&quot;); //该语句用来在控制台输出一个日志</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> alert(&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">document.write(&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">console.log(&quot;hello&quot;); //该语句用来在控制台输出一个日志</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li> 跳出一个弹窗输出</li>
@@ -226,7 +231,7 @@
 <li>对于 Number 和 Boolean 实际上就是调用的 toString()方法</li>
 <li>但是对于 null 和 undefined，就不会调用 toString()方法<br><strong>一般调用的都是 number 类型或者布尔</strong></li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">     a = a.toString();</span><br><span class="line">​    a = String(a);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> a = a.toString();</span><br><span class="line">a = String(a);</span><br></pre></td></tr></table></figure>
 
 <h2 id="转换为数字"><a href="#转换为数字" class="headerlink" title="转换为数字"></a>转换为数字</h2><h3 id="使用-Number-函数"><a href="#使用-Number-函数" class="headerlink" title="使用 Number()函数"></a>使用 Number()函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = Number(a);</span><br></pre></td></tr></table></figure>
 
@@ -237,16 +242,16 @@
 <p>false 转成 0</p>
 <h4 id="null-–-gt-数字-0"><a href="#null-–-gt-数字-0" class="headerlink" title="null –&gt; 数字     0"></a>null –&gt; 数字     0</h4><h4 id="undefined-–-gt-数字-NaN"><a href="#undefined-–-gt-数字-NaN" class="headerlink" title="undefined –&gt; 数字 NaN"></a>undefined –&gt; 数字 NaN</h4><h3 id="parseInt-和-parseFloat"><a href="#parseInt-和-parseFloat" class="headerlink" title="parseInt()和 parseFloat()"></a>parseInt()和 parseFloat()</h3><p>这种方式专门用来对付字符串</p>
 <p>parseInt()可以将一个字符串中的有效的整数内容去出来，然后转换为 Number</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">     a = parseFloat(a);第二个参数可以是进制数</span><br><span class="line"></span><br><span class="line">​    a = parseInt(a);第二个参数可以是进制数</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> a = parseFloat(a);第二个参数可以是进制数</span><br><span class="line"></span><br><span class="line">a = parseInt(a);第二个参数可以是进制数</span><br></pre></td></tr></table></figure>
 
 <h2 id="转换为布尔"><a href="#转换为布尔" class="headerlink" title="转换为布尔"></a>转换为布尔</h2><h3 id="使用-Boolean-函数"><a href="#使用-Boolean-函数" class="headerlink" title="使用 Boolean()函数"></a>使用 Boolean()函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = Boolean(a);</span><br></pre></td></tr></table></figure>
 
 <h3 id="数字-—-gt-布尔"><a href="#数字-—-gt-布尔" class="headerlink" title="数字 —&gt; 布尔"></a>数字 —&gt; 布尔</h3><p>除了 0 和 NaN，其余的都是 true</p>
 <h3 id="字符串-—-gt-布尔"><a href="#字符串-—-gt-布尔" class="headerlink" title="字符串 —&gt; 布尔"></a>字符串 —&gt; 布尔</h3><p>除了空串，其余的都是 true</p>
 <h3 id="null-和-undefined-都会转换为-false"><a href="#null-和-undefined-都会转换为-false" class="headerlink" title="null 和 undefined 都会转换为 false"></a>null 和 undefined 都会转换为 false</h3><p>对象也会转换为 true</p>
-<h1 id="Unicode-编码"><a href="#Unicode-编码" class="headerlink" title="Unicode 编码"></a>Unicode 编码</h1><h2 id="script-中"><a href="#script-中" class="headerlink" title="script 中"></a>script 中</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">		\u四位编码</span><br><span class="line"></span><br><span class="line">​      console.log(&quot;\u2620&quot;);</span><br></pre></td></tr></table></figure>
+<h1 id="Unicode-编码"><a href="#Unicode-编码" class="headerlink" title="Unicode 编码"></a>Unicode 编码</h1><h2 id="script-中"><a href="#script-中" class="headerlink" title="script 中"></a>script 中</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\u四位编码</span><br><span class="line"></span><br><span class="line">    console.log(&quot;\u2620&quot;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="页面中"><a href="#页面中" class="headerlink" title="页面中"></a>页面中</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    &lt;h1 style=&quot;font-size: 200px;&quot;&gt;☠&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">​    &lt;h1 style=&quot;font-size: 200px;&quot;&gt;⚀&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="页面中"><a href="#页面中" class="headerlink" title="页面中"></a>页面中</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 style=&quot;font-size: 200px;&quot;&gt;☠&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1 style=&quot;font-size: 200px;&quot;&gt;⚀&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
 
 <h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>如果使用基本数据类型的数据，我们所创建的变量都是独立，不能成为一个整体。</p>
 <p>对象属于一种复合的数据类型，在对象中可以保存多个不同数据类型的属性。</p>
@@ -274,14 +279,14 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = new Object();</span><br></pre></td></tr></table></figure>
 
 <p>对象的属性值可以是任何的数据类型，也可以是个函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    obj.sayName = function()&#123;</span><br><span class="line"></span><br><span class="line">​        console.log(obj.name);</span><br><span class="line"></span><br><span class="line">​    &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">obj.sayName = function()&#123;</span><br><span class="line"></span><br><span class="line">    console.log(obj.name);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h2 id="枚举对象"><a href="#枚举对象" class="headerlink" title="枚举对象"></a>枚举对象</h2><p>举例</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      var obj = &#123;</span><br><span class="line">​            name:&quot;孙悟空&quot;,</span><br><span class="line">​            age:18,</span><br><span class="line">​            gender:&quot;男&quot;,</span><br><span class="line">​            address:&quot;花果山&quot;</span><br><span class="line">​           &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">      name:&quot;孙悟空&quot;,</span><br><span class="line">      age:18,</span><br><span class="line">      gender:&quot;男&quot;,</span><br><span class="line">      address:&quot;花果山&quot;</span><br><span class="line">     &#125;;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">      for(var n in obj)&#123;</span><br><span class="line">​        console.log(&quot;属性名:&quot;+n);</span><br><span class="line">​        console.log(&quot;属性值:&quot;+obj[n]);</span><br><span class="line">​      &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for(var n in obj)&#123;</span><br><span class="line">  console.log(&quot;属性名:&quot;+n);</span><br><span class="line">  console.log(&quot;属性值:&quot;+obj[n]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="对象继承"><a href="#对象继承" class="headerlink" title="对象继承"></a>对象继承</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  function Person(name, age) &#123;</span><br><span class="line">​    this.name = name</span><br><span class="line">​    this.age = age</span><br><span class="line">  &#125;</span><br><span class="line">  Person.prototype.setName = function (name) &#123;</span><br><span class="line">​    this.name = name</span><br><span class="line">  &#125;</span><br><span class="line">  function Student(name, age, price) &#123;</span><br><span class="line">​    Person.call(this, name, age) //得到父类型的属性</span><br><span class="line">​    this.price = price</span><br><span class="line">  &#125;</span><br><span class="line">  Student.prototype = new Person()  //得到父类型的方法</span><br></pre></td></tr></table></figure>
+<h2 id="对象继承"><a href="#对象继承" class="headerlink" title="对象继承"></a>对象继承</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age) &#123;</span><br><span class="line">  this.name = name</span><br><span class="line">  this.age = age</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.setName = function (name) &#123;</span><br><span class="line">  this.name = name</span><br><span class="line">&#125;</span><br><span class="line">function Student(name, age, price) &#123;</span><br><span class="line">  Person.call(this, name, age) //得到父类型的属性</span><br><span class="line">  this.price = price</span><br><span class="line">&#125;</span><br><span class="line">Student.prototype = new Person()  //得到父类型的方法</span><br></pre></td></tr></table></figure>
 
 <pre><code>**这样子元素里面的原型就是父元素里面的原型了**
 </code></pre>
@@ -312,7 +317,7 @@
 <p>3.以构造函数的形式调用时，this 是新创建的那个对象</p>
 <p>4.使用 call 和 apply 调用时，this 是指定的那个对象</p>
 <p><strong>谁调用 this 就是指向谁</strong></p>
-<h1 id="原型，原型链"><a href="#原型，原型链" class="headerlink" title="原型，原型链"></a>原型，原型链</h1><h2 id="原型（prototype）"><a href="#原型（prototype）" class="headerlink" title="原型（prototype）"></a>原型（prototype）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">      function MyClass()&#123;</span><br><span class="line">​      &#125;</span><br><span class="line">​      MyClass.prototype.a = 123;</span><br><span class="line">每一个函数都可以.出方法</span><br></pre></td></tr></table></figure>
+<h1 id="原型，原型链"><a href="#原型，原型链" class="headerlink" title="原型，原型链"></a>原型，原型链</h1><h2 id="原型（prototype）"><a href="#原型（prototype）" class="headerlink" title="原型（prototype）"></a>原型（prototype）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">      function MyClass()&#123;</span><br><span class="line">      &#125;</span><br><span class="line">      MyClass.prototype.a = 123;</span><br><span class="line">每一个函数都可以.出方法</span><br></pre></td></tr></table></figure>
 
 <p>我们所创建的每一个函数，解析器都会向函数中添加一个属性 prototype</p>
 <p>这个属性对应着一个对象，这个对象就是我们所谓的原型对象</p>
@@ -344,7 +349,7 @@
 <h2 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr = new Array();</span><br><span class="line"></span><br><span class="line">var arr = [];</span><br><span class="line"></span><br><span class="line">var arr = [1,2,3,4,5,10];</span><br></pre></td></tr></table></figure>
 
 <p>数组里的内容可以是对象，可以是函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    arr = [&#123;name:&quot;孙悟空&quot;&#125;,&#123;name:&quot;沙和尚&quot;&#125;,&#123;name:&quot;猪八戒&quot;&#125;];</span><br><span class="line"></span><br><span class="line">​	arr = [function()&#123;alert(1)&#125;,function()&#123;alert(2)&#125;];</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   arr = [&#123;name:&quot;孙悟空&quot;&#125;,&#123;name:&quot;沙和尚&quot;&#125;,&#123;name:&quot;猪八戒&quot;&#125;];</span><br><span class="line"></span><br><span class="line">arr = [function()&#123;alert(1)&#125;,function()&#123;alert(2)&#125;];</span><br></pre></td></tr></table></figure>
 
 <h2 id="数组方法"><a href="#数组方法" class="headerlink" title="数组方法"></a>数组方法</h2><h3 id="push"><a href="#push" class="headerlink" title="push()"></a>push()</h3><p>该方法可以向数组的末尾添加一个或多个元素，并返回数组的新的长度</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var result = arr.push(&quot;唐僧&quot;,&quot;蜘蛛精&quot;,&quot;白骨精&quot;,&quot;玉兔精&quot;);</span><br></pre></td></tr></table></figure>
@@ -404,19 +409,19 @@
 <p>也会影响原数组，默认会按照 Unicode 编码进行排序</p>
 <p><strong>sort()可以添加一个回调函数</strong></p>
 <p>里面放两个形参</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">        arr = [5, 4, 2, 1, 3, 6, 8, 7];</span><br><span class="line">​        arr.sort(function(a, b) &#123;</span><br><span class="line">​            //降序排列</span><br><span class="line">​            return b - a;</span><br><span class="line">​        &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr = [5, 4, 2, 1, 3, 6, 8, 7];</span><br><span class="line">arr.sort(function(a, b) &#123;</span><br><span class="line">    //降序排列</span><br><span class="line">    return b - a;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="数组遍历"><a href="#数组遍历" class="headerlink" title="数组遍历"></a>数组遍历</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">      for(var i=0 ; i&lt;arr.length ; i++)&#123;</span><br><span class="line">​        console.log(arr[i]);</span><br><span class="line">​      &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数组遍历"><a href="#数组遍历" class="headerlink" title="数组遍历"></a>数组遍历</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(var i=0 ; i&lt;arr.length ; i++)&#123;</span><br><span class="line">  console.log(arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>第一个参数，就是当前正在遍历的元素</p>
 <p>第二个参数，就是当前正在遍历的元素的索引</p>
 <p>第三个参数，就是正在遍历的数组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.forEach(function(value , index , obj)&#123;</span><br><span class="line">​        console.log(value);</span><br><span class="line">​    &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.forEach(function(value , index , obj)&#123;</span><br><span class="line">        console.log(value);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 
 <h1 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h1><p>在调用函数时，浏览器每次都会传递进两个隐含的参数</p>
 <p>this 和<strong>arguments</strong></p>
 <p>在调用函数时，我们所传递的实参都会在 arguments 中保存</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">arguments.length可以用来获取实参的长度</span><br><span class="line"></span><br><span class="line">arguments[0] 表示第一个实参</span><br><span class="line"></span><br><span class="line">​      function fun(a,b)&#123;</span><br><span class="line">​        console.log(arguments.callee == fun);</span><br><span class="line">​	这个属性对应一个函数对象，就是当前正在指向的函数的对象</span><br><span class="line">​      &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">arguments.length可以用来获取实参的长度</span><br><span class="line"></span><br><span class="line">arguments[0] 表示第一个实参</span><br><span class="line"></span><br><span class="line">      function fun(a,b)&#123;</span><br><span class="line">        console.log(arguments.callee == fun);</span><br><span class="line">	这个属性对应一个函数对象，就是当前正在指向的函数的对象</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="Date-对象"><a href="#Date-对象" class="headerlink" title="Date 对象"></a>Date 对象</h1><p>在 JS 中使用 Date 对象来表示一个时间</p>
 <ul>
@@ -443,7 +448,7 @@
 
 <h1 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h1><p>Math.PI 表示的圆周率</p>
 <p>Math.abs(-1)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">      var max = Math.max(10,45,30,100);</span><br><span class="line"></span><br><span class="line">​      var min = Math.min(10,45,30,100);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var max = Math.max(10,45,30,100);</span><br><span class="line"></span><br><span class="line">var min = Math.min(10,45,30,100);</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(Math.sqrt(2));</span><br></pre></td></tr></table></figure>
 
@@ -465,7 +470,7 @@
 <hr>
 <h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p><strong>方法和属性之能添加给对象，不能添加给基本数据类型</strong></p>
 <p>当我们对一些基本数据类型的值去调用属性和方法时，浏览器会临时使用包装类将其转换为对象，然后在调用对象的属性和方法，调用完以后，在将其转换为基本数据类型</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">      var s = 123;</span><br><span class="line">​      s = s.toString();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = 123;</span><br><span class="line">s = s.toString();</span><br></pre></td></tr></table></figure>
 
 <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="length-属性"><a href="#length-属性" class="headerlink" title="length 属性"></a>length 属性</h2><p>可以用来获取字符串的长度</p>
 <h2 id="indexof"><a href="#indexof" class="headerlink" title="indexof()"></a>indexof()</h2><p>该方法可以检索一个字符串中是否含有指定内容</p>
@@ -552,20 +557,18 @@
     <div class="scroll" id="post-nav-button">
         
             <a href="/2022/01/23/js%E7%90%86%E8%AE%BA/" title="Pre: js理论">
-                <i class="fa fa-angle-left"></i>
+                <i class="iconfont icon-jiantouzuo"></i>
             </a>
         
-
-        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
+        <a title="Mini Archives"><i class="iconfont icon-home"></i></a>
         
             <a href="/2022/01/23/jquery/" title="Next: jquery">
-                <i class="fa fa-angle-right"></i>
+                <i class="iconfont icon-jiantouyou"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E7%BD%91%E5%9D%80!%E6%B5%8F%E8%A7%88%E5%99%A8/">网址/浏览器/</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/flex%E5%B8%83%E5%B1%80/">flex布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机组成思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机网络思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">操作系统思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">数据结构思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E7%BD%91%E5%9D%80!%E6%B5%8F%E8%A7%88%E5%99%A8/">网址/浏览器/</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/flex%E5%B8%83%E5%B1%80/">flex布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">计算机操作系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%83%8C%E8%AF%B5/">操作系统背诵</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E8%8C%83%E6%96%87/">作文范文</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/">作文模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E7%A7%AF%E7%B4%AF/">英语作文积累</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/16/%F0%9F%92%A1%201%20%E5%88%86%E9%92%9F%E7%8E%A9%E8%BD%AC%E8%AF%AD%E9%9B%80%E6%96%87%E6%A1%A3/">💡 1 分钟玩转语雀文档</a></li></ul>
 
 
 
@@ -578,7 +581,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
+                <i class="iconfont icon-copyright"></i> 
                 2021-2022 John Doe
             </div>
         </div>
@@ -605,8 +608,8 @@
     </script>
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="iconfont icon-shangjiantou"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="iconfont icon-xiajiantou"></i></a>
 </div>
   </div>
 </body>
