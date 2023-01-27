@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="John Doe" />
+<meta name="referrer" content="no-referrer" />
+
+<meta name="description" content="操作原生 dom通过 id 获取 dom 对象获取到 button 对象1var btn &#x3D; document.getElementById(&quot;btn&quot;);  修改按钮的文字&#x2F;&#x2F;修改按钮的文字 1btn.innerHTML &#x3D; &quot;I&amp;#x27;m Button&quot;;  绑定一个单击事件123btn.onclick &#x3D; function()&amp;#123;    a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM">
+<meta property="og:url" content="http://example.com/2022/01/23/DOM/index.html">
+<meta property="og:site_name" content="后知后觉的个人主页">
+<meta property="og:description" content="操作原生 dom通过 id 获取 dom 对象获取到 button 对象1var btn &#x3D; document.getElementById(&quot;btn&quot;);  修改按钮的文字&#x2F;&#x2F;修改按钮的文字 1btn.innerHTML &#x3D; &quot;I&amp;#x27;m Button&quot;;  绑定一个单击事件123btn.onclick &#x3D; function()&amp;#123;    a">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-23T07:26:38.000Z">
+<meta property="article:modified_time" content="2023-01-27T05:30:50.881Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="shortcut icon" href="/img/favicon.ico">
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/person.css"  rel="stylesheet">
+<link href="//at.alicdn.com/t/font_2822169_7n9pu9ptxz8.css" rel="stylesheet">
+
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="/plugins/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link href="/css/style.css?v=1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>
+    DOM | 
+    后知后觉的个人主页
+</title>
+
+<script src="/plugins/jquery.min.js"></script>
+<script src="/plugins/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: "true",
+        isHome: "false",
+        isPost: "true",
+        isArchive: "false",
+        isTag: "false",
+        isCategory: "false",
+        fancybox_js: "/plugins/jquery.fancybox.min.js",
+        scrollreveal: "/plugins/scrollreveal.min.js",
+        search: ""
+    }
+</script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/index.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                            <li><a href="/about">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger hide"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/index.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                    <li><a href="/about">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><div class="post"></div>
+<article id="post-DOM" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/23/DOM/" class="article-date">
+      <time datetime="2022-01-23T07:26:38.000Z" itemprop="datePublished">2022-01-23</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DOM
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="操作原生-dom"><a href="#操作原生-dom" class="headerlink" title="操作原生 dom"></a>操作原生 dom</h1><h2 id="通过-id-获取-dom-对象"><a href="#通过-id-获取-dom-对象" class="headerlink" title="通过 id 获取 dom 对象"></a>通过 id 获取 dom 对象</h2><h3 id="获取到-button-对象"><a href="#获取到-button-对象" class="headerlink" title="获取到 button 对象"></a>获取到 button 对象</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var btn = document.getElementById(&quot;btn&quot;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改按钮的文字"><a href="#修改按钮的文字" class="headerlink" title="修改按钮的文字"></a>修改按钮的文字</h3><p>//修改按钮的文字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">btn.innerHTML = &quot;I&#x27;m Button&quot;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="绑定一个单击事件"><a href="#绑定一个单击事件" class="headerlink" title="绑定一个单击事件"></a>绑定一个单击事件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.onclick = function()&#123;</span><br><span class="line">    alert(&quot;你还点~~~&quot;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过标签获取-dom-对象"><a href="#通过标签获取-dom-对象" class="headerlink" title="通过标签获取 dom 对象"></a>通过标签获取 dom 对象</h2><h3 id="查找所有-li-节点"><a href="#查找所有-li-节点" class="headerlink" title="查找所有 li 节点"></a>查找所有 li 节点</h3><p>getElementsByTagName()可以根据标签名来获取一组元素节点对象</p>
+<p>这个方法会给我们返回一个类数组对象，所有查询到的元素都会封装到对象中</p>
+<p>得到是数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var lis = document.getElementsByTagName(&quot;li&quot;);</span><br><span class="line">//alert(lis.length);</span><br><span class="line">for(var i=0 ; i&lt;lis.length ; i++)&#123;</span><br><span class="line">  alert(lis[i].innerHTML);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过-name-获取-dom-对象"><a href="#通过-name-获取-dom-对象" class="headerlink" title="通过 name 获取 dom 对象"></a>通过 name 获取 dom 对象</h2><p>查找 name=gender 的所有节点</p>
+<p>得到的也是一个数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var inputs = document.getElementsByName(&quot;gender&quot;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="innerHTML"><a href="#innerHTML" class="headerlink" title="innerHTML"></a>innerHTML</h2><p>用于获取元素内部的 HTML 代码的</p>
+<p>对于自结束标签，这个属性没有意义</p>
+<h2 id="读取元素节点属性"><a href="#读取元素节点属性" class="headerlink" title="读取元素节点属性"></a>读取元素节点属性</h2><p>元素.id 元素.name 元素.value</p>
+<p>读取 class 属性时需要使用 元素.className</p>
+<h2 id="获取相邻元素"><a href="#获取相邻元素" class="headerlink" title="获取相邻元素"></a>获取相邻元素</h2><h3 id="childNodes"><a href="#childNodes" class="headerlink" title="childNodes"></a>childNodes</h3><p>childNodes 属性会获取包括文本节点在呢的所有节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var cns = city.childNodes;</span><br></pre></td></tr></table></figure>
+
+<h3 id="children"><a href="#children" class="headerlink" title="children"></a>children</h3><p>可以获取当前元素的所有子元素</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var cns2 = city.children;</span><br></pre></td></tr></table></figure>
+
+<h3 id="parentNode"><a href="#parentNode" class="headerlink" title="parentNode"></a>parentNode</h3><p>父节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var pn = bj.parentNode;</span><br></pre></td></tr></table></figure>
+
+<p><strong>以上属性都是返回一个数组</strong></p>
+<h3 id="previousSibling"><a href="#previousSibling" class="headerlink" title="previousSibling"></a>previousSibling</h3><p>前一个兄弟节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var ps = and.previousSibling;</span><br></pre></td></tr></table></figure>
+
+<h2 id="根据-class-属性值查询节点对象"><a href="#根据-class-属性值查询节点对象" class="headerlink" title="根据 class 属性值查询节点对象"></a>根据 class 属性值查询节点对象</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var box1 = document.getElementsByClassName(&quot;box1&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>根据 class 的名字来查询，返回一组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var div = document.querySelector(&quot;.box1 div&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>使用该方法总会返回唯一的一个元素，如果满足条件的元素有多个，那么它只会返回第一个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box1 = document.querySelectorAll(&quot;#box2&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>该方法和 querySelector()用法类似，不同的是它会将符合条件的元素封装到一个数组中返回</p>
+<p>即使符合条件的元素只有一个，它也会返回数组</p>
+<h2 id="dom-增删改"><a href="#dom-增删改" class="headerlink" title="dom 增删改"></a>dom 增删改</h2><h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><p>创建一个元素节点对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var li = document.createElement(&quot;li&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>创建一个文本节点对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var gzText = document.createTextNode(&quot;广州&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>向一个父节点中添加一个新的子节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">li.appendChild(gzText);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>获取 id 为 city 的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var city = document.getElementById(&quot;city&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>将广州添加到 city 下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">city.appendChild(li);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>insertBefore()</p>
+<p>可以在指定的子节点前插入新的子节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">city.insertBefore(li , bj);</span><br></pre></td></tr></table></figure>
+
+<h3 id="改"><a href="#改" class="headerlink" title="改"></a>改</h3><p>replaceChild()</p>
+<p>可以使用指定的子节点替换已有的子节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">city.replaceChild(li , bj);</span><br></pre></td></tr></table></figure>
+
+<h3 id="删"><a href="#删" class="headerlink" title="删"></a>删</h3><p>removeChild</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bj.parentNode.removeChild(bj);</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-DOM-操作-CSS"><a href="#使用-DOM-操作-CSS" class="headerlink" title="使用 DOM 操作 CSS"></a>使用 DOM 操作 CSS</h2><h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><p>获取 box1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var box1 = document.getElementById(&quot;box1&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>为按钮绑定单击响应函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var btn01 = document.getElementById(&quot;btn01&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>赋值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> box1.style.width = &quot;300px&quot;;</span><br><span class="line">box1.style.height = &quot;300px&quot;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="读值"><a href="#读值" class="headerlink" title="读值"></a>读值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(box1.style.width);</span><br></pre></td></tr></table></figure>
+
+<p>currentStyle</p>
+<p>getStyle</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert(box1.currentStyle.backgroundColor);</span><br><span class="line">var w = getStyle(box1,&quot;width&quot;);</span><br><span class="line">alert(w);</span><br></pre></td></tr></table></figure>
+
+<h1 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h1><p>事件的冒泡（Bubble）</p>
+<p>所谓的冒泡指的就是事件的向上传导，当后代元素上的事件被触发时，其祖先元素的相同事件也会被触发</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s1.onclick = function(event) &#123;</span><br><span class="line">    //可以将事件对象的cancelBubble设置为true，即可取消冒泡</span><br><span class="line">    // event.cancelBubble = true;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="监听事件"><a href="#监听事件" class="headerlink" title="监听事件"></a>监听事件</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;mouseover&quot;, myFunction);</span><br></pre></td></tr></table></figure>
+
+<h1 id="委派"><a href="#委派" class="headerlink" title="委派"></a>委派</h1><p>将事件统一绑定给元素<strong>共同的祖先元素</strong>（后代元素事件触发时，通过冒泡，通过祖先元素的响应函数来处理事件）<br>这样可以只绑定一次，即可应用到多个元素上</p>
+<p>事件委派是利用了冒泡，通过委派可以减少事件绑定的次数，提高程序的性能</p>
+<hr>
+<p>为 ul 绑定一个单击响应函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">u1.onclick = function(event) &#123;</span><br><span class="line">            /*</span><br><span class="line">             * target</span><br><span class="line">             *     - event中的target表示的触发事件的对象</span><br><span class="line">             */</span><br><span class="line">            alert(event.target.innerHTML);</span><br><span class="line">            //如果触发事件的对象是我们期望的元素，则执行否则不执行</span><br><span class="line">            if (event.target.className == &quot;link&quot;) &#123;</span><br><span class="line">                alert(&quot;我是ul的单击响应函数&quot;);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                alert(&quot;asd&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这样以后，点击 ul 里面 class=link 的就会走 if，否则 else</p>
+<p>这样就不用给每一个内部都添加方法了</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h3 id="onkeydown"><a href="#onkeydown" class="headerlink" title="onkeydown"></a>onkeydown</h3><p>按键被按下</p>
+<h3 id="onkeyup"><a href="#onkeyup" class="headerlink" title="onkeyup"></a>onkeyup</h3><p>按键被松开</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  var input = document.getElementsByTagName(&quot;input&quot;)[0];</span><br><span class="line">  input.onkeydown = function(event)&#123;</span><br><span class="line">    event = event || window.event;</span><br><span class="line">    //console.log(event.keyCode);</span><br><span class="line">    //数字 48 - 57</span><br><span class="line">    //使文本框中不能输入数字</span><br><span class="line">    if(event.keyCode &gt;= 48 &amp;&amp; event.keyCode &lt;= 57)&#123;</span><br><span class="line">      //在文本框中输入内容，属于onkeydown的默认行为</span><br><span class="line">      //如果在onkeydown中取消了默认行为，则输入的内容，不会出现在文本框中</span><br><span class="line">      return false;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2022/01/23/ES6/">
+                    ES6
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2022/01/23/css%E7%90%86%E8%AE%BA/">
+                    css理论
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E5%8E%9F%E7%94%9F-dom"><span class="toc-text">操作原生 dom</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-id-%E8%8E%B7%E5%8F%96-dom-%E5%AF%B9%E8%B1%A1"><span class="toc-text">通过 id 获取 dom 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%88%B0-button-%E5%AF%B9%E8%B1%A1"><span class="toc-text">获取到 button 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%8C%89%E9%92%AE%E7%9A%84%E6%96%87%E5%AD%97"><span class="toc-text">修改按钮的文字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%8D%95%E5%87%BB%E4%BA%8B%E4%BB%B6"><span class="toc-text">绑定一个单击事件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E6%A0%87%E7%AD%BE%E8%8E%B7%E5%8F%96-dom-%E5%AF%B9%E8%B1%A1"><span class="toc-text">通过标签获取 dom 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%89%80%E6%9C%89-li-%E8%8A%82%E7%82%B9"><span class="toc-text">查找所有 li 节点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-name-%E8%8E%B7%E5%8F%96-dom-%E5%AF%B9%E8%B1%A1"><span class="toc-text">通过 name 获取 dom 对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#innerHTML"><span class="toc-text">innerHTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E5%85%83%E7%B4%A0%E8%8A%82%E7%82%B9%E5%B1%9E%E6%80%A7"><span class="toc-text">读取元素节点属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%9B%B8%E9%82%BB%E5%85%83%E7%B4%A0"><span class="toc-text">获取相邻元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#childNodes"><span class="toc-text">childNodes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#children"><span class="toc-text">children</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#parentNode"><span class="toc-text">parentNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#previousSibling"><span class="toc-text">previousSibling</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE-class-%E5%B1%9E%E6%80%A7%E5%80%BC%E6%9F%A5%E8%AF%A2%E8%8A%82%E7%82%B9%E5%AF%B9%E8%B1%A1"><span class="toc-text">根据 class 属性值查询节点对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dom-%E5%A2%9E%E5%88%A0%E6%94%B9"><span class="toc-text">dom 增删改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E"><span class="toc-text">增</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9"><span class="toc-text">改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0"><span class="toc-text">删</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-DOM-%E6%93%8D%E4%BD%9C-CSS"><span class="toc-text">使用 DOM 操作 CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC"><span class="toc-text">赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%80%BC"><span class="toc-text">读值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%92%E6%B3%A1"><span class="toc-text">冒泡</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6"><span class="toc-text">监听事件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A7%94%E6%B4%BE"><span class="toc-text">委派</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6"><span class="toc-text">事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#onkeydown"><span class="toc-text">onkeydown</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onkeyup"><span class="toc-text">onkeyup</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2022/01/23/ES6/" title="Pre: ES6">
+                <i class="iconfont icon-jiantouzuo"></i>
+            </a>
+        
+        <a title="Mini Archives"><i class="iconfont icon-home"></i></a>
+        
+            <a href="/2022/01/23/css%E7%90%86%E8%AE%BA/" title="Next: css理论">
+                <i class="iconfont icon-jiantouyou"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/01/07/%E6%97%A0%E6%A0%87%E9%A2%98/">无标题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机组成思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机网络思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">操作系统思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">数据结构思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E5%B8%83%E5%B1%80/">css布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">计算机操作系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%83%8C%E8%AF%B5/">操作系统背诵</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E8%8C%83%E6%96%87/">作文范文</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/">作文模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E7%A7%AF%E7%B4%AF/">英语作文积累</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/16/%F0%9F%92%A1%201%20%E5%88%86%E9%92%9F%E7%8E%A9%E8%BD%AC%E8%AF%AD%E9%9B%80%E6%96%87%E6%A1%A3/">💡 1 分钟玩转语雀文档</a></li></ul>
+
+
+
+
+    <script>
+        ""
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="iconfont icon-copyright"></i> 
+                2021-2023 John Doe
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="/plugins/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = "5";
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="iconfont icon-shangjiantou"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="iconfont icon-xiajiantou"></i></a>
+</div>
+  </div>
+</body>
+</html>

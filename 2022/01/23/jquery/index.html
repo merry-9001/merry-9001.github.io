@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="John Doe" />
+<meta name="referrer" content="no-referrer" />
+
+<meta name="description" content="不能添加多个入口函数（window.onload）,如果添加了多个，后面的会把前面的给覆盖。 原生 js 的 api 名字都太长太难记。 原生 js 有的时候代码冗余。 原生 js 中有些属性或者方法，有浏览器兼容问题。 原生 js 容错率比较低，前面的代码出了问题，后面的代码执行不了。  针对 jQuery 的优化方法*频繁操作的 DOM，先缓存起来再操作。用 Jquery 的链式调用更好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jquery">
+<meta property="og:url" content="http://example.com/2022/01/23/jquery/index.html">
+<meta property="og:site_name" content="后知后觉的个人主页">
+<meta property="og:description" content="不能添加多个入口函数（window.onload）,如果添加了多个，后面的会把前面的给覆盖。 原生 js 的 api 名字都太长太难记。 原生 js 有的时候代码冗余。 原生 js 中有些属性或者方法，有浏览器兼容问题。 原生 js 容错率比较低，前面的代码出了问题，后面的代码执行不了。  针对 jQuery 的优化方法*频繁操作的 DOM，先缓存起来再操作。用 Jquery 的链式调用更好。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-23T07:33:36.000Z">
+<meta property="article:modified_time" content="2023-01-27T05:30:50.876Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="shortcut icon" href="/img/favicon.ico">
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/person.css"  rel="stylesheet">
+<link href="//at.alicdn.com/t/font_2822169_7n9pu9ptxz8.css" rel="stylesheet">
+
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="/plugins/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link href="/css/style.css?v=1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>
+    jquery | 
+    后知后觉的个人主页
+</title>
+
+<script src="/plugins/jquery.min.js"></script>
+<script src="/plugins/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: "true",
+        isHome: "false",
+        isPost: "true",
+        isArchive: "false",
+        isTag: "false",
+        isCategory: "false",
+        fancybox_js: "/plugins/jquery.fancybox.min.js",
+        scrollreveal: "/plugins/scrollreveal.min.js",
+        search: ""
+    }
+</script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/index.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                            <li><a href="/about">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger hide"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/index.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                    <li><a href="/about">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><div class="post"></div>
+<article id="post-jquery" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/23/jquery/" class="article-date">
+      <time datetime="2022-01-23T07:33:36.000Z" itemprop="datePublished">2022-01-23</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jquery
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <ul>
+<li>不能添加多个入口函数（window.onload）,如果添加了多个，后面的会把前面的给覆盖。</li>
+<li>原生 js 的 api 名字都太长太难记。</li>
+<li>原生 js 有的时候代码冗余。</li>
+<li>原生 js 中有些属性或者方法，有浏览器兼容问题。</li>
+<li>原生 js 容错率比较低，前面的代码出了问题，后面的代码执行不了。</li>
+</ul>
+<h1 id="针对-jQuery-的优化方法"><a href="#针对-jQuery-的优化方法" class="headerlink" title="针对 jQuery 的优化方法"></a>针对 jQuery 的优化方法</h1><p>*频繁操作的 DOM，先缓存起来再操作。用 Jquery 的链式调用更好。</p>
+<h1 id="jquery-的优点"><a href="#jquery-的优点" class="headerlink" title="jquery 的优点"></a>jquery 的优点</h1><ul>
+<li>是可以写多个入口函数的。</li>
+<li>jQuery 的 api 名字都容易记忆。</li>
+<li>jQuery 代码简洁（隐式迭代）。</li>
+<li>jQuery 帮我们解决了浏览器兼容问题。</li>
+<li>容错率较高，前面的代码出来了问题，后面的代码不受影响。</li>
+</ul>
+<h1 id="入口函数"><a href="#入口函数" class="headerlink" title="入口函数"></a>入口函数</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function () &#123;</span><br><span class="line">  console.log(&quot;我又是一个入口函数&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(function () &#123;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>更简略的写法</p>
+<h1 id="属性设置"><a href="#属性设置" class="headerlink" title="属性设置"></a>属性设置</h1><h2 id="设置边框"><a href="#设置边框" class="headerlink" title="设置边框"></a>设置边框</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;#btn0ne&#x27;).click(function () &#123;</span><br><span class="line">  $(&#x27;div&#x27;).css(&#x27;border&#x27;,&#x27;1px solid red&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置文本"><a href="#设置文本" class="headerlink" title="设置文本"></a>设置文本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;#btnTwo&#x27;).click(function () &#123;</span><br><span class="line">  $(&#x27;div&#x27;).text(&#x27;我是设置的文本&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="采用链式"><a href="#采用链式" class="headerlink" title="采用链式"></a>采用链式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;div&#x27;).width(100).height(100).css(&#x27;backgroundColor&#x27;,&#x27;red&#x27;).text(&#x27;哈哈&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="按钮点击"><a href="#按钮点击" class="headerlink" title="按钮点击"></a>按钮点击</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;#getBtn&#x27;).click(function () &#123;</span><br><span class="line">  console.log($(&#x27;div&#x27;).text());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>单击 id=getBtn 的按钮的事件</p>
+<p>会获取到这个标签中所有的文本,包括后代元素的文本.</p>
+<p>包含了多个 dom 元素的 jQuery 对象,通过 text()方法获取文本,会把所有 dom 元素的文本获取到.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;div&#x27;).text(&#x27;设置的文本&#x27;); //隐式迭代.</span><br></pre></td></tr></table></figure>
+
+<p>传入参数就是设置</p>
+<h2 id="设置-css-样式"><a href="#设置-css-样式" class="headerlink" title="设置 css 样式"></a>设置 css 样式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log($(&#x27;div&#x27;).css(&#x27;width&#x27;));//&#x27;200px&#x27;</span><br><span class="line">//注意：获取样式操作只会返回第一个元素对应的样式值。</span><br></pre></td></tr></table></figure>
+
+<p>给所有标签设置样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;div&#x27;).css(&#123;</span><br><span class="line">  width: 300,</span><br><span class="line">  &#x27;height&#x27;: &#x27;300px&#x27;,</span><br><span class="line">  &#x27;background-color&#x27;: &#x27;green&#x27;,</span><br><span class="line">  &#x27;border&#x27;: &#x27;10px solid red&#x27;,</span><br><span class="line">  marginTop:10</span><br><span class="line">&#125;);</span><br><span class="line">//隐式迭代,把每一个div都设置了同样的样式.</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取元素"><a href="#获取元素" class="headerlink" title="获取元素"></a>获取元素</h2><p>设置选择器</p>
+<table>
+<thead>
+<tr>
+<th>基本选择器</th>
+<th>和 css 里面的选择器是一样的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id 选择器</td>
+<td>$(‘#id’)</td>
+</tr>
+<tr>
+<td>类选择器</td>
+<td>$(“.类名”)</td>
+</tr>
+<tr>
+<td>标签选择器</td>
+<td>$(“标签名”)</td>
+</tr>
+<tr>
+<td>并集选择器</td>
+<td>$(‘.box,.box2’)</td>
+</tr>
+</tbody></table>
+<p>获取 id 为 father 这个 div 的所有后代 div,以及 id 为 father 这个 div 的所有后代 span.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log($(&#x27;#fahter div , #father span&#x27;));</span><br></pre></td></tr></table></figure>
+
+<p>设置奇数行 li 标签颜色为天蓝色.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;li:odd&#x27;).css(&#x27;backgroundColor&#x27;,&#x27;skyblue&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>给 id 为 div1 的元素添加类.（多个）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;#div1&#x27;).addClass(&#x27;fontSize30 width200&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>removeClass 移除</p>
+<p>hasClass 判断</p>
+<p>toggleClass 切换（如果元素有某个类就移除这个类, 如果元素没有这类就添加这个类.）</p>
+<h2 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h2><p>追加节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;#btn1&#x27;).click(function () &#123;</span><br><span class="line">  var $link = $(&#x27;&lt;a href=&quot;http://news.baidu.com/&quot;&gt;我是新闻&lt;/a&gt;&#x27;);</span><br><span class="line">  $(&#x27;#div1&#x27;).append($link);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;#j_tbData&#x27;).html(list.join(&quot;&quot;));</span><br></pre></td></tr></table></figure>
+
+<p>添加节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var $liNew = $(&quot;&lt;li&gt;我是新创建的li标签&lt;/li&gt;&quot;);</span><br><span class="line"> $(&#x27;#ul1&#x27;).append($liNew);</span><br></pre></td></tr></table></figure>
+
+<p>元素 A.before(元素 B); 把元素 B 插入到元素 A 的前面,作为兄弟元素添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var $divNew = $(&#x27;&lt;div&gt;我是新建的div&lt;/div&gt;&#x27;);</span><br><span class="line">$(&#x27;#ul1&#x27;).before($divNew);</span><br></pre></td></tr></table></figure>
+
+<h2 id="清空元素"><a href="#清空元素" class="headerlink" title="清空元素"></a>清空元素</h2><p>1.清空 ul.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;#ul1&#x27;).empty();</span><br></pre></td></tr></table></figure>
+
+<p>2.移除某一个元素.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;#li3&#x27;).remove();</span><br></pre></td></tr></table></figure>
+
+<p>3.移除 ul.但是只能获取 li3 这个标签.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;#li3&#x27;).parent().remove();</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示和隐藏"><a href="#显示和隐藏" class="headerlink" title="显示和隐藏"></a>显示和隐藏</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;#j_btnAddData&#x27;).click(function () &#123;</span><br><span class="line">    $(&#x27;#j_formAdd&#x27;).show();</span><br><span class="line">    $(&#x27;#j_mask&#x27;).show();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(&#x27;#j_hideFormAdd&#x27;).click(function () &#123;</span><br><span class="line">    $(&#x27;#j_formAdd&#x27;).hide();</span><br><span class="line">    $(&#x27;#j_mask&#x27;).hide();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取当前属性"><a href="#获取当前属性" class="headerlink" title="获取当前属性"></a>获取当前属性</h2><p>获取当前点击的 a 标签的 href 属性的值和 title 属性的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var srcValue = $(this).attr(&#x27;href&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="选中与未选中"><a href="#选中与未选中" class="headerlink" title="选中与未选中"></a>选中与未选中</h2><p>如果多选框是选中状态返回一个 true； 如果多选框是取消选中状态那返回就是一个 false</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log($(&#x27;#ckb1&#x27;).prop(&#x27;checked&#x27;));</span><br></pre></td></tr></table></figure>
+
+<h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$lis.each(function (index,element) &#123;</span><br><span class="line">  // console.log(index); //每一个li标签的索引</span><br><span class="line">  // console.log(element);//每一个li标签,是一个dom对象.</span><br><span class="line"></span><br><span class="line">  $(element).css(&#x27;opacity&#x27;,(index+1)/10);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2022/01/23/jS/">
+                    jS
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2022/01/23/http/">
+                    http
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%92%88%E5%AF%B9-jQuery-%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">针对 jQuery 的优化方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jquery-%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-text">jquery 的优点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A5%E5%8F%A3%E5%87%BD%E6%95%B0"><span class="toc-text">入口函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE"><span class="toc-text">属性设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E8%BE%B9%E6%A1%86"><span class="toc-text">设置边框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%96%87%E6%9C%AC"><span class="toc-text">设置文本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%87%E7%94%A8%E9%93%BE%E5%BC%8F"><span class="toc-text">采用链式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E7%82%B9%E5%87%BB"><span class="toc-text">按钮点击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-css-%E6%A0%B7%E5%BC%8F"><span class="toc-text">设置 css 样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0"><span class="toc-text">获取元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB"><span class="toc-text">类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="toc-text">添加元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E7%A9%BA%E5%85%83%E7%B4%A0"><span class="toc-text">清空元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E5%92%8C%E9%9A%90%E8%97%8F"><span class="toc-text">显示和隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E5%B1%9E%E6%80%A7"><span class="toc-text">获取当前属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E4%B8%AD%E4%B8%8E%E6%9C%AA%E9%80%89%E4%B8%AD"><span class="toc-text">选中与未选中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3"><span class="toc-text">迭代</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2022/01/23/jS/" title="Pre: jS">
+                <i class="iconfont icon-jiantouzuo"></i>
+            </a>
+        
+        <a title="Mini Archives"><i class="iconfont icon-home"></i></a>
+        
+            <a href="/2022/01/23/http/" title="Next: http">
+                <i class="iconfont icon-jiantouyou"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/01/07/%E6%97%A0%E6%A0%87%E9%A2%98/">无标题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机组成思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机网络思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">操作系统思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">数据结构思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/vue%E4%BD%BF%E7%94%A8/">vue使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/promise/">promise</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">算法题（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">面试准备（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%90%84%E7%B1%BB%E5%87%BD%E6%95%B0/">各类函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89/">个人总结（重要）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AF%95%E9%A2%98/">笔试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AC%94%E8%AE%B0/">笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/webpack/">webpack</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E5%B8%83%E5%B1%80/">css布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm/">npm</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">计算机操作系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%83%8C%E8%AF%B5/">操作系统背诵</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E8%8C%83%E6%96%87/">作文范文</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/">作文模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E7%A7%AF%E7%B4%AF/">英语作文积累</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/16/%F0%9F%92%A1%201%20%E5%88%86%E9%92%9F%E7%8E%A9%E8%BD%AC%E8%AF%AD%E9%9B%80%E6%96%87%E6%A1%A3/">💡 1 分钟玩转语雀文档</a></li></ul>
+
+
+
+
+    <script>
+        ""
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="iconfont icon-copyright"></i> 
+                2021-2023 John Doe
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="/plugins/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = "5";
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="iconfont icon-shangjiantou"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="iconfont icon-xiajiantou"></i></a>
+</div>
+  </div>
+</body>
+</html>
