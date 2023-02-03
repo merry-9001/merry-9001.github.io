@@ -15,12 +15,12 @@
 <meta property="og:site_name" content="后知后觉的个人主页">
 <meta property="og:description" content="选择器与层级css 中 ul li 与 ul&gt;li 的区别ul li ：后代选择器，ul 里所有的 li 元素，包括 ol 里的 li ul&gt;li ：子代选择器，下一级的 DOM 节点，不包括 ol 里的 li ul&gt;ol&gt;li ：子代选择器必须一代接一代 属性选择器1.E[attr]:查找指定的拥有 attr 属性的 E 标签。如查找拥有 style 属性的 li 标签">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/webp/22718987/1674634175867-0a510627-1b7b-4546-ab70-95076cea3ea6.webp#averageHue=%23fb0705&clientId=u26e691dd-24b1-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u4e17f92a&margin=%5Bobject%20Object%5D&originHeight=375&originWidth=375&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=uf7b1a334-da21-4770-af95-026725fd0ef&title=">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/webp/22718987/1674634175867-0a510627-1b7b-4546-ab70-95076cea3ea6.webp#averageHue=%23fb0705&clientId=u26e691dd-24b1-4&from=paste&id=u4e17f92a&originHeight=375&originWidth=375&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=uf7b1a334-da21-4770-af95-026725fd0ef&title=">
 <meta property="article:published_time" content="2022-01-23T07:24:37.000Z">
-<meta property="article:modified_time" content="2023-01-27T05:30:50.882Z">
+<meta property="article:modified_time" content="2023-02-03T11:13:20.923Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/webp/22718987/1674634175867-0a510627-1b7b-4546-ab70-95076cea3ea6.webp#averageHue=%23fb0705&clientId=u26e691dd-24b1-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u4e17f92a&margin=%5Bobject%20Object%5D&originHeight=375&originWidth=375&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=uf7b1a334-da21-4770-af95-026725fd0ef&title=">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/webp/22718987/1674634175867-0a510627-1b7b-4546-ab70-95076cea3ea6.webp#averageHue=%23fb0705&clientId=u26e691dd-24b1-4&from=paste&id=u4e17f92a&originHeight=375&originWidth=375&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=uf7b1a334-da21-4770-af95-026725fd0ef&title=">
 
 <link rel="shortcut icon" href="/img/favicon.ico">
 <link href="/css/bootstrap.css" rel="stylesheet">
@@ -298,7 +298,7 @@
 
 <h3 id="背景颜色和背景图片是可以共同出现的"><a href="#背景颜色和背景图片是可以共同出现的" class="headerlink" title="背景颜色和背景图片是可以共同出现的"></a>背景颜色和背景图片是可以共同出现的</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">div &#123;</span><br><span class="line">	width: 300px;</span><br><span class="line">  height: 300px;</span><br><span class="line">  background-color: red;</span><br><span class="line">  background-image: url(./imgs/1.jpg);</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>页面展示</strong><br><img src="https://cdn.nlark.com/yuque/0/2023/webp/22718987/1674634175867-0a510627-1b7b-4546-ab70-95076cea3ea6.webp#averageHue=%23fb0705&clientId=u26e691dd-24b1-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u4e17f92a&margin=%5Bobject%20Object%5D&originHeight=375&originWidth=375&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=uf7b1a334-da21-4770-af95-026725fd0ef&title="></p>
+<p><strong>页面展示</strong><br><img src="https://cdn.nlark.com/yuque/0/2023/webp/22718987/1674634175867-0a510627-1b7b-4546-ab70-95076cea3ea6.webp#averageHue=%23fb0705&clientId=u26e691dd-24b1-4&from=paste&id=u4e17f92a&originHeight=375&originWidth=375&originalType=url%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&taskId=uf7b1a334-da21-4770-af95-026725fd0ef&title="></p>
 <h3 id="设置背景平铺"><a href="#设置背景平铺" class="headerlink" title="设置背景平铺"></a>设置背景平铺</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">background-repeat:repeat (默认值)</span><br><span class="line">background-repeat:no-repeat (不平铺)</span><br><span class="line">background-repeat:repeat-x （水平方向平铺）</span><br><span class="line">background-repeat:repeat-y （垂直方向平铺）</span><br></pre></td></tr></table></figure>
 
 <h3 id="设置背景位置"><a href="#设置背景位置" class="headerlink" title="设置背景位置"></a>设置背景位置</h3><p>background-positiont 决定背景图片在盒子区域的定位位置。其方位由水平和垂直决定</p>

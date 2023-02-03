@@ -15,12 +15,12 @@
 <meta property="og:site_name" content="后知后觉的个人主页">
 <meta property="og:description" content="github 连接密钥新建.ssh进入然后 git bashssh-keygen -t rsa -C &quot;739211562@qq.com&quot; config 配置指令git configconfig 配置有 system 级别 global（用户级别） 和 local（当前仓库）三个 设置先从 system-》global-》local 底层配置会覆盖顶层配置 分别使用–syste">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22718987/1641020361601-13b43199-1222-4184-b396-3db62c7a68f6.png#averageHue=%23fbfbf9&clientId=u3819a4f6-3813-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=349&id=ua6ce5e05&margin=%5Bobject%20Object%5D&name=image.png&originHeight=698&originWidth=1212&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=67152&status=done&style=none&taskId=ufa9dc2de-ad45-4e81-87d9-2294f51ef08&title=&width=606">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/22718987/1641020361601-13b43199-1222-4184-b396-3db62c7a68f6.png#averageHue=%23fbfbf9&clientId=u3819a4f6-3813-4&from=paste&height=349&id=ua6ce5e05&name=image.png&originHeight=698&originWidth=1212&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=67152&status=done&style=none&taskId=ufa9dc2de-ad45-4e81-87d9-2294f51ef08&title=&width=606">
 <meta property="article:published_time" content="2021-12-08T02:35:47.000Z">
-<meta property="article:modified_time" content="2023-01-27T05:30:50.886Z">
+<meta property="article:modified_time" content="2023-02-03T11:13:20.926Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22718987/1641020361601-13b43199-1222-4184-b396-3db62c7a68f6.png#averageHue=%23fbfbf9&clientId=u3819a4f6-3813-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=349&id=ua6ce5e05&margin=%5Bobject%20Object%5D&name=image.png&originHeight=698&originWidth=1212&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=67152&status=done&style=none&taskId=ufa9dc2de-ad45-4e81-87d9-2294f51ef08&title=&width=606">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/22718987/1641020361601-13b43199-1222-4184-b396-3db62c7a68f6.png#averageHue=%23fbfbf9&clientId=u3819a4f6-3813-4&from=paste&height=349&id=ua6ce5e05&name=image.png&originHeight=698&originWidth=1212&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=67152&status=done&style=none&taskId=ufa9dc2de-ad45-4e81-87d9-2294f51ef08&title=&width=606">
 
 <link rel="shortcut icon" href="/img/favicon.ico">
 <link href="/css/bootstrap.css" rel="stylesheet">
@@ -173,7 +173,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="github-连接密钥"><a href="#github-连接密钥" class="headerlink" title="github 连接密钥"></a>github 连接密钥</h2><p>新建.ssh<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22718987/1641020361601-13b43199-1222-4184-b396-3db62c7a68f6.png#averageHue=%23fbfbf9&clientId=u3819a4f6-3813-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=349&id=ua6ce5e05&margin=%5Bobject%20Object%5D&name=image.png&originHeight=698&originWidth=1212&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=67152&status=done&style=none&taskId=ufa9dc2de-ad45-4e81-87d9-2294f51ef08&title=&width=606" alt="image.png"><br>进入然后 git bash<br><code>ssh-keygen -t rsa -C &quot;739211562@qq.com&quot;</code></p>
+        <h2 id="github-连接密钥"><a href="#github-连接密钥" class="headerlink" title="github 连接密钥"></a>github 连接密钥</h2><p>新建.ssh<br><img src="https://cdn.nlark.com/yuque/0/2022/png/22718987/1641020361601-13b43199-1222-4184-b396-3db62c7a68f6.png#averageHue=%23fbfbf9&clientId=u3819a4f6-3813-4&from=paste&height=349&id=ua6ce5e05&name=image.png&originHeight=698&originWidth=1212&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=67152&status=done&style=none&taskId=ufa9dc2de-ad45-4e81-87d9-2294f51ef08&title=&width=606" alt="image.png"><br>进入然后 git bash<br><code>ssh-keygen -t rsa -C &quot;739211562@qq.com&quot;</code></p>
 <h2 id="config-配置指令"><a href="#config-配置指令" class="headerlink" title="config 配置指令"></a>config 配置指令</h2><p><code>git config</code><br>config 配置有 system 级别 global（用户级别） 和 local（当前仓库）三个 设置先从 system-》global-》local 底层配置会覆盖顶层配置 分别使用–system/global/local 可以定位到配置文件<br>查看系统 config<br><code>git config --system --list</code><br>查看当前用户（global）配置</p>
 <table>
 <thead>
