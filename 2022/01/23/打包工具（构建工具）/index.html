@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="John Doe" />
+<meta name="referrer" content="no-referrer" />
+
+<meta name="description" content="构建工具的作用 模块化开发支持: 支持直接从 node_modules 里引入代码 + 多种模块化支持 处理代码兼容性: 比如 babel 语法降级, less,ts 语法转换(不是构建工具做的, 构建工具将这些语法对应的处理工具集成进来自动化处理) 提高项目性能: 压缩文件, 代码分割 优化开发体验: 构建工具会帮你自动监听文件的变化, 当文件变化以后自动帮你调用对应的集成工具进行重新打包, 然">
+<meta property="og:type" content="article">
+<meta property="og:title" content="打包工具（构建工具）">
+<meta property="og:url" content="http://example.com/2022/01/23/%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7%EF%BC%88%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%EF%BC%89/index.html">
+<meta property="og:site_name" content="后知后觉的个人主页">
+<meta property="og:description" content="构建工具的作用 模块化开发支持: 支持直接从 node_modules 里引入代码 + 多种模块化支持 处理代码兼容性: 比如 babel 语法降级, less,ts 语法转换(不是构建工具做的, 构建工具将这些语法对应的处理工具集成进来自动化处理) 提高项目性能: 压缩文件, 代码分割 优化开发体验: 构建工具会帮你自动监听文件的变化, 当文件变化以后自动帮你调用对应的集成工具进行重新打包, 然">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-23T07:34:01.000Z">
+<meta property="article:modified_time" content="2023-03-18T03:38:05.289Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="shortcut icon" href="/img/favicon.ico">
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/person.css"  rel="stylesheet">
+<link href="//at.alicdn.com/t/font_2822169_7n9pu9ptxz8.css" rel="stylesheet">
+
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="/plugins/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link href="/css/style.css?v=1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>
+    打包工具（构建工具） | 
+    后知后觉的个人主页
+</title>
+
+<script src="/plugins/jquery.min.js"></script>
+<script src="/plugins/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: "true",
+        isHome: "false",
+        isPost: "true",
+        isArchive: "false",
+        isTag: "false",
+        isCategory: "false",
+        fancybox_js: "/plugins/jquery.fancybox.min.js",
+        scrollreveal: "/plugins/scrollreveal.min.js",
+        search: ""
+    }
+</script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/index.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                            <li><a href="/about">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger hide"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/index.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                    <li><a href="/about">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><div class="post"></div>
+<article id="post-打包工具（构建工具）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/23/%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7%EF%BC%88%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%EF%BC%89/" class="article-date">
+      <time datetime="2022-01-23T07:34:01.000Z" itemprop="datePublished">2022-01-23</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      打包工具（构建工具）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="构建工具的作用"><a href="#构建工具的作用" class="headerlink" title="构建工具的作用"></a>构建工具的作用</h1><ol>
+<li>模块化开发支持: 支持直接从 node_modules 里引入代码 + 多种模块化支持</li>
+<li>处理代码兼容性: 比如 babel 语法降级, less,ts 语法转换(<strong>不是构建工具做的, 构建工具将这些语法对应的处理工具集成进来自动化处理</strong>)</li>
+<li>提高项目性能: 压缩文件, <strong>代码分割</strong></li>
+<li>优化开发体验:<ul>
+<li>构建工具会帮你自动监听文件的变化, 当文件变化以后自动帮你调用对应的集成工具进行重新打包, 然后再浏览器重新运行（整个过程叫做热更新, hot replacement）</li>
+<li>开发服务器: 跨域的问题, 用 react-cli create-react-element vue-cli   解决跨域的问题</li>
+</ul>
+</li>
+</ol>
+<p>构建工具他让我们可以不用每次都关心我们的代码在浏览器如何运行, 我们只需要首次给构建工具提供一个配置文件(这个配置文件也不是必须的, 如果你不给他 他会有默认的帮你去处理), 有了这个集成的配置文件以后, 我们就可以在下次需要更新的时候调用一次对应的命令就好了, 如果我们再结合热更新, 我们就更加不需要管任何东西。</p>
+<h1 id="主流构建工具"><a href="#主流构建工具" class="headerlink" title="主流构建工具"></a>主流构建工具</h1><ul>
+<li>webpack</li>
+<li>vite</li>
+<li>parcel</li>
+<li>esbuild</li>
+<li>rollup</li>
+<li>grunt</li>
+<li>gulp</li>
+</ul>
+<h1 id="专业名词"><a href="#专业名词" class="headerlink" title="专业名词"></a>专业名词</h1><p>开箱即用(out of box): 你不需要做任何额外的配置就可以使用 vite 来帮你处理构建工作</p>
+<h1 id="webpack-与-vite"><a href="#webpack-与-vite" class="headerlink" title="webpack 与 vite"></a>webpack 与 vite</h1><p>webpack 更多的关注兼容性, 而 vite 关注浏览器端的开发体验</p>
+<h1 id="浏览器与服务器"><a href="#浏览器与服务器" class="headerlink" title="浏览器与服务器"></a>浏览器与服务器</h1><p>浏览器加载一个 index.js 以及例如 moment.js 是通过网络请求来获取的，而在服务器端是通过读本地文件来获取的（获取 node_module 的方式不同）</p>
+<h1 id="vite"><a href="#vite" class="headerlink" title="vite"></a>vite</h1><p>vite 开箱即用<br>vite 处理的过程中如果说看到了有非绝对路径或者相对路径的引用, 他则会尝试开启路径补全</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import _ from &quot;lodash&quot;; // lodash可能也import了其他的东西</span><br></pre></td></tr></table></figure>
+
+<p>它会先找当前模块下的 node_modules,没找到会找上级目录，然后一直到 user/node_modules</p>
+<p>为什么 vite.config.js 可以书写成 esmodule 的形式？<br>因为 vite 他在读取这个 vite.config.js 的时候会率先 node 去解析文件语法, 如果发现你是 esmodule 规范会直接将你的 esmodule 规范进行替换变成 commonjs 规范</p>
+<h2 id="生产和开发"><a href="#生产和开发" class="headerlink" title="生产和开发"></a>生产和开发</h2><p>yarn dev —&gt; 开发(每次依赖预构建所重新构建的相对路径都是正确的)<br>vite 会全权交给一个叫做 rollup 的库去完成生产环境的打包</p>
+<h2 id="依赖预构建"><a href="#依赖预构建" class="headerlink" title="依赖预构建"></a>依赖预构建</h2><p>因为不同的库有些的导出的方式是 commonjs,有些是 esmodule，有些是 es3,es5 立即执行函数的方式所以 vite 要进行依赖预构建</p>
+<p>首先 vite 会找到对应的依赖, 然后调用 esbuild(对 js 语法进行处理的一个库), 将其他规范的代码转换成 esmodule 规范, 然后放到当前目录下的 node_modules/.vite/deps, 同时对 esmodule 规范的各个模块进行统一集成</p>
+<p>他解决了 3 个问题:</p>
+<ol>
+<li>不同的第三方包会有不同的导出格式(这个是 vite 没法约束人家的事情)</li>
+<li>对路径的处理上可以直接使用.vite/deps, 方便路径重写</li>
+<li>叫做网络多包传输的性能问题(也是原生 esmodule 规范不敢支持 node_modules 的原因之一), 有了依赖预构建以后无论他有多少的额外 export 和 import, vite 都会尽可能的将他们进行集成最后只生成一个或者几个模块</li>
+</ol>
+<h2 id="create-vite-和-vite-的区别"><a href="#create-vite-和-vite-的区别" class="headerlink" title="create-vite 和 vite 的区别"></a>create-vite 和 vite 的区别</h2><p>比如我们敲了<code>yarn create vite</code></p>
+<ol>
+<li>帮我们全局安装一个东西: create-vite (vite 的脚手架)</li>
+<li>直接运行这个 create-vite bin 目录的下的一个执行配置</li>
+</ol>
+<p>create-vite 和 vite 的关系是什么呢？ —- create-vite 内置了 vite</p>
+<p>使用<code>yarn create vite my-vue-app --template vue</code>其实是 create-vite 在所做的事情</p>
+<p>预设: 买房子 毛坯房(我们的工程) 买沙发, 做装修, 修各个厕所, 埋线, 精装修的房: 搭建好了</p>
+<p>我们自己搭建一个项目: 下载 vite, vue, post-css, less, babel</p>
+<p>vue-cli/create-react-app(开发商)给我们提供已经精装修的模板: 帮你把 react/vue 都下好了, 同时他还帮你把配置调整到了最佳实践</p>
+<p>create-vite(开发商)给你一套精装修模板(给你一套预设): 下载 vite, vue, post-css, less, babel 好了, 并且给你做好了最佳实践的配置</p>
+<h1 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h1><h2 id="webpack-编译原理"><a href="#webpack-编译原理" class="headerlink" title="webpack 编译原理"></a>webpack 编译原理</h2><p>webpack 的编译原理, AST 抽象语法分析的工具 分析出你写的这个 js 文件有哪些导入和导出操作<br>因为 webpack 支持多种模块化, 他一开始必须要统一模块化代码, 所以意味着他需要将所有的依赖全部读一遍（webpack 的打包和热更新的速度是慢的）</p>
+<h2 id="webpack-打包原理是什么"><a href="#webpack-打包原理是什么" class="headerlink" title="webpack 打包原理是什么"></a>webpack 打包原理是什么</h2><p>webpack 打包原理是将根据文件间的依赖关系对其进行静态分析，然后将这些模块按指定规则生成静态资源，当 webpack 处理程序时，会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，然后将所所有这些模块打包成 bundle。</p>
+<p>将根据文件间的依赖关系对其进行静态分析，然后将这些模块按指定规则生成静态资源，当 webpack 处理程序时，会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle。</p>
+<p>webpack 只是一个打包模块的机制，只是把依赖的模块转化成可以代表这些包的静态文件。并不是什么 commonjs 或者 amd 之类的模块化规范。webpack 就是识别你的入口文件。识别你的模块依赖，来打包你的代码。</p>
+<p>至于你的代码使用的是 commonjs 还是 amd 或者 es6 的 import。webpack 都会对其进行分析。来获取代码的依赖。</p>
+<p>AMD、CMD、CommonJS 和 ES6 Import 四个都是引用 js 文件的方法，具体实现和使用方式不同</p>
+<p>webpack 做的就是分析代码。转换代码，编译代码，输出代码。webpack 本身是一个 node 的模块，所以 webpack.config.js 是以 commonjs 形式书写的(node 中的模块化是 commonjs 规范的)</p>
+<p>webpack 中每个模块有一个唯一的 id，是从 0 开始递增的。整个打包后的 bundle.js 是一个匿名函数自执行。参数则为一个数组。数组的每一项都为个 function。function 的内容则为每个模块的内容，并按照 require 的顺序排列。</p>
+<p>1、Entry</p>
+<p>入口起点(entry point)指示 webpack 应该使用哪个模块，来作为构建其内部依赖图的开始。进入入口起点后，webpack 会找出有哪些模块和库是入口起点（直接和间接）依赖的。每个依赖项随即被处理，最后输出到称之为 bundles 的文件中。</p>
+<p>2、Output</p>
+<p>output 属性告诉 webpack 在哪里输出它所创建的 bundles，以及如何命名这些文件，默认值为 ./dist。基本上,整个应用程序结构，都会被编译到指定的输出路径的文件夹中。</p>
+<p>3、Module</p>
+<p>模块，在 Webpack 里一切皆模块，一个模块对应着一个文件。Webpack 会从配置的 Entry 开始递归找出所有依赖的模块。</p>
+<p>4、Chunk</p>
+<p>代码块，一个 Chunk 由多个模块组合而成，用于代码合并与分割。</p>
+<p>5、Loader</p>
+<p>loader 让 webpack 能够去处理那些非 JavaScript 文件（webpack 自身只理解 JavaScript）。</p>
+<p>loader 可以将所有类型的文件转换为 webpack 能够处理的有效模块，然后就可以利用 webpack 的打包能力，对它们进行处理。</p>
+<p>本质上，webpack loader 将所有类型的文件，转换为应用程序的依赖图（和最终的 bundle）可以直接引用的模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">const &#123; resolve &#125; = require(&#x27;path&#x27;);</span><br><span class="line">const HtmlWebpackPlugin = require(&#x27;html-webpack-plugin&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &#x27;./src/js/index.js&#x27;,  //入口</span><br><span class="line">  output: &#123;                     //出口</span><br><span class="line">    filename: &#x27;js/[name].js&#x27;,</span><br><span class="line">    path: resolve(__dirname, &#x27;build&#x27;)</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;                  //模块</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: /\.css$/,</span><br><span class="line">        use: [&#x27;style-loader&#x27;, &#x27;css-loader&#x27;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [new HtmlWebpackPlugin()], //插件</span><br><span class="line">  mode: &#x27;development&#x27;,            //模式</span><br><span class="line">  resolve: &#123;              //除css以外</span><br><span class="line">    alias: &#123;</span><br><span class="line">      $css: resolve(__dirname, &#x27;src/css&#x27;)</span><br><span class="line">    &#125;,</span><br><span class="line">    extensions: [&#x27;.js&#x27;, &#x27;.json&#x27;, &#x27;.jsx&#x27;, &#x27;.css&#x27;],</span><br><span class="line">    modules: [resolve(__dirname, &#x27;../../node_modules&#x27;), &#x27;node_modules&#x27;]</span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;         //服务器配置</span><br><span class="line">    // 运行代码的目录</span><br><span class="line">    contentBase: resolve(__dirname, &#x27;build&#x27;),</span><br><span class="line">    // 监视 contentBase 目录下的所有文件，一旦文件变化就会 reload</span><br><span class="line">    watchContentBase: true,</span><br><span class="line">    watchOptions: &#123;</span><br><span class="line">      // 忽略文件</span><br><span class="line">      ignored: /node_modules/</span><br><span class="line">    &#125;,</span><br><span class="line">    // 启动gzip压缩</span><br><span class="line">    compress: true,</span><br><span class="line">    // 端口号</span><br><span class="line">    port: 5000,</span><br><span class="line">    // 域名</span><br><span class="line">    host: &#x27;localhost&#x27;,</span><br><span class="line">    // 自动打开浏览器</span><br><span class="line">    open: true,</span><br><span class="line">    // 开启HMR功能</span><br><span class="line">    hot: true,</span><br><span class="line">    // 不要显示启动服务器日志信息</span><br><span class="line">    clientLogLevel: &#x27;none&#x27;,</span><br><span class="line">    // 除了一些基本启动信息以外，其他内容都不要显示</span><br><span class="line">    quiet: true,</span><br><span class="line">    // 如果出错了，不要全屏提示~</span><br><span class="line">    overlay: false,</span><br><span class="line">    // 服务器代理 --&gt; 解决开发环境跨域问题</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      // 一旦devServer(5000)服务器接受到 /api/xxx 的请求，就会把请求转发到另外一个服务器(3000)</span><br><span class="line">      &#x27;/api&#x27;: &#123;</span><br><span class="line">        target: &#x27;http://localhost:3000&#x27;,</span><br><span class="line">        // 发送请求时，请求路径重写：将 /api/xxx --&gt; /xxx （去掉/api）</span><br><span class="line">        pathRewrite: &#123;</span><br><span class="line">          &#x27;^/api&#x27;: &#x27;&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p><strong>优点</strong></p>
+<ol>
+<li>专注于处理模块化的项目，能做到开箱即用，一步到位</li>
+<li>可通过 <code>plugin</code> 扩展，完整好用又不失灵活</li>
+<li>使用场景不局限于 <code>web</code> 开发</li>
+<li>社区庞大活跃，经常引入紧跟时代发展的新特性，能为大多数场景找到已有的开源扩展</li>
+<li>良好的开发体验</li>
+</ol>
+<p><strong>缺点</strong><br>只能用于采用模块化开发的项目</p>
+<h2 id="npm-打包时需要注意哪些？如何利用-webpack-来更好的构建？"><a href="#npm-打包时需要注意哪些？如何利用-webpack-来更好的构建？" class="headerlink" title="npm 打包时需要注意哪些？如何利用 webpack 来更好的构建？"></a>npm 打包时需要注意哪些？如何利用 webpack 来更好的构建？</h2><p>npm 是目前最大的 JavaScript 模块仓库，里面有来自全世界开发者上传的可复用模块。你可能只是 JS 模块的使用者，但是有些情况你也会去选择上传自己开发的模块。 关于 NPM 模块上传的方法可以去官网上进行学习，这里只讲解如何利用 webpack 来构建。</p>
+<p>NPM 模块需要注意以下问题：</p>
+<p>要支持 CommonJS 模块化规范，所以要求打包后的最后结果也遵守该规则。<br>Npm 模块使用者的环境是不确定的，很有可能并不支持 ES6，所以打包的最后结果应该是采用 ES5 编写的。并且如果 ES5 是经过转换的，请最好连同 SourceMap 一同上传。<br>Npm 包大小应该是尽量小（有些仓库会限制包大小）<br>发布的模块不能将依赖的模块也一同打包，应该让用户选择性的去自行安装。这样可以避免模块应用者再次打包时出现底层模块被重复打包的情况。<br>UI 组件类的模块应该将依赖的其它资源文件，例如.css 文件也需要包含在发布的模块里。<br>基于以上需要注意的问题，我们可以对于 webpack 配置做以下扩展和优化：</p>
+<p>CommonJS 模块化规范的解决方案： 设置 output.libraryTarget=’commonjs2’使输出的代码符合 CommonJS2 模块化规范，以供给其它模块导入使用<br>输出 ES5 代码的解决方案：使用 babel-loader 把 ES6 代码转换成 ES5 的代码。再通过开启 devtool: ‘source-map’输出 SourceMap 以发布调试。<br>Npm 包大小尽量小的解决方案：Babel 在把 ES6 代码转换成 ES5 代码时会注入一些辅助函数，最终导致每个输出的文件中都包含这段辅助函数的代码，造成了代码的冗余。解决方法是修改.babelrc 文件，为其加入 transform-runtime 插件<br>不能将依赖模块打包到 NPM 模块中的解决方案：使用 externals 配置项来告诉 webpack 哪些模块不需要打包。<br>对于依赖的资源文件打包的解决方案：通过 css-loader 和 extract-text-webpack-plugin 来实现</p>
+<h2 id="什么是-loader-什么是-plugin"><a href="#什么是-loader-什么是-plugin" class="headerlink" title="什么是 loader ? 什么是 plugin ?"></a>什么是 loader ? 什么是 plugin ?</h2><p>【Loader】：用于对模块源码的转换，loader 描述了 webpack 如何处理非 javascript 模块，并且在 buld 中引入这些依赖。loader 可以将文件从不同的语言（如 TypeScript）转换为 JavaScript，或者将内联图像转换为 data URL。比如说：CSS-Loader，Style-Loader 等。</p>
+<p>【Plugin】：目的在于解决 loader 无法实现的其他事，从打包优化和压缩，到重新定义环境变量，功能强大到可以用来处理各种各样的任务。webpack 提供了很多开箱即用的插件：CommonChunkPlugin 主要用于提取第三方库和公共模块，避免首屏加载的 bundle 文件，或者按需加载的 bundle 文件体积过大，导致加载时间过长，是一把优化的利器。而在多页面应用中，更是能够为每个页面间的应用程序共享代码创建 bundle。</p>
+<p>loader：模块转换器，<code>webpack</code> 将一切文件视为模块，但 <code>webpack</code> 只能解析 <code>JavaScript</code> 文件，而 loader 作用是让 <code>webpack</code> 拥有了加载 和 解析非 <code>JavaScript</code> 文件的能力。</p>
+<p>plugin：在 <code>webpack</code> 构建流程中的特定时机注入扩展逻辑，让它具有更多的灵活性。在 <code>webpack</code> 运行的生命周期中会广播出许多事件，<code>plugin</code> 可以监听这些事件，在合适的时机通过 <code>webpack</code> 提供的 API 改变输出结果。</p>
+<p><strong>用法的区别：</strong></p>
+<p><code>Loader</code> 在 <code>module.rules</code> 中配置，也就是说他作为模块的解析规则而存在。 类型为数组，每一项都是一个 Object，里面描述了对于什么类型的文件（test），使用什么加载(loader)和使用的参数（options）<br><code>Plugin</code> 在 <code>plugins</code> 中单独配置。 类型为数组，每一项是一个 <code>plugin</code> 的实例，参数都通过构造函数传入。</p>
+<h2 id="有哪些常见的-Loader-？他们是解决什么问题的？"><a href="#有哪些常见的-Loader-？他们是解决什么问题的？" class="headerlink" title="有哪些常见的 Loader ？他们是解决什么问题的？"></a>有哪些常见的 Loader ？他们是解决什么问题的？</h2><p><code>file-loader</code>：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件<br><code>url-loader</code>：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去<br><code>source-map-loader</code>：加载额外的 Source Map 文件，以方便断点调试<br><code>image-loader</code>：加载并且压缩图片文件<br><code>babel-loader</code>：把 ES6 转换成 ES5<br><code>css-loader</code>：加载 CSS，支持模块化、压缩、文件导入等特性<br><code>style-loader</code>：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。<br><code>eslint-loader</code>：通过 ESLint 检查 JavaScript 代码<br><code>svg-inline-loader</code>：将压缩后的 SVG 内容注入代码中<br><code>json-loader</code> : 加载 JSON 文件（默认包含）<br><code>ts-loader</code> : 将 TypeScript 转换成 JavaScript<br><code>awesome-typescript-loader</code>：将 TypeScript 转换成 JavaScript，性能优于 ts-loader<br><code>sass-loader</code>：将 CSS 代码注入 JavaScript 中，通过 DOM 操作去加载 CSS<br><code>postcss-loader</code>：扩展 CSS 语法，使用下一代 CSS，可以配合 autoprefixer 插件自动补齐 CSS3 前缀<br><code>tslint-loader</code>：通过 TSLint 检查 TypeScript 代码<br><code>vue-loader</code>：加载 Vue.js 单文件组件</p>
+<h2 id="有哪些常见的-Plugin？他们是解决什么问题的？"><a href="#有哪些常见的-Plugin？他们是解决什么问题的？" class="headerlink" title="有哪些常见的 Plugin？他们是解决什么问题的？"></a>有哪些常见的 Plugin？他们是解决什么问题的？</h2><p><code>define-plugin</code>：定义环境变量<br><code>commons-chunk-plugin</code>：提取公共代码<br><code>terser-webpack-plugin</code> : 支持压缩 ES6 (Webpack4)<br><code>ignore-plugin</code>：忽略部分文件<br><code>html-webpack-plugin</code>：简化 HTML 文件创建 (依赖于 html-loader)<br><code>web-webpack-plugin</code>：可方便地为单页应用输出 HTML，比 html-webpack-plugin 好用<br><code>mini-css-extract-plugin</code> : 分离样式文件，CSS 提取为独立文件，支持按需加载<br><code>serviceworker-webpack-plugin</code>：为网页应用增加离线缓存功能<br><code>clean-webpack-plugin</code> : 删除打包文件<br><code>happypack</code>：实现多线程加速编译</p>
+<h2 id="如何利用-webpack-来优化前端性能？"><a href="#如何利用-webpack-来优化前端性能？" class="headerlink" title="如何利用 webpack 来优化前端性能？"></a>如何利用 webpack 来优化前端性能？</h2><p>用 <code>webpack</code> 优化前端性能是指优化 <code>webpack</code> 的输出结果，让打包的最终结果在浏览器运行快速高效。</p>
+<p>1.压缩代码。删除多余的代码、注释、简化代码的写法等等方式。<br>用 <code>UglifyJsPlugin</code>和<code>ParallelUglifyPlugin</code>   压缩 JS 文件<br>用 <code>mini-css-extract-plugin</code> 压缩 CSS</p>
+<ol>
+<li>利用 CDN 加速。在构建过程中，将引用的静态资源路径修改为 CDN 上对应的路径。可以利用 <code>webpack</code> 对于<code>output</code> 参数和各 <code>loader</code> 的 <code>publicPath</code> 参数来修改资源路径</li>
+<li>删除死代码。JS 用 <code>Tree Shaking</code>，CSS 需要使用 <code>Purify-CSS</code></li>
+<li>提取公共代码。用 <code>CommonsChunkPlugin</code> 插件</li>
+</ol>
+<h2 id="分别介绍-bundle，chunk，module-是什么"><a href="#分别介绍-bundle，chunk，module-是什么" class="headerlink" title="分别介绍 bundle，chunk，module 是什么"></a>分别介绍 bundle，chunk，module 是什么</h2><p><code>bundle</code>：是由 <code>webpack</code> 打包出来的文件，<br><code>chunk</code>：代码块，一个 <code>chunk</code> 由多个模块组合而成，用于代码的合并和分割。<br><code>module</code>：是开发中的单个模块，在 <code>webpack</code> 的世界，一切皆模块，一个模块对应一个文件，<code>webpack</code> 会从配置的 <code>entry</code> 中递归开始找出所有依赖的模块。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">
+                    xss和csrf 介绍
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">
+                    vue理论
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">构建工具的作用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7"><span class="toc-text">主流构建工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%93%E4%B8%9A%E5%90%8D%E8%AF%8D"><span class="toc-text">专业名词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack-%E4%B8%8E-vite"><span class="toc-text">webpack 与 vite</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">浏览器与服务器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vite"><span class="toc-text">vite</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E5%92%8C%E5%BC%80%E5%8F%91"><span class="toc-text">生产和开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E9%A2%84%E6%9E%84%E5%BB%BA"><span class="toc-text">依赖预构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create-vite-%E5%92%8C-vite-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">create-vite 和 vite 的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack"><span class="toc-text">webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack-%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86"><span class="toc-text">webpack 编译原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack-%E6%89%93%E5%8C%85%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">webpack 打包原理是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-%E6%89%93%E5%8C%85%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E5%93%AA%E4%BA%9B%EF%BC%9F%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8-webpack-%E6%9D%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E6%9E%84%E5%BB%BA%EF%BC%9F"><span class="toc-text">npm 打包时需要注意哪些？如何利用 webpack 来更好的构建？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-loader-%E4%BB%80%E4%B9%88%E6%98%AF-plugin"><span class="toc-text">什么是 loader ? 什么是 plugin ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84-Loader-%EF%BC%9F%E4%BB%96%E4%BB%AC%E6%98%AF%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E7%9A%84%EF%BC%9F"><span class="toc-text">有哪些常见的 Loader ？他们是解决什么问题的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84-Plugin%EF%BC%9F%E4%BB%96%E4%BB%AC%E6%98%AF%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E7%9A%84%EF%BC%9F"><span class="toc-text">有哪些常见的 Plugin？他们是解决什么问题的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8-webpack-%E6%9D%A5%E4%BC%98%E5%8C%96%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%EF%BC%9F"><span class="toc-text">如何利用 webpack 来优化前端性能？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%88%AB%E4%BB%8B%E7%BB%8D-bundle%EF%BC%8Cchunk%EF%BC%8Cmodule-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">分别介绍 bundle，chunk，module 是什么</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/" title="Pre: xss和csrf 介绍">
+                <i class="iconfont icon-jiantouzuo"></i>
+            </a>
+        
+        <a title="Mini Archives"><i class="iconfont icon-home"></i></a>
+        
+            <a href="/2022/01/23/vue%E7%90%86%E8%AE%BA/" title="Next: vue理论">
+                <i class="iconfont icon-jiantouyou"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/03/12/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96AMD,CMD,ES6%20MODULE/">前端模块化AMD,CMD,ES6 MODULE</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/11/Symbol%EF%BC%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89%EF%BC%8Cyield,%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/">Symbol（迭代器），yield,生成器函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/05/%E7%96%91%E9%97%AE/">疑问</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/04/%E5%BE%85%E6%95%B4%E7%90%86%E7%9F%A5%E8%AF%86%E7%82%B9/">待整理知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/02/17/%E8%B7%A8%E5%9F%9F/">跨域</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/02/16/nginx/">nginx</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/02/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机组成思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机网络思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">操作系统思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">数据结构思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/%E5%BC%82%E6%AD%A5%E4%B8%8E%E5%90%8C%E6%AD%A5/">异步与同步</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">面试准备</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%87%BD%E6%95%B0%E9%9B%86%E5%90%88/">函数集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/">个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7%EF%BC%88%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%EF%BC%89/">打包工具（构建工具）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E5%B8%83%E5%B1%80/">css布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm%EF%BC%8Cyarn%20,pnpm%E7%AD%89%E7%9B%B8%E5%85%B3/">npm，yarn ,pnpm等相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">计算机操作系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%83%8C%E8%AF%B5/">操作系统背诵</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E8%8C%83%E6%96%87/">作文范文</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/">作文模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E7%A7%AF%E7%B4%AF/">英语作文积累</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/16/%F0%9F%92%A1%201%20%E5%88%86%E9%92%9F%E7%8E%A9%E8%BD%AC%E8%AF%AD%E9%9B%80%E6%96%87%E6%A1%A3/">💡 1 分钟玩转语雀文档</a></li></ul>
+
+
+
+
+    <script>
+        ""
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="iconfont icon-copyright"></i> 
+                2021-2023 John Doe
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="/plugins/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = "5";
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="iconfont icon-shangjiantou"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="iconfont icon-xiajiantou"></i></a>
+</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="John Doe" />
+<meta name="referrer" content="no-referrer" />
+
+<meta name="description" content="模块化的开发方式可以提高代码复用率，方便进行代码的管理。通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。目前流行的 js 模块化规范有 CommonJS、AMD、CMD 以及 ES6 的模块系统。 传统方法默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。如果脚本体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端模块化AMD,CMD,ES6 MODULE">
+<meta property="og:url" content="http://example.com/2023/03/12/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96AMD,CMD,ES6%20MODULE/index.html">
+<meta property="og:site_name" content="后知后觉的个人主页">
+<meta property="og:description" content="模块化的开发方式可以提高代码复用率，方便进行代码的管理。通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。目前流行的 js 模块化规范有 CommonJS、AMD、CMD 以及 ES6 的模块系统。 传统方法默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。如果脚本体">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-12T04:19:41.000Z">
+<meta property="article:modified_time" content="2023-03-18T03:38:05.266Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="shortcut icon" href="/img/favicon.ico">
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/person.css"  rel="stylesheet">
+<link href="//at.alicdn.com/t/font_2822169_7n9pu9ptxz8.css" rel="stylesheet">
+
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="/plugins/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link href="/css/style.css?v=1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>
+    前端模块化AMD,CMD,ES6 MODULE | 
+    后知后觉的个人主页
+</title>
+
+<script src="/plugins/jquery.min.js"></script>
+<script src="/plugins/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: "true",
+        isHome: "false",
+        isPost: "true",
+        isArchive: "false",
+        isTag: "false",
+        isCategory: "false",
+        fancybox_js: "/plugins/jquery.fancybox.min.js",
+        scrollreveal: "/plugins/scrollreveal.min.js",
+        search: ""
+    }
+</script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/index.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                            <li><a href="/about">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger hide"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/index.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                    <li><a href="/about">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><div class="post"></div>
+<article id="post-前端模块化AMD,CMD,ES6 MODULE" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/03/12/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96AMD,CMD,ES6%20MODULE/" class="article-date">
+      <time datetime="2023-03-12T04:19:41.000Z" itemprop="datePublished">2023-03-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前端模块化AMD,CMD,ES6 MODULE
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>模块化的开发方式可以提高代码复用率，方便进行代码的管理。通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。目前流行的 js 模块化规范有 CommonJS、AMD、CMD 以及 ES6 的模块系统。</p>
+<h1 id="传统方法"><a href="#传统方法" class="headerlink" title="传统方法"></a>传统方法</h1><p>默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到<script>标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。<br>如果脚本体积很大，下载和执行的时间就会很长，因此造成浏览器堵塞，用户会感觉到浏览器“卡死”了，没有任何响应。这显然是很不好的体验，所以浏览器允许脚本异步加载，下面就是两种异步加载的语法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;path/to/myModule.js&quot; defer&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;path/to/myModule.js&quot; async&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<script>标签打开 defer 或 async 属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行，而是直接执行后面的命令。<br>defer 与 async 的区别是：defer 要等到整个页面在内存中正常渲染结束（DOM 结构完全生成，以及其他脚本执行完成），才会执行；async 一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。一句话，defer 是“渲染完再执行”，async 是“下载完就执行”。另外，如果有多个 defer 脚本，会按照它们在页面出现的顺序加载，而多个 async 脚本是不能保证加载顺序的。</p>
+<h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h1><p>Node.js 是 commonJS 规范的主要实践者，它有四个重要的环境变量为模块化的实现提供支持：module、exports、require、global。实际使用时，用 module.exports 定义当前模块对外输出的接口（不推荐直接用 exports），用 require 加载模块。</p>
+<p>common.js 是导出同步模块</p>
+<p>node.js 中可以直接用 module.exports 导出，let module1 = require(‘./modules/module1’)引入<br>浏览器中使用需要借助工具才能正常使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install browserify -g</span><br><span class="line">npm install browserify -save-dev</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports.name = &quot;蛙人&quot;</span><br><span class="line">module.exports.age = 24</span><br><span class="line"></span><br><span class="line">let data = require(&quot;./index.js&quot;)</span><br><span class="line">console.log(data) // &#123; name: &quot;蛙人&quot;, age: 24 &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="module-exports-和-exports-的区别"><a href="#module-exports-和-exports-的区别" class="headerlink" title="module.exports 和 exports 的区别"></a><strong>module.exports 和 exports 的区别</strong></h2><p>当使用分别暴露时，module.exports 和 exports 是一样的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const add = (a, b) =&gt; a + b</span><br><span class="line"></span><br><span class="line">const subtract = (a, b) =&gt; a - b</span><br><span class="line"></span><br><span class="line">module.exports.add = add</span><br><span class="line">module.exports.subtract = subtract</span><br><span class="line"></span><br><span class="line">exports.add = add</span><br><span class="line">exports.subtract = subtract</span><br></pre></td></tr></table></figure>
+
+<h2 id="当使用统一暴露时，它俩是不一样的"><a href="#当使用统一暴露时，它俩是不一样的" class="headerlink" title="当使用统一暴露时，它俩是不一样的"></a>当使用统一暴露时，它俩是不一样的</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">可以这么写</span><br><span class="line">module.exports = &#123; add, subtract &#125;</span><br><span class="line"></span><br><span class="line">不能这么写</span><br><span class="line">exports = &#123; add, subtract &#125;</span><br></pre></td></tr></table></figure>
+
+<p>原因</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//源码</span><br><span class="line">const exports = this.exports;</span><br><span class="line">const thisValue = exports;</span><br><span class="line">const module = this;</span><br></pre></td></tr></table></figure>
+
+<p>exports 和 module.exports 指向同一个对象。所以当你使用分别暴露时，实质上是给这个对象上添加了一个个属性，这两种方式是同一个意思。<br>但是，一旦写成统一暴露，exports = { add, subtract }改变了 exports 的指向，切断了与 module.exports 之间的引用关系，exports 不再是 module.exports 的那个对象了</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>CommonJs 解决了变量污染，文件依赖等问题，它可以动态导入(代码发生在运行时)，不可以重复导入。</p>
+<h1 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h1><p>amd 是专门为浏览器所设计的</p>
+<p>AMD 规范采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。这里介绍用 require.js 实现 AMD 规范的模块化：用 require.config()指定引用路径等，用 define()定义模块，用 require()加载模块。</p>
+<h3 id="1-加载模块"><a href="#1-加载模块" class="headerlink" title="1.加载模块"></a>1.加载模块</h3><p><strong>首先我们需要引入 require.js 文件和一个入口文件 main.js。main.js 中配置 require.config()并规定项目中用到的基础模块。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/** 网页中引入require.js及main.js **/</span><br><span class="line">&lt;script src=&quot;js/require.js&quot; data-main=&quot;js/main&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">/** main.js 入口文件/主模块 **/</span><br><span class="line">// 首先用config()指定各模块路径和引用名</span><br><span class="line">require.config(&#123;</span><br><span class="line">  baseUrl: &quot;js/lib&quot;,</span><br><span class="line">  paths: &#123;</span><br><span class="line">    &quot;jquery&quot;: &quot;jquery.min&quot;,  //实际路径为js/lib/jquery.min.js</span><br><span class="line">    &quot;underscore&quot;: &quot;underscore.min&quot;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 执行基本操作</span><br><span class="line">require([&quot;jquery&quot;,&quot;underscore&quot;],function($,_)&#123;</span><br><span class="line">  // some code here</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-定义模块"><a href="#2-定义模块" class="headerlink" title="2.定义模块"></a>2.定义模块</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// name和deps都是非必选的参数，而callback可以是一个对象，或者是具有返回值的函数</span><br><span class="line">define([name], [deps], callback)</span><br></pre></td></tr></table></figure>
+
+<p>存在依赖的模块<br>假设你要写一个依赖 jquery 的模块，那么你需要在 define 方法中声明依赖。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">define([&#x27;jquery&#x27;], function($) &#123;</span><br><span class="line">    function setColor(select, color) &#123;</span><br><span class="line">        $(select).css(&#x27;color&#x27;, color)</span><br><span class="line">    &#125;</span><br><span class="line">    return &#123;</span><br><span class="line">        setColor: setColor</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>另一种方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line">    var $ = require(&#x27;jquery&#x27;)</span><br><span class="line">    function setColor(select, color) &#123;</span><br><span class="line">        $(select).css(&#x27;color&#x27;, color)</span><br><span class="line">    &#125;</span><br><span class="line">    return &#123;</span><br><span class="line">        setColor: setColor</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用模块"><a href="#3-使用模块" class="headerlink" title="3.使用模块"></a>3.使用模块</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">require([&#x27;simple&#x27;, &#x27;jquery&#x27;, &#x27;funcModule&#x27;, &#x27;depModule&#x27;], function(simple, $, funcModule, depModule) &#123;</span><br><span class="line">    console.log(simple)</span><br><span class="line">    console.log($)</span><br><span class="line">    $(&#x27;.word&#x27;).css(&#123;</span><br><span class="line">        fontSize: &#x27;24px&#x27;,</span><br><span class="line">        color: &#x27;blue&#x27;</span><br><span class="line">    &#125;)</span><br><span class="line">    var result = funcModule.add(1,2)</span><br><span class="line">    console.log(result)</span><br><span class="line"></span><br><span class="line">    depModule.setColor(&#x27;.word&#x27;, &#x27;yellow&#x27;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="ES6-Module"><a href="#ES6-Module" class="headerlink" title="ES6 Module"></a>ES6 Module</h1><p>ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，旨在成为浏览器和服务器通用的模块解决方案。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/** 定义模块 math.js **/</span><br><span class="line">var basicNum = 0;</span><br><span class="line">var add = function (a, b) &#123;</span><br><span class="line">    return a + b;</span><br><span class="line">&#125;;</span><br><span class="line">export &#123; basicNum, add &#125;;</span><br><span class="line"></span><br><span class="line">/** 引用模块 **/</span><br><span class="line">import &#123; basicNum, add &#125; from &#x27;./math&#x27;;</span><br><span class="line">function test(ele) &#123;</span><br><span class="line">    ele.textContent = add(99 + basicNum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上例所示，使用 import 命令的时候，用户需要知道所要加载的变量名或函数名。其实 ES6 还提供了 export default 命令，为模块指定默认输出，对应的 import 语句不需要使用大括号。这也更趋近于 ADM 的引用写法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/** export default **/</span><br><span class="line">//定义输出</span><br><span class="line">export default &#123; basicNum, add &#125;;</span><br><span class="line">//引入</span><br><span class="line">import math from &#x27;./math&#x27;;</span><br><span class="line">function test(ele) &#123;</span><br><span class="line">    ele.textContent = math.add(99 + math.basicNum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><p>在 Es Module 中导出分为两种，单个导出(export)、默认导出(export default)，单个导出在导入时不像 CommonJs 一样直接把值全部导入进来了，Es Module 中可以导入我想要的值。那么默认导出就是全部直接导入进来，当然 Es Module 中也可以导出任意类型的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 导出变量</span><br><span class="line">export const name = &quot;蛙人&quot;</span><br><span class="line">export const age = 24</span><br><span class="line"></span><br><span class="line">// 导出函数也可以</span><br><span class="line">export function fn() &#123;&#125;</span><br><span class="line">export const test = () =&gt; &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 如果有多个的话</span><br><span class="line">const name = &quot;蛙人&quot;</span><br><span class="line">const sex = &quot;male&quot;</span><br><span class="line">export &#123; name, sex &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="混合导出"><a href="#混合导出" class="headerlink" title="混合导出"></a>混合导出</h3><p>可以使用 export 和 export default 同时使用并且互不影响，只需要在导入时地方注意，如果文件里有混合导入，则必须先导入默认导出的，在导入单个导入的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export const name = &quot;蛙人&quot;</span><br><span class="line">export const age = 24</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    fn() &#123;&#125;，</span><br><span class="line">    msg: &quot;hello 蛙人&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="导入值的变化"><a href="#导入值的变化" class="headerlink" title="导入值的变化"></a>导入值的变化</h3><p>export 导出的值是值的引用，并且内部有映射关系，这是 export 关键字的作用。而且导入的值，不能进行修改也就是只读状态。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// index.js</span><br><span class="line">export let num = 0;</span><br><span class="line">export function add() &#123;</span><br><span class="line">    ++ num</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">import &#123; num, add &#125; from &quot;./index.js&quot;</span><br><span class="line">console.log(num) // 0</span><br><span class="line">add()</span><br><span class="line">console.log(num) // 1</span><br><span class="line">num = 10 // 抛出错误</span><br></pre></td></tr></table></figure>
+
+<p>ES6 的模块不是对象，import 命令会被 JavaScript 引擎静态分析，在编译时就引入模块代码，而不是在代码运行时加载，所以无法实现条件加载。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (true) &#123;</span><br><span class="line">	import xxx from &#x27;XXX&#x27; // 报错</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>Es Module 也是解决了变量污染问题，依赖顺序问题，Es Module 语法也是更加灵活，导出值也都是导出的引用，导出变量是可读状态，这加强了代码可读性。</p>
+<h1 id="ES6-模块与-CommonJS-模块的差异"><a href="#ES6-模块与-CommonJS-模块的差异" class="headerlink" title="ES6 模块与 CommonJS 模块的差异"></a>ES6 模块与 CommonJS 模块的差异</h1><h3 id="1-动态与静态"><a href="#1-动态与静态" class="headerlink" title="1. 动态与静态"></a>1. 动态与静态</h3><p>CommonJs 可以动态加载语句，代码发生在运行时<br>Es Module 是静态的，不可以动态加载语句，只能声明在该文件的最顶部，代码发生在编译时</p>
+<h3 id="2-值"><a href="#2-值" class="headerlink" title="2. 值"></a>2. 值</h3><p>CommonJs 导出值是拷贝，可以修改导出的值，这在代码出错时，不好排查引起变量污染<br>Es Module 导出是引用值之前都存在映射关系，并且值都是可读的，不能修改</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2023/03/11/Symbol%EF%BC%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89%EF%BC%8Cyield,%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/">
+                    Symbol（迭代器），yield,生成器函数
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E6%96%B9%E6%B3%95"><span class="toc-text">传统方法</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+        <a title="Mini Archives"><i class="iconfont icon-home"></i></a>
+        
+            <a href="/2023/03/11/Symbol%EF%BC%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89%EF%BC%8Cyield,%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/" title="Next: Symbol（迭代器），yield,生成器函数">
+                <i class="iconfont icon-jiantouyou"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/03/12/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96AMD,CMD,ES6%20MODULE/">前端模块化AMD,CMD,ES6 MODULE</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/11/Symbol%EF%BC%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89%EF%BC%8Cyield,%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/">Symbol（迭代器），yield,生成器函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/05/%E7%96%91%E9%97%AE/">疑问</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/03/04/%E5%BE%85%E6%95%B4%E7%90%86%E7%9F%A5%E8%AF%86%E7%82%B9/">待整理知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/02/17/%E8%B7%A8%E5%9F%9F/">跨域</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/02/16/nginx/">nginx</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/02/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机组成思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机网络思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">操作系统思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">数据结构思维导图</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/07/vscode/">vscode</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/28/%E5%BC%82%E6%AD%A5%E4%B8%8E%E5%90%8C%E6%AD%A5/">异步与同步</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">面试准备</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E5%87%BD%E6%95%B0%E9%9B%86%E5%90%88/">函数集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/">个人总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%AF%94%E8%BE%83%E5%81%8F/">比较偏</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/xss%E5%92%8Ccsrf%20%E4%BB%8B%E7%BB%8D/">xss和csrf 介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7%EF%BC%88%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%EF%BC%89/">打包工具（构建工具）</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/vue%E7%90%86%E8%AE%BA/">vue理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/node/">node</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/js%E7%90%86%E8%AE%BA/">js理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jS/">jS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/jquery/">jquery</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/http/">http</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html%E7%90%86%E8%AE%BA/">html理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/html-css/">html-css</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E5%B8%83%E5%B1%80/">css布局</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/fetch%E5%92%8Caxios%E5%92%8Cneedle/">fetch和axios和needle</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/ES6/">ES6</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/DOM/">DOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css%E7%90%86%E8%AE%BA/">css理论</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/23/BOM/">BOM</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/npm%EF%BC%8Cyarn%20,pnpm%E7%AD%89%E7%9B%B8%E5%85%B3/">npm，yarn ,pnpm等相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/hexo%E4%BD%BF%E7%94%A8/">hexo使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/02/%E8%AF%AD%E9%9B%80%E4%BD%BF%E7%94%A8/">语雀使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/win11%E4%BD%BF%E7%94%A8/">win11使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/01/%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%20%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/">学习内容 要做的事情</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/08/git%E4%BD%BF%E7%94%A8/">git使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">计算机操作系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%83%8C%E8%AF%B5/">操作系统背诵</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E8%8C%83%E6%96%87/">作文范文</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/">作文模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/14/%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E7%A7%AF%E7%B4%AF/">英语作文积累</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/16/%F0%9F%92%A1%201%20%E5%88%86%E9%92%9F%E7%8E%A9%E8%BD%AC%E8%AF%AD%E9%9B%80%E6%96%87%E6%A1%A3/">💡 1 分钟玩转语雀文档</a></li></ul>
+
+
+
+
+    <script>
+        ""
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="iconfont icon-copyright"></i> 
+                2021-2023 John Doe
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="/plugins/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = "5";
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="iconfont icon-shangjiantou"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="iconfont icon-xiajiantou"></i></a>
+</div>
+  </div>
+</body>
+</html>
