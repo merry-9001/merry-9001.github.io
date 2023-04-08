@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>html-css | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>html-css</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="html"><a href="#html" class="headerlink" title="html"></a>html</h1><h2 id="meta"><a href="#meta" class="headerlink" title="meta"></a>meta</h2><p><strong>meta 主要用于设置网页中的一些元数据，元数据不是给用户看</strong></p>
+<p>charset 指定网页的字符集</p>
+<p>name 指定的数据的名称</p>
+<p>content 指定的数据的内容</p>
+<pre><code>     &lt;meta name=&quot;keywords&quot; content=&quot;HTML5,前端,CSS3&quot;&gt;
+     &lt;meta name=&quot;description&quot; content=&quot;这是一个非常不错的网站&quot;&gt;
+</code></pre>
+<p>name 的可选项</p>
+<ul>
+<li>description 用于指定网站的描述</li>
+<li>keywords 表示网站的关键字，可以同时指定多个关键字，关键字间使用,隔开</li>
+</ul>
+<h2 id="样式继承"><a href="#样式继承" class="headerlink" title="样式继承"></a>样式继承</h2><p>样式的继承，我们为一个元素设置的样式同时也会应用到它的后代元素上</p>
+<p><strong>背景相关的，布局相关等的这些样式都不会被继承。</strong></p>
+<h2 id="长度单位"><a href="#长度单位" class="headerlink" title="长度单位"></a>长度单位</h2><ul>
+<li><p>像素</p>
+</li>
+<li><p>屏幕（显示器）实际上是由一个一个的小点点构成的</p>
+</li>
+<li><p>不同屏幕的像素大小是不同的，像素越小的屏幕显示的效果越清晰</p>
+</li>
+<li><p>所以同样的 200px 在不同的设备下显示效果不一样</p>
+</li>
+<li><p>百分比</p>
+</li>
+<li><p>也可以将属性值设置为相对于其父元素属性的百分比</p>
+</li>
+<li><p>设置百分比可以使子元素跟随父元素的改变而改变</p>
+</li>
+<li><p>em</p>
+</li>
+<li><p>em 是相对于元素的字体大小来计算的</p>
+</li>
+<li><p>1em = 1font-size</p>
+</li>
+<li><p>em 会根据字体大小的改变而改变</p>
+</li>
+<li><p>rem</p>
+</li>
+<li><p>rem 是相对于根元素的字体大小来计算</p>
+</li>
+</ul>
+<h2 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h2><ul>
+<li><p>网页是一个多层的结构，一层摞着一层</p>
+</li>
+<li><p>作为用户来讲只能看到最顶上一层</p>
+</li>
+<li><p>这些层中，最底下的一层称为文档流，文档流是网页的基础</p>
+</li>
+</ul>
+<p>我们所创建的元素默认都是在文档流中进行排列</p>
+<ul>
+<li>对于我们来元素主要有两个状态</li>
+</ul>
+<p>在文档流中</p>
+<p>不在文档流中（脱离文档流）</p>
+<h2 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h2><ul>
+<li><p>块元素会在页面中独占一行(自上向下垂直排列)</p>
+</li>
+<li><p>默认宽度是父元素的全部（会把父元素撑满）</p>
+</li>
+<li><p>默认高度是被内容撑开（子元素）</p>
+</li>
+</ul>
+<pre><code>&lt;div&gt;、&lt;p&gt;、&lt;h1&gt;...&lt;h6&gt;、&lt;ol&gt;、&lt;ul&gt;、&lt;dl&gt;、&lt;table&gt;、&lt;address&gt;、&lt;blockquote&gt; 、&lt;form&gt;#
+</code></pre>
+<h2 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h2><ul>
+<li><p>行内元素不会独占页面的一行，只占自身的大小</p>
+</li>
+<li><p>行内元素的默认宽度和高度都是被内容撑开</p>
+</li>
+</ul>
+<pre><code>&lt;span&gt;...&lt;/span&gt;
+
+&lt;a&gt;...&lt;/a&gt;  链接
+
+&lt;br&gt;  换行
+
+&lt;b&gt;...&lt;/b&gt;  加粗
+
+&lt;strong&gt;...&lt;/strong&gt;  加粗
+
+&lt;img &gt;  图片
+</code></pre>
+<ul>
+<li><p>行内元素不支持设置宽度和高度</p>
+</li>
+<li><p>行内元素可以设置 padding，但是垂直方向 padding 不会影响页面的布局</p>
+</li>
+<li><p>行内元素可以设置 border，垂直方向的 border 不会影响页面的布局</p>
+</li>
+<li><p>行内元素可以设置 margin，垂直方向的 margin 不会影响布局</p>
+</li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>使用 position 属性来设置定位</p>
+<p>可选值：</p>
+<ul>
+<li>static 默认值，元素是静止的没有开启定位</li>
+<li>relative 开启元素的相对定位</li>
+<li>absolute 开启元素的绝对定位</li>
+<li>fixed 开启元素的固定定位</li>
+<li>sticky 开启元素的粘滞定位</li>
+</ul>
+<h3 id="相对定位（relative-）"><a href="#相对定位（relative-）" class="headerlink" title="相对定位（relative ）"></a>相对定位（relative ）</h3><ul>
+<li>相对定位是参照于元素在文档流中的位置进行定位的</li>
+<li>相对定位会提升元素的层级</li>
+<li>相对定位不会使元素脱离文档流</li>
+<li>相对定位不会改变元素的性质块还是块，行内还是行内<br>偏移量<br>top</li>
+<li>定位元素和定位位置上边的距离<br>bottom</li>
+<li>定位元素和定位位置下边的距离<br>left</li>
+<li>定位元素和定位位置的左侧距离<br>right</li>
+<li>定位元素和定位位置的右侧距离</li>
+</ul>
+<h3 id="绝对定位（absolute）"><a href="#绝对定位（absolute）" class="headerlink" title="绝对定位（absolute）"></a>绝对定位（absolute）</h3><p>2.开启绝对定位后，元素会从文档流中脱离</p>
+<p><strong>3.绝对定位会改变元素的性质，行内变成块，块的宽高被内容撑开</strong></p>
+<p>4.绝对定位会使元素提升一个层级</p>
+<p>5.绝对定位元素是相对于其包含块进行定位的</p>
+<p><strong>偏移量等同于相对定位的属性</strong></p>
+<h3 id="固定定位（fixed）"><a href="#固定定位（fixed）" class="headerlink" title="固定定位（fixed）"></a>固定定位（fixed）</h3><p>固定定位永远参照于浏览器的视口进行定位</p>
+<p>固定定位的元素不会随网页的滚动条滚动</p>
+<p><strong>偏移量等同于相对定位的属性</strong></p>
+<h2 id="元素层级"><a href="#元素层级" class="headerlink" title="元素层级"></a>元素层级</h2><p>对于开启了定位元素，可以通过 z-index 属性来指定元素的层级</p>
+<p>元素的层级越高越优先显示</p>
+<p>祖先的元素的层级再高也不会盖住后代元素</p>
+<pre><code> z-index: 3;
+</code></pre>
+<h2 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h2><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="引入图片空白"><a href="#引入图片空白" class="headerlink" title="引入图片空白"></a>引入图片空白</h3><pre><code>    &lt;p&gt;
+       &lt;img src=&quot;./img/an.jpg&quot; alt=&quot;&quot;&gt;
+    &lt;/p&gt;
+</code></pre>
+<p>把 Img 放入 P 中的时候默认是基线对齐，所以下面会留空白</p>
+<p>将 img 设置一下垂直对齐的方式就可以解决这个问题</p>
+<pre><code>    vertical-align: bottom;
+</code></pre>
+<h3 id="text-decoration"><a href="#text-decoration" class="headerlink" title="text-decoration"></a>text-decoration</h3><p>可选值：</p>
+<p>none 什么都没有</p>
+<p>underline 下划线</p>
+<p>line-through 删除线</p>
+<p>overline 上划线</p>
+<h3 id="文字太多显示省略号"><a href="#文字太多显示省略号" class="headerlink" title="文字太多显示省略号"></a>文字太多显示省略号</h3><pre><code>.box2&#123;
+
+    width: 200px;
+
+    /*
+
+    white-space 设置网页如何处理空白
+
+    可选值：
+
+    normal 正常
+
+    nowrap 不换行
+
+    pre 保留空白
+
+
+    */
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+&#125;
+</code></pre>
+<p>不换行   多余裁剪     文字溢出使用省略号</p>
+<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><h3 id="字体-1"><a href="#字体-1" class="headerlink" title="字体"></a>字体</h3><ul>
+<li><p>color 用来设置字体颜色</p>
+</li>
+<li><p>font-size 字体的大小</p>
+<p>em 相当于当前元素的一个 font-size</p>
+<p>rem 相对于根元素的一个 font-size</p>
+</li>
+<li><p>font-family 字体族（字体的格式）</p>
+</li>
+</ul>
+<p>可选值：</p>
+<pre><code>serif  衬线字体
+
+sans-serif 非衬线字体
+
+monospace 等宽字体
+</code></pre>
+<ul>
+<li><p>指定字体的类别，浏览器会自动使用该类别下的字体</p>
+</li>
+<li><p>font-family 可以同时指定多个字体，多个字体间使用,隔开</p>
+</li>
+</ul>
+<p>字体生效时优先使用第一个，第一个无法使用则使用第二个 以此类推</p>
+<pre><code>font-family: &#39;Courier New&#39;, Courier, monospace;
+</code></pre>
+<p>这些字体都是必须用户电脑里装着的，也可以服务器去给用户指定</p>
+<pre><code>        @font-face &#123;
+
+            /* 指定字体的名字 */
+
+            font-family:&#39;myfont&#39; ;
+
+            /* 服务器中字体的路径 */
+
+            src: url(&#39;./font/ZCOOLKuaiLe-Regular.ttf&#39;) format(&quot;truetype&quot;);
+
+        &#125;
+</code></pre>
+<p>format(“truetype”);是指定类型，是一个保险</p>
+<p>这样就是自定义一个字体可以在 font-family 里面去使用</p>
+<h3 id="行高"><a href="#行高" class="headerlink" title="行高"></a>行高</h3><p>行高指的是文字占有的实际高度</p>
+<p>可以将行高设置为和高度一样的值，使单行文字在一个元素中垂直居中</p>
+<p>line-height 来设置行高</p>
+<p>行高可以直接指定一个大小（px em）</p>
+<p>也可以直接为行高设置一个整数</p>
+<p>如果是一个整数的话，行高将会是字体的指定的倍数</p>
+<ul>
+<li>行高经常还用来设置文字的行间距（如果是多行字体的话就是用来设置文字的行间距的）</li>
+</ul>
+<p>行间距 = 行高 - 字体大小</p>
+<h3 id="字体的用法与简写"><a href="#字体的用法与简写" class="headerlink" title="字体的用法与简写"></a>字体的用法与简写</h3><p>font 可以设置字体相关的所有属性</p>
+<p>语法：</p>
+<p>font: 字体大小/行高 字体族（<strong>字体大小和字体族是必填</strong>）</p>
+<p>行高 可以省略不写 如果不写使用默认值</p>
+<pre><code>font: bold italic 50px/2  微软雅黑, &#39;Times New Roman&#39;, Times, serif;
+</code></pre>
+<p><strong>加组 斜体 字体大小/行高   字体族</strong></p>
+<p>font-weight 字体的加粗</p>
+<p>可选值：</p>
+<p>normal 默认值 不加粗</p>
+<p>bold 加粗</p>
+<p>100-900 九个级别（没什么用）</p>
+<pre><code>font-weight: bold;
+</code></pre>
+<p>font-style 字体的风格</p>
+<p>normal 正常的</p>
+<p>italic 斜体</p>
+<pre><code>font-style: italic;
+</code></pre>
+<h3 id="字体图标"><a href="#字体图标" class="headerlink" title="字体图标"></a>字体图标</h3><p>在网页中经常需要使用一些图标，可以通过图片来引入图标</p>
+<p>但是图片大小本身比较大，并且非常的不灵活</p>
+<p>所以在使用图标时，我们还可以将图标直接设置为字体，</p>
+<p>然后通过 font-face 的形式来对字体进行引入</p>
+<p>这样我们就可以通过使用字体的形式来使用图标</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3>
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

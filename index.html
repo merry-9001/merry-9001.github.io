@@ -1,780 +1,172 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="John Doe" />
-<meta name="referrer" content="no-referrer" />
+    <head>
+        <meta charset="UTF-8" />
+        <title>后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="后知后觉的个人主页">
-<meta property="og:url" content="https://merry-9001.github.io/index.html">
-<meta property="og:site_name" content="后知后觉的个人主页">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-
-<link rel="shortcut icon" href="/img/favicon.ico">
-<link href="/css/bootstrap.css" rel="stylesheet">
-<link href="/css/person.css"  rel="stylesheet">
-<link href="//at.alicdn.com/t/font_2822169_7n9pu9ptxz8.css" rel="stylesheet">
-
-    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
 
-
-    <script src="/plugins/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
-
-
-<link href="/css/style.css?v=1" rel="stylesheet">
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
-<title>
-    
-    后知后觉的个人主页
-</title>
-
-<script src="/plugins/jquery.min.js"></script>
-<script src="/plugins/clipboard.min.js"></script>
-
-<script>
-    var yiliaConfig = {
-        fancybox: "true",
-        isHome: "true",
-        isPost: "false",
-        isArchive: "false",
-        isTag: "false",
-        isCategory: "false",
-        fancybox_js: "/plugins/jquery.fancybox.min.js",
-        scrollreveal: "/plugins/scrollreveal.min.js",
-        search: ""
-    }
-</script>
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
 
 
 
-    <script> yiliaConfig.rootUrl = "\/";</script>
+<script src="/js/lib/preview.js"></script>
 
 
-<meta name="generator" content="Hexo 6.3.0"></head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            <img src="/img/index.jpg" class="animated zoomIn">
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
         </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/"></a></h1>
-        </hgroup>
-
         
-
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
         
-
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/">主页</a></li>
-                        
-                            <li><a href="/tags">标签云</a></li>
-                        
-                            <li><a href="/about">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                </section>
-            </div>
-        </div>
-    </header>                
-</div>
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
     </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger hide"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                <img src="/img/index.jpg" class="animated zoomIn">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
-            </hgroup>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
             
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/">主页</a></li>
-                
-                    <li><a href="/tags">标签云</a></li>
-                
-                    <li><a href="/about">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-        </header>                
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
     </div>
-    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap"><div class="index"></div>
 
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                
+<div id="home-posts-wrap"  ref="homePostsWrap">
+    <div id="home-posts">
+        
+<div class="post">
+    <h2 class="post-title">博客主页</h2>
 
-  
-  
-    
-    
-    <section class="archives-wrap">
-      <div class="archive-year-wrap">
-        <a href="/archives/2023" class="archive-year">2023</a>
-      </div>
-      <div class="archives">
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2023/03/12/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96AMD,CMD,ES6%20MODULE/" class="archive-article-date">
-      <time datetime="2023-03-12T04:19:41.000Z" itemprop="datePublished">03-12</time>
-</a>
-
-
+    <div class="description">
+        <div class="content">
+            <p style="font-weight: 700;">世界上只有一种真正的英雄主义，那就是看清生活的真相之后，依然热爱生活。 -- 罗曼罗兰</p>
+            <p>本站是知乐的个人博客</p>
+            <a href="https://merry-9001.gitee.io" target="_blank">前往个人主页</a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/12/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96AMD,CMD,ES6%20MODULE/">前端模块化AMD,CMD,ES6 MODULE</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2023/03/11/Symbol%EF%BC%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89%EF%BC%8Cyield,%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/" class="archive-article-date">
-      <time datetime="2023-03-11T04:20:44.000Z" itemprop="datePublished">03-11</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/11/Symbol%EF%BC%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89%EF%BC%8Cyield,%E7%94%9F%E6%88%90%E5%99%A8%E5%87%BD%E6%95%B0/">Symbol（迭代器），yield,生成器函数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2023/03/05/%E7%96%91%E9%97%AE/" class="archive-article-date">
-      <time datetime="2023-03-05T08:53:05.000Z" itemprop="datePublished">03-05</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/05/%E7%96%91%E9%97%AE/">疑问</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2023/03/04/%E5%BE%85%E6%95%B4%E7%90%86%E7%9F%A5%E8%AF%86%E7%82%B9/" class="archive-article-date">
-      <time datetime="2023-03-04T08:34:08.000Z" itemprop="datePublished">03-04</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/04/%E5%BE%85%E6%95%B4%E7%90%86%E7%9F%A5%E8%AF%86%E7%82%B9/">待整理知识点</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2023/02/17/%E8%B7%A8%E5%9F%9F/" class="archive-article-date">
-      <time datetime="2023-02-17T11:32:29.000Z" itemprop="datePublished">02-17</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/17/%E8%B7%A8%E5%9F%9F/">跨域</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2023/02/16/nginx/" class="archive-article-date">
-      <time datetime="2023-02-16T01:24:00.000Z" itemprop="datePublished">02-16</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/16/nginx/">nginx</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2023/02/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-      <time datetime="2023-02-05T05:48:41.000Z" itemprop="datePublished">02-05</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/02/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-    
-      </div></section>
-    
-    
-    <section class="archives-wrap">
-      <div class="archive-year-wrap">
-        <a href="/archives/2022" class="archive-year">2022</a>
-      </div>
-      <div class="archives">
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" class="archive-article-date">
-      <time datetime="2022-03-13T08:12:56.000Z" itemprop="datePublished">03-13</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机组成思维导图</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" class="archive-article-date">
-      <time datetime="2022-03-13T08:11:06.000Z" itemprop="datePublished">03-13</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">计算机网络思维导图</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/03/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" class="archive-article-date">
-      <time datetime="2022-03-13T08:09:59.000Z" itemprop="datePublished">03-13</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">操作系统思维导图</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/03/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" class="archive-article-date">
-      <time datetime="2022-03-13T08:05:16.000Z" itemprop="datePublished">03-13</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">数据结构思维导图</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
-      <time datetime="2022-02-19T02:28:16.000Z" itemprop="datePublished">02-19</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/02/19/%E6%9C%89%E7%82%B9%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0/">有点问题学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/02/13/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/" class="archive-article-date">
-      <time datetime="2022-02-13T13:13:26.000Z" itemprop="datePublished">02-13</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/02/13/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/02/13/less%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-      <time datetime="2022-02-13T10:04:08.000Z" itemprop="datePublished">02-13</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/02/13/less%E4%BD%BF%E7%94%A8/">less使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/02/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-      <time datetime="2022-02-08T14:17:20.000Z" itemprop="datePublished">02-08</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/02/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/02/07/vscode/" class="archive-article-date">
-      <time datetime="2022-02-07T05:34:02.000Z" itemprop="datePublished">02-07</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/02/07/vscode/">vscode</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/01/28/%E5%BC%82%E6%AD%A5%E4%B8%8E%E5%90%8C%E6%AD%A5/" class="archive-article-date">
-      <time datetime="2022-01-28T09:25:20.000Z" itemprop="datePublished">01-28</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/28/%E5%BC%82%E6%AD%A5%E4%B8%8E%E5%90%8C%E6%AD%A5/">异步与同步</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="archive-article-date">
-      <time datetime="2022-01-23T08:11:54.000Z" itemprop="datePublished">01-23</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98/" class="archive-article-date">
-      <time datetime="2022-01-23T08:11:44.000Z" itemprop="datePublished">01-23</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/23/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-  
-  
-  <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/" class="archive-article-date">
-      <time datetime="2022-01-23T08:11:39.000Z" itemprop="datePublished">01-23</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/23/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">面试准备</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-
-
-  </div></section>
-
-
-  
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a>
-  </nav>
-
+    </div>
 </div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                <i class="iconfont icon-copyright"></i> 
-                2021-2023 John Doe
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-div">
+    <div class="card-style">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">知乐</div>
+        <div class="description">
+            <p>知乐的个人博客</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://github.com/merry-9001">github</a>
             </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
         </div>
     </div>
 </footer>
-    </div>
-    
-<script data-main="/js/main.js" src="/plugins/require.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = "5";
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
-
-<div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="iconfont icon-shangjiantou"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="iconfont icon-xiajiantou"></i></a>
-</div>
-  </div>
-</body>
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
 </html>

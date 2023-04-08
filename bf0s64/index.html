@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>函数集合 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>函数集合</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><pre><code>    function Person(name , age , gender)&#123;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.sayName = function()&#123;
+            alert(this.name);
+        &#125;;
+    &#125;
+//调用Person
+    person_obj = new Person(&#39;张三&#39;，18，&#39;男&#39;);
+    person_obj.name
+</code></pre>
+<p><strong>普通函数是直接调用，而构造函数需要使用 new 关键字来调用</strong></p>
+<h1 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h1><p><strong>如果需要获取一个函数中异步操作的结果，则必须通过回调函数来获取</strong></p>
+<pre><code>    function fn(callback) &#123;
+        setTimeout(function() &#123;
+            var data = &#39;hello&#39;
+            callback(data)
+        &#125;, 1000)
+    &#125;
+
+    fn(function(data) &#123;
+        console.log(data)
+    &#125;)
+</code></pre>
+<p>如果想取到 data 的数据进行处理，就只能进行回调函数，因为定时器是异步的，函数不会等待执行完毕就直接结束了，只有在调用的时候传递一个函数给里面的定时器才行</p>
+<hr>
+<p>1). 你定义的<br>2). 你没有调<br>3). 但最终它执行了(在某个时刻或某个条件下)</p>
+<h1 id="立即执行函数和匿名函数"><a href="#立即执行函数和匿名函数" class="headerlink" title="立即执行函数和匿名函数"></a>立即执行函数和匿名函数</h1><p>函数表达式是一种匿名函数</p>
+<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><pre><code>
+function fun()&#123; //不可以这样调用
+
+&#125;
+
+(function ()&#123;    //需要再加一层括号
+    //此时会输出 hello
+    console.log(&quot;hello&quot;);
+&#125;)
+</code></pre>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、事件</p>
+<pre><code>
+var sub = document.querySelector(&quot;#sub&quot;);
+  //给按钮增加点击事件。
+  sub.onclick=function()&#123;
+      alert(&quot;当点击按钮时会执行&quot;);
+  &#125;
+</code></pre>
+<p>2、对象</p>
+<pre><code>var obj = &#123;
+    name:&quot;lynn&quot;,
+    age:18,
+    fn:function()&#123;
+        return &quot;我叫&quot;+this.name+&quot;今年&quot;+this.age+&quot;岁了！&quot;;
+    &#125;
+&#125;;
+
+console.log(obj.fn());//我叫lynn今年18岁了！
+</code></pre>
+<p>3、函数表达式</p>
+<pre><code>var fn = function()&#123;
+    return &quot;2020&quot;
+&#125;
+</code></pre>
+<h2 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h2><p>IIFE，其全称为 immediately invoked function expression，即“立即调用的函数表达式”：</p>
+<p>立即执行函数就是声明一个<strong>匿名函数</strong>，并马上调用这个匿名函数</p>
+<p>立即执行函数的用途<br><strong>创建一个独立的作用域，这个作用域里面的变量，外面访问不到（即避免”变量污染”）</strong></p>
+<p>立即执行函数往往只会执行一次</p>
+<pre><code>//两种写法
+(function() &#123;
+    // ...
+&#125;)();
+
+(function() &#123;
+    // ...
+&#125;());
+
+————————————————————————————————————————————————————
+        (function(a,b)&#123;
+        console.log(&quot;a = &quot;+a);
+        console.log(&quot;b = &quot;+b);
+    &#125;)(123,456);
+</code></pre>
+<h1 id="闭包函数"><a href="#闭包函数" class="headerlink" title="闭包函数"></a>闭包函数</h1><p>当一个嵌套的内部(子)函数引用了嵌套的外部(父)函数的变量(函数)时, 就产生了闭包</p>
+<p>函数嵌套</p>
+<p>内部函数引用了外部函数的数据(变量/函数)</p>
+<pre><code>    function fn1 () &#123;
+        var a = 2
+        var b = &#39;abc&#39;
+        function fn2 () &#123; //执行函数定义就会产生闭包(不用调用内部函数)
+            console.log(a)
+        &#125;
+        // fn2()
+    &#125;
+
+    function showDelay(msg, time) &#123;
+        setTimeout(function () &#123;
+                alert(msg)
+        &#125;, time)
+    &#125;
+</code></pre>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>使用函数内部的变量在函数执行完后, 仍然存活在内存中(延长了局部变量的生命周期)</li>
+<li>让函数外部可以操作(读写)到函数内部的数据(变量/函数)</li>
+</ul>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>函数执行完后, 函数内的局部变量没有释放, 占用内存时间会变长</li>
+<li>容易造成内存泄露</li>
+</ul>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ul>
+<li>能不用闭包就不用</li>
+<li>及时释放</li>
+</ul>
+<pre><code> f = null //让内部函数成为垃圾对象--&gt;回收闭包
+</code></pre>
+<p>闭包是什么就不解释了，直接写一个闭包函数：</p>
+<pre><code class="jsx">var f = function () &#123;
+  var num = 0;
+  return function () &#123;
+    return (num += 1);
+  &#125;;
+&#125;;
+</code></pre>
+<p>js 中，函数是一等公民，定义一个函数 f，它返回另一个可执行函数<code>function() &#123; return num += 1; &#125;;</code></p>
+<p>js 中的作用域，都是一层一层向上找的，在 f 内部函数里面，他的 num 向上找到父函数的作用域。<br>现在，我们执行一下：</p>
+<pre><code class="dart">f()()
+// 1
+f()()
+// 1
+????? 感觉 不太对？为什么num没有自增呢？？
+</code></pre>
+<ul>
+<li>内存回收机制<br>为什么上面执行结果不太对，因为执行<code>f()()</code>后，f 函数已经执行完毕了，没有其他资源引用 f，ta 会被立即释放，也就是说，<code>f()()</code>执行完后，立即就释放了。<br>如何才不释放呢？</li>
+</ul>
+<pre><code class="rust">// 创建f的引用
+var fn = f();
+fn()
+// 1
+fn()
+// 2
+fn()
+// 3
+</code></pre>
+<p>这下就对了，num 成了私有变量，f 拥有了私有作用域。</p>
+<p>完了吗？<br>f 有了 fn 的引用，内存一直得不到释放，咋办呢？这样的函数多了是不是会造成内存溢出？<br>手动释放一下：</p>
+<pre><code class="rust">var fn = f();
+fn()
+// 1
+fn()
+// 2
+fn()
+// 3
+// 手动释放f的引用
+fn = null
+// f的引用fn被释放了，现在f的作用域也被释放了。num再次归零了。
+var fn = f()
+fn()
+// 1
+</code></pre>
+<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><p>如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。</p>
+<pre><code>    var f = () =&gt; 5;
+
+    // 等同于
+
+    var f = function ()
+
+    &#123; return 5 &#125;;
+
+    var sum = (num1, num2) =&gt; num1 + num2;
+
+    // 等同于
+
+    var sum = function(num1, num2) &#123;
+
+    return num1 + num2;
+</code></pre>
+<p>函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

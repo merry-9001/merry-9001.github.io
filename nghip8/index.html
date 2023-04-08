@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>html理论 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>html理论</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="Doctype-作用？标准模式与兼容模式各有什么区别"><a href="#Doctype-作用？标准模式与兼容模式各有什么区别" class="headerlink" title="Doctype 作用？标准模式与兼容模式各有什么区别?"></a>Doctype 作用？标准模式与兼容模式各有什么区别?</h1><p>（1）、&lt;!DOCTYPE&gt;声明位于位于 HTML 文档中的第一行，处于   标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE 不存在或格式不正确会导致文档以兼容模式呈现。</p>
+<p>（2）、标准模式的排版 和 JS 运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。</p>
+<h1 id="HTML5-为什么只需要写"><a href="#HTML5-为什么只需要写" class="headerlink" title="HTML5 为什么只需要写"></a>HTML5 为什么只需要写</h1><pre><code>    &lt;!DOCTYPE HTML&gt;
+</code></pre>
+<p>HTML5 不基于 SGML，因此不需要对 DTD 进行引用，但是需要 doctype 来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；</p>
+<p>而 HTML4.01 基于 SGML,所以需要对 DTD 进行引用，才能告知浏览器文档所使用的文档类型。</p>
+<p>标准通用标记语言</p>
+<p>Standard Generalized Markup language（SGM 或 SGML）（以下简称“通用标言”）</p>
+<p>文档类型定义（DTD，Document Type Definition）是一种特殊文档，它规定、约束符合标准通用标示语言（SGML）或 SGML 子集可扩展标示语言（XML）规则的定义和陈述。</p>
+<h1 id="行内元素有哪些？块级元素有哪些？-空-void-元素有那些？"><a href="#行内元素有哪些？块级元素有哪些？-空-void-元素有那些？" class="headerlink" title="行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？"></a>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</h1><p>首先：CSS 规范规定，每个元素都有 display 属性，确定该元素的类型，每个元素都有默认的 display 值，如 div 的 display 默认值为“block”，则为“块级”元素；span 默认 display 属性值为“inline”，是“行内”元素。<br>（1）行内元素有：a b span img input select strong（强调的语气）<br>（2）块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p<br>（3）常见的空元素：</p>
+<pre><code>    &lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;
+</code></pre>
+<p><strong>meta 的属性有两种：name 和 http-equiv 作用 name 属性主要用于描述网页，对应于 content（网页内容），以便于搜索引擎机器人查找</strong></p>
+<h1 id="页面导入样式时，使用-link-和-import-有什么区别？"><a href="#页面导入样式时，使用-link-和-import-有什么区别？" class="headerlink" title="页面导入样式时，使用 link 和@import 有什么区别？"></a>页面导入样式时，使用 link 和@import 有什么区别？</h1><p>（1）link 属于 XHTML 标签，除了加载 CSS 外，还能用于定义 RSS, 定义 rel 连接属性等作用；而@import 是 CSS 提供的，只能用于加载 CSS;<br>（2）页面被加载的时，link 会同时被加载，而@import 引用的 CSS 会等到页面被加载完再加载;<br>（3）import 是 CSS2.1 提出的，只在 IE5 以上才能被识别，而 link 是 XHTML 标签，无兼容问题;</p>
+<h1 id="浏览器的内核分别是什么"><a href="#浏览器的内核分别是什么" class="headerlink" title="浏览器的内核分别是什么?"></a>浏览器的内核分别是什么?</h1><p>IE 浏览器的内核 Trident、Mozilla 的 Gecko、Chrome 的 Blink（WebKit 的分支）</p>
+<h1 id="html5-有哪些新特性、移除了那些元素？如何处理-HTML5-新标签的浏览器兼容问题？如何区分-HTML-和-HTML5？"><a href="#html5-有哪些新特性、移除了那些元素？如何处理-HTML5-新标签的浏览器兼容问题？如何区分-HTML-和-HTML5？" class="headerlink" title="html5 有哪些新特性、移除了那些元素？如何处理 HTML5 新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？"></a>html5 有哪些新特性、移除了那些元素？如何处理 HTML5 新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</h1><p>HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。<br>绘画 canvas<br>用于媒介回放的 video 和 audio 元素<br>本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；<br>sessionStorage 的数据在浏览器关闭后自动删除<br>语意化更好的内容元素，比如 article、footer、header、nav、section<br>表单控件，calendar、date、time、email、url、search<br>新的技术 webworker, websockt, Geolocation<br>移除的元素<br>对可用性产生负面影响的元素：frame，frameset，noframes；</p>
+<h1 id="语义化的理解？"><a href="#语义化的理解？" class="headerlink" title="语义化的理解？"></a>语义化的理解？</h1><p>用正确的标签做正确的事情！<br>html 语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析；<br>在没有样式 CCS 情况下也以一种文档格式显示，并且是容易阅读的。<br>搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于 SEO。<br>使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。</p>
+<h1 id="HTML5-的离线储存？"><a href="#HTML5-的离线储存？" class="headerlink" title="HTML5 的离线储存？"></a>HTML5 的离线储存？</h1><p>localStorage     长期存储数据，浏览器关闭后数据不丢失；<br>sessionStorage   数据在浏览器关闭后自动删除。</p>
+<h1 id="请描述一下-cookies，sessionStorage-和-localStorage-的区别？"><a href="#请描述一下-cookies，sessionStorage-和-localStorage-的区别？" class="headerlink" title="请描述一下 cookies，sessionStorage 和 localStorage 的区别？"></a>请描述一下 cookies，sessionStorage 和 localStorage 的区别？</h1><p>cookie 在浏览器和服务器间来回传递。 sessionStorage 和 localStorage 不会<br>sessionStorage 和 localStorage 的存储空间更大；<br>sessionStorage 和 localStorage 有更多丰富易用的接口；<br>sessionStorage 和 localStorage 各自独立的存储空间；</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

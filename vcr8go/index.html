@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>DOM | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>DOM</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="操作原生-dom"><a href="#操作原生-dom" class="headerlink" title="操作原生 dom"></a>操作原生 dom</h1><h2 id="通过-id-获取-dom-对象"><a href="#通过-id-获取-dom-对象" class="headerlink" title="通过 id 获取 dom 对象"></a>通过 id 获取 dom 对象</h2><h3 id="获取到-button-对象"><a href="#获取到-button-对象" class="headerlink" title="获取到 button 对象"></a>获取到 button 对象</h3><pre><code>    var btn = document.getElementById(&quot;btn&quot;);
+</code></pre>
+<h3 id="修改按钮的文字"><a href="#修改按钮的文字" class="headerlink" title="修改按钮的文字"></a>修改按钮的文字</h3><p>//修改按钮的文字</p>
+<pre><code>    btn.innerHTML = &quot;I&#39;m Button&quot;;
+</code></pre>
+<h3 id="绑定一个单击事件"><a href="#绑定一个单击事件" class="headerlink" title="绑定一个单击事件"></a>绑定一个单击事件</h3><pre><code>    btn.onclick = function()&#123;
+        alert(&quot;你还点~~~&quot;);
+    &#125;;
+</code></pre>
+<h2 id="通过标签获取-dom-对象"><a href="#通过标签获取-dom-对象" class="headerlink" title="通过标签获取 dom 对象"></a>通过标签获取 dom 对象</h2><h3 id="查找所有-li-节点"><a href="#查找所有-li-节点" class="headerlink" title="查找所有 li 节点"></a>查找所有 li 节点</h3><p>getElementsByTagName()可以根据标签名来获取一组元素节点对象</p>
+<p>这个方法会给我们返回一个类数组对象，所有查询到的元素都会封装到对象中</p>
+<p>得到是数组</p>
+<pre><code>          var lis = document.getElementsByTagName(&quot;li&quot;);
+          //alert(lis.length);
+          for(var i=0 ; i&lt;lis.length ; i++)&#123;
+            alert(lis[i].innerHTML);
+          &#125;
+</code></pre>
+<h2 id="通过-name-获取-dom-对象"><a href="#通过-name-获取-dom-对象" class="headerlink" title="通过 name 获取 dom 对象"></a>通过 name 获取 dom 对象</h2><p>查找 name=gender 的所有节点</p>
+<p>得到的也是一个数组</p>
+<pre><code>var inputs = document.getElementsByName(&quot;gender&quot;);
+</code></pre>
+<h2 id="innerHTML"><a href="#innerHTML" class="headerlink" title="innerHTML"></a>innerHTML</h2><p>用于获取元素内部的 HTML 代码的</p>
+<p>对于自结束标签，这个属性没有意义</p>
+<h2 id="读取元素节点属性"><a href="#读取元素节点属性" class="headerlink" title="读取元素节点属性"></a>读取元素节点属性</h2><p>元素.id 元素.name 元素.value</p>
+<p>读取 class 属性时需要使用 元素.className</p>
+<h2 id="获取相邻元素"><a href="#获取相邻元素" class="headerlink" title="获取相邻元素"></a>获取相邻元素</h2><h3 id="childNodes"><a href="#childNodes" class="headerlink" title="childNodes"></a>childNodes</h3><p>childNodes 属性会获取包括文本节点在呢的所有节点</p>
+<pre><code>var cns = city.childNodes;
+</code></pre>
+<h3 id="children"><a href="#children" class="headerlink" title="children"></a>children</h3><p>可以获取当前元素的所有子元素</p>
+<pre><code>var cns2 = city.children;
+</code></pre>
+<h3 id="parentNode"><a href="#parentNode" class="headerlink" title="parentNode"></a>parentNode</h3><p>父节点</p>
+<pre><code>var pn = bj.parentNode;
+</code></pre>
+<p><strong>以上属性都是返回一个数组</strong></p>
+<h3 id="previousSibling"><a href="#previousSibling" class="headerlink" title="previousSibling"></a>previousSibling</h3><p>前一个兄弟节点</p>
+<pre><code>var ps = and.previousSibling;
+</code></pre>
+<h2 id="根据-class-属性值查询节点对象"><a href="#根据-class-属性值查询节点对象" class="headerlink" title="根据 class 属性值查询节点对象"></a>根据 class 属性值查询节点对象</h2><pre><code>    var box1 = document.getElementsByClassName(&quot;box1&quot;);
+</code></pre>
+<p>根据 class 的名字来查询，返回一组</p>
+<pre><code>     var div = document.querySelector(&quot;.box1 div&quot;);
+</code></pre>
+<p>使用该方法总会返回唯一的一个元素，如果满足条件的元素有多个，那么它只会返回第一个</p>
+<pre><code>box1 = document.querySelectorAll(&quot;#box2&quot;);
+</code></pre>
+<p>该方法和 querySelector()用法类似，不同的是它会将符合条件的元素封装到一个数组中返回</p>
+<p>即使符合条件的元素只有一个，它也会返回数组</p>
+<h2 id="dom-增删改"><a href="#dom-增删改" class="headerlink" title="dom 增删改"></a>dom 增删改</h2><h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><p>创建一个元素节点对象</p>
+<pre><code>    var li = document.createElement(&quot;li&quot;);
+</code></pre>
+<p>创建一个文本节点对象</p>
+<pre><code>   var gzText = document.createTextNode(&quot;广州&quot;);
+</code></pre>
+<p>向一个父节点中添加一个新的子节点</p>
+<pre><code>    li.appendChild(gzText);
+</code></pre>
+<hr>
+<p>获取 id 为 city 的节点</p>
+<pre><code>    var city = document.getElementById(&quot;city&quot;);
+</code></pre>
+<p>将广州添加到 city 下</p>
+<pre><code>    city.appendChild(li);
+</code></pre>
+<hr>
+<p>insertBefore()</p>
+<p>可以在指定的子节点前插入新的子节点</p>
+<pre><code>city.insertBefore(li , bj);
+</code></pre>
+<h3 id="改"><a href="#改" class="headerlink" title="改"></a>改</h3><p>replaceChild()</p>
+<p>可以使用指定的子节点替换已有的子节点</p>
+<pre><code>city.replaceChild(li , bj);
+</code></pre>
+<h3 id="删"><a href="#删" class="headerlink" title="删"></a>删</h3><p>removeChild</p>
+<pre><code>bj.parentNode.removeChild(bj);
+</code></pre>
+<h2 id="使用-DOM-操作-CSS"><a href="#使用-DOM-操作-CSS" class="headerlink" title="使用 DOM 操作 CSS"></a>使用 DOM 操作 CSS</h2><h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><p>获取 box1</p>
+<pre><code>        var box1 = document.getElementById(&quot;box1&quot;);
+</code></pre>
+<p>为按钮绑定单击响应函数</p>
+<pre><code>        var btn01 = document.getElementById(&quot;btn01&quot;);
+</code></pre>
+<p>赋值</p>
+<pre><code>     box1.style.width = &quot;300px&quot;;
+    box1.style.height = &quot;300px&quot;;
+</code></pre>
+<h3 id="读值"><a href="#读值" class="headerlink" title="读值"></a>读值</h3><pre><code>   alert(box1.style.width);
+</code></pre>
+<p>currentStyle</p>
+<p>getStyle</p>
+<pre><code>          alert(box1.currentStyle.backgroundColor);
+          var w = getStyle(box1,&quot;width&quot;);
+          alert(w);
+</code></pre>
+<h1 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h1><p>事件的冒泡（Bubble）</p>
+<p>所谓的冒泡指的就是事件的向上传导，当后代元素上的事件被触发时，其祖先元素的相同事件也会被触发</p>
+<pre><code>            s1.onclick = function(event) &#123;
+                //可以将事件对象的cancelBubble设置为true，即可取消冒泡
+                // event.cancelBubble = true;
+            &#125;;
+</code></pre>
+<h1 id="监听事件"><a href="#监听事件" class="headerlink" title="监听事件"></a>监听事件</h1><pre><code>document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;mouseover&quot;, myFunction);
+</code></pre>
+<h1 id="委派"><a href="#委派" class="headerlink" title="委派"></a>委派</h1><p>将事件统一绑定给元素<strong>共同的祖先元素</strong>（后代元素事件触发时，通过冒泡，通过祖先元素的响应函数来处理事件）<br>这样可以只绑定一次，即可应用到多个元素上</p>
+<p>事件委派是利用了冒泡，通过委派可以减少事件绑定的次数，提高程序的性能</p>
+<hr>
+<p>为 ul 绑定一个单击响应函数</p>
+<pre><code>    u1.onclick = function(event) &#123;
+                /*
+                 * target
+                 *     - event中的target表示的触发事件的对象
+                 */
+                alert(event.target.innerHTML);
+                //如果触发事件的对象是我们期望的元素，则执行否则不执行
+                if (event.target.className == &quot;link&quot;) &#123;
+                    alert(&quot;我是ul的单击响应函数&quot;);
+                &#125; else &#123;
+                    alert(&quot;asd&quot;);
+                &#125;
+            &#125;;
+</code></pre>
+<p>这样以后，点击 ul 里面 class=link 的就会走 if，否则 else</p>
+<p>这样就不用给每一个内部都添加方法了</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h3 id="onkeydown"><a href="#onkeydown" class="headerlink" title="onkeydown"></a>onkeydown</h3><p>按键被按下</p>
+<h3 id="onkeyup"><a href="#onkeyup" class="headerlink" title="onkeyup"></a>onkeyup</h3><p>按键被松开</p>
+<pre><code>        var input = document.getElementsByTagName(&quot;input&quot;)[0];
+        input.onkeydown = function(event)&#123;
+          event = event || window.event;
+          //console.log(event.keyCode);
+          //数字 48 - 57
+          //使文本框中不能输入数字
+          if(event.keyCode &gt;= 48 &amp;&amp; event.keyCode &lt;= 57)&#123;
+            //在文本框中输入内容，属于onkeydown的默认行为
+            //如果在onkeydown中取消了默认行为，则输入的内容，不会出现在文本框中
+            return false;
+          &#125;
+        &#125;;
+      &#125;;
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

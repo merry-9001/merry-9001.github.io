@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>💡 1 分钟玩转语雀文档 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>💡 1 分钟玩转语雀文档</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2021/9/16
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h1><p>语雀共有五种文档类型：<br>文档、表格、画板、演示文稿、数据表<br><img src="1628242549683-8b0812b4-953a-4237-a195-06dd363cfbad.png#width=178" alt="image.png"></p>
+<h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><p>语雀文档支持多人同时编辑一篇文档，除了基础的文本格式：<strong>粗体</strong>、_斜体_、下划线、<del>删除线</del>、上标、下标、<code>代码</code>、颜色等，<strong>语雀还支持插入表格、思维导图、流程图、本地文件、优酷视频、高德地图等内容。</strong><br><img src="1593691398839-9cb74f52-0f80-4e72-82d1-2ea0a124032d.png#width=1407" alt="image.png"></p>
+<p><img src="1593690553775-5a9fe527-9310-48cb-8f94-7609c805da54.png#width=27" alt="image.png">「卡片」是语雀最有特色的功能，你可以通过「卡片」，在文档中插入图片、表格、附件、日历、代码块、LaTex 公式、思维导图、流程图等等。<br><img src="1628241587592-4887b8e0-6f5a-4734-8aa1-b2cb2e7ed3e8.png#width=363" alt="image.png"></p>
+<h3 id="表格"><a href="#表格" class="headerlink" title=" 表格"></a><img src="1593690553775-5a9fe527-9310-48cb-8f94-7609c805da54.png#width=27" alt="image.png"> 表格</h3><p>灵活设置表格样式，支持插入图片、附件和 状态。</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>单元格背景色设置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td><em>单元格文字格式设置</em></td>
+</tr>
+<tr>
+<td>3</td>
+<td>合并单元格重要</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="插入思维导图"><a href="#插入思维导图" class="headerlink" title=" 插入思维导图"></a><img src="1593690553775-5a9fe527-9310-48cb-8f94-7609c805da54.png#width=27" alt="image.png"> 插入思维导图</h3><p>支持在文档内直接编辑修改，可插入图片和链接，支持单独导出为图片。<br><img src="https://cdn.nlark.com/yuque/0/2020/svg/314403/1594091787390-b89ad5d4-b7ef-401d-9ff2-705bbcdd40f2.svg"></p>
+<h3 id="插入流程图"><a href="#插入流程图" class="headerlink" title=" 插入流程图"></a><img src="1593690553775-5a9fe527-9310-48cb-8f94-7609c805da54.png#width=27" alt="image.png"> 插入流程图</h3><p>快速绘制简洁优雅的流程图，支持快速设置样式和排列。<br><img src="https://cdn.nlark.com/yuque/0/2020/svg/314403/1594091787360-06c29088-8e82-4662-b99a-f04d9043a5e4.svg"></p>
+<h3 id="插入本地文件"><a href="#插入本地文件" class="headerlink" title=" 插入本地文件"></a><img src="1593690553775-5a9fe527-9310-48cb-8f94-7609c805da54.png#width=27" alt="image.png"> 插入本地文件</h3><p>支持将 Word、Excel、PPT、PDF、Keynote、Pages、Numbers、Axure、Photoshop、Xmind 等几十种文件引入到文档内直接预览。<br><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2021/key/22718987/1631787726739-a8673a2d-4412-4974-9b28-6d71d97e48c5.key">嵌入卡片.key</a></p>
+<h3 id="插入语雀内容"><a href="#插入语雀内容" class="headerlink" title=" 插入语雀内容"></a><img src="1593690553775-5a9fe527-9310-48cb-8f94-7609c805da54.png#width=27" alt="image.png"> 插入语雀内容</h3><p>知识常常需要互相引用，通过「语雀内容」你可以将任何一篇语雀文档、表格等内容引入到你的文档中，我们支持文字标题、卡片、嵌入三种展示形式。</p>
+<p><strong>标题</strong>：<a target="_blank" rel="noopener" href="https://www.yuque.com/yuque/help/why?view=doc_embed">为什么选择语雀 · 语雀</a><br><strong>卡片：</strong><br><a target="_blank" rel="noopener" href="https://www.yuque.com/yuque/help/why?view=doc_embed">为什么选择语雀</a><br><strong>嵌入：</strong><br><a target="_blank" rel="noopener" href="https://www.yuque.com/yuque/help/why?view=doc_embed">为什么选择语雀</a></p>
+<h1 id="表格-1"><a href="#表格-1" class="headerlink" title="表格"></a>表格</h1><p>语雀在线表格同样支持实时协同编辑，具备灵活的权限管理和强大的公式计算，支持条件格式、图表、下拉列表等多种数据处理功能。</p>
+<p><img src="1593691608496-e9ee402c-6eef-4dee-aee4-d0e934f6a468.png#width=1423" alt="image.png"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="丰富的表格功能"><a href="#丰富的表格功能" class="headerlink" title="丰富的表格功能"></a>丰富的表格功能</h3><p>已支持你所熟悉的表格功能，如函数、排序、筛选、查找替换、冻结行列和保护范围等。<br><img src="1593692754625-98b55521-fdff-4f6b-ae72-b13399d34d9f.png#width=1294" alt="image.png"></p>
+<h3 id="易用的表格模板"><a href="#易用的表格模板" class="headerlink" title="易用的表格模板"></a>易用的表格模板</h3><p>新建表格时，我们提供了多个常用的表格模板，可以选择一个模板进行功能体验。<br><img src="1593691676049-2611e305-1682-4cf4-b2f8-4794239d0232.png#width=1423" alt="image.png"></p>
+<h1 id="思维图"><a href="#思维图" class="headerlink" title="思维图"></a>思维图</h1><p>思维图是语雀文档体系的一员，它旨在利用图形化的方式去帮助整体、表达人的思维体系。利用语雀文档+思维图的连接性可以帮助您更高效地构建自己的知识体系。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/705195/1614739017314-baeecf4e-4b85-420d-bb6a-e5db8a955b43.jpeg"></p>
+<h1 id="数据表"><a href="#数据表" class="headerlink" title="数据表"></a>数据表</h1><p>数据表作为一种新型表格、本质是拥有可视化能力的数据库，相比传统表格更加灵活轻盈。<br>通过语雀数据表，可以像积木一样轻松搭建自己或团队的轻量管理系统，并灵活自定义表格内容。</p>
+<p>以“读书清单”这一场景为例：<br><img src="1628243148486-2b11f251-c6c8-434e-9f29-14649608a86e.png#width=750" alt="image.png"></p>
+<p>同时，语雀数据表还具备表单收集能力，收集到的信息会自动记录在数据表中。</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

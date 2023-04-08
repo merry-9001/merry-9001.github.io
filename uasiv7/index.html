@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>http与https | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>http与https</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="http-状态码有那些？分别代表是什么意思？"><a href="#http-状态码有那些？分别代表是什么意思？" class="headerlink" title="http 状态码有那些？分别代表是什么意思？"></a>http 状态码有那些？分别代表是什么意思？</h1><ul>
+<li>100-199 用于指定客户端应相应的某些动作。</li>
+<li>200-299 用于表示请求成功。</li>
+<li>300-399 用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。</li>
+<li>400-499 用于指出客户端的错误。</li>
+<li>400 语义有误，当前请求无法被服务器理解。</li>
+<li>401 当前请求需要用户验证</li>
+<li>403 服务器已经理解请求，但是拒绝执行它。</li>
+<li>500-599 用于支持服务器错误。</li>
+<li>503 – 服务不可用</li>
+</ul>
+<h1 id="POST-和-GET-的区别"><a href="#POST-和-GET-的区别" class="headerlink" title="POST 和 GET 的区别"></a>POST 和 GET 的区别</h1><ul>
+<li>GET 在浏览器回退时是无害的，而 POST 会再次提交请求 *</li>
+<li>GET 请求会被浏览器主动缓存，而 POST 不会，除非手动设置 *</li>
+<li>GET 请求参数会被完整保留在浏览器的历史记录里，而 POST 中的参数不会被保留 *</li>
+<li>GET 请求在 URL 中传送的参数是有长度限制的，而 POST 没有限制 *</li>
+<li>GET 参数通过 URL 传递，POST 放在 Request body 中 *</li>
+<li>GET 请求只能进行 url 编码，而 POST 支持多种编码方式</li>
+<li>GET 产生的 URL 地址可以被收藏，而 POST 不可以</li>
+<li>对参数的数据类型，GET 只接受 ASCII 字符，而 POST 没有限制</li>
+<li>GET 比 POST 更不安全，因为参数直接暴露在 URL 上，所以不能用来传递敏感信息</li>
+</ul>
+<h1 id="TCP-的三次握手和四次挥手"><a href="#TCP-的三次握手和四次挥手" class="headerlink" title="TCP 的三次握手和四次挥手"></a>TCP 的三次握手和四次挥手</h1><h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>第一次握手：客户端发送一个 SYN 码给服务器，要求建立数据连接；<br>第二次握手： 服务器 SYN 和自己处理一个 SYN（标志）；叫 SYN+ACK（确认包）；发送给客户端，可以建立连接<br>第三次握手： 客户端再次发送 ACK 向服务器，服务器验证 ACK 没有问题，则建立起连接；</p>
+<pre><code>SYN表示建立连接，
+FIN表示关闭连接，
+ACK表示响应，
+PSH表示有 DATA数据传输，
+RST表示连接重置。
+</code></pre>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>第一次挥手： 客户端发送 FIN(结束)报文，通知服务器数据已经传输完毕；<br>第二次挥手: 服务器接收到之后，通知客户端我收到了 SYN,发送 ACK(确认)给客户端，数据还没有传输完成<br>第三次挥手： 服务器已经传输完毕，再次发送 FIN 通知客户端，数据已经传输完毕<br>第四次挥手： 客户端再次发送 ACK,进入 TIME_WAIT 状态；服务器和客户端关闭连接；</p>
+<p>建立连接的时候， 服务器在 LISTEN 状态下，收到建立连接请求的 SYN 报文后，把 ACK 和 SYN 放在一个报文里发送给客户端。</p>
+<p>而关闭连接时，服务器收到对方的 FIN 报文时，仅仅表示对方不再发送数据了但是还能接收数据，而自己也未必全部数据都发送给对方了，所以己方可以立即关闭，也可以发送一些数据给对方后，再发送 FIN 报文给对方来表示同意现在关闭连接，因此，己方 ACK 和 FIN 一般都会分开发送，从而导致多了一次。</p>
+<h2 id="为什么不是两次握手"><a href="#为什么不是两次握手" class="headerlink" title="为什么不是两次握手"></a>为什么不是两次握手</h2><p>两次握手就建立连接，假如主机 A 发送的 SYN 因网络问题迟迟没有到达主机 B，这时候会重发另一个 SYN 包给 B，当 A 接受到 B 的 ACK 包时建立连接。这时如果第一个 SYN 到达 B 时，主机 B 会认为主机 A 希望再次建立连接，会返回一个 ACK 包给 A。当 A 收到 ACK 时会抛弃掉这个包，因为 A 并不想建立连接，这时主机 B 认为连接已经建立，会一直等待主机 A 发送数据，这样会导致主机 B 的性能损耗。</p>
+<h1 id="用户输入-url-到页面呈现的过程"><a href="#用户输入-url-到页面呈现的过程" class="headerlink" title="用户输入 url 到页面呈现的过程"></a>用户输入 url 到页面呈现的过程</h1><ul>
+<li>用户输入 url</li>
+<li>浏览器查找域名的 IP 地址 域名解析(DNS 解析)</li>
+<li>找到 IP 地址后，建立 TCP 三次握手 ,与目标服务器建立连接</li>
+<li>握手成功后，通过规定的协议（http），浏览器向目标主机发送 http 请求，请求数据包</li>
+<li>服务器处理收到的请求，将数据返回至浏览器</li>
+<li>浏览器收到 HTTP 响应报文</li>
+<li>关闭连接 浏览器解析文档</li>
+<li>读取页面内容，浏览器渲染，解析 html 源码</li>
+<li>生成 Dom 树、解析 css 样式、js 交互</li>
+<li>在生成 Render 树的过程中，浏览器就开始调用 GPU 绘制，合成图层，将内容显示在屏幕上了</li>
+</ul>
+<h1 id="优化渲染过程"><a href="#优化渲染过程" class="headerlink" title="优化渲染过程"></a>优化渲染过程</h1><p>代码层面的优化（参考浏览器篇如何减少重绘和回流）<br>懒执行 —— 将某些逻辑放到使用时再进行，可以通过定时器或事件进行唤醒<br>懒加载 —— 将不关键的资源延后加载，如图片、视频资源等。<br>图片优化：<br>可以用 css 模拟代替的尽量不要用图片<br>小图片用 base64 格式<br>雪碧图<br>选择正确的图片格式<br>选择使用 WebP 格式，体积较小，缺点是兼容性不好<br>小图使用 PNG ，图标类可以使用 SVG 代替<br>照片使用 JPEG</p>
+<h1 id="http-缓存控制"><a href="#http-缓存控制" class="headerlink" title="http 缓存控制"></a>http 缓存控制</h1><ol>
+<li>http 缓存能够帮助服务器提高并发性能，很多资源不需要重复请求直接从浏览器中拿缓存</li>
+<li>http 缓存分类 ：强缓存 协商缓存</li>
+<li>强缓存通过  expires 和 cache-control 控制   协商缓存   通过  last-Modify   和 E-tag 控制</li>
+</ol>
+<p>补充：</p>
+<ol>
+<li>为什么有 expires 有需要 cache-control<br>因为 expires 有个服务器和浏览器时间不同步的问题<br>expires 是绝对事件   cache-control 是相对时间</li>
+</ol>
+<pre><code>2. last-modify和Etag
+   last-modify 它是有个精度问题  到秒
+   e-tag 没有精度问题  只要文件改变  e-tag值就改变
+</code></pre>
+<h1 id="http-请求的推演过程"><a href="#http-请求的推演过程" class="headerlink" title="http 请求的推演过程"></a>http 请求的推演过程</h1><ol>
+<li>url(<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a>)  =&gt;  ip  (192.168.1.2)</li>
+<li>拿到 ip 去跟服务器建立 tcp 连接</li>
+<li>建立 tcp 连接之后发起 http 请求  （ tcp 是比 http 更底层一个连接协议）（ip 是 tcp 下面一层）</li>
+<li>http 连接建立之后 服务器把 html 发送给浏览器</li>
+<li>浏览器解析 html（js 文件，css 文件，图片 下载 运行）</li>
+<li>浏览器渲染 html</li>
+<li>服务器关闭连接  tcp  http</li>
+</ol>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

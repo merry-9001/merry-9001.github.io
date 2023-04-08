@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Symbol（迭代器），yield,生成器函数 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>Symbol（迭代器），yield,生成器函数</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/3/11
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="内置-symbol-值"><a href="#内置-symbol-值" class="headerlink" title="内置 symbol 值"></a>内置 symbol 值</h1><p>js 中内置了一些 symbol 值，指向语言内部使用的方法，比如我们查看数组对象的时候，可以在它的隐式原型上看到一个描述为 Symbol.iterator 的 symbol 属性：<br><img src="1678959743256-fb56d7ff-7fbb-47fc-ac23-63634936eb83.webp"><br>该属性指向对象的默认遍历器方法。当使用 for of 去遍历某一个数据结构的时候，会首先去找这个对象有没有属性[Symbol.iterator]，它的值是一个函数，返回该对象默认迭代器的方法，有就说明其为可迭代对象，可以用 for of 遍历。</p>
+<h1 id="Symbol-iterator"><a href="#Symbol-iterator" class="headerlink" title="Symbol.iterator"></a>Symbol.iterator</h1><p>迭代器，它是用于访问集合类的标准访问方法，它可以把访问逻辑从不同类型集合中抽象出来，从而避免向外部暴露集合内部的结构。<br>比如我们访问一个数组可能使用 for 循环或者 map,foreach,filter 等 for(int i=0; i&lt;array.size(); i++) { … get(i) … }， 但是当我们想要遍历链表(linkedlist)的时候就得使用 while 循环 while((e=e.next())!=null) { … e.data() … }, 以上两种方式我们都必须知道集合的内部结构是怎么样的我们才可以使用对应的循环方式去循环整个集合，那么这样就造成了很大的耦合度，当我们把一个集合的类型从 Arrarlist 变成 Linkedlist 的时候，那么原来客户端的代码必须重写，因为我们集合变了，遍历的方式也必须改成对应的方式。<br>为解决以上问题，Iterator 模式总是用同一种逻辑来遍历集合： for(Iterator it = c.iterater(); it.hasNext(); ) { … }，这样就在一定程度上解决了以上的问题。</p>
+<h2 id="for-of-和-for-in-的区别"><a href="#for-of-和-for-in-的区别" class="headerlink" title="for-of 和 for-in 的区别"></a>for-of 和 for-in 的区别</h2><p>遍历数组通常使用 for 循环，ES5 的话也可以使用 forEach，ES5 具有遍历数组功能的还有 map、filter、some、every、reduce、reduceRight 等，只不过他们的返回结果不一样。但是使用 foreach 遍历数组的话，使用 break 不能中断循环，使用 return 也不能返回到外层函数</p>
+<pre><code>var myArray=[1,2,4,5,6,7]
+myArray.name=&quot;杀马特&quot;
+Array.prototype.method=function()&#123;
+  console.log(this.length);
+&#125;
+for (var index in myArray) &#123;
+  console.log(myArray[index]);
+&#125;
+</code></pre>
+<p>使用 for in 也可以遍历数组，但是会存在以下问题：</p>
+<ol>
+<li>index 索引为字符串型数字，不能直接进行几何运算</li>
+<li>遍历顺序有可能不是按照实际数组的内部顺序</li>
+<li>使用 for in 会遍历数组所有的可枚举属性，包括原型。例如上栗的原型方法 method 和 name 属性 所以 for in 更适合遍历对象，不要使用 for in 遍历数组。</li>
+</ol>
+<p>那么除了使用 for 循环，如何更简单的正确的遍历数组达到我们的期望呢（即不遍历 method 和 name），ES6 中的 for of 更胜一筹.</p>
+<pre><code>var myArray=[1,2,4,5,6,7]
+myArray.name=&quot;杀马特&quot;
+Array.prototype.method=function()&#123;
+  console.log(this.length);
+&#125;
+for (var index of myArray) &#123; //这里的index输出的是value而不是索引
+ console.log(index);
+&#125;
+</code></pre>
+<p>注意:for-of 目前 js 实现的对象有 array，string，argument 以及后面更高级的 set，Map<br>当我们遍历对象的时候可以使用 for-in，不过这种遍历方式会把原型上的属性和方法也给遍历出来，当然我们可以通过 hasOwnProperty 来过滤掉除了实例对象的数据，但是 for-of 在 object 对象上暂时没有实现，但是我们可以通过 Symbol.iterator 给对象添加这个塑性，我们就可以使用 for-of 了，代码如下</p>
+<pre><code>var p=&#123;
+    name:&#39;kevin&#39;,
+    age:2,
+    sex:&#39;male&#39;
+&#125;
+Object.defineProperty(p,Symbol.iterator,&#123;
+    enumberable:false,
+    configurable:false,
+    writable:false,
+    value:function()&#123;
+        var _this=this;
+        var nowIndex=-1;
+        var key=Object.keys(_this);
+        return &#123;
+            next:function()&#123;
+                nowIndex++;
+                return &#123;
+                    value:_this[key[nowIndex]],
+                    done:(nowIndex+1&gt;key.length)
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;)
+&#125;
+//这样的话就可以直接通过for-of来遍历对象了
+for(var i of p)&#123;
+  console.log(i)
+&#125;
+输出的是：kevin,2,male
+</code></pre>
+<p>其实 for-of 的原理最终也是通过调用 p<a href="">Symbol.iterator</a>这个函数，这个迭代器函数返回一个 next 函数，for 循环会不断调用 next 那么知道原理之后，我们可以自己来调用 iterator.next 来实现循环</p>
+<pre><code>var students = &#123;&#125;
+students[Symbol.iterator] = function() &#123;
+  let index = 1;
+  return &#123;
+    next() &#123;
+      return &#123;done: index&gt;100, value: index++&#125;
+    &#125;
+  &#125;
+&#125;
+var iterator = students[Symbol.iterator]();
+var s=iterator.next();
+while(!s.done) &#123;
+  console.log(s.value);
+  s=iterator.next();
+&#125;
+</code></pre>
+<h2 id="迭代器实现"><a href="#迭代器实现" class="headerlink" title="迭代器实现"></a>迭代器实现</h2><pre><code>let info = &#123;
+  bears: [&#39;ice&#39;, &#39;panda&#39;, &#39;grizzly&#39;],
+  [Symbol.iterator]: function() &#123;
+    let index = 0
+    let _iterator = &#123;
+       //这里一定要箭头函数，或者手动保存上层作用域的this
+       next: () =&gt; &#123;
+        if (index &lt; this.bears.length) &#123;
+          return &#123; done: false, value: this.bears[index++] &#125;
+        &#125;
+
+        return &#123; done: true, value: undefined &#125;
+      &#125;
+    &#125;
+
+    return _iterator
+  &#125;
+&#125;
+
+let iter = info[Symbol.iterator]()
+console.log(iter.next())
+console.log(iter.next())
+console.log(iter.next())
+console.log(iter.next())
+
+//符合可迭代对象协议 就可以利用 for of 遍历
+for (let bear of info) &#123;
+  console.log(bear)
+&#125;
+//ice panda grizzly
+</code></pre>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="生成器函数（Generator）"><a href="#生成器函数（Generator）" class="headerlink" title="生成器函数（Generator）"></a>生成器函数（Generator）</h1><p>生成器是 ES6 新增的一种可以对函数控制的方案，能灵活的控制函数的暂停执行，继续执行等。<br>生成器是一种特殊的迭代器<br><strong>生成器函数和普通函数的不同</strong></p>
+<ul>
+<li>定义: 普通函数 function 定义，生成器函数 function<em>，要在后面加</em></li>
+<li>生成器函数可以通过 yield 来控制函数的执行</li>
+<li>生成器函数返回一个生成器(generator)，<strong>生成器是一个特殊的迭代器</strong></li>
+</ul>
+<h3 id="生成器函数的分段传参"><a href="#生成器函数的分段传参" class="headerlink" title="生成器函数的分段传参"></a>生成器函数的分段传参</h3><pre><code>function* bar(nickName) &#123;
+  const str1 = yield nickName
+  const str2 = yield str1 + nickName
+
+  return str2 + str1 + nickName
+&#125;
+
+const generator = bar(&#39;ice&#39;)
+
+console.log(generator.next())//第一个next没法传参
+console.log(generator.next(&#39;panda &#39;))
+console.log(generator.next(&#39;grizzly &#39;))
+console.log(generator.next())
+
+// &#123; value: &#39;ice&#39;, done: false &#125;
+// &#123; value: &#39;panda ice&#39;, done: false &#125;
+// &#123; value: &#39;grizzly panda ice&#39;, done: true &#125;
+// &#123; value: undefined, done: true &#125;
+</code></pre>
+<h3 id="生成器代替迭代器"><a href="#生成器代替迭代器" class="headerlink" title="生成器代替迭代器"></a>生成器代替迭代器</h3><pre><code>let bears = [&#39;ice&#39;,&#39;panda&#39;,&#39;grizzly&#39;]
+
+function* createArrIterator(bears) &#123;
+  for (let bear of bears) &#123;
+    yield bear
+  &#125;
+&#125;
+
+const generator = createArrIterator(bears)
+
+console.log(generator.next())
+console.log(generator.next())
+console.log(generator.next())
+console.log(generator.next())
+</code></pre>
+<h1 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h1><ul>
+<li>yield 是 ES6 的新关键字，使生成器函数执行暂停，yield 关键字后面的表达式的值返回给生成器的调用者。它可以被认为是一个基于生成器的版本的 return 关键字。</li>
+<li>yield 关键字实际返回一个 IteratorResult（迭代器）对象，它有两个属性，value 和 done，分别代表返回值和是否完成。</li>
+<li>yield 无法单独工作，需要配合 generator(生成器)的其他函数，如 next，懒汉式操作，展现强大的主动控制特性。</li>
+</ul>
+<h3 id="yield-后面接函数"><a href="#yield-后面接函数" class="headerlink" title="yield 后面接函数"></a>yield 后面接函数</h3><p>yield 后面接函数的话，到了对应暂停点 yield，会马上执行此函数，并且该函数的执行返回值，会被当做此暂停点对象的 value</p>
+<pre><code>function fn(num) &#123;
+  console.log(num)
+  return num
+&#125;
+function* gen() &#123;
+  yield fn(1)
+  yield fn(2)
+  return 3
+&#125;
+const g = gen()
+console.log(g.next())
+// 1
+// &#123; value: 1, done: false &#125;
+console.log(g.next())
+// 2
+//  &#123; value: 2, done: false &#125;
+console.log(g.next())
+// &#123; value: 3, done: true &#125;
+</code></pre>
+<h3 id="yield-后面接-Promise"><a href="#yield-后面接-Promise" class="headerlink" title="yield 后面接 Promise"></a>yield 后面接 Promise</h3><p>前面说了，函数执行返回值会当做暂停点对象的 value 值，那么下面例子就可以理解了，前两个的 value 都是 pending 状态的 Promise 对象</p>
+<pre><code>function fn(num) &#123;
+  return new Promise(resolve =&gt; &#123;
+    setTimeout(() =&gt; &#123;
+      resolve(num)
+    &#125;, 1000)
+  &#125;)
+&#125;
+function* gen() &#123;
+  yield fn(1)
+  yield fn(2)
+  return 3
+&#125;
+const g = gen()
+console.log(g.next()) // &#123; value: Promise &#123; &lt;pending&gt; &#125;, done: false &#125;
+console.log(g.next()) // &#123; value: Promise &#123; &lt;pending&gt; &#125;, done: false &#125;
+console.log(g.next()) // &#123; value: 3, done: true &#125;
+
+const g = gen()
+const next1 = g.next()
+next1.value.then(res1 =&gt; &#123;
+  console.log(next1) // 1秒后输出 &#123; value: Promise &#123; 1 &#125;, done: false &#125;
+  console.log(res1) // 1秒后输出 1
+
+  const next2 = g.next()
+  next2.value.then(res2 =&gt; &#123;
+    console.log(next2) // 2秒后输出 &#123; value: Promise &#123; 2 &#125;, done: false &#125;
+    console.log(res2) // 2秒后输出 2
+    console.log(g.next()) // 2秒后输出 &#123; value: 3, done: true &#125;
+  &#125;)
+&#125;)
+</code></pre>
+<h3 id="next-函数传参"><a href="#next-函数传参" class="headerlink" title="next 函数传参"></a>next 函数传参</h3><p>generator 函数可以用 next 方法来传参，并且可以通过 yield 来接收这个参数，注意两点</p>
+<ul>
+<li>第一次 next 传参是没用的，只有从第二次开始 next 传参才有用</li>
+<li>next 传值时，要记住顺序是，先右边 yield，后左边接收参数</li>
+</ul>
+<pre><code>function* gen() &#123;
+  const num1 = yield 1
+  console.log(num1)
+  const num2 = yield 2
+  console.log(num2)
+  return 3
+&#125;
+const g = gen()
+console.log(g.next()) // &#123; value: 1, done: false &#125;
+console.log(g.next(11111))
+// 11111
+//  &#123; value: 2, done: false &#125;
+console.log(g.next(22222))
+// 22222
+// &#123; value: 3, done: true &#125;
+</code></pre>
+<p><img src="1678969483122-9a8c7d56-f268-45a0-a017-888bd12653f5.png#width=385.5" alt="image.png"></p>
+<h3 id="Promise-next-传参"><a href="#Promise-next-传参" class="headerlink" title="Promise+next 传参"></a>Promise+next 传参</h3><pre><code>function fn(nums) &#123;
+  return new Promise(resolve =&gt; &#123;
+    setTimeout(() =&gt; &#123;
+      resolve(nums * 2)
+    &#125;, 1000)
+  &#125;)
+&#125;
+function* gen() &#123;
+  const num1 = yield fn(1)
+  const num2 = yield fn(num1)
+  const num3 = yield fn(num2)
+  return num3
+&#125;
+const g = gen()
+const next1 = g.next()
+next1.value.then(res1 =&gt; &#123;
+  console.log(next1) // 1秒后同时输出 &#123; value: Promise &#123; 2 &#125;, done: false &#125;
+  console.log(res1) // 1秒后同时输出 2
+
+  const next2 = g.next(res1) // 传入上次的res1
+  next2.value.then(res2 =&gt; &#123;
+    console.log(next2) // 2秒后同时输出 &#123; value: Promise &#123; 4 &#125;, done: false &#125;
+    console.log(res2) // 2秒后同时输出 4
+
+    const next3 = g.next(res2) // 传入上次的res2
+    next3.value.then(res3 =&gt; &#123;
+      console.log(next3) // 3秒后同时输出 &#123; value: Promise &#123; 8 &#125;, done: false &#125;
+      console.log(res3) // 3秒后同时输出 8
+
+       // 传入上次的res3
+      console.log(g.next(res3)) // 3秒后同时输出 &#123; value: 8, done: true &#125;
+    &#125;)
+  &#125;)
+&#125;)
+</code></pre>
+<h1 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h1><p><strong>async/await 是 Generator 的语法糖</strong><br>所谓 Generator 语法糖，表明的就是 aysnc/await 实现的就是 generator 实现的功能。<br>但是 async/await 比 generator 要好用。因为 generator 执行 yield 设下的断点采用的方式就是不断的调用 iterator 方法，这是个手动调用的过程。针对 generator 的这个缺点，后面提出了 co 这个库函数来自动执行 next，相比于之前的方案，这种方式确实有了进步，但是仍然麻烦。<br>而 async 配合 await 得到的就是断点执行后的结果。因此 async/await 比 generator 使用更普遍。</p>
+<p>一个基于 Promise 对象的简单自动执行器：</p>
+<pre><code>function run(gen)&#123;
+  var g = gen();
+
+  function next(data)&#123;
+    var result = g.next(data);
+    if (result.done) return result.value;
+    result.value.then(function(data)&#123;
+      next(data);
+    &#125;);
+  &#125;
+
+  next();
+&#125;
+function* foo() &#123;
+    let response1 = yield fetch(&#39;https://xxx&#39;) //返回promise对象
+    console.log(&#39;response1&#39;)
+    console.log(response1)
+    let response2 = yield fetch(&#39;https://xxx&#39;) //返回promise对象
+    console.log(&#39;response2&#39;)
+    console.log(response2)
+&#125;
+run(foo);
+</code></pre>
+<p>上面代码中，只要 Generator 函数还没执行到最后一步，next 函数就调用自身，以此实现自动执行。通过使用生成器配合执行器，就能实现使用同步的方式写出异步代码了，这样也大大加强了代码的可读性。</p>
+<p>async 写法</p>
+<pre><code>const foo = async () =&gt; &#123;
+    let response1 = await fetch(&#39;https://xxx&#39;)
+    console.log(&#39;response1&#39;)
+    console.log(response1)
+    let response2 = await fetch(&#39;https://xxx&#39;)
+    console.log(&#39;response2&#39;)
+    console.log(response2)
+&#125;
+</code></pre>
+<p>一比较就会发现，async 函数就是将 Generator 函数的星号（*）替换成 async，将 yield 替换成 await，仅此而已。</p>
+<p>async 函数对 Generator 函数的改进，体现在以下四点：</p>
+<ol>
+<li>内置执行器。Generator 函数的执行必须依靠执行器，而 async 函数自带执行器，无需手动执行 next() 方法。</li>
+<li>更好的语义。async 和 await，比起星号和 yield，语义更清楚了。async 表示函数里有异步操作，await 表示紧跟在后面的表达式需要等待结果。</li>
+<li>更广的适用性。co 模块约定，yield 命令后面只能是 Thunk 函数或 Promise 对象，而 async 函数的 await 命令后面，可以是 Promise 对象和原始类型的值（数值、字符串和布尔值，但这时会自动转成立即 resolved 的 Promise 对象）。</li>
+<li>返回值是 Promise。async 函数返回值是 Promise 对象，比 Generator 函数返回的 Iterator 对象方便，可以直接使用 then() 方法进行调用。</li>
+</ol>
+<p>async/await 的用处就是：<strong>用同步方式，执行异步操作</strong></p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

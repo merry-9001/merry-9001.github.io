@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>js理论 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>js理论</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="原生-ajax"><a href="#原生-ajax" class="headerlink" title="原生 ajax"></a>原生 ajax</h2><pre><code>//步骤一:创建异步对象
+var ajax = new XMLHttpRequest();
+
+//步骤二:设置请求的url参数,参数一是请求的类型,
+参数二是请求的url,可以带参数,
+动态的传递参数starName到服务端
+ajax.open(&#39;get&#39;,&#39;getStar.php?starName=&#39;+name);
+
+//步骤三:发送请求
+ajax.send();
+
+//步骤四:注册事件 onreadystatechange 状态改变就会调用，如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的
+ajax.onreadystatechange = function () &#123;
+    if (ajax.readyState==4 &amp;&amp;ajax.status==200) &#123;
+        console.log(ajax.responseText);//输入相应的内容
+    &#125;
+&#125;
+</code></pre>
+<h2 id="前端有哪些页面优化方法"><a href="#前端有哪些页面优化方法" class="headerlink" title="前端有哪些页面优化方法?"></a>前端有哪些页面优化方法?</h2><ul>
+<li>减少 HTTP 请求数</li>
+<li>从设计实现层面简化页面</li>
+<li>合理设置 HTTP 缓存</li>
+<li>资源合并与压缩</li>
+<li>合并 CSS 图片，减少请求数的又一个好办法。</li>
+<li>将外部脚本置底（将脚本内容在页面信息内容加载后再加载）</li>
+<li>多图片网页使用图片懒加载。</li>
+<li>在 js 中尽量减少闭包的使用</li>
+<li>尽量合并 css 和 js 文件</li>
+<li>尽量使用字体图标或者 SVG 图标，来代替传统的 PNG 等格式的图片</li>
+<li>减少对 DOM 的操作</li>
+<li>在 JS 中避免“嵌套循环”和 “死循环”</li>
+<li>尽可能使用事件委托（事件代理）来处理事件绑定的操作</li>
+</ul>
+<h2 id="浏览器渲染的主要流程是什么"><a href="#浏览器渲染的主要流程是什么" class="headerlink" title="浏览器渲染的主要流程是什么?"></a>浏览器渲染的主要流程是什么?</h2><ul>
+<li>将 html 代码按照深度优先遍历来生成 DOM 树。</li>
+<li>css 文件下载完后也会进行渲染，生成相应的 CSSOM。</li>
+<li>当所有的 css 文件下载完且所有的 CSSOM 构建结束后，就会和 DOM 一起生成 Render Tree。</li>
+<li>接下来，浏览器就会进入 Layout 环节，将所有的节点位置计算出来。</li>
+<li>最后，通过 Painting 环节将所有的节点内容呈现到屏幕上。</li>
+</ul>
+<h2 id="undefined-和-null-区别"><a href="#undefined-和-null-区别" class="headerlink" title="undefined 和 null 区别"></a>undefined 和 null 区别</h2><p>null： Null 类型，代表“空值”，代表一个空对象指针，使用 typeof 运算得到 “object”，所以你可以认为它是一个特殊的对象值。</p>
+<p>undefined： Undefined 类型，当一个声明了一个变量未初始化时，得到的就是 undefined。</p>
+<p>null 是 javascript 的关键字，可以认为是对象类型，它是一个空对象指针，和其它语言一样都是代表“空值”，不过 undefined 却是 javascript 才有的。undefined 是在 ECMAScript 第三版引入的，为了区分空指针对象和未初始化的变量，它是一个预定义的全局变量。没有返回值的函数返回为 undefined，没有实参的形参也是 undefined。</p>
+<h2 id="谈谈-This-对象的理解"><a href="#谈谈-This-对象的理解" class="headerlink" title="谈谈 This 对象的理解"></a>谈谈 This 对象的理解</h2><p>this 是 js 的一个关键字，随着函数使用场合不同，this 的值会发生变化。<br>但是有一个总原则，那就是 this 指的是调用函数的那个对象。<br>this 一般情况下：是全局对象 Global。 作为方法调用，那么 this 就是指这个对象</p>
+<h2 id="IE-与火狐的事件机制有什么区别？-如何阻止冒泡？"><a href="#IE-与火狐的事件机制有什么区别？-如何阻止冒泡？" class="headerlink" title="IE 与火狐的事件机制有什么区别？ 如何阻止冒泡？"></a>IE 与火狐的事件机制有什么区别？ 如何阻止冒泡？</h2><p>我们在网页中的某个操作（有的操作对应多个事件）。例如：当我们点击一个按钮就会产生一个事件。是可以被 JavaScript 侦测到的行为。<br>事件处理机制：IE 是事件冒泡、火狐是 事件捕获；<br>ev.stopPropagation();</p>
+<h2 id="如何编写高性能的-JavaScript？"><a href="#如何编写高性能的-JavaScript？" class="headerlink" title="如何编写高性能的 JavaScript？"></a>如何编写高性能的 JavaScript？</h2><ul>
+<li>遵循严格模式：”use strict”;</li>
+<li>将 js 脚本放在页面底部，加快渲染页面;</li>
+<li>将 js 脚本成组打包，减少请求;</li>
+<li>使用非阻塞方式下载 js 脚本;</li>
+<li>尽量使用局部变量来保存全局变量;</li>
+<li>尽量减少使用闭包;</li>
+<li>使用 window 对象属性方法时省略 window;</li>
+<li>尽量减少对象成员嵌套;</li>
+<li>缓存 DOM 节点的访问;</li>
+<li>通过避免使用 eval 和 function()构造器;</li>
+<li>给 setTimeout()和 setInterval()传递函数而不是字符作为参数;</li>
+<li>尽量使用直接量创建对象和数组;</li>
+</ul>
+<h2 id="HTML-生命周期"><a href="#HTML-生命周期" class="headerlink" title="HTML 生命周期"></a>HTML 生命周期</h2><h3 id="HTML-页面的生命周期"><a href="#HTML-页面的生命周期" class="headerlink" title="HTML 页面的生命周期"></a>HTML 页面的生命周期</h3><p>HTML 页面的生命周期包含四个重要事件：</p>
+<ul>
+<li>DOMContentLoaded —— 浏览器已完全加载 HTML，并构建了 DOM 树，但样式表之类的外部资源可能尚未加载完成。</li>
+<li>load —— 浏览器不仅加载完成了 HTML，还加载完成了所有外部资源：图片，样式等。</li>
+<li>beforeunload —— 当用户正在离开页面时。</li>
+<li>unload —— 用户几乎已经离开了</li>
+</ul>
+<h3 id="生命周期的作用"><a href="#生命周期的作用" class="headerlink" title="生命周期的作用"></a>生命周期的作用</h3><ul>
+<li>DOMContentLoaded 事件 —— DOM 已经就绪，因此处理程序可以查找 DOM 节点，并初始化接口。</li>
+<li>load 事件 —— 外部资源已加载完成，样式已被应用，图片大小也已知了。</li>
+<li>beforeunload 事件 —— 用户正在离开：我们可以检查用户是否保存了更改，并询问他是否真的要离开。</li>
+<li>unload 事件 —— 用户几乎已经离开了，但是我们仍然可以启动一些操作，例如发送统计数据。</li>
+</ul>
+<h2 id="六、window-onload"><a href="#六、window-onload" class="headerlink" title="六、window.onload"></a>六、window.onload</h2><p>当整个页面，包括样式、图片和其他资源被加载完成时，会触发 window 对象上的 load 事件。可以通过 onload 属性获取此事件。</p>
+<h2 id="七、window-onunload"><a href="#七、window-onunload" class="headerlink" title="七、window.onunload"></a>七、window.onunload</h2><p>当访问者离开页面时，window 对象上的 unload 事件就会被触发。我们可以在那里做一些不涉及延迟的操作，例如关闭相关的弹出窗口。<br>有一个值得注意的特殊情况是发送分析数据。<br>假设我们收集有关页面使用情况的数据：鼠标点击，滚动，被查看的页面区域等。<br>自然地，当用户要离开的时候，我们希望通过 unload 事件将数据保存到我们的服务器上。<br>有一个特殊的 navigator.sendBeacon(url, data) 方法可以满足这种需求，详见规范 <a href="https://link.juejin.cn/?target=https://w3c.github.io/beacon/%25E3%2580%2582">w3c.github.io/beacon/。</a><br>它在后台发送数据，转换到另外一个页面不会有延迟：浏览器离开页面，但仍然在执行 sendBeacon。<br>当 sendBeacon 请求完成时，浏览器可能已经离开了文档，所以就无法获取服务器响应（对于分析数据来说通常为空）。<br>还有一个 keep-alive 标志，该标志用于在 fetch 方法中为通用的网络请求执行此类“离开页面后”的请求。你可以在 Fetch API 一章中找到更多相关信息。<br>如果我们要取消跳转到另一页面的操作，在这里做不到。但是我们可以使用另一个事件 —— onbeforeunload。</p>
+<h2 id="八、window-onbeforeunload"><a href="#八、window-onbeforeunload" class="headerlink" title="八、window.onbeforeunload"></a>八、window.onbeforeunload</h2><p>如果访问者触发了离开页面的导航（navigation）或试图关闭窗口，beforeunload 处理程序将要求进行更多确认。<br>如果我们要取消事件，浏览器会询问用户是否确定。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>页面生命周期事件：</p>
+<ul>
+<li>九、 当 DOM 准备就绪时，document 上的 DOMContentLoaded 事件就会被触发。在这个阶段，我们可以将 JavaScript 应用于元素。<ul>
+<li>诸如 <script>...</script> 或 <script src="..."></script> 之类的脚本会阻塞 DOMContentLoaded，浏览器将等待它们执行结束。</li>
+<li>图片和其他资源仍然可以继续被加载。</li>
+</ul>
+</li>
+<li>当页面和所有资源都加载完成时，window 上的 load 事件就会被触发。我们很少使用它，因为通常无需等待那么长时间。</li>
+<li>当用户想要离开页面时，window 上的 beforeunload 事件就会被触发。如果我们取消这个事件，浏览器就会询问我们是否真的要离开（例如，我们有未保存的更改）。</li>
+<li>当用户最终离开时，window 上的 unload 事件就会被触发。在处理程序中，我们只能执行不涉及延迟或询问用户的简单操作。正是由于这个限制，它很少被使用。我们可以使用 navigator.sendBeacon 来发送网络请求。</li>
+</ul>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

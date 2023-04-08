@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>BOM | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>BOM</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>浏览器对象模型</p>
+<p>BOM 可以使我们通过 JS 来操作浏览器（Browser Object Model, BOM）</p>
+<p>在 BOM 中为我们提供了一组对象，用来完成对浏览器的操作</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h3><p>代表的是整个浏览器的窗口，同时 window 也是网页中的全局对象</p>
+<h3 id="Navigator"><a href="#Navigator" class="headerlink" title="Navigator"></a>Navigator</h3><p>代表的当前浏览器的信息，通过该对象可以来识别不同的浏览器</p>
+<h3 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h3><p>代表当前浏览器的地址栏信息，通过 Location 可以获取地址栏信息，或者操作浏览器跳转页面</p>
+<pre><code>location.assign(&quot;http://www.baidu.com&quot;);//跳转
+Object.assign()方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。
+const target = &#123; a: 1 &#125;;
+const source1 = &#123; b: 2 &#125;;
+const source2 = &#123; c: 3 &#125;;
+Object.assign(target, source1, source2);
+target // &#123;a:1, b:2, c:3&#125;
+location.reload(true);//刷新
+</code></pre>
+<h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><p>代表浏览器的历史记录，可以通过该对象来操作浏览器的历史记录</p>
+<p>由于隐私原因，该对象不能获取到具体的历史记录，只能操作浏览器向前或向后翻页</p>
+<p>而且该操作只在当次访问时有效</p>
+<p>可以用来回退到上一个页面，作用和浏览器的回退按钮一样</p>
+<pre><code>history.back()
+</code></pre>
+<p>可以跳转下一个页面，作用和浏览器的前进按钮一样</p>
+<pre><code>history.forward()
+</code></pre>
+<p>可以前进或者后退几个页面</p>
+<pre><code>history.go(-2);
+</code></pre>
+<h3 id="Screen"><a href="#Screen" class="headerlink" title="Screen"></a>Screen</h3><p>代表用户的屏幕的信息，通过该对象可以获取到用户的显示器的相关的信息</p>
+<h2 id="定时器和延时器"><a href="#定时器和延时器" class="headerlink" title="定时器和延时器"></a>定时器和延时器</h2><p>定时器 setInterval 周期性触发；</p>
+<p>延时器 setTimeout 一段事件后触发；</p>
+<p>clearInterval();//关闭定时器</p>
+<p>clearTimeout(timer);关闭延时器</p>
+<p>关闭延时器，因为本身也就执行一次，关闭就不执行了</p>
+<pre><code>        var timer = setInterval(function()&#123;
+          count.innerHTML = num++;
+          if(num == 11)&#123;
+            //关闭定时器
+            clearInterval(timer);
+          &#125;
+        &#125;,1000);
+</code></pre>
+<p>JSON</p>
+<p>JavaScript Object Notation JS 对象表示法</p>
+<p>JSON 和 JS 对象的格式一样，只不过 <strong>JSON 字符串中的属性名必须加双引号</strong></p>
+<p>其他的和 JS 语法一致</p>
+<h3 id="json-–-gt-js-对象"><a href="#json-–-gt-js-对象" class="headerlink" title="json –&gt; js 对象"></a>json –&gt; js 对象</h3><p>JSON.parse()</p>
+<p>可以将以 JSON 字符串转换为 js 对象</p>
+<p>它需要一个 JSON 字符串作为参数，会将该字符串转换为 JS 对象并返回</p>
+<pre><code>var o = JSON.parse(json);
+</code></pre>
+<h3 id="JS-对象-—-gt-JSON"><a href="#JS-对象-—-gt-JSON" class="headerlink" title="JS 对象 —&gt; JSON"></a>JS 对象 —&gt; JSON</h3><p>JSON.stringify()</p>
+<p>可以将一个 JS 对象转换为 JSON 字符串</p>
+<p>需要一个 js 对象作为参数，会返回一个 JSON 字符串</p>
+<p>var str = JSON.stringify(obj3);</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>跨域 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>跨域</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/2/17
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h2><p>浏览器有一个重要的安全策略，称之为「同源策略」<br>其中，源=协议+主机+端口源=协议+主机+端口，<strong>两个源相同，称之为同源，两个源不同，称之为跨源或跨域</strong></p>
+<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源策略是指，若页面的源和页面运行过程中加载的源不一致时，出于安全考虑，浏览器会对跨域的资源访问进行一些限制</p>
+<h3 id="同源策略种类"><a href="#同源策略种类" class="headerlink" title="同源策略种类"></a>同源策略种类</h3><ol>
+<li>DOM 同源策略：禁止对不同源页面 DOM 进行操作。这里主要场景是 iframe 跨域的情况，不同域名的 iframe 是限制互相访问的。</li>
+<li>XMLHttpRequest 同源策略：禁止使用 XHR 对象向不同源的服务器地址发起 HTTP 请求。（ajax 请求)</li>
+<li>Cookie、LocalStorage、IndexedDB 等存储性内容</li>
+</ol>
+<h3 id="为什么要有同源策略"><a href="#为什么要有同源策略" class="headerlink" title="为什么要有同源策略"></a>为什么要有同源策略</h3><p><strong>如果没有 DOM 同源策略，也就是说不同域的 iframe 之间可以相互访问，那么黑客可以这样进行攻击：</strong></p>
+<ol>
+<li>做一个假网站，里面用 iframe 嵌套一个银行网站 <a target="_blank" rel="noopener" href="http://mybank.com./">http://mybank.com。</a></li>
+<li>把 iframe 宽高啥的调整到页面全部，这样用户进来除了域名，别的部分和银行的网站没有任何差别。</li>
+<li>这时如果用户输入账号密码，我们的主网站可以跨域访问到 <a target="_blank" rel="noopener" href="http://mybank.com/">http://mybank.com</a> 的 dom 节点，就可以拿到用户的账户密码了。</li>
+</ol>
+<p><strong>如果没有 XMLHttpRequest 同源策略，那么黑客可以进行 CSRF（跨站请求伪造） 攻击：</strong></p>
+<ol>
+<li>用户登录了自己的银行页面 <a target="_blank" rel="noopener" href="http://mybank.com,http//mybank.com">http://mybank.com，http://mybank.com</a> 向用户的 cookie 中添加用户标识。</li>
+<li>用户浏览了恶意页面 <a target="_blank" rel="noopener" href="http://evil.com,执行了页面中的恶意/">http://evil.com，执行了页面中的恶意</a> AJAX 请求代码。</li>
+<li><a target="_blank" rel="noopener" href="http://evil.com/">http://evil.com</a> 向 <a target="_blank" rel="noopener" href="http://mybank.com/">http://mybank.com</a> 发起 AJAX HTTP 请求，请求会默认把 <a target="_blank" rel="noopener" href="http://mybank.com/">http://mybank.com</a> 对应 cookie 也同时发送过去。</li>
+<li>银行页面从发送的 cookie 中提取用户标识，验证用户无误，response 中返回请求数据。此时数据就泄露了。</li>
+<li>而且由于 Ajax 在后台执行，用户无法感知这一过程。</li>
+</ol>
+<p>浏览器会拦截不是同源的请求，服务器是照常发的</p>
+<p>有多种方式解决跨域问题，常见的有：</p>
+<ul>
+<li><strong>代理</strong>，常用</li>
+<li><strong>CORS</strong>，常用</li>
+<li>JSONP</li>
+</ul>
+<p>无论使用哪一种方式，都是要让浏览器知道，我这次跨域请求的是自己人，就不要拦截了。</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

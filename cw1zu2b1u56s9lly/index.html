@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>前端模块化AMD,CMD,ES6 MODULE | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>前端模块化AMD,CMD,ES6 MODULE</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/3/12
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <p>模块化的开发方式可以提高代码复用率，方便进行代码的管理。通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。目前流行的 js 模块化规范有 CommonJS、AMD、CMD 以及 ES6 的模块系统。</p>
+<h1 id="传统方法"><a href="#传统方法" class="headerlink" title="传统方法"></a>传统方法</h1><p>默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到 script 标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。<br>如果脚本体积很大，下载和执行的时间就会很长，因此造成浏览器堵塞，用户会感觉到浏览器“卡死”了，没有任何响应。这显然是很不好的体验，所以浏览器允许脚本异步加载，下面就是两种异步加载的语法。</p>
+<pre><code>&lt;script src=&quot;path/to/myModule.js&quot; defer&gt;&lt;/script&gt;
+&lt;script src=&quot;path/to/myModule.js&quot; async&gt;&lt;/script&gt;
+</code></pre>
+<p>上面代码中，script 标签打开 defer 或 async 属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行，而是直接执行后面的命令。<br>defer 与 async 的区别是：defer 要等到整个页面在内存中正常渲染结束（DOM 结构完全生成，以及其他脚本执行完成），才会执行；async 一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。一句话，defer 是“渲染完再执行”，async 是“下载完就执行”。另外，如果有多个 defer 脚本，会按照它们在页面出现的顺序加载，而多个 async 脚本是不能保证加载顺序的。</p>
+<h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h1><p>Node.js 是 commonJS 规范的主要实践者，它有四个重要的环境变量为模块化的实现提供支持：module、exports、require、global。实际使用时，用 module.exports 定义当前模块对外输出的接口（不推荐直接用 exports），用 require 加载模块。</p>
+<p>common.js 是导出同步模块</p>
+<p>node.js 中可以直接用 module.exports 导出，let module1 = require(‘./modules/module1’)引入<br>浏览器中使用需要借助工具才能正常使用</p>
+<pre><code>npm install browserify -g
+npm install browserify -save-dev
+</code></pre>
+<pre><code>module.exports.name = &quot;蛙人&quot;
+module.exports.age = 24
+
+let data = require(&quot;./index.js&quot;)
+console.log(data) // &#123; name: &quot;蛙人&quot;, age: 24 &#125;
+</code></pre>
+<h2 id="module-exports-和-exports-的区别"><a href="#module-exports-和-exports-的区别" class="headerlink" title="module.exports 和 exports 的区别"></a><strong>module.exports 和 exports 的区别</strong></h2><p>当使用分别暴露时，module.exports 和 exports 是一样的</p>
+<pre><code>const add = (a, b) =&gt; a + b
+
+const subtract = (a, b) =&gt; a - b
+
+module.exports.add = add
+module.exports.subtract = subtract
+
+exports.add = add
+exports.subtract = subtract
+</code></pre>
+<h2 id="当使用统一暴露时，它俩是不一样的"><a href="#当使用统一暴露时，它俩是不一样的" class="headerlink" title="当使用统一暴露时，它俩是不一样的"></a>当使用统一暴露时，它俩是不一样的</h2><pre><code>可以这么写
+module.exports = &#123; add, subtract &#125;
+
+不能这么写
+exports = &#123; add, subtract &#125;
+</code></pre>
+<p>原因</p>
+<pre><code>//源码
+const exports = this.exports;
+const thisValue = exports;
+const module = this;
+</code></pre>
+<p>exports 和 module.exports 指向同一个对象。所以当你使用分别暴露时，实质上是给这个对象上添加了一个个属性，这两种方式是同一个意思。<br>但是，一旦写成统一暴露，exports = { add, subtract }改变了 exports 的指向，切断了与 module.exports 之间的引用关系，exports 不再是 module.exports 的那个对象了</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>CommonJs 解决了变量污染，文件依赖等问题，它可以动态导入(代码发生在运行时)，不可以重复导入。</p>
+<h1 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h1><p>amd 是专门为浏览器所设计的</p>
+<p>AMD 规范采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。这里介绍用 require.js 实现 AMD 规范的模块化：用 require.config()指定引用路径等，用 define()定义模块，用 require()加载模块。</p>
+<h3 id="1-加载模块"><a href="#1-加载模块" class="headerlink" title="1.加载模块"></a>1.加载模块</h3><p><strong>首先我们需要引入 require.js 文件和一个入口文件 main.js。main.js 中配置 require.config()并规定项目中用到的基础模块。</strong></p>
+<pre><code>/** 网页中引入require.js及main.js **/
+&lt;script src=&quot;js/require.js&quot; data-main=&quot;js/main&quot;&gt;&lt;/script&gt;
+
+/** main.js 入口文件/主模块 **/
+// 首先用config()指定各模块路径和引用名
+require.config(&#123;
+  baseUrl: &quot;js/lib&quot;,
+  paths: &#123;
+    &quot;jquery&quot;: &quot;jquery.min&quot;,  //实际路径为js/lib/jquery.min.js
+    &quot;underscore&quot;: &quot;underscore.min&quot;,
+  &#125;
+&#125;);
+// 执行基本操作
+require([&quot;jquery&quot;,&quot;underscore&quot;],function($,_)&#123;
+  // some code here
+&#125;);
+</code></pre>
+<h3 id="2-定义模块"><a href="#2-定义模块" class="headerlink" title="2.定义模块"></a>2.定义模块</h3><pre><code>// name和deps都是非必选的参数，而callback可以是一个对象，或者是具有返回值的函数
+define([name], [deps], callback)
+</code></pre>
+<p>存在依赖的模块<br>假设你要写一个依赖 jquery 的模块，那么你需要在 define 方法中声明依赖。</p>
+<pre><code>define([&#39;jquery&#39;], function($) &#123;
+    function setColor(select, color) &#123;
+        $(select).css(&#39;color&#39;, color)
+    &#125;
+    return &#123;
+        setColor: setColor
+    &#125;
+&#125;)
+</code></pre>
+<p>另一种方法</p>
+<pre><code>define(function(require, exports, module) &#123;
+    var $ = require(&#39;jquery&#39;)
+    function setColor(select, color) &#123;
+        $(select).css(&#39;color&#39;, color)
+    &#125;
+    return &#123;
+        setColor: setColor
+    &#125;
+&#125;)
+</code></pre>
+<h3 id="3-使用模块"><a href="#3-使用模块" class="headerlink" title="3.使用模块"></a>3.使用模块</h3><pre><code>require([&#39;simple&#39;, &#39;jquery&#39;, &#39;funcModule&#39;, &#39;depModule&#39;], function(simple, $, funcModule, depModule) &#123;
+    console.log(simple)
+    console.log($)
+    $(&#39;.word&#39;).css(&#123;
+        fontSize: &#39;24px&#39;,
+        color: &#39;blue&#39;
+    &#125;)
+    var result = funcModule.add(1,2)
+    console.log(result)
+
+    depModule.setColor(&#39;.word&#39;, &#39;yellow&#39;)
+&#125;)
+</code></pre>
+<h1 id="ES6-Module"><a href="#ES6-Module" class="headerlink" title="ES6 Module"></a>ES6 Module</h1><p>ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，旨在成为浏览器和服务器通用的模块解决方案。</p>
+<pre><code>/** 定义模块 math.js **/
+var basicNum = 0;
+var add = function (a, b) &#123;
+    return a + b;
+&#125;;
+export &#123; basicNum, add &#125;;
+
+/** 引用模块 **/
+import &#123; basicNum, add &#125; from &#39;./math&#39;;
+function test(ele) &#123;
+    ele.textContent = add(99 + basicNum);
+&#125;
+</code></pre>
+<p>如上例所示，使用 import 命令的时候，用户需要知道所要加载的变量名或函数名。其实 ES6 还提供了 export default 命令，为模块指定默认输出，对应的 import 语句不需要使用大括号。这也更趋近于 ADM 的引用写法。</p>
+<pre><code>/** export default **/
+//定义输出
+export default &#123; basicNum, add &#125;;
+//引入
+import math from &#39;./math&#39;;
+function test(ele) &#123;
+    ele.textContent = math.add(99 + math.basicNum);
+&#125;
+</code></pre>
+<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><p>在 Es Module 中导出分为两种，单个导出(export)、默认导出(export default)，单个导出在导入时不像 CommonJs 一样直接把值全部导入进来了，Es Module 中可以导入我想要的值。那么默认导出就是全部直接导入进来，当然 Es Module 中也可以导出任意类型的值。</p>
+<pre><code>// 导出变量
+export const name = &quot;蛙人&quot;
+export const age = 24
+
+// 导出函数也可以
+export function fn() &#123;&#125;
+export const test = () =&gt; &#123;&#125;
+
+
+// 如果有多个的话
+const name = &quot;蛙人&quot;
+const sex = &quot;male&quot;
+export &#123; name, sex &#125;
+</code></pre>
+<h3 id="混合导出"><a href="#混合导出" class="headerlink" title="混合导出"></a>混合导出</h3><p>可以使用 export 和 export default 同时使用并且互不影响，只需要在导入时地方注意，如果文件里有混合导入，则必须先导入默认导出的，在导入单个导入的值。</p>
+<pre><code>export const name = &quot;蛙人&quot;
+export const age = 24
+
+export default &#123;
+    fn() &#123;&#125;，
+    msg: &quot;hello 蛙人&quot;
+&#125;
+</code></pre>
+<h3 id="导入值的变化"><a href="#导入值的变化" class="headerlink" title="导入值的变化"></a>导入值的变化</h3><p>export 导出的值是值的引用，并且内部有映射关系，这是 export 关键字的作用。而且导入的值，不能进行修改也就是只读状态。</p>
+<pre><code>// index.js
+export let num = 0;
+export function add() &#123;
+    ++ num
+&#125;
+
+import &#123; num, add &#125; from &quot;./index.js&quot;
+console.log(num) // 0
+add()
+console.log(num) // 1
+num = 10 // 抛出错误
+</code></pre>
+<p>ES6 的模块不是对象，import 命令会被 JavaScript 引擎静态分析，在编译时就引入模块代码，而不是在代码运行时加载，所以无法实现条件加载。</p>
+<pre><code>if (true) &#123;
+    import xxx from &#39;XXX&#39; // 报错
+&#125;
+</code></pre>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>Es Module 也是解决了变量污染问题，依赖顺序问题，Es Module 语法也是更加灵活，导出值也都是导出的引用，导出变量是可读状态，这加强了代码可读性。</p>
+<h1 id="ES6-模块与-CommonJS-模块的差异"><a href="#ES6-模块与-CommonJS-模块的差异" class="headerlink" title="ES6 模块与 CommonJS 模块的差异"></a>ES6 模块与 CommonJS 模块的差异</h1><h3 id="1-动态与静态"><a href="#1-动态与静态" class="headerlink" title="1. 动态与静态"></a>1. 动态与静态</h3><p>CommonJs 可以动态加载语句，代码发生在运行时<br>Es Module 是静态的，不可以动态加载语句，只能声明在该文件的最顶部，代码发生在编译时</p>
+<h3 id="2-值"><a href="#2-值" class="headerlink" title="2. 值"></a>2. 值</h3><p>CommonJs 导出值是拷贝，可以修改导出的值，这在代码出错时，不好排查引起变量污染<br>Es Module 导出是引用值之前都存在映射关系，并且值都是可读的，不能修改</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

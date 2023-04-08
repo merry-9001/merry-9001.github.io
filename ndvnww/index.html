@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>hexo使用 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>hexo使用</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/2
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="语雀使用"><a href="#语雀使用" class="headerlink" title="语雀使用"></a>语雀使用</h1><h2 id="开发者"><a href="#开发者" class="headerlink" title="开发者"></a>开发者</h2><p>文档：<a target="_blank" rel="noopener" href="https://www.yuque.com/yuque/developer/api">https://www.yuque.com/yuque/developer/api</a><br>发送 http 请求<br>需要填写<br>1.token<br><img src="1641091630365-edb1c07e-a545-403c-b6dc-84c0af88eb2f.png#width=1234.5" alt="image.png"><br>2.user-agent</p>
+<p>个人路径<br><a target="_blank" rel="noopener" href="https://www.yuque.com/houzhihoujue-zkge6">https://www.yuque.com/houzhihoujue-zkge6</a><br><img src="1641091866616-c7a06b7c-ed6a-4909-864e-24d7a0c87512.png#width=1278.5" alt="image.png"> 3. $url=”<a target="_blank" rel="noopener" href="https://www.yuque.com/api/v2/users/houzhihoujue-zkge6&quot;">https://www.yuque.com/api/v2/users/houzhihoujue-zkge6&quot;</a>;<br>获取内容<br><img src="1641115787628-8fa540e4-089b-4a54-9e5e-5a332c3b50a4.png#width=861" alt="image.png"></p>
+<pre><code>&lt;?php
+//测试do_get
+    $url=&quot;https://www.yuque.com/api/v2/users/houzhihoujue-zkge6&quot;;
+    $params=array(&#39;name&#39;=&gt;&#39;张三&#39;);
+    $headers=array(
+        &quot;Content-Type:application/json;charset=utf-8&quot;,
+        &quot;Accept:application/json;charset=utf-8&quot;,
+        &quot;X-Auth-Token: 7tSew8wNmbWSsVwp2ltE3z7n7V1unklVFCqNupBn&quot;,
+        &quot;User-Agent:hexo-yueque&quot;,
+    );    //json序列化
+    $result=do_get($url,$params,$headers);
+    echojson_encode($result);
+    die();
+    return;
+//测试do_post
+    $url=&quot;http://localhost:8081/SpringMVC01/user/addUser.html&quot;;
+    $params=array(&#39;id&#39;=&gt;1,&#39;name&#39;=&gt;&#39;张三&#39;);
+    $headers=array(
+        &quot;Content-Type:application/json;charset=utf-8&quot;,
+        &quot;Accept:application/json;charset=utf-8&quot;
+    );    //json序列化
+    $params=json_encode($params, JSON_FORCE_OBJECT);
+    $result=do_post($url,$params,$headers);
+    echojson_encode($result);
+    return;
+    functiondo_get($url, $params, $headers) &#123;
+        // $url = &quot;&#123;$url&#125;?&quot; . http_build_query ( $params );
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, &#39;GET&#39; );
+        curl_setopt ( $ch, CURLOPT_TIMEOUT, 60 );
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);    // 信任任何证书
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        // curl_setopt ( $ch, CURLOPT_POSTFIELDS, $params );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        $result = curl_exec ( $ch );
+        curl_close ( $ch );
+        return$result;
+    &#125;
+    functiondo_post($url, $params, $headers) &#123;
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt ( $ch, CURLOPT_CUSTOMREQUEST, &#39;POST&#39; );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $params );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt ( $ch, CURLOPT_TIMEOUT, 60 );
+        $result = curl_exec ( $ch );
+        curl_close ( $ch );
+        return$result;
+    &#125;
+?&gt;
+</code></pre>
+<p><code> </code></p>
+<h1 id="hexo-初始化"><a href="#hexo-初始化" class="headerlink" title="hexo 初始化"></a>hexo 初始化</h1><p>hexo 使用<br>创建一个文件夹</p>
+<ol>
+<li>hexo init</li>
+<li>npm run server</li>
+</ol>
+<p>npm run server 出现的问题<br><img src="1642921028905-4193112d-b45a-441d-b5b8-51fffa1a83a8.png" alt="2022-01-01-22-15-25-image.png"><br>出现问题的原因是 Node 版本过高</p>
+<h1 id="安装语雀使用"><a href="#安装语雀使用" class="headerlink" title="安装语雀使用"></a>安装语雀使用</h1><p><img src="1642921028898-aa6b8d81-080b-4e3c-82ac-46878126306a.png" alt="2022-01-01-22-28-28-image.png"></p>
+<h1 id="tags-使用"><a href="#tags-使用" class="headerlink" title="tags 使用"></a>tags 使用</h1><p>模板里要有 tag 页面<br><img src="1642908156288-5e00cda3-f132-4d04-9d4c-319c2ddd6ca4.png#width=1062" alt="image.png"><br>文档资源的 front matter 里需要设置这篇文章的标签<br><img src="1642908246644-a109e704-f4cf-4d58-9234-bd5c60909320.png#width=1394.5" alt="image.png"><br><a target="_blank" rel="noopener" href="http://localhost:4000/tags/asd/">http://localhost:4000/tags/asd/</a><br>就可以出现同标签的所有文章<br><img src="1643458926516-df76a98d-4e2f-42c7-a42e-a909f3b41e9a.png#width=414" alt="image.png"><br>config.yml 里面可以设置 tags 总览———-tag_generator：true<br><img src="1642908673038-0b8fc4de-e782-443b-9c82-784477d2f7e1.png#width=929" alt="image.png"><br>这样就可以访问<a target="_blank" rel="noopener" href="http://localhost:4000/tags/">http://localhost:4000/tags/</a>路径，里面是对所有标签的总览</p>
+<h1 id="page-页面"><a href="#page-页面" class="headerlink" title="page 页面"></a>page 页面</h1><p><img src="1642909209226-591e0a8b-7df6-4a26-b95e-e9541063f08d.png#width=1015" alt="image.png"><br>source 根目录的文件可以直接用这个路径</p>
+<p>无论文章放在_post 下还是 tag 下 加载的都是 page 模板</p>
+<p><img src="1642908347426-fe2766b7-f0a7-4127-a096-fc0921dd752f.png#width=335.5" alt="image.png"><br>如果在 tags 内填写文档，走的 page 页面<br><img src="1642908440638-dc2907e6-4446-4718-b32f-4eab412be989.png#width=297.5" alt="image.png"><br><img src="1642908433613-3f453c49-8b4b-4aed-9782-06c2d3e8d60b.png#width=826" alt="image.png"></p>
+<h1 id="about-使用"><a href="#about-使用" class="headerlink" title="about 使用"></a>about 使用</h1><p>如果 about 文件夹下有 index.md 的话，那么访问 localhost:4000/about 就会访问 index.md 使用 page 模板<br>如果 about 文件夹下没有 index.md 的话，那么访问 localhost:4000/about 如果注册的地址和模板载入<br>如果都没有，就会 404</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
+<li>category 如何形成总览要改源码？ 看源码</li>
+<li>试试将整个代码目录结构理出来</li>
+<li>最终想放在/blog 里面 然后 push 代码也往/blog 里面 push</li>
+<li>tag 和 cloundtag 的区别</li>
+<li>为什么 toc 的目录无法<ol></ol>无法包裹住所有的 li</li>
+<li>如何设置语雀的 tag 和 category</li>
+<li>学 mart text 的使用</li>
+<li>搜索制作</li>
+<li>设置<a target="_blank" rel="noopener" href="http://localhost:4000/tags/">http://localhost:4000/tags/</a>是所有分类标签</li>
+<li>绿色框配置不知道配置的是什么</li>
+</ol>
+<p><img src="1643357311268-b5253eaf-c843-4d8f-ac36-3db86cebbb5c.png#width=313" alt="image.png"> 11.代码块和各类文字结构是如何转换的<br>12.npm run sync 不能够真正的替换<br>答：rm rf 删除文件夹内容再 dist? clean:yuque?<br>13.adpater 的图片本地化处理未做</p>
+<p>可以联系语雀作者去问问问题</p>
+<h1 id="heox-文档不解之处"><a href="#heox-文档不解之处" class="headerlink" title="heox 文档不解之处"></a>heox 文档不解之处</h1><h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><p><img src="1643459613923-31f573ac-40d3-40cf-9a50-d6ab6bb610cb.png#width=794" alt="image.png"></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>参数是什么意思，我明明是 source 文件夹存的这些，这些的默认值和参数该如何使用<br><img src="1643459854258-563a195f-bbef-4f5b-b1dd-98481e820e62.png#width=748" alt="image.png"><br>不懂设置这个和如何看效果<br><img src="1643459924436-16949648-bdcb-4301-af7c-45d807f52361.png#width=752" alt="image.png"><br>这个分页分的是啥<br><img src="1643459962228-0b286d0f-2667-4d56-8119-1eaf8c2bba83.png#width=815" alt="image.png"></p>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>这个是做什么的<br><img src="1643460106617-c63a6194-f076-4792-adf8-99ba51e2957c.png#width=781" alt="image.png"></p>
+<h2 id="front-matter"><a href="#front-matter" class="headerlink" title="front-matter"></a>front-matter</h2><p>这两个是啥意思</p>
+<p><img src="1643460375672-0204c2c6-75fd-4392-85d0-a81745772ec1.png#width=833.5" alt="image.png"><br>什么意思<br><img src="1643460403949-5b803741-418f-4fa8-a6a7-f25d289cf080.png#width=845.5" alt="image.png"></p>
+<h2 id="资源文件夹"><a href="#资源文件夹" class="headerlink" title="资源文件夹"></a>资源文件夹</h2><p>学习一下 将图片本地保存</p>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>回退是什么意思<br><img src="1643462093645-c7d4cd7f-57fb-475b-b569-81508dd6fe25.png#width=770" alt="image.png"></p>
+<h1 id="小点总结"><a href="#小点总结" class="headerlink" title="小点总结"></a>小点总结</h1><p>1.文章的 front-matter 可以加 layout<br><img src="1643457804550-f9980279-ee0c-483c-8440-0aa5488b1d2b.png#width=838.5" alt="image.png"><br>可修改加载模板</p>
+<p>2.想加一个关于我 /about 显示该如何做<br>回答：可以手动注册一个 about/index 在 render.js 中<br><img src="1643431538203-fc536e8a-39d7-4b8b-b61c-eaf0e0369e46.png#width=1376" alt="image.png"></p>
+<p>3.全局变量（网站变量与页面变量等）<br>locals 就是全部网站变量的数据<br><img src="1643462823768-0a6fe31d-d236-4622-b475-2719e4202a75.png#width=984" alt="image.png"></p>
+<p>pages<br><img src="1643463243104-4b0521c9-3b56-41e6-8a6d-42e61b5db9c7.png#width=580.5" alt="image.png"></p>
+<p>posts</p>
+<pre><code>    _Document &#123;
+      title: &#39;学习内容&#39;,
+      urlname: &#39;hulv0z&#39;,
+      date: Moment&lt;2022-01-01T12:56:08+08:00&gt;,
+      _content: &#39;\n&#39; +
+        &#39;看，自己还有这么多的未知领域\n&#39; +
+        &#39;\n&#39; +
+        &#39;\n&#39; +
+        &#39;---\n&#39; +
+        &#39;\n&#39; +
+        &#39;不知道谁说的一句话 考研是对青春的救赎\n&#39; +
+        &#39;\n&#39; +
+        &#39;---\n&#39; +
+        &#39;\n&#39; +
+        &#39;学 ipad 系统\n&#39; +
+        &#39;\n&#39; +
+        &#39;\n&#39; +
+        &#39;学注册表\n&#39; +
+        &#39;学文件保护\n&#39; +
+        &#39;学用户 学软件运行 捆绑软件？\n&#39; +
+        &#39;右键删除微软\n&#39; +
+        &#39;写操作系统使用\n&#39; +
+        &#39;重装老电脑\n&#39; +
+        &#39;hexo 语雀 github\n&#39; +
+        &#39;php 魔术方法\n&#39;,
+      source: &#39;_posts/学习内容.md&#39;,
+      raw: &#39;---\n&#39; +
+        &#39;title: 学习内容\n&#39; +
+        &#39;urlname: hulv0z\n&#39; +
+        &quot;date: &#39;2022-01-01 12:56:08 +0800&#39;\n&quot; +
+        &#39;tags: []\n&#39; +
+        &#39;categories: []\n&#39; +
+        &#39;---\n&#39; +
+        &#39;\n&#39; +
+        &#39;看，自己还有这么多的未知领域\n&#39; +
+        &#39;\n&#39; +
+        &#39;\n&#39; +
+        &#39;---\n&#39; +
+        &#39;\n&#39; +
+        &#39;不知道谁说的一句话 考研是对青春的救赎\n&#39; +
+        &#39;\n&#39; +
+        &#39;---\n&#39; +
+        &#39;\n&#39; +
+        &#39;学 ipad 系统\n&#39; +
+        &#39;\n&#39; +
+        &#39;\n&#39; +
+        &#39;学注册表\n&#39; +
+        &#39;学文件保护\n&#39; +
+        &#39;学用户 学软件运行 捆绑软件？\n&#39; +
+        &#39;右键删除微软\n&#39; +
+        &#39;写操作系统使用\n&#39; +
+        &#39;重装老电脑\n&#39; +
+        &#39;hexo 语雀 github\n&#39; +
+        &#39;php 魔术方法\n&#39;,
+      slug: &#39;学习内容&#39;,
+      published: true,
+      updated: Moment&lt;2022-01-28T22:08:32+08:00&gt;,
+      comments: true,
+      layout: &#39;post&#39;,
+      photos: [],
+      link: &#39;&#39;,
+      _id: &#39;ckyyhdgef002vqgv5c4m0bf9x&#39;,
+      content: &#39;&lt;p&gt;看，自己还有这么多的未知领域&lt;br&gt;&lt;/p&gt;\n&#39; +
+        &#39;&lt;hr&gt;\n&#39; +
+        &#39;&lt;p&gt;不知道谁说的一句话 考研是对青春的救赎&lt;/p&gt;\n&#39; +
+        &#39;&lt;hr&gt;\n&#39; +
+        &#39;&lt;p&gt;学 ipad 系统&lt;br&gt;&lt;/p&gt;\n&#39; +
+        &#39;&lt;p&gt;学注册表&lt;br&gt;学文件保护&lt;br&gt;学用户 学软件运行 捆绑软件？&lt;br&gt;右键删除微软&lt;br&gt;写操作系统使用&lt;br&gt;重装老电脑&lt;br&gt;hexo 语雀 github&lt;br&gt;php 魔术方法&lt;/p&gt;\n&#39;,
+      site: [Object],
+      excerpt: &#39;&#39;,
+      more: &#39;&lt;p&gt;看，自己还有这么多的未知领域&lt;br&gt;&lt;/p&gt;\n&#39; +
+        &#39;&lt;hr&gt;\n&#39; +
+        &#39;&lt;p&gt;不知道谁说的一句话 考研是对青春的救赎&lt;/p&gt;\n&#39; +
+        &#39;&lt;hr&gt;\n&#39; +
+        &#39;&lt;p&gt;学 ipad 系统&lt;br&gt;&lt;/p&gt;\n&#39; +
+        &#39;&lt;p&gt;学注册表&lt;br&gt;学文件保护&lt;br&gt;学用户 学软件运行 捆绑软件？&lt;br&gt;右键删除微软&lt;br&gt;写操作系统使用&lt;br&gt;重装老电脑&lt;br&gt;hexo 语雀 github&lt;br&gt;php 魔术方法&lt;/p&gt;\n&#39;,
+      path: [Getter],
+      permalink: [Getter],
+      full_source: [Getter],
+      asset_dir: [Getter],
+      tags: [Getter],
+      categories: [Getter],
+      prev: [_Document],
+      next: [_Document],
+      __post: true
+    &#125;,
+</code></pre>
+<p>问题<br><img src="1643463976670-b3f80cbd-d9f5-40e7-92a6-a87a60d2982c.png#width=557.5" alt="image.png"><br>这些数据怎么放 放哪里<br>然后数据对象里面有些参数的具体参数不知道 需要测试</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>css布局 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>css布局</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="flex-布局"><a href="#flex-布局" class="headerlink" title="flex 布局"></a>flex 布局</h1><h2 id="伸缩盒子"><a href="#伸缩盒子" class="headerlink" title="伸缩盒子"></a>伸缩盒子</h2><p>设置父容器为伸缩盒子：会使每一个子元素自动变成伸缩项</p>
+<pre><code>    display: flex;
+</code></pre>
+<h2 id="子元素排列方式"><a href="#子元素排列方式" class="headerlink" title="子元素排列方式"></a>子元素排列方式</h2><p>设置子元素的排列方式<br>flex-start:让子元素从父容器的起始位置开始排列<br>flex-end:让子元素从父容器的结束位置开始排列<br>center:让子元素从父容器的中间位置开始排列<br>space-between:左右对齐父容器的开始和结束，中间平均分页，产生相同的间距<br>space-around:将多余的空间平均的分页在每一个子元素的两边</p>
+<pre><code>justify-content: space-around; - 如何分配主轴上的空白空间（主轴上的元素如何排列）
+</code></pre>
+<h2 id="控制换行"><a href="#控制换行" class="headerlink" title="控制换行"></a>控制换行</h2><p>flex-wrap:控制子元素是否换行显示，默认不换行<br>nowrap:不换行–则收缩（默认）<br>wrap:换行<br>wrap-reverse:翻转，原来是从上到下，翻转后就是从下到上来排列</p>
+<pre><code> flex-wrap: wrap;
+</code></pre>
+<h2 id="子元素的排列方向"><a href="#子元素的排列方向" class="headerlink" title="子元素的排列方向"></a>子元素的排列方向</h2><p>flex-direction：设置子元素的排列方向：就是用来主轴方向，默认主轴方向是 row(水平方向)<br>row:水平排列方向，从左到右<br>row-reverse:水平排列方向，从右到左<br>column:垂直排列方向，从上到下<br>column-reverse：垂直排列方向，从下到上</p>
+<pre><code>flex-direction: column-reverse;
+</code></pre>
+<p>flex-flow:是 flex-wrap 和 flex-direction 的综合</p>
+<pre><code>flex-flow: row wrap;
+</code></pre>
+<h2 id="侧轴方向上的对齐方式（垂直居中）"><a href="#侧轴方向上的对齐方式（垂直居中）" class="headerlink" title="侧轴方向上的对齐方式（垂直居中）"></a>侧轴方向上的对齐方式（垂直居中）</h2><p>align-items:设置子元素(伸缩项)在侧轴方向上的对齐方式<br>center:设置在侧轴方向上居中对齐<br>flex-start:设置在侧轴方向上顶对齐<br>flex-end:设置在侧轴方向上底对齐<br>stretch:拉伸：让子元素在侧轴方向上进行拉伸，填充满整个侧轴方向&gt;&gt; 默认值<br>baseline:文本基线</p>
+<pre><code>    align-items: center;
+</code></pre>
+<h2 id="align-content-与-align-items"><a href="#align-content-与-align-items" class="headerlink" title="align-content 与 align-items"></a>align-content 与 align-items</h2><p>align-content 属性值就是 align-items 的值</p>
+<p>align-content:center 对单行是没有效果的,而 align-items:center 不管是对单行还是多行都有效果,而在我们日常开发中用的比较多的就是 align-items.</p>
+<hr>
+<p>**以上都是给 display:flex 盒子设置的，以下是子元素的属性 **<br>**一个元素可以既是弹性盒子，又是子元素 **</p>
+<h2 id="子元素属性"><a href="#子元素属性" class="headerlink" title="子元素属性"></a>子元素属性</h2><p>flow-grow:可以来扩展子元素的宽度：设置当前元素应该占据剩余空间的比例值<br>比例值计算 ：当前空间的 flex-grow/所有兄弟元素的 flex-grow 的和<br>flex-grow 的默认是 0:说明子元素并不会去占据剩余的空间</p>
+<pre><code>flex-grow: 1;
+</code></pre>
+<p>flex-shrink:定义收缩比例，通过设置的值来计算收缩空间<br>比例值计算 ：当前空间的 flex-shrink/所有兄弟元素的 flex-shrink 的和<br>默认值为 1</p>
+<pre><code>flex-shrink: 3;
+</code></pre>
+<p>flex 是用来设置当前伸缩子项占据剩余空间的比例值</p>
+<pre><code>    flex: 1;
+</code></pre>
+<pre><code>            flex 可以设置弹性元素所有的三个样式
+            flex 增长 缩减 基础;
+            initial &quot;flex: 0 1 auto&quot;.
+            auto  &quot;flex: 1 1 auto&quot;
+            none &quot;flex: 0 0 auto&quot; 弹性元素没有弹性
+</code></pre>
+<h2 id="align-self-flex-start-子元素内可以再次单独调整位置"><a href="#align-self-flex-start-子元素内可以再次单独调整位置" class="headerlink" title="align-self: flex-start; 子元素内可以再次单独调整位置"></a>align-self: flex-start; 子元素内可以再次单独调整位置</h2><p>align-self: 用来覆盖当前弹性元素上的 align-items ，属性值就是 align-items 的值<br>center:设置在侧轴方向上居中对齐<br>flex-start:设置在侧轴方向上顶对齐<br>flex-end:设置在侧轴方向上底对齐<br>stretch:拉伸：让子元素在侧轴方向上进行拉伸，填充满整个侧轴方向&gt;&gt; 默认值<br>baseline:文本基线</p>
+<h1 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h1><h2 id="浮动的特点"><a href="#浮动的特点" class="headerlink" title="浮动的特点"></a>浮动的特点</h2><p>所谓 css 浮动就是浮动元素会脱离文档的普通流，根据 float 的值向左或向右移动，直到它的外边界碰到父元素的内边界或另一个浮动元素的外边界为止，浮动元素默认不会从父元素中移出<br><strong>浮动就是脱离文档流了，叠在文档流上面，在文档流里面的数据就会覆盖在他的下面，原来是原来将文字环绕的，文字不会叠在他的下面，而是环绕排列</strong><br><strong>脱离文档流以后，不需要再区分块和行内了 直接变成块元素</strong></p>
+<p>css 属性 float：left/right/none 左浮动/右浮动/不浮动（默认）<br>浮动是给要浮动的元素添加的，跟父元素无关，给某个子元素添加后，</p>
+<h2 id="BFC-块级格式化环境"><a href="#BFC-块级格式化环境" class="headerlink" title="BFC:块级格式化环境"></a>BFC:块级格式化环境</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>BFC(Block Formatting Context) 块级格式化环境</p>
+<p>开启 BFC 该元素会变成一个独立的布局区域</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>1.开启 BFC 的元素不会被浮动元素所覆盖</p>
+<p>2.开启 BFC 的元素子元素和父元素外边距不会重叠</p>
+<p>3.开启 BFC 的元素可以包含浮动的子元素</p>
+<h3 id="开启方式"><a href="#开启方式" class="headerlink" title="开启方式"></a>开启方式</h3><p>1、设置元素的浮动（不推荐）</p>
+<p>2、将元素设置为行内块元素（不推荐）</p>
+<p>3、将元素的 overflow 设置为一个非 visible 的值</p>
+<ul>
+<li>常用的方式 为元素设置 overflow:hidden 开启其 BFC 以使其可以包含浮动元素</li>
+</ul>
+<h4 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h4><p>子元素是在父元素的内容区中排列的，</p>
+<p>如果子元素的大小超过了父元素，则子元素会从父元素中溢出</p>
+<p>使用 overflow 属性来设置父元素如何处理溢出的子元素</p>
+<p>可选值：<br>visible，默认值 子元素会从父元素中溢出，在父元素外部的位置显示<br>hidden 溢出内容将会被裁剪不会显示<br>scroll 生成两个滚动条，通过滚动条来查看完整的内容<br>auto 根据需要生成滚动条</p>
+<h3 id="高度塌陷"><a href="#高度塌陷" class="headerlink" title="高度塌陷"></a>高度塌陷</h3><p>在浮动布局中，父元素的高度默认是被子元素撑开的，</p>
+<p>当子元素浮动后，其会完全脱离文档流，子元素从文档流中脱离</p>
+<p>将会无法撑起父元素的高度，导致父元素的高度丢失</p>
+<p>父元素高度丢失以后，其下的元素会自动上移，导致页面的布局混乱</p>
+<h3 id="高度塌陷解决方案"><a href="#高度塌陷解决方案" class="headerlink" title="高度塌陷解决方案"></a>高度塌陷解决方案</h3><pre><code>        .clearfix::before,
+        .clearfix::after&#123;
+            content: &#39;&#39;;
+            display: table;
+            clear: both;
+        &#125;
+</code></pre>
+<p>这个既可以解决高度塌陷的问题，也可以解决父元素和子元素的 margin-top 重合的问题</p>
+<p>clearfix 这个样式可以同时解决高度塌陷和外边距重叠的问题，当你在遇到这些问题时，直接使用 clearfix 这个类即可</p>
+<h2 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h2><p>如果我们不希望某个元素因为其他元素浮动的影响而改变位置，<br>可以通过 clear 属性来清除浮动元素对当前元素所产生的影响<br><strong>因为如果前面的浮动的话，这个元素进入到原来浮动的元素上，所以如果不想这么做，就必须清除浮动</strong>，设置这个元素的属性</p>
+<pre><code>clear
+    - 作用：清除浮动元素对当前元素所产生的影响
+    - 可选值：
+        left 清除左侧浮动元素对当前元素的影响
+        right 清除右侧浮动元素对当前元素的影响
+        both 清除两侧中最大影响的那侧
+</code></pre>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

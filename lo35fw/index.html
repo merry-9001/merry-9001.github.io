@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>node | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>node</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a><strong>node.js</strong></h1><p>node.js 没有 dom 和 bom 操作<br>Node.js 是什么<br>既不是语言，也不是框架，它是一个平台<br>没有 BOM、DOM<br>EcmaScript 基本的 JavaScript 语言部分<br>在 Node 中为 JavaScript 提供了一些服务器级别的 API</p>
+<h2 id="创建-web-服务器"><a href="#创建-web-服务器" class="headerlink" title="创建 web 服务器"></a><strong>创建 web 服务器</strong></h2><pre><code>1.加载 http 核心模块
+var http = require(&#39;http&#39;)
+2.使用 http.createServer() 方法创建一个 Web 服务器
+var server = http.createServer()
+3.服务器操作
+server.on(&#39;request&#39;, function () &#123;
+    console.log(&#39;收到客户端的请求了&#39;)
+&#125;)
+4.绑定端口号，启动服务器
+server.listen(3000, function () &#123;
+    console.log(&#39;服务器启动成功了，可以通过 http://127.0.0.1:3000/ 来进行访问&#39;)
+&#125;)
+</code></pre>
+<h2 id="服务器接收参数"><a href="#服务器接收参数" class="headerlink" title="服务器接收参数"></a><strong>服务器接收参数</strong></h2><p>Request 请求对象<br>请求对象可以用来获取客户端的一些请求信息，例如请求路径</p>
+<p>Response 响应对象<br>响应对象可以用来给客户端发送响应消息</p>
+<h2 id="服务器操作"><a href="#服务器操作" class="headerlink" title="服务器操作"></a><strong>服务器操作</strong></h2><p>在 http 协议中，Content-Type 就是用来告知对方我给你发送的数据内容是什么类型</p>
+<pre><code>// text/plain 就是普通文本
+// 如果你发送的是 html 格式的字符串，则也要告诉浏览器我给你发送是 text/html 格式的内容
+</code></pre>
+<p>可以采用读取图片的方式，然后如果文件读取成功的话,end 返回一个（data），data 就是数据</p>
+<pre><code>fs.readFile(&#39;./resource/ab2.jpg&#39;, function (err, data) &#123;
+    if (err) &#123;
+        res.setHeader(&#39;Content-Type&#39;, &#39;text/plain; charset=utf-8&#39;)
+            res.end(&#39;文件读取失败，请稍后重试！&#39;)
+    &#125; else &#123;
+        res.setHeader(&#39;Content-Type&#39;, &#39;image/jpeg&#39;)
+        res.end(data)
+    &#125;
+&#125;)
+</code></pre>
+<h2 id="node-js-核心模块"><a href="#node-js-核心模块" class="headerlink" title="node.js 核心模块"></a><strong>node.js 核心模块</strong></h2><p>用来获取机器信息的</p>
+<pre><code>var os = require(&#39;os&#39;)
+</code></pre>
+<p>用来操作路径的</p>
+<pre><code>var path = require(&#39;path&#39;)
+</code></pre>
+<p>获取当前机器的 CPU 信息</p>
+<pre><code>console.log(os.cpus())
+</code></pre>
+<p>memory 内存</p>
+<pre><code>console.log(os.totalmem())
+</code></pre>
+<p>获取一个路径中的扩展名部分</p>
+<pre><code>extname extension name
+console.log(path.extname(&#39;c:/a/b/c/d/hello.txt&#39;))
+</code></pre>
+<h2 id="node-js-理论细节"><a href="#node-js-理论细节" class="headerlink" title="node.js 理论细节"></a><strong>node.js 理论细节</strong></h2><p>在 Node 中没有全局作用域的概念</p>
+<p>在 Node 中，只能通过 require 方法来加载执行多个 JavaScript 脚本文件</p>
+<p>require 加载只能是执行其中的代码，文件与文件之间由于是模块作用域，所以不会有污染的问题</p>
+<ul>
+<li><p>模块完全是封闭的</p>
+</li>
+<li><p>外部无法访问内部</p>
+</li>
+<li><p>内部也无法访问外部</p>
+</li>
+</ul>
+<p>模块作用域固然带来了一些好处，可以加载执行多个文件，可以完全避免变量命名冲突污染的问题</p>
+<ul>
+<li><p>但是某些情况下，模块与模块是需要进行通信的</p>
+</li>
+<li><p>在每个模块中，都提供了一个对象：<code>exports</code></p>
+</li>
+<li><p>该对象默认是一个空对象</p>
+</li>
+<li><p>你要做的就是把需要被外部访问使用的成员手动的挂载到 <code>exports</code> 接口对象中</p>
+</li>
+<li><p>然后谁来 <code>require</code> 这个模块，谁就可以得到模块内部的 <code>exports</code> 接口对象</p>
+</li>
+</ul>
+<h2 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a><strong>核心模块</strong></h2><p>核心模块是由 Node 提供的一个个的具名的模块，它们都有自己特殊的名称标识，例如</p>
+<ul>
+<li><p>fs 文件操作模块</p>
+</li>
+<li><p>http 网络服务构建模块</p>
+</li>
+<li><p>os 操作系统信息模块</p>
+</li>
+<li><p>path 路径处理模块</p>
+</li>
+</ul>
+<h2 id="关于-js-代码是否使用分号"><a href="#关于-js-代码是否使用分号" class="headerlink" title="关于 js 代码是否使用分号"></a><strong>关于 js 代码是否使用分号</strong></h2><p>建议如果一行代码是以 (、[、` 开头的，则最好都在其前面补上一个分号。</p>
+<h2 id="服务端渲染和客户端渲染的区别"><a href="#服务端渲染和客户端渲染的区别" class="headerlink" title="服务端渲染和客户端渲染的区别"></a><strong>服务端渲染和客户端渲染的区别</strong></h2><ul>
+<li><p>客户端渲染不利于 SEO 搜索引擎优化</p>
+</li>
+<li><p>服务端渲染是可以被爬虫抓取到的，客户端异步渲染是很难被爬虫抓取到的</p>
+</li>
+<li><p>所以你会发现真正的网站既不是纯异步也不是纯服务端渲染出来的</p>
+</li>
+<li><p>而是两者结合来做的</p>
+</li>
+<li><p>例如京东的商品列表就采用的是服务端渲染，目的了为了 SEO 搜索引擎优化</p>
+</li>
+<li><p>而它的商品评论列表为了用户体验，而且也不需要 SEO 优化，所以采用是客户端渲染</p>
+</li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="Express"><a href="#Express" class="headerlink" title="Express"></a><strong>Express</strong></h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><strong>介绍</strong></h2><ul>
+<li><p>第三方 Web 开发框架</p>
+</li>
+<li><p>高度封装了 http 模块</p>
+</li>
+<li><p>更加专注于业务，而非底层细节</p>
+</li>
+<li><p>知其所以然</p>
+</li>
+</ul>
+<ul>
+<li>增删改查</li>
+</ul>
+<ul>
+<li>使用文件来保存数据（锻炼异步编码）</li>
+</ul>
+<ul>
+<li>MongoDB</li>
+</ul>
+<ul>
+<li>（所有方法都封装好了）</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a><strong>使用</strong></h2><ol>
+<li> 安装 npm</li>
+<li> 引包</li>
+</ol>
+<pre><code>    var express = require(&#39;express&#39;)
+</code></pre>
+<ol start="3">
+<li>创建你服务器应用程序</li>
+</ol>
+<pre><code>    var app = express()
+</code></pre>
+<h3 id="开放资源"><a href="#开放资源" class="headerlink" title="开放资源"></a><strong>开放资源</strong></h3><p>只要这样做了，你就可以直接通过 /public/xx 的方式访问 public 目录中的所有资源了</p>
+<pre><code>    app.use(&#39;/public/&#39;, express.static(&#39;./public/&#39;))
+</code></pre>
+<p>用户访问 public 地址的时候，给他显示 public 接口</p>
+<h3 id="get-请求"><a href="#get-请求" class="headerlink" title="get 请求"></a><strong>get 请求</strong></h3><pre><code>    app.get(&#39;/about&#39;, function (req, res) &#123;
+
+    // 在 Express 中可以直接 req.query 来获取查询字符串参数
+
+    console.log(req.query)
+
+    res.send(&#39;你好，我是 Express!&#39;)
+
+    &#125;)
+</code></pre>
+<h3 id="开启接口"><a href="#开启接口" class="headerlink" title="开启接口"></a><strong>开启接口</strong></h3><p>相当于 server.listen</p>
+<pre><code>    app.listen(3000, function () &#123;
+
+    console.log(&#39;app is running at port 3000.&#39;)
+
+    &#125;)
+</code></pre>
+<h2 id="使用模板"><a href="#使用模板" class="headerlink" title="使用模板"></a><strong>使用模板</strong></h2><p>\1. 安装 express-art-template 和 art-template</p>
+<p>\2. 配置 html 表示使用的是 html 结尾的模板才能使用</p>
+<pre><code>    app.engine(&#39;html&#39;, require(&#39;express-art-template&#39;))
+</code></pre>
+<p><img src="file://C:/Users/six/Documents/Gridea/post-images/1576909355217.png"></p>
+<h2 id="获取表单内容"><a href="#获取表单内容" class="headerlink" title="获取表单内容"></a><strong>获取表单内容</strong></h2><ol>
+<li>安装 body-parser</li>
+</ol>
+<p>2.配置</p>
+<pre><code>    var bodyParser = require(&#39;body-parser&#39;)
+
+    // 配置模板引擎和 body-parser 一定要在 app.use(router) 挂载路由之前
+
+    // parse application/x-www-form-urlencoded
+
+    app.use(bodyParser.urlencoded(&#123; extended: false &#125;))
+
+    // parse application/json
+
+    app.use(bodyParser.json())
+</code></pre>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a><strong>异步</strong></h2><p>一般情况下，把函数作为参数的目的就是为了获取函数内部的异步操作结果</p>
+<p>JavaScript 单线程、事件循环</p>
+<p>异步操作的函数</p>
+<ul>
+<li><p>setTimeout</p>
+</li>
+<li><p>readFile</p>
+</li>
+<li><p>writeFile</p>
+</li>
+<li><p>ajax</p>
+</li>
+</ul>
+<h1 id="dirname-和-filename"><a href="#dirname-和-filename" class="headerlink" title="**dirname 和 **filename"></a>**dirname 和 **filename</h1><ul>
+<li><p>动态的获取当前文件或者文件所处目录的绝对路径</p>
+</li>
+<li><p>用来解决文件操作路劲的相对路径问题</p>
+</li>
+<li><p>因为在文件操作中，相对路径相对于执行 <code>node</code> 命令所处的目录</p>
+</li>
+<li><p>所以为了尽量避免这个问题，都建议文件操作的相对路劲都转为：动态的绝对路径</p>
+</li>
+<li><p>方式：<code>path.join(__dirname, &#39;文件名&#39;)</code></p>
+</li>
+</ul>
+<p>用了这个他就会帮助你获取当前的电脑的绝对路径，避免了相对路径会遇到的问题也不至于会写死</p>
+<p>__dirname 是用来获取文件的目录</p>
+<p>__filename 可以用来获取当前的文件名</p>
+<p>就是专门用来动态的获取当前文件以及文件所属目录的绝对路径</p>
+<h1 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h1><h2 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li><p>就是产品的说明书</p>
+</li>
+<li><p><code>dependencies</code> 属性，用来保存项目的第三方包依赖项信息</p>
+</li>
+<li><p>所以建议每个项目都要有且只有一个 package.json (存放在项目的根目录)</p>
+</li>
+<li><p>我们可以通过 <code>npm init [--yes]</code> 来生成 package.json 文件</p>
+</li>
+<li><p>同样的，为了保存依赖项信息，我们每次安装第三方包的时候都要加上：<code>--save</code> 选项。</p>
+</li>
+</ul>
+<p>在文件夹 cmd 中输入 npm init，获取 package.json 文件</p>
+<p>然后你使用 npm 装包就可以看见，package.json-lock 可以帮助锁定版本，也可以提高速速</p>
+<h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><h3 id="中间件：处理请求的，本质就是个函数"><a href="#中间件：处理请求的，本质就是个函数" class="headerlink" title="中间件：处理请求的，本质就是个函数"></a>中间件：处理请求的，本质就是个函数</h3><p>当请求进来，会从第一个中间件开始进行匹配</p>
+<ul>
+<li>如果匹配，则进来</li>
+</ul>
+<ul>
+<li><p>如果请求进入中间件之后，没有调用 next 则代码会停在当前中间件</p>
+</li>
+<li><p>如果调用了 next 则继续向后找到第一个匹配的中间件</p>
+</li>
+</ul>
+<ul>
+<li>如果不匹配，则继续判断匹配下一个中间件</li>
+</ul>
+<p>不关心请求路径和请求方法的中间件</p>
+<p>也就是说任何请求都会进入这个中间件</p>
+<p>中间件本身是一个方法，该方法接收三个参数：</p>
+<p>Request 请求对象</p>
+<p>Response 响应对象</p>
+<p>next     下一个中间件</p>
+<p>通配</p>
+<p>app.use(function (req, res, next) {</p>
+<p>console.log(1)</p>
+<p>next()</p>
+<p>})</p>
+<p>以 /a 开头的路径中间件</p>
+<p>app.use(‘/a’, function (req, res, next) {</p>
+<p>console.log(‘a’)</p>
+<p>next()</p>
+<p>})</p>
+<p>精准匹配</p>
+<p>app.get(‘/abc’, function(req, res, next) {</p>
+<p>console.log(‘abc’)</p>
+<p>next()</p>
+<p>})</p>
+<h3 id="如果不写-next-就不会继续执行下个中间件-其实之前用的很多插件使用-use-的配置都是采用了中间件，然后-next-到下一个-所以才能使用那些方法"><a href="#如果不写-next-就不会继续执行下个中间件-其实之前用的很多插件使用-use-的配置都是采用了中间件，然后-next-到下一个-所以才能使用那些方法" class="headerlink" title="如果不写 next()就不会继续执行下个中间件 其实之前用的很多插件使用 use 的配置都是采用了中间件，然后 next()到下一个 所以才能使用那些方法"></a>如果不写 next()就不会继续执行下个中间件 其实之前用的很多插件使用 use 的配置都是采用了中间件，然后 next()到下一个 所以才能使用那些方法</h3><p>配置错误处理中间件</p>
+<p>next(err)</p>
+<p>app.use(function (err, req, res, next) {</p>
+<p>es.status(500).send(err.message)</p>
+<p>})</p>
+<p>如果使用中间的 next()里面传递了参数，那么就会直接进入错误处理中间件，这个中间件必须拥有四个参数</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

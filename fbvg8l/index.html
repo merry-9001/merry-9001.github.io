@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>面试准备 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>面试准备</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><p>问：你遇到的什么难题<br>然后改写了 element-ui 组件的一些功能<br>比如图片上传 我可以自己手写限制条件</p>
+<p>问：你的项目有什么亮点吗<br>组件二次封装和重写（element-ui 设置图片大小限制）<br>需要优化的地方<br>购物车：我每更改数据都需要 ajax 请求，感觉有点浪费<br>然后搜索的时候可以用下节流<br>可能是我一个人写吧 ，所以没写注释，有什么时候回去改可能需要重新阅读<br>绿驿项目是一个竞赛项目，主要是一个智能开盖的项目，然后 app 扫码。我们有五个人，然后有负责物联网的做 app 的。我主要负责制作网页，主要是提供用户的注册，信息，新闻的发布。然后这个项目主要用到了 echart 图表，因为各种信息，各个地区，各个用户，各个时间的信息都可以筛选，我做了三级联动，然后可以多重筛选，这个地方比较复杂，然后由于数据挺多的，有些地区这类的我用了 localstorge 来存.</p>
+<h1 id="前端学习的方式"><a href="#前端学习的方式" class="headerlink" title="前端学习的方式"></a>前端学习的方式</h1><p>b 站</p>
+<p>思否 掘金 csdn 去看</p>
+<p>然后也会去 github 仓库里看他们整理好的文档</p>
+<p>axios 拦截器</p>
+<p>然后再 request 的时候，如果 Loading.service 就锁一下页面，跳一个动画出来</p>
+<p>然后 baseurl，响应最长时间</p>
+<p>传输给后台数据的时候，就调整判断一下 username</p>
+<p>response 的时候就后台发状态吗。就可以判断</p>
+<p>相等于将一些重复的代码合并一下</p>
+<p>支付宝沙箱</p>
+<p>快递接口，支付宝接口调用</p>
+<pre><code>      this.axios
+        .post(&quot;/personCustom_api/pay/pagepay/pagepay.php&quot;, params)
+        .then(res =&gt; &#123;
+          const div = document.createElement(&quot;div&quot;);
+          div.innerHTML = res.data;
+          document.body.appendChild(div);
+          document.forms[0].submit();
+          // console.log(res);
+        &#125;);
+</code></pre>
+<p>路由懒加载/图片懒加载</p>
+<pre><code>import VueLazyload from &#39;vue-lazyload&#39;
+Vue.use(VueLazyload)
+v-lazy
+</code></pre>
+<p>问：学习前端的方式<br>b 站<br>思否 掘金<br>csdn 的会去看<br>然后也会去 github 仓库里看他们整理好的文档<br>同学之间探讨</p>
+<p>问：为什么选择前端<br>我的回答是，以前学 c++的时候经常不能短时间就做出东西出来，这样就感觉没有动力学下去了啊，整天看着一堆枯燥的书。前端一开始写 html 页面，看着自己写出来的一个个页面就很有成就感，然后慢慢的就想写的更漂亮，交互效果越多，就开始努力学习 css 和 js，随着页面越来越复杂，就需要学更多的东西，追求更高的代码质量，就是这样的良性循环促使自己在前端道路上一直走下去。</p>
+<h1 id="用户输入-url-到页面呈现的过程"><a href="#用户输入-url-到页面呈现的过程" class="headerlink" title="用户输入 url 到页面呈现的过程"></a>用户输入 url 到页面呈现的过程</h1><ul>
+<li>用户输入 url</li>
+<li>浏览器查找域名的 IP 地址 域名解析(DNS 解析)</li>
+<li>找到 IP 地址后，建立 TCP 三次握手 ,与目标服务器建立连接</li>
+<li>握手成功后，通过规定的协议（http），浏览器向目标主机发送 http 请求，请求数据包</li>
+<li>服务器处理收到的请求，将数据返回至浏览器</li>
+<li>浏览器收到 HTTP 响应报文</li>
+<li>关闭连接 浏览器解析文档</li>
+<li>读取页面内容，浏览器渲染，解析 html 源码</li>
+<li>生成 Dom 树、解析 css 样式、js 交互</li>
+<li>在生成 Render 树的过程中，浏览器就开始调用 GPU 绘制，合成图层，将内容显示在屏幕上了</li>
+</ul>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

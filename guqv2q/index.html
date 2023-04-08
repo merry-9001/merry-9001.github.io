@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>git使用 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>git使用</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2021/12/8
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>版本库 👉.git<ul>
+<li>当我们使用 git 管理文件时，比如 git init 时，这个时候，会多一个.git 文件，我们把这个文件称之为版本库。</li>
+<li>.git 文件另外一个作用就是它在创建的时候，会自动创建 master 分支，并且将 HEAD 指针指向 master 分支。</li>
+</ul>
+</li>
+<li>工作区<ul>
+<li>本地项目存放文件的位置</li>
+</ul>
+</li>
+<li>暂存区 (Index/Stage)<ul>
+<li>顾名思义就是暂时存放文件的地方，通过是通过 add 命令将工作区的文件添加到缓冲区</li>
+</ul>
+</li>
+<li>本地仓库（Repository）<ul>
+<li>通常情况下，我们使用 commit 命令可以将暂存区的文件添加到本地仓库</li>
+<li>通常而言，HEAD 指针指向的就是 master 分支</li>
+</ul>
+</li>
+<li>远程仓库（Remote）<ul>
+<li>举个例子，当我们使用 GitHub 托管我们项目时，它就是一个远程仓库。</li>
+<li>通常我们使用 clone 命令将远程仓库代码拷贝下来，本地代码更新后，通过 push 托送给远程仓库。</li>
+</ul>
+</li>
+</ul>
+<h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><p><img src="1675683529674-2fd38f17-552d-47bb-be74-c60d18db9244.png#width=765" alt="image.png"></p>
+<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p><img src="1675683944274-d64c7670-6aae-400f-85f9-af1cf63fea5b.png#width=758.5" alt="image.png"></p>
+<p>-d 就是删除，会检验分支内容是不是都被合并到别的分支了，这样免得把修改内容弄丢了。<br>-D 就是强制删除，不做检验。</p>
+<h2 id="fetch-命令"><a href="#fetch-命令" class="headerlink" title="fetch 命令"></a>fetch 命令</h2><p><img src="1675684694041-b3fe5fd0-6a85-436c-a637-f3b665874e6f.png#width=762" alt="image.png"></p>
+<h2 id="状态查询"><a href="#状态查询" class="headerlink" title="状态查询"></a>状态查询</h2><ul>
+<li>查看状态<ul>
+<li>git status</li>
+</ul>
+</li>
+<li>查看历史操作记录<ul>
+<li>git reflog</li>
+</ul>
+</li>
+<li>查看日志<ul>
+<li>git log</li>
+</ul>
+</li>
+</ul>
+<h2 id="文档查询"><a href="#文档查询" class="headerlink" title="文档查询"></a>文档查询</h2><ul>
+<li>展示 Git 命令大纲<ul>
+<li>git help (–help)</li>
+</ul>
+</li>
+<li>展示 Git 命令大纲全部列表<ul>
+<li>git help -a</li>
+</ul>
+</li>
+<li>展示具体命令说明手册<ul>
+<li>git help</li>
+</ul>
+</li>
+</ul>
+<h2 id="花式撤销"><a href="#花式撤销" class="headerlink" title="花式撤销"></a>花式撤销</h2><h2 id="文件暂存"><a href="#文件暂存" class="headerlink" title="文件暂存"></a>文件暂存</h2><p><img src="1675864936199-8ed2b578-841d-459e-8b7f-671593209e6f.png#width=748" alt="image.png"></p>
+<h2 id="差异比较"><a href="#差异比较" class="headerlink" title="差异比较"></a>差异比较</h2><p><img src="1675865137851-140b486f-92b2-4941-8f18-2c0e3c9cdde3.png#width=755" alt="image.png"></p>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h2 id="基本操作-1"><a href="#基本操作-1" class="headerlink" title="基本操作"></a>基本操作</h2><p>有了上述的基本了解后，那么我们就来看看整体的一个流程吧。</p>
+<ul>
+<li>创建本地仓库 git initgit init</li>
+<li>链接本地仓库与远端仓库 git remote add origin origin 默认是远端仓库别名 url 可以是<strong>可以使用 https 或者 ssh 的方式新建</strong></li>
+<li>检查配置信息<ul>
+<li>git config –list</li>
+</ul>
+</li>
+<li>Git user name 与 emailgit config –global user.name “yourname”git config –global user.email “your_email”</li>
+<li>生成 SSH 密钥 ssh-keygen -t rsa -C “这里换上你的邮箱”cd ~/.ssh 里面有一个文件名为 id_rsa.pub,把里面的内容复制到 git 库的我的 SSHKEYs 中</li>
+<li>常看远端仓库信息<ul>
+<li>git remote -v</li>
+</ul>
+</li>
+<li>远端仓库重新命名<ul>
+<li>git remote rename old new</li>
+</ul>
+</li>
+<li>提交到缓存区<ul>
+<li>git add . 全部上传到缓存区</li>
+<li>git add 指定文件</li>
+</ul>
+</li>
+<li>提交到本地仓库<ul>
+<li>git commit -m ‘some message’</li>
+</ul>
+</li>
+<li>提交远程仓库<ul>
+<li>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</li>
+</ul>
+</li>
+<li>查看分支<ul>
+<li>git branch</li>
+</ul>
+</li>
+<li>创建新分支<ul>
+<li>git branch</li>
+</ul>
+</li>
+<li>切换分支<ul>
+<li>git checkout</li>
+</ul>
+</li>
+<li>创建分支并切换<ul>
+<li>git checkout -b</li>
+</ul>
+</li>
+<li>删除分支<ul>
+<li>git branch -d</li>
+</ul>
+</li>
+<li>删除远程分支<ul>
+<li>git push -d</li>
+</ul>
+</li>
+<li>切换分支<ul>
+<li>git checkout</li>
+</ul>
+</li>
+</ul>
+<h2 id="github-连接密钥"><a href="#github-连接密钥" class="headerlink" title="github 连接密钥"></a>github 连接密钥</h2><p>新建.ssh<br><img src="1641020361601-13b43199-1222-4184-b396-3db62c7a68f6.png#width=606" alt="image.png"><br>进入然后 git bash<br><code>ssh-keygen -t rsa -C &quot;739211562@qq.com&quot;</code></p>
+<h2 id="git-常见命令"><a href="#git-常见命令" class="headerlink" title="git 常见命令"></a>git 常见命令</h2><pre><code>查看仓库
+git remote
+
+创建仓库
+git remote add origin 地址
+
+创建分支
+git checkout -b &quot;dev&quot;
+
+查看状态
+git status
+
+添加
+git add .
+
+提交（注释）
+git commit -m &quot;内容&quot;
+
+切换分支
+git checkout master
+
+合并分支
+git merge dev --no-ff
+
+退出注释
+: q
+
+查看日志
+git log
+
+上传至github
+git push origin master
+
+查看分支
+git branch
+
+删除
+git branch -d dev
+
+-f 可以强制执行
+</code></pre>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>git -am 与 git -m</p>
+<h2 id="开发新功能时，需要切换另一分支修复-bug，又不想提交当前分支代码怎么办？"><a href="#开发新功能时，需要切换另一分支修复-bug，又不想提交当前分支代码怎么办？" class="headerlink" title="开发新功能时，需要切换另一分支修复 bug，又不想提交当前分支代码怎么办？"></a>开发新功能时，需要切换另一分支修复 bug，又不想提交当前分支代码怎么办？</h2><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>当你正在修改 A 分支的代码，而此时 B 分支有紧急任务。<br>这时你需要切换到 B 分支先执行紧急任务。<br>但是，你的 A 分支代码又修改了一半，你不想提交一个 commit，该怎么办呢？</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>A：直接抛弃当前修改，git rest –hard ，这个属于病急乱投医<br>B：匆忙提交当前代码，会多一个 commit 记录，让你的 git 凌乱不堪<br>C：通过 git stash 先将当前修改缓存下来，然后再切换分支，这个才是最优雅的方案</p>
+<h3 id="关于-git-stash"><a href="#关于-git-stash" class="headerlink" title="关于 git stash"></a>关于 git stash</h3><p>运行 git stash 命令，git 会将当前代码以栈的形式缓存。<br>注：git stash 对新增的文件进行缓存是不起效果的，对于新增的文件，要进行缓存的话，需要先添加到暂存区（git add .）才可以进行缓存。</p>
+<h3 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h3><p>当 B 分支任务修改完后，切换回 A 分支，只需要使用 git stash apply 将暂存区的数据进行恢复。</p>
+<p>$ git push origin HEAD –force 复制代码</p>
+<h2 id="本地代码提交跟远程冲突时，想强制覆盖远程代码该怎么办？"><a href="#本地代码提交跟远程冲突时，想强制覆盖远程代码该怎么办？" class="headerlink" title="本地代码提交跟远程冲突时，想强制覆盖远程代码该怎么办？"></a>本地代码提交跟远程冲突时，想强制覆盖远程代码该怎么办？</h2><h4 id="push-force-强制推送"><a href="#push-force-强制推送" class="headerlink" title="push -force 强制推送"></a>push -force 强制推送</h4><p>众所周知，git 的 push -force 指令是不推荐被使用的，–force 会使用本地分支的提交覆盖远端推送分支的提交。也就是说，如果其他人在相同的分支推送了新的提交，你的这一举动将“删除”他的那些提交！所以这种只适合于你自己一人维护的分支强制推送，对于多人维护的分支，我们应该采用更加安全的方式。</p>
+<h4 id="–force-with-lease-更安全的方式"><a href="#–force-with-lease-更安全的方式" class="headerlink" title="–force-with-lease 更安全的方式"></a>–force-with-lease 更安全的方式</h4><p>使用了 –force-with-lease 参数之后，上面那种安全问题就没有那么危险了。<br>使用此参数推送，如果远端有其他人推送了新的提交，那么推送将被拒绝，这种拒绝和没有加 –force 参数时的拒绝是一样的。<br>walterlv$ git push –force-with-lease To <a target="_blank" rel="noopener" href="https://github.com/walterlv/walterlv.github.io.git">https://github.com/walterlv/walterlv.github.io.git</a> ! [rejected] master -&gt; master (fetch first) error: failed to push some refs to ‘<a target="_blank" rel="noopener" href="https://github.com/walterlv/walterlv.github.io.git&#39;">https://github.com/walterlv/walterlv.github.io.git&#39;</a> 复制代码<br><strong>请特别注意</strong>——如果你 fetch 之后在本地的 origin 相关分支上已经看到了别人的提交，依然进行强制推送，你还是会覆盖别人的提交。也就是说，–force-with-lease <strong>解决的是本地仓库不够新时，依然覆盖了远端新仓库的问题</strong>，如果你<strong>执意想要覆盖远端提交</strong>，只需要先 fetch 再推送，<strong>它也不会拒绝的</strong>。</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

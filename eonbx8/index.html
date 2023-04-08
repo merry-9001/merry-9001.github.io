@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>异步与同步 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>异步与同步</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2022/1/28
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="javascript-是一个单线程语言"><a href="#javascript-是一个单线程语言" class="headerlink" title="javascript 是一个单线程语言"></a>javascript 是一个单线程语言</h1><p>javascript 中的所有任务被分为同步任务和异步任务两大类<br>事件循环机制（Event Loop）是 javascript 的执行机制<br>异步任务分为宏任务和微任务</p>
+<h2 id="常见宏任务与微任务"><a href="#常见宏任务与微任务" class="headerlink" title="常见宏任务与微任务"></a>常见宏任务与微任务</h2><ul>
+<li>宏任务一般是：包括整体代码 script，setTimeout，setInterval、setImmediate。</li>
+<li>微任务：原生 Promise(有些实现的 promise 将 then 方法放到了宏任务中)、process.nextTick、Object.observe(已废弃)、 MutationObserver 记住就行了。</li>
+</ul>
+<h2 id="事件循环机制"><a href="#事件循环机制" class="headerlink" title="事件循环机制"></a>事件循环机制</h2><p>同步和异步任务分别进入不同的执行”场所”，同步的进入主线程，异步的进入 Event Table 并注册函数<br>当指定的事情完成时，Event Table 会将这个函数移入 Event Queue。<br>主线程内的任务执行完毕为空，会去 Event Queue 读取对应的函数，进入主线程执行。<br>我们不禁要问了，那怎么知道主线程执行栈为空呢？js 引擎存在 monitoring process 进程，会持续不断的检查主线程执行栈是否为空，一旦为空，就会去 Event Queue 那里检查是否有等待被调用的函数。</p>
+<p>当有异步任务被压入异步任务队列时候，javascript 会将这些异步任务分为宏任务和微任务两个新的队列。然后，在所有同步任务执行完毕之后，异步任务会<em>优先执行所有已经存在任务队列中的微任务</em>。在所有的微任务执行完毕之后，再去宏任务队列中执行<em>一个</em>（注意是一个）宏任务，执行完一个宏任务之后会再去微任务队列中检查是否有新的微任务，有则<em>全部执行</em>，再回到宏任务队列执行一个宏任务，以此循环。_这一套流程，就是事件循环_（event loop）<br><img src="1677932509558-253e79a8-eeda-4409-b290-daec36803d34.webp"></p>
+<h2 id="早期异步代码困境"><a href="#早期异步代码困境" class="headerlink" title="早期异步代码困境"></a>早期异步代码困境</h2><ul>
+<li>众所周知，js 是单线程的，耗时操作都是交给浏览器来处理，等时间到了从队列中取出执行，设计到事件循环的概念，笔者也分享过，可以看以下，理解了可以更好的理解 promise。</li>
+<li>我以一个需求为切入点，我模拟网络请求(异步操作)<ul>
+<li>如果网络请求成功了，你告知我成功了</li>
+<li>如果网络请求失败了，你告知我失败了</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-大聪明做法"><a href="#1-1-大聪明做法" class="headerlink" title="1.1 大聪明做法"></a>1.1 大聪明做法</h3><ul>
+<li>首先你要理解 js 代码的执行顺序，而不是是想当然的，代码其实并不是按照你书写的顺序执行的。</li>
+<li>那么为什么是 undefined 呢？<ul>
+<li>首先当我执行 requestData 函数，开始执行函数。遇到了异步操作不会阻塞后面代码执行的，因为 js 是单线程的，所以你写的 return 成功或者失败并没有返回给 requestData，那我这个函数中，抛开异步操作，里面并没有返回值，所以值为 undefined。</li>
+</ul>
+</li>
+</ul>
+<pre><code>function requestData(url) &#123;
+  setTimeout(() =&gt; &#123;
+    if (url === &#39;iceweb.io&#39;) &#123;
+      return &#39;请求成功&#39;
+    &#125;
+    return &#39;请求失败&#39;
+  &#125;, 3000)
+&#125;
+
+const result = requestData(&#39;iceweb.io&#39;)
+
+console.log(result) //undefined
+</code></pre>
+<h3 id="2-2-早期正确做法"><a href="#2-2-早期正确做法" class="headerlink" title="2.2 早期正确做法"></a>2.2 早期正确做法</h3><ul>
+<li>早期解决方案都是传入两个回调，一个失败的，一个成功的。那很多开发者会问这不是挺好的吗？挺简单的，js 中函数是一等公民，可以传来传去，但是这样太灵活了，没有规范。</li>
+<li>如果使用的是框架，还要阅读一下框架源码，正确失败的传实参的顺序，如果传参顺序错误这样是非常危险的。</li>
+</ul>
+<pre><code>function requestData(url, successCB, failureCB) &#123;
+  setTimeout(() =&gt; &#123;
+    if (url === &#39;iceweb.io&#39;) &#123;
+      successCB(&#39;我成功了,把获取到的数据传出去&#39;, [&#123;name:&#39;ice&#39;, age:22&#125;])
+    &#125; else &#123;
+      failureCB(&#39;url错误，请求失败&#39;)
+    &#125;
+  &#125;, 3000)
+&#125;
+
+//3s后 回调successCB
+//我成功了,把获取到的数据传出去 [ &#123; name: &#39;ice&#39;, age: 22 &#125; ]
+requestData(&#39;iceweb.io&#39;, (res, data) =&gt; console.log(res, data), rej =&gt; console.log(rej))
+
+//3s后回调failureCB
+//url错误，请求失败
+requestData(&#39;icexxx.io&#39;, res =&gt; console.log(res) ,rej =&gt; console.log(rej))
+</code></pre>
+<h1 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h1><p><strong>如果需要获取一个函数中异步操作的结果，则必须通过回调函数来获取</strong></p>
+<pre><code>    function fn(callback) &#123;
+        setTimeout(function() &#123;
+            var data = &#39;hello&#39;
+            callback(data)
+        &#125;, 1000)
+    &#125;
+
+    fn(function(data) &#123;
+        console.log(data)
+    &#125;)
+</code></pre>
+<p>如果想取到 data 的数据进行处理，就只能进行回调函数，因为定时器是异步的，函数不会等待执行完毕就直接结束了，只有在调用的时候传递一个函数给里面的定时器才行</p>
+<hr>
+<p>1). 你定义的<br>2). 你没有调<br>3). 但最终它执行了(在某个时刻或某个条件下)</p>
+<h1 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h1><p>Promise 的出现，让异步请求的执行更加语义化，它将<strong>异步请求串行</strong>。</p>
+<p>Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。</p>
+<p>所谓 Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。</p>
+<p>Promise 对象有以下两个特点。</p>
+<p>（1）对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：Pending（进行中）、Resolved（已完成，又称 Fulfilled）和 Rejected（已失败）。</p>
+<p>只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。</p>
+<p>（2）一旦状态改变，就不会再变，任何时候都可以得到这个结果。Promise 对象的状态改变，只有两种可能：从 Pending 变为 Resolved 和从 Pending 变为 Rejected。</p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><h3 id="promise-的缺点"><a href="#promise-的缺点" class="headerlink" title="promise 的缺点"></a>promise 的缺点</h3><p>1、无法取消 Promise,一旦新建它就会立即执行，无法中途取消。<br>2、如果不设置回调函数，promise 内部抛出的错误，不会反应到外部。<br>3、当处于 pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</p>
+<h3 id="promise-的优点"><a href="#promise-的优点" class="headerlink" title="promise 的优点"></a>promise 的优点</h3><p>1.防止地狱回调<br>2 更好地进行错误捕获<br>多重嵌套 callback 除了会造成上面讲的代码缩进问题，更可怕的是可能会造成无法捕获异常或异常捕获不可控。<br>（1）比如下面代码我们使用 setTimeout 模拟异步操作，在其中抛出了个异常。但由于异步回调中，回调函数的执行栈与原函数分离开，导致外部无法抓住异常。</p>
+<pre><code>function fetch(callback) &#123;
+    setTimeout(() =&gt; &#123;
+        throw Error(&#39;请求失败&#39;)
+    &#125;, 2000)
+&#125;
+try &#123;
+    fetch(() =&gt; &#123;
+        console.log(&#39;请求处理&#39;) // 永远不会执行
+    &#125;)
+&#125; catch (error) &#123;
+    console.log(&#39;触发异常&#39;, error) // 永远不会执行
+&#125;
+</code></pre>
+<p>当 return 一个 Promise 对象的时候，后续的 then 中的 方法的第一个参数会作为 p2 的 resolve</p>
+<ul>
+<li><p>异步和同步</p>
+<ul>
+<li>异步，操作之间没有关系，同时执行多个操作， 代码复杂</li>
+<li>同步，同时只能做一件事，代码简单</li>
+</ul>
+</li>
+<li><p>Promise 对象</p>
+<ul>
+<li>用同步的方式来书写异步代码</li>
+<li>Promise 让异步操作写起来，像在写同步操作的流程，不必一层层地嵌套回调函数</li>
+<li>改善了可读性，对于多层嵌套的回调函数很方便</li>
+<li>充当异步操作与回调函数之间的中介，使得异步操作具备同步操作的接口</li>
+</ul>
+</li>
+<li><p>Promise 也是一个构造函数</p>
+<ul>
+<li>接受一个回调函数 f1 作为参数，f1 里面是异步操作的代码</li>
+<li>返回的 p1 就是一个 Promise 实例</li>
+<li>所有异步任务都返回一个 Promise 实例</li>
+<li>Promise 实例有一个 then 方法，用来指定下一步的回调函数</li>
+</ul>
+</li>
+<li><p>Promise.all(promiseArray)方法</p>
+<ul>
+<li>将多个 Promise 对象实例包装，生成并返回一个新的 Promise 实例</li>
+<li>promise 数组中所有的 promise 实例都变为 resolve 的时候，该方法才会返回</li>
+<li>并将所有结果传递 results 数组中</li>
+<li>promise 数组中任何一个 promise 为 reject 的话，则整个 Promise.all 调用会立即终止，并返回一个 reject 的新的 promise 对象</li>
+</ul>
+</li>
+<li><p>Promise.race([p1, p2, p3])</p>
+<ul>
+<li>Promse.race 就是赛跑的意思</li>
+<li>哪个结果获得的快，就返回那个结果</li>
+<li>不管结果本身是成功状态还是失败状态</li>
+</ul>
+</li>
+</ul>
+<p>Promise.all 和 Promise.race 都是有使用场景的。<br>有些时候我们做一个操作可能得同时需要不同的接口返回的数据，这时我们就可以使用 Promise.all；<br>有时我们比如说有好几个服务器的好几个接口都提供同样的服务，我们不知道哪个接口更快，就可以使用 Promise.race，哪个接口的数据先回来我们就用哪个接口的数据。<br>Promise.race 使用场景：把异步操作和定时器放到一起，如果定时器先触发，认为超时，告知用户</p>
+<h2 id="自己实现-promise-的大体思路"><a href="#自己实现-promise-的大体思路" class="headerlink" title="自己实现 promise 的大体思路"></a>自己实现 promise 的大体思路</h2><ol>
+<li>我们要明确我们需要一个异步的操作方法,满足异步回调。所以选择加入 setTimeout 作为实现的基础， 让函数实现延迟触发。</li>
+<li>保持一个原则，控制 promise 改变状态的只有 promise 构造函数里的 reslove 、 reject 函数。</li>
+<li>链式调用的原理， 类似 jQuery，它会在调用方法后， return this. 从而形成链式调用。所以我们采用在调用 then(fn)、 catch(fn) 后 会返回一个新的 promise 对象， 然而 这个 promise 对象 受到 它的上级 promise 对象的状态结果 和 fn 运行结果的控制。</li>
+</ol>
+<p>手写 promise</p>
+<pre><code>var JcPromise = function (fn) &#123;
+    // 防止 用户 直接 更改 state
+    var state = &#39;wait&#39;
+     // state 为 resolve 状态， 回调函数数组
+    var cbList = []
+     // state 为 reject 状态， 回调函数数组
+    var rjList = []
+
+    this.cbList = cbList
+    this.rjList = rjList
+    this.cs = undefined
+    // 获取 promise 的状态
+    this.getState = function () &#123;
+        return state
+    &#125;
+    /* 函数闭包，函数 定义在里面， 防止 外面用户 直接 使用 resolve 和 reject; */
+    // Promise成功触发 函数
+    var reslove = function (data) &#123;
+        this.cs = data
+        if (state !== &#39;wait&#39;) &#123;
+            return
+        &#125; else &#123;
+            state = &#39;solve&#39;
+            while (this.cbList.length) &#123;
+                cbList.shift()(data)
+            &#125;
+        &#125;
+    &#125;
+   // Promise 拒绝 触发函数
+    var reject = function (e) &#123;
+        this.cs = e
+        if (state !== &#39;wait&#39;) &#123;
+            return
+        &#125; else &#123;
+            state = &#39;reject&#39;
+            while (rjList.length) &#123;
+                rjList.shift()(e)
+            &#125;
+        &#125;
+    &#125;
+// 绑定函数 conext 及 this 为当前 promise对象
+    reslove = reslove.bind(this)
+    reject = reject.bind(this)
+// 延迟 触发
+    setTimeout(function () &#123;
+        fn(reslove, reject)
+    &#125;, 0)
+&#125;
+JcPromise.prototype.then = function (fn) &#123;
+    var handleObj = &#123;&#125;
+    var nextPromise = new JcPromise(function (r, j) &#123;
+        handleObj.r = r
+        handleObj.j = j
+    &#125;)
+    var fixFn = function (data) &#123;
+        var result = null
+        try &#123;
+            result = fn(data)
+              // 判断result是不是 JcPromise实例。
+            if (result instanceof JcPromise) &#123;
+                result.then(function (data) &#123;
+                    handleObj.r(data)
+                &#125;).catch(function (e) &#123;
+                    handleObj.j(e)
+                &#125;)
+            &#125; else  &#123;
+                handleObj.r(result)
+            &#125;
+        &#125; catch (e)&#123;
+            handleObj.j(e)
+        &#125;
+    &#125;
+    //判断当前状态 如果 是 solve 直接 运行， 如果不是，酒吧 fixFn 推入 cbList 数组。
+    if (this.getState() === &#39;solve&#39;) &#123;
+        setTimeout(function () &#123;
+            fixFn(this.cs)
+        &#125;, 0)
+    &#125; else &#123;
+        this.cbList.push(fixFn)
+    &#125;
+    return nextPromise
+&#125;
+
+JcPromise.prototype.catch = function (fn) &#123;
+    var handleObj = &#123;&#125;
+    var nextPromise = new JcPromise(function (r, j) &#123;
+        handleObj.r = r
+        handleObj.j = j
+    &#125;)
+    var fixFn = function (e) &#123;
+        var result = null
+        try &#123;
+            result = fn(e)
+            if (result instanceof JcPromise) &#123;
+                result.then(function (data) &#123;
+                    handleObj.r(data)
+                &#125;).catch(function (e) &#123;
+                    handleObj.j(e)
+                &#125;)
+            &#125; else &#123;
+                handleObj.r(result)
+            &#125;
+        &#125; catch (e)&#123;
+            handleObj.j(e)
+        &#125;
+    &#125;
+    if (this.getState() === &quot;reject&quot;) &#123;
+        setTimeout(function () &#123;
+            fixFn(this.cs)
+        &#125;, 0)
+    &#125; else &#123;
+        this.rjList.push(fixFn)
+    &#125;
+    return nextPromise
+&#125;
+// 测试代码
+var p = new JcPromise(function(r, j) &#123;
+    setTimeout(function() &#123;r(100)&#125;, 3000)
+&#125;).then(data =&gt; &#123;
+    console.log(&#39;1&#39;, data)
+    return new JcPromise((r, j) =&gt; &#123;
+        setTimeout(() =&gt; &#123;
+            r(&#39;hi&#39;)
+        &#125;, 3000)
+    &#125;)
+&#125;).then(data =&gt; console.log(&#39;2&#39;, data)).then(function () &#123;
+    console.log(&#39;xxx&#39;, xx + 1)
+&#125;).catch(e =&gt; console.log(e)).then(data =&gt; console.log(data, &#39;end&#39;))
+</code></pre>
+<h2 id="理解-promise"><a href="#理解-promise" class="headerlink" title="理解 promise"></a>理解 promise</h2><p>Promise 概念介绍<br>1、Promise 是一个构造函数,既然是构造函数，那我们就可以 new Promise() 得到一个 Promise 的实例<br>2、在 Promise 上，有两个函数，分别叫做 resolve (成功之后的回调函数) 和 reject (失败之后的回调函数)<br>3、在 Promise 的构造函数 Prototype 属性上，又一个 .then() 方法，也就是说只要是 Promise 构造函数创建的实例，都可以访问到 .then() 方法<br>4、Promise 表示一个异步操作；每当我们 new 一个 Pormise 的实例，这个实例就表示一个具体的异步操作<br>5、既然 Promise 创建的实例是一个异步操作，那么这个异步操作的结果就只能有两种状态<br>5.1、状态一：异步执行成功了 需要在内部调用 成功的额回调函数 resolve 把结果返回给调用者<br>5.2、状态二：异步执行失败了 需要在内部调用失败的回调函数 reject 把结果返回给调用者<br>5.3、由于 Promise 的实例是一个异步操作，所以内部拿到操作结果之后，无法使用 return 把操作结果返回给调用者，只能使用回调函数的形式，来把成功或者失败的结果，返回给调用者。<br>6、我们可以在 new 出来的 Promise 实例上，调用.then() 方法，预先为这个 Promise 异步操作，指定 成功(resolve) 和失败(reject) 回调函数</p>
+<h2 id="promise-细节"><a href="#promise-细节" class="headerlink" title="promise 细节"></a>promise 细节</h2><p>只是 new 了一个对象，并没有调用它，我们传进去的函数就已经执行了<br>所以这个 let p 纯粹是定义一下，这样 then 就可以和 promise 分开了</p>
+<pre><code>    let p = new Promise((resolve, reject)=&gt;&#123;
+        setTimeout(()=&gt;&#123;
+            console.log(&#39;执行完成Promise&#39;);
+            resolve(&#39;要返回的数据可以任何数据例如接口返回数据&#39;);
+        &#125;, 2000);
+    &#125;);
+
+
+    p.then(res=&gt;&#123;
+        console.log(res)
+    &#125;)
+</code></pre>
+<pre><code>所以我们用Promise的时候一般是包在一个函数中，在需要的时候去运行这个函数
+</code></pre>
+<pre><code>    let p1 = function()&#123;
+        return new Promise((resolve, reject)=&gt;&#123;
+            setTimeout(()=&gt;&#123;
+                console.log(&#39;执行完成Promise&#39;);
+                resolve(&#39;要返回的数据可以任何数据例如接口返回数据&#39;);
+            &#125;, 2000);
+        &#125;);
+    &#125;;
+    p1()
+    p1().then
+</code></pre>
+<p>两者等价</p>
+<pre><code>    Promise.resolve(&#39;foo&#39;)
+    等价于
+    new Promise(resolve =&gt; resolve(&#39;foo&#39;))
+</code></pre>
+<h2 id="promise-队列和循环"><a href="#promise-队列和循环" class="headerlink" title="promise 队列和循环"></a>promise 队列和循环</h2><pre><code>    //起一个Promise队列
+    let promise = Promise.resolve();
+    let promises=[];
+    let datas=[&#39;1.json&#39;,&#39;2.json&#39;];//异步读两个文件
+    console.log(&quot;0000&quot;)
+    promise = promise.then(()=&gt;&#123;
+      for(let i=0;i&lt;datas.length;i++)&#123;
+          console.log(&quot;11111&quot;+&quot;i&quot;+i)
+          //仅仅是定义一个promise 全跑了，不用执行promise();
+          let promise1 = new Promise((resolve,reject)=&gt;&#123;
+              console.log(&quot;2222&quot;+&quot;i&quot;+i)
+              axios(&#123;url: &#39;1.json&#39;&#125;).then(res=&gt; &#123;
+                  console.log(&quot;3333&quot;+&quot;i&quot;+i)
+                  resolve(res);
+              &#125;)
+          &#125;).then((accounts)=&gt;&#123;
+              console.log(&quot;4444&quot;+&quot;i&quot;+i)
+              // console.log(accounts)
+              //这个地方加不加return  效果不一样（不加就进入下一个.then了）
+              return axios(&#123;url: &#39;1.json&#39;&#125;).then(res=&gt; &#123;
+                  // console.log(res)
+                  console.log(&quot;88888&quot;+&quot;i&quot;+i)
+              &#125;)
+              console.log(&quot;6666&quot;+&quot;i&quot;+i)
+          &#125;).then(()=&gt;&#123;
+              console.log(&quot;7777&quot;+&quot;i&quot;+i)
+          &#125;)
+          console.log(&quot;5555&quot;+&quot;i&quot;+i)
+          promises.push(promise1)
+      &#125;
+            //这个地方加不加return  效果不一样）(不加return 直接滑到下面的promise了)
+      return Promise.all(promises).then(()=&gt;&#123;
+          console.log(&quot;Promise all&quot;)
+      &#125;)
+  &#125;);
+  promise = promise.then(()=&gt;&#123;
+    console.log(&quot;*****&quot;)
+  &#125;)
+</code></pre>
+<p>[</p>
+<p>](<a target="_blank" rel="noopener" href="http://demo.nimius.net/debounce_throttle/">http://demo.nimius.net/debounce_throttle/</a>)</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>
