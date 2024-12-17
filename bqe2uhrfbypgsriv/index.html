@@ -1,0 +1,435 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>vite配置 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>vite配置</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/22
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <pre><code class="javascript">import &#123; defineConfig, UserConfigExport &#125; from &#39;vite&#39;;
+import vue from &#39;@vitejs/plugin-vue&#39;;
+import VueSetupExtend from &#39;vite-plugin-vue-setup-extend&#39;;
+import AutoImport from &#39;unplugin-auto-import/vite&#39;;
+import Components from &#39;unplugin-vue-components/vite&#39;;
+import &#123; ElementPlusResolver &#125; from &#39;unplugin-vue-components/resolvers&#39;;
+import IconsResolver from &quot;unplugin-icons/resolver&quot;;
+import Icons from &quot;unplugin-icons/vite&quot;;
+import &#123; FileSystemIconLoader &#125; from &quot;unplugin-icons/loaders&quot;;
+import path from &#39;path&#39;;
+
+export default defineConfig(&#123;
+  base: &#39;./&#39;,
+  //插件
+  plugins: [
+    vue(), //识别vue文件
+    VueSetupExtend(), //解决了 Vue3 中setup函数写法下无法直接使用组件options属性
+    AutoImport(&#123; //自动导入vue api
+      resolvers: [ElementPlusResolver()]
+    &#125;),
+    Components(&#123; //按需导入组件
+      resolvers: [
+        ElementPlusResolver(&#123;
+          importStyle: &quot;sass&quot;,
+        &#125;),
+      ]
+    &#125;),
+    Icons(&#123;
+      compiler: &quot;vue3&quot;,
+      autoInstall: true,
+      customCollections: &#123;
+        &quot;ven-icon&quot;: FileSystemIconLoader(&quot;src/assets/icons/ven-icon&quot;, svg =&gt; svg.replace(/^&lt;svg /, &quot;&lt;svg fill=\&quot;currentColor\&quot; &quot;)),  // 自定义本地图标示例
+      &#125;,
+    &#125;),
+  ],
+  //优化
+  optimizeDeps: &#123;
+    //设置需要依赖预构建（可能没识别到，但是需要的库）
+    include: [&#39;schart.js&#39;],
+
+    //设置不需要依赖预构建（能识别到，但不需要预构建）
+    exclude: [&#39;element-plus/es/components/popconfirm/style/index&#39;, &#39;element-plus/es/components/tabs/style/index&#39;,
+      &#39;element-plus/es/components/image/style/index&#39;, &#39;element-plus/es/components/tag/style/index&#39;, &#39;element-plus/es/components/input-number/style/index&#39;,
+      &#39;element-plus/es/components/radio-button/style/index&#39;,
+      &#39;element-plus/es/components/tab-pane/style/index&#39;, &#39;element-plus/es/components/rad&#39;, &#39;element-plus/es/components/link/style/index&#39;
+    ]
+  &#125;,
+  //别名
+  resolve: &#123;
+    alias: &#123;
+      &quot;@&quot;: path.join(__dirname, &#39;./src&#39;),
+    &#125;,
+  &#125;,
+  //打包配置
+  build: &#123;
+    rollupOptions: &#123;
+      output: &#123;
+        manualChunks: &#123;
+          vue: [&#39;vue&#39;],
+          &#39;vue-router&#39;: [&#39;vue-router&#39;],
+          &#39;element-plus&#39;: [&#39;element-plus&#39;]
+        &#125;
+      &#125;
+    &#125;,
+    outDir: &quot;dist/client&quot;,
+    chunkSizeWarningLimit: 1000,
+  &#125;,
+  //开发服务器配置
+  server: &#123;
+    host: &quot;0.0.0.0&quot;,
+    port: 3456,
+    hmr: &#123;
+      port: 3456
+    &#125;,
+  &#125;
+&#125; as UserConfigExport);
+</code></pre>
+<pre><code class="javascript">import &#123; version &#125; from &quot;../package.json&quot;;
+import &#123; basename, join &#125; from &quot;path&quot;;
+import fs from &quot;fs&quot;;
+import &#123; copyFile, mkdir, readdir, rm, stat &#125; from &quot;fs/promises&quot;;
+import yazl from &quot;yazl&quot;;
+
+async function copyDirectory(source: string, destination: string) &#123;
+  try &#123;
+    await mkdir(destination, &#123; recursive: true &#125;); // create destination folder
+    const files = await readdir(source); // read files from source folder
+
+    for (const file of files) &#123;
+      const sourceFilePath = join(source, file);
+      const destinationFilePath = join(destination, file);
+
+      const fileStat = await stat(sourceFilePath); // get file stats
+
+      if (fileStat.isDirectory()) &#123;
+        // if file is directory, copy recursively
+        await copyDirectory(sourceFilePath, destinationFilePath);
+      &#125; else &#123;
+        // if file is file, copy file
+        await copyFile(sourceFilePath, destinationFilePath);
+      &#125;
+    &#125;
+  &#125; catch (error) &#123;
+    console.error(error);
+  &#125;
+&#125;
+
+const zipFolder = async (sourceFolderPath: string, zipFilePath: string) =&gt; &#123;
+  const zipFile = new yazl.ZipFile();
+
+  // 递归遍历要压缩的文件夹，并将每个文件添加到zip文件中
+  async function addFolderToZip(folderPath: string, relativePath: string) &#123;
+    // 读取文件夹下的所有文件和子文件夹
+    const files = await readdir(folderPath);
+    for (const file of files) &#123;
+      const filePath = `$&#123;folderPath&#125;/$&#123;file&#125;`;
+      const fileStat = await stat(filePath);
+      if (fileStat.isFile()) &#123;
+        // 如果是文件，则添加到zip文件中
+        zipFile.addFile(filePath, `$&#123;relativePath&#125;/$&#123;file&#125;`);
+      &#125; else if (fileStat.isDirectory()) &#123;
+        // 如果是文件夹，则递归调用addFolderToZip函数，添加文件夹下的所有文件
+        await addFolderToZip(filePath, `$&#123;relativePath&#125;/$&#123;file&#125;`);
+      &#125;
+    &#125;
+  &#125;
+  const folderName = basename(sourceFolderPath);
+  await addFolderToZip(sourceFolderPath, folderName);
+
+  return new Promise((resolve, reject) =&gt; &#123;
+    // 将zip文件写入磁盘
+    zipFile.outputStream
+      .pipe(fs.createWriteStream(zipFilePath))
+      .on(&quot;error&quot;, (error) =&gt; &#123;
+        reject(error);
+      &#125;)
+      .on(&quot;finish&quot;, async () =&gt; &#123;
+        resolve(&quot;&quot;);
+      &#125;);
+    // 完成zip文件的创建
+    zipFile.end();
+  &#125;);
+&#125;;
+
+const toZip = async () =&gt; &#123;
+  console.log(&quot;开始打包&quot;);
+  const distDir = join(process.cwd(), &quot;dist&quot;);
+  const sourceDir = join(distDir, &quot;client&quot;);
+  const buildDir = join(distDir, `client-$&#123;version&#125;`);
+  await copyDirectory(sourceDir, buildDir);
+  await zipFolder(buildDir, join(distDir, `client-$&#123;version&#125;.zip`));
+  await rm(buildDir, &#123; recursive: true &#125;);
+  console.log(&quot;打包完成&quot;);
+&#125;;
+
+toZip();
+</code></pre>
+<pre><code class="javascript">// https://vitejs.dev/config/
+export default defineConfig(async (&#123; command, mode &#125;) =&gt; &#123;
+  process.env.NODE_ENV = command === &quot;build&quot; ? &quot;production&quot; : &quot;development&quot;;
+  return &#123;
+    root: join(__dirname, &quot;src/renderer&quot;),
+    plugins: [
+      replaceCodePlugin(&#123;
+        replacements: [
+          &#123;
+            from: &quot;__DEBUGGER__&quot;,
+            to: debuggerCode,
+          &#125;,
+        ],
+      &#125;),
+      vue(&#123;
+        template: &#123;
+          compilerOptions: &#123;
+            isCustomElement: (tag) =&gt; &#123;
+              return [&quot;feDistantLight&quot;, &quot;webview&quot;].includes(tag);
+            &#125;,
+          &#125;,
+        &#125;,
+      &#125;),
+      legacy(&#123;
+        ignoreBrowserslistConfig: true,
+        additionalLegacyPolyfills: [&quot;regenerator-runtime/runtime&quot;],
+        renderLegacyChunks: false,
+        modernPolyfills: [
+          &quot;es.array.flat-map&quot;,
+          &quot;es.array.at&quot;,
+          &quot;esnext.global-this&quot;,
+        ],
+      &#125;),
+      vueJsx(),
+      viteExternalsPlugin(
+        &#123;
+          &quot;@vue/devtools&quot;: &quot;Empty&quot;,
+        &#125;,
+        &#123; disableInServe: true &#125;
+      ),
+      //electron打包配置
+      VitePluginBuilder(vitePluginBuilderOptions),
+      AutoImport(&#123;
+        resolvers: [
+          IconsResolver(&#123;
+            alias: &#123;
+              ven: &quot;ven-icon&quot;,
+            &#125;,
+            customCollections: [&quot;ven-icon&quot;], //  使用自定义本地图标需要定义集合名称
+          &#125;),
+        ],
+      &#125;),
+      Components(&#123;
+        dirs: [&quot;./b2/&quot;, &quot;./views/&quot;, &quot;./components&quot;],
+        resolvers: [
+          // ElementPlusResolver(&#123;
+          //   importStyle: &quot;sass&quot;,
+          // &#125;),
+          // 在这里（https://icones.js.org/collection/ep）找图标，目前引入了以下几个图标库：
+          // Element Plus, Ant Design, Unicons, Prime
+          IconsResolver(&#123;
+            alias: &#123;
+              ven: &quot;ven-icon&quot;,
+            &#125;,
+            customCollections: [&quot;ven-icon&quot;], //  使用自定义本地图标需要定义集合名称
+          &#125;),
+        ],
+        dts: true,
+      &#125;),
+      Icons(&#123;
+        compiler: &quot;vue3&quot;,
+        autoInstall: true,
+        customCollections: &#123;
+          &quot;ven-icon&quot;: FileSystemIconLoader(
+            &quot;src/renderer/assets/icons/ven-icon&quot;,
+            (svg) =&gt; svg.replace(/^&lt;svg /, &#39;&lt;svg fill=&quot;currentColor&quot; &#39;)
+          ), // 自定义本地图标示例
+        &#125;,
+      &#125;),
+    ],
+    optimizeDeps: &#123;
+      exclude: [
+        &quot;element-plus/es/components/popconfirm/style/index&quot;,
+        &quot;element-plus/es/components/tabs/style/index&quot;,
+        &quot;element-plus/es/components/image/style/index&quot;,
+        &quot;element-plus/es/components/tag/style/index&quot;,
+        &quot;element-plus/es/components/input-number/style/index&quot;,
+        &quot;element-plus/es/components/radio-button/style/index&quot;,
+        &quot;element-plus/es/components/select-v2/style/index&quot;,
+        &quot;element-plus/es/components/progress/style/index&quot;,
+        &quot;element-plus/es/components/pagination/style/index&quot;,
+        &quot;element-plus/es/components/tab-pane/style/index&quot;,
+        &quot;element-plus/es/components/rad&quot;,
+        &quot;element-plus/es/components/link/style/index&quot;,
+      ],
+    &#125;,
+    resolve: &#123;
+      alias: &#123;
+        &quot;@common&quot;: join(__dirname, &quot;src/common&quot;),
+        &quot;@main&quot;: join(__dirname, &quot;src/main&quot;),
+        &quot;@renderer&quot;: join(__dirname, &quot;src/renderer&quot;),
+      &#125;,
+    &#125;,
+    define: &#123;
+      __APP_VERSION__: JSON.stringify(packageConfig.version),
+    &#125;,
+    base: &quot;./&quot;,
+    publicDir: outputPublic,
+    build: &#123;
+      rollupOptions: &#123;
+        input: &#123;
+          main: join(__dirname, &quot;/src/renderer/index.html&quot;),
+          webshare: join(__dirname, &quot;src/renderer/webshare.html&quot;),
+          screencast: join(__dirname, &quot;src/renderer/screencast.html&quot;),
+        &#125;,
+      &#125;,
+      outDir: join(outputApp, &quot;renderer&quot;),
+      emptyOutDir: true,
+      // sourcemap: &quot;inline&quot;,
+    &#125;,
+    css: &#123;
+      devSourcemap: true,
+    &#125;,
+    server: &#123;
+      host: &quot;0.0.0.0&quot;,
+      port: 3456,
+      hmr: &#123;
+        port: 3456,
+      &#125;,
+    &#125;,
+  &#125;;
+&#125;);
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

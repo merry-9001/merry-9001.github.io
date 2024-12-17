@@ -1,0 +1,864 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>代码题 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>代码题</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/12
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h3 id="写一个函数判断变量类型"><a href="#写一个函数判断变量类型" class="headerlink" title="写一个函数判断变量类型"></a>写一个函数判断变量类型</h3><pre><code class="javascript">function getType(data) &#123;
+  let type = typeof data;
+  if (type !== &quot;object&quot;) &#123;
+    return type;
+  &#125;
+  return Object.prototype.toString.call(data).slice(8, -1);
+&#125;
+console.log(getType(1)); // number
+console.log(getType(true)); // boolean
+console.log(getType([1, 2, 3])); // Array
+console.log(getType(/abc/)); // RegExp
+console.log(getType(new Date())); // Date
+console.log(getType(new Person())); // Object
+function Person() &#123;&#125;
+console.log(getType(&#123;&#125;)); // Object
+</code></pre>
+<h3 id="如何判断数组或对象"><a href="#如何判断数组或对象" class="headerlink" title="如何判断数组或对象"></a>如何判断数组或对象</h3><ol>
+<li>通过 instanceof 进行判断</li>
+</ol>
+<pre><code class="plain">var arr = [1,2,3,1];
+console.log(arr instanceof Array) // true
+</code></pre>
+<ol start="2">
+<li>通过对象的 constructor 属性</li>
+</ol>
+<pre><code class="plain">var arr = [1,2,3,1];
+console.log(arr.constructor === Array) // true
+</code></pre>
+<ol start="3">
+<li>Object.prototype.toString.call(arr)</li>
+</ol>
+<pre><code class="plain">console.log(Object.prototype.toString.call(&#123;name: &quot;jerry&quot;&#125;));//[object Object]
+console.log(Object.prototype.toString.call([]));//[object Array]
+</code></pre>
+<ol start="4">
+<li>可以通过 ES6 新提供的方法 Array.isArray( )</li>
+</ol>
+<pre><code class="plain">Array.isArray([]) //true
+</code></pre>
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><pre><code class="javascript">// 数字或字符串数组去重，效率高
+function unique(arr) &#123;
+  var result = &#123;&#125;; // 利用对象属性名的唯一性来保证不重复
+  for (var i = 0; i &lt; arr.length; i++) &#123;
+    if (!result[arr[i]]) &#123;
+      result[arr[i]] = true;
+    &#125;
+  &#125;
+
+  return Object.keys(result); // 获取对象所有属性名的数组
+&#125;
+
+// 利用ES6的Set去重，适配范围广，效率一般，书写简单
+function unique(arr) &#123;
+  return [...new Set(arr)];
+&#125;
+
+// 任意数组去重，适配范围广，效率低
+function unique(arr) &#123;
+  var result = []; // 结果数组
+  for (var i = 0; i &lt; arr.length; i++) &#123;
+    if (!result.includes(arr[i])) &#123;
+      result.push(arr[i]);
+    &#125;
+  &#125;
+  return result;
+&#125;
+</code></pre>
+<h3 id="实现一个函数-对一个-url-进行请求-失败就再次请求-超过最大次数就走失败回调-任何一次成功都走成功回调"><a href="#实现一个函数-对一个-url-进行请求-失败就再次请求-超过最大次数就走失败回调-任何一次成功都走成功回调" class="headerlink" title="实现一个函数,对一个 url 进行请求,失败就再次请求,超过最大次数就走失败回调,任何一次成功都走成功回调"></a>实现一个函数,对一个 url 进行请求,失败就再次请求,超过最大次数就走失败回调,任何一次成功都走成功回调</h3><pre><code class="javascript">function request(url, maxCount = 5) &#123;
+  return fetch(url).catch((err) =&gt; &#123;
+    if (maxCount &gt; 0) &#123;
+      request(url, maxCount--);
+    &#125; else &#123;
+      Promise.reject(err);
+    &#125;
+  &#125;);
+&#125;
+request(&quot;www.baidu.com&quot;, 5).then((resp) =&gt; console.log(resp));
+</code></pre>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><pre><code class="javascript">function bSort(arr) &#123;
+  let len = arr.length;
+  // 外层 for 循环控制冒泡的次数
+  for (let i = 0; i &lt; len - 1; i++) &#123;
+    for (let j = 0; j &lt; len - 1 - i; j++) &#123;
+      // 内层 for 循环控制每一次冒泡需要比较的次数
+      // 因为之后每一次冒泡的两两比较次数会越来越少，所以 -i
+      if (arr[j] &gt; arr[j + 1]) &#123;
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      &#125;
+    &#125;
+  &#125;
+  return arr;
+&#125;
+
+//举个数组
+myArr = [20, -1, 27, -7, 35];
+//使用函数
+console.log(bSort(myArr)); // [ -7, -1, 20, 27, 35 ]
+</code></pre>
+<h3 id="实现一个-sleep-函数"><a href="#实现一个-sleep-函数" class="headerlink" title="实现一个 sleep 函数"></a>实现一个 sleep 函数</h3><pre><code class="javascript">function sleep(delay) &#123;
+  var start = new Date().getTime();
+  while ((new Date().getTime() - start &lt; delay) &#123;
+    continue;
+  &#125;
+&#125;
+
+function test() &#123;
+  console.log(&#39;111&#39;);
+  sleep(2000);
+  console.log(&#39;222&#39;);
+&#125;
+
+test()
+</code></pre>
+<p>这种实现方式是利用一个伪死循环阻塞主线程。因为 JS 是单线程的。所以通过这种方式可以实现真正意义上的 sleep。</p>
+<h3 id="给定两个数组，求并集，交集，差集"><a href="#给定两个数组，求并集，交集，差集" class="headerlink" title="给定两个数组，求并集，交集，差集"></a>给定两个数组，求并集，交集，差集</h3><pre><code class="javascript">const arr1 = [];
+const arr2 = [];
+
+//并集
+const union = [...new Set([...arr1, ...arr2])];
+
+//交集
+const cross = [...new Set(arr.filter((it) =&gt; arr2.includes(it)))];
+
+//差集
+const diff = union.fliter((it) =&gt; !cross.includes(it));
+</code></pre>
+<h3 id="实现一个字符串匹配算法，从长度为-n-的字符串-S-中，查找是否存在字符串-T，T-的长度是-m，若存在返回所在位置。"><a href="#实现一个字符串匹配算法，从长度为-n-的字符串-S-中，查找是否存在字符串-T，T-的长度是-m，若存在返回所在位置。" class="headerlink" title="实现一个字符串匹配算法，从长度为 n 的字符串 S 中，查找是否存在字符串 T，T 的长度是 m，若存在返回所在位置。"></a>实现一个字符串匹配算法，从长度为 n 的字符串 S 中，查找是否存在字符串 T，T 的长度是 m，若存在返回所在位置。</h3><pre><code class="javascript">// 完全不用 API
+var getIndexOf = function (s, t) &#123;
+  let n = s.length;
+  let m = t.length;
+  if (!n || !m || n &lt; m) return -1;
+  for (let i = 0; i &lt; n; i++) &#123;
+    let j = 0;
+    let k = i;
+    if (s[k] === t[j]) &#123;
+      k++;
+      j++;
+      while (k &lt; n &amp;&amp; j &lt; m) &#123;
+        if (s[k] !== t[j]) break;
+        else &#123;
+          k++;
+          j++;
+        &#125;
+      &#125;
+      if (j === m) return i;
+    &#125;
+  &#125;
+  return -1;
+&#125;;
+
+// 测试
+console.log(getIndexOf(&quot;Hello World&quot;, &quot;rl&quot;));
+</code></pre>
+<h3 id="使用-JavaScript-Proxy-实现简单的数据绑定"><a href="#使用-JavaScript-Proxy-实现简单的数据绑定" class="headerlink" title="使用 JavaScript Proxy 实现简单的数据绑定"></a>使用 JavaScript Proxy 实现简单的数据绑定</h3><pre><code class="javascript">&lt;body&gt;
+  &lt;input type=&quot;text&quot; id=&quot;model&quot;&gt;
+  &lt;p id=&quot;word&quot;&gt;&lt;/p&gt;
+&lt;/body&gt;
+
+&lt;script&gt;
+  const model = document.getElementById(&quot;model&quot;)
+  const word = document.getElementById(&quot;word&quot;)
+  var obj= &#123;&#125;;
+
+  const newObj = new Proxy(obj, &#123;
+    get: function(target, key, receiver) &#123;
+      console.log(`getting $&#123;key&#125;!`);
+      return Reflect.get(target, key, receiver);
+    &#125;,
+    set: function(target, key, value, receiver) &#123;
+      console.log(&#39;setting&#39;,target, key, value, receiver);
+      if (key === &quot;text&quot;) &#123;
+        model.value = value;
+        word.innerHTML = value;
+      &#125;
+      return Reflect.set(target, key, value, receiver);
+    &#125;
+  &#125;);
+
+  model.addEventListener(&quot;keyup&quot;,function(e)&#123;
+    newObj.text = e.target.value
+  &#125;)
+&lt;/script&gt;
+</code></pre>
+<h3 id="打印出-1-10000-以内的对称数"><a href="#打印出-1-10000-以内的对称数" class="headerlink" title="打印出 1~10000 以内的对称数"></a>打印出 1~10000 以内的对称数</h3><pre><code class="javascript">function isSymmetryNum(start, end) &#123;
+  for (var i = start; i &lt; end + 1; i++) &#123;
+    var iInversionNumber = +i.toString().split(&quot;&quot;).reverse().join(&quot;&quot;);
+    if (iInversionNumber === i &amp;&amp; i &gt; 10) &#123;
+      console.log(i);
+    &#125;
+  &#125;
+&#125;
+isSymmetryNum(1, 10000);
+</code></pre>
+<h3 id="使用递归完成-1-到-100-的累加"><a href="#使用递归完成-1-到-100-的累加" class="headerlink" title="使用递归完成 1 到 100 的累加"></a>使用递归完成 1 到 100 的累加</h3><pre><code class="javascript">function add(x, y) &#123;
+  if (x === y) &#123;
+    return x;
+  &#125; else &#123;
+    return y + add(x, y - 1);
+  &#125;
+&#125;
+
+console.log(add(1, 100));
+</code></pre>
+<h3 id="产生一个不重复的随机数组"><a href="#产生一个不重复的随机数组" class="headerlink" title="产生一个不重复的随机数组"></a>产生一个不重复的随机数组</h3><pre><code class="javascript">// 生成随机数
+function randomNumBoth(Min, Max) &#123;
+  var Range = Max - Min;
+  var Rand = Math.random();
+  var num = Min + Math.round(Rand * Range); //四舍五入
+  return num;
+&#125;
+// 生成数组
+function randomArr(len, min, max) &#123;
+  if (max - min &lt; len) &#123;
+    //可生成数的范围小于数组长度
+    return null;
+  &#125;
+  var hash = [];
+
+  while (hash.length &lt; len) &#123;
+    var num = randomNumBoth(min, max);
+
+    if (hash.indexOf(num) == -1) &#123;
+      hash.push(num);
+    &#125;
+  &#125;
+  return hash;
+&#125;
+// 测试
+console.log(randomArr(10, 1, 100));
+</code></pre>
+<p>在上面的代码中，我们封装了一个 randomArr 方法来生成这个不重复的随机数组，该方法接收三个参数，len、min 和 max，分别表示数组的长度、最小值和最大值。randomNumBoth 方法用来生成随机数。</p>
+<h3 id="给你一个数组，计算每个数出现的次数，如果每个数组返回的数都是独一无二的就返回-true-相反则返回的-false"><a href="#给你一个数组，计算每个数出现的次数，如果每个数组返回的数都是独一无二的就返回-true-相反则返回的-false" class="headerlink" title="给你一个数组，计算每个数出现的次数，如果每个数组返回的数都是独一无二的就返回 true 相反则返回的 false"></a>给你一个数组，计算每个数出现的次数，如果每个数组返回的数都是独一无二的就返回 true 相反则返回的 false</h3><p>输入：arr = [1,2,2,1,1,3]</p>
+<p>输出：true</p>
+<p>解释：在该数组中，1 出现了 3 次，2 出现了 2 次，3 只出现了 1 次。没有两个数的出现次数相同。</p>
+<p>代码示例：</p>
+<pre><code class="plain">function uniqueOccurrences(arr) &#123;
+    let uniqueArr = [...new Set(arr)]
+    let countArr = []
+    for (let i = 0; i &lt; uniqueArr.length; i++) &#123;
+        countArr.push(arr.filter(item =&gt; item == uniqueArr[i]).length)
+    &#125;
+    return countArr.length == new Set(countArr).size
+&#125;;
+
+// 测试
+console.log(uniqueOccurrences([1, 2, 2, 1, 1, 3])); // true
+console.log(uniqueOccurrences([1, 2, 2, 1, 1, 3, 2])); // false
+</code></pre>
+<h3 id="封装一个能够统计重复的字符的函数，例如-aaabbbdddddfff-转化为-3a3b5d3f"><a href="#封装一个能够统计重复的字符的函数，例如-aaabbbdddddfff-转化为-3a3b5d3f" class="headerlink" title="封装一个能够统计重复的字符的函数，例如 aaabbbdddddfff 转化为 3a3b5d3f"></a>封装一个能够统计重复的字符的函数，例如 aaabbbdddddfff 转化为 3a3b5d3f</h3><pre><code class="plain">function compression(str) &#123;
+    if (str.length == 0) &#123;
+        return 0;
+    &#125;
+    var len = str.length;
+    var str2 = &quot;&quot;;
+    var i = 0;
+    var num = 1;
+    while (i &lt; len) &#123;
+        if (str.charAt(i) == str.charAt(i + 1)) &#123;
+            num++;
+        &#125; else &#123;
+            str2 += num;
+            str2 += str.charAt(i);
+            num = 1;
+        &#125;
+        i++;
+    &#125;
+    return str2;
+&#125;
+// 测试：
+console.log(compression(&#39;aaabbbdddddfff&#39;)); // 3a3b5d3f
+</code></pre>
+<h3 id="实现-5-add-3-sub-2"><a href="#实现-5-add-3-sub-2" class="headerlink" title="实现 5.add(3).sub(2)"></a>实现 5.add(3).sub(2)</h3><p>这里想要实现的是链式操作，那么我们可以考虑在 Number 类型的原型上添加 add 和 sub 方法，这两个方法返回新的数</p>
+<pre><code class="plain">Number.prototype.add = function (number) &#123;
+    if (typeof number !== &#39;number&#39;) &#123;
+        throw new Error(&#39;请输入数字～&#39;);
+    &#125;
+    return this.valueOf() + number;
+&#125;;
+Number.prototype.minus = function (number) &#123;
+    if (typeof number !== &#39;number&#39;) &#123;
+        throw new Error(&#39;请输入数字～&#39;);
+    &#125;
+    return this.valueOf() - number;
+&#125;;
+console.log((5).add(3).minus(2)); // 6
+</code></pre>
+<h3 id="请实现一个模块-math，支持链式调用-math-add-2-4-minus-3-times-2"><a href="#请实现一个模块-math，支持链式调用-math-add-2-4-minus-3-times-2" class="headerlink" title="请实现一个模块 math，支持链式调用 math.add(2,4).minus(3).times(2);"></a>请实现一个模块 math，支持链式调用 math.add(2,4).minus(3).times(2);</h3><pre><code class="plain">class Math &#123;
+    constructor(value) &#123;
+        let hasInitValue = true;
+        if (value === undefined) &#123;
+            value = NaN;
+            hasInitValue = false;
+        &#125;
+        Object.defineProperties(this, &#123;
+            value: &#123;
+                enumerable: true,
+                value: value,
+            &#125;,
+            hasInitValue: &#123;
+                enumerable: false,
+                value: hasInitValue,
+            &#125;,
+        &#125;);
+    &#125;
+
+    add(...args) &#123;
+        const init = this.hasInitValue ? this.value : args.shift();
+        const value = args.reduce((pv, cv) =&gt; pv + cv, init);
+        return new Math(value);
+    &#125;
+
+    minus(...args) &#123;
+        const init = this.hasInitValue ? this.value : args.shift();
+        const value = args.reduce((pv, cv) =&gt; pv - cv, init);
+        return new Math(value);
+    &#125;
+
+    times(...args) &#123;
+        const init = this.hasInitValue ? this.value : args.shift();
+        const value = args.reduce((pv, cv) =&gt; pv * cv, init);
+        return new Math(value);
+    &#125;
+
+    divide(...args) &#123;
+        const init = this.hasInitValue ? this.value : args.shift();
+        const value = args.reduce((pv, cv) =&gt; pv / cv, init);
+        return new Math(value);
+    &#125;
+
+    toJSON() &#123;
+        return this.valueOf();
+    &#125;
+
+    toString() &#123;
+        return String(this.valueOf());
+    &#125;
+
+    valueOf() &#123;
+        return this.value;
+    &#125;
+
+    [Symbol.toPrimitive](hint) &#123;
+        const value = this.value;
+        if (hint === &#39;string&#39;) &#123;
+            return String(value);
+        &#125; else &#123;
+            return value;
+        &#125;
+    &#125;
+&#125;
+
+export default new Math();
+</code></pre>
+<h3 id="设计⼀个⽅法以判断是否回⽂-颠倒后的字符串和原来的字符串⼀样为回⽂"><a href="#设计⼀个⽅法以判断是否回⽂-颠倒后的字符串和原来的字符串⼀样为回⽂" class="headerlink" title="设计⼀个⽅法以判断是否回⽂(颠倒后的字符串和原来的字符串⼀样为回⽂)"></a>设计⼀个⽅法以判断是否回⽂(颠倒后的字符串和原来的字符串⼀样为回⽂)</h3><pre><code class="plain">function isPalindrome(str) &#123;
+    if (typeof str !== &#39;string&#39;) &#123;
+        return false
+    &#125;
+    return str.split(&#39;&#39;).reverse().join(&#39;&#39;) === str
+&#125;
+
+// 测试
+console.log(isPalindrome(&#39;HelleH&#39;)); // true
+console.log(isPalindrome(&#39;Hello&#39;)); // false
+</code></pre>
+<h3 id="设计⼀个⽅法以统计字符串中出现最多次数的字符"><a href="#设计⼀个⽅法以统计字符串中出现最多次数的字符" class="headerlink" title="设计⼀个⽅法以统计字符串中出现最多次数的字符"></a>设计⼀个⽅法以统计字符串中出现最多次数的字符</h3><pre><code class="plain">function findMaxDuplicateChar(str) &#123;
+    let cnt = &#123;&#125;;   //用来记录所有的字符的出现频次
+    let c = &#39;&#39;;        //用来记录最大频次的字符
+    for (let i = 0; i &lt; str.length; i++) &#123;
+        let ci = str[i];
+        if (!cnt[ci]) &#123;
+            cnt[ci] = 1;
+        &#125; else &#123;
+            cnt[ci]++;
+        &#125;
+        if (c == &#39;&#39; || cnt[ci] &gt; cnt[c]) &#123;
+            c = ci;
+        &#125;
+    &#125;
+    console.log(cnt); // &#123; H: 1, e: 1, l: 3, o: 2, &#39; &#39;: 1, W: 1, r: 1, d: 1 &#125;
+    return c;
+&#125;
+
+// 测试
+console.log(findMaxDuplicateChar(&#39;Hello World&#39;)); // l
+</code></pre>
+<h3 id="合并二维有序数组成一维有序数组，归并排序的思路"><a href="#合并二维有序数组成一维有序数组，归并排序的思路" class="headerlink" title="合并二维有序数组成一维有序数组，归并排序的思路"></a>合并二维有序数组成一维有序数组，归并排序的思路</h3><pre><code class="javascript">function merge(left, right) &#123;
+  let result = []
+  while (left.length &gt; 0 &amp;&amp; right.length &gt; 0) &#123;
+    if (left[0] &lt; right[0]) &#123;
+      result.push(left.shift())
+    &#125; else &#123;
+      result.push(right.shift())
+    &#125;
+  &#125;
+  return result.concat(left).concat(right)
+&#125;
+function mergeSort(arr) &#123;
+  if (arr.length === 1) &#123;
+    return arr
+  &#125;
+  while (arr.lengt
+         h &gt; 1) &#123;
+    let arrayItem1 = arr.shift();
+    let arrayItem2 = arr.shift();
+    let mergeArr = merge(arrayItem1, arrayItem2);
+    arr.push(mergeArr);
+  &#125;
+  return arr[0]
+&#125;
+
+let arr1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 2, 3], [4, 5, 6]];
+let arr2 = [[1, 4, 6], [7, 8, 10], [2, 6, 9], [3, 7, 13], [1, 5, 12]];
+console.log(mergeSort(arr1))
+console.log(mergeSort(arr2))
+</code></pre>
+<h3 id="给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。-难"><a href="#给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。-难" class="headerlink" title="给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。(难)"></a>给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。(难)</h3><p>首先，我们肯定需要封装一个函数，而这个函数接收一个字符串作为参数，返回不含有重复字符的子串长度。来看下面的示例：</p>
+<p>示例 1:</p>
+<p>输入: “abcabcbb” 输出: 3 解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。</p>
+<p>示例 2:</p>
+<p>输入: “bbbbb” 输出: 1 解释: 因为无重复字符的最长子串是 “b”，所以其长度为 1。</p>
+<p>示例 3:</p>
+<p>输入: “pwwkew” 输出: 3 解释: 因为无重复字符的最长子串是 “wke”，所以其长度为 3。 请注意，你的答案必须是 子串 的长度，“pwke” 是一个子序列，不是子串。</p>
+<p>示例代码：</p>
+<pre><code class="plain">var lengthOfLongestSubstring = function (s) &#123;
+    var y = [];
+    var temp = [];
+    var maxs = 0;
+    if (s == &quot;&quot;) &#123;
+        return 0;
+    &#125;
+    if (s.length == 1) &#123;
+        return 1;
+    &#125;
+    for (var i = 0; i &lt; s.length; i++) &#123;
+        if (temp.includes(s[i])) &#123;
+
+            y.push(temp.length);
+            temp.shift();
+            continue;
+        &#125; else &#123;
+            temp.push(s[i])
+            y.push(temp.length);
+        &#125;
+
+    &#125;
+    for (var j = 0; j &lt; y.length; j++) &#123;
+        if (maxs &lt;= y[j]) &#123;
+            maxs = y[j]
+        &#125;
+    &#125;
+    return maxs;
+&#125;;
+// 测试
+console.log(lengthOfLongestSubstring(&#39;abcabcbb&#39;)); // 3
+console.log(lengthOfLongestSubstring(&#39;bbbbb&#39;)); // 1
+console.log(lengthOfLongestSubstring(&#39;pwwkew&#39;)); // 3
+</code></pre>
+<h3 id="有一堆整数，请把他们分成三份，确保每一份和尽量相等（11，42，23，4，5，6-4-5-6-11-23-42-56-78-90）-难"><a href="#有一堆整数，请把他们分成三份，确保每一份和尽量相等（11，42，23，4，5，6-4-5-6-11-23-42-56-78-90）-难" class="headerlink" title="有一堆整数，请把他们分成三份，确保每一份和尽量相等（11，42，23，4，5，6 4 5 6 11 23 42 56 78 90）(难)"></a>有一堆整数，请把他们分成三份，确保每一份和尽量相等（11，42，23，4，5，6 4 5 6 11 23 42 56 78 90）(难)</h3><p>本道题目是一道考察算法的题目，主要是考察编程基本功和一定的想像力。</p>
+<pre><code class="plain">const testArr = [11, 42, 23, 4, 5, 6, 4, 5, 6, 11, 23, 42, 56, 78, 90];
+function avarageSum(n, arr) &#123;
+ //    找到平均值
+ const sum = arr.reduce((a, b) =&gt; a + b, 0)
+ const ava = Math.round(sum / n);
+ // 生成一个长度为n的二维数组
+ let target = new Array(n).fill(0).map(()=&gt;[])
+ // const target = [[], [], []];
+ let cursor;
+ let max = 0;
+ let maxIdx = 0;
+ // 所有数组需要尽量加到ava
+ while (arr.length &gt; 0) &#123;
+     // 得到当前arr数组最大的数
+     // 出数器
+     // 出数器负责拿出当前数组中最大的那个数
+     for (let i = 0; i &lt; arr.length; i++) &#123;
+         if (arr[i] &gt; max) &#123;
+             max = arr[i];
+             maxIdx = i
+         &#125;
+     &#125;
+     // arr数组中删除最大数
+     const temparr = arr.splice(maxIdx, 1);
+
+     // 计算差距的函数 找到差距(距离平均值)最大的那一组 返回下标
+     cursor = getMaxDis(target, ava);
+
+     // console.log(&quot;下标&quot;, cursor)
+     // 加入
+     target[cursor].push(temparr[0]);
+     // 重置
+     max = 0;
+     maxIdx = 0;
+ &#125;
+ return target.map(item=&gt;&#123;
+     // 返回累加结果
+     let sum = item.reduce((a,b)=&gt;a+b,0);
+     item.sum = sum
+     return item
+ &#125;)
+
+&#125;
+function getMaxDis(origin, stand) &#123;
+ // 计算origin数组中和stand最大差距的那一组
+ const len = origin.length;
+ let i = 0;
+ let maxDis;
+ let maxDisIdx;
+ while (i &lt; len) &#123;
+     const sum = origin[i].reduce((a, b) =&gt; a + b, 0);
+     const dis = stand - sum;
+     if (i === 0) &#123;
+         maxDis = dis;
+         maxDisIdx = 0
+     &#125;
+     if (dis &gt; maxDis) &#123;
+         maxDis = dis;
+         maxDisIdx = i
+     &#125;
+     i++;
+ &#125;
+ return maxDisIdx
+
+&#125;
+console.log(avarageSum(3, testArr))
+/*
+  [
+      [ 90, 23, 11, 6, 5, sum: 135 ],
+      [ 78, 42, 11, 4, sum: 135 ],
+      [ 56, 42, 23, 6, 5, 4, sum: 136 ]
+   ]
+ */
+</code></pre>
+<h3 id="手写发布订阅（难）"><a href="#手写发布订阅（难）" class="headerlink" title="手写发布订阅（难）"></a>手写发布订阅（难）</h3><pre><code class="html">&lt;body&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;p&gt;this is a test&lt;/p&gt;
+    &#123;&#123;msg&#125;&#125;&lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;&#123;&#123;msg&#125;&#125;
+  &lt;/div&gt;
+  &lt;script src=&quot;./index.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    const vm = new Vue(&#123;
+      el: &quot;#app&quot;,
+      data: &#123;
+        msg: &quot;&quot;,
+      &#125;,
+    &#125;);
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="javascript">/*
+    1. 创建 Vue 构造函数
+        在 Vue 构造函数中，调用了 observer 函数，该函数的作用就是对数据进行劫持
+        劫持具体要做的事儿：复制一份数据，但是不是单纯的复制，而是增加了 getter、setter
+    2. 书写 compile 函数。该函数主要作用于模板，从模板里面要提取信息
+        提取的东西主要有两个：&#123;&#123;&#125;&#125;  和 v-model
+    3. 创建发布者 Dep 的构造函数，如果数据发生变化，发布者就会遍历内部的数组（花名册），通知订阅者修改数据
+    4. 创建订阅者 Watcher 的构造函数，如果有数据的变化，发布者就会通知订阅者，订阅者上面存在 update 方法，会进行修改
+ */
+
+function Vue(options) &#123;
+  // this 代表 Vue 的实例对象，本例中就是 vm
+  // options.data 这就是实际的数据 &#123;msg : &#39;xiejie&#39;&#125;
+  observer(this, options.data);
+  this.$el = options.el;
+  compile(this);
+&#125;
+
+// 用于对模板进行信息提取，主要提取 &#123;&#123;&#125;&#125;  和 v-model，然后进行一些操作
+// &#123;&#123; &#125;&#125; 会成为观察者，v-model 所对应的控件来绑定事件
+function compile(vm) &#123;
+  var el = document.querySelector(vm.$el); // el 所对应的值为 &lt;div id=&quot;app&quot;&gt;...&lt;/div&gt;
+  var documentFragment = document.createDocumentFragment(); // 创建了一个空的文档碎片
+  var reg = /\&#123;\&#123;(.*)\&#125;\&#125;/; // 创建正则表达式 匹配 &#123;&#123; &#125;&#125;
+  while (el.childNodes[0]) &#123;
+    var child = el.childNodes[0]; // 将第一个子节点存储到 child
+    if (child.nodeType == 1) &#123;
+      // 如果能够进入此 if，说明该节点是一个元素节点
+      for (var key in child.attributes) &#123;
+        // 遍历该元素节点的每一个属性，拿到的就是 type=&quot;text&quot; v-model=&quot;msg&quot;
+        var attrName = child.attributes[key].nodeName; // 获取属性名  type、v-model
+        if (attrName === &quot;v-model&quot;) &#123;
+          var vmKey = child.attributes[key].nodeValue; // 先获取属性值，也就是 msg
+          // 为该节点，也就是 &lt;input type=&quot;text&quot; v-model=&quot;msg&quot;&gt; 绑定一个 input 事件
+          child.addEventListener(&quot;input&quot;, function (event) &#123;
+            vm[vmKey] = event.target.value; // 获取用户输入的值，然后改变 vm 里面的 msg 属性对应的值，注意这里会触发 setter
+          &#125;);
+        &#125;
+      &#125;
+    &#125;
+    if (child.nodeType == 3) &#123;
+      // 如果能进入此 if，说明该节点是一个文本节点
+      if (reg.test(child.nodeValue)) &#123;
+        // 如果能够进入到此 if，说明是 &#123;&#123; &#125;&#125;，然后我们要让其成为订阅者
+        var vmKey = RegExp.$1; // 获取正则里面的捕获值，也就是 msg
+        // 实例化一个 Watcher（订阅者），接收 3 个参数：Vue 实例，该文本节点，捕获值 msg
+        new Watcher(vm, child, vmKey);
+      &#125;
+    &#125;
+    documentFragment.appendChild(el.childNodes[0]); // 将第一个子节点添加到文档碎片里面
+  &#125;
+  // 将文档碎片中节点重新添加到 el，也就是 &lt;div id=&quot;app&quot;&gt;&lt;/div&gt; 下面
+  el.appendChild(documentFragment);
+&#125;
+
+// 新建发布者构造函数
+function Dep() &#123;
+  // 将观察者添加到发布者内部的数组里面
+  // 这样以便于通知所有的观察者去更新数据
+  this.subs = [];
+&#125;
+
+Dep.prototype = &#123;
+  // 将 watcher 添加到发布者内置的数组里面
+  addSub: function (sub) &#123;
+    this.subs.push(sub);
+  &#125;,
+  // 遍历数组里面所有的 watcher，通知它们去更新数据
+  notify: function () &#123;
+    this.subs.forEach(function (sub) &#123;
+      sub.update();
+    &#125;);
+  &#125;,
+&#125;;
+
+// 新建观察者 Watcher 构造函数
+// 接收 3 个参数：Vue 实例，文本节点 &#123;&#123; msg &#125;&#125; 以及捕获内容 msg
+function Watcher(vm, child, vmKey) &#123;
+  this.vm = vm; // vm
+  this.child = child; // &#123;&#123; msg &#125;&#125;
+  this.vmKey = vmKey; // msg
+  Dep.target = this; // 将该观察者实例对象添加给 Dep.target
+  this.update(); // 执行节点更新方法
+  Dep.target = null; // 最后清空 Dep.target
+&#125;
+Watcher.prototype = &#123;
+  // 节点更新方法
+  update: function () &#123;
+    // 相当于：&#123;&#123; msg &#125;&#125;.nodeValue = this.vm[&#39;msg&#39;]
+    // 这样就更新了文本节点的值，由于这里在获取 vm.msg，所以会触发 getter
+    this.child.nodeValue = this.vm[this.vmKey];
+  &#125;,
+&#125;;
+
+// 该函数的作用是用于数据侦听
+function observer(vm, obj) &#123;
+  var dep = new Dep(); // 新增一个发布者:发布者的作用是告诉订阅者数据已经更改
+  // 遍历数据
+  for (var key in obj) &#123;
+    // 将数据的每一项添加到 vm 里面，至此，vm 也有了每一项数据
+    // 但是不是单纯的添加，而是设置了 getter 和 setter
+    // 在获取数据时触发 getter，在设置数据时触发 setter
+    Object.defineProperty(vm, key, &#123;
+      get() &#123;
+        console.log(&quot;触发get了&quot;);
+        // 触发 getter 时，将该 watcher 添加到发布者维护的数组里面
+        if (Dep.target) &#123;
+          dep.addSub(Dep.target); // 往发布者的数组里面添加订阅者
+        &#125;
+        console.log(dep.subs);
+        return obj[key];
+      &#125;,
+      set(newVal) &#123;
+        console.log(&quot;触发set了&quot;);
+        obj[key] = newVal;
+        dep.notify(); // 发布者发出消息，通知订阅者修改数据
+      &#125;,
+    &#125;);
+  &#125;
+&#125;
+</code></pre>
+<h3 id="手写用-ES6proxy-如何实现-arr-1-的访问"><a href="#手写用-ES6proxy-如何实现-arr-1-的访问" class="headerlink" title="手写用 ES6proxy 如何实现 arr[-1] 的访问"></a>手写用 ES6proxy 如何实现 arr[-1] 的访问</h3><pre><code class="javascript">const proxyArray = (arr) =&gt; &#123;
+  const length = arr.length;
+  return new Proxy(arr, &#123;
+    get(target, key) &#123;
+      key = +key;
+      while (key &lt; 0) &#123;
+        key += length;
+      &#125;
+      return target[key];
+    &#125;,
+  &#125;);
+&#125;;
+var a = proxyArray([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+console.log(a[1]); // 2
+console.log(a[-10]); // 9
+console.log(a[-20]); // 8
+</code></pre>
+<h3 id="提取高度嵌套的对象里的指定属性？"><a href="#提取高度嵌套的对象里的指定属性？" class="headerlink" title="提取高度嵌套的对象里的指定属性？"></a>提取高度嵌套的对象里的指定属性？</h3><p>一般会使用递归的方式来进行查找。下面是一段示例代码：</p>
+<pre><code class="plain">function findKey(data, field) &#123;
+    let finding = &#39;&#39;;
+    for (const key in data) &#123;
+        if (key === field) &#123;
+            finding = data[key];
+        &#125;
+        if (typeof (data[key]) === &#39;object&#39;) &#123;
+            finding = findKey(data[key], field);
+        &#125;
+        if (finding) &#123;
+            return finding;
+        &#125;
+    &#125;
+    return null;
+&#125;
+// 测试
+console.log(findKey(&#123;
+    name: &#39;zhangsan&#39;,
+    age: 18,
+    stuInfo: &#123;
+        stuNo: 1,
+        classNo: 2,
+        score: &#123;
+            htmlScore: 100,
+            cssScore: 90,
+            jsScore: 95
+        &#125;
+    &#125;
+&#125;, &#39;cssScore&#39;)); // 90
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

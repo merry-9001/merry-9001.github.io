@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>webpack配置 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>webpack配置</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/22
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <pre><code class="javascript">const path = require(&quot;path&quot;);
+const TerserPlugin = require(&quot;terser-webpack-plugin&quot;);
+
+module.exports = &#123;
+  //设置是开发模式还是生产模式，不同模式webpack内部会进行一些处理
+  mode: &quot;production&quot;,
+  //打包的入口
+  entry: &quot;./entry.js&quot;,
+  //打包出口配置
+  output: &#123;
+    filename: &quot;entry.bundle.js&quot;,
+    chunkFilename: &quot;bundle.[name].[chunkhash:8].js&quot;,
+    path: path.resolve(__dirname, &quot;assets&quot;, &quot;js&quot;, &quot;bundle&quot;),
+    publicPath: &quot;./js/bundle/&quot;,
+  &#125;,
+  //优化
+  optimization: &#123;
+    //terser混淆
+    minimizer: [
+      new TerserPlugin(&#123;
+        extractComments: false,
+      &#125;),
+    ],
+    //分包
+    splitChunks: &#123;
+      cacheGroups: &#123;
+        obj3: &#123;
+          chunks: &quot;all&quot;,
+          test(module) &#123;
+            const moduleResource = module.resource || &quot;&quot;;
+            return (
+              /[\\/]node_modules[\\/]babylonjs/.test(moduleResource) ||
+              /3rd[\\/]babylon/.test(moduleResource) ||
+              /[\\/]node_modules[\\/]earcut/.test(moduleResource) ||
+              /[\\/]node_modules[\\/]heatmap\.js/.test(moduleResource)
+            );
+          &#125;,
+          name: &quot;obj3&quot;,
+          maxAsyncRequests: 5,
+          priority: 10,
+          enforce: true,
+        &#125;,
+        threejs: &#123;
+          chunks: &quot;all&quot;,
+          test(module) &#123;
+            const moduleResource = module.resource || &quot;&quot;;
+            if (/3rd[\\/]particle/.test(moduleResource)) &#123;
+              return !/fireworks|rainy/.test(moduleResource);
+            &#125;
+            return (
+              /[\\/]node_modules[\\/]three/.test(moduleResource) ||
+              /3rd[\\/]three/.test(moduleResource) ||
+              /[\\/]node_modules[\\/]\@pdf\-lib/.test(moduleResource)
+            );
+          &#125;,
+          name: &quot;threejs&quot;,
+          maxAsyncRequests: 5,
+          priority: 10,
+          enforce: true,
+        &#125;,
+        v1widgets: &#123;
+          chunks: &quot;all&quot;,
+          test: /widgets[\\/].*(b2.*(?&lt;!\.v2\.js))(?&lt;!b2widget\.js)$/,
+          name: &quot;v1widgets&quot;,
+          maxAsyncRequests: 5,
+          priority: 10,
+          enforce: true,
+        &#125;,
+        v2widgets: &#123;
+          chunks: &quot;all&quot;,
+          test: /widgets\.v2[\\/].*(b2.*\.v2\.js)(?&lt;!b2widget\.v2\.js)(?&lt;!b2plugin\.v2\.js)$/,
+          name: &quot;v2widgets&quot;,
+          maxAsyncRequests: 5,
+          priority: 10,
+          enforce: true,
+        &#125;,
+        antv: &#123;
+          chunks: &quot;all&quot;,
+          test: /[\\/]node_modules[\\/]\@antv/,
+          name: &quot;antv&quot;,
+          maxAsyncRequests: 5,
+          priority: 10,
+          enforce: true,
+        &#125;,
+      &#125;,
+    &#125;,
+  &#125;,
+  //模块，loader的加载规则
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.css$/,
+        use: [&quot;style-loader&quot;, &quot;css-loader&quot;],
+        exclude: [path.resolve(__dirname, &quot;..&quot;, &quot;..&quot;, &quot;node_modules&quot;)],
+      &#125;,
+    ],
+  &#125;,
+  //控制模块解析过程
+  resolve: &#123;
+    //查找绝对引用文件的路径
+    modules: [
+      &quot;node_modules&quot;,
+      path.resolve(__dirname, &quot;../../node_modules&quot;),
+      path.resolve(__dirname, &quot;../../src&quot;),
+    ],
+    //别名
+    alias: &#123;
+      &quot;@b2&quot;: path.resolve(__dirname, &quot;../b2&quot;),
+      &quot;assets/js/components/b2&quot;: path.resolve(__dirname, &quot;../b2&quot;),
+    &#125;,
+  &#125;,
+  //插件
+  plugins: [],
+&#125;;
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

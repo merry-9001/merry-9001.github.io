@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>css工程化(postcss) | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>css工程化(postcss)</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/18
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h3 id="css-的问题与解决（总）"><a href="#css-的问题与解决（总）" class="headerlink" title="css 的问题与解决（总）"></a>css 的问题与解决（总）</h3><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><h5 id="类名冲突的问题"><a href="#类名冲突的问题" class="headerlink" title="类名冲突的问题"></a>类名冲突的问题</h5><p>当你写一个 css 类的时候，你是写全局的类呢，还是写多个层级选择后的类呢？</p>
+<p>你会发现，怎么都不好</p>
+<ul>
+<li>过深的层级不利于编写、阅读、压缩、复用</li>
+<li>过浅的层级容易导致类名冲突</li>
+</ul>
+<p>一旦样式多起来，这个问题就会变得越发严重，其实归根结底，就是类名冲突不好解决的问题</p>
+<h5 id="重复样式值"><a href="#重复样式值" class="headerlink" title="重复样式值"></a>重复样式值</h5><p>这种问题就更普遍了，一些重复的样式值总是不断的出现在 css 代码中，维护起来极其困难</p>
+<p>比如，一个网站的颜色一般就那么几种：</p>
+<ul>
+<li>primary</li>
+<li>info</li>
+<li>warn</li>
+<li>error</li>
+<li>success</li>
+</ul>
+<p>如果有更多的颜色，都是从这些色调中自然变化得来，可以想象，这些颜色会到处充斥到诸如背景、文字、边框中，一旦要做颜色调整，是一个非常大的工程</p>
+<h5 id="css-文件细分问题"><a href="#css-文件细分问题" class="headerlink" title="css 文件细分问题"></a>css 文件细分问题</h5><p>在大型项目中，css 也需要更细的拆分，这样有利于 css 代码的维护。</p>
+<p>比如，有一个做轮播图的模块，它不仅需要依赖 js 功能，还需要依赖 css 样式，既然依赖的 js 功能仅关心轮播图，那 css 样式也应该仅关心轮播图，由此类推，不同的功能依赖不同的 css 样式、公共样式可以单独抽离，这样就形成了不同于过去的 css 文件结构：文件更多、拆分的更细</p>
+<p>而同时，在真实的运行环境下，我们却希望文件越少越好，这种情况和 JS 遇到的情况是一致的</p>
+<p>因此，对于 css，也需要工程化管理</p>
+<p>从另一个角度来说，css 的工程化会遇到更多的挑战，因为 css 不像 JS，它的语法本身经过这么多年并没有发生多少的变化（css3 也仅仅是多了一些属性而已），对于 css 语法本身的改变也是一个工程化的课题</p>
+<h4 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h4><h5 id="解决类名冲突"><a href="#解决类名冲突" class="headerlink" title="解决类名冲突"></a>解决类名冲突</h5><p>一些第三方机构提出了一些方案来解决该问题，常见的解决方案如下：</p>
+<p><strong>命名约定</strong></p>
+<p>即提供一种命名的标准，来解决冲突，常见的标准有：</p>
+<ul>
+<li>BEM</li>
+<li>OOCSS</li>
+<li>AMCSS</li>
+<li>SMACSS</li>
+<li>其他</li>
+</ul>
+<p><strong>css in js</strong></p>
+<p>这种方案非常大胆，它觉得，css 语言本身几乎无可救药了，干脆直接用 js 对象来表示样式，然后把样式直接应用到元素的 style 中</p>
+<p>这样一来，css 变成了一个一个的对象，就可以完全利用到 js 语言的优势，你可以：</p>
+<ul>
+<li>通过一个函数返回一个样式对象</li>
+<li>把公共的样式提取到公共模块中返回</li>
+<li>应用 js 的各种特性操作对象，比如：混合、提取、拆分</li>
+<li>更多的花样</li>
+</ul>
+<blockquote>
+<p>这种方案在手机端的 React Native 中大行其道</p>
+</blockquote>
+<p><strong>css module</strong></p>
+<p>非常有趣和好用的 css 模块化方案，编写简单，绝对不重名</p>
+<p>具体的课程中详细介绍</p>
+<h5 id="解决重复样式值的问题"><a href="#解决重复样式值的问题" class="headerlink" title="解决重复样式值的问题"></a>解决重复样式值的问题</h5><p><strong>css in js</strong></p>
+<p>这种方案虽然可以利用 js 语言解决重复样式值的问题，但由于太过激进，很多习惯写 css 的开发者编写起来并不是很适应</p>
+<p><strong>预编译器</strong></p>
+<p>有些第三方搞出一套 css 语言的进化版来解决这个问题，它支持变量、函数等高级语法，然后经过编译器将其编译成为正常的 css</p>
+<p>这种方案特别像构建工具，不过它仅针对 css</p>
+<p>常见的预编译器支持的语言有：</p>
+<ul>
+<li>less</li>
+<li>sass</li>
+</ul>
+<h5 id="解决-css-文件细分问题"><a href="#解决-css-文件细分问题" class="headerlink" title="解决 css 文件细分问题"></a>解决 css 文件细分问题</h5><p>依靠构建工具，例如 webpack 来解决了</p>
+<p>利用一些 loader 或 plugin 来打包、合并、压缩 css 文件</p>
+<h3 id="BEM（解决-css-命名冲突问题）"><a href="#BEM（解决-css-命名冲突问题）" class="headerlink" title="BEM（解决 css 命名冲突问题）"></a>BEM（解决 css 命名冲突问题）</h3><p>BEM 全称是：Block Element Modifier 三个部分的具体含义为：</p>
+<ul>
+<li><strong>Block</strong>：页面中的大区域，表示最顶级的划分，例如：轮播图(<code>banner</code>)、布局(<code>layout</code>)、文章(<code>article</code>)等等</li>
+<li><strong>element</strong>：区域中的组成部分，例如：轮播图中的横幅图片(<code>banner__img</code>)、轮播图中的容器（<code>banner__container</code>）、布局中的头部(<code>layout__header</code>)、文章中的标题(<code>article_title</code>)</li>
+<li><strong>modifier</strong>：可选。通常表示状态，例如：处于展开状态的布局左边栏（<code>layout__left_expand</code>）、处于选中状态的轮播图小圆点(<code>banner__dot_selected</code>)</li>
+</ul>
+<p>在某些大型工程中，如果使用 BEM 命名法，还可能会增加一个前缀，来表示类名的用途，常见的前缀有：</p>
+<ul>
+<li><strong>l</strong>: layout，表示这个样式是用于布局的</li>
+<li><strong>c</strong>: component，表示这个样式是一个组件，即一个功能区域</li>
+<li><strong>u</strong>: util，表示这个样式是一个通用的、工具性质的样式</li>
+<li><strong>j</strong>: javascript，表示这个样式没有实际意义，是专门提供给 js 获取元素使用的</li>
+</ul>
+<blockquote>
+<p>他是一种写 css 的方式，这种方式简单来说就是语义化，不存在嵌套关系</p>
+<p>他是一种公司统一要求的一种规范</p>
+</blockquote>
+<h3 id="css-in-js（解决-css-命名冲突问题）"><a href="#css-in-js（解决-css-命名冲突问题）" class="headerlink" title="css in js（解决 css 命名冲突问题）"></a>css in js（解决 css 命名冲突问题）</h3><p>css in js 的核心思想是：用一个 JS 对象来描述样式，而不是 css 样式表</p>
+<p>例如下面的对象就是一个用于描述样式的对象：</p>
+<pre><code class="javascript">const styles = &#123;
+  backgroundColor: &quot;#f40&quot;,
+  color: &quot;#fff&quot;,
+  width: &quot;400px&quot;,
+  height: &quot;500px&quot;,
+  margin: &quot;0 auto&quot;,
+&#125;;
+</code></pre>
+<p>由于这种描述样式的方式<strong>根本就不存在类名</strong>，自然不会有类名冲突</p>
+<p>至于如何把样式应用到界面上，不是它所关心的事情，你可以用任何技术、任何框架、任何方式将它应用到界面。</p>
+<blockquote>
+<p>后续学习的 vue、react 都支持 css in js，可以非常轻松的应用到界面</p>
+<p>手机端应用会遇到</p>
+</blockquote>
+<p>css in js 的特点：</p>
+<ul>
+<li><strong>绝无冲突的可能</strong>：由于它根本不存在类名，所以绝不可能出现类名冲突</li>
+<li><strong>更加灵活</strong>：可以充分利用 JS 语言灵活的特点，用各种招式来处理样式</li>
+<li><strong>应用面更广</strong>：只要支持 js 语言，就可以支持 css in js，因此，在一些用 JS 语言开发移动端应用的时候非常好用，因为移动端应用很有可能并不支持 css</li>
+<li><strong>书写不便</strong>：书写样式，特别是公共样式的时候，处理起来不是很方便</li>
+<li><strong>在页面中增加了大量冗余内容</strong>：在页面中处理 css in js 时，往往是将样式加入到元素的 style 属性中，会大量增加元素的内联样式，并且可能会有大量重复，不易阅读最终的页面代码</li>
+</ul>
+<h3 id="css-module（解决-css-命名冲突问题）"><a href="#css-module（解决-css-命名冲突问题）" class="headerlink" title="css module（解决 css 命名冲突问题）"></a>css module（解决 css 命名冲突问题）</h3><p>css module 遵循以下思路解决类名冲突问题：</p>
+<ol>
+<li>css 的类名冲突往往发生在大型项目中</li>
+<li>大型项目往往会使用构建工具（webpack 等）搭建工程</li>
+<li>构建工具允许将 css 样式切分为更加精细的模块</li>
+<li>同 JS 的变量一样，每个 css 模块文件中难以出现冲突的类名，冲突的类名往往发生在不同的 css 模块文件中</li>
+<li>只需要保证构建工具在合并样式代码后不会出现类名冲突即可</li>
+</ol>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>在 webpack 中，作为处理 css 的 css-loader，它实现了 css module 的思想，要启用 css module，需要将 css-loader 的配置<code>modules</code>设置为<code>true</code>。</p>
+<p>css-loader 的实现方式如下：</p>
+<p><img src="assets/2020-01-31-14-00-56.png"></p>
+<p>原理极其简单，开启了 css module 后，css-loader 会将样式中的类名进行转换，转换为一个唯一的 hash 值。</p>
+<p>由于 hash 值是根据<strong>模块路径和类名</strong>生成的，因此，不同的 css 模块，哪怕具有相同的类名，转换后的 hash 值也不一样。</p>
+<p><img src="assets/2020-01-31-14-04-11.png"></p>
+<p>在 css-loader 中开启模块化配置</p>
+<pre><code class="javascript">module.exports = &#123;
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.css$/,
+        use: [
+          &quot;style-loader&quot;,
+          &#123;
+            loader: &quot;css-loader&quot;,
+            options: &#123;
+              modules: true,
+            &#125;,
+          &#125;,
+        ],
+      &#125;,
+    ],
+  &#125;,
+&#125;;
+</code></pre>
+<h4 id="如何应用样式"><a href="#如何应用样式" class="headerlink" title="如何应用样式"></a>如何应用样式</h4><p>css module 带来了一个新的问题：源代码的类名和最终生成的类名是不一样的，而开发者只知道自己写的源代码中的类名，并不知道最终的类名是什么，那如何应用类名到元素上呢？</p>
+<p>为了解决这个问题，css-loader 会导出原类名和最终类名的对应关系，该关系是通过一个对象描述的</p>
+<p><img src="1723900317775-f08d44b2-9b6f-4d01-b1cf-b4f77be098fd.png"></p>
+<p><img src="assets/2020-01-31-14-08-49.png"></p>
+<p>这样一来，我们就可以在 js 代码中获取到 css 模块导出的结果，从而应用类名了</p>
+<p>style-loader 为了我们更加方便的应用类名，会去除掉其他信息，仅暴露对应关系</p>
+<p>通过 js 来应用样式</p>
+<pre><code class="javascript">import style1 from &quot;./assets/style1.css&quot;;
+
+const div1 = document.getElementById(&quot;div1&quot;);
+div1.className = style1.c1;
+</code></pre>
+<h4 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h4><h5 id="全局类名"><a href="#全局类名" class="headerlink" title="全局类名"></a>全局类名</h5><p>某些类名是全局的、静态的，不需要进行转换，仅需要在类名位置使用一个特殊的语法即可：</p>
+<pre><code class="css">:global(.main) &#123;
+  ...;
+&#125;
+</code></pre>
+<p>使用了 global 的类名不会进行转换，相反的，没有使用 global 的类名，表示默认使用了 local</p>
+<pre><code class="css">:local(.main) &#123;
+  ...;
+&#125;
+</code></pre>
+<p>使用了 local 的类名表示局部类名，是可能会造成冲突的类名，会被 css module 进行转换</p>
+<h5 id="如何控制最终的类名"><a href="#如何控制最终的类名" class="headerlink" title="如何控制最终的类名"></a>如何控制最终的类名</h5><p>绝大部分情况下，我们都不需要控制最终的类名，因为控制它没有任何意义</p>
+<p>如果一定要控制最终的类名，需要配置 css-loader 的<code>localIdentName</code></p>
+<h5 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h5><ul>
+<li>css module 往往配合构建工具使用</li>
+<li>css module 仅处理顶级类名，尽量不要书写嵌套的类名，也没有这个必要</li>
+<li>css module 仅处理类名，不处理其他选择器</li>
+<li>css module 还会处理 id 选择器，不过任何时候都没有使用 id 选择器的理由</li>
+<li>使用了 css module 后，只要能做到让类名望文知意即可，不需要遵守其他任何的命名规范</li>
+</ul>
+<h3 id="使用-less（预编译器）"><a href="#使用-less（预编译器）" class="headerlink" title="使用 less（预编译器）"></a>使用 less（预编译器）</h3><pre><code class="javascript">module.exports = &#123;
+  module: &#123;
+    rules: [
+      &#123; test: /\.css$/, use: [&quot;style-loader&quot;, &quot;css-loader&quot;] &#125;,
+      &#123;
+        test: /\.less$/,
+        use: [&quot;style-loader&quot;, &quot;css-loader?modules&quot;, &quot;less-loader&quot;],
+      &#125;,
+    ],
+  &#125;,
+&#125;;
+</code></pre>
+<blockquote>
+<p>注意：less 可以与 css module 联用</p>
+</blockquote>
+<p>less 先通过 less-loader 变成一个普通的 css 代码，然后再通过 css-loader 把代码变成 js,然后通过 style-loader 把 css 样式的 js 代码放入 html 的 style 标签中</p>
+<p><img src="1723902364105-0667fb98-05b7-4700-bc98-23e9f50b7d20.png"></p>
+<h3 id="PostCss"><a href="#PostCss" class="headerlink" title="PostCss"></a>PostCss</h3><p>postcss 对标 babel</p>
+<p>我们写的 js 代码(怎么爽怎么来) –&gt; babel –&gt; 将最新的 ts 语法进行转换 js 语法 –&gt; 做一次语法降级  –&gt; 浏览器客户端去执行<br>babel –&gt; 帮助我们让 js 执行起来万无一失</p>
+<p>先通过 less 进行编译，比如解开嵌套，变量等，然后再交给 postcss 处理，postcss 是后处理器</p>
+<p>我们写的 css 代码(怎么爽怎么来) –&gt; postcss —&gt; less –&gt; 再次对未来的高级 css 语法进行降级 –&gt; 前缀补全 –&gt; 浏览器客户端<br>目前来说 less 和 sass 等一系列预处理器的 postcss 插件已经停止维护了 less 插件 你自己去用 less 和 sass 编译完了, 然后你把编译结果给我<br>所以业内就产生了一个新的说法: postcss 是后处理器，less 的 postcss 的插件</p>
+<p>学习到现在，可以看出，CSS 工程化面临着诸多问题，而解决这些问题的方案多种多样。</p>
+<p>如果把 CSS 单独拎出来看，光是样式本身，就有很多事情要处理。</p>
+<p>既然有这么多事情要处理，何不把这些事情集中到一起统一处理呢？</p>
+<p>PostCss 就是基于这样的理念出现的。</p>
+<p>PostCss 类似于一个编译器，可以将样式源码编译成最终的 CSS 代码</p>
+<p><img src="assets/2020-02-04-14-31-33.png"><img src="1724813927365-fd3152fd-2058-4b5b-be50-64ff97b14833.png"></p>
+<p>看上去是不是和 LESS、SASS 一样呢？</p>
+<p>但 PostCss 和 LESS、SASS 的思路不同，它其实只做一些代码分析之类的事情，将分析的结果交给插件，具体的代码转换操作是插件去完成的。</p>
+<p><img src="1724813937607-948b0090-20d9-48a7-bd32-8c1cba4ef760.png"></p>
+<p>官方的一张图更能说明 postcss 的处理流程：</p>
+<p><img src="assets/postcss-workflow.png"><img src="1724813946708-bc1c8cc5-6391-4240-a603-edaa1df62501.png"></p>
+<blockquote>
+<p>这一点有点像 webpack，webpack 本身仅做依赖分析、抽象语法树分析，其他的操作是靠插件和加载器完成的。</p>
+</blockquote>
+<p>官网地址：<a target="_blank" rel="noopener" href="https://postcss.org/">https://postcss.org/</a><br>github 地址：<a target="_blank" rel="noopener" href="https://github.com/postcss/postcss">https://github.com/postcss/postcss</a></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>PostCss 是基于 node 编写的，因此可以使用 npm 安装</p>
+<pre><code class="shell">npm i -D postcss
+</code></pre>
+<p>postcss 库提供了对应的 js api 用于转换代码，如果你想使用 postcss 的一些高级功能，或者想开发 postcss 插件，就要 api 使用 postcss，api 的文档地址是：<a target="_blank" rel="noopener" href="http://api.postcss.org/">http://api.postcss.org/</a></p>
+<p>不过绝大部分时候，我们都是使用者，并不希望使用代码的方式来使用 PostCss</p>
+<p>因此，我们可以再安装一个 postcss-cli，通过命令行来完成编译</p>
+<pre><code class="shell">npm i -D postcss-cli
+</code></pre>
+<p>postcss-cli 提供一个命令，它调用 postcss 中的 api 来完成编译</p>
+<p>命令的使用方式为：</p>
+<pre><code class="shell">postcss 源码文件 -o 输出文件
+</code></pre>
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>和 webpack 类似，postcss 有自己的配置文件，该配置文件会影响 postcss 的某些编译行为。</p>
+<p>配置文件的默认名称是：<code>postcss.config.js</code></p>
+<p>例如：</p>
+<pre><code class="javascript">module.exports = &#123;
+  map: false, //关闭source-map
+&#125;;
+</code></pre>
+<h4 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h4><p>光使用 postcss 是没有多少意义的，要让它真正的发挥作用，需要插件</p>
+<p>postcss 的插件市场：<a target="_blank" rel="noopener" href="https://www.postcss.parts/">https://www.postcss.parts/</a></p>
+<p>下面罗列一些 postcss 的常用插件</p>
+<h5 id="postcss-preset-env"><a href="#postcss-preset-env" class="headerlink" title="postcss-preset-env"></a>postcss-preset-env</h5><p>过去使用 postcss 的时候，往往会使用大量的插件，它们各自解决一些问题</p>
+<p>这样导致的结果是安装插件、配置插件都特别的繁琐</p>
+<p>于是出现了这么一个插件<code>postcss-preset-env</code>，它称之为<code>postcss预设环境</code>，大意就是它整合了很多的常用插件到一起，并帮你完成了基本的配置，你只需要安装它一个插件，就相当于安装了很多插件了。</p>
+<p>安装好该插件后，在 postcss 配置中加入下面的配置</p>
+<pre><code class="javascript">module.exports = &#123;
+  plugins: &#123;
+    &quot;postcss-preset-env&quot;: &#123;&#125;, // &#123;&#125; 中可以填写插件的配置
+  &#125;,
+&#125;;
+</code></pre>
+<p>该插件的功能很多，下面一一介绍</p>
+<h5 id="自动的厂商前缀"><a href="#自动的厂商前缀" class="headerlink" title="自动的厂商前缀"></a>自动的厂商前缀</h5><p>某些新的 css 样式需要在旧版本浏览器中使用厂商前缀方可实现</p>
+<p>例如</p>
+<pre><code class="css">::placeholder &#123;
+  color: red;
+&#125;
+</code></pre>
+<p>该功能在不同的旧版本浏览器中需要书写为</p>
+<pre><code class="css">::-webkit-input-placeholder &#123;
+  color: red;
+&#125;
+::-moz-placeholder &#123;
+  color: red;
+&#125;
+:-ms-input-placeholder &#123;
+  color: red;
+&#125;
+::-ms-input-placeholder &#123;
+  color: red;
+&#125;
+::placeholder &#123;
+  color: red;
+&#125;
+</code></pre>
+<p>要完成这件事情，需要使用<code>autoprefixer</code>库。</p>
+<p>而<code>postcss-preset-env</code>内部包含了该库，自动有了该功能。</p>
+<p>如果需要调整<strong>兼容的浏览器</strong>范围，可以通过下面的方式进行配置</p>
+<p><strong>方式 1：在 postcss-preset-env 的配置中加入 browsers</strong></p>
+<pre><code class="javascript">module.exports = &#123;
+  plugins: &#123;
+    &quot;postcss-preset-env&quot;: &#123;
+      browsers: [&quot;last 2 version&quot;, &quot;&gt; 1%&quot;],
+    &#125;,
+  &#125;,
+&#125;;
+</code></pre>
+<p><strong>方式 2【推荐】：添加 .browserslistrc 文件</strong></p>
+<p>创建文件<code>.browserslistrc</code>，填写配置内容</p>
+<pre><code class="plain">last 2 version
+&gt; 1%
+</code></pre>
+<p><strong>方式 3【推荐】：在 package.json 的配置中加入 browserslist</strong></p>
+<pre><code class="json">&quot;browserslist&quot;: [
+    &quot;last 2 version&quot;,
+    &quot;&gt; 1%&quot;
+]
+</code></pre>
+<p><code>browserslist</code>是一个多行的（数组形式的）标准字符串。</p>
+<p>它的书写规范多而繁琐，详情见：<a target="_blank" rel="noopener" href="https://github.com/browserslist/browserslist">https://github.com/browserslist/browserslist</a></p>
+<p>一般情况下，大部分网站都使用下面的格式进行书写</p>
+<pre><code class="plain">last 2 version
+&gt; 1% in CN
+not ie &lt;= 8
+</code></pre>
+<ul>
+<li><code>last 2 version</code>: 浏览器的兼容最近期的两个版本</li>
+<li><code>&gt; 1% in CN</code>: 匹配中国大于 1%的人使用的浏览器， <code>in CN</code>可省略</li>
+<li><code>not ie &lt;= 8</code>: 排除掉版本号小于等于 8 的 IE 浏览器</li>
+</ul>
+<blockquote>
+<p>默认情况下，匹配的结果求的是并集</p>
+</blockquote>
+<p>你可以通过网站：<a target="_blank" rel="noopener" href="https://browserl.ist/">https://browserl.ist/</a> 对配置结果覆盖的浏览器进行查询，查询时，多行之间使用英文逗号分割</p>
+<blockquote>
+<p>browserlist 的数据来自于<a target="_blank" rel="noopener" href="http://caniuse.com/">CanIUse</a>网站，由于数据并非实时的，所以不会特别准确</p>
+</blockquote>
+<h5 id="未来的-CSS-语法"><a href="#未来的-CSS-语法" class="headerlink" title="未来的 CSS 语法"></a>未来的 CSS 语法</h5><p>CSS 的某些前沿语法正在制定过程中，没有形成真正的标准，如果希望使用这部分语法，为了浏览器兼容性，需要进行编译</p>
+<p>过去，完成该语法编译的是<code>cssnext</code>库，不过有了<code>postcss-preset-env</code>后，它自动包含了该功能。</p>
+<p>你可以通过<code>postcss-preset-env</code>的<code>stage</code>配置，告知<code>postcss-preset-env</code>需要对哪个阶段的 css 语法进行兼容处理，它的默认值为 2</p>
+<pre><code class="javascript">&quot;postcss-preset-env&quot;: &#123;
+    stage: 0
+&#125;
+</code></pre>
+<p>一共有 5 个阶段可配置：</p>
+<ul>
+<li>Stage 0: Aspirational - 只是一个早期草案，极其不稳定</li>
+<li>Stage 1: Experimental - 仍然极其不稳定，但是提议已被 W3C 公认</li>
+<li>Stage 2: Allowable - 虽然还是不稳定，但已经可以使用了</li>
+<li>Stage 3: Embraced - 比较稳定，可能将来会发生一些小的变化，它即将成为最终的标准</li>
+<li>Stage 4: Standardized - 所有主流浏览器都应该支持的 W3C 标准</li>
+</ul>
+<p>了解了以上知识后，接下来了解一下未来的 css 语法，尽管某些语法仍处于非常早期的阶段，但是有该插件存在，编译后仍然可以被浏览器识别</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>未来的 css 语法是天然支持变量的</p>
+<p>在<code>:root&#123;&#125;</code>中定义常用变量，使用<code>--</code>前缀命名变量</p>
+<pre><code class="css">:root &#123;
+  --lightColor: #ddd;
+  --darkColor: #333;
+&#125;
+
+a &#123;
+  color: var(--lightColor);
+  background: var(--darkColor);
+&#125;
+</code></pre>
+<blockquote>
+<p>编译后，仍然可以看到原语法，因为某些新语法的存在并不会影响浏览器的渲染，尽管浏览器可能不认识<br>如果不希望在结果中看到新语法，可以配置<code>postcss-preset-env</code>的<code>preserve</code>为<code>false</code></p>
+</blockquote>
+<h4 id="自定义选择器"><a href="#自定义选择器" class="headerlink" title="自定义选择器"></a>自定义选择器</h4><pre><code class="css">@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+@custom-selector :--enter :focus, :hover;
+
+a:--enter &#123;
+  color: #f40;
+&#125;
+
+:--heading &#123;
+  font-weight: bold;
+&#125;
+
+:--heading.active &#123;
+  font-weight: bold;
+&#125;
+</code></pre>
+<p>编译后</p>
+<pre><code class="css">a:focus,
+a:hover &#123;
+  color: #f40;
+&#125;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 &#123;
+  font-weight: bold;
+&#125;
+
+h1.active,
+h2.active,
+h3.active,
+h4.active,
+h5.active,
+h6.active &#123;
+  font-weight: bold;
+&#125;
+</code></pre>
+<h4 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h4><p>与 LESS 相同，只不过嵌套的选择器前必须使用符号<code>&amp;</code></p>
+<pre><code class="less">.a &#123;
+  color: red;
+  &amp; .b &#123;
+    color: green;
+  &#125;
+
+  &amp; &gt; .b &#123;
+    color: blue;
+  &#125;
+
+  &amp;:hover &#123;
+    color: #000;
+  &#125;
+&#125;
+</code></pre>
+<p>编译后</p>
+<pre><code class="css">.a &#123;
+  color: red;
+&#125;
+
+.a .b &#123;
+  color: green;
+&#125;
+
+.a &gt; .b &#123;
+  color: blue;
+&#125;
+
+.a:hover &#123;
+  color: #000;
+&#125;
+</code></pre>
+<h2 id="postcss-apply"><a href="#postcss-apply" class="headerlink" title="postcss-apply"></a>postcss-apply</h2><p>该插件可以支持在 css 中书写属性集</p>
+<p>类似于 LESS 中的混入，可以利用 CSS 的新语法定义一个 CSS 代码片段，然后在需要的时候应用它</p>
+<pre><code class="less">:root &#123;
+  --center: &#123;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  &#125;
+&#125;
+
+.item &#123;
+  @apply --center;
+&#125;
+</code></pre>
+<p>编译后</p>
+<pre><code class="css">.item &#123;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+&#125;
+</code></pre>
+<blockquote>
+<p>实际上，该功能也属于 cssnext，不知为何<code>postcss-preset-env</code>没有支持</p>
+</blockquote>
+<h2 id="postcss-color-function"><a href="#postcss-color-function" class="headerlink" title="postcss-color-function"></a>postcss-color-function</h2><p>该插件支持在源码中使用一些颜色函数</p>
+<pre><code class="less">body &#123;
+  /* 使用颜色#aabbcc，不做任何处理，等同于直接书写 #aabbcc */
+  color: color(#aabbcc);
+  /* 将颜色#aabbcc透明度设置为90% */
+  color: color(#aabbcc a(90%));
+  /* 将颜色#aabbcc的红色部分设置为90% */
+  color: color(#aabbcc red(90%));
+  /* 将颜色#aabbcc调亮50%（更加趋近于白色），类似于less中的lighten函数 */
+  color: color(#aabbcc tint(50%));
+  /* 将颜色#aabbcc调暗50%（更加趋近于黑色），类似于less中的darken函数 */
+  color: color(#aabbcc shade(50%));
+&#125;
+</code></pre>
+<p>编译后</p>
+<pre><code class="css">body &#123;
+  /* 使用颜色#aabbcc，不做任何处理，等同于直接书写 #aabbcc */
+  color: rgb(170, 187, 204);
+  /* 将颜色#aabbcc透明度设置为90% */
+  color: rgba(170, 187, 204, 0.9);
+  /* 将颜色#aabbcc的红色部分设置为90% */
+  color: rgb(230, 187, 204);
+  /* 将颜色#aabbcc调亮50%（更加趋近于白色），类似于less中的lighten函数 */
+  color: rgb(213, 221, 230);
+  /* 将颜色#aabbcc调暗50%（更加趋近于黑色），类似于less中的darken函数 */
+  color: rgb(85, 94, 102);
+&#125;
+</code></pre>
+<h2 id="扩展-postcss-import"><a href="#扩展-postcss-import" class="headerlink" title="[扩展]postcss-import"></a>[扩展]postcss-import</h2><p>该插件可以让你在<code>postcss</code>文件中导入其他样式代码，通过该插件可以将它们合并</p>
+<blockquote>
+<p>由于后续的课程中，会将 postcss 加入到 webpack 中，而 webpack 本身具有依赖分析的功能，所以该插件的实际意义不大</p>
+</blockquote>
+<h2 id="stylelint"><a href="#stylelint" class="headerlink" title="stylelint"></a>stylelint</h2><blockquote>
+<p>官网：<a target="_blank" rel="noopener" href="https://stylelint.io/">https://stylelint.io/</a></p>
+</blockquote>
+<p>在实际的开发中，我们可能会错误的或不规范的书写一些 css 代码，stylelint 插件会即时的发现错误</p>
+<p>由于不同的公司可能使用不同的 CSS 书写规范，stylelint 为了保持灵活，它本身并没有提供具体的规则验证</p>
+<p>你需要安装或自行编写规则验证方案</p>
+<p>通常，我们会安装<code>stylelint-config-standard</code>库来提供标准的 CSS 规则判定</p>
+<p>安装好后，我们需要告诉 stylelint 使用该库来进行规则验证</p>
+<p>告知的方式有多种，比较常见的是使用文件<code>.stylelintrc</code></p>
+<pre><code class="json">//.styleintrc
+&#123;
+  &quot;extends&quot;: &quot;stylelint-config-standard&quot;
+&#125;
+</code></pre>
+<p>此时，如果你的代码出现不规范的地方，编译时将会报出错误</p>
+<pre><code class="css">body &#123;
+  background: #f4;
+&#125;
+</code></pre>
+<p><img src="assets/2020-02-05-14-37-11.png"></p>
+<p>发生了两处错误：</p>
+<ol>
+<li>缩进应该只有两个空格</li>
+<li>十六进制的颜色值不正确</li>
+</ol>
+<p>如果某些规则并非你所期望的，可以在配置中进行设置</p>
+<pre><code class="json">&#123;
+  &quot;extends&quot;: &quot;stylelint-config-standard&quot;,
+  &quot;rules&quot;: &#123;
+    &quot;indentation&quot;: null
+  &#125;
+&#125;
+</code></pre>
+<p>设置为<code>null</code>可以禁用该规则，或者设置为 4，表示一个缩进有 4 个空格。具体的设置需要参见 stylelint 文档：<a target="_blank" rel="noopener" href="https://stylelint.io/">https://stylelint.io/</a></p>
+<p>但是这种错误报告需要在编译时才会发生，如果我希望在编写代码时就自动在编辑器里报错呢？</p>
+<p>既然想在编辑器里达到该功能，那么就要在编辑器里做文章</p>
+<p>安装 vscode 的插件<code>stylelint</code>即可，它会读取你工程中的配置文件，按照配置进行实时报错</p>
+<blockquote>
+<p>实际上，如果你拥有了<code>stylelint</code>插件，可以不需要在 postcss 中使用该插件了</p>
+</blockquote>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

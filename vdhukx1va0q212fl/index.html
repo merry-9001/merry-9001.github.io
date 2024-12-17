@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>正则表达式 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>正则表达式</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="创建正则对象"><a href="#创建正则对象" class="headerlink" title="创建正则对象"></a>创建正则对象</h2><pre><code class="javascript">// 构造函数
+let reg =
+  new RegExp(&quot;规则&quot;, &quot;标识&quot;) /
+  // 字面量书写
+  规则 /
+  标识;
+</code></pre>
+<h2 id="正则常用方法"><a href="#正则常用方法" class="headerlink" title="正则常用方法"></a>正则常用方法</h2><h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><p>返回 false,true</p>
+<pre><code class="javascript">reg.test(&quot;字符串&quot;); // 验证字符串是否满足规则
+</code></pre>
+<h3 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h3><p>得到一个数组</p>
+<pre><code class="javascript">let floor_ex = /^\[楼板\]\[(.*)\](.*)/.exec(name);
+</code></pre>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><pre><code class="javascript">// reg是正则对象，str是字符串
+str.replace(reg, &quot;替换目标&quot;); // 将字符串中匹配正则的部分替换为目标
+
+// 将字符串中匹配正则的部分传入到回调函数的参数中，将函数的返回结果进行替换
+str.replace(reg, function (s) &#123;
+  return &quot;替换目标&quot;;
+&#125;);
+</code></pre>
+<h2 id="标识"><a href="#标识" class="headerlink" title="标识"></a>标识</h2><table>
+<thead>
+<tr>
+<th>标识字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>i</td>
+<td>不区分大小写</td>
+</tr>
+<tr>
+<td>g</td>
+<td>全局匹配，如果没有此标识，只会匹配第一个</td>
+</tr>
+<tr>
+<td>m</td>
+<td>多行匹配</td>
+</tr>
+</tbody></table>
+<h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><p>详见：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">https://developer.mozilla.org/zhCN/docs/Web/JavaScript/Guide/Regular_Expressions</a></p>
+<h3 id="字符匹配规则"><a href="#字符匹配规则" class="headerlink" title="字符匹配规则"></a>字符匹配规则</h3><table>
+<thead>
+<tr>
+<th>规则书写</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>直接书写一个普通字符</code></td>
+<td>匹配书写的字符</td>
+</tr>
+<tr>
+<td><code>[字符规则]</code></td>
+<td>匹配[]中出现的所有字符规则</td>
+</tr>
+<tr>
+<td><code>[^字符串规则]</code></td>
+<td>匹配[]中<strong>没有</strong>出现的字符规则</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>匹配任意字符</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>匹配数字，等价于 <code>[0-9]</code></td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>匹配非数字</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>匹配空白字符，包括空格、回车、换行、制表</td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>匹配所有非空白字符</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>匹配单词字符，等价于 <code>[A-Za-z0-9_]</code></td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>匹配非单词字符，等价于 <code>[^A-Za-z0-9_]</code></td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>匹配字符串开始，写到规则开始位置</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>匹配字符串结束，写到规则结束位置</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>匹配<code>\</code></td>
+</tr>
+</tbody></table>
+<h3 id="连续的规则"><a href="#连续的规则" class="headerlink" title="连续的规则"></a>连续的规则</h3><p>多个规则可以连续书写，用以匹配多个字符，例如：</p>
+<pre><code class="javascript">/\d[a-zA-Z]/; // 匹配以1个数字紧跟一个字母
+</code></pre>
+<p>若多个规则是一个或者的关系，使用<code>|</code>分割</p>
+<pre><code class="javascript">/\d[a-zA-Z]|[a-zA-Z]\d/; // 匹配以1个数字紧跟一个字母，或者一个字母紧跟一个数字
+</code></pre>
+<h3 id="规则的重复（量词）"><a href="#规则的重复（量词）" class="headerlink" title="规则的重复（量词）"></a>规则的重复（量词）</h3><p>一个或一段规则之后，可以紧跟一个量词，表示前面的规则出现的次数</p>
+<pre><code class="javascript">/[a-zA-Z]\d&#123;3&#125;/; // 匹配1个字母，后面跟上连续的3个数字，&#123;3&#125;是量词，应用的规则是\d
+</code></pre>
+<pre><code class="javascript">/([a-zA-Z]\d)&#123;3&#125;/; // &#123;3&#125;是量词，应用的规则是 [a-zA-Z]\d
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>量词</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&#123;n&#125;</code></td>
+<td>出现 n 次</td>
+</tr>
+<tr>
+<td><code>&#123;n, m&#125;</code></td>
+<td>出现 n-m 次</td>
+</tr>
+<tr>
+<td><code>&#123;n,&#125;</code></td>
+<td>至少出现 n 次</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>出现 0 次或多次，等价于<code>&#123;0,&#125;</code></td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>出现 0 次或一次，等价于<code>&#123;0,1&#125;</code></td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>出现 1 次或多次，等价于<code>&#123;1,&#125;</code></td>
+</tr>
+</tbody></table>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>短信内容示例 1：贵公司尾号 xxxx 账号 xx 月 xx 日 xx:xx 转入 xxxxxx 元（汇兑），对方信息：xxxxxx【杭州银行】</p>
+<p>.<em>通配不保留内容，(.</em>)通配保留内容</p>
+<pre><code class="plain">/贵公司尾号.*账号(.*)月(.*)日(.*):(.*)转入(.*)元.*对方信息:(.*)【杭州银行】/.exec(handleContent)
+</code></pre>
+<p>6 位 0-9 a-z</p>
+<pre><code class="plain">/^[0-9A-Z]&#123;6&#125;-[0-9A-Z]&#123;4&#125;-[0-9A-Z]&#123;4&#125;-[0-9A-Z]&#123;6&#125;-[0-9A-Z]&#123;4&#125;$/g
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

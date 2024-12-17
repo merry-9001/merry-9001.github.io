@@ -1,0 +1,3439 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>js | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>js</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/24
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="语言基础题"><a href="#语言基础题" class="headerlink" title="语言基础题"></a>语言基础题</h2><h3 id="什么是变量提升（暂时性死区）"><a href="#什么是变量提升（暂时性死区）" class="headerlink" title="什么是变量提升（暂时性死区）"></a>什么是变量提升（暂时性死区）</h3><p>当 JavaScript 编译所有代码时，所有使用变量声明都被提升到它们的函数/局部作用域的顶部(如果在函数内部声明的话)，或者提升到它们的全局作用域的顶部(如果在函数外部声明的话)，这一步完成是在执行上下文的准备阶段，而不管实际的声明是在哪里进行的。这就是我们所说的“提升”。</p>
+<p>请记住，这种“提升”实际上并不发生在你的代码中，而只是一种比喻，与 JavaScript 编译器如何读取你的代码有关。记住当我们想到“提升”的时候，我们可以想象任何被提升的东西都会被移动到顶部，但是实际上你的代码并不会被修改。</p>
+<p>函数声明也会被提升，但是被提升到了最顶端，所以将位于所有变量声明之上。</p>
+<p>在编译阶段变量和函数声明会被放入内存中，但是你在代码中编写它们的位置会保持不变。</p>
+<blockquote>
+<p>发生变量提升的原因是 js 的执行上下文会有一个创建阶段，创建阶段的时候就会确定函数的形参，函数环境会初始化创建 Arguments 对象，确定普通字面量形式的函数声明，变量声明，函数表达式声明</p>
+</blockquote>
+<h3 id="let-const-var-的区别？什么是块级作用域？如何用？"><a href="#let-const-var-的区别？什么是块级作用域？如何用？" class="headerlink" title="let const var 的区别？什么是块级作用域？如何用？"></a>let const var 的区别？什么是块级作用域？如何用？</h3><ol>
+<li>var 定义的变量，没有块的概念，可以跨块访问, 不能跨函数访问，有变量提升。</li>
+<li>let 定义的变量，只能在块作用域里访问，不能跨块访问，也不能跨函数访问，无变量提升，不可以重复声明。</li>
+<li>const 用来定义常量，使用时必须初始化(即必须赋值)，只能在块作用域里访问，而且不能修改，无变量提升，不可以重复声明。</li>
+</ol>
+<p>最初在 JS 中作用域有：全局作用域、函数作用域。没有块作用域的概念。</p>
+<p>ES6 中新增了块级作用域。块作用域由 { } 包括，if 语句和 for 语句里面的 { } 也属于块作用域。</p>
+<p>在以前没有块作用域的时候，在 if 或者 for 循环中声明的变量会泄露成全局变量，其次就是 { } 中的内层变量可能会覆盖外层变量。块级作用域的出现解决了这些问题。</p>
+<h3 id="JS-的基本数据类型有哪些？基本数据类型和引用数据类型的区别"><a href="#JS-的基本数据类型有哪些？基本数据类型和引用数据类型的区别" class="headerlink" title="JS 的基本数据类型有哪些？基本数据类型和引用数据类型的区别"></a>JS 的基本数据类型有哪些？基本数据类型和引用数据类型的区别</h3><p>数据类型整体上来讲可以分为两大类：<strong>基本类型</strong>和<strong>引用数据类型</strong></p>
+<p>基本数据类型，一共有 8 种：</p>
+<pre><code class="plain">string，number，boolean，undefined，null，bigInt,symbol
+</code></pre>
+<p>其中 symbol、bigInt 类型是在 ES6 及后续版本里面新添加的基本数据类型。</p>
+<p>引用数据类型，就只有 1 种：</p>
+<pre><code class="plain">object
+</code></pre>
+<p>基本数据类型的值又被称之为原始值或简单值，而引用数据类型的值又被称之为复杂值或引用值。</p>
+<p>两者的区别在于：</p>
+<p>原始值是表示 JavaScript 中可用的数据或信息的最底层形式或最简单形式。<strong>简单类型的值被称为原始值，是因为它们是</strong>不可细化的。</p>
+<p>也就是说，数字是数字，字符是字符，布尔值是 true 或 false，null 和 undefined 就是 null 和 undefined。这些值本身很简单，不能够再进行拆分。由于原始值的数据大小是固定的，所以<strong>原始值的数据是存储于内存中的栈区里面的。</strong></p>
+<p>在 JavaScript 中，对象就是一个引用值。因为对象可以向下拆分，拆分成多个简单值或者复杂值。<strong>引用值在内存中的大小是未知的，因为引用值可以包含任何值，而不是一个特定的已知值，所以引用值的数据都是存储于堆区里面。</strong></p>
+<p>最后总结一下两者的区别：</p>
+<ol>
+<li>访问方式<ul>
+<li>原始值：访问到的是值</li>
+<li>引用值：访问到的是引用地址</li>
+</ul>
+</li>
+<li>比较方式<ul>
+<li>原始值：比较的是值</li>
+<li>引用值：比较的是地址</li>
+</ul>
+</li>
+<li>动态属性<ul>
+<li>原始值：无法添加动态属性</li>
+<li>引用值：可以添加动态属性</li>
+</ul>
+</li>
+<li>变量赋值<ul>
+<li>原始值：赋值的是值</li>
+<li>引用值：赋值的是地址</li>
+</ul>
+</li>
+</ol>
+<p><strong>存放位置：</strong></p>
+<ul>
+<li>基本数据类型：基本类型值在内存中占据固定大小，直接存储在<strong>栈内存</strong>中的数据</li>
+<li>引用数据类型：引用类型在栈中存储了指针，这个指针指向堆内存中的地址，真实的数据存放在<strong>堆内存</strong>里。</li>
+</ul>
+<p><img src="1713354140823-d45d57fc-8997-456d-a937-11f0671ffdc9.png"></p>
+<p><strong>值的可变性：</strong></p>
+<ul>
+<li>基本数据类型： 值不可变，javascript 中的原始值（undefined、null、布尔值、数字和字符串）是不可更改的</li>
+<li>引用数据类型：引用类型是可以直接改变其值的</li>
+</ul>
+<p>栈和堆的区别在于堆是动态分配内存，内存大小不一，也不会自动释放。栈是自动分配相对固定大小的内存空间，并由系统自动释放。</p>
+<p>在 js 中，基本数据都是直接按值存储在栈中的，每种类型的数据占用的内存空间的大小是确定的，并由系统自动分配和自动释放。这样带来的好处就是，内存可以及时得到回收，相对于堆来说，更加容易管理内存空间。</p>
+<p>js 中其他类型的数据被称为引用类型的数据（如对象、数组、函数等），它们是通过拷贝和 new 出来的，这样的数据存储于堆中。其实，说存储于堆中，也不太准确，因为，引用类型的数据的地址指针是存储于栈中的，当我们想要访问引用类型的值的时候，需要先从栈中获得对象的地址指针，然后，在通过地址指针找到堆中的所需要的数据。</p>
+<h3 id="NaN-是什么"><a href="#NaN-是什么" class="headerlink" title="NaN 是什么"></a>NaN 是什么</h3><p>NaN 的全称为 Not a Number，表示非数，或者说不是一个数。虽然 NaN 表示非数，但是它却属于 number 类型。</p>
+<p>NaN 有两个特点：</p>
+<ol>
+<li>任何涉及 NaN 的操作都会返回 NaN</li>
+<li>NaN 和任何值都不相等，包括它自己本身</li>
+</ol>
+<h3 id="undefined-null-返回的结果是什么？undefined-与-null-的区别在哪？"><a href="#undefined-null-返回的结果是什么？undefined-与-null-的区别在哪？" class="headerlink" title="undefined==null 返回的结果是什么？undefined 与 null 的区别在哪？"></a>undefined==null 返回的结果是什么？undefined 与 null 的区别在哪？</h3><p>返回 true。</p>
+<p>这两个值都表示“无”的意思。</p>
+<p>通常情况下， 当我们试图访问某个不存在的或者没有赋值的变量时，就会得到一个 undefined 值。Javascript 会自动将声明是没有进行初始化的变量设为 undifined。</p>
+<p>而 null 值表示空，null 不能通过 Javascript 来自动赋值，也就是说必须要我们自己手动来给某个变量赋值为 null。</p>
+<p><strong>先有 null 后有 undefined 出来，undefined 是为了填补之前的坑。</strong></p>
+<p>null 是一个表示”无”的对象（空对象指针），转为数值时为 0；</p>
+<p>典型用法是：</p>
+<ul>
+<li>作为函数的参数，表示该函数的参数不是对象。</li>
+<li>作为对象原型链的终点。</li>
+</ul>
+<p>undefined 是一个表示”无”的原始值，转为数值时为 NaN。</p>
+<p>典型用法是：</p>
+<ul>
+<li>变量被声明了，但没有赋值时，就等于 undefined。</li>
+<li>调用函数时，应该提供的参数没有提供，该参数等于 undefined。</li>
+<li>对象没有赋值的属性，该属性的值为 undefined。</li>
+<li>函数没有返回值时，默认返回 undefined。</li>
+</ul>
+<h3 id="对变量进行类型判断的方式有哪些"><a href="#对变量进行类型判断的方式有哪些" class="headerlink" title="对变量进行类型判断的方式有哪些"></a>对变量进行类型判断的方式有哪些</h3><ol>
+<li>typeof</li>
+</ol>
+<p>typeof 是一个操作符，其右侧跟一个一元表达式，并返回这个表达式的数据类型。返回的结果用该类型的字符串(全小写字母)形式表示，包括以下 8 种：number、boolean、string、undefined、symbol、bigint、object、function</p>
+<ol start="2">
+<li>instanceof</li>
+</ol>
+<p>instanceof 是用来判断 A 是否为 B 的实例，表达式为：A instanceof B，如果 A 是 B 的实例，则返回 true,否则返回 false。 在这里需要特别注意的是：instanceof 检测的是原型。</p>
+<p>用一段伪代码来模拟其内部执行过程：</p>
+<pre><code class="plain">instanceof (A,B) = &#123;
+    varL = A.__proto__;
+    varR = B.prototype;
+    if(L === R) &#123;
+        // A的内部属性 __proto__ 指向 B 的原型对象
+        return true;
+    &#125;
+    return false;
+&#125;
+</code></pre>
+<p>从上述过程可以看出，当 A 的 <em>proto</em> 指向 B 的 prototype 时，就认为 A 就是 B 的实例。</p>
+<p>需要注意的是，instanceof 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型。</p>
+<p>例如：[ ] instanceof Object 返回的也会是 true。</p>
+<ol start="3">
+<li>constructor</li>
+</ol>
+<p>每个 JavaScript 对象都有一个 <code>constructor</code> 属性，指向创建该对象的构造函数</p>
+<p>当一个函数被定义时，JS 引擎会为函数添加 prototype 原型，然后再在 prototype 上添加一个 constructor 属性，并让其指向函数的引用。</p>
+<ol start="4">
+<li>toString</li>
+</ol>
+<p>toString( ) 是 Object 的原型方法，调用该方法，默认返回当前对象的 [[Class]] 。这是一个内部属性，其格式为 [object Xxx] ，其中 Xxx 就是对象的类型。</p>
+<p>对于 Object 对象，直接调用 toString( ) 就能返回 [object Object] 。而对于其他对象，则需要通过 call / apply 来调用才能返回正确的类型信息（因为其他对象重写了 Object 的 toString 方法）。例如：</p>
+<pre><code class="plain">Object.prototype.toString.call(&#39;&#39;) ;  // [object String]
+Object.prototype.toString.call(1) ;   // [object Number]
+Object.prototype.toString.call(true) ;// [object Boolean]
+Object.prototype.toString.call(Symbol());//[object Symbol]
+Object.prototype.toString.call(undefined) ;// [object Undefined]
+Object.prototype.toString.call(null) ;// [object Null]
+</code></pre>
+<h3 id="类型转换的方法有哪些"><a href="#类型转换的方法有哪些" class="headerlink" title="类型转换的方法有哪些"></a>类型转换的方法有哪些</h3><p>JavaScript 中的数据类型转换，主要有三种方式：</p>
+<h4 id="转换函数"><a href="#转换函数" class="headerlink" title="转换函数"></a>转换函数</h4><p>js 提供了诸如 parseInt 和 parseFloat 这些转换函数，通过这些转换函数可以进行数据类型的转换 。</p>
+<h4 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h4><p>可以分为两种，隐性转换和显性转换。</p>
+<ol>
+<li><strong>隐性转换</strong></li>
+</ol>
+<p>当不同数据类型之间进行相互运算，或者当对非布尔类型的数据求布尔值的时候，会发生隐性转换。</p>
+<p><strong>预期为数字的时候</strong>：算术运算的时候，我们的结果和运算的数都是数字，数据会转换为数字来进行计算。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>转换前</th>
+<th>转换后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>number</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>string</td>
+<td>“1”</td>
+<td>1</td>
+</tr>
+<tr>
+<td>string</td>
+<td>“abc”</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>string</td>
+<td>“”</td>
+<td>0</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>true</td>
+<td>1</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>false</td>
+<td>0</td>
+</tr>
+<tr>
+<td>undefined</td>
+<td>undefined</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>null</td>
+<td>null</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p><strong>预期为字符串的时候</strong>：如果有一个操作数为字符串时，使用+符号做相加运算时，会自动转换为字符串。</p>
+<p><strong>预期为布尔的时候</strong>：前面在介绍布尔类型时所提到的 9 个值会转为 false，其余转为 true</p>
+<ol start="2">
+<li><strong>显性转换</strong></li>
+</ol>
+<p>所谓显性转换，就是只程序员强制将一种类型转换为另外一种类型。显性转换往往会使用到一些转换方法。常见的转换方法如下：</p>
+<ul>
+<li>转换为数值类型：Number()，parseInt()，parseFloat()</li>
+<li>转换为布尔类型：Boolean()</li>
+<li>转换为字符串类型：toString()，String()</li>
+</ul>
+<p>当然，除了使用上面的转换方法，我们也可以通过一些快捷方式来进行数据类型的显性转换，如下：</p>
+<ul>
+<li>转换字符串：直接和一个空字符串拼接，例如：a = “” + 数据</li>
+<li>转换布尔：!!数据类型，例如：!!”Hello”</li>
+<li>转换数值：数据*1 或 /1，例如：”Hello * 1”</li>
+</ul>
+<h3 id="隐式转换规则"><a href="#隐式转换规则" class="headerlink" title="隐式转换规则"></a>隐式转换规则</h3><p><strong>两个与类型转换有关的函数：valueOf()和 toString()</strong></p>
+<ul>
+<li>valueOf()的语义是，返回这个对象逻辑上对应的原始类型的值。比如说，String 包装对象的 valueOf()，应该返回这个对象所包装的字符串。</li>
+<li>toString()的语义是，返回这个对象的字符串表示。用一个字符串来描述这个对象的内容。</li>
+</ul>
+<p>valueOf()和 toString()是定义在 Object.prototype 上的方法，也就是说，所有的对象都会继承到这两个方法。但是在 Object.prototype 上定义的这两个方法往往不能满足我们的需求（Object.prototype.valueOf()仅仅返回对象本身），因此 js 的许多内置对象都重写了这两个函数，以实现更适合自身的功能需要（比如说，String.prototype.valueOf 就覆盖了在 Object.prototype 中定义的 valueOf）。</p>
+<p><strong>js 内部用于实现类型转换的 4 个函数</strong></p>
+<p>这 4 个方法实际上是 ECMAScript 定义的 4 个抽象的操作，它们在 js 内部使用，进行类型转换。<strong>js 的使用者不能直接调用这些函数。</strong></p>
+<ul>
+<li>ToPrimitive ( input [ , PreferredType ] )</li>
+<li>ToBoolean ( argument )</li>
+<li>ToNumber ( argument )</li>
+<li>ToString ( argument )</li>
+</ul>
+<p>需要区分这里的 ToString() 和上文谈到的 toString()，一个是 js 引擎内部使用的函数，另一个是定义在对象上的函数。</p>
+<p>（1）ToPrimitive ( input [ , PreferredType ] )</p>
+<p>将 input 转化成一个原始类型的值。PreferredType 参数要么不传入，要么是 Number 或 String。<strong>如果 PreferredType 参数是 Number</strong>，ToPrimitive 这样执行：</p>
+<ol>
+<li>如果 input 本身就是原始类型，直接返回 input。</li>
+<li>调用**input.valueOf()**，如果结果是原始类型，则返回这个结果。</li>
+<li>调用**input.toString()**，如果结果是原始类型，则返回这个结果。</li>
+<li>抛出 TypeError 异常。</li>
+</ol>
+<p><strong>以下是 PreferredType 不为 Number 时的执行顺序。</strong></p>
+<ul>
+<li>如果 PreferredType 参数是 String，则交换上面这个过程的第 2 和第 3 步的顺序，其他执行过程相同。</li>
+<li>如果 PreferredType 参数没有传入<ul>
+<li>如果 input 是内置的 Date 类型，PreferredType 视为 String</li>
+<li>否则 PreferredType 视为 Number</li>
+</ul>
+</li>
+</ul>
+<p><strong>可以看出，ToPrimitive 依赖于 valueOf 和 toString 的实现。</strong></p>
+<p>（2）ToBoolean ( argument )</p>
+<p><img src="1713354140975-d0f8efe7-692d-4c17-a334-4eb44b2c88a5.png"></p>
+<p>只需要记忆 0, null, undefined, NaN, “” 返回 false 就可以了，其他一律返回 true。</p>
+<p>（3）ToNumber ( argument )</p>
+<p><img src="1713354140929-9a4abc50-bda4-4aa5-a7c0-0ac095e204e9.png"></p>
+<p>ToNumber 的转化并不总是成功，有时会转化成 NaN，有时则直接抛出异常。</p>
+<p>（4）ToString ( argument )</p>
+<p><img src="1713354141249-02688eb6-af6a-4292-9337-6f80afceb0fa.png"></p>
+<p>当 js 期望得到某种类型的值，而实际在那里的值是其他的类型，就会发生隐式类型转换。系统内部会自动调用我们前面说 ToBool</p>
+<h3 id="和-的区别是什么"><a href="#和-的区别是什么" class="headerlink" title="== 和 === 的区别是什么"></a>== 和 === 的区别是什么</h3><p>== 代表相同， === 代表严格相同（数据类型和值都相等）。</p>
+<p>当进行双等号比较时候，先检查两个操作数数据类型，如果相同，则进行===比较，如果不同，则愿意为你进行一次类型转换，转换成相同类型后再进行比较，而 === 比较时，如果类型不同，直接就是 false。</p>
+<p>从这个过程来看，大家也能发现，某些情况下我们使用 === 进行比较效率要高些，因此，没有歧义的情况下，不会影响结果的情况下，在 JS 中首选 === 进行逻辑比较。</p>
+<h3 id="Object-is-方法比较的是什么"><a href="#Object-is-方法比较的是什么" class="headerlink" title="Object.is 方法比较的是什么"></a>Object.is 方法比较的是什么</h3><p>Object.is 方法是 ES6 新增的用来比较两个值是否严格相等的方法，与 === (严格相等)的行为基本一致。不过有两处不同：</p>
+<ul>
+<li>+0 不等于 -0。</li>
+<li>NaN 等于自身。</li>
+</ul>
+<p>所以可以将 Object.is 方法看作是加强版的严格相等。</p>
+<h3 id="JS-执行上下文栈"><a href="#JS-执行上下文栈" class="headerlink" title="JS 执行上下文栈"></a>JS 执行上下文栈</h3><p>执行上下文是评估和执行 JavaScript 代码的环境的抽象概念。每当 Javascript 代码在运行的时候，它都是在执行上下文中运行。</p>
+<p><strong>执行上下文的类型</strong></p>
+<p>JavaScript 中有三种执行上下文类型。</p>
+<ul>
+<li><strong>全局执行上下文</strong> — 这是默认或者说基础的上下文，任何不在函数内部的代码都在全局上下文中。它会执行两件事：创建一个全局的 window 对象（浏览器的情况下），并且设置 this 的值等于这个全局对象。一个程序中只会有一个全局执行上下文。</li>
+<li><strong>函数执行上下文</strong> — 每当一个函数被调用时, 都会为该函数创建一个新的上下文。每个函数都有它自己的执行上下文，不过是在函数被调用时创建的。函数上下文可以有任意多个。每当一个新的执行上下文被创建，它会按定义的顺序执行一系列步骤。</li>
+<li><strong>Eval 函数执行上下文</strong> — 执行在 eval 函数内部的代码也会有它属于自己的执行上下文。</li>
+</ul>
+<p><strong>调用栈</strong></p>
+<p>调用栈是解析器(如浏览器中的的 javascript 解析器)的一种机制，可以在脚本调用多个函数时，跟踪每个函数在完成执行时应该返回控制的点。（如什么函数正在执行，什么函数被这个函数调用，下一个调用的函数是谁）</p>
+<ul>
+<li>当脚本要调用一个函数时，解析器把该函数添加到栈中并且执行这个函数。</li>
+<li>任何被这个函数调用的函数会进一步添加到调用栈中，并且运行到它们被上个程序调用的位置。</li>
+<li>当函数运行结束后，解释器将它从堆栈中取出，并在主代码列表中继续执行代码。</li>
+<li>如果栈占用的空间比分配给它的空间还大，那么则会导致“栈溢出”错误。</li>
+</ul>
+<h3 id="执行上下文生命周期"><a href="#执行上下文生命周期" class="headerlink" title="执行上下文生命周期"></a>执行上下文生命周期</h3><p>执行上下文的生命周期有两个阶段：</p>
+<ol>
+<li>创建阶段（<strong>进入</strong>执行上下文）：函数被调用时，进入函数环境，为其创建一个执行上下文，此时进入创建阶段。(也叫预解析或者预编译）</li>
+<li>执行阶段（代码<strong>执行</strong>）：执行函数中代码时，此时执行上下文进入执行阶段。</li>
+</ol>
+<p><strong>创建阶段</strong></p>
+<p>创建阶段要做的事情主要如下：</p>
+<ol>
+<li>创建变量对象（VO：variable object）<ul>
+<li>确定函数的形参（<strong>并赋值</strong>）</li>
+<li>函数环境会初始化创建 Arguments 对象（<strong>并赋值</strong>）</li>
+<li>确定普通字面量形式的函数声明（<strong>并赋值</strong>）</li>
+<li>变量声明，函数表达式声明（<strong>未赋值</strong>）</li>
+</ul>
+</li>
+<li>确定 this 指向（<strong>this**</strong> *<strong>*由调用者确定</strong>）</li>
+<li>确定作用域（<strong>词法环境决定，哪里声明定义，就在哪里确定</strong>）</li>
+</ol>
+<p><strong>执行阶段</strong></p>
+<p>一句一句执行</p>
+<h3 id="this-指向"><a href="#this-指向" class="headerlink" title="this 指向"></a>this 指向</h3><p>总结起来，this 的指向规律有如下几条：</p>
+<ul>
+<li>在函数体中，非显式或隐式地简单调用函数时，在严格模式下，函数内的 this 会被绑定到 undefined 上，在非严格模式下则会被绑定到全局对象 window/global 上。</li>
+<li>一般使用 new 方法调用构造函数时，构造函数内的 this 会被绑定到新创建的对象上。</li>
+<li>一般通过 call/apply/bind 方法显式调用函数时，函数体内的 this 会被绑定到指定参数的对象上。</li>
+<li>在箭头函数中，this 的指向是由外层（函数或全局）作用域来决定的。</li>
+</ul>
+<h3 id="JS-的作用域，作用域链，作用域类型"><a href="#JS-的作用域，作用域链，作用域类型" class="headerlink" title="JS 的作用域，作用域链，作用域类型"></a>JS 的作用域，作用域链，作用域类型</h3><p>作用域是在运行时代码中的某些特定部分中变量，函数和对象的可访问性。换句话说，作用域决定了代码区块中变量和其他资源的可见性。ES6 之前 JavaScript 没有块级作用域，只有全局作用域和函数作用域。ES6 的到来，为我们提供了块级作用域。</p>
+<p>作用域链指的是作用域与作用域之间形成的链条。当我们查找一个当前作用域没有定义的变量（自由变量）的时候，就会向上一级作用域寻找，如果上一级也没有，就再一层一层向上寻找，直到找到全局作用域还是没找到，就宣布放弃。这种一层一层的关系，就是作用域链 。</p>
+<p>在 JavaScript 里面，作用域一共有 4 种类型：全局作用域，块级作用域、函数作用域以及 eval 作用域。</p>
+<p>全局作用域：这个是默认的代码运行环境，一旦代码被载入，引擎最先进入的就是这个环境。</p>
+<p>块级作用域：当使用 let 或者 const 声明变量时，这些变量在一对花括号中存在块级作用域，只能够在花括号内部进行访问使用。</p>
+<p>函数作用域：当进入到一个函数的时候，就会产生一个函数作用域。函数作用域里面所声明的变量只在函数中提供访问使用。</p>
+<p>eval 作用域：当调用 eval( ) 函数的时候，就会产生一个 eval 作用域。</p>
+<h3 id="什么是-js-的闭包？有什么作用？"><a href="#什么是-js-的闭包？有什么作用？" class="headerlink" title="什么是 js 的闭包？有什么作用？"></a>什么是 js 的闭包？有什么作用？</h3><p>当一个函数在定义时，内部函数引用了外部函数的变量，即使外部函数已经执行完毕，内部函数依然可以访问外部函数的变量。这种情况就形成了闭包。</p>
+<p>闭包产生的本质是当前环境中存在指向父级作用域的引用</p>
+<p>闭包的用处：</p>
+<ol>
+<li>匿名自执行函数</li>
+<li>结果缓存(返回函数)</li>
+<li>封装</li>
+<li>实现类和继承</li>
+<li>函数当做参数传递</li>
+</ol>
+<p>应用场景</p>
+<ol>
+<li>柯里化 bind</li>
+<li>模块</li>
+</ol>
+<p>闭包的缺点：</p>
+<p>因为闭包的作用域链会引用包含它的函数的活动对象，导致这些活动对象不会被销毁，因此会占用更多的内存。如果要销毁一个闭包，可以 把被引用的变量设置为 null，即手动清除变量，这样下次 js 垃圾回收机制回收时，就会把设为 null 的量给回收了。</p>
+<h3 id="call、apply、bind-的区别，手写"><a href="#call、apply、bind-的区别，手写" class="headerlink" title="call、apply、bind 的区别，手写"></a>call、apply、bind 的区别，手写</h3><p>call 和 apply 的功能相同，区别在于传参的方式不一样:</p>
+<ul>
+<li>fn.call(obj, arg1, arg2, …) 调用一个函数, 具有一个指定的 this 值和分别地提供的参数(参数的列表)。</li>
+<li>fn.apply(obj, [argsArray]) 调用一个函数，具有一个指定的 this 值，以及作为一个数组（或类数组对象）提供的参数。</li>
+</ul>
+<p>bind 和 call/apply 有一个很重要的区别，一个函数被 call/apply 的时候，会直接调用，但是 bind 会创建一个新函数。当这个新函数被调用时，bind( ) 的第一个参数将作为它运行时的 this，之后的一序列参数将会在传递的实参前传入作为它的参数。</p>
+<h3 id="函数柯里化"><a href="#函数柯里化" class="headerlink" title="函数柯里化"></a>函数柯里化</h3><p>柯里化（currying）又称部分求值。一个柯里化的函数首先会接受一些参数，接受了这些参数之后，该函数并不会立即求值，而是继续返回另外一个函数，刚才传入的参数在函数形成的闭包中被保存起来。待到函数被真正需要求值的时候，之前传入的所有参数都会被一次性用于求值。</p>
+<p>举个例子，就是把原本：</p>
+<p>function(arg1,arg2) 变成 function(arg1)(arg2)</p>
+<h3 id="new-操作符都做了哪些事-实现-new"><a href="#new-操作符都做了哪些事-实现-new" class="headerlink" title="new 操作符都做了哪些事,实现 new"></a>new 操作符都做了哪些事,实现 new</h3><p>new 运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。</p>
+<p>new 关键字会进行如下的操作：</p>
+<p>步骤 1：创建一个空的简单 JavaScript 对象，即 { } ;</p>
+<p>步骤 2：链接该对象到另一个对象（即设置该对象的原型对象）；</p>
+<p>步骤 3：将步骤 1 新创建的对象作为 this 的上下文；</p>
+<p>步骤 4：如果该函数没有返回对象，则返回 this。</p>
+<pre><code class="html">// 构造器函数 let Parent = function (name, age) &#123; this.name = name; this.age =
+age; &#125;; Parent.prototype.sayName = function () &#123; console.log(this.name); &#125;;
+//自己定义的new方法 let newMethod = function (Parent, ...rest) &#123; //
+1.以构造器的prototype属性为原型，创建新对象； let child =
+Object.create(Parent.prototype); // 2.将this和调用参数传给构造器执行 let result
+= Parent.apply(child, rest); // 3.如果构造器没有手动返回对象，则返回第一步的对象
+return typeof result === &#39;object&#39; ? result : child; &#125;;
+//创建实例，将构造函数Parent与形参作为参数传入 const child = newMethod(Parent,
+&#39;echo&#39;, 26); child.sayName() //&#39;echo&#39;; //最后检验，与使用new的效果相同
+console.log(child instanceof Parent)//true
+console.log(child.hasOwnProperty(&#39;name&#39;))//true
+console.log(child.hasOwnProperty(&#39;age&#39;))//true
+console.log(child.hasOwnProperty(&#39;sayName&#39;))//false
+</code></pre>
+<h3 id="对一个构造函数实例化后，-它的原型链指向什么"><a href="#对一个构造函数实例化后，-它的原型链指向什么" class="headerlink" title="对一个构造函数实例化后， 它的原型链指向什么"></a>对一个构造函数实例化后， 它的原型链指向什么</h3><p>指向该构造函数实例化出来对象的原型对象。</p>
+<p>对于构造函数来讲，可以通过 prototype 访问到该对象。</p>
+<p>对于实例对象来讲，可以通过隐式属性 <em>proto</em> 来访问到。</p>
+<h3 id="根据-ES6-构造函数的书写方式，写出-ES5-的"><a href="#根据-ES6-构造函数的书写方式，写出-ES5-的" class="headerlink" title="根据 ES6 构造函数的书写方式，写出 ES5 的"></a>根据 ES6 构造函数的书写方式，写出 ES5 的</h3><p>ES6 的 class 和普通构造函数的区别有以下几点：</p>
+<ol>
+<li>ES6 中的 class 必须通过 new 来调用，不能当做普通函数调用，否则报错因此，在答案中，加入了 new.target 来判断调用方式</li>
+<li>ES6 的 class 中的所有代码均处于严格模式之下因此，在答案中，无论是构造函数本身，还是原型方法，都使用了严格模式</li>
+<li>ES6 中的原型方法是不可被枚举的因此，在答案中，定义原型方法使用了属性描述符，让其不可枚举</li>
+</ol>
+<pre><code class="plain">class Example &#123;
+  constructor(name) &#123;
+    this.name = name;
+  &#125;
+  init() &#123;
+    const fun = () =&gt; &#123; console.log(this.name) &#125;
+    fun();
+  &#125;
+&#125;
+const e = new Example(&#39;Hello&#39;);
+e.init();
+</code></pre>
+<p>参考答案：</p>
+<pre><code class="plain">function Example(name) &#123;
+      &#39;use strict&#39;;
+      if (!new.target) &#123;
+           throw new TypeError(&#39;Class constructor cannot be invoked without new&#39;);
+      &#125;
+      this.name = name;
+&#125;
+
+Object.defineProperty(Example.prototype, &#39;init&#39;, &#123;
+      enumerable: false,
+      value: function () &#123;
+           &#39;use strict&#39;;
+           if (new.target) &#123;
+               throw new TypeError(&#39;init is not a constructor&#39;);
+           &#125;
+           var fun = function () &#123;
+               console.log(this.name);
+           &#125;
+           fun.call(this);
+      &#125;
+&#125;)
+</code></pre>
+<h3 id="class-是如何实现的"><a href="#class-是如何实现的" class="headerlink" title="class 是如何实现的"></a>class 是如何实现的</h3><p>class 是 ES6 新推出的关键字，它是一个语法糖，本质上就是基于这个原型实现的。只不过在以前 ES5 原型实现的基础上，添加了一些 _classCallCheck、_defineProperties、_createClass 等方法来做出了一些特殊的处理。</p>
+<p>例如：</p>
+<pre><code class="plain">class Hello &#123;
+   constructor(x) &#123;
+       this.x = x;
+   &#125;
+   greet() &#123;
+       console.log(&quot;Hello, &quot; + this.x)
+   &#125;
+&#125;
+</code></pre>
+<pre><code class="plain">&quot;use strict&quot;;
+
+function _classCallCheck(instance, Constructor) &#123;
+     if (!(instance instanceof Constructor)) &#123;
+         throw new TypeError(&quot;Cannot call a class as a function&quot;);
+     &#125;
+&#125;
+
+function _defineProperties(target, props) &#123;
+     for (var i = 0; i &lt; props.length; i++) &#123;
+         var descriptor = props[i];
+         descriptor.enumerable = descriptor.enumerable || false;
+         descriptor.configurable = true;
+         if (&quot;value&quot; in descriptor)
+             descriptor.writable = true;
+         Object.defineProperty(target, descriptor.key, descriptor);
+     &#125;
+&#125;
+
+function _createClass(Constructor, protoProps, staticProps) &#123;
+     console.log(&quot;Constructor::&quot;,Constructor);
+     console.log(&quot;protoProps::&quot;,protoProps);
+     console.log(&quot;staticProps::&quot;,staticProps);
+     if (protoProps)
+         _defineProperties(Constructor.prototype, protoProps);
+     if (staticProps)
+         _defineProperties(Constructor, staticProps);
+     return Constructor;
+&#125;
+
+var Hello = function () &#123;
+   function Hello(x) &#123;
+      _classCallCheck(this, Hello);
+      this.x = x;
+   &#125;
+   _createClass(Hello, [&#123;
+     key: &quot;greet&quot;,
+     value: function greet() &#123;
+       console.log(&quot;Hello, &quot; + this.x);
+     &#125;
+   &#125;]);
+   return Hello;
+&#125;();
+</code></pre>
+<h3 id="通过-new-的方式创建对象和通过字面量创建有什么区别？"><a href="#通过-new-的方式创建对象和通过字面量创建有什么区别？" class="headerlink" title="通过 new 的方式创建对象和通过字面量创建有什么区别？"></a>通过 new 的方式创建对象和通过字面量创建有什么区别？</h3><p>通过 new 的方式创建对象和通过字面量创建的对象，区别在于 new 出来的对象的原型对象为构造函数.prototype，而字面量对象的原型对象为 Object.prototype</p>
+<pre><code class="plain">function Computer() &#123;&#125;
+var c = new Computer();
+var d = &#123;&#125;;
+console.log(c.__proto__ === Computer.prototype); // true
+console.log(d.__proto__ === Object.prototype); // true
+</code></pre>
+<h3 id="箭头函数有哪些特点，与普通函数的不同点"><a href="#箭头函数有哪些特点，与普通函数的不同点" class="headerlink" title="箭头函数有哪些特点，与普通函数的不同点"></a>箭头函数有哪些特点，与普通函数的不同点</h3><p>箭头函数主要解决了 this 的指向问题，在 ES5 时代，一旦对象的方法里面又存在函数，则 this 的指向往往会让开发人员抓狂。</p>
+<ol>
+<li>更简洁的语法<ul>
+<li>只有一个形参就不需要用括号括起来</li>
+<li>如果函数体只有一行，就不需要放到一个块中</li>
+<li>如果 return 语句是函数体内唯一的语句，就不需要 return 关键字</li>
+</ul>
+</li>
+<li>箭头函数没有自己的 this，arguments，super</li>
+<li>箭头函数 this 只会从自己的作用域链的上一层继承 this。</li>
+</ol>
+<p>和普通函数的区别</p>
+<ol>
+<li>外形不同。箭头函数使用箭头定义，普通函数中没有</li>
+<li>普通函数可以有匿名函数，也可以有具体名函数，但是箭头函数都是匿名函数。</li>
+<li>箭头函数不能用于构造函数，不能使用 new，不具有 new.target，不具有 super（普通函数可以用于构造函数，以此创建对象实例）</li>
+<li>箭头函数中 this 的指向不同，在普通函数中，this 总是指向调用它的对象，如果用作构造函数，this 指向创建的对象实例。 箭头函数本身不创建 this，也可以说箭头函数本身没有 this，但是它在声明时可以捕获其所在上下文的 this 供自己使用（继承父执行上下文里面的 this,他的 this 指向是静态的）</li>
+<li>每一个普通函数调用后都具有一个 arguments 对象，用来存储实际传递的参数。但是箭头函数并没有此对象。<strong>取而代之用 rest 参数来解决</strong>。</li>
+<li>箭头函数不能用于 Generator 函数，不能使用 yeild 关键字。</li>
+<li>箭头函数不具有 prototype 原型对象。而普通函数具有 prototype 原型对象。</li>
+</ol>
+<h3 id="原型与原型链"><a href="#原型与原型链" class="headerlink" title="原型与原型链"></a>原型与原型链</h3><ul>
+<li>每个实例对象都有一个 <strong>proto</strong> 属性，该属性指向自己的原型对象</li>
+<li>每个构造函数都有一个 prototype 属性，该属性指向实例对象的原型对象</li>
+<li>原型对象里的 constructor 方法指向构造函数本身</li>
+</ul>
+<p><img src="1713354140170-7875b123-ac78-4eeb-a2ba-a6040f07eb88.png"></p>
+<p>每个对象都有自己的原型对象，而原型对象本身，也有自己的原型对象，从而形成了一条原型链条。</p>
+<p>当试图访问一个对象的属性时，它不仅仅在该对象上搜寻，还会搜寻该对象的原型，以及该对象的原型的原型，依次层层向上搜索，直到找到一个名字匹配的属性或到达原型链的末尾。</p>
+<p>我们可以通过手动赋值的方式来改变原型链所对应的原型对象。</p>
+<h3 id="js-继承"><a href="#js-继承" class="headerlink" title="js 继承"></a>js 继承</h3><p>共有四种继承方式：原型链继承，构造函数继承，伪经典继承，圣杯继承</p>
+<h4 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h4><p>重点：让新实例的原型等于父类的实例。</p>
+<p>特点：实例可继承的属性有：实例的构造函数的属性，父类构造函数属性，父类原型的属性。（新实例不会继承父类实例的属性！）</p>
+<p>缺点：</p>
+<ul>
+<li>1、新实例无法向父类构造函数传参。</li>
+<li>2、继承单一。</li>
+<li>3、所有新实例都会共享父类实例的属性。（原型上的属性是共享的，一个实例修改了原型属性，另一个实例的原型属性也会被修改！）</li>
+</ul>
+<h4 id="借用构造函数继承"><a href="#借用构造函数继承" class="headerlink" title="借用构造函数继承"></a>借用构造函数继承</h4><ul>
+<li>重点：用 call( ) 和 apply( ) 将父类构造函数引入子类函数（在子类函数中做了父类函数的自执行（复制））</li>
+<li>特点：<ul>
+<li>1、只继承了父类构造函数的属性，没有继承父类原型的属性。</li>
+<li>2、解决了原型链继承缺点 1、2、3。</li>
+<li>3、可以继承多个构造函数属性（call 多个）。</li>
+<li>4、在子实例中可向父实例传参。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>1、只能继承父类构造函数的属性。</li>
+<li>2、无法实现构造函数的复用。（每次用每次都要重新调用）</li>
+<li>3、每个新实例都有父类构造函数的副本，臃肿。</li>
+</ul>
+</li>
+</ul>
+<h4 id="伪经典继承（组合继承）"><a href="#伪经典继承（组合继承）" class="headerlink" title="伪经典继承（组合继承）"></a>伪经典继承（组合继承）</h4><p>该继承方式综合了原型链和盗用构造函数的方式，将两者的优点集中了起来。组合继承弥补了之前原型链和盗用构造函数这两种方式各自的不足。</p>
+<p>缺点</p>
+<ul>
+<li>组合继承最大的问题就是效率问题。最主要就是父类的构造函数始终会被调用两次：一次是在创建子类原型时调用，另一次是在子类构造函数中调用。</li>
+<li>本质上，子类原型最终是要包含超类对象的所有实例属性，子类构造函数只要在执行时重写自己的原型就行了。</li>
+</ul>
+<p>下面是一个组合继承的例子：</p>
+<pre><code class="plain">// 基类
+var Person = function (name, age) &#123;
+    this.name = name;
+    this.age = age;
+&#125;
+Person.prototype.test = &quot;this is a test&quot;;
+Person.prototype.testFunc = function () &#123;
+    console.log(&#39;this is a testFunc&#39;);
+&#125;
+
+// 子类
+var Student = function (name, age, gender, score) &#123;
+    Person.apply(this, [name, age]); // 盗用构造函数
+    this.gender = gender;
+    this.score = score;
+&#125;
+Student.prototype = new Person(); // 改变 Student 构造函数的原型对象
+Student.prototype.testStuFunc = function () &#123;
+    console.log(&#39;this is a testStuFunc&#39;);
+&#125;
+
+// 测试
+var zhangsan = new Student(&quot;张三&quot;, 18, &quot;男&quot;, 100);
+console.log(zhangsan.name); // 张三
+console.log(zhangsan.age); // 18
+console.log(zhangsan.gender); // 男
+console.log(zhangsan.score); // 100
+console.log(zhangsan.test); // this is a test
+zhangsan.testFunc(); // this is a testFunc
+zhangsan.testStuFunc(); // this is a testStuFunc
+</code></pre>
+<p>圣杯模式的继承解决了这一问题，其基本思路就是不通过调用父类构造函数来给子类原型赋值，而是取得父类原型的一个副本，然后将返回的新对象赋值给子类原型。</p>
+<p>在上面的例子中，我们使用了组合继承的方式来实现继承，可以看到无论是基类上面的属性和方法，还是子类自己的属性和方法，都得到了很好的实现。</p>
+<p>但是在组合继承中存在效率问题，比如在上面的代码中，我们其实调用了两次 Person，产生了两组 name 和 age 属性，一组在原型上，一组在实例上。</p>
+<p>也就是说，我们在执行 Student.prototype = new Person( ) 的时候，我们是想要 Person 原型上面的方法，属性是不需要的，因为属性之后可以通过 Person.apply(this, [name, age]) 拿到，但是当你 new Person( ) 的时候，会实例化一个 Person 对象出来，这个对象上面，属性和方法都有。</p>
+<p>组合模式（伪经典模式）下的继承示意图：</p>
+<p><img src="1713354140193-08d3e982-a80d-4308-870e-9c106e4ed6f6.png"></p>
+<h4 id="圣杯继承"><a href="#圣杯继承" class="headerlink" title="圣杯继承"></a>圣杯继承</h4><p>圣杯模式的继承解决了这一问题，其基本思路就是不通过调用父类构造函数来给子类原型赋值，而是取得父类原型的一个副本，然后将返回的新对象赋值给子类原型。</p>
+<p>下面是一个圣杯模式的示例：</p>
+<pre><code class="plain">// target 是子类，origin 是基类
+// target ---&gt; Student, origin ---&gt; Person
+function inherit(target, origin) &#123;
+    function F() &#123; &#125;; // 没有任何多余的属性
+
+    // origin.prototype === Person.prototype, origin.prototype.constructor === Person 构造函数
+    F.prototype = origin.prototype;
+
+    // 假设 new F() 出来的对象叫小 f
+    // 那么这个 f 的原型对象 === F.prototype === Person.prototype
+    // 那么 f.constructor === Person.prototype.constructor === Person 的构造函数
+    target.prototype = new F();
+
+    // 而 f 这个对象又是 target 对象的原型对象
+    // 这意味着 target.prototype.constructor === f.constructor
+    // 所以 target 的 constructor 会指向 Person 构造函数
+
+    // 我们要让子类的 constructor 重新指向自己
+    // 若不修改则会发现 constructor 指向的是父类的构造函数
+    target.prototype.constructor = target;
+&#125;
+
+
+// 基类
+var Person = function (name, age) &#123;
+    this.name = name;
+    this.age = age;
+&#125;
+Person.prototype.test = &quot;this is a test&quot;;
+Person.prototype.testFunc = function () &#123;
+    console.log(&#39;this is a testFunc&#39;);
+&#125;
+
+
+// 子类
+var Student = function (name, age, gender, score) &#123;
+    Person.apply(this, [name, age]);
+    this.gender = gender;
+    this.score = score;
+&#125;
+inherit(Student, Person); // 使用圣杯模式实现继承
+// 在子类上面添加方法
+Student.prototype.testStuFunc = function () &#123;
+    console.log(&#39;this is a testStuFunc&#39;);
+&#125;
+
+// 测试
+var zhangsan = new Student(&quot;张三&quot;, 18, &quot;男&quot;, 100);
+
+console.log(zhangsan.name); // 张三
+console.log(zhangsan.age); // 18
+console.log(zhangsan.gender); // 男
+console.log(zhangsan.score); // 100
+console.log(zhangsan.test); // this is a test
+zhangsan.testFunc(); // this is a testFunc
+zhangsan.testStuFunc(); // this is a testStuFunc
+</code></pre>
+<p>在上面的代码中，我们在 inherit 方法中创建了一个中间层，之后让 F 的原型和父类的原型指向同一地址，再让子类的原型指向这个 F 的实例化对象来实现了继承。</p>
+<p>这样我们的继承，属性就不会像之前那样实例对象上一份，原型对象上一份，拥有两份。圣杯模式继承是目前 js 继承的最优解。</p>
+<p>圣杯模式下的继承示意图：</p>
+<p><img src="1713354140218-5796b187-cd5b-4db6-9887-fa0d342d4257.png"></p>
+<h4 id="ES6-新增了-extends-关键字，直接使用该关键字就能够实现继承。"><a href="#ES6-新增了-extends-关键字，直接使用该关键字就能够实现继承。" class="headerlink" title="ES6 新增了 extends 关键字，直接使用该关键字就能够实现继承。"></a>ES6 新增了 extends 关键字，直接使用该关键字就能够实现继承。</h4><p>他是基于原型链继承的</p>
+<p><strong>原型链继承</strong>：</p>
+<ul>
+<li>在 JavaScript 中，每个对象都有一个原型链，通过原型链来查找属性和方法。继承实际上是通过原型链机制来实现的。</li>
+<li>当子类创建实例时，它的原型链上会有父类的原型，因此子类实例可以访问父类的方法。</li>
+</ul>
+<p><strong>类和构造函数的关系</strong>：</p>
+<ul>
+<li>在 JavaScript 内部，类本质上还是函数（构造函数），只不过 <code>class</code> 语法让它们更加易于使用和理解。</li>
+<li>使用 <code>class</code> 声明类时，JavaScript 引擎会自动创建一个与类名相同的函数，并将类的所有方法添加到这个函数的原型中。</li>
+</ul>
+<p>手写 extends</p>
+<pre><code class="plain">function extend(child, parent) &#123;
+  // 创建一个空函数 F，作为中介
+  var F = function() &#123;&#125;;
+
+  // 将子类的原型指向一个父类的实例
+  F.prototype = parent.prototype;
+
+  // 实例化 F，并将结果赋给子类的原型
+  child.prototype = new F();
+
+  // 将子类的构造函数指回自己
+  child.prototype.constructor = child;
+&#125;
+
+// 示例用法
+function Animal(name) &#123;
+  this.name = name;
+&#125;
+
+Animal.prototype.speak = function() &#123;
+  console.log(`$&#123;this.name&#125; makes a noise.`);
+&#125;;
+
+function Dog(name) &#123;
+  // 调用父类构造函数
+  Animal.call(this, name);
+&#125;
+
+// 使用 extend 函数实现继承
+extend(Dog, Animal);
+
+// 覆盖父类方法
+Dog.prototype.speak = function() &#123;
+  console.log(`$&#123;this.name&#125; barks.`);
+&#125;;
+
+// 创建实例并调用方法
+var animal = new Animal(&#39;Animal&#39;);
+animal.speak(); // 输出: Animal makes a noise.
+
+var dog = new Dog(&#39;Dog&#39;);
+dog.speak(); // 输出: Dog barks.
+</code></pre>
+<p>解释：</p>
+<ol>
+<li><code>**extend**</code>** 函数**：<ul>
+<li><code>extend</code> 函数接收两个参数 <code>child</code> 和 <code>parent</code>，分别代表子类和父类。</li>
+<li>创建一个空的函数 <code>F</code>，并将 <code>F.prototype</code> 指向父类的原型对象，这样 <code>F</code> 函数的实例就可以继承父类的方法和属性。</li>
+<li>将子类的原型 <code>child.prototype</code> 设置为 <code>new F()</code> 的实例，从而实现了子类继承父类的原型。</li>
+<li>最后，将子类的构造函数指回自己，确保子类的实例可以通过 <code>new</code> 关键字正确创建。</li>
+</ul>
+</li>
+<li><strong>示例用法</strong>：<ul>
+<li>定义 <code>Animal</code> 构造函数和 <code>speak</code> 方法，作为父类。</li>
+<li>定义 <code>Dog</code> 构造函数，并通过 <code>Animal.call(this, name);</code> 调用父类构造函数，从而继承父类的属性。</li>
+<li>使用 <code>extend</code> 函数将 <code>Dog</code> 类继承自 <code>Animal</code> 类。</li>
+<li>在 <code>Dog.prototype</code> 上定义 <code>speak</code> 方法，覆盖父类的 <code>speak</code> 方法。</li>
+</ul>
+</li>
+<li><strong>实例化和调用</strong>：<ul>
+<li>创建 <code>Animal</code> 和 <code>Dog</code> 的实例，并调用其方法，验证继承和方法覆盖的正确性。</li>
+</ul>
+</li>
+</ol>
+<p>这个 <code>extend</code> 函数简单地演示了如何在 JavaScript 中手动实现类似 ES6 中 <code>class</code> 和 <code>extends</code> 的继承功能。在实际应用中，为了支持更复杂的继承链和更多的特性，可能需要更复杂的实现方式，但基本的原理与这个示例是类似的。</p>
+<h3 id="异步，事件循环"><a href="#异步，事件循环" class="headerlink" title="异步，事件循环"></a>异步，事件循环</h3><p>在最早期的时候，JavaScript 中要实现异步操作，使用的就是 Callback 回调函数。</p>
+<p>但是回调函数会产生回调地狱（Callback Hell）</p>
+<p>之后 ES6 推出了 Promise 解决方案来解决回调地狱的问题。不过，虽然 Promise 作为 ES6 中提供的一种新的异步编程解决方案，但是它也有问题。比如，代码并没有因为新方法的出现而减少，反而变得更加复杂，同时理解难度也加大。</p>
+<p>之后，就出现了基于 Generator 的异步解决方案。不过，这种方式需要编写外部的执行器，而执行器的代码写起来一点也不简单。当然也可以使用一些插件，比如 co 模块来简化执行器的编写。</p>
+<p>ES7 提出的 async 函数，终于让 JavaScript 对于异步操作有了终极解决方案。</p>
+<p>实际上，async 只是生成器的一种语法糖而已，简化了外部执行器的代码，同时利用 await 替代 yield，async 替代生成器的*号。</p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理且更强大。它最早由社区提出并实现，ES6 将其写进了语言标准，统一了用法，并原生提供了 Promise 对象。</p>
+<p><strong>特点</strong></p>
+<ol>
+<li>对象的状态不受外界影响 （3 种状态）<ul>
+<li>Pending 状态（进行中）</li>
+<li>Fulfilled 状态（已成功）</li>
+<li>Rejected 状态（已失败）</li>
+</ul>
+</li>
+<li>一旦状态改变就不会再变 （两种状态改变：成功或失败）<ul>
+<li>Pending -&gt; Fulfilled</li>
+<li>Pending -&gt; Rejected</li>
+</ul>
+</li>
+</ol>
+<p><strong>用法</strong></p>
+<pre><code class="plain">var promise = new Promise(function(resolve, reject)&#123;
+    // ... some code
+
+    if (/* 异步操作成功 */) &#123;
+        resolve(value);
+    &#125; else &#123;
+        reject(error);
+    &#125;
+&#125;)
+</code></pre>
+<h3 id="promise-all-方法的使用场景？数组中必须每一项都是-promise-对象吗？不是-promise-对象会如何处理-？"><a href="#promise-all-方法的使用场景？数组中必须每一项都是-promise-对象吗？不是-promise-对象会如何处理-？" class="headerlink" title="promise.all 方法的使用场景？数组中必须每一项都是 promise 对象吗？不是 promise 对象会如何处理 ？"></a>promise.all 方法的使用场景？数组中必须每一项都是 promise 对象吗？不是 promise 对象会如何处理 ？</h3><p><strong>promise.all(promiseArray)</strong> 方法是 promise 对象上的静态方法，该方法的作用是将多个 promise 对象实例包装，生成并返回一个新的 promise 实例。</p>
+<p>此方法在集合多个 promise 的返回结果时很有用。</p>
+<p>返回值将会按照参数内的 promise 顺序排列，而不是由调用 promise 的完成顺序决定。</p>
+<p><strong>promise.all 的特点</strong></p>
+<p>接收一个 Promise 实例的数组或具有 Iterator 接口的对象</p>
+<p>如果元素不是 Promise 对象，则使用 Promise.resolve 转成 Promise 对象</p>
+<p>如果全部成功，状态变为 resolved，返回值将组成一个数组传给回调</p>
+<p>只有有一个失败，状态就变为 rejected，返回值将直接传递给回调 all( )的返回值，也是新的 promise 对象</p>
+<h3 id="promise-的-all、race。请说下这两者的区别"><a href="#promise-的-all、race。请说下这两者的区别" class="headerlink" title="promise 的 all、race。请说下这两者的区别"></a>promise 的 all、race。请说下这两者的区别</h3><p>promise.all 方法参数是一个 promise 的数组,只有当所有的 promise 都完成并返回成功，才会调用 resolve，当有一个失败，都会进 catch，被捕获错误，promise.all 调用成功返回的结果是每个 promise 单独调用成功之后返回的结果组成的数组,如果调用失败的话，返回的则是第一个 reject 的结果</p>
+<p>promise.race 也会调用所有的 promise，返回的结果则是所有 promise 中最先返回的结果，不关心是成功还是失败。</p>
+<h3 id="async-与-await-的作用"><a href="#async-与-await-的作用" class="headerlink" title="async 与 await 的作用"></a>async 与 await 的作用</h3><p>async 是一个修饰符，async 定义的函数会默认的返回一个 Promise 对象 resolve 的值，因此对 async 函数可以直接进行 then 操作，返回的值即为 then 方法的传入函数。</p>
+<p>await 关键字只能放在 async 函数内部， await 关键字的作用就是获取 Promise 中返回的内容， 获取的是 Promise 函数中 resolve 或者 reject 的值。</p>
+<p>async 函数表示函数里面可能会有异步方法，await 后面跟一个表达式，async 方法执行时，遇到 await 会立即执行表达式，然后把表达式后面的代码放到微任务队列里，让出执行栈让同步代码先执行。</p>
+<h3 id="await-async-如何实现"><a href="#await-async-如何实现" class="headerlink" title="await async 如何实现"></a>await async 如何实现</h3><p>async 函数只是 promise 的语法糖，它的底层实际使用的是 generator，而 generator 又是基于 promise 的。实际上，在 babel 编译 async 函数的时候，也会转化成 generator 函数，并使用自动执行器来执行它。</p>
+<p>实现代码示例：</p>
+<pre><code class="plain">function asyncToGenerator(generatorFunc) &#123;
+    return function() &#123;
+      const gen = generatorFunc.apply(this, arguments)
+      return new Promise((resolve, reject) =&gt; &#123;
+        function step(key, arg) &#123;
+          let generatorResult
+          try &#123;
+            generatorResult = gen[key](arg)
+          &#125; catch (error) &#123;
+            return reject(error)
+          &#125;
+          const &#123; value, done &#125; = generatorResult
+          if (done) &#123;
+            return resolve(value)
+          &#125; else &#123;
+            return Promise.resolve(value).then(val =&gt; step(&#39;next&#39;, val), err =&gt; step(&#39;throw&#39;, err))
+          &#125;
+        &#125;
+        step(&quot;next&quot;)
+      &#125;)
+    &#125;
+&#125;
+</code></pre>
+<p>关于代码的解析，可以参阅：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xgangzai/article/details/106536325">https://blog.csdn.net/xgangzai/article/details/106536325</a></p>
+<h3 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h3><ul>
+<li><strong>浅拷贝</strong>：只是拷贝了基本类型的数据，而引用类型数据，复制后也是会发生引用，我们把这种拷贝叫做浅拷贝（浅复制）浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。</li>
+<li><strong>深拷贝</strong>：在堆中重新分配内存，并且把源对象所有属性都进行新建拷贝，以保证深拷贝的对象的引用图不包含任何原有对象或对象图上的任何对象，拷贝后的对象与原来的对象是完全隔离，互不影响。</li>
+</ul>
+<p><strong>浅拷贝方法</strong></p>
+<ol>
+<li>直接赋值</li>
+<li>Object.assign 方法：可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。当拷贝的 object 只有一层的时候，是深拷贝，但是当拷贝的对象属性值又是一个引用时，换句话说有多层时，就是一个浅拷贝。</li>
+<li>ES6 扩展运算符，当 object 只有一层的时候，也是深拷贝。有多层时是浅拷贝。</li>
+<li>Array.prototype.concat 方法</li>
+<li>Array.prototype.slice 方法</li>
+</ol>
+<p><strong>深拷贝方法</strong></p>
+<ol>
+<li>JSON.parse(JSON.stringify)：用 JSON.stringify 将对象转成 JSON 字符串，再用 JSON.parse 方法把字符串解析成对象，一去一来，新的对象产生了，而且对象会开辟新的栈，实现深拷贝。这种方法虽然可以实现数组或对象深拷贝，但不能处理函数。</li>
+<li>手写深拷贝</li>
+</ol>
+<pre><code class="plain">function deepClone(o1, o2) &#123;
+    for (let k in o2) &#123;
+        if (typeof o2[k] === &#39;object&#39;) &#123;
+            o1[k] = &#123;&#125;;
+            deepClone(o1[k], o2[k]);
+        &#125; else &#123;
+            o1[k] = o2[k];
+        &#125;
+    &#125;
+&#125;
+// 测试用例
+let obj = &#123;
+    a: 1,
+    b: [1, 2, 3],
+    c: &#123;&#125;
+&#125;;
+let emptyObj = Object.create(null);
+deepClone(emptyObj, obj);
+console.log(emptyObj.a == obj.a);
+console.log(emptyObj.b == obj.b);
+</code></pre>
+<h3 id="垃圾回收与内存泄漏"><a href="#垃圾回收与内存泄漏" class="headerlink" title="垃圾回收与内存泄漏"></a>垃圾回收与内存泄漏</h3><p>内存泄漏（Memory Leak）是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果。</p>
+<p>Javascript 在声明变量的时候自动会分配内存，普通的类型比如 number，一般放在栈内存里，对象放在堆内存里，声明一个变量，就分配一些内存，然后定时进行垃圾回收。垃圾回收的任务由 JavaScript 引擎中的垃圾回收器来完成，它监视所有对象，并删除那些不可访问的对象。</p>
+<p>JS 具有自动回收垃圾的机制，即执行环境会负责管理程序执行中使用的内存。编写 JS 代码的时候，开发人员不用再关心内存使用的问题，所需内存的分配以及无用的回收完全实现了自动管理。</p>
+<p>Js 中最常用的垃圾收集方式是标记清除(mark-and-sweep)。当变量进入环境（例如，在函数中声明一个变量）时，就将这个变量标记为“进入环境”。从逻辑上讲，永远不能释放进入环境的变量所占的内存，因为只要执行流进入相应的环境，就可能用到它们。而当变量离开环境时，这将其 标记为“离开环境”。</p>
+<p>标标记清除方式：</p>
+<ul>
+<li>工作原理：当变量进入环境时，将这个变量标记为“进入环境”。当变量离开环境时，则将其标记为“离开环境”。标记“离开环境”的就回收内存。</li>
+<li>工作流程：<ul>
+<li>垃圾回收器，在运行的时候会给存储在内存中的所有变量都加上标记；</li>
+<li>去掉环境中的变量以及被环境中的变量引用的变量的标记；</li>
+<li>被加上标记的会被视为准备删除的变量；</li>
+<li>垃圾回收器完成内存清理工作，销毁那些带标记的值并回收他们所占用的内存空间。</li>
+</ul>
+</li>
+</ul>
+<p>引用计数方式：</p>
+<ul>
+<li>工作原理：跟踪记录每个值被引用的次数。</li>
+<li>工作流程：<ul>
+<li>声明了一个变量并将一个引用类型的值赋值给这个变量，这个引用类型值的引用次数就是 1；</li>
+<li>同一个值又被赋值给另一个变量，这个引用类型值的引用次数加 1；</li>
+<li>当包含这个引用类型值的变量又被赋值成另一个值了，那么这个引用类型值的引用次数减 1；</li>
+<li>当引用次数变成 0 时，说明没办法访问这个值了；</li>
+<li>当垃圾收集器下一次运行时，它就会释放引用次数是 0 的值所占的内存。</li>
+</ul>
+</li>
+</ul>
+<p><strong>常见内存泄漏以及解决方案</strong></p>
+<ol>
+<li>意外的全局变量</li>
+</ol>
+<p>Js 处理未定义变量的方式比较宽松：未定义的变量会在全局对象创建一个新变量。在浏览器中，全局对象是 window。</p>
+<pre><code class="plain">function foo(arg) &#123;
+    bar = &quot;this is a hidden global variable&quot;; //等同于window.bar=&quot;this is a hidden global variable&quot;
+    this.bar2= &quot;potential accidental global&quot;;//这里的this 指向了全局对象（window）,等同于window.bar2=&quot;potential accidental global&quot;
+&#125;
+</code></pre>
+<p>解决方法：在 JavaScript 程序中添加，开启严格模式’use strict’，可以有效地避免上述问题。</p>
+<p>注意：那些用来临时存储大量数据的全局变量，确保在处理完这些数据后将其设置为 null 或重新赋值。与全局变量相关的增加内存消耗的一个主因是缓存。缓存数据是为了重用，缓存必须有一个大小上限才有用。高内存消耗导致缓存突破上限，因为缓 存内容无法被回收。</p>
+<ol start="2">
+<li>循环引用</li>
+</ol>
+<p>在 js 的内存管理环境中，对象 A 如果有访问对象 B 的权限，叫做对象 A 引用对象 B。引用计数的策略是将“对象是否不再需要”简化成“对象有没有其他对象引用到它”，如果没有对象引用这个对象，那么这个对象将会被回收 。</p>
+<pre><code class="plain">let obj1 = &#123; a: 1 &#125;; // 一个对象（称之为 A）被创建，赋值给 obj1，A 的引用个数为 1
+let obj2 = obj1; // A 的引用个数变为 2
+
+obj1 = 0; // A 的引用个数变为 1
+obj2 = 0; // A 的引用个数变为 0，此时对象 A 就可以被垃圾回收了
+</code></pre>
+<p>但是引用计数有个最大的问题： 循环引用。</p>
+<pre><code class="plain">function func() &#123;
+    let obj1 = &#123;&#125;;
+    let obj2 = &#123;&#125;;
+
+    obj1.a = obj2; // obj1 引用 obj2
+    obj2.a = obj1; // obj2 引用 obj1
+
+&#125;
+</code></pre>
+<p>当函数 func 执行结束后，返回值为 undefined，所以整个函数以及内部的变量都应该被回收，但根据引用计数方法，obj1 和 obj2 的引用次数都不为 0，所以他们不会被回收。要解决循环引用的问题，最好是在不使用它们的时候手工将它们设为空。上面的例子可以这么做：</p>
+<pre><code class="plain">obj1 = null;
+obj2 = null;
+</code></pre>
+<ol start="3">
+<li>被遗忘的计时器和回调函数</li>
+</ol>
+<pre><code class="plain">let someResource = getData();
+setInterval(() =&gt; &#123;
+    const node = document.getElementById(&#39;Node&#39;);
+    if(node) &#123;
+        node.innerhtml = JSON.stringify(someResource));
+    &#125;
+&#125;, 1000);
+</code></pre>
+<p>上面的例子中，我们每隔一秒就将得到的数据放入到文档节点中去。</p>
+<p>但在 setInterval 没有结束前，回调函数里的变量以及回调函数本身都无法被回收。那什么才叫结束呢？</p>
+<p>就是调用了 clearInterval。如果回调函数内没有做什么事情，并且也没有被 clear 掉的话，就会造成内存泄漏。</p>
+<p>不仅如此，如果回调函数没有被回收，那么回调函数内依赖的变量也没法被回收。上面的例子中，someResource 就没法被回收。同样的，setTiemout 也会有同样的问题。所以，当不需要 interval 或者 timeout 时，最好调用 clearInterval 或者 clearTimeout。</p>
+<ol start="4">
+<li>DOM 泄漏</li>
+</ol>
+<p>在 JS 中对 DOM 操作是非常耗时的。因为 JavaScript/ECMAScript 引擎独立于渲染引擎，而 DOM 是位于渲染引擎，相互访问需要消耗一定的资源。 而 IE 的 DOM 回收机制便是采用引用计数的，以下主要针对 IE 而言的。</p>
+<p><strong>a. 没有清理的 DOM 元素引用</strong></p>
+<pre><code class="plain">var refA = document.getElementById(&#39;refA&#39;);
+document.body.removeChild(refA);
+// refA 不能回收，因为存在变量 refA 对它的引用。将其对 refA 引用释放，但还是无法回收 refA。
+</code></pre>
+<p>解决办法：refA = null;</p>
+<p><strong>b. 给 DOM 对象添加的属性是一个对象的引用</strong></p>
+<pre><code class="plain">var MyObject = &#123;&#125;;
+document.getElementById(&#39;mydiv&#39;).myProp = MyObject;
+</code></pre>
+<p>解决方法： 在 window.onunload 事件中写上: document.getElementById(‘mydiv’).myProp = null;</p>
+<p><strong>c. DOM 对象与 JS 对象相互引用</strong></p>
+<pre><code class="plain">function Encapsulator(element) &#123;
+    this.elementReference = element;
+    element.myProp = this;
+&#125;
+new Encapsulator(document.getElementById(&#39;myDiv&#39;));
+</code></pre>
+<p>解决方法： 在 onunload 事件中写上: document.getElementById(‘myDiv’).myProp = null;</p>
+<p><strong>d. 给 DOM 对象用 attachEvent 绑定事件</strong></p>
+<pre><code class="plain">function doClick() &#123;&#125;
+element.addeventListen(&quot;onclick&quot;, doClick);
+</code></pre>
+<p>解决方法： 在 onunload 事件中写上: element.detachEvent(‘onclick’, doClick);</p>
+<p><strong>e. 从外到内执行 appendChild。这时即使调用 removeChild 也无法释放</strong></p>
+<pre><code class="plain">var parentDiv = document.createElement(&quot;div&quot;);
+var childDiv = document.createElement(&quot;div&quot;);
+document.body.appendChild(parentDiv);
+parentDiv.appendChild(childDiv);
+</code></pre>
+<p>解决方法： 从内到外执行 appendChild:</p>
+<pre><code class="plain">var parentDiv = document.createElement(&quot;div&quot;);
+var childDiv = document.createElement(&quot;div&quot;);
+parentDiv.appendChild(childDiv);
+document.body.appendChild(parentDiv);
+</code></pre>
+<ol start="5">
+<li>JS 的闭包</li>
+</ol>
+<p>值得注意的是闭包本身不会造成内存泄漏，但闭包过多很容易导致内存泄漏。闭包会造成对象引用的生命周期脱离当前函数的上下文，如果闭包如果使用不当，可以导致环形引用（circular reference），类似于死锁，只能避免，无法发生之后解决，即使有垃圾回收也还是会内存泄露。</p>
+<ol start="6">
+<li>console</li>
+</ol>
+<p>控制台日志记录对总体内存配置文件的影响可能是许多开发人员都未想到的极其重大的问题。记录错误的对象可以将大量数据保留在内存中。注意，这也适用于：</p>
+<p>(1) 在用户键入 JavaScript 时，在控制台中的一个交互式会话期间记录的对象。</p>
+<p>(2) 由 console.log 和 console.dir 方法记录的对象。</p>
+<h3 id="ES6-新增哪些东西"><a href="#ES6-新增哪些东西" class="headerlink" title="ES6 新增哪些东西"></a>ES6 新增哪些东西</h3><p>ES6 新增内容众多，这里列举出一些关键的以及平时常用的新增内容：</p>
+<ol>
+<li>箭头函数</li>
+<li>字符串模板</li>
+<li>支持模块化（import、export）</li>
+<li>类（class、constructor、extends）</li>
+<li>let、const 关键字</li>
+<li>新增一些数组、字符串等内置构造函数方法，例如 Array.from、Array.of 、Math.sign、Math.trunc 等</li>
+<li>新增一些语法，例如扩展操作符、解构、函数默认参数等</li>
+<li>新增一种基本数据类型 Symbol</li>
+<li>新增元编程相关，例如 proxy、Reflect</li>
+<li>Set 和 Map 数据结构</li>
+<li>Promise</li>
+<li>Generator 生成器</li>
+</ol>
+<h3 id="Set、Map、WeakSet-和-WeakMap-的区别"><a href="#Set、Map、WeakSet-和-WeakMap-的区别" class="headerlink" title="Set、Map、WeakSet 和 WeakMap 的区别"></a>Set、Map、WeakSet 和 WeakMap 的区别</h3><p><strong>Set</strong></p>
+<ul>
+<li>成员唯一、无序且不重复</li>
+<li>键值与键名是一致的（或者说只有键值，没有键名）</li>
+<li>可以遍历，方法有 add, delete,has</li>
+</ul>
+<p><strong>WeakSet</strong></p>
+<ul>
+<li>成员都是对象</li>
+<li>成员都是弱引用，可以被垃圾回收机制回收，可以用来保存 DOM 节点，不容易造成内存泄漏</li>
+<li>不能遍历，方法有 add, delete,has</li>
+</ul>
+<p><strong>Map</strong></p>
+<ul>
+<li>本质上是健值对的集合，类似集合</li>
+<li>可以遍历，方法很多，可以跟各种数据格式转换</li>
+</ul>
+<p><strong>WeakMap</strong></p>
+<ul>
+<li>只接受对象作为健名（null 除外），不接受其他类型的值作为健名</li>
+<li>键名是弱引用，键值可以是任意的，键名所指向的对象可以被垃圾机制回收，此时键名是无效的</li>
+<li>不能遍历，方法有 get、set、has、delete</li>
+</ul>
+<h3 id="weakmap、weakset"><a href="#weakmap、weakset" class="headerlink" title="weakmap、weakset"></a>weakmap、weakset</h3><p>WeakSet 对象是一些对象值的集合, 并且其中的每个对象值都只能出现一次。在 WeakSet 的集合中是唯一的</p>
+<p>它和 Set 对象的区别有两点:</p>
+<ul>
+<li>与 Set 相比，WeakSet 只能是<strong>对象的集合</strong>，而不能是任何类型的任意值。</li>
+<li>WeakSet 持弱引用：集合中对象的引用为弱引用。 如果没有其他的对 WeakSet 中对象的引用，那么这些对象会被当成垃圾回收掉。 这也意味着 WeakSet 中没有存储当前对象的列表。 正因为这样，WeakSet 是不可枚举的。</li>
+</ul>
+<p>WeakMap 对象也是键值对的集合。它的<strong>键必须是对象类型</strong>，值可以是任意类型。它的键被弱保持，也就是说，当其键所指对象没有其他地方引用的时候，它会被 GC 回收掉。WeakMap 提供的接口与 Map 相同。</p>
+<p>与 Map 对象不同的是，WeakMap 的键是不可枚举的。不提供列出其键的方法。列表是否存在取决于垃圾回收器的状态，是不可预知的。</p>
+<h3 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h3><p>我们在平时开发的时候，会有很多场景会频繁触发事件，比如说搜索框实时发请求，onmousemove、resize、onscroll 等，有些时候，我们并不能或者不想频繁触发事件，这时候就应该用到函数防抖和函数节流。</p>
+<p>函数防抖(debounce)，指的是短时间内多次触发同一事件，只执行最后一次，或者只执行最开始的一次，中间的不执行。</p>
+<pre><code class="html">/** * 函数防抖 * @param &#123;function&#125; func 一段时间后，要调用的函数 * @param
+&#123;number&#125; wait 等待的时间，单位毫秒 */ function debounce(func, wait)&#123; //
+设置变量，记录 setTimeout 得到的 id let timerId = null; return
+function(...args)&#123; if(timerId)&#123; // 如果有值，说明目前正在等待中，清除它
+clearTimeout(timerId); &#125; // 重新开始计时 timerId = setTimeout(() =&gt; &#123;
+func(...args); &#125;, wait); &#125; &#125;
+</code></pre>
+<p>函数节流(throttle)，指连续触发事件但是在 n 秒中只执行一次函数。即 2n 秒内执行 2 次… 。节流如字面意思，会稀释函数的执行频率。</p>
+<pre><code class="html">function throttle(func, wait) &#123; let context, args; let previous = 0; return
+function () &#123; let now = +new Date(); context = this; args = arguments; if (now -
+previous &gt; wait) &#123; func.apply(context, args); previous = now; &#125; &#125; &#125;
+</code></pre>
+<h3 id="proxy-实现代理和-Object-defineProperty-的区别"><a href="#proxy-实现代理和-Object-defineProperty-的区别" class="headerlink" title="proxy 实现代理和 Object.defineProperty 的区别"></a>proxy 实现代理和 Object.defineProperty 的区别</h3><p>两者的区别总结如下：</p>
+<ul>
+<li>代理原理：Object.defineProperty 的原理是通过将数据属性转变为存取器属性的方式实现的属性读写代理。而 Proxy 则是因为这个内置的 Proxy 对象内部有一套监听机制，在传入 handler 对象作为参数构造代理对象后，一旦代理对象的某个操作触发，就会进入 handler 中对应注册的处理函数，此时我们就可以有选择的使用 Reflect 将操作转发被代理对象上。</li>
+<li>代理局限性：Object.defineProperty 始终还是局限于属性层面的读写代理，对于对象层面以及属性的其它操作代理它都无法实现。鉴于此，由于数组对象 push、pop 等方法的存在，它对于数组元素的读写代理实现的并不完全。而使用 Proxy 则可以很方便的监视数组操作。</li>
+<li>自我代理：Object.defineProperty 方式可以代理到自身（代理之后使用对象本身即可），也可以代理到别的对象身上（代理之后需要使用代理对象）。Proxy 方式只能代理到 Proxy 实例对象上。这一点在其它说法中是 Proxy 对象不需要侵入对象就可以实现代理，实际上 Object.defineProperty 方式也可以不侵入。</li>
+</ul>
+<p><strong>Proxy 的优势如下:</strong></p>
+<ul>
+<li>Object.defineProperty 只能劫持对象的属性,因此我们需要对每个对象的每个属性进行遍历，而 Proxy 可以直接监听对象而非属性；</li>
+<li>Object.defineProperty 无法监控到数组下标的变化，而 Proxy 可以直接监听数组的变化；</li>
+<li>Proxy 有多达 13 种拦截方法；</li>
+<li>Proxy 作为新标准将受到浏览器厂商重点持续的性能优化；</li>
+</ul>
+<h3 id="Object-defineProperty-和-ES6-的-Proxy-有什么区别？"><a href="#Object-defineProperty-和-ES6-的-Proxy-有什么区别？" class="headerlink" title="Object.defineProperty 和 ES6 的 Proxy 有什么区别？"></a>Object.defineProperty 和 ES6 的 Proxy 有什么区别？</h3><h5 id="1、Object-defineproperty"><a href="#1、Object-defineproperty" class="headerlink" title="1、Object.defineproperty"></a>1、Object.defineproperty</h5><p>可以用于监听对象的数据变化</p>
+<p>语法： <strong>Object.defineproperty(obj, key, descriptor)</strong></p>
+<pre><code class="javascript">let obj = &#123;
+  age: 11,
+&#125;;
+let value = &quot;xiaoxiao&quot;;
+//defineproperty 有 gettter 和 setter
+Object.defineproperty(obj, &quot;name&quot;, &#123;
+  get() &#123;
+    return value;
+  &#125;,
+  set(newValue) &#123;
+    value = newValue;
+  &#125;,
+&#125;);
+obj.name = &quot;pengpeng&quot;;
+</code></pre>
+<p>此外 还有以下配置项 ：</p>
+<ul>
+<li>configurable</li>
+<li>enumerable</li>
+<li>value</li>
+</ul>
+<p>缺点：</p>
+<ol>
+<li>无法监听数组变化</li>
+<li>只能劫持对象的属性，属性值也是对象那么需要深度遍历</li>
+</ol>
+<h5 id="2、proxy-：可以理解为在被劫持的对象之前-加了一层拦截"><a href="#2、proxy-：可以理解为在被劫持的对象之前-加了一层拦截" class="headerlink" title="2、proxy ：可以理解为在被劫持的对象之前 加了一层拦截"></a>2、proxy ：可以理解为在被劫持的对象之前 加了一层拦截</h5><pre><code class="javascript">let proxy = new Proxy(
+  &#123;&#125;,
+  &#123;
+    get(obj, prop) &#123;
+      return obj[prop];
+    &#125;,
+    set(obj, prop, val) &#123;
+      obj[prop] = val;
+    &#125;,
+  &#125;
+);
+</code></pre>
+<ul>
+<li>proxy 返回的是一个新对象， 可以通过操作返回的新的对象达到目的</li>
+<li>proxy 有多达 13 种拦截方法</li>
+</ul>
+<p><strong>总结：</strong></p>
+<ul>
+<li>Object.defineProperty 无法监控到数组下标的变化，导致通过数组下标添加元素，不能实时响应</li>
+<li>Object.defineProperty 只能劫持对象的属性，从而需要对每个对象，每个属性进行遍历，如果，属性值是对象，还需要深度遍历。Proxy 可以劫持整个对象，并返回一个新的对象。</li>
+<li>Proxy 不仅可以代理对象，还可以代理数组。还可以代理动态增加的属性。</li>
+</ul>
+<h3 id="JS-模块化"><a href="#JS-模块化" class="headerlink" title="JS 模块化"></a>JS 模块化</h3><p>模块化主要是用来抽离公共代码，隔离作用域，避免变量冲突等。</p>
+<p><strong>IIFE</strong>： 使用自执行函数来编写模块化，特点：<strong>在一个单独的函数作用域中执行代码，避免变量冲突</strong>。</p>
+<pre><code class="plain">(function()&#123;
+ return &#123;
+   data:[]
+ &#125;
+&#125;)()
+</code></pre>
+<p><strong>CommonJS</strong>： nodejs 中自带的模块化。</p>
+<pre><code class="plain">var fs = require(&#39;fs&#39;);
+</code></pre>
+<p><strong>ES Modules</strong>： ES6 引入的模块化，支持 import 来引入另一个 js 。</p>
+<pre><code class="plain">import a from &#39;a&#39;;
+</code></pre>
+<h3 id="ES6-中模块化导入和导出与-common-js-有什么区别"><a href="#ES6-中模块化导入和导出与-common-js-有什么区别" class="headerlink" title="ES6 中模块化导入和导出与 common.js 有什么区别"></a>ES6 中模块化导入和导出与 common.js 有什么区别</h3><p>CommonJs 模块输出的是值的拷贝，也就是说，一旦输出一个值，模块内部的变化不会影响到这个值.</p>
+<pre><code class="plain">// common.js
+var count = 1;
+
+var printCount = () =&gt;&#123;
+  return ++count;
+&#125;
+
+module.exports = &#123;
+    printCount: printCount,
+    count: count
+&#125;;
+// index.js
+let v = require(&#39;./common&#39;);
+console.log(v.count); // 1
+console.log(v.printCount()); // 2
+console.log(v.count); // 1
+</code></pre>
+<p>你可以看到明明 common.js 里面改变了 count，但是输出的结果还是原来的。这是因为 count 是一个原始类型的值，会被缓存。除非写成一个函数，才能得到内部变动的值。将 common.js 里面的 module.exports 改写成</p>
+<pre><code class="plain">module.exports = &#123;
+    printCount: printCount,
+    get count()&#123;
+        return count
+    &#125;
+&#125;;
+</code></pre>
+<p>这样子的输出结果是 1，2，2</p>
+<p>而在 ES6 当中，写法是这样的，是利用 export 和 import 导入的</p>
+<pre><code class="plain">// es6.js
+export let count = 1;
+export function printCount() &#123;
+    ++count;
+&#125;
+// main1.js
+import  &#123; count, printCount &#125; from &#39;./es6&#39;;
+console.log(count)
+console.log(printCount());
+console.log(count)
+</code></pre>
+<p>ES6 模块是动态引用，并且不会缓存，模块里面的变量绑定其所有的模块，而是动态地去加载值，并且不能重新赋值，</p>
+<p>ES6 输入的模块变量，只是一个“符号连接符”，所以这个变量是只读的，对它进行重新赋值会报错。如果是引用类型，变量指向的地址是只读的，但是可以为其添加属性或成员。</p>
+<p>另外还想说一个 export default</p>
+<pre><code class="plain">let count = 1;
+function printCount() &#123;
+    ++count;
+&#125;
+export default &#123; count, printCount&#125;
+// main3.js
+import res form &#39;./main3.js&#39;
+console.log(res.count)
+</code></pre>
+<p>export 与 export default 的区别及联系：</p>
+<ol>
+<li>export 与 export default 均可用于导出常量、函数、文件、模块等</li>
+<li>你可以在其它文件或模块中通过 import + (常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用</li>
+<li>在一个文件或模块中，export、import 可以有多个，export default 仅有一个</li>
+<li>通过 export 方式导出，在导入时要加{ }，export default 则不需要。</li>
+</ol>
+<h3 id="了解过-js-中-arguments-吗？接收的是实参还是形参？"><a href="#了解过-js-中-arguments-吗？接收的是实参还是形参？" class="headerlink" title="了解过 js 中 arguments 吗？接收的是实参还是形参？"></a>了解过 js 中 arguments 吗？接收的是实参还是形参？</h3><p>JS 中的 arguments 是一个伪数组对象。这个伪数组对象将包含调用函数时传递的所有的实参。</p>
+<h3 id="为什么函数的-arguments-参数是类数组而不是数组？如何遍历类数组"><a href="#为什么函数的-arguments-参数是类数组而不是数组？如何遍历类数组" class="headerlink" title="为什么函数的 arguments 参数是类数组而不是数组？如何遍历类数组?"></a>为什么函数的 arguments 参数是类数组而不是数组？如何遍历类数组?</h3><p>首先了解一下什么是数组对象和类数组对象。</p>
+<p>数组对象：使用单独的变量名来存储一系列的值。从 Array 构造函数中继承了一些用于进行数组操作的方法。</p>
+<pre><code class="plain">var mycars = new Array();
+mycars[0] = &quot;zhangsan&quot;;
+mycars[1] = &quot;lisi&quot;;
+mycars[2] = &quot;wangwu&quot;;
+</code></pre>
+<p>类数组对象：<strong>对于一个普通的对象来说，如果它的所有 property 名均为正整数，同时也有相应的 length 属性，那么虽然该对象并不是由 Array 构造函数所创建的，它依然呈现出数组的行为，在这种情况下，这些对象被称为“类数组对象”。</strong></p>
+<p><strong>两者区别</strong></p>
+<ul>
+<li>一个是对象，一个是数组</li>
+<li>数组的 length 属性，当新的元素添加到列表中的时候，其值会自动更新。类数组对象的不会。</li>
+<li>设置数组的 length 属性可以扩展或截断数组。</li>
+<li>数组也是 Array 的实例可以调用 Array 的方法，比如 push、pop 等等</li>
+</ul>
+<p>所以说 arguments 对象不是一个 Array 。它类似于 Array，但除了 length 属性和索引元素之外没有任何 Array 属性。</p>
+<p>可以使用 for…in 来遍历 arguments 这个类数组对象。</p>
+<h3 id="纯函数"><a href="#纯函数" class="headerlink" title="纯函数"></a>纯函数</h3><p>一个函数，如果符合以下两个特点，那么它就可以称之为<strong>纯函数</strong>：</p>
+<ol>
+<li>对于相同的输入，永远得到相同的输出</li>
+<li>没有任何可观察到的副作用</li>
+<li>不依赖外部变量</li>
+</ol>
+<p>解析：</p>
+<p>针对上面的两个特点，我们一个一个来看。</p>
+<ul>
+<li>相同输入得到相同输出</li>
+</ul>
+<p>我们先来看一个不纯的反面典型：</p>
+<pre><code class="plain">let greeting = &#39;Hello&#39;
+
+function greet (name) &#123;
+  return greeting + &#39; &#39; + name
+&#125;
+
+console.log(greet(&#39;World&#39;)) // Hello World
+</code></pre>
+<p>上面的代码中，greet(‘World’) 是不是永远返回 Hello World ? 显然不是，假如我们修改 greeting 的值，就会影响 greet 函数的输出。即函数 greet 其实是 <strong>依赖外部状态</strong> 的。</p>
+<p>那我们做以下修改：</p>
+<pre><code class="plain">function greet (greeting, name) &#123;
+  return greeting + &#39; &#39; + name
+&#125;
+
+console.log(greet(&#39;Hi&#39;, &#39;Savo&#39;)) // Hi Savo
+</code></pre>
+<p>将 greeting 参数也传入，这样对于任何输入参数，都有与之对应的唯一的输出参数了，该函数就符合了第一个特点。</p>
+<ul>
+<li>没有副作用</li>
+</ul>
+<p>副作用的意思是，这个函数的运行，<strong>不会修改外部的状态</strong>。</p>
+<p>下面再看反面典型：</p>
+<pre><code class="plain">const user = &#123;
+  username: &#39;savokiss&#39;
+&#125;
+
+let isValid = false
+
+function validate (user) &#123;
+  if (user.username.length &gt; 4) &#123;
+    isValid = true
+  &#125;
+&#125;
+</code></pre>
+<p>可见，执行函数的时候会修改到 isValid 的值（注意：如果你的函数没有任何返回值，那么它很可能就具有副作用！）</p>
+<p>那么我们如何移除这个副作用呢？其实不需要修改外部的 isValid 变量，我们只需要在函数中将验证的结果 return 出来：</p>
+<pre><code class="plain">const user = &#123;
+  username: &#39;savokiss&#39;
+&#125;
+
+function validate (user) &#123;
+  return user.username.length &gt; 4;
+&#125;
+
+const isValid = validate(user)
+</code></pre>
+<p>这样 validate 函数就不会修改任何外部的状态了~</p>
+<h3 id="严格模式的限制"><a href="#严格模式的限制" class="headerlink" title="严格模式的限制"></a>严格模式的限制</h3><p>什么是严格模式？</p>
+<p>严格模式对 JavaScript 的语法和行为都做了一些更改，消除了语言中一些不合理、不确定、不安全之处；提供高效严谨的差错机制，保证代码安全运行；禁用在未来版本中可能使用的语法，为新版本做好铺垫。在脚本文件第一行或函数内第一行中引入”use strict”这条指令，就能触发严格模式，这是一条没有副作用的指令，老版的浏览器会将其作为一行字符串直接忽略。</p>
+<p>例如：</p>
+<pre><code class="plain">&quot;use strict&quot;;//脚本第一行
+function add(a,b)&#123;
+    &quot;use strict&quot;;//函数内第一行
+    return a+b;
+&#125;
+</code></pre>
+<p>进入严格模式后的限制</p>
+<ul>
+<li>变量必须声明后再赋值</li>
+<li>不能有重复的参数名，函数的参数也不能有同名属性</li>
+<li>不能对只读属性赋值</li>
+<li>不能使用前缀 0 表示八进制数</li>
+<li>不能删除不可删除的属性</li>
+<li>eval 不会在它的外层作用域引入变量。</li>
+<li>eval 和 arguments 不能被重新赋值</li>
+<li>arguments 不会自动反应函数的变化</li>
+<li>不能使用 arguments.callee</li>
+<li>不能使用 arguments.caller</li>
+<li>禁止 this 指向全局对象</li>
+<li>不能使用 fn.caller 和 fn.arguments 获取函数调用的堆栈</li>
+<li>增加了保留字</li>
+</ul>
+<p>开启“严格模式”的优点：</p>
+<ul>
+<li>消除 Javascript 语法的一些不合理、不严谨之处，减少一些怪异行为;</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的 Javascript 做好铺垫。</li>
+</ul>
+<h3 id="javascript-中什么是伪数组？如何将伪数组转换为标准数组"><a href="#javascript-中什么是伪数组？如何将伪数组转换为标准数组" class="headerlink" title="javascript 中什么是伪数组？如何将伪数组转换为标准数组"></a>javascript 中什么是伪数组？如何将伪数组转换为标准数组</h3><p>在 JavaScript 中，arguments 就是一个伪数组对象</p>
+<p>可以使用 ES6 的扩展运算符来将伪数组转换为标准数组</p>
+<p>例如：</p>
+<pre><code class="plain">var arr = [...arguments];
+</code></pre>
+<h3 id="JS-有哪些内置对象"><a href="#JS-有哪些内置对象" class="headerlink" title="JS 有哪些内置对象"></a>JS 有哪些内置对象</h3><p>数据封装类对象：String，Boolean，Number，Array 和 Object</p>
+<p>其他对象：Function，Arguments，Math，Date，RegExp，Error</p>
+<h3 id="map-和-forEach-的区别？"><a href="#map-和-forEach-的区别？" class="headerlink" title="map 和 forEach 的区别？"></a>map 和 forEach 的区别？</h3><p><strong>两者区别</strong></p>
+<p>forEach()方法不会返回执行结果，而是 undefined。</p>
+<p>也就是说，forEach()会修改原来的数组。而 map()方法会得到一个新的数组并返回。</p>
+<p><strong>适用场景</strong></p>
+<p>forEach 适合于你并不打算改变数据的时候，而只是想用数据做一些事情 – 比如存入数据库或则打印出来。</p>
+<p>map()适用于你要改变数据值的时候。不仅仅在于它更快，而且返回一个新的数组。这样的优点在于你可以使用复合(composition)(map, filter, reduce 等组合使用)来玩出更多的花样。</p>
+<h3 id="symbol-用途"><a href="#symbol-用途" class="headerlink" title="symbol 用途"></a>symbol 用途</h3><p>可以用来表示一个独一无二的变量防止命名冲突，还可以利用 symbol 不会被常规的方法(除了 Object.getOwnPropertySymbols 外)遍历到，所以可以用来模拟私有变量。</p>
+<p>主要用来提供遍历接口，布置了 symbol.iterator 的对象才可以使用 for···of 循环，可以统一处理数据结构。调用之后回返回一个遍历器对象，包含有一个 next 方法，使用 next 方法后有两个返回值 value 和 done 分别表示函数当前执行位置的值和是否遍历完毕。</p>
+<p>Symbol.for() 可以在全局访问 symbol</p>
+<h3 id="JS-小数不精准，如何计算"><a href="#JS-小数不精准，如何计算" class="headerlink" title="JS 小数不精准，如何计算"></a>JS 小数不精准，如何计算</h3><p>方法一：指定要保留的小数位数(0.1+0.2).toFixed(1) = 0.3</p>
+<p>这个方法 toFixed 是进行四舍五入的也不是很精准，对于计算金额这种严谨的问题，不推荐使用，而且不同浏览器对 toFixed 的计算结果也存在差异。</p>
+<p>方法二：把需要计算的数字升级（乘以 10 的 n 次幂）成计算机能够精确识别的整数，等计算完毕再降级（除以 10 的 n 次幂），这是大部分编程语言处理精度差异的通用方法。</p>
+<h3 id="判断数组的方法，请分别介绍它们之间的区别和优劣"><a href="#判断数组的方法，请分别介绍它们之间的区别和优劣" class="headerlink" title="判断数组的方法，请分别介绍它们之间的区别和优劣"></a>判断数组的方法，请分别介绍它们之间的区别和优劣</h3><p>方法一：<strong>instanceof 操作符判断</strong></p>
+<p>用法：arr instanceof Array</p>
+<p>instanceof 主要是用来判断某个实例是否属于某个对象</p>
+<pre><code class="plain">let arr = [];
+console.log(arr instanceof Array); // true
+</code></pre>
+<p>缺点：instanceof 是判断类型的 prototype 是否出现在对象的原型链中，但是对象的原型可以随意修改，所以这种判断并不准确。并且也不能判断对象和数组的区别</p>
+<p>方法二：<strong>对象构造函数的 constructor 判断</strong></p>
+<p>用法：arr.constructor === Array</p>
+<p>Object 的每个实例都有构造函数 constructor，用于保存着用于创建当前对象的函数</p>
+<pre><code class="plain">let arr = [];
+console.log(arr.constructor === Array); // true
+</code></pre>
+<p>方法三：<strong>Array 原型链上的 isPrototypeOf</strong></p>
+<p>用法：Array.prototype.isPrototypeOf(arr)</p>
+<p>Array.prototype 属性表示 Array 构造函数的原型</p>
+<p>其中有一个方法是 isPrototypeOf() 用于测试一个对象是否存在于另一个对象的原型链上。</p>
+<pre><code class="plain">let arr = [];
+console.log(Array.prototype.isPrototypeOf(arr)); // true
+</code></pre>
+<p>方法四：<strong>Object.getPrototypeOf</strong></p>
+<p>用法：Object.getPrototypeOf(arr) === Array.prototype</p>
+<p>Object.getPrototypeOf() 方法返回指定对象的原型</p>
+<p>所以只要跟 Array 的原型比较即可</p>
+<pre><code class="plain">let arr = [];
+console.log(Object.getPrototypeOf(arr) === Array.prototype); // true
+</code></pre>
+<p>方法五：<strong>Object.prototype.toString</strong></p>
+<p>用法：Object.prototype.toString.call(arr) === ‘[object Array]’</p>
+<p>虽然 Array 也继承自 Object，但 js 在 Array.prototype 上重写了 toString，而我们通过 toString.call(arr)实际上是通过原型链调用了。</p>
+<pre><code class="plain">let arr = [];
+console.log(Object.prototype.toString.call(arr) === &#39;[object Array]&#39;); // true
+</code></pre>
+<p>缺点：不能精准判断自定义对象，对于自定义对象只会返回[object Object]</p>
+<p>方法六：<strong>Array.isArray</strong></p>
+<p>用法：Array.isArray(arr)</p>
+<p>ES5 中新增了 Array.isArray 方法,IE8 及以下不支持</p>
+<p>Array.isArray ( arg ) isArray 函数需要一个参数 arg，如果参数是个对象并且 class 内部属性是 “Array”, 返回布尔值 true；否则它返回 false。</p>
+<pre><code class="plain">let arr = [];
+console.log(Array.isArray(arr)); // true
+</code></pre>
+<p>缺点：Array.isArray 是 ES 5.1 推出的，<strong>不支持 IE6~8</strong>，所以在使用的时候需要注意兼容性问题。</p>
+<h3 id="JavaScript-中的-const-数组可以进行-push-操作吗？为什么？"><a href="#JavaScript-中的-const-数组可以进行-push-操作吗？为什么？" class="headerlink" title="JavaScript 中的 const 数组可以进行 push 操作吗？为什么？"></a>JavaScript 中的 const 数组可以进行 push 操作吗？为什么？</h3><p>可以进行 push 操作。虽然 const 表示常量，但是当我们把一个数组赋值给 const 声明的变量时，实际上是把这个数组的地址赋值给该变量。而 push 操作是在数组地址所指向的堆区添加元素，地址本身并没有发生改变。</p>
+<p>示例代码：</p>
+<pre><code class="plain">const arr = [1];
+arr.push(2);
+console.log(arr); // [1, 2]
+</code></pre>
+<h3 id="intanceof-操作符的实现原理及实现"><a href="#intanceof-操作符的实现原理及实现" class="headerlink" title="intanceof 操作符的实现原理及实现"></a>intanceof 操作符的实现原理及实现</h3><p>instanceof 主要作用就是判断一个实例是否属于某种类型</p>
+<p>例如：</p>
+<pre><code class="plain">let Dog = function()&#123;&#125;
+let tidy = new Dog()
+tidy instanceof Dog //true
+</code></pre>
+<p>intanceof 操作符实现原理</p>
+<pre><code class="plain">function wonderFulInstanceOf(instance, constructorFn) &#123;
+    let constructorFnProto = constructorFn.prototype; // 取右表达式的 prototype 值，函数构造器指向的function
+    instanceProto = instance.__proto__; // 取左表达式的__proto__值，实例的__proto__
+    while (true) &#123;
+        if (instanceProto === null) &#123;
+            return false;
+        &#125;
+        if (instanceProto === constructorFnProto) &#123;
+            return true;
+        &#125;
+        instanceProto = instanceProto.__proto__
+    &#125;
+&#125;
+</code></pre>
+<p>其实 instanceof 主要的实现原理就是只要 constructorFn 的 prototype 在 instance 的原型链上即可。</p>
+<p>因此，instanceof 在查找的过程中会遍历左边变量的原型链，直到找到右边变量的 prototype，如果查找失败，则会返回 false，告诉我们左边变量并非是右边变量的实例。</p>
+<h3 id="扩展运算符的作用及使用场景"><a href="#扩展运算符的作用及使用场景" class="headerlink" title="扩展运算符的作用及使用场景"></a>扩展运算符的作用及使用场景</h3><p>扩展运算符是三个点(…)，主要用于展开数组，将一个数组转为参数序列。</p>
+<p>扩展运算符使用场景：</p>
+<ul>
+<li>代替数组的 apply 方法</li>
+<li>合并数组</li>
+<li>复制数组</li>
+<li>把 arguments 或 NodeList 转为数组</li>
+<li>与解构赋值结合使用</li>
+<li>将字符串转为数组</li>
+</ul>
+<h3 id="前端为什么提倡模块化开发？"><a href="#前端为什么提倡模块化开发？" class="headerlink" title="前端为什么提倡模块化开发？"></a>前端为什么提倡模块化开发？</h3><p>模块化能将一个复杂的大型系统分解成一个个高内聚、低耦合的简单模块，并且每个模块都是独立的，用于完成特定的功能。模块化后的系统变得更加可控、可维护、可扩展，程序代码也更简单直观，可读性也很高，有利于团队协作开发。ES6 模块化的出现，使得前端能更容易、更快速的实现模块化开发。</p>
+<h3 id="假设有两个变量-a-和-b，他们的值都是数字，如何在不借用第三个变量的情况下，将两个变量的值对调？"><a href="#假设有两个变量-a-和-b，他们的值都是数字，如何在不借用第三个变量的情况下，将两个变量的值对调？" class="headerlink" title="假设有两个变量 a 和 b，他们的值都是数字，如何在不借用第三个变量的情况下，将两个变量的值对调？"></a>假设有两个变量 a 和 b，他们的值都是数字，如何在不借用第三个变量的情况下，将两个变量的值对调？</h3><p>方法一：</p>
+<pre><code class="plain">a = a + b;
+b = a - b;
+a = a - b;
+</code></pre>
+<p>方法二（ES6 中的解构）：</p>
+<pre><code class="plain">[a, b] = [b, a]
+</code></pre>
+<h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><h3 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h3><p>关于事件监听，W3C 规范中定义了 3 个事件阶段，依次是捕获阶段、目标阶段、冒泡阶段。</p>
+<ul>
+<li><strong>捕获</strong>阶段：在事件对象到达事件目标之前，事件对象必须从 window 经过目标的祖先节点传播到事件目标。 这个阶段被我们称之为捕获阶段。在这个阶段注册的事件监听器在事件到达其目标前必须先处理事件。</li>
+<li><strong>目标</strong> 阶段：事件对象到达其事件目标。 这个阶段被我们称为目标阶段。一旦事件对象到达事件目标，该阶段的事件监听器就要对它进行处理。如果一个事件对象类型被标志为不能冒泡。那么对应的事件对象在到达此阶段时就会终止传播。</li>
+<li><strong>冒泡</strong> 阶段：事件对象以一个与捕获阶段相反的方向从事件目标传播经过其祖先节点传播到 window。这个阶段被称之为冒泡阶段。在此阶段注册的事件监听器会对相应的冒泡事件进行处理。</li>
+</ul>
+<h3 id="事件委托以及冒泡原理"><a href="#事件委托以及冒泡原理" class="headerlink" title="事件委托以及冒泡原理"></a>事件委托以及冒泡原理</h3><p>事件委托，又被称之为事件代理。在 JavaScript 中，添加到页面上的事件处理程序数量将直接关系到页面整体的运行性能。导致这一问题的原因是多方面的。</p>
+<p>首先，每个函数都是对象，都会占用内存。内存中的对象越多，性能就越差。其次，必须事先指定所有事件处理程序而导致的 DOM 访问次数，会延迟整个页面的交互就绪时间。</p>
+<p>对事件处理程序过多问题的解决方案就是事件委托。</p>
+<p>事件委托利用了事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。例如，click 事件会一直冒泡到 document 层次。也就是说，我们可以为整个页面指定一个 onclick 事件处理程序，而不必给每个可单击的元素分别添加事件处理程序。</p>
+<p>事件冒泡（event bubbling），是指事件开始时由最具体的元素（文档中嵌套层次最深的那个节点）接收，然后逐级向上传播到较为不具体的节点（文档）。</p>
+<h3 id="defer-与-async-的区别"><a href="#defer-与-async-的区别" class="headerlink" title="defer 与 async 的区别"></a>defer 与 async 的区别</h3><p>按照惯例，所有 script 元素都应该放在页面的 head 元素中。这种做法的目的就是把<strong>所有外部文件（**<strong>CSS*</strong>* 文件和 **<strong>JavaScript*</strong>* 文件）的引用都放在相同的地方</strong>。可是，在文档的 head 元素中包含所有 JavaScript 文件，意味着必须等到全部 JavaScript 代码都被下载、解析和执行完成以后，才能开始呈现页面的内容（浏览器在遇到 body 标签时才开始呈现内容）。</p>
+<p>对于那些需要很多 JavaScript 代码的页面来说，这无疑会导致浏览器在呈现页面时出现明显的延迟，而延迟期间的浏览器窗口中将是一片空白。为了避免这个问题，现在 <strong>Web**</strong> 应用程序一般都全部 *<strong>*JavaScript**</strong> 引用放在 *<strong>*body**</strong> 元素中页面的内容后面**。这样一来，在解析包含的 JavaScript 代码之前，页面的内容将完全呈现在浏览器中。而用户也会因为浏览器窗口显示空白页面的时间缩短而感到打开页面的速度加快了。</p>
+<p>有了 defer 和 async 后，这种局面得到了改善。</p>
+<p><strong>defer**</strong> （延迟脚本）**</p>
+<p>延迟脚本：defer 属性只适用于外部脚本文件。</p>
+<p>如果给 script 标签定义了 defer 属性，这个属性的作用是表明脚本在执行时不会影响页面的构造。也就是说，脚本会被延迟到整个页面都解析完毕后再运行。因此，如果 script 元素中设置了 defer 属性，相当于告诉浏览器立即下载，但延迟执行。</p>
+<p>**async****（异步脚本）**</p>
+<p>异步脚本：async 属性也只适用于外部脚本文件，并告诉浏览器立即下载文件。</p>
+<p><strong>但与 **<strong>defer*</strong>* 不同的是：标记为 **<strong>async*</strong>* 的脚本并不保证按照指定它们的先后顺序执行。</strong></p>
+<p>所以总结起来，两者之间最大的差异就是在于脚本下载完之后何时执行，显然 defer 是最接近我们对于应用脚本加载和执行的要求的。</p>
+<p>defer 是立即下载但延迟执行，加载后续文档元素的过程将和脚本的加载并行进行（异步），但是脚本的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。async 是立即下载并执行，加载和渲染后续文档元素的过程将和 js 脚本的加载与执行并行进行（异步）。</p>
+<h3 id="如何判断-img-加载完成"><a href="#如何判断-img-加载完成" class="headerlink" title="如何判断 img 加载完成"></a>如何判断 img 加载完成</h3><ul>
+<li>为 img DOM 节点绑定 load 事件</li>
+<li>readystatechange 事件：readyState 为 complete 和 loaded 则表明图片已经加载完毕。</li>
+<li>img 的 complete 属性：轮询不断监测 img 的 complete 属性，如果为 true 则表明图片已经加载完毕，停止轮询。该属性所有浏览器都支持。</li>
+</ul>
+<h3 id="阻止冒泡，阻止默认事件"><a href="#阻止冒泡，阻止默认事件" class="headerlink" title="阻止冒泡，阻止默认事件"></a>阻止冒泡，阻止默认事件</h3><pre><code class="html">event.stopPropagation() event.preventDefault();
+</code></pre>
+<h3 id="拖拽会用到哪些事件"><a href="#拖拽会用到哪些事件" class="headerlink" title="拖拽会用到哪些事件"></a>拖拽会用到哪些事件</h3><p>在以前，书写一个拖拽需要用到 mousedown、mousemove、mouseup 这 3 个事件。</p>
+<p>HTML5 推出后，新推出了一组拖拽相关的 API，涉及到的事件有 dragstart、dragover、drop 这 3 个事件。</p>
+<h3 id="clientWidth-offsetWidth-scrollWidth-的区别"><a href="#clientWidth-offsetWidth-scrollWidth-的区别" class="headerlink" title="clientWidth,offsetWidth,scrollWidth 的区别"></a>clientWidth,offsetWidth,scrollWidth 的区别</h3><p>clientWidth = width+左右 padding</p>
+<p>offsetWidth = width + 左右 padding + 左右 boder</p>
+<p>scrollWidth：获取指定标签内容层的真实宽度(可视区域宽度+被隐藏区域宽度)。</p>
+<h3 id="ajax、axios、fetch-的区别"><a href="#ajax、axios、fetch-的区别" class="headerlink" title="ajax、axios、fetch 的区别"></a>ajax、axios、fetch 的区别</h3><p>ajax 是指一种创建交互式网页应用的网页开发技术，并且可以做到无需重新加载整个网页的情况下，能够更新部分网页，也叫作局部更新。</p>
+<p>使用 ajax 发送请求是依靠于一个对象，叫 XmlHttpRequest 对象，通过这个对象我们可以从服务器获取到数据，然后再渲染到我们的页面上。</p>
+<p>Fetch 是 ajax 非常好的一个替代品，基于 Promise 设计，使用 Fetch 来获取数据时，会返回给我们一个 Pormise 对象，但是 Fetch 是一个低层次的 API，想要很好的使用 Fetch，需要做一些封装处理。</p>
+<p>下面是 Fetch 的一些缺点</p>
+<ul>
+<li>Fetch 只对网络请求报错，对 400，500 都当做成功的请求，需要封装去处理</li>
+<li>Fetch 默认不会带 cookie，需要添加配置项。</li>
+<li>Fetch 不支持 abort，不支持超时控制，使用 setTimeout 及 Promise.reject 的实现超时控制并不能阻止请求过程继续在后台运行，造成了流量的浪费。</li>
+<li>Fetch 没有办法原生监测请求的进度，而 XHR 可以。</li>
+</ul>
+<p>axios 也是对原生 XHR 的一种封装，不过是 Promise 实现版本。它可以用于浏览器和 nodejs 的 HTTP 客户端，符合最新的 ES 规范。</p>
+<h3 id="document-onload-和-document-ready-两个事件的区别"><a href="#document-onload-和-document-ready-两个事件的区别" class="headerlink" title="document.onload 和 document.ready 两个事件的区别"></a>document.onload 和 document.ready 两个事件的区别</h3><p>页面加载完成有两种事件：</p>
+<p>一是 ready，表示文档结构已经加载完成（不包含图片等非文字媒体文件）</p>
+<p>二是 onload，指示页面包含图片等文件在内的所有元素都加载完成。</p>
+<h3 id="区分什么是“客户区坐标”、“页面坐标”、“屏幕坐标”？"><a href="#区分什么是“客户区坐标”、“页面坐标”、“屏幕坐标”？" class="headerlink" title="区分什么是“客户区坐标”、“页面坐标”、“屏幕坐标”？"></a>区分什么是“客户区坐标”、“页面坐标”、“屏幕坐标”？</h3><p>客户区坐标：鼠标指针在可视区中的水平坐标 (clientX) 和垂直坐标 (clientY)；</p>
+<p>页面坐标：鼠标指针在页面布局中的水平坐标 (pageX) 和垂直坐标 (pageY)；</p>
+<p>屏幕坐标：设备物理屏幕的水平坐标 (screenX) 和垂直坐标 (screenY)；</p>
+<h2 id="手写代码题"><a href="#手写代码题" class="headerlink" title="手写代码题"></a>手写代码题</h2><h3 id="写一个函数判断变量类型"><a href="#写一个函数判断变量类型" class="headerlink" title="写一个函数判断变量类型"></a>写一个函数判断变量类型</h3><pre><code class="plain">function getType(data)&#123;
+    let type = typeof data;
+    if(type !== &quot;object&quot;)&#123;
+        return type
+    &#125;
+    return Object.prototype.toString.call(data).replace(/^\[object (\S+)\]$/,&#39;$1&#39;)
+&#125;
+function Person()&#123;&#125;
+console.log(getType(1)); // number
+console.log(getType(true)); // boolean
+console.log(getType([1,2,3])); // Array
+console.log(getType(/abc/)); // RegExp
+console.log(getType(new Date)); // Date
+console.log(getType(new Person)); // Object
+console.log(getType(&#123;&#125;)); // Object
+</code></pre>
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><pre><code class="plain">// 数字或字符串数组去重，效率高
+function unique(arr) &#123;
+      var result = &#123;&#125;; // 利用对象属性名的唯一性来保证不重复
+      for (var i = 0; i &lt; arr.length; i++) &#123;
+           if (!result[arr[i]]) &#123;
+               result[arr[i]] = true;
+           &#125;
+      &#125;
+      return Object.keys(result); // 获取对象所有属性名的数组
+&#125;
+
+// 任意数组去重，适配范围广，效率低
+function unique(arr) &#123;
+      var result = []; // 结果数组
+      for (var i = 0; i &lt; arr.length; i++) &#123;
+           if (!result.includes(arr[i])) &#123;
+               result.push(arr[i]);
+           &#125;
+      &#125;
+      return result;
+&#125;
+
+// 利用ES6的Set去重，适配范围广，效率一般，书写简单
+function unique(arr) &#123;
+      return [...new Set(arr)]
+&#125;
+</code></pre>
+<h3 id="如何判断数组或对象"><a href="#如何判断数组或对象" class="headerlink" title="如何判断数组或对象"></a>如何判断数组或对象</h3><ol>
+<li>通过 instanceof 进行判断</li>
+</ol>
+<pre><code class="plain">var arr = [1,2,3,1];
+console.log(arr instanceof Array) // true
+</code></pre>
+<ol start="2">
+<li>通过对象的 constructor 属性</li>
+</ol>
+<pre><code class="plain">var arr = [1,2,3,1];
+console.log(arr.constructor === Array) // true
+</code></pre>
+<ol start="3">
+<li>Object.prototype.toString.call(arr)</li>
+</ol>
+<pre><code class="plain">console.log(Object.prototype.toString.call(&#123;name: &quot;jerry&quot;&#125;));//[object Object]
+console.log(Object.prototype.toString.call([]));//[object Array]
+</code></pre>
+<ol start="4">
+<li>可以通过 ES6 新提供的方法 Array.isArray( )</li>
+</ol>
+<pre><code class="plain">Array.isArray([]) //true
+</code></pre>
+<h3 id="实现一个函数-对一个-url-进行请求-失败就再次请求-超过最大次数就走失败回调-任何一次成功都走成功回调"><a href="#实现一个函数-对一个-url-进行请求-失败就再次请求-超过最大次数就走失败回调-任何一次成功都走成功回调" class="headerlink" title="实现一个函数,对一个 url 进行请求,失败就再次请求,超过最大次数就走失败回调,任何一次成功都走成功回调"></a>实现一个函数,对一个 url 进行请求,失败就再次请求,超过最大次数就走失败回调,任何一次成功都走成功回调</h3><pre><code class="plain">/**
+    @params url: 请求接口地址;
+    @params body: 设置的请求体;
+    @params succ: 请求成功后的回调
+    @params error: 请求失败后的回调
+    @params maxCount: 设置请求的数量
+*/
+function request(url, body, succ, error, maxCount = 5) &#123;
+    return fetch(url, body)
+        .then(res =&gt; succ(res))
+        .catch(err =&gt; &#123;
+            if (maxCount &lt;= 0) return error(&#39;请求超时&#39;);
+            return request(url, body, succ, error, --maxCount);
+        &#125;);
+&#125;
+
+// 调用请求函数
+request(&#39;https://java.some.com/pc/reqCount&#39;, &#123; method: &#39;GET&#39;, headers: &#123;&#125; &#125;,
+    (res) =&gt; &#123;
+        console.log(res.data);
+    &#125;,
+    (err) =&gt; &#123;
+        console.log(err);
+    &#125;)
+</code></pre>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><pre><code class="plain">function bSort(arr) &#123;
+    var len = arr.length;
+    // 外层 for 循环控制冒泡的次数
+    for (var i = 0; i &lt; len - 1; i++) &#123;
+        for (var j = 0; j &lt; len - 1 - i; j++) &#123;
+            // 内层 for 循环控制每一次冒泡需要比较的次数
+            // 因为之后每一次冒泡的两两比较次数会越来越少，所以 -i
+            if (arr[j] &gt; arr[j + 1]) &#123;
+                var temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            &#125;
+        &#125;
+    &#125;
+    return arr;
+&#125;
+
+//举个数组
+myArr = [20, -1, 27, -7, 35];
+//使用函数
+console.log(bSort(myArr)); // [ -7, -1, 20, 27, 35 ]
+</code></pre>
+<h3 id="数组降维"><a href="#数组降维" class="headerlink" title="数组降维"></a>数组降维</h3><p>数组降维就是将一个嵌套多层的数组进行降维操作，也就是对数组进行扁平化。在 ES5 时代我们需要自己手写方法或者借助函数库来完成，但是现在可以使用 ES6 新提供的数组方法 flat 来完成数组降维操作。</p>
+<p>解析：使用 flat 方法会接收一个参数，这个参数是数值类型，是要处理扁平化数组的深度，生成后的新数组是独立存在的，不会对原数组产生影响。</p>
+<p>flat 方法的语法如下：</p>
+<pre><code class="plain">var newArray = arr.flat([depth])
+</code></pre>
+<p>其中 depth 指定要提取嵌套数组结构的深度，默认值为 1。</p>
+<p>示例如下：</p>
+<pre><code class="plain">var arr = [1, 2, [3, 4, [5, 6]]];
+console.log(arr.flat());      // [1, 2, 3, 4, [5, 6]]
+console.log(arr.flat(2));     // [1, 2, 3, 4, 5, 6]
+</code></pre>
+<p>上面的代码定义了一个层嵌套的数组，默认情况下只会拍平一层数组，也就是把原来的三维数组降低到了二维数组。在传入的参数为 2 时，则会降低两维，成为一个一维数组。</p>
+<p>使用 Infinity，可展开任意深度的嵌套数组，示例如下：</p>
+<pre><code class="plain">var arr = [1, 2, [3, 4, [5, 6, [7, 8]]]];
+console.log(arr.flat(Infinity));  // [1, 2, 3, 4, 5, 6, 7, 8]
+</code></pre>
+<p>在数组中有空项的时候，使用 flat 方法会将中的空项进行移除。</p>
+<pre><code class="plain">var arr = [1, 2, , 4, 5];
+console.log(arr.flat()); // [1, 2, 4, 5]
+</code></pre>
+<p>上面的代码中，数组中第三项是空值，在使用 flat 后会对空项进行移除。</p>
+<h3 id="flat-手写"><a href="#flat-手写" class="headerlink" title="flat 手写"></a>flat 手写</h3><pre><code class="plain">let arr = [1, [2, 3, [4, 5, [12, 3, &quot;zs&quot;], 7, [8, 9, [10, 11, [1, 2, [3, 4]]]]]]];
+
+//万能的类型检测方法
+const checkType = (arr) =&gt; &#123;
+    return Object.prototype.toString.call(arr).slice(8, -1);
+&#125;
+//自定义flat方法，注意：不可以使用箭头函数，使用后内部的this会指向window
+Array.prototype.myFlat = function (num) &#123;
+    //判断第一层数组的类型
+    let type = checkType(this);
+    //创建一个新数组，用于保存拆分后的数组
+    let result = [];
+    //若当前对象非数组则返回undefined
+    if (!Object.is(type, &quot;Array&quot;)) &#123;
+        return;
+    &#125;
+    //遍历所有子元素并判断类型，若为数组则继续递归，若不为数组则直接加入新数组
+    this.forEach((item) =&gt; &#123;
+        let cellType = checkType(item);
+        if (Object.is(cellType, &quot;Array&quot;)) &#123;
+            //形参num，表示当前需要拆分多少层数组，传入Infinity则将多维直接降为一维
+            num--;
+            if (num &lt; 0) &#123;
+                let newArr = result.push(item);
+                return newArr;
+            &#125;
+            //使用三点运算符解构，递归函数返回的数组，并加入新数组
+            result.push(...item.myFlat(num));
+        &#125; else &#123;
+            result.push(item);
+        &#125;
+    &#125;)
+    return result;
+&#125;
+console.time();
+
+console.log(arr.flat(Infinity)); //[1, 2, 3, 4, 5, 12, 3, &quot;zs&quot;, 7, 8, 9, 10, 11, 1, 2, 3, 4];
+
+console.log(arr.myFlat(Infinity)); //[1, 2, 3, 4, 5, 12, 3, &quot;zs&quot;, 7, 8, 9, 10, 11, 1, 2, 3, 4];
+//自定义方法和自带的flat返回结果一致!!!!
+console.timeEnd();
+</code></pre>
+<h3 id="reduce-手写"><a href="#reduce-手写" class="headerlink" title="reduce 手写"></a>reduce 手写</h3><pre><code class="plain">Array.prototype.my_reduce = function (callback, initialValue) &#123;
+    if (!Array.isArray(this) || !this.length || typeof callback !== &#39;function&#39;) &#123;
+        return []
+    &#125; else &#123;
+        // 判断是否有初始值
+        let hasInitialValue = initialValue !== undefined;
+        let value = hasInitialValue ? initialValue : tihs[0];
+        for (let index = hasInitialValue ? 0 : 1; index &lt; this.length; index++) &#123;
+            const element = this[index];
+            value = callback(value, element, index, this)
+        &#125;
+        return value
+    &#125;
+&#125;
+
+let arr = [1, 2, 3, 4, 5]
+let res = arr.my_reduce((pre, cur, i, arr) =&gt; &#123;
+    console.log(pre, cur, i, arr)
+    return pre + cur
+&#125;, 10)
+console.log(res)//25
+</code></pre>
+<h3 id="实现一个-sleep-函数"><a href="#实现一个-sleep-函数" class="headerlink" title="实现一个 sleep 函数"></a>实现一个 sleep 函数</h3><pre><code class="plain">function sleep(delay) &#123;
+    var start = (new Date()).getTime();
+    while ((new Date()).getTime() - start &lt; delay) &#123;
+        continue;
+    &#125;
+&#125;
+
+function test() &#123;
+    console.log(&#39;111&#39;);
+    sleep(2000);
+    console.log(&#39;222&#39;);
+&#125;
+
+test()
+</code></pre>
+<p>这种实现方式是利用一个伪死循环阻塞主线程。因为 JS 是单线程的。所以通过这种方式可以实现真正意义上的 sleep。</p>
+<h3 id="实现-5-add-3-sub-2"><a href="#实现-5-add-3-sub-2" class="headerlink" title="实现 5.add(3).sub(2)"></a>实现 5.add(3).sub(2)</h3><p>这里想要实现的是链式操作，那么我们可以考虑在 Number 类型的原型上添加 add 和 sub 方法，这两个方法返回新的数</p>
+<pre><code class="plain">Number.prototype.add = function (number) &#123;
+    if (typeof number !== &#39;number&#39;) &#123;
+        throw new Error(&#39;请输入数字～&#39;);
+    &#125;
+    return this.valueOf() + number;
+&#125;;
+Number.prototype.minus = function (number) &#123;
+    if (typeof number !== &#39;number&#39;) &#123;
+        throw new Error(&#39;请输入数字～&#39;);
+    &#125;
+    return this.valueOf() - number;
+&#125;;
+console.log((5).add(3).minus(2)); // 6
+</code></pre>
+<h3 id="给定两个数组，求交集"><a href="#给定两个数组，求交集" class="headerlink" title="给定两个数组，求交集"></a>给定两个数组，求交集</h3><p>示例代码如下：</p>
+<pre><code class="plain">function intersect(nums1, nums2) &#123;
+    let i = j = 0,
+        len1 = nums1.length,
+        len2 = nums2.length,
+        newArr = [];
+    if (len1 === 0 || len2 === 0) &#123;
+        return newArr;
+    &#125;
+    nums1.sort(function (a, b) &#123;
+        return a - b;
+    &#125;);
+    nums2.sort(function (a, b) &#123;
+        return a - b;
+    &#125;);
+    while (i &lt; len1 || j &lt; len2) &#123;
+        if (nums1[i] &gt; nums2[j]) &#123;
+            j++;
+        &#125; else if (nums1[i] &lt; nums2[j]) &#123;
+            i++;
+        &#125; else &#123;
+            if (nums1[i] === nums2[j]) &#123;
+                newArr.push(nums1[i]);
+            &#125;
+            if (i &lt; len1 - 1) &#123;
+                i++;
+            &#125; else &#123;
+                break;
+            &#125;
+            if (j &lt; len2 - 1) &#123;
+                j++;
+            &#125; else &#123;
+                break;
+            &#125;
+        &#125;
+    &#125;
+    return newArr;
+&#125;;
+// 测试
+console.log(intersect([3, 5, 8, 1], [2, 3]));
+</code></pre>
+<h3 id="实现一个字符串匹配算法，从长度为-n-的字符串-S-中，查找是否存在字符串-T，T-的长度是-m，若存在返回所在位置。"><a href="#实现一个字符串匹配算法，从长度为-n-的字符串-S-中，查找是否存在字符串-T，T-的长度是-m，若存在返回所在位置。" class="headerlink" title="实现一个字符串匹配算法，从长度为 n 的字符串 S 中，查找是否存在字符串 T，T 的长度是 m，若存在返回所在位置。"></a>实现一个字符串匹配算法，从长度为 n 的字符串 S 中，查找是否存在字符串 T，T 的长度是 m，若存在返回所在位置。</h3><pre><code class="plain">// 完全不用 API
+var getIndexOf = function (s, t) &#123;
+    let n = s.length;
+    let m = t.length;
+    if (!n || !m || n &lt; m) return -1;
+    for (let i = 0; i &lt; n; i++) &#123;
+        let j = 0;
+        let k = i;
+        if (s[k] === t[j]) &#123;
+            k++; j++;
+            while (k &lt; n &amp;&amp; j &lt; m) &#123;
+                if (s[k] !== t[j]) break;
+                else &#123;
+                    k++; j++;
+                &#125;
+            &#125;
+            if (j === m) return i;
+        &#125;
+    &#125;
+    return -1;
+&#125;
+
+// 测试
+console.log(getIndexOf(&quot;Hello World&quot;, &quot;rl&quot;))
+</code></pre>
+<h3 id="使用-JavaScript-Proxy-实现简单的数据绑定"><a href="#使用-JavaScript-Proxy-实现简单的数据绑定" class="headerlink" title="使用 JavaScript Proxy 实现简单的数据绑定"></a>使用 JavaScript Proxy 实现简单的数据绑定</h3><pre><code class="plain">&lt;body&gt;
+  hello,world
+  &lt;input type=&quot;text&quot; id=&quot;model&quot;&gt;
+  &lt;p id=&quot;word&quot;&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;script&gt;
+  const model = document.getElementById(&quot;model&quot;)
+  const word = document.getElementById(&quot;word&quot;)
+  var obj= &#123;&#125;;
+
+  const newObj = new Proxy(obj, &#123;
+      get: function(target, key, receiver) &#123;
+        console.log(`getting $&#123;key&#125;!`);
+        return Reflect.get(target, key, receiver);
+      &#125;,
+      set: function(target, key, value, receiver) &#123;
+        console.log(&#39;setting&#39;,target, key, value, receiver);
+        if (key === &quot;text&quot;) &#123;
+          model.value = value;
+          word.innerHTML = value;
+        &#125;
+        return Reflect.set(target, key, value, receiver);
+      &#125;
+    &#125;);
+
+  model.addEventListener(&quot;keyup&quot;,function(e)&#123;
+    newObj.text = e.target.value
+  &#125;)
+&lt;/script&gt;
+</code></pre>
+<h3 id="打印出-1-10000-以内的对称数"><a href="#打印出-1-10000-以内的对称数" class="headerlink" title="打印出 1~10000 以内的对称数"></a>打印出 1~10000 以内的对称数</h3><pre><code class="plain">function isSymmetryNum(start, end) &#123;
+    for (var i = start; i &lt; end + 1; i++) &#123;
+        var iInversionNumber = +(i.toString().split(&quot;&quot;).reverse().join(&quot;&quot;));
+
+        if (iInversionNumber === i &amp;&amp; i &gt; 10) &#123;
+            console.log(i);
+        &#125;
+
+    &#125;
+&#125;
+isSymmetryNum(1, 10000);
+</code></pre>
+<h3 id="实现一个函数-clone-可以对-Javascript-中的五种主要数据类型（Number、string、-Object、Array、Boolean）进行复制"><a href="#实现一个函数-clone-可以对-Javascript-中的五种主要数据类型（Number、string、-Object、Array、Boolean）进行复制" class="headerlink" title="实现一个函数 clone 可以对 Javascript 中的五种主要数据类型（Number、string、 Object、Array、Boolean）进行复制"></a>实现一个函数 clone 可以对 Javascript 中的五种主要数据类型（Number、string、 Object、Array、Boolean）进行复制</h3><pre><code class="plain">/**
+* 对象克隆
+* 支持基本数据类型及对象
+* 递归方法
+*/
+function clone(obj) &#123;
+    var o;
+    switch (typeof obj) &#123;
+        case &quot;undefined&quot;:
+            break;
+        case &quot;string&quot;:
+            o = obj + &quot;&quot;;
+            break;
+        case &quot;number&quot;:
+            o = obj - 0;
+            break;
+        case &quot;boolean&quot;:
+            o = obj;
+            break;
+        case &quot;object&quot;: // object 分为两种情况 对象（Object）或数组（Array）
+            if (obj === null) &#123;
+                o = null;
+            &#125; else &#123;
+                if (Object.prototype.toString.call(obj).slice(8, -1) === &quot;Array&quot;) &#123;
+                    o = [];
+                    for (var i = 0; i &lt; obj.length; i++) &#123;
+                        o.push(clone(obj[i]));
+                    &#125;
+                &#125; else &#123;
+                    o = &#123;&#125;;
+                    for (var k in obj) &#123;
+                        o[k] = clone(obj[k]);
+                    &#125;
+                &#125;
+            &#125;
+            break;
+        default:
+            o = obj;
+            break;
+    &#125;
+    return o;
+&#125;
+</code></pre>
+<h3 id="使用递归完成-1-到-100-的累加"><a href="#使用递归完成-1-到-100-的累加" class="headerlink" title="使用递归完成 1 到 100 的累加"></a>使用递归完成 1 到 100 的累加</h3><pre><code class="plain">function add(x, y)&#123;
+    if(x === y)&#123;
+        return x;
+    &#125; else &#123;
+        return y + add(x, y-1);
+    &#125;
+&#125;
+
+console.log(add(1, 100))
+</code></pre>
+<h3 id="产生一个不重复的随机数组"><a href="#产生一个不重复的随机数组" class="headerlink" title="产生一个不重复的随机数组"></a>产生一个不重复的随机数组</h3><pre><code class="plain">// 生成随机数
+function randomNumBoth(Min, Max) &#123;
+    var Range = Max - Min;
+    var Rand = Math.random();
+    var num = Min + Math.round(Rand * Range); //四舍五入
+    return num;
+&#125;
+// 生成数组
+function randomArr(len, min, max) &#123;
+    if ((max - min) &lt; len) &#123; //可生成数的范围小于数组长度
+        return null;
+    &#125;
+    var hash = [];
+
+    while (hash.length &lt; len) &#123;
+        var num = randomNumBoth(min, max);
+
+        if (hash.indexOf(num) == -1) &#123;
+            hash.push(num);
+        &#125;
+    &#125;
+    return hash;
+&#125;
+// 测试
+console.log(randomArr(10, 1, 100));
+</code></pre>
+<p>在上面的代码中，我们封装了一个 randomArr 方法来生成这个不重复的随机数组，该方法接收三个参数，len、min 和 max，分别表示数组的长度、最小值和最大值。randomNumBoth 方法用来生成随机数。</p>
+<h3 id="给你一个数组，计算每个数出现的次数，如果每个数组返回的数都是独一无二的就返回-true-相反则返回的-false"><a href="#给你一个数组，计算每个数出现的次数，如果每个数组返回的数都是独一无二的就返回-true-相反则返回的-false" class="headerlink" title="给你一个数组，计算每个数出现的次数，如果每个数组返回的数都是独一无二的就返回 true 相反则返回的 false"></a>给你一个数组，计算每个数出现的次数，如果每个数组返回的数都是独一无二的就返回 true 相反则返回的 false</h3><p>输入：arr = [1,2,2,1,1,3]</p>
+<p>输出：true</p>
+<p>解释：在该数组中，1 出现了 3 次，2 出现了 2 次，3 只出现了 1 次。没有两个数的出现次数相同。</p>
+<p>代码示例：</p>
+<pre><code class="plain">function uniqueOccurrences(arr) &#123;
+    let uniqueArr = [...new Set(arr)]
+    let countArr = []
+    for (let i = 0; i &lt; uniqueArr.length; i++) &#123;
+        countArr.push(arr.filter(item =&gt; item == uniqueArr[i]).length)
+    &#125;
+    return countArr.length == new Set(countArr).size
+&#125;;
+
+// 测试
+console.log(uniqueOccurrences([1, 2, 2, 1, 1, 3])); // true
+console.log(uniqueOccurrences([1, 2, 2, 1, 1, 3, 2])); // false
+</code></pre>
+<h3 id="封装一个能够统计重复的字符的函数，例如-aaabbbdddddfff-转化为-3a3b5d3f"><a href="#封装一个能够统计重复的字符的函数，例如-aaabbbdddddfff-转化为-3a3b5d3f" class="headerlink" title="封装一个能够统计重复的字符的函数，例如 aaabbbdddddfff 转化为 3a3b5d3f"></a>封装一个能够统计重复的字符的函数，例如 aaabbbdddddfff 转化为 3a3b5d3f</h3><pre><code class="plain">function compression(str) &#123;
+    if (str.length == 0) &#123;
+        return 0;
+    &#125;
+    var len = str.length;
+    var str2 = &quot;&quot;;
+    var i = 0;
+    var num = 1;
+    while (i &lt; len) &#123;
+        if (str.charAt(i) == str.charAt(i + 1)) &#123;
+            num++;
+        &#125; else &#123;
+            str2 += num;
+            str2 += str.charAt(i);
+            num = 1;
+        &#125;
+        i++;
+    &#125;
+    return str2;
+&#125;
+// 测试：
+console.log(compression(&#39;aaabbbdddddfff&#39;)); // 3a3b5d3f
+</code></pre>
+<h3 id="请实现一个模块-math，支持链式调用-math-add-2-4-minus-3-times-2"><a href="#请实现一个模块-math，支持链式调用-math-add-2-4-minus-3-times-2" class="headerlink" title="请实现一个模块 math，支持链式调用 math.add(2,4).minus(3).times(2);"></a>请实现一个模块 math，支持链式调用 math.add(2,4).minus(3).times(2);</h3><pre><code class="plain">class Math &#123;
+    constructor(value) &#123;
+        let hasInitValue = true;
+        if (value === undefined) &#123;
+            value = NaN;
+            hasInitValue = false;
+        &#125;
+        Object.defineProperties(this, &#123;
+            value: &#123;
+                enumerable: true,
+                value: value,
+            &#125;,
+            hasInitValue: &#123;
+                enumerable: false,
+                value: hasInitValue,
+            &#125;,
+        &#125;);
+    &#125;
+
+    add(...args) &#123;
+        const init = this.hasInitValue ? this.value : args.shift();
+        const value = args.reduce((pv, cv) =&gt; pv + cv, init);
+        return new Math(value);
+    &#125;
+
+    minus(...args) &#123;
+        const init = this.hasInitValue ? this.value : args.shift();
+        const value = args.reduce((pv, cv) =&gt; pv - cv, init);
+        return new Math(value);
+    &#125;
+
+    times(...args) &#123;
+        const init = this.hasInitValue ? this.value : args.shift();
+        const value = args.reduce((pv, cv) =&gt; pv * cv, init);
+        return new Math(value);
+    &#125;
+
+    divide(...args) &#123;
+        const init = this.hasInitValue ? this.value : args.shift();
+        const value = args.reduce((pv, cv) =&gt; pv / cv, init);
+        return new Math(value);
+    &#125;
+
+    toJSON() &#123;
+        return this.valueOf();
+    &#125;
+
+    toString() &#123;
+        return String(this.valueOf());
+    &#125;
+
+    valueOf() &#123;
+        return this.value;
+    &#125;
+
+    [Symbol.toPrimitive](hint) &#123;
+        const value = this.value;
+        if (hint === &#39;string&#39;) &#123;
+            return String(value);
+        &#125; else &#123;
+            return value;
+        &#125;
+    &#125;
+&#125;
+
+export default new Math();
+</code></pre>
+<h3 id="设计⼀个⽅法以判断是否回⽂-颠倒后的字符串和原来的字符串⼀样为回⽂"><a href="#设计⼀个⽅法以判断是否回⽂-颠倒后的字符串和原来的字符串⼀样为回⽂" class="headerlink" title="设计⼀个⽅法以判断是否回⽂(颠倒后的字符串和原来的字符串⼀样为回⽂)"></a>设计⼀个⽅法以判断是否回⽂(颠倒后的字符串和原来的字符串⼀样为回⽂)</h3><pre><code class="plain">function isPalindrome(str) &#123;
+    if (typeof str !== &#39;string&#39;) &#123;
+        return false
+    &#125;
+    return str.split(&#39;&#39;).reverse().join(&#39;&#39;) === str
+&#125;
+
+// 测试
+console.log(isPalindrome(&#39;HelleH&#39;)); // true
+console.log(isPalindrome(&#39;Hello&#39;)); // false
+</code></pre>
+<h3 id="设计⼀个⽅法以统计字符串中出现最多次数的字符"><a href="#设计⼀个⽅法以统计字符串中出现最多次数的字符" class="headerlink" title="设计⼀个⽅法以统计字符串中出现最多次数的字符"></a>设计⼀个⽅法以统计字符串中出现最多次数的字符</h3><pre><code class="plain">function findMaxDuplicateChar(str) &#123;
+    let cnt = &#123;&#125;;   //用来记录所有的字符的出现频次
+    let c = &#39;&#39;;        //用来记录最大频次的字符
+    for (let i = 0; i &lt; str.length; i++) &#123;
+        let ci = str[i];
+        if (!cnt[ci]) &#123;
+            cnt[ci] = 1;
+        &#125; else &#123;
+            cnt[ci]++;
+        &#125;
+        if (c == &#39;&#39; || cnt[ci] &gt; cnt[c]) &#123;
+            c = ci;
+        &#125;
+    &#125;
+    console.log(cnt); // &#123; H: 1, e: 1, l: 3, o: 2, &#39; &#39;: 1, W: 1, r: 1, d: 1 &#125;
+    return c;
+&#125;
+
+// 测试
+console.log(findMaxDuplicateChar(&#39;Hello World&#39;)); // l
+</code></pre>
+<h3 id="设计⼀段代码，使得通过点击按钮可以在-span-中显示⽂本框中输⼊的值"><a href="#设计⼀段代码，使得通过点击按钮可以在-span-中显示⽂本框中输⼊的值" class="headerlink" title="设计⼀段代码，使得通过点击按钮可以在 span 中显示⽂本框中输⼊的值"></a>设计⼀段代码，使得通过点击按钮可以在 span 中显示⽂本框中输⼊的值</h3><pre><code class="html">&lt;body&gt;
+  &lt;span id=&quot;showContent&quot;&gt;在右侧输入框中输入内容&lt;/span&gt;
+  &lt;input type=&quot;text&quot; name=&quot;content&quot; id=&quot;content&quot; /&gt;
+  &lt;button id=&quot;btn&quot;&gt;更新内容&lt;/button&gt;
+  &lt;script&gt;
+    btn.onclick = function () &#123;
+      var content = document.getElementById(&quot;content&quot;).value;
+      if (content) &#123;
+        document.getElementById(&quot;showContent&quot;).innerHTML = content;
+      &#125;
+    &#125;;
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<h3 id="合并二维有序数组成一维有序数组，归并排序的思路"><a href="#合并二维有序数组成一维有序数组，归并排序的思路" class="headerlink" title="合并二维有序数组成一维有序数组，归并排序的思路"></a>合并二维有序数组成一维有序数组，归并排序的思路</h3><pre><code class="plain">function merge(left, right) &#123;
+    let result = []
+    while (left.length &gt; 0 &amp;&amp; right.length &gt; 0) &#123;
+        if (left[0] &lt; right[0]) &#123;
+            result.push(left.shift())
+        &#125; else &#123;
+            result.push(right.shift())
+        &#125;
+    &#125;
+    return result.concat(left).concat(right)
+&#125;
+function mergeSort(arr) &#123;
+    if (arr.length === 1) &#123;
+        return arr
+    &#125;
+    while (arr.length &gt; 1) &#123;
+        let arrayItem1 = arr.shift();
+        let arrayItem2 = arr.shift();
+        let mergeArr = merge(arrayItem1, arrayItem2);
+        arr.push(mergeArr);
+    &#125;
+    return arr[0]
+&#125;
+
+let arr1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 2, 3], [4, 5, 6]];
+let arr2 = [[1, 4, 6], [7, 8, 10], [2, 6, 9], [3, 7, 13], [1, 5, 12]];
+console.log(mergeSort(arr1))
+console.log(mergeSort(arr2))
+</code></pre>
+<h3 id="给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。"><a href="#给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。" class="headerlink" title="给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。"></a>给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。</h3><p>首先，我们肯定需要封装一个函数，而这个函数接收一个字符串作为参数，返回不含有重复字符的子串长度。来看下面的示例：</p>
+<p>示例 1:</p>
+<p>输入: “abcabcbb” 输出: 3 解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。</p>
+<p>示例 2:</p>
+<p>输入: “bbbbb” 输出: 1 解释: 因为无重复字符的最长子串是 “b”，所以其长度为 1。</p>
+<p>示例 3:</p>
+<p>输入: “pwwkew” 输出: 3 解释: 因为无重复字符的最长子串是 “wke”，所以其长度为 3。 请注意，你的答案必须是 子串 的长度，“pwke” 是一个子序列，不是子串。</p>
+<p>示例代码：</p>
+<pre><code class="plain">var lengthOfLongestSubstring = function (s) &#123;
+    var y = [];
+    var temp = [];
+    var maxs = 0;
+    if (s == &quot;&quot;) &#123;
+        return 0;
+    &#125;
+    if (s.length == 1) &#123;
+        return 1;
+    &#125;
+    for (var i = 0; i &lt; s.length; i++) &#123;
+        if (temp.includes(s[i])) &#123;
+
+            y.push(temp.length);
+            temp.shift();
+            continue;
+        &#125; else &#123;
+            temp.push(s[i])
+            y.push(temp.length);
+        &#125;
+
+    &#125;
+    for (var j = 0; j &lt; y.length; j++) &#123;
+        if (maxs &lt;= y[j]) &#123;
+            maxs = y[j]
+        &#125;
+    &#125;
+    return maxs;
+&#125;;
+// 测试
+console.log(lengthOfLongestSubstring(&#39;abcabcbb&#39;)); // 3
+console.log(lengthOfLongestSubstring(&#39;bbbbb&#39;)); // 1
+console.log(lengthOfLongestSubstring(&#39;pwwkew&#39;)); // 3
+</code></pre>
+<h3 id="有一堆整数，请把他们分成三份，确保每一份和尽量相等（11，42，23，4，5，6-4-5-6-11-23-42-56-78-90）"><a href="#有一堆整数，请把他们分成三份，确保每一份和尽量相等（11，42，23，4，5，6-4-5-6-11-23-42-56-78-90）" class="headerlink" title="有一堆整数，请把他们分成三份，确保每一份和尽量相等（11，42，23，4，5，6 4 5 6 11 23 42 56 78 90）"></a>有一堆整数，请把他们分成三份，确保每一份和尽量相等（11，42，23，4，5，6 4 5 6 11 23 42 56 78 90）</h3><p>本道题目是一道考察算法的题目，主要是考察编程基本功和一定的想像力。</p>
+<pre><code class="plain">const testArr = [11, 42, 23, 4, 5, 6, 4, 5, 6, 11, 23, 42, 56, 78, 90];
+function avarageSum(n, arr) &#123;
+ //    找到平均值
+ const sum = arr.reduce((a, b) =&gt; a + b, 0)
+ const ava = Math.round(sum / n);
+ // 生成一个长度为n的二维数组
+ let target = new Array(n).fill(0).map(()=&gt;[])
+ // const target = [[], [], []];
+ let cursor;
+ let max = 0;
+ let maxIdx = 0;
+ // 所有数组需要尽量加到ava
+ while (arr.length &gt; 0) &#123;
+     // 得到当前arr数组最大的数
+     // 出数器
+     // 出数器负责拿出当前数组中最大的那个数
+     for (let i = 0; i &lt; arr.length; i++) &#123;
+         if (arr[i] &gt; max) &#123;
+             max = arr[i];
+             maxIdx = i
+         &#125;
+     &#125;
+     // arr数组中删除最大数
+     const temparr = arr.splice(maxIdx, 1);
+
+     // 计算差距的函数 找到差距(距离平均值)最大的那一组 返回下标
+     cursor = getMaxDis(target, ava);
+
+     // console.log(&quot;下标&quot;, cursor)
+     // 加入
+     target[cursor].push(temparr[0]);
+     // 重置
+     max = 0;
+     maxIdx = 0;
+ &#125;
+ return target.map(item=&gt;&#123;
+     // 返回累加结果
+     let sum = item.reduce((a,b)=&gt;a+b,0);
+     item.sum = sum
+     return item
+ &#125;)
+
+&#125;
+function getMaxDis(origin, stand) &#123;
+ // 计算origin数组中和stand最大差距的那一组
+ const len = origin.length;
+ let i = 0;
+ let maxDis;
+ let maxDisIdx;
+ while (i &lt; len) &#123;
+     const sum = origin[i].reduce((a, b) =&gt; a + b, 0);
+     const dis = stand - sum;
+     if (i === 0) &#123;
+         maxDis = dis;
+         maxDisIdx = 0
+     &#125;
+     if (dis &gt; maxDis) &#123;
+         maxDis = dis;
+         maxDisIdx = i
+     &#125;
+     i++;
+ &#125;
+ return maxDisIdx
+
+&#125;
+console.log(avarageSum(3, testArr))
+/*
+  [
+      [ 90, 23, 11, 6, 5, sum: 135 ],
+      [ 78, 42, 11, 4, sum: 135 ],
+      [ 56, 42, 23, 6, 5, 4, sum: 136 ]
+   ]
+ */
+</code></pre>
+<h3 id="手写发布订阅"><a href="#手写发布订阅" class="headerlink" title="手写发布订阅"></a>手写发布订阅</h3><pre><code class="html">&lt;body&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;p&gt;this is a test&lt;/p&gt;
+    &#123;&#123;msg&#125;&#125;&lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;&#123;&#123;msg&#125;&#125;
+  &lt;/div&gt;
+  &lt;script src=&quot;./index.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    const vm = new Vue(&#123;
+      el: &quot;#app&quot;,
+      data: &#123;
+        msg: &quot;&quot;,
+      &#125;,
+    &#125;);
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="plain">/*
+    1. 创建 Vue 构造函数
+        在 Vue 构造函数中，调用了 observer 函数，该函数的作用就是对数据进行劫持
+        劫持具体要做的事儿：复制一份数据，但是不是单纯的复制，而是增加了 getter、setter
+    2. 书写 compile 函数。该函数主要作用于模板，从模板里面要提取信息
+        提取的东西主要有两个：&#123;&#123;&#125;&#125;  和 v-model
+    3. 创建发布者 Dep 的构造函数，如果数据发生变化，发布者就会遍历内部的数组（花名册），通知订阅者修改数据
+    4. 创建订阅者 Watcher 的构造函数，如果有数据的变化，发布者就会通知订阅者，订阅者上面存在 update 方法，会进行修改
+ */
+
+function Vue(options)&#123;
+    // this 代表 Vue 的实例对象，本例中就是 vm
+    // options.data 这就是实际的数据 &#123;msg : &#39;xiejie&#39;&#125;
+    observer(this,options.data);
+    this.$el = options.el;
+    compile(this);
+&#125;
+
+// 用于对模板进行信息提取，主要提取 &#123;&#123;&#125;&#125;  和 v-model，然后进行一些操作
+// &#123;&#123; &#125;&#125; 会成为观察者，v-model 所对应的控件来绑定事件
+function compile(vm)&#123;
+    var el = document.querySelector(vm.$el); // el 所对应的值为 &lt;div id=&quot;app&quot;&gt;...&lt;/div&gt;
+    var documentFragment = document.createDocumentFragment(); // 创建了一个空的文档碎片
+    var reg = /\&#123;\&#123;(.*)\&#125;\&#125;/; // 创建正则表达式 匹配 &#123;&#123; &#125;&#125;
+    while(el.childNodes[0])&#123;
+        var child = el.childNodes[0]; // 将第一个子节点存储到 child
+        if(child.nodeType == 1)&#123;
+            // 如果能够进入此 if，说明该节点是一个元素节点
+            for(var key in child.attributes)&#123;
+                // 遍历该元素节点的每一个属性，拿到的就是 type=&quot;text&quot; v-model=&quot;msg&quot;
+                var attrName = child.attributes[key].nodeName; // 获取属性名  type、v-model
+                if(attrName === &#39;v-model&#39;)&#123;
+                    var vmKey = child.attributes[key].nodeValue; // 先获取属性值，也就是 msg
+                    // 为该节点，也就是 &lt;input type=&quot;text&quot; v-model=&quot;msg&quot;&gt; 绑定一个 input 事件
+                    child.addEventListener(&#39;input&#39;, function (event) &#123;
+                        vm[vmKey] = event.target.value; // 获取用户输入的值，然后改变 vm 里面的 msg 属性对应的值，注意这里会触发 setter
+                    &#125;)
+                &#125;
+            &#125;
+        &#125;
+        if(child.nodeType == 3)&#123;
+            // 如果能进入此 if，说明该节点是一个文本节点
+            if(reg.test(child.nodeValue))&#123;
+                // 如果能够进入到此 if，说明是 &#123;&#123; &#125;&#125;，然后我们要让其成为订阅者
+                var vmKey = RegExp.$1; // 获取正则里面的捕获值，也就是 msg
+                // 实例化一个 Watcher（订阅者），接收 3 个参数：Vue 实例，该文本节点，捕获值 msg
+                new Watcher(vm, child, vmKey);
+            &#125;
+        &#125;
+        documentFragment.appendChild(el.childNodes[0]); // 将第一个子节点添加到文档碎片里面
+    &#125;
+    // 将文档碎片中节点重新添加到 el，也就是 &lt;div id=&quot;app&quot;&gt;&lt;/div&gt; 下面
+    el.appendChild(documentFragment);
+&#125;
+
+// 新建发布者构造函数
+function Dep() &#123;
+    // 将观察者添加到发布者内部的数组里面
+    // 这样以便于通知所有的观察者去更新数据
+    this.subs = [];
+&#125;
+
+Dep.prototype = &#123;
+    // 将 watcher 添加到发布者内置的数组里面
+    addSub: function (sub) &#123;
+        this.subs.push(sub);
+
+    &#125;,
+    // 遍历数组里面所有的 watcher，通知它们去更新数据
+    notify: function () &#123;
+        this.subs.forEach(function (sub) &#123;
+            sub.update();
+        &#125;)
+    &#125;
+&#125;
+
+// 新建观察者 Watcher 构造函数
+// 接收 3 个参数：Vue 实例，文本节点 &#123;&#123; msg &#125;&#125; 以及捕获内容 msg
+function Watcher(vm, child, vmKey) &#123;
+    this.vm = vm; // vm
+    this.child = child; // &#123;&#123; msg &#125;&#125;
+    this.vmKey = vmKey; // msg
+    Dep.target = this; // 将该观察者实例对象添加给 Dep.target
+    this.update(); // 执行节点更新方法
+    Dep.target = null; // 最后清空 Dep.target
+&#125;
+Watcher.prototype = &#123;
+    // 节点更新方法
+    update: function () &#123;
+        // 相当于：&#123;&#123; msg &#125;&#125;.nodeValue = this.vm[&#39;msg&#39;]
+        // 这样就更新了文本节点的值，由于这里在获取 vm.msg，所以会触发 getter
+        this.child.nodeValue = this.vm[this.vmKey];
+    &#125;
+&#125;
+
+// 该函数的作用是用于数据侦听
+function observer(vm,obj)&#123;
+    var dep = new Dep(); // 新增一个发布者:发布者的作用是告诉订阅者数据已经更改
+    // 遍历数据
+    for(var key in obj)&#123;
+        // 将数据的每一项添加到 vm 里面，至此，vm 也有了每一项数据
+        // 但是不是单纯的添加，而是设置了 getter 和 setter
+        // 在获取数据时触发 getter，在设置数据时触发 setter
+        Object.defineProperty(vm, key, &#123;
+            get() &#123;
+                console.log(&quot;触发get了&quot;);
+                // 触发 getter 时，将该 watcher 添加到发布者维护的数组里面
+                if (Dep.target) &#123;
+                    dep.addSub(Dep.target); // 往发布者的数组里面添加订阅者
+                &#125;
+                console.log(dep.subs);
+                return obj[key];
+            &#125;,
+            set(newVal) &#123;
+                console.log(&quot;触发set了&quot;);
+                obj[key] = newVal;
+                dep.notify(); // 发布者发出消息，通知订阅者修改数据
+            &#125;
+        &#125;);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="手写用-ES6proxy-如何实现-arr-1-的访问"><a href="#手写用-ES6proxy-如何实现-arr-1-的访问" class="headerlink" title="手写用 ES6proxy 如何实现 arr[-1] 的访问"></a>手写用 ES6proxy 如何实现 arr[-1] 的访问</h3><pre><code class="plain">const proxyArray = arr =&gt; &#123;
+    const length = arr.length;
+    return new Proxy(arr, &#123;
+        get(target, key) &#123;
+            key = +key;
+            while (key &lt; 0) &#123;
+                key += length;
+            &#125;
+            return target[key];
+        &#125;
+    &#125;)
+&#125;;
+var a = proxyArray([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+console.log(a[1]);  // 2
+console.log(a[-10]);  // 9
+console.log(a[-20]);  // 8
+</code></pre>
+<h3 id="提取高度嵌套的对象里的指定属性？"><a href="#提取高度嵌套的对象里的指定属性？" class="headerlink" title="提取高度嵌套的对象里的指定属性？"></a>提取高度嵌套的对象里的指定属性？</h3><p>一般会使用递归的方式来进行查找。下面是一段示例代码：</p>
+<pre><code class="plain">function findKey(data, field) &#123;
+    let finding = &#39;&#39;;
+    for (const key in data) &#123;
+        if (key === field) &#123;
+            finding = data[key];
+        &#125;
+        if (typeof (data[key]) === &#39;object&#39;) &#123;
+            finding = findKey(data[key], field);
+        &#125;
+        if (finding) &#123;
+            return finding;
+        &#125;
+    &#125;
+    return null;
+&#125;
+// 测试
+console.log(findKey(&#123;
+    name: &#39;zhangsan&#39;,
+    age: 18,
+    stuInfo: &#123;
+        stuNo: 1,
+        classNo: 2,
+        score: &#123;
+            htmlScore: 100,
+            cssScore: 90,
+            jsScore: 95
+        &#125;
+    &#125;
+&#125;, &#39;cssScore&#39;)); // 90
+</code></pre>
+<h2 id="代码运行题"><a href="#代码运行题" class="headerlink" title="代码运行题"></a>代码运行题</h2><h3 id="描述下列代码的执行结果"><a href="#描述下列代码的执行结果" class="headerlink" title="描述下列代码的执行结果"></a>描述下列代码的执行结果</h3><pre><code class="plain">foo(typeof a);
+function foo(p) &#123;
+    console.log(this);
+    console.log(p);
+    console.log(typeof b);
+    let b = 0;
+&#125;
+
+
+typeof a 由于a没有定义 会得到undefined
+</code></pre>
+<p>报错，报错的位置在 console.log(typeof b);</p>
+<p>报错原因：ReferenceError: Cannot access ‘b’ before initialization</p>
+<h3 id="描述下列代码的执行结果-1"><a href="#描述下列代码的执行结果-1" class="headerlink" title="描述下列代码的执行结果"></a>描述下列代码的执行结果</h3><pre><code class="plain">class Foo &#123;
+    constructor(arr) &#123;
+        this.arr = arr;
+    &#125;
+    bar(n) &#123;
+        return this.arr.slice(0, n);
+    &#125;
+&#125;
+var f = new Foo([0, 1, 2, 3]);
+console.log(f.bar(1));
+console.log(f.bar(2).splice(1, 1));
+console.log(f.arr);
+</code></pre>
+<p>参考答案：</p>
+<p>[ 0 ]</p>
+<p>[ 1 ]</p>
+<p>[ 0, 1, 2, 3 ]</p>
+<h3 id="描述下列代码的执行结果-2"><a href="#描述下列代码的执行结果-2" class="headerlink" title="描述下列代码的执行结果"></a>描述下列代码的执行结果</h3><pre><code class="plain">var a = 2;
+var b = 5;
+console.log(a === 2 || 1 &amp;&amp; b === 3 || 4);
+</code></pre>
+<p>true</p>
+<p>考察的是逻辑运算符。在 || 里面，只要有一个为真，后面的直接短路，都不用去计算。所以 a === 2 得到 true 之后直接短路了，返回 true。</p>
+<h3 id="描述下列代码的执行结果-3"><a href="#描述下列代码的执行结果-3" class="headerlink" title="描述下列代码的执行结果"></a>描述下列代码的执行结果</h3><pre><code class="plain">const first = () =&gt; (new Promise((resolve, reject) =&gt; &#123;
+    console.log(3);
+    let p = new Promise((resolve, reject) =&gt; &#123;
+        console.log(7);
+        setTimeout(() =&gt; &#123;
+            console.log(1);
+        &#125;, 0);
+        setTimeout(() =&gt; &#123;
+            console.log(2);
+            resolve(3);
+        &#125;, 0)
+        resolve(4);
+    &#125;);
+    resolve(2);
+    p.then((arg) =&gt; &#123;
+        console.log(arg, 5); // 1 bb
+    &#125;);
+    setTimeout(() =&gt; &#123;
+        console.log(6);
+    &#125;, 0);
+&#125;))
+first().then((arg) =&gt; &#123;
+    console.log(arg, 7); // 2 aa
+    setTimeout(() =&gt; &#123;
+        console.log(8);
+    &#125;, 0);
+&#125;);
+setTimeout(() =&gt; &#123;
+    console.log(9);
+&#125;, 0);
+console.log(10);
+</code></pre>
+<p>参考答案：</p>
+<p>3 7 10 4 5 2 7 1 2 6 9 8</p>
+<h3 id="instanceof-原理，并回答下面的题目"><a href="#instanceof-原理，并回答下面的题目" class="headerlink" title="instanceof 原理，并回答下面的题目"></a>instanceof 原理，并回答下面的题目</h3><pre><code class="plain">function A()&#123;&#125;
+function B()&#123;&#125;
+A.prototype = new B();
+let a = new A();
+console.log(a instanceof B) // true of false ?
+</code></pre>
+<p>答案为 true。</p>
+<p>instanceof 原理：</p>
+<p>instanceof 用于检测一个对象是否为某个构造函数的实例。</p>
+<p>例如：A instanceof Binstanceof 用于检测对象 A 是不是 B 的实例，而检测是基于原型链进行查找的，也就是说 B 的 prototype 有没有在对象 A 的<em>proto</em> 原型链上，如果有就返回 true，否则返回 false</p>
+<h3 id="描述下列代码的执行结果-4"><a href="#描述下列代码的执行结果-4" class="headerlink" title="描述下列代码的执行结果"></a>描述下列代码的执行结果</h3><pre><code class="plain">new Promise((resolve, reject) =&gt; &#123;
+    reject(1);
+    console.log(2);
+    resolve(3);
+    console.log(4);
+&#125;).then((res) =&gt; &#123; console.log(res) &#125;)
+    .catch(res =&gt; &#123; console.log(&#39;reject1&#39;) &#125;)
+try &#123;
+    new Promise((resolve, reject) =&gt; &#123;
+        throw &#39;error&#39;
+    &#125;).then((res) =&gt; &#123; console.log(res) &#125;)
+        .catch(res =&gt; &#123; console.log(&#39;reject2&#39;) &#125;)
+&#125; catch (err) &#123;
+    console.log(err)
+&#125;
+</code></pre>
+<p>参考答案：</p>
+<p>2 4 reject1 reject2</p>
+<h3 id="‘1’-‘2’-‘3’-map-parseInt-结果是什么，为什么"><a href="#‘1’-‘2’-‘3’-map-parseInt-结果是什么，为什么" class="headerlink" title="[‘1’, ‘2’, ‘3’].map(parseInt) 结果是什么，为什么"></a>[‘1’, ‘2’, ‘3’].map(parseInt) 结果是什么，为什么</h3><p>[1, NaN, NaN]</p>
+<p>解析：</p>
+<p>一、为什么会是这个结果？</p>
+<ol>
+<li>map 函数</li>
+</ol>
+<p>将数组的每个元素传递给指定的函数处理，并返回处理后的数组，所以 [‘1’,’2’,’3’].map(parseInt) 就是将字符串 1，2，3 作为元素；0，1，2 作为下标分别调用 parseInt 函数。即分别求出 parseInt(‘1’,0), parseInt(‘2’,1), parseInt(‘3’,2) 的结果。</p>
+<ol>
+<li>parseInt 函数（重点）</li>
+</ol>
+<p>概念：以第二个参数为基数来解析第一个参数字符串，通常用来做十进制的向上取整（省略小数）如：parseInt(2.7) //结果为 2</p>
+<p>特点：接收两个参数 parseInt(string,radix)</p>
+<p>string：字母（大小写均可）、数组、特殊字符（不可放在开头,特殊字符及特殊字符后面的内容不做解析）的任意字符串，如 ‘2’、’2w’、’2!’</p>
+<p>radix：解析字符串的基数，基数规则如下：</p>
+<p>1） 区间范围介于 2~36 之间；</p>
+<p>2 ） 当参数为 0，parseInt( ) 会根据十进制来解析；</p>
+<p>3 ） 如果忽略该参数，默认的基数规则：</p>
+<p>如果 string 以 “0x” 开头，parseInt() 会把 string 的其余部分解析为十六进制的整数；</p>
+<p>parseInt(“0xf”) // 15</p>
+<p>如果 string 以 0 开头，其后的字符解析为八进制或十六进制的数字；</p>
+<p>parseInt(“08”) // 8</p>
+<p>如果 string 以 1 ~ 9 的数字开头，parseInt() 将把它解析为十进制的整数；</p>
+<p>parseInt(“88.99f”) // 88</p>
+<p>只有字符串中的第一个数字会被返回。</p>
+<p>parseInt(“10.33”) // 返回 10；</p>
+<p>开头和结尾的空格是允许的。</p>
+<p>parseInt(“ 69 10 “) // 返回 69</p>
+<p>如果字符串的第一个字符不能被转换为数字，返回 NaN。</p>
+<p>parseInt(“f”) // 返回 NaN</p>
+<p>parseInt(“f”，16) // 返回 15</p>
+<p>二、parseInt 方法解析的运算过程</p>
+<p>parseInt(‘101.55’,10); // 以十进制解析，运算过程：向上取整数(不做四舍五入，省略小数)，结果为 101。</p>
+<p>parseInt(‘101’,2); // 以二进制解析，运算过程：12 的 2 次方+02 的 1 次方+1*2 的 0 次方=4+0+1=5，结果为 5。</p>
+<p>parseInt(‘101’,8); // 以八进制解析，运算过程：18 的 2 次方+08 的 1 次方+1*8 的 0 次方=64+0+1=65，结果为 65。</p>
+<p>parseInt(‘101’,16); // 以十六进制解析，运算过程：116 的 2 次方+016 的 1 次方+1*16 的 0 次方=256+0+1=257，结果为 257。</p>
+<p>三、再来分析一下结果</p>
+<p>[‘1’,’2’,’3’].map(parseInt) 即</p>
+<p>parseInt(‘1’,0); radix 为 0，parseInt( ) 会根据十进制来解析，所以结果为 1；</p>
+<p>parseInt(‘2’,1); radix 为 1，超出区间范围，所以结果为 NaN；</p>
+<p>parseInt(‘3’,2); radix 为 2，用 2 进制来解析，应以 0 和 1 开头，所以结果为 NaN。</p>
+<h3 id="console-log-1-’2’-和-console-log-1-‘2’-的打印结果"><a href="#console-log-1-’2’-和-console-log-1-‘2’-的打印结果" class="headerlink" title="console.log(1+’2’)和 console.log(1-‘2’)的打印结果"></a>console.log(1+’2’)和 console.log(1-‘2’)的打印结果</h3><p>第一个打印出 ‘12’，是一个 string 类型的值。</p>
+<p>第二个打印出 -1，是一个 number 类型的值</p>
+<h3 id="写出代码的执行结果，并解释为什么？-不必了解"><a href="#写出代码的执行结果，并解释为什么？-不必了解" class="headerlink" title="写出代码的执行结果，并解释为什么？(不必了解)"></a>写出代码的执行结果，并解释为什么？(不必了解)</h3><pre><code class="plain">function a() &#123;
+    console.log(1);
+&#125;
+(function() &#123;
+    if (false) &#123;
+        function a() &#123;
+            console.log(2);
+        &#125;
+    &#125;
+    console.log(typeof a);
+    a();
+&#125;)()
+</code></pre>
+<p>会报错，a is not a function。</p>
+<p>因为立即执行函数里面有函数 a，a 会被提升到该函数作用域的最顶端，但是由于判断条件是 false，所以不会进入到条件语句里面， a 也就没有值。所以 typeof 打印出来是 undefined。而后面在尝试调用方法，自然就会报错。</p>
+<h3 id="写出代码的执行结果，并解释为什么？"><a href="#写出代码的执行结果，并解释为什么？" class="headerlink" title="写出代码的执行结果，并解释为什么？"></a>写出代码的执行结果，并解释为什么？</h3><pre><code class="plain">alert(a);
+a();
+var a = 3;
+function a() &#123;
+  alert(10);
+&#125;;
+alert(a);
+a = 6;
+a();
+</code></pre>
+<p>首先打印 function a() {alert(10);};</p>
+<p>然后打印 10</p>
+<p>最后打印 3</p>
+<p>解析：</p>
+<p>首先 a 变量会被提升到该全局作用域的最顶端，然后值为对应的函数，所以第一次打印出来的是函数。</p>
+<p>接下来调用这个 a 函数，所以打印出 10</p>
+<p>最后给这个 a 赋值为 3，然后又 alert，所以打印出 3。</p>
+<p>之后 a 的值还会发生改变，但是由于没有 alert，说明不会再打印出其他值了。</p>
+<h3 id="写出下面程序的打印顺序，并简要说明原因"><a href="#写出下面程序的打印顺序，并简要说明原因" class="headerlink" title="写出下面程序的打印顺序，并简要说明原因"></a>写出下面程序的打印顺序，并简要说明原因</h3><pre><code class="plain">setTimeout(function () &#123;
+    console.log(&quot;set1&quot;);
+    new Promise(function (resolve) &#123;
+        resolve();
+    &#125;).then(function () &#123;
+        new Promise(function (resolve) &#123;
+            resolve();
+        &#125;).then(function () &#123;
+            console.log(&quot;then4&quot;);
+        &#125;)
+        console.log(&#39;then2&#39;);
+    &#125;)
+&#125;);
+new Promise(function (resolve) &#123;
+    console.log(&#39;pr1&#39;);
+    resolve();
+&#125;).then(function () &#123;
+    console.log(&#39;then1&#39;);
+&#125;);
+
+setTimeout(function () &#123;
+    console.log(&quot;set2&quot;);
+&#125;);
+console.log(2);
+
+new Promise(function (resolve) &#123;
+    resolve();
+&#125;).then(function () &#123;
+    console.log(&#39;then3&#39;);
+&#125;)
+</code></pre>
+<p>参考答案：</p>
+<p>打印结果为：</p>
+<p>pr1 2 then1 then3 set1 then2 then4 set2</p>
+<h3 id="下列代码的执行结果"><a href="#下列代码的执行结果" class="headerlink" title="下列代码的执行结果"></a>下列代码的执行结果</h3><pre><code class="plain">async function async1() &#123;
+    console.log(&#39;async1 start&#39;);
+    await async2();
+    console.log(&#39;async1 end&#39;);
+&#125;
+async function async2() &#123;
+    console.log(&#39;async2&#39;);
+&#125;
+console.log(&#39;script start&#39;);
+setTimeout(function () &#123;
+    console.log(&#39;setTimeout&#39;);
+&#125;, 0);
+async1();
+new Promise(function (resolve) &#123;
+    console.log(&#39;promise1&#39;);
+    resolve();
+&#125;).then(function () &#123;
+    console.log(&#39;promise2&#39;);
+&#125;);
+console.log(&#39;script end&#39;);
+</code></pre>
+<p>参考答案：</p>
+<p>script start async1 start async2 promise1 script end async1 end promise2 setTimeout</p>
+<p>解析：</p>
+<p>在此之前我们需要知道以下几点：</p>
+<ul>
+<li>setTimeout 属于宏任务</li>
+<li>Promise 本身是同步的立即执行函数，Promise.then 属于微任务</li>
+<li>async 方法执行时，遇到 await 会立即执行表达式，表达式之后的代码放到微任务执行</li>
+</ul>
+<p><strong>第一次执行</strong>：执行同步代码</p>
+<pre><code class="plain">Tasks(宏任务)：run script、 setTimeout callback
+Microtasks(微任务)：await、Promise then
+JS stack(执行栈): script
+Log: script start、async1 start、async2、promise1、script end
+</code></pre>
+<p><strong>第二次执行</strong>：执行宏任务后，检测到<strong>微任务</strong>队列中不为空、一次性执行完所有微任务</p>
+<pre><code class="plain">Tasks(宏任务)：run script、 setTimeout callback
+Microtasks(微任务)：Promise then
+JS stack(执行栈): await
+Log: script start、async1 start、async2、promise1、script end、async1 end、promise2
+</code></pre>
+<p><strong>第三次执行</strong>：当<strong>微任务</strong>队列中为空时，执行<strong>宏任务</strong>，执行 setTimeout callback，打印日志。</p>
+<pre><code class="plain">Tasks(宏任务)：null
+Microtasks(微任务)：null
+JS stack(执行栈):setTimeout callback
+Log: script start、async1 start、async2、promise1、script end、async1 end、promise2、setTimeout
+</code></pre>
+<h3 id="下面代码的输出是什么？（-D-）"><a href="#下面代码的输出是什么？（-D-）" class="headerlink" title="下面代码的输出是什么？（ D ）"></a>下面代码的输出是什么？（ D ）</h3><pre><code class="javascript">function sayHi() &#123;
+  console.log(name);
+  console.log(age);
+  var name = &quot;Lydia&quot;;
+  let age = 21;
+&#125;
+
+sayHi();
+</code></pre>
+<ul>
+<li>A: Lydia 和 undefined</li>
+<li>B: Lydia 和 ReferenceError</li>
+<li>C: ReferenceError 和 21</li>
+<li>D: undefined 和 ReferenceError</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>在 sayHi 函数内部，通过 var 声明的变量 name 会发生变量提升，var name 会提升到函数作用域的顶部，其默认值为 undefined*。因此输出 *name 时得到的值为 undefined；</p>
+<p>let 声明的 age 不会发生变量提升，在输出 age 时该变量还未声明，因此会抛出 ReferenceError 的报错。</p>
+<h3 id="下面代码的输出是什么？（-C-）"><a href="#下面代码的输出是什么？（-C-）" class="headerlink" title="下面代码的输出是什么？（ C ）"></a>下面代码的输出是什么？（ C ）</h3><pre><code class="javascript">for (var i = 0; i &lt; 3; i++) &#123;
+  setTimeout(() =&gt; console.log(i), 1);
+&#125;
+
+for (let i = 0; i &lt; 3; i++) &#123;
+  setTimeout(() =&gt; console.log(i), 1);
+&#125;
+</code></pre>
+<ul>
+<li>A: 0 1 2 和 0 1 2</li>
+<li>B: 0 1 2 和 3 3 3</li>
+<li>C: 3 3 3 和 0 1 2</li>
+</ul>
+<p>分析：</p>
+<p>JavaScript 中的执行机制，setTimeout 为异步代码，因此在 setTimeout 执行时，for 循环已经执行完毕。</p>
+<p>第一个 for 循环中的变量 i 通过 var 声明， 为全局变量，因此每一次的 i++ 都会将全局变量 i 的值加 1，当第一个 for 执行完成后 i 的值为 3。所以再执行 setTimeout 时，输出 i 的值都为 3；</p>
+<p>第二个 for 循环中的变量 i 通过 let 声明，为局部变量，因此每一次 for 循环时都会产生一个块级作用域，用来存储本次循环中新产生的 i 的值。当循环结束后，setTimeout 会沿着作用域链去对应的块级作用域中寻找对应的 i 值。</p>
+<h3 id="下面代码的输出是什么？（-B-）"><a href="#下面代码的输出是什么？（-B-）" class="headerlink" title="下面代码的输出是什么？（ B ）"></a>下面代码的输出是什么？（ B ）</h3><pre><code class="javascript">const shape = &#123;
+  radius: 10,
+  diameter() &#123;
+    return this.radius * 2;
+  &#125;,
+  perimeter: () =&gt; 2 * Math.PI * this.radius,
+&#125;;
+
+shape.diameter();
+shape.perimeter();
+</code></pre>
+<ul>
+<li>A: 20 和 62.83185307179586</li>
+<li>B: 20 和 NaN</li>
+<li>C: 20 和 63</li>
+<li>D: NaN 和 63</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>diameter 作为对象的方法，其内部的 this 指向调用该方法的对象，因此 this.raduus 获取到的是 shape.radius 的值 10，再乘以 2 输出的值即为 20；</p>
+<p>perimeter 是一个箭头函数，其内部的 this 应该继承声明时所在上下文中的 this，在这里即继承全局的 this，因此 this.radius 值的为 undefined，undefined 与数值相乘后值为 NaN。</p>
+<h3 id="下面代码的输出是什么？（-A-）"><a href="#下面代码的输出是什么？（-A-）" class="headerlink" title="下面代码的输出是什么？（ A ）"></a>下面代码的输出是什么？（ A ）</h3><pre><code class="plain">+true;
+!&quot;Lydia&quot;;
+</code></pre>
+<ul>
+<li>A: 1 和 false</li>
+<li>B: false 和 NaN</li>
+<li>C: false 和 false</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>一元加号会将数据隐式转换为 number 类型，true 转换为数值为 1；</p>
+<p>非运算符 ! 会将数据隐式转换为 boolean 类型后进行取反，_”Lydia”_ 转换为布尔值为 true，取反后为 false。</p>
+<h3 id="哪个选项是不正确的？（-A-）"><a href="#哪个选项是不正确的？（-A-）" class="headerlink" title="哪个选项是不正确的？（ A ）"></a>哪个选项是不正确的？（ A ）</h3><pre><code class="javascript">const bird = &#123;
+  size: &quot;small&quot;,
+&#125;;
+
+const mouse = &#123;
+  name: &quot;Mickey&quot;,
+  small: true,
+&#125;;
+</code></pre>
+<ul>
+<li>A: mouse.bird.size</li>
+<li>B: mouse[bird.size]</li>
+<li>C: mouse[bird[“size”]]</li>
+<li>D: 以上选项都对</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>mouse 对象中没有 bird 属性，当访问一个对象不存在的属性时值为 undefined*，因此 <em>mouse.bird 的值为 undefined</em>，而 *undefined 作为原始数据类型没有 size 属性，因此再访问 undefined.size 时会报错。</p>
+<h3 id="下面代码的输出是什么？（-A-）-1"><a href="#下面代码的输出是什么？（-A-）-1" class="headerlink" title="下面代码的输出是什么？（ A ）"></a>下面代码的输出是什么？（ A ）</h3><pre><code class="javascript">let c = &#123; greeting: &quot;Hey!&quot; &#125;;
+let d;
+
+d = c;
+c.greeting = &quot;Hello&quot;;
+console.log(d.greeting);
+</code></pre>
+<ul>
+<li>A: Hello</li>
+<li>B: undefined</li>
+<li>C: ReferenceError</li>
+<li>D: TypeError</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>在 JavaScript 中，复杂类型数据在进行赋值操作时，进行的是「引用传递」，因此变量 d 和 c 指向的是同一个引用。当 c 通过引用去修改了数据后，d 再通过引用去访问数据，获取到的实际就是 c 修改后的数据。</p>
+<h3 id="下面代码的输出是什么？（-C-）-1"><a href="#下面代码的输出是什么？（-C-）-1" class="headerlink" title="下面代码的输出是什么？（ C ）"></a>下面代码的输出是什么？（ C ）</h3><pre><code class="plain">let a = 3;
+let b = new Number(3);
+let c = 3;
+
+console.log(a == b);
+console.log(a === b);
+console.log(b === c);
+</code></pre>
+<ul>
+<li>A: truefalsetrue</li>
+<li>B: falsefalsetrue</li>
+<li>C: truefalsefalse</li>
+<li>D: falsetruetrue</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>new Number() 是 JavaScript 中一个内置的构造函数。变量 b 虽然看起来像一个数字，但它并不是一个真正的数字：它有一堆额外的功能，是一个对象。</p>
+<p>== 会触发隐式类型转换，右侧的对象类型会自动转换为 Number 类型，因此最终返回 true。</p>
+<p>=== 不会触发隐式类型转换，因此在比较时由于数据类型不相等而返回 false。</p>
+<h3 id="下面代码的输出是什么？（-D-）-1"><a href="#下面代码的输出是什么？（-D-）-1" class="headerlink" title="下面代码的输出是什么？（ D ）"></a>下面代码的输出是什么？（ D ）</h3><pre><code class="plain">class Chameleon &#123;
+  static colorChange(newColor) &#123;
+    this.newColor = newColor;
+  &#125;
+
+  constructor(&#123; newColor = &quot;green&quot; &#125; = &#123;&#125;) &#123;
+    this.newColor = newColor;
+  &#125;
+&#125;
+
+const freddie = new Chameleon(&#123; newColor: &quot;purple&quot; &#125;);
+freddie.colorChange(&quot;orange&quot;);
+</code></pre>
+<ul>
+<li>A: orange</li>
+<li>B: purple</li>
+<li>C: green</li>
+<li>D: TypeError</li>
+</ul>
+<p><strong>分析</strong>：</p>
+<p>colorChange 方法是静态的。 静态方法仅在创建它们的构造函数中存在，并且不能传递给任何子级。 由于 freddie 是一个子级对象，函数不会传递，所以在 freddie 实例上不存在 colorChange 方法：抛出 TypeError。</p>
+<h3 id="下面代码的输出是什么？（-A-）-2"><a href="#下面代码的输出是什么？（-A-）-2" class="headerlink" title="下面代码的输出是什么？（ A ）"></a>下面代码的输出是什么？（ A ）</h3><pre><code class="plain">let greeting;
+greetign = &#123;&#125;; // Typo!
+console.log(greetign);
+</code></pre>
+<ul>
+<li>A: {}</li>
+<li>B: ReferenceError: greetign is not defined</li>
+<li>C: undefined</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>控制台会输出空对象，因为我们刚刚在全局对象上创建了一个空对象！</p>
+<p>当我们错误地将 greeting 输入为 greetign 时，JS 解释器实际上在浏览器中将其视为 window.greetign = {}。</p>
+<h3 id="当我们执行以下代码时会发生什么？（-A-）"><a href="#当我们执行以下代码时会发生什么？（-A-）" class="headerlink" title="当我们执行以下代码时会发生什么？（ A ）"></a>当我们执行以下代码时会发生什么？（ A ）</h3><pre><code class="plain">function bark() &#123;
+console.log(&quot;Woof!&quot;);
+&#125;
+
+bark.animal = &quot;dog&quot;;
+</code></pre>
+<ul>
+<li>A 什么都不会发生</li>
+<li>B: SyntaxError. You cannot add properties to a function this way.</li>
+<li>C: undefined</li>
+<li>D: ReferenceError<strong>分析：</strong>因为函数也是对象！（原始类型之外的所有东西都是对象）函数是一种特殊类型的对象，我们可以给函数添加属性，且此属性是可调用的。</li>
+</ul>
+<h3 id="下面代码的输出是什么？（-A-）-3"><a href="#下面代码的输出是什么？（-A-）-3" class="headerlink" title="下面代码的输出是什么？（ A ）"></a>下面代码的输出是什么？（ A ）</h3><pre><code class="plain">function Person(firstName, lastName) &#123;
+  this.firstName = firstName;
+  this.lastName = lastName;
+&#125;
+
+const member = new Person(&quot;Lydia&quot;, &quot;Hallie&quot;);
+Person.getFullName = () =&gt; this.firstName + this.lastName;
+
+console.log(member.getFullName());
+</code></pre>
+<ul>
+<li>A: TypeError</li>
+<li>B: SyntaxError</li>
+<li>C: Lydia Hallie</li>
+<li>D: undefinedundefined</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>Person.getFullName 是将方法添加到了函数身上，因此当我们通过实例对象 member 去调用该方法时并不能找到该方法。</p>
+<h3 id="下面代码的输出是什么？（-A-）-4"><a href="#下面代码的输出是什么？（-A-）-4" class="headerlink" title="下面代码的输出是什么？（ A ）"></a>下面代码的输出是什么？（ A ）</h3><pre><code class="plain">function Person(firstName, lastName) &#123;
+  this.firstName = firstName;
+  this.lastName = lastName;
+&#125;
+
+const lydia = new Person(&quot;Lydia&quot;, &quot;Hallie&quot;);
+const sarah = Person(&quot;Sarah&quot;, &quot;Smith&quot;);
+
+console.log(lydia);
+console.log(sarah);
+</code></pre>
+<ul>
+<li>A: Person { firstName: “Lydia”, lastName: “Hallie” } 和 undefined</li>
+<li>B: Person { firstName: “Lydia”, lastName: “Hallie” } 和 Person { firstName: “Sarah”, lastName: “Smith” }</li>
+<li>C: Person { firstName: “Lydia”, lastName: “Hallie” } 和 {}</li>
+<li>D: Person { firstName: “Lydia”, lastName: “Hallie” } 和 ReferenceError</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>lydia 是调用构造函数后得到的实例对象，拥有 firstName 和 lastName 属性；</p>
+<p>sarah 是调用普通函数后得到的返回值，而 Person 作为普通函数没有返回值；</p>
+<h3 id="事件传播的三个阶段是什么？（-D-）"><a href="#事件传播的三个阶段是什么？（-D-）" class="headerlink" title="事件传播的三个阶段是什么？（ D ）"></a>事件传播的三个阶段是什么？（ D ）</h3><ul>
+<li>A: 目标 &gt; 捕获 &gt; 冒泡</li>
+<li>B: 冒泡 &gt; 目标 &gt; 捕获</li>
+<li>C: 目标 &gt; 冒泡 &gt; 捕获</li>
+<li>D: 捕获 &gt; 目标 &gt; 冒泡</li>
+</ul>
+<h3 id="下面代码的输出是什么？（-C-）-2"><a href="#下面代码的输出是什么？（-C-）-2" class="headerlink" title="下面代码的输出是什么？（ C ）"></a>下面代码的输出是什么？（ C ）</h3><pre><code class="plain">function sum(a, b) &#123;
+  return a + b;
+&#125;
+
+sum(1, &quot;2&quot;);
+</code></pre>
+<ul>
+<li>A: NaN</li>
+<li>B: TypeError</li>
+<li>C: <em>“12”</em></li>
+<li>D: 3</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>任意数据类型在跟 String 做 + 运算时，都会隐式转换为 String 类型。</p>
+<p>即 a 所对应的 Number 值 1，被隐式转换为了 String 值 “1”，最终字符串拼接的到 “12”。</p>
+<h3 id="下面代码的输出是什么？（-C-）-3"><a href="#下面代码的输出是什么？（-C-）-3" class="headerlink" title="下面代码的输出是什么？（ C ）"></a>下面代码的输出是什么？（ C ）</h3><pre><code class="plain">let number = 0;
+console.log(number++);
+console.log(++number);
+console.log(number);
+</code></pre>
+<ul>
+<li>A: 1 1 2</li>
+<li>B: 1 2 2</li>
+<li>C: 0 2 2</li>
+<li>D: 0 1 2</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>++ 后置时，先输出，后加 1；++ 前置时，先加 1，后输出；</p>
+<p>第一次输出的值为 0，输出完成后 number 加 1 变为 1。</p>
+<p>第二次输出，number 先加 1 变为 2，然后输出值 2。</p>
+<p>第三次输出，number 值没有变化，还是 2。</p>
+<h3 id="下面代码的输出是什么？（-B-）-1"><a href="#下面代码的输出是什么？（-B-）-1" class="headerlink" title="下面代码的输出是什么？（ B ）"></a>下面代码的输出是什么？（ B ）</h3><pre><code class="plain">function getPersonInfo(one, two, three) &#123;
+  console.log(one);
+  console.log(two);
+  console.log(three);
+&#125;
+
+const person = &quot;Lydia&quot;;
+const age = 21;
+
+getPersonInfo`$&#123;person&#125; is $&#123;age&#125; years old`;
+</code></pre>
+<ul>
+<li>A: Lydia21[“”, “is”, “years old”]</li>
+<li>B: [“”, “is”, “years old”]Lydia21</li>
+<li>C: Lydia[“”, “is”, “years old”]21</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>如果使用标记的模板字符串，则第一个参数的值始终是字符串值的数组。 其余参数获取传递到模板字符串中的表达式的值！</p>
+<h3 id="下面代码的输出是什么？（-C-）-4"><a href="#下面代码的输出是什么？（-C-）-4" class="headerlink" title="下面代码的输出是什么？（ C ）"></a>下面代码的输出是什么？（ C ）</h3><pre><code class="plain">function checkAge(data) &#123;
+  if (data === &#123; age: 18 &#125;) &#123;
+    console.log(&quot;You are an adult!&quot;);
+  &#125; else if (data == &#123; age: 18 &#125;) &#123;
+    console.log(&quot;You are still an adult.&quot;);
+  &#125; else &#123;
+    console.log(`Hmm.. You don&#39;t have an age I guess`);
+  &#125;
+&#125;
+
+checkAge(&#123; age: 18 &#125;);
+</code></pre>
+<ul>
+<li>A: You are an adult!</li>
+<li>B: You are still an adult.</li>
+<li>C: Hmm.. You don’t have an age I guess</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>在比较相等性时，原始类型通过它们的值进行比较，而对象通过它们的引用进行比较。</p>
+<p>data 和条件中的 { age: 18 } 两个不同引用的对象，因此永远都不相等。</p>
+<h3 id="下面代码的输出是什么？（-C-）-5"><a href="#下面代码的输出是什么？（-C-）-5" class="headerlink" title="下面代码的输出是什么？（ C ）"></a>下面代码的输出是什么？（ C ）</h3><pre><code class="plain">function getAge(...args) &#123;
+  console.log(typeof args);
+&#125;
+
+getAge(21);
+</code></pre>
+<ul>
+<li>A: <em>“number”</em></li>
+<li>B: <em>“array”</em></li>
+<li>C: <em>“object”</em></li>
+<li>D: <em>“NaN”</em></li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>ES6 中的不定参数（…args）返回的是一个数组。</p>
+<p>typeof 检查数组的类型返回的值是 object。</p>
+<h3 id="下面代码的输出是什么？（-C-）-6"><a href="#下面代码的输出是什么？（-C-）-6" class="headerlink" title="下面代码的输出是什么？（ C ）"></a>下面代码的输出是什么？（ C ）</h3><pre><code class="plain">function getAge() &#123;
+  &quot;use strict&quot;;
+  age = 21;
+  console.log(age);
+&#125;
+
+getAge();
+</code></pre>
+<ul>
+<li>A: 21</li>
+<li>B: undefined</li>
+<li>C: ReferenceError</li>
+<li>D: TypeError</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p><em>“use strict”</em> 严格模式中，使用未声明的变量会引发报错。</p>
+<h3 id="下面代码的输出是什么？（-A-）-5"><a href="#下面代码的输出是什么？（-A-）-5" class="headerlink" title="下面代码的输出是什么？（ A ）"></a>下面代码的输出是什么？（ A ）</h3><pre><code class="plain">const sum = eval(&quot;10*10+5&quot;);
+</code></pre>
+<ul>
+<li>A: 105</li>
+<li>B: <em>“105”</em></li>
+<li>C: TypeError</li>
+<li>D: <em>“10</em>10+5”*</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>eval 方法会将字符串当作 JavaScript 代码进行解析。</p>
+<h3 id="下面代码的输出是什么？（-B-）-2"><a href="#下面代码的输出是什么？（-B-）-2" class="headerlink" title="下面代码的输出是什么？（ B ）"></a>下面代码的输出是什么？（ B ）</h3><pre><code class="plain">var num = 8;
+var num = 10;
+
+console.log(num);
+</code></pre>
+<ul>
+<li>A: 8</li>
+<li>B: 10</li>
+<li>C: SyntaxError</li>
+<li>D: ReferenceError</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>var 声明的变量允许重复声明，但后面的值会覆盖前面的值。</p>
+<h3 id="下面代码的输出是什么？（-C-）-7"><a href="#下面代码的输出是什么？（-C-）-7" class="headerlink" title="下面代码的输出是什么？（ C ）"></a>下面代码的输出是什么？（ C ）</h3><pre><code class="plain">const obj = &#123; 1: &quot;a&quot;, 2: &quot;b&quot;, 3: &quot;c&quot; &#125;;
+const set = new Set([1, 2, 3, 4, 5]);
+
+obj.hasOwnProperty(&quot;1&quot;);
+obj.hasOwnProperty(1);
+set.has(&quot;1&quot;);
+set.has(1);
+</code></pre>
+<ul>
+<li>A: falsetruefalsetrue</li>
+<li>B: falsetruetruetrue</li>
+<li>C: truetruefalsetrue</li>
+<li>D: truetruetruetrue</li>
+</ul>
+<h3 id="下面代码的输出是什么？（-C-）-8"><a href="#下面代码的输出是什么？（-C-）-8" class="headerlink" title="下面代码的输出是什么？（ C ）"></a>下面代码的输出是什么？（ C ）</h3><pre><code class="plain">const obj = &#123; a: &quot;one&quot;, b: &quot;two&quot;, a: &quot;three&quot; &#125;;
+console.log(obj);
+</code></pre>
+<ul>
+<li>A: { a: “one”, b: “two” }</li>
+<li>B: { b: “two”, a: “three” }</li>
+<li>C: { a: “three”, b: “two” }</li>
+<li>D: SyntaxError</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>如果对象有两个具有相同名称的键，则后面的将替前面的键。它仍将处于第一个位置，但具有最后指定的值。</p>
+<h3 id="下面代码的输出是什么？（-C-）-9"><a href="#下面代码的输出是什么？（-C-）-9" class="headerlink" title="下面代码的输出是什么？（ C ）"></a>下面代码的输出是什么？（ C ）</h3><pre><code class="plain">for (let i = 1; i &lt; 5; i++) &#123;
+  if (i === 3) continue;
+  console.log(i);
+&#125;
+</code></pre>
+<ul>
+<li>A: 1 2</li>
+<li>B: 1 2 3</li>
+<li>C: 1 2 4</li>
+<li>D: 1 3 4</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>当 i 的值为 3 时，进入 if 语句执行 continue，结束本次循环，立即进行下一次循环。</p>
+<h3 id="下面代码的输出是什么？（-A-）-6"><a href="#下面代码的输出是什么？（-A-）-6" class="headerlink" title="下面代码的输出是什么？（ A ）"></a>下面代码的输出是什么？（ A ）</h3><pre><code class="plain">String.prototype.giveLydiaPizza = () =&gt; &#123;
+  return &quot;Just give Lydia pizza already!&quot;;
+&#125;;
+
+const name = &quot;Lydia&quot;;
+
+name.giveLydiaPizza();
+</code></pre>
+<ul>
+<li>A: <em>“Just give Lydia pizza already!”</em></li>
+<li>B: TypeError: not a function</li>
+<li>C: SyntaxError</li>
+<li>D: undefined</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>String 是一个内置的构造函数，我们可以为它添加属性。 我们给它的原型添加了一个方法。 原始类型的字符串自动转换为字符串对象，由字符串原型函数生成。 因此，所有字符串（字符串对象）都可以访问该方法！</p>
+<p>当使用基本类型的字符串调用 giveLydiaPizza 时，实际上发生了下面的过程：</p>
+<ul>
+<li>创建一个 String 的包装类型实例</li>
+<li>在实例上调用 substring 方法</li>
+<li>销毁实例</li>
+</ul>
+<h3 id="下面代码的输出是什么？（-B-）-3"><a href="#下面代码的输出是什么？（-B-）-3" class="headerlink" title="下面代码的输出是什么？（ B ）"></a>下面代码的输出是什么？（ B ）</h3><pre><code class="plain">const a = &#123;&#125;;
+const b = &#123; key: &quot;b&quot; &#125;;
+const c = &#123; key: &quot;c&quot; &#125;;
+
+a[b] = 123;
+a[c] = 456;
+
+console.log(a[b]);
+</code></pre>
+<ul>
+<li>A: 123</li>
+<li>B: 456</li>
+<li>C: undefined</li>
+<li>D: ReferenceError</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>当 b 和 c 作为一个对象的键时，会自动转换为字符串，而对象自动转换为字符串化时，结果都为 [Object object]*。因此 *a[b] 和 a[c] 其实都是同一个属性 a[“Object object”]。</p>
+<p>对象同名的属性后面的值会覆盖前面的，因此最终 a[“Object object”] 的值为 456。</p>
+<h3 id="下面代码的输出是什么？（-B-）-4"><a href="#下面代码的输出是什么？（-B-）-4" class="headerlink" title="下面代码的输出是什么？（ B ）"></a>下面代码的输出是什么？（ B ）</h3><pre><code class="plain">const foo = () =&gt; console.log(&quot;First&quot;);
+const bar = () =&gt; setTimeout(() =&gt; console.log(&quot;Second&quot;));
+const baz = () =&gt; console.log(&quot;Third&quot;);
+
+bar();
+foo();
+baz();
+</code></pre>
+<ul>
+<li>A: FirstSecondThird</li>
+<li>B: FirstThirdSecond</li>
+<li>C: SecondFirstThird</li>
+<li>D: SecondThirdFirst</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>bar 函数中执行的是一段异步代码，按照 JavaScript 中的事件循环机制，主线程中的所有同步代码执行完成后才会执行异步代码。因此 <em>“Second”</em> 最后输出。</p>
+<h3 id="单击按钮时-event-target-是什么？（-C-）"><a href="#单击按钮时-event-target-是什么？（-C-）" class="headerlink" title="单击按钮时 event.target 是什么？（ C ）"></a>单击按钮时 event.target 是什么？（ C ）</h3><pre><code class="html">&lt;div onclick=&quot;console.log(&#39;first div&#39;)&quot;&gt;
+  &lt;div onclick=&quot;console.log(&#39;second div&#39;)&quot;&gt;
+    &lt;button onclick=&quot;console.log(&#39;button&#39;)&quot;&gt;Click!&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>A: div 外部</li>
+<li>B: div 内部</li>
+<li>C: button</li>
+<li>D: 所有嵌套元素的数组</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>event.target 指向的是事件目标，即触发事件的元素。因此点击 <button> 触发事件的也就是 <button>。</p>
+<h3 id="单击下面的-html-片段打印的内容是什么？（-A-）"><a href="#单击下面的-html-片段打印的内容是什么？（-A-）" class="headerlink" title="单击下面的 html 片段打印的内容是什么？（ A ）"></a>单击下面的 html 片段打印的内容是什么？（ A ）</h3><pre><code class="html">&lt;div onclick=&quot;console.log(&#39;div&#39;)&quot;&gt;
+  &lt;p onclick=&quot;console.log(&#39;p&#39;)&quot;&gt;Click here!&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>A: pdiv</li>
+<li>B: divp</li>
+<li>C: p</li>
+<li>D: div</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>onclick 绑定的事件为冒泡型事件。因此当点击 p 标签时，事件会从事件目标开始依次往外触发。</p>
+<h3 id="下面代码的输出是什么？（-D-）-2"><a href="#下面代码的输出是什么？（-D-）-2" class="headerlink" title="下面代码的输出是什么？（ D ）"></a>下面代码的输出是什么？（ D ）</h3><pre><code class="plain">const person = &#123; name: &quot;Lydia&quot; &#125;;
+
+function sayHi(age) &#123;
+  console.log(`$&#123;this.name&#125; is $&#123;age&#125;`);
+&#125;
+
+sayHi.call(person, 21);
+sayHi.bind(person, 21);
+</code></pre>
+<ul>
+<li>A: undefined is 21Lydia is 21</li>
+<li>B: functionfunction</li>
+<li>C: Lydia is 21Lydia is 21</li>
+<li>D: Lydia is 21function</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>call 和 bind 都可以修改 this 的指向，但区别在于 call 方法会立即执行，而 bind 会返回一个修改后的新函数。</p>
+<h3 id="下面代码的输出是什么？（-B-）-5"><a href="#下面代码的输出是什么？（-B-）-5" class="headerlink" title="下面代码的输出是什么？（ B ）"></a>下面代码的输出是什么？（ B ）</h3><pre><code class="plain">function sayHi() &#123;
+  return (() =&gt; 0)();
+&#125;
+
+typeof sayHi();
+</code></pre>
+<ul>
+<li>A: <em>“object”</em></li>
+<li>B: <em>“number”</em></li>
+<li>C: <em>“function”</em></li>
+<li>D: <em>“undefined”</em></li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>return 后是一个 IIFE*，其返回值是 0，因此 *sayHi 函数中返回的是一个 0。typeof 检测 sayHi 返回值类型即为 number。</p>
+<h3 id="下面这些值哪些是假值？（-A-）"><a href="#下面这些值哪些是假值？（-A-）" class="headerlink" title="下面这些值哪些是假值？（ A ）"></a>下面这些值哪些是假值？（ A ）</h3><pre><code class="plain">0;
+new Number(0);
+(&quot;&quot;);
+(&quot; &quot;);
+new Boolean(false);
+undefined;
+</code></pre>
+<ul>
+<li>A: 0 <em>“”</em> undefined</li>
+<li>B: 0new Number(0) <em>“”</em> new Boolean(false)undefined</li>
+<li>C: 0 <em>“”</em> new Boolean(false)undefined</li>
+<li>D: 所有都是假值。</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>JavaScript 中假值只有 6 个：false<em>、””<em>、null</em>、undefined、NaN、</em>0</p>
+<h3 id="下面代码的输出是什么？（-B-）-6"><a href="#下面代码的输出是什么？（-B-）-6" class="headerlink" title="下面代码的输出是什么？（ B ）"></a>下面代码的输出是什么？（ B ）</h3><pre><code class="plain">console.log(typeof typeof 1);
+</code></pre>
+<ul>
+<li>A: <em>“number”</em></li>
+<li>B: <em>“string”</em></li>
+<li>C: <em>“object”</em></li>
+<li>D: <em>“undefined”</em></li>
+</ul>
+<p>分析：</p>
+<p>typeof 1 返回 _”number”_，typeof “number” 返回 <em>“string”</em></p>
+<h3 id="下面代码的输出是什么？（-C-）-10"><a href="#下面代码的输出是什么？（-C-）-10" class="headerlink" title="下面代码的输出是什么？（ C ）"></a>下面代码的输出是什么？（ C ）</h3><pre><code class="plain">const numbers = [1, 2, 3];
+numbers[10] = 11;
+console.log(numbers);
+</code></pre>
+<ul>
+<li>A: [1, 2, 3, 7 x null, 11]</li>
+<li>B: [1, 2, 3, 11]</li>
+<li>C: [1, 2, 3, 7 x empty, 11]</li>
+<li>D: SyntaxError</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>当你为数组中的元素设置一个超过数组长度的值时，JavaScript 会创建一个名为“空插槽”的东西。 这些位置的值实际上是 undefined，但你会看到类似的东西：</p>
+<pre><code class="plain">[1, 2, 3, 7 x empty, 11]
+</code></pre>
+<p>这取决于你运行它的位置（每个浏览器有可能不同）。</p>
+<h3 id="下面代码的输出是什么？（-A-）-7"><a href="#下面代码的输出是什么？（-A-）-7" class="headerlink" title="下面代码的输出是什么？（ A ）"></a>下面代码的输出是什么？（ A ）</h3><pre><code class="plain">(() =&gt; &#123;
+  let x, y;
+  try &#123;
+    throw new Error();
+  &#125; catch (x) &#123;
+    (x = 1), (y = 2);
+    console.log(x);
+  &#125;
+  console.log(x);
+  console.log(y);
+&#125;)();
+</code></pre>
+<ul>
+<li>A: 1undefined2</li>
+<li>B: undefinedundefinedundefined</li>
+<li>C: 112</li>
+<li>D: 1undefinedundefined</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>catch 块接收参数 x。当我们传递参数时，这与变量的 x 不同。这个变量 x 是属于 catch 作用域的。</p>
+<p>之后，我们将这个块级作用域的变量设置为 1，并设置变量 y 的值。 现在，我们打印块级作用域的变量 x，它等于 1。</p>
+<p>在 catch 块之外，x 仍然是 undefined*，而 <em>y 是 2。 当我们想在 catch 块之外的 console.log(x) 时，它返回 undefined</em>，而 *y 返回 2。</p>
+<h3 id="下面代码的输出是什么"><a href="#下面代码的输出是什么" class="headerlink" title="下面代码的输出是什么?"></a>下面代码的输出是什么?</h3><pre><code class="plain">[[0, 1], [2, 3]].reduce(
+  (acc, cur) =&gt; &#123;
+    return acc.concat(cur);
+  &#125;,
+  [1, 2]
+);
+</code></pre>
+<ul>
+<li>A: [0, 1, 2, 3, 1, 2]</li>
+<li>B: [6, 1, 2]</li>
+<li>C: [1, 2, 0, 1, 2, 3]</li>
+<li>D: [1, 2, 6]</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>[1,2] 是我们的初始值。 这是我们开始执行 reduce 函数的初始值，以及第一个 acc 的值。 在第一轮中，acc 是 [1,2]<em>，</em>cur 是 _[0,1]。 我们将它们连接起来，结果是 _[1,2,0,1]。</p>
+<p>然后，acc 的值为 [1,2,0,1]<em>，</em>cur 的值为 _[2,3]。 我们将它们连接起来，得到 _[1,2,0,1,2,3]。</p>
+<h3 id="下面代码的输出是什么？（-B-）-7"><a href="#下面代码的输出是什么？（-B-）-7" class="headerlink" title="下面代码的输出是什么？（ B ）"></a>下面代码的输出是什么？（ B ）</h3><pre><code class="plain">!!null;
+!!&quot;&quot;;
+!!1;
+</code></pre>
+<ul>
+<li>A: falsetruefalse</li>
+<li>B: falsefalsetrue</li>
+<li>C: falsetruetrue</li>
+<li>D: truetruefalse</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>null 是假值。 !null 返回 true*。 *!true 返回 false。</p>
+<p><em>“”</em> 是假值。 !”” 返回 true*。 *!true 返回 false。</p>
+<p>1 是真值。 !1 返回 false*。 *!false 返回 true。</p>
+<h3 id="setInterval-方法的返回值什么？（-A-）"><a href="#setInterval-方法的返回值什么？（-A-）" class="headerlink" title="setInterval 方法的返回值什么？（ A ）"></a>setInterval 方法的返回值什么？（ A ）</h3><pre><code class="plain">setInterval(() =&gt; console.log(&quot;Hi&quot;), 1000);
+</code></pre>
+<ul>
+<li>A：一个唯一的 id</li>
+<li>B：指定的毫秒数</li>
+<li>C：传递的函数</li>
+<li>D：undefined</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>它返回一个唯一的 id*。 此 *id 可用于使用 clearInterval() 函数清除该定时器。</p>
+<h3 id="下面代码的返回值是什么？（-A-）"><a href="#下面代码的返回值是什么？（-A-）" class="headerlink" title="下面代码的返回值是什么？（ A ）"></a>下面代码的返回值是什么？（ A ）</h3><pre><code class="plain">[...&quot;Lydia&quot;];
+</code></pre>
+<ul>
+<li>A: [“L”, “y”, “d”, “i”, “a”]</li>
+<li>B: [“Lydia”]</li>
+<li>C: [[], “Lydia”]</li>
+<li>D: [[“L”, “y”, “d”, “i”, “a”]]</li>
+</ul>
+<p><strong>分析：</strong></p>
+<p>字符串是可迭代的。 扩展运算符将迭代的每个字符映射到一个元素。</p>
+<h3 id="分析以下代码的执行结果并解释为什么。"><a href="#分析以下代码的执行结果并解释为什么。" class="headerlink" title="分析以下代码的执行结果并解释为什么。"></a>分析以下代码的执行结果并解释为什么。</h3><pre><code class="plain">var a = &#123;n: 1&#125;;
+var b = a;
+a.x = a = &#123;n: 2&#125;;
+
+console.log(a.x)
+console.log(b.x)
+</code></pre>
+<p>运行结果：</p>
+<p>undefined<em>、{n: 2}</em></p>
+<p>分析：</p>
+<p>首先，a 和 b 同时引用了 {n: 1} 对象，接着执行到 a.x = a = {n: 2} 语句，虽然赋值是从右到左执行，但是点（.）的优先级比赋值符（=）要高，所以这里首先执行 a.x*，相当于为 a（或者 b）所指向的 *{n:1} 对象新增了一个属性 x，即此时对象将变为 {n: 1; x: undefined}*。然后按正常情况，从右到左进行赋值，此时执行 *a = {n: 2} 的时候，a 的引用改变，指向了新对象 {n: 2}*，而 *b 依然指向的是旧对象 {n: 1; x: undefined}*。之后再执行 *a.x = {n: 2} 的时候，并不会重新解析一遍 a，而是沿用最初解析 a.x 时候的 a，即旧对象 {n: 1; x: undefined}*，故此时旧对象的 <em>x 的值变为</em>{n: 2}，旧对象为 {n: 1; x: {n: 2}}，它依然被 *b 引用着。</p>
+<p>最后，a 指向的对象为 {n: 2}<em>，</em>b 指向的对象为 {n: 1; x: {n: 2}}*。因此输出 <em>a.x 值为 undefined</em>，输出 *b.x 值为 {n: 2}。</p>
+<h3 id="分析以下代码的执行结果并解释为什么。-1"><a href="#分析以下代码的执行结果并解释为什么。-1" class="headerlink" title="分析以下代码的执行结果并解释为什么。"></a>分析以下代码的执行结果并解释为什么。</h3><pre><code class="plain">// example 1
+var a = &#123;&#125;, b = &#39;123&#39;, c = 123;
+a[b] = &#39;b&#39;;
+a[c] = &#39;c&#39;;
+console.log(a[b]);
+
+// example 2
+var a = &#123;&#125;, b = Symbol(&#39;123&#39;), c = Symbol(&#39;123&#39;);
+a[b] = &#39;b&#39;;
+a[c] = &#39;c&#39;;
+console.log(a[b]);
+
+// example 3
+var a = &#123;&#125;, b = &#123;key:&#39;123&#39;&#125;, c = &#123;key:&#39;456&#39;&#125;;
+a[b] = &#39;b&#39;;
+a[c] = &#39;c&#39;;
+console.log(a[b]);
+</code></pre>
+<p>运行结果：</p>
+<p>example 1<em>：</em>c</p>
+<p>example 2<em>：</em>b</p>
+<p>example 3<em>：</em>c</p>
+<p>分析：</p>
+<p>这题考察的是对象的键名的转换。</p>
+<ul>
+<li>对象的键名只能是字符串和 Symbol 类型。</li>
+<li>其他类型的键名会被转换成字符串类型。</li>
+<li>对象转字符串默认会调用 String 方法。</li>
+</ul>
+<p>因此 example 1 中 c 作为键名后也是 ‘123’*，直接覆盖 *a[b] 的值；而 example 2 中，Symbol 作为 ES6 中新增的基本数据类型，它的特点就是唯一，Symbol() 方法生成的值都是唯一的，里面的参数不会影响结果。因此在 example 2 中 b 和 c 是两个不同的键名；example 3 中，对象不能作为键名，因此 b 和 c 都会通过 String() 方法转为字符串 _[object Object]_。</p>
+<h3 id="下面的代码打印什么内容？为什么？"><a href="#下面的代码打印什么内容？为什么？" class="headerlink" title="下面的代码打印什么内容？为什么？"></a>下面的代码打印什么内容？为什么？</h3><pre><code class="plain">var b = 10;
+(function b() &#123;
+  b = 20;
+  console.log(b)
+&#125;)()
+</code></pre>
+<p>运行结果：</p>
+<p>function b() { b = 20; console.log(b) } 分析：</p>
+<p>当 JavaScript 解释器遇到非匿名立即执行函数（题目中的 b）时，会创建一个辅助的特定对象，然后将函数名称当作这个对象的属性，因此函数内部可以访问到 b，但是这个值又是只读的，所以对他的赋值并不生效，所以打印的结果还是这个函数，并且外部的值也没有发生更改。</p>
+<h3 id="下面代码中，a-在什么情况下会执行输出语句打印-1-？"><a href="#下面代码中，a-在什么情况下会执行输出语句打印-1-？" class="headerlink" title="下面代码中，a 在什么情况下会执行输出语句打印 1 ？"></a>下面代码中，a 在什么情况下会执行输出语句打印 1 ？</h3><pre><code class="plain">var a = ?;
+if(a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3)&#123;
+     console.log(1);
+&#125;
+</code></pre>
+<p>分析：</p>
+<p>这道题考查的知识点是：相等运算符（==）在作比较时会进行隐式转换，而如果操作数是引用类型，则会调用 toString() 或 valueOf() 方法对引用类型数据进行隐式转换。</p>
+<pre><code class="plain">// 方法一：利用 toString()
+let a = &#123;
+  i: 1,
+  toString () &#123;
+    return a.i++;
+  &#125;
+&#125;
+if(a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3) &#123;
+  console.log(&#39;1&#39;);
+&#125;
+
+// 方法二：利用 valueOf()
+let a = &#123;
+  i: 1,
+  valueOf () &#123;
+    return a.i++
+  &#125;
+&#125;
+if(a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3) &#123;
+  console.log(&#39;1&#39;);
+&#125;
+
+// 方法三：利用数组（这个是真的骚）
+var a = [1,2,3];
+a.join = a.shift;
+if(a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3) &#123;
+  console.log(&#39;1&#39;);
+&#125;
+
+// 方法四：利用 Symbol
+let a = &#123;[Symbol.toPrimitive]: ((i) =&gt; () =&gt; ++i) (0)&#125;;
+if(a == 1 &amp;&amp; a == 2 &amp;&amp; a == 3) &#123;
+  console.log(&#39;1&#39;);
+&#125;
+</code></pre>
+<p>方法一和方法二没啥解释的了，解释下方法三和方法四。</p>
+<p>方法三：</p>
+<p>a.join = a.shift 的目的是将数组的 join 方法替换成 shift 方法。因为数组在参与相等比较时也会通过 toString() 将数组转为字符串，而该字符串实际上是数组中每个元素的 toString() 返回值经调用 join() 方法拼接（由逗号隔开）组成。现在我们将 join() 方法替换为了 shift() 方法，也就意味着数组在通过 toString() 隐式转换后，得到是 shift() 的返回值，每次返回数组中的第一个元素，而原数组删除第一个值，正好可以使判断成立。</p>
+<p>方法四：</p>
+<p>ES6 中提供了 11 个内置的 Symbo 值，指向语言内部使用的方法。Symbol.toPrimitive 就是其中一个，它指向一个方法，当该对象被转为原始类型的值时，会调用这个方法，并返回该对象对应的原始类型值。这里就是改变这个属性，把它的值改为一个闭包返回的函数。</p>
+<h2 id="不常用"><a href="#不常用" class="headerlink" title="不常用"></a>不常用</h2><h3 id="node-事件循环机制"><a href="#node-事件循环机制" class="headerlink" title="node 事件循环机制"></a>node 事件循环机制</h3><p>Node.js 在主线程里维护了一个事件队列，当接到请求后，就将该请求作为一个事件放入这个队列中，然后继续接收其他请求。当主线程空闲时（没有请求接入时），就开始循环事件队列，检查队列中是否有要处理的事件，这时要分两种情况：如果是非 I/O 任务，就亲自处理，并通过回调函数返回到上层调用；如果是 I/O 任务，就从<strong>线程池</strong>中拿出一个线程来处理这个事件，并指定回调函数，然后继续循环队列中的其他事件。</p>
+<p>当线程中的 I/O 任务完成以后，就执行指定的回调函数，并把这个完成的事件放到事件队列的尾部，等待事件循环，当主线程再次循环到该事件时，就直接处理并返回给上层调用。 这个过程就叫 <strong>事件循环</strong> (Event Loop)。</p>
+<p>无论是 Linux 平台还是 Windows 平台，Node.js 内部都是通过<strong>线程池</strong>来完成异步 I/O 操作的，而 LIBUV 针对不同平台的差异性实现了统一调用。因此，<strong>Node.js**</strong> 的单线程仅仅是指 *<strong>*JavaScript**</strong> 运行在单线程中，而并非 *<strong>*Node.js**</strong> 是单线程。**</p>
+<p>Node.JS 的事件循环分为 6 个阶段：</p>
+<ul>
+<li>timers 阶段：这个阶段执行 timer（ setTimeout、setInterval ）的回调</li>
+<li>I/O callbacks 阶段：处理一些上一轮循环中的少数未执行的 I/O 回调</li>
+<li>idle、prepare 阶段：仅 Node.js 内部使用</li>
+<li>poll 阶段：获取新的 I/O 事件, 适当的条件下 Node.js 将阻塞在这里</li>
+<li>check 阶段：执行 setImmediate( ) 的回调</li>
+<li>close callbacks 阶段：执行 socket 的 close 事件回调</li>
+</ul>
+<p>事件循环的执行顺序为：</p>
+<p>外部输入数据 –-&gt; 轮询阶段（ poll ）-–&gt; 检查阶段（ check ）-–&gt; 关闭事件回调阶段（ close callback ）–-&gt; 定时器检测阶段（ timer ）–-&gt; I/O 事件回调阶段（ I/O callbacks ）-–&gt;闲置阶段（ idle、prepare ）–-&gt;轮询阶段（按照该顺序反复运行）…</p>
+<p>浏览器和 Node.js 环境下，微任务任务队列的执行时机不同</p>
+<ul>
+<li>Node.js 端，微任务在事件循环的各个阶段之间执行</li>
+<li>浏览器端，微任务在事件循环的宏任务执行完之后执行</li>
+</ul>
+<h3 id="为什么普通-for-循环的性能远远高于-forEach-的性能，请解释其中的原因。"><a href="#为什么普通-for-循环的性能远远高于-forEach-的性能，请解释其中的原因。" class="headerlink" title="为什么普通 for 循环的性能远远高于 forEach 的性能，请解释其中的原因。"></a>为什么普通 for 循环的性能远远高于 forEach 的性能，请解释其中的原因。</h3><p>for 循环按顺序遍历，forEach 使用 iterator 迭代器遍历</p>
+<p>下面是一段性能测试的代码：</p>
+<pre><code class="plain">let arrs = new Array(100000);
+console.time(&#39;for&#39;);
+for (let i = 0; i &lt; arrs.length; i++) &#123;
+&#125;;
+console.timeEnd(&#39;for&#39;);
+console.time(&#39;forEach&#39;);
+arrs.forEach((arr) =&gt; &#123;
+&#125;);
+console.timeEnd(&#39;forEach&#39;);
+
+for: 2.263ms
+forEach: 0.254ms
+</code></pre>
+<p>在 10 万这个级别下，forEach 的性能是 for 的十倍</p>
+<pre><code class="plain">for: 2.263ms
+forEach: 0.254ms
+</code></pre>
+<p>在 100 万这个量级下，forEach 的性能是和 for 的一致</p>
+<pre><code class="plain">for: 2.844ms
+forEach: 2.652ms
+</code></pre>
+<p>在 1000 万级以上的量级上 ，forEach 的性能远远低于 for 的性能</p>
+<pre><code class="plain">for: 8.422ms
+forEach: 30.328m
+</code></pre>
+<p>我们从语法上面来观察：</p>
+<pre><code class="plain">arr.forEach(callback(currentValue [, index [, array]])[, thisArg])
+</code></pre>
+<p>可以看到 forEach 是有回调的，它会按升序为数组中含有效值的每一项执行一次 callback，且除了抛出异常以外，也没有办法中止或者跳出 forEach 循环。那这样的话执行就会额外的调用栈和函数内的上下文。</p>
+<p>而 for 循环则是底层写法，不会产生额外的消耗。</p>
+<p>在实际业务中没有很大的数组时，for 和 forEach 的性能差距其实很小，forEach 甚至会优于 for 的时间，且更加简洁，可读性也更高，一般也会优先使用 forEach 方法来进行数组的循环处理。</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

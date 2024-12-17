@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>css响应式布局 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>css响应式布局</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/12/4
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="响应式与自适应"><a href="#响应式与自适应" class="headerlink" title="响应式与自适应"></a>响应式与自适应</h2><p><font style="color:rgb(51, 51, 51);">响应式:同一个页面用不同设备（电脑、平板、手机）去访问此页面，最后看到的布局和内容都有很大不同。</font><br><font style="color:rgb(51, 51, 51);">自适应:同一个页面用不同设备（电脑、平板、手机）去访问此页面，最后看到的页面内容和布局基本上还是一样的，就是尺寸略有不同。</font></p>
+<p><img src="1707013520836-75ca9799-5e35-4467-8a5b-808e204533fa.png"></p>
+<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><p><font style="color:rgb(77, 77, 77);">使用@media 媒体查询可以针对不同的媒体类型定义不同的样式，特别是响应式页面，可以针对不同屏幕的大小，编写多套样式，从而达到自适应的效果</font></p>
+<pre><code class="css">@media screen and (max-width: 960px) &#123;
+  body &#123;
+    background-color: #ff6699;
+  &#125;
+&#125;
+
+@media screen and (max-width: 768px) &#123;
+  body &#123;
+    background-color: #00ff66;
+  &#125;
+&#125;
+</code></pre>
+<h2 id="长度单位控制"><a href="#长度单位控制" class="headerlink" title="长度单位控制"></a>长度单位控制</h2><p>像素(px)</p>
+<p>屏幕（显示器）实际上是由一个一个的小点点构成的,不同屏幕的像素大小是不同的，像素越小的屏幕显示的效果越清晰,所以同样的 200px 在不同的设备下显示效果不一样</p>
+<p>百分比</p>
+<p>设置百分比可以使子元素跟随父元素的改变而改变</p>
+<p>em</p>
+<p>em 会根据父元素字体大小来计算</p>
+<p>rem</p>
+<p>rem 是相对于根元素的字体大小来计算</p>
+<h2 id="vw-vh"><a href="#vw-vh" class="headerlink" title="vw/vh"></a>vw<font style="color:rgb(79, 79, 79);">/vh</font></h2><p><font style="color:rgb(77, 77, 77);">css3 中引入了一个新的单位 vw/vh，与视图窗口有关，vw 表示相对于视图窗口的宽度，vh 表示相对于视图窗口高度。 任意层级元素，在使用 vw 单位的情况下，1vw 都等于视图宽度的百分之一。</font></p>
+<h2 id="min-width-和-max-width"><a href="#min-width-和-max-width" class="headerlink" title="min-width 和 max-width"></a><font style="color:rgb(77, 77, 77);">min-width 和 max-width</font></h2><p>可以设置最大最小宽度</p>
+<h2 id="flex-布局"><a href="#flex-布局" class="headerlink" title="flex 布局"></a>flex 布局</h2><h2 id="grid"><a href="#grid" class="headerlink" title="grid"></a>grid</h2><h2 id="min"><a href="#min" class="headerlink" title="min()"></a>min()</h2><pre><code class="html">width: min(500px, 80%); /* 比较500px和80%这两个值，取较小的那个作为宽度 */
+</code></pre>
+<h2 id="max"><a href="#max" class="headerlink" title="max()"></a>max()</h2><h2 id="vmin-和-vmax"><a href="#vmin-和-vmax" class="headerlink" title="vmin 和 vmax"></a>vmin 和 vmax</h2><p>vmin:取视口的最短边</p>
+<p>vmax:取视口的最长边</p>
+<pre><code class="javascript">width:100vmin
+height:100vmin
+</code></pre>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol>
+<li>写两套 css 大于多少显示什么东西，或者就不显示，然后显示不下就隐藏</li>
+<li>完全响应式，写一套代码，所有东西都要显示下，原来一行的东西变成两行，有些东西收缩 栅格化布局</li>
+</ol>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

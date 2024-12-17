@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>uni-app | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>uni-app</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/11/4
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <p>基于 vue.js</p>
+<p>可以打包成微信小程序，h5(web app)，安卓，ios</p>
+<h2 id="uni-app-和-vue-的关系"><a href="#uni-app-和-vue-的关系" class="headerlink" title="uni-app 和 vue 的关系"></a>uni-app 和 vue 的关系</h2><ul>
+<li>使用 vue.js 开发</li>
+<li>在发布到 H5 时，支持所有 vue 语法</li>
+<li>发布到 App 和小程序时，实现部分 Vue 语法</li>
+</ul>
+<h2 id="uni-app-和小程序有什么关系"><a href="#uni-app-和小程序有什么关系" class="headerlink" title="uni-app 和小程序有什么关系"></a>uni-app 和小程序有什么关系</h2><ul>
+<li>组件标签靠近小程序规范</li>
+<li>接口能力（JS API）靠近微信小程序开发</li>
+<li>完整的小程序生命周期</li>
+</ul>
+<h2 id="微信小程序使用"><a href="#微信小程序使用" class="headerlink" title="微信小程序使用"></a>微信小程序使用</h2><p>开发文档：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/">https://developers.weixin.qq.com/miniprogram/dev/framework/</a></p>
+<p>微信公众平台：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/">https://mp.weixin.qq.com/</a></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html">https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html</a></p>
+<p>1.注册小程序</p>
+<p>2.下载专门软件</p>
+<h2 id="uni-app-多端使用"><a href="#uni-app-多端使用" class="headerlink" title="uni-app 多端使用"></a>uni-app 多端使用</h2><p>可以下载以后，打开微信开发工具调试，打开浏览器调试，打开 ios,安卓进行调试</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/">https://uniapp.dcloud.net.cn/component/</a></p>
+<p>小程序运行需要填写 appId</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p><img src="1730789174967-19320d68-21e4-4ba5-8162-5fed3cf0a45c.png"></p>
+<pre><code class="css">项目名称
+----【pages】    内部存放所有页面
+----【static】   存放所有静态资源，比如图片，字体图标
+----【unpackage】存放所有打包生成后的文件
+----app.vue     应用配置，用来配置App全局样式以及监听 应用生命周期
+----main.js            Vue初始化入口文件
+----mainfast.json  配置应用名称、appid、logo、版本等打包信息
+----pages.json    配置页面路由、导航条、选项卡等页面类信息
+----uni.scss      用途是为了方便整体控制应用的风格。比如按钮颜色、边框风格，uni.scss文件里预置了一批scss变量预置。
+</code></pre>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>1.内置组件(直接使用)</p>
+<p>2.插件市场下载使用（下载后会放入 uni-modules）</p>
+<p>3.新建 components 文件夹，自定义组件</p>
+<h2 id="css-适配"><a href="#css-适配" class="headerlink" title="css 适配"></a>css 适配</h2><p>采用 rpx 的单位来进行开发</p>
+<p>设计稿基准：750rpx（这个参数可以在 hbuildx 中设置）</p>
+<p>rpx 是小程序开发中为了解决不同设备屏幕适配问题而引入的一种单位。在 uni-app 中同样适用，它可以根据设备屏幕的宽度自动进行换算。例如，在 750rpx 的设计稿中，1rpx 代表在设备屏幕宽度为 750px 时的 1 个像素。如果设备屏幕宽度为 375px，那么 1rpx 就等于 0.5px。</p>
+<p>样式深层影响（影响组件内的样式）</p>
+<p>/deep/ .xxx</p>
+<p>可以在插件市场安装 sass，这样就可以使用 sass 的语法</p>
+<p>scoped</p>
+<p>在小程序中 style 样式采用 scoped 是无效的，尽量不要这样去使用</p>
+<h2 id="api"><a href="#api" class="headerlink" title="api"></a>api</h2><h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>可以正常的下载 npm 包去使用</p>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><p>如果想用一些 sass 或者 vue3 等，需要在这里安装插件，其实有点像(node_module)</p>
+<p><img src="1730704742656-02f96471-86ce-43da-9986-7d69c5ef7d66.png"></p>
+<p>uni-load-more 加载更多</p>
+<p>uni-forms 表单</p>
+<p>uni-icons 图标</p>
+<p>uni-easyinput</p>
+<p>uni-simple-router 模拟原生路由守卫</p>
+<h3 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h3><p>uni.request</p>
+<blockquote>
+<p>注意：小程序里面不能使用 fetch，可以使用第三方库<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/@escook/request-miniprogram">request-miniprogram</a></p>
+</blockquote>
+<h3 id="上传下载"><a href="#上传下载" class="headerlink" title="上传下载"></a>上传下载</h3><p>uni.<font style="color:rgb(0, 0, 0);">uploadFile</font> 上传文件</p>
+<p>uni.downloadFile 下载文件</p>
+<h3 id="图片处理"><a href="#图片处理" class="headerlink" title="图片处理"></a>图片处理</h3><p>uni.chooseImage 从相册选择图片，或者拍照</p>
+<p>uni.previewImage 预览图片</p>
+<p>uni.getImageInfo 获取图片信息</p>
+<h3 id="数据缓存"><a href="#数据缓存" class="headerlink" title="数据缓存"></a>数据缓存</h3><p>uni.getStorage 异步获取本地数据缓存</p>
+<p>uni.getStorageSync 同步获取本地数据缓存</p>
+<p>uni.setStorage 异步设置本地数据缓存</p>
+<p>uni.setStorageSync 同步设置本地数据缓存</p>
+<p>uni.removeStorage 异步删除本地数据缓存</p>
+<p>uni.reoveStorageSync 同步删除本地数据缓存</p>
+<h3 id="交互反馈"><a href="#交互反馈" class="headerlink" title="交互反馈"></a>交互反馈</h3><p>uni.showToast 显示提示框</p>
+<p>uni.showLoading 显示加载提示框</p>
+<p>uni.hideToast 隐藏提示框</p>
+<p>uni.hideLoading 隐藏加载提示框</p>
+<p>uni.showModal 显示模态框</p>
+<p>uni.showActionSheet 显示菜单列表</p>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p>uni.navigateTo 保留当前页面，跳转到应用内某个界面，使用 uni.navigateBack 返回原页面</p>
+<p>uni.redirectTo 关闭当前界面，跳转到应用内的某个界面</p>
+<p>uni.reLaunch 关闭所有界面，打开应用内的某个界面</p>
+<p>uni.switchTab 跳转到 tab Bar 页面</p>
+<h3 id="tabbar"><a href="#tabbar" class="headerlink" title="tabbar"></a>tabbar</h3><p>在 page.json 配置，即可在小程序下面生成切换按钮</p>
+<pre><code class="json">&quot;tabBar&quot;: &#123;
+    &quot;color&quot;: &quot;#666&quot;,
+    &quot;selectedColor&quot;: &quot;#f25037&quot;,
+    &quot;backgroundColor&quot;: &quot;#fff&quot;,
+    &quot;list&quot;: [ // 显示页面信息,包含了tabbar需要跳转的所有的页面信息
+      &#123;
+        &quot;pagePath&quot;: &quot;pages/index/index&quot;, // 页面路径
+        &quot;iconPath&quot;: &quot;static/img/home.png&quot;, // 默认图片
+        &quot;selectedIconPath&quot;: &quot;static/img/home-active.png&quot;, // 选中图片
+        &quot;text&quot;: &quot;首页&quot; // 文字描述信息
+      &#125;,
+      &#123;
+        &quot;pagePath&quot;: &quot;pages/follow/follow&quot;,
+        &quot;iconPath&quot;: &quot;static/img/follow.png&quot;,
+        &quot;selectedIconPath&quot;: &quot;static/img/follow-active.png&quot;,
+        &quot;text&quot;: &quot;关注&quot;
+      &#125;,
+      &#123;
+        &quot;pagePath&quot;: &quot;pages/self/self&quot;,
+        &quot;iconPath&quot;: &quot;static/img/my.png&quot;,
+        &quot;selectedIconPath&quot;: &quot;static/img/my-active.png&quot;,
+        &quot;text&quot;: &quot;我的&quot;
+      &#125;
+    ]
+  &#125;
+</code></pre>
+<h3 id="多端-if"><a href="#多端-if" class="headerlink" title="多端 if"></a>多端 if</h3><p>只在 h5 中显示</p>
+<pre><code class="plain">&lt;!-- #ifdef H5 --&gt;
+
+&lt;!-- #endif --&gt;
+</code></pre>
+<p>除了 h5</p>
+<pre><code class="plain">&lt;!-- #ifndef H5 --&gt;
+
+&lt;!-- #endif --&gt;
+</code></pre>
+<h3 id="手机状态栏高度获取"><a href="#手机状态栏高度获取" class="headerlink" title="手机状态栏高度获取"></a>手机状态栏高度获取</h3><pre><code class="plain">// 获取手机系统信息
+const info = uni.getSystemInfoSync()
+// 设置状态栏高度
+this.statusBarHeight = info.statusBarHeight
+</code></pre>
+<h3 id="小程序胶囊信息获取"><a href="#小程序胶囊信息获取" class="headerlink" title="小程序胶囊信息获取"></a>小程序胶囊信息获取</h3><pre><code class="plain">let menuButtonInfo = uni.getMenuButtonBoundingClientRect()
+</code></pre>
+<h3 id="常用组件"><a href="#常用组件" class="headerlink" title="常用组件"></a>常用组件</h3><p>scroll-view 滚动组件（可以加 scrolltolower 事件判断是否滚动到底部）</p>
+<p>uni-load-more 加载更多的文字</p>
+<p>uni-popup 弹出层</p>
+<h3 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a>manifest.json</h3><p>这里面可以指定 index.html 模板</p>
+<p>可以设置 appId</p>
+<h3 id="检查更新"><a href="#检查更新" class="headerlink" title="检查更新"></a>检查更新</h3><pre><code class="javascript">uni.getSystemInfo(&#123;
+  success: (res) =&gt; &#123;
+    if (res.platform == &quot;android&quot;) &#123;
+      plus.runtime.getProperty(plus.runtime.appid, wgtinfo =&gt; &#123;
+        this.currentVersion = wgitinfo;
+        this._checkVersion();
+      &#125;)
+    &#125;
+  &#125;
+&#125;)
+
+// 获取最新版本app下载
+_getNewVersion () &#123;
+  uni.showLoading(&#123; title: &#39;下载中，请稍后&#39; &#125;);
+  var dtask = plus.downloader.createDownload(this.downLoadLinkUrl, &#123;&#125;, function (d, status) &#123;
+    // 下载完成
+    uni.hideLoading(&#123;&#125;)
+    if (status == 200) &#123;
+      plus.runtime.install(plus.io.convertLocalFileSystemURL(d.filename), &#123;&#125;, &#123;&#125;, function (error) &#123;
+        uni.showToast(&#123;
+          title: &#39;安装失败&#39;,
+          duration: 1500,
+          icon: &#39;none&#39;
+        &#125;);
+      &#125;)
+    &#125; else &#123;
+      uni.showToast(&#123;
+        title: &#39;更新失败&#39;,
+        duration: 1500,
+        icon: &#39;none&#39;
+      &#125;);
+    &#125;
+  &#125;);
+  dtask.start();
+&#125;,
+</code></pre>
+<h2 id="uniapp-生命周期"><a href="#uniapp-生命周期" class="headerlink" title="uniapp 生命周期"></a>uniapp 生命周期</h2><p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/frame/lifecycle?id=%E5%BA%94%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">https://uniapp.dcloud.net.cn/collocation/frame/lifecycle?id=%e5%ba%94%e7%94%a8%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f</a></p>
+<h3 id="应用生命周期"><a href="#应用生命周期" class="headerlink" title="应用生命周期"></a>应用生命周期</h3><ul>
+<li>onLaunch 初始化完成时触发（全局 🈯️ 触发一次）</li>
+<li>onShow uni-app 启动，或从后台进入前台显示</li>
+<li>onHide 当 uni-app 应用从前台进入后台</li>
+</ul>
+<blockquote>
+<p>只能在 App.vue 里面进行监听，在其他界面监听无效</p>
+</blockquote>
+<h3 id="页面生命周期"><a href="#页面生命周期" class="headerlink" title="页面生命周期"></a>页面生命周期</h3><ul>
+<li>onLoad 监听页面加载（可获取上个界面传递的参数）</li>
+<li>onShow 监听页面显示，每次出现在屏幕上都进行触发</li>
+<li>onReady 监听页面初次渲染完成</li>
+<li>onHide 监听页面隐藏</li>
+<li>onUnload 监听页面卸载</li>
+<li>onReachBottom 页面滚动到底部事件</li>
+</ul>
+<h3 id="组件生命周期"><a href="#组件生命周期" class="headerlink" title="组件生命周期"></a>组件生命周期</h3><ul>
+<li>beofreCreate</li>
+<li>created</li>
+<li>boforeMount</li>
+<li>mounted</li>
+<li>boforeDestroy</li>
+<li>destroyed</li>
+</ul>
+<h2 id="uni-cloud"><a href="#uni-cloud" class="headerlink" title="uni-cloud"></a>uni-cloud</h2><p>提供云函数，云数据库，云存储</p>
+<p>用来云搭建后端的(利用阿里云)</p>
+<p>要关联阿里云服务空间</p>
+<p>其实就是利用阿里云给你开一个云服务器，可以运行 node,这样接口，数据库都可以利用阿里云来运行（说白了就是给你一个后端）</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

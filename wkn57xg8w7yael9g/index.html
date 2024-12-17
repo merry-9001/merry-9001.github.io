@@ -1,0 +1,1717 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>webpack | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>webpack</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/2/26
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>webpack 是基于模块化的打包（构建）工具，它把一切视为模块（图片,css 等）</strong></p>
+<p>它通过一个开发时态的入口模块为起点，分析出所有的依赖关系，然后经过一系列的过程（压缩、合并），最终生成运行时态的文件。</p>
+<p>webpack 的特点：</p>
+<ul>
+<li><strong>为前端工程化而生</strong>：webpack 致力于解决前端工程化，特别是浏览器端工程化中遇到的问题，让开发者集中注意力编写业务代码，而把工程化过程中的问题全部交给 webpack 来处理</li>
+<li><strong>简单易用</strong>：支持零配置，可以不用写任何一行额外的代码就使用 webpack</li>
+<li><strong>强大的生态</strong>：webpack 是非常灵活、可以扩展的，webpack 本身的功能并不多，但它提供了一些可以扩展其功能的机制，使得一些第三方库可以融于到 webpack 中</li>
+<li><strong>基于 nodejs</strong>：由于 webpack 在构建的过程中需要读取文件，因此它是运行在 node 环境中的</li>
+<li><strong>基于模块化</strong>：webpack 在构建过程中要分析依赖关系，方式是通过模块化导入语句进行分析的，它支持各种模块化标准，包括但不限于 CommonJS、ES6 Module</li>
+<li>专注于处理模块化的项目，能做到开箱即用，一步到位</li>
+<li>可通过 <code>plugin</code> 扩展，完整好用又不失灵活</li>
+<li>使用场景不局限于 <code>web</code> 开发</li>
+<li>社区庞大活跃，经常引入紧跟时代发展的新特性，能为大多数场景找到已有的开源扩展</li>
+<li>可以将一些非 JS 代码也视为模块，这样可以对 css、图片等资源进行更加细粒度的划分</li>
+<li>非常适合开发单页应用</li>
+</ul>
+<p>单页应用是前端用户体验最好的 web 应用</p>
+<p>所谓单页应用，是指只有一个 html 页面，页面中没有任何内容，所有的内容均靠 js 生成</p>
+<p>要优雅的实现单页应用，最好依托于前端框架，比如 vue、react</p>
+<h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h2><h3 id="webpack-与-webpack-cli"><a href="#webpack-与-webpack-cli" class="headerlink" title="webpack 与 webpack-cli"></a>webpack 与 webpack-cli</h3><ul>
+<li>webpack：核心包，包含了 webpack 构建过程中要用到的所有 api</li>
+<li>webpack-cli：提供一个简单的 cli 命令，它调用了 webpack 核心包的 api，来完成构建过程</li>
+</ul>
+<p>其实他们之间就是 vite 与 create-vite</p>
+<p>webpack-cli 内部还是调用了 webpack，他更像是一层封装，提供了许多常用的接口，不需要用户直接去调用 webpack</p>
+<p>是 webpack-cli 提供了 webpack 这个命令使我们可以在控制台使用 webpack xxx</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>这个命令其实是 webpack-cli 提供的</p>
+<pre><code class="shell">webpack
+</code></pre>
+<p>默认情况下，webpack 会以<code>./src/index.js</code>作为入口文件分析依赖关系，打包到<code>./dist/main.js</code>文件中</p>
+<p>通过–mode 选项可以控制 webpack 的打包结果的运行环境</p>
+<h2 id="模块化兼容性"><a href="#模块化兼容性" class="headerlink" title="模块化兼容性"></a>模块化兼容性</h2><p>由于 webpack 同时支持 CommonJS 和 ES6 module，因此需要理解它们互操作时 webpack 是如何处理的</p>
+<h3 id="同模块化标准"><a href="#同模块化标准" class="headerlink" title="同模块化标准"></a>同模块化标准</h3><p>如果导出和导入使用的是同一种模块化标准，打包后的效果和之前学习的模块化没有任何差异</p>
+<p><img src="1722154163555-e6b4fe45-f473-4fcf-85b6-7630a1333597.png"></p>
+<h3 id="不同模块化标准"><a href="#不同模块化标准" class="headerlink" title="不同模块化标准"></a>不同模块化标准</h3><p>不同的模块化标准，webpack 按照如下的方式处理</p>
+<p><img src="1722154174219-d68ec106-5aa8-45bc-92ce-da31eec40d8d.png"></p>
+<h2 id="编译结果分析（重要）"><a href="#编译结果分析（重要）" class="headerlink" title="编译结果分析（重要）"></a>编译结果分析（重要）</h2><p>webpack 打包后的结果就是一个普普通通的 js 代码，不会存在任何的模块化</p>
+<p>分析如何通过一个入口模块打包一个 bundle（bundle 内部是一个立即执行函数，不会污染全局变量）</p>
+<p>结果分析</p>
+<p>用这样的方式去运行模块代码不会形成全局污染（因为都在函数作用域内执行）</p>
+<pre><code class="javascript">//合并两个模块
+//  ./src/a.js
+//  ./src/index.js
+
+(function (modules) &#123;
+  var moduleExports = &#123;&#125;; //用于缓存模块的导出结果
+
+  //require函数相当于是运行一个模块，得到模块导出结果
+  function __webpack_require(moduleId) &#123;
+    //moduleId就是模块的路径
+    if (moduleExports[moduleId]) &#123;
+      //检查是否有缓存
+      return moduleExports[moduleId];
+    &#125;
+
+    var func = modules[moduleId]; //得到该模块对应的函数
+    var module = &#123;
+      exports: &#123;&#125;,
+    &#125;;
+    func(module, module.exports, __webpack_require); //运行模块
+    var result = module.exports; //得到模块导出的结果
+    moduleExports[moduleId] = result; //缓存起来
+    return result;
+  &#125;
+
+  //执行入口模块
+  return __webpack_require(&quot;./src/index.js&quot;); //require函数相当于是运行一个模块，得到模块导出结果
+&#125;)(&#123;
+  //该对象保存了所有的模块，以及模块对应的代码
+  &quot;./src/a.js&quot;: function (module, exports) &#123;
+    eval(
+      &#39;console.log(&quot;module a&quot;)\nmodule.exports = &quot;a&quot;;\n //# sourceURL=webpack:///./src/a.js&#39;
+    );
+  &#125;,
+  &quot;./src/index.js&quot;: function (module, exports, __webpack_require) &#123;
+    eval(
+      &#39;console.log(&quot;index module&quot;)\nvar a = __webpack_require(&quot;./src/a.js&quot;)\na.abc();\nconsole.log(a)\n //# sourceURL=webpack:///./src/index.js&#39;
+    );
+  &#125;,
+&#125;);
+//立即执行函数，不形成任何的变量污染
+//不使用任何变量，直接传入对象，不形成变量污染
+</code></pre>
+<p>webpack 做的事情</p>
+<p>1.统一路径命名</p>
+<p>2.把每一个模块放入函数中执行，并提供函数参数 module, exports, __webpack_require 等</p>
+<p>3.执行的代码会放入 eval 环境（为了方便调试）</p>
+<p>eval 里面的代码，浏览器会放到另外一个环境里去执行，浏览器的表象就是(vmXXXX)</p>
+<p>js 执行引擎的虚拟机编号</p>
+<p><img src="1722158294580-f6176986-6f84-43ed-9b09-e42b0b22a440.png"></p>
+<p>eval 环境执行的代码可以写注释</p>
+<pre><code class="javascript">eval(&quot;var d = null;\nd.abc();//# sourceURL=./src/a.js&quot;);
+</code></pre>
+<h2 id="编译过程（重要）"><a href="#编译过程（重要）" class="headerlink" title="编译过程（重要）"></a>编译过程（重要）</h2><p>webpack 的作用是将源代码编译（构建、打包）成最终代码</p>
+<p><img src="1722263260260-9cdcb55b-b9f1-490d-bd75-8a6a48948b50.png"></p>
+<p>整个过程大致分为三个步骤</p>
+<ol>
+<li>初始化</li>
+<li>编译</li>
+<li>输出</li>
+</ol>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>此阶段，webpack 会将<strong>CLI 参数</strong>、<strong>配置文件</strong>、<strong>默认配置</strong>进行融合，形成一个最终的配置对象。</p>
+<p>对配置的处理过程是依托一个第三方库<code>yargs</code>完成的</p>
+<p>此阶段相对比较简单，主要是为接下来的编译阶段做必要的准备</p>
+<p>目前，可以简单的理解为，初始化阶段主要用于产生一个最终的配置</p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><ol>
+<li><strong>创建 chunk</strong></li>
+</ol>
+<p>chunk 是 webpack 在内部构建过程中的一个概念，译为<code>块</code>，<strong>它表示通过某个入口找到的所有依赖的统称</strong>。</p>
+<p>根据入口模块（默认为<code>./src/index.js</code>）创建一个 chunk</p>
+<blockquote>
+<p>比如入口模块是 index.js，index.js 依赖 a.js，b.js 又依赖 c.js，那 index.js，a.js,b.js 这三个文件统称为一个 chunk.</p>
+<p>单入口就只有一个 chunk，多入口就有多个 chunk</p>
+</blockquote>
+<p><img src="1722263540447-c2119a29-8ccb-4af5-8cd2-2ce55f51c379.png"></p>
+<p>每个 chunk 都有至少两个属性：</p>
+<ul>
+<li>name：默认为 main</li>
+<li>id：唯一编号，开发环境和 name 相同，生产环境是一个数字，从 0 开始</li>
+</ul>
+<ol start="2">
+<li><strong>构建所有依赖模块</strong></li>
+</ol>
+<p>先从 chunk 模块记录中去找是否已经分析记录这个模块，如果没有，读取文件，转化为 AST 抽象语法树，树形结构遍历，找出依赖关系，记录依赖(保存成一个数组，每一项是一个完整的依赖路径)，替换 require 变成 webpack_require，替换路径为完整路径(编译结果的方式，这些都是在内存中的改动，不会变动原文件)，把转换后的代码存入表格之中，最后再把记录依赖的数组拿出来循环，最终形成一个 chunk 表格</p>
+<blockquote>
+<p>因为 webpack 支持多种模块化, 他一开始必须要统一模块化代码, 所以意味着他需要将所有的依赖全部读一遍（webpack 的打包和热更新的速度是慢的）</p>
+</blockquote>
+<p><img src="1722263643809-8425d4f5-f45b-438a-ada7-4e8f5ed7690a.png"></p>
+<p>每一个模块可以认为是一个文件，里面记录了转换后的代码</p>
+<p><img src="1722263846772-0c62e85f-57f9-4c98-a410-01bafac85c2c.png"></p>
+<ol start="3">
+<li><strong>产生 chunk assets</strong></li>
+</ol>
+<p>在第二步完成后，chunk 中会产生一个模块列表，列表中包含了<strong>模块 id</strong>和<strong>模块转换后的代码</strong></p>
+<p>我们可以把 chunk 中的模块记录放入一个模板之中去进行打包，类似如此</p>
+<p>转化完以后文件名就是”./src/a.js”</p>
+<p>文件内容就是以下代码，合并后的代码文件</p>
+<pre><code class="javascript">//把两个文件代码进行合并
+//  ./src/a.js
+//  ./src/index.js
+
+(function (modules) &#123;
+  var moduleExports = &#123;&#125;;
+  function __webpack_require(moduleId) &#123;
+    if (moduleExports[moduleId]) &#123;
+      //检查是否有缓存
+      return moduleExports[moduleId];
+    &#125;
+
+    var func = modules[moduleId];
+    var module = &#123;
+      exports: &#123;&#125;,
+    &#125;;
+    func(module, module.exports, __webpack_require);
+    var result = module.exports;
+    moduleExports[moduleId] = result;
+    return result;
+  &#125;
+  return __webpack_require(&quot;./src/index.js&quot;);
+&#125;)(&#123;
+  //这就是我们转化后chunk表格，把他放进来执行
+  &quot;./src/a.js&quot;: function (module, exports) &#123;
+    eval(
+      &#39;console.log(&quot;module a&quot;)\nmodule.exports = &quot;a&quot;;\n //# sourceURL=webpack:///./src/a.js&#39;
+    );
+  &#125;,
+  &quot;./src/index.js&quot;: function (module, exports, __webpack_require) &#123;
+    eval(
+      &#39;console.log(&quot;index module&quot;)\nvar a = __webpack_require(&quot;./src/a.js&quot;)\na.abc();\nconsole.log(a)\n //# sourceURL=webpack:///./src/index.js&#39;
+    );
+  &#125;,
+&#125;);
+</code></pre>
+<p>接下来，webpack 会根据配置为 chunk 生成一个资源列表，即<code>chunk assets</code>，资源列表可以理解为是生成到最终文件的文件名和文件内容</p>
+<p><img src="1722263874720-10169d7b-c040-404a-b510-eb8a47664437.png"></p>
+<p>这一步还没有生成文件，只是将 chunk 表格转化为 chunk assets 表格（每一个资源可以认为是一个 bundle）,chunk assets 里面的文件内容就是进行过打包以后的实际内容，通过上述的描述，形成文件内容，最后会对所有文件联合起来的内容做一次 hash</p>
+<blockquote>
+<p>chunk assets 可能有 js 文件，也有可能有.js.map 文件</p>
+<p>chunk hash 是根据所有 chunk assets 的内容生成的一个 hash 字符串<br>hash：一种算法，具体有很多分类，特点是将一个任意长度的字符串转换为一个固定长度的字符串，而且可以保证原始内容不变，产生的 hash 字符串就不变</p>
+</blockquote>
+<p><img src="1722263888252-422842e7-14ac-42c3-bb23-9d64fda5aff4.png"></p>
+<p><img src="assets/2020-01-09-12-43-52.png"></p>
+<ol start="4">
+<li><strong>合并 chunk assets</strong></li>
+</ol>
+<p>将多个 chunk 的 assets 合并到一起，并产生一个总的 hash</p>
+<p><img src="1723282987532-26e58dfd-8a19-4f25-8693-e24df8994dfc.png"></p>
+<p><img src="assets/2020-01-09-12-47-43.png"></p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>此步骤非常简单，webpack 将利用 node 中的 fs 模块（文件处理模块），根据编译产生的总的 assets，生成相应的文件。</p>
+<p><img src="1723283005753-8244783a-efe0-484b-b0d8-ecfd0ba70346.png"></p>
+<p>注意：在输出之前，上面的步骤都是在内存中完成的，没有生成任何的文件，这一步才是在输出生成文件</p>
+<h3 id="总过程"><a href="#总过程" class="headerlink" title="总过程"></a>总过程</h3><p><img src="1723283097902-923b5316-bf83-4f82-b8ab-bbb6d291dc92.png"></p>
+<p><img src="1723283116723-7232ee53-668b-49e5-b1a3-6e7892e54483.png"></p>
+<h3 id="涉及术语"><a href="#涉及术语" class="headerlink" title="涉及术语"></a><img src="assets/2020-01-09-15-51-07.png">涉及术语</h3><ol>
+<li>module：模块，分割的代码单元，webpack 中的模块可以是任何内容的文件，不仅限于 JS</li>
+<li>chunk：webpack 内部构建模块的块，一个 chunk 中包含多个模块，这些模块是从入口模块通过依赖分析得来的</li>
+<li>bundle：chunk 构建好模块后会生成 chunk 的资源清单，清单中的每一项就是一个 bundle，可以认为 bundle 就是最终生成的文件</li>
+<li>hash：最终的资源清单所有内容联合生成的 hash 值</li>
+<li>chunkhash：chunk 生成的资源清单内容联合生成的 hash 值</li>
+<li>chunkname：chunk 的名称，如果没有配置则使用 main</li>
+<li>id：通常指 chunk 的唯一编号，如果在开发环境下构建，和 chunkname 相同；如果是生产环境下构建，则使用一个从 0 开始的数字进行编号</li>
+</ol>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>webpack 提供的 cli 支持很多的参数，例如<code>--mode</code>，但更多的时候，我们会使用更加灵活的配置文件来控制 webpack 的行为</p>
+<p>默认情况下，webpack 会读取<code>webpack.config.js</code>文件作为配置文件，但也可以通过 CLI 参数<code>--config</code>来指定某个配置文件</p>
+<p>配置文件中通过 CommonJS 模块导出一个对象，对象中的各种属性对应不同的 webpack 配置</p>
+<p><strong>注意：配置文件中的代码，必须是有效的 node 代码</strong></p>
+<p>当命令行参数与配置文件中的配置出现冲突时，以命令行参数为准。</p>
+<h3 id="入口与出口（entry，output）"><a href="#入口与出口（entry，output）" class="headerlink" title="入口与出口（entry，output）"></a>入口与出口（entry，output）</h3><p><img src="1723866538775-6e88d57d-537e-4661-be63-88986057643b.png"></p>
+<blockquote>
+<p>注意 chunk 打包后，可能会生成两个文件</p>
+<p>1.一定会生成一个文件是合并模块后的 js 代码文件**(output 的 filename 配置的是这个文件)**</p>
+<p>2.对应的 map 文件</p>
+</blockquote>
+<h4 id="Entry（入口）"><a href="#Entry（入口）" class="headerlink" title="Entry（入口）"></a>Entry（入口）</h4><p>入口配置的是 chunk（就是通过入口的配置来告诉我有几个 chunk）</p>
+<p>默认</p>
+<pre><code class="typescript">//默认配置是这样写的，两者等价，也等于不写
+
+module.exports = &#123;
+  entry: &#123;
+    //属性名：chunk的名称， 属性值：入口模块（启动模块）
+    main: &quot;./src/index.js&quot;,
+  &#125;,
+&#125;;
+
+module.exports = &#123;
+  entry: &quot;./src/index.js&quot;,
+&#125;;
+</code></pre>
+<p>多入口(相当于多个 chunk 并行去找依赖配置，生成打包的 bundle)</p>
+<blockquote>
+<p>注意，由于是多个 chunk，一定会生成多个 bundle，那么 output 出口的 filename 一定要使用动态配置</p>
+</blockquote>
+<pre><code class="typescript">module.exports = &#123;
+  entry: &#123;
+    main: &quot;./src/index.js&quot;,
+    a: &quot;./src/a.js&quot;,
+  &#125;,
+&#125;;
+</code></pre>
+<p>可以配置一个入口(chunk)下的多个文件（多个入口模块）</p>
+<blockquote>
+<p>就算一个 chunk 下配置多个启动模块，但最终生成的 bundle 文件还是只有一个</p>
+</blockquote>
+<pre><code class="typescript">module.exports = &#123;
+  entry: &#123;
+    main: &quot;./src/index.js&quot;,
+    a: [&quot;./src/a.js&quot;, &quot;./src/index.js&quot;], //启动模块有两个
+  &#125;,
+&#125;;
+</code></pre>
+<p>打包之前的代码中他需要先去运行 a.js 再运行 index.js(运行的顺序等于配置数组的顺序)</p>
+<p><img src="1723868402511-2340c20a-38cf-48c4-a0c3-19e6053603da.png"></p>
+<h4 id="Output（出口）"><a href="#Output（出口）" class="headerlink" title="Output（出口）"></a>Output（出口）</h4><p><font style="color:rgb(43, 58, 66);">这里的出口是针对资源列表的文件名或路径的配置（编译结果文件位置和名字）</font></p>
+<pre><code class="typescript">module.exports = &#123;
+  output: &#123;
+    //必须配置一个绝对路径，表示资源放置的文件夹，默认是./dist
+    path: path.resolve(__dirname, &quot;target&quot;),
+
+    //配置的合并的js文件的规则
+    filename: &quot;[id].[chunkhash:5].js&quot;,
+  &#125;,
+&#125;;
+</code></pre>
+<blockquote>
+<p>配置的合并的 js 文件的规则</p>
+<p><strong>:数字表示截取</strong></p>
+<p><strong>[]可以用来配置规则（可填以下值）</strong></p>
+<p>● name：chunkname</p>
+<p>● hash: 总的资源 hash，通常用于解决缓存问题</p>
+<p>● chunkhash: 使用 chunkhash</p>
+<p>● contenthash: 表示单个文件的 hash</p>
+<p>● id: 使用 chunkid，不推荐(因为使用 id，开发模式 id 是名字，生产模式是数字)</p>
+</blockquote>
+<h4 id="publicPath（解决路径问题）"><a href="#publicPath（解决路径问题）" class="headerlink" title="publicPath（解决路径问题）"></a>publicPath（解决路径问题）</h4><p>在使用 file-loader 或 url-loader 时，可能会遇到一个非常有趣的问题</p>
+<p>比如，通过 webpack 打包的目录结构如下：</p>
+<pre><code class="yaml">dist
+    |—— img
+        |—— a.png  #file-loader生成的文件
+    |—— scripts
+        |—— main.js  #export default &quot;img/a.png&quot;
+    |—— html
+        |—— index.html #&lt;script src=&quot;../scripts/main.js&quot; &gt;&lt;/script&gt;
+</code></pre>
+<p>这种问题发生的根本原因：模块中的路径来自于某个 loader 或 plugin，当产生路径时，loader 或 plugin 只有相对于 dist 目录的路径，并不知道该路径将在哪个资源中使用，从而无法确定最终正确的路径</p>
+<p>面对这种情况，需要依靠 webpack 的配置 publicPath 解决</p>
+<p>publicPath 默认是没有斜杠的</p>
+<p>当不配置 publicPath 的时候是相对路径</p>
+<p>假如我们的页面地址是 localhost:8000/html/index.html,然后里面的资源是<strong>相对路径</strong>img/xxx.png</p>
+<p>所以最后生成的路径就是 localhost:8000/html/img/xxx.png</p>
+<p><img src="1723882590086-65b6aded-7983-4f29-9612-51a087ef989c.png"></p>
+<p>当配置 publicPath: “/“之后就变成了绝对路径</p>
+<p>当配置以后/表示的意思资源的路径是/img/xxx.png</p>
+<p>然后协议，主机名，端口号照抄进行拼接最后就形成了 localhost:8000/img/xxx.png</p>
+<p><img src="1723882590086-65b6aded-7983-4f29-9612-51a087ef989c.png"></p>
+<p>在 output 里面配置 publicPath 是会对所有的 loader 和 plugin 生效的，任何的 loader 和 plugin 都有可能去读这个配置修改资源路径；当然有些 loader 自己本身会有 publicPath 这个配置，那就只会影响自己生成出来的路径</p>
+<blockquote>
+<p>原理：当配置了 output 的 publicPath 之后，打包后的 webpack 代码会有这么一句<strong>webpack_require</strong>.p = “xxxxx”</p>
+<p>任何人需要都可以使用这个配置，webpack 本身只是存了一个字符串</p>
+</blockquote>
+<pre><code class="javascript">const &#123; CleanWebpackPlugin &#125; = require(&quot;clean-webpack-plugin&quot;);
+const HtmlWebpackPlugin = require(&quot;html-webpack-plugin&quot;);
+
+module.exports = &#123;
+  output: &#123;
+    filename: &quot;scripts/[name].[chunkhash:5].js&quot;,
+    publicPath: &quot;/&quot;,
+  &#125;,
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.(png)|(gif)|(jpg)$/,
+        use: [
+          &#123;
+            loader: &quot;file-loader&quot;,
+            options: &#123;
+              name: &quot;imgs/[name].[hash:5].[ext]&quot;,
+              publicPath: &quot;../&quot;,
+            &#125;,
+          &#125;,
+        ],
+      &#125;,
+    ],
+  &#125;,
+&#125;;
+</code></pre>
+<h3 id="Loader（module）"><a href="#Loader（module）" class="headerlink" title="Loader（module）"></a>Loader（module）</h3><p>loader 本质上是一个函数，它的作用是将某个源码字符串转换成另一个源码字符串返回</p>
+<p><img src="1722524849898-4990d826-45ab-4eac-81e6-d51366930e52.png"></p>
+<p>loader 函数的将在模块解析的过程中被调用，以得到最终的源码。</p>
+<p><strong>全流程：</strong></p>
+<p><img src="1722431740068-855457a2-964b-43dd-8238-268ad2f41bc1.png"></p>
+<p><strong>chunk 中解析模块的流程：</strong><br> <img src="1722524918264-6b4109a6-460c-4095-a790-3a5799ad55f7.png"></p>
+<p><strong>处理 loaders 流程：</strong></p>
+<p><img src="1722524944586-e3a02d83-052b-448f-bf22-1a76a8faa49d.png"></p>
+<p>1.多个规则，一个规则中又有多个 loader，那么加载顺序是从后向前(先加载 loader4,再加载 loader3 …..)</p>
+<p>2.loader 内只能写 commonjs,因为要参与运行</p>
+<p>3.从入口模块匹配到规则以后，如果里面还有 require，还需要递归循环 loader 去匹配规则</p>
+<pre><code class="typescript">module.exports = &#123;
+  mode: &quot;development&quot;,
+  module: &#123;
+    rules: [
+      &#123;
+        test: /index\.js$/, //正则表达式，匹配模块的路径
+        use: [&quot;./loaders/loader1&quot;, &quot;./loaders/loader2&quot;], //匹配到了之后，使用哪些加载器
+      &#125;, //规则1
+      &#123;
+        test: /\.js$/, //正则表达式，匹配模块的路径
+        use: [&quot;./loaders/loader3&quot;, &quot;./loaders/loader4&quot;], //匹配到了之后，使用哪些加载器
+      &#125;, //规则2
+    ], //模块的匹配规则
+  &#125;,
+&#125;;
+</code></pre>
+<p>在 rules 里面每一个 loader 里可以写 options 参数，loader 加载器可以获取到</p>
+<pre><code class="typescript">//配置文件
+module.exports = &#123;
+    module: &#123; //针对模块的配置，目前版本只有两个配置，rules、noParse
+        rules: [ //模块匹配规则，可以存在多个规则
+            &#123; //每个规则是一个对象
+                test: /\.js$/, //匹配的模块正则
+                use: [ //匹配到后应用的规则模块
+                    &#123;  //其中一个规则
+                        loader: &quot;模块路径&quot;, //loader模块的路径，该字符串会被放置到require中
+                        options: &#123; //向对应loader传递的额外参数
+                            changeVar：1
+                        &#125;
+                    &#125;
+                ]
+            &#125;
+        ]
+    &#125;
+&#125;
+
+//loader
+var loaderUtils = require(&quot;loader-utils&quot;)
+module.exports = function(sourceCode)&#123;
+    var options = loaderUtils.getOptions(this)
+    console.log(options)
+    return sourceCode.replace(reg, &quot;var&quot;);
+&#125;
+</code></pre>
+<h4 id="处理-css"><a href="#处理-css" class="headerlink" title="处理 css"></a>处理 css</h4><p>虽然 webpack 只认识 js 代码,所以他处理不了 css 和图片，但我们可以写 loader 来处理，使得 webpack 能够处理</p>
+<pre><code class="typescript">//style-loader.js原理源码
+module.exports = function (sourceCode) &#123;
+  var code = `var style = document.createElement(&quot;style&quot;);
+    style.innerHTML = \`$&#123;sourceCode&#125;\`;
+    document.head.appendChild(style);
+    module.exports = \`$&#123;sourceCode&#125;\``;
+  return code;
+&#125;;
+
+//配置
+module.exports = &#123;
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.css$/,
+        use: [&quot;./loaders/style-loader&quot;],
+      &#125;,
+    ],
+  &#125;,
+&#125;;
+</code></pre>
+<h4 id="处理图片"><a href="#处理图片" class="headerlink" title="处理图片"></a>处理图片</h4><p>编译前的 index.js</p>
+<pre><code class="javascript">var src = require(&quot;./assets/webpack.png&quot;);
+console.log(src);
+var img = document.createElement(&quot;img&quot;);
+img.src = src;
+document.body.appendChild(img);
+</code></pre>
+<p>config</p>
+<pre><code class="javascript">module.exports = &#123;
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.(png)|(jpg)|(gif)$/,
+        use: [
+          &#123;
+            loader: &quot;./loaders/img-loader.js&quot;,
+            options: &#123;
+              limit: 3000, //3000字节以上使用图片，3000字节以内使用base64
+              filename: &quot;img-[contenthash:5].[ext]&quot;,
+            &#125;,
+          &#125;,
+        ],
+      &#125;,
+    ],
+  &#125;,
+&#125;;
+</code></pre>
+<p>loader</p>
+<blockquote>
+<p>content hash: 表示单个文件的 hash</p>
+</blockquote>
+<pre><code class="typescript">var loaderUtil = require(&quot;loader-utils&quot;);
+
+function loader(buffer) &#123;
+  //给的是buffer
+  console.log(&quot;文件数据大小：(字节)&quot;, buffer.byteLength);
+  var &#123; limit = 1000, filename = &quot;[contenthash].[ext]&quot; &#125; =
+    loaderUtil.getOptions(this);
+  if (buffer.byteLength &gt;= limit) &#123;
+    var content = getFilePath.call(this, buffer, filename);
+  &#125; else &#123;
+    var content = getBase64(buffer);
+  &#125;
+  return `module.exports = \`$&#123;content&#125;\``;
+&#125;
+
+//如果不加这句话，buffer读出来是二进制数据，console.log打印就是把他当作字符串，出来的是乱码
+//该loader要处理的是原始数据（原始格式）
+loader.raw = true;
+
+module.exports = loader;
+
+function getBase64(buffer) &#123;
+  return &quot;data:image/png;base64,&quot; + buffer.toString(&quot;base64&quot;);
+&#125;
+
+//生成一个文件，导出这个文件的路径
+function getFilePath(buffer, name) &#123;
+  //按照某一种规则生成文件名字
+  var filename = loaderUtil.interpolateName(this, name, &#123;
+    content: buffer,
+  &#125;);
+  this.emitFile(filename, buffer);
+  return filename;
+&#125;
+</code></pre>
+<blockquote>
+<p>[.ext]表示原来的后缀名 经过 webpack 打包之前是什么后缀名，生成之后还是什么后缀名</p>
+<p>base64 和请求图片地址的取舍</p>
+<p>一般会限制一个尺寸大小，小的图片尽量使用 base64,因为请求图片需要发 http 请求，要耗时，特别是图片多了以后</p>
+<p>使用 base64 有一个问题就是会导致代码量增大，特别是大文件，会显得特别长</p>
+</blockquote>
+<h3 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h3><p>loader 和 plugin 都是用来扩展 webpack 的功能的</p>
+<p>loader 的功能定位是转换代码，而一些其他的操作难以使用 loader 完成，比如：</p>
+<ul>
+<li>当 webpack 生成文件时，顺便多生成一个说明描述文件</li>
+<li>当 webpack 编译启动时，控制台输出一句话表示 webpack 启动了</li>
+<li>当 xxxx 时，xxxx</li>
+</ul>
+<p>这种类似的功能需要把功能嵌入到 webpack 的编译流程中，而这种事情的实现是依托于 plugin 的</p>
+<p>打红点的地方就是一个个节点，每一个节点都可以通过 plugin 来做一些额外的事情（类似生命周期钩子）</p>
+<p><img src="1723283549696-0f635c93-03d3-4d8b-b4eb-dc26f530df75.png"></p>
+<p><img src="assets/2020-01-15-12-45-16.png"></p>
+<p>plugin 的<strong>本质</strong>是一个带有 apply 方法的对象</p>
+<pre><code class="javascript">var plugin = &#123;
+  apply: function (compiler) &#123;&#125;,
+&#125;;
+</code></pre>
+<p>通常，习惯上，我们会将该对象写成构造函数的模式</p>
+<pre><code class="javascript">class MyPlugin &#123;
+  apply(compiler) &#123;&#125;
+&#125;
+
+var plugin = new MyPlugin();
+</code></pre>
+<blockquote>
+<p>为什么可以写成类？</p>
+<p>因为当我们 new MyPlugin()等于是创建了一个对象，对象里面有一个 apply 方法，这样其实两者就是相同的</p>
+</blockquote>
+<p>要将插件应用到 webpack，需要把插件对象配置到 webpack 的 plugins 数组中，如下：</p>
+<pre><code class="javascript">module.exports = &#123;
+  plugins: [new MyPlugin()],
+&#125;;
+</code></pre>
+<p><strong>apply 函数会在初始化阶段，创建好 Compiler 对象后运行。</strong></p>
+<p>compiler 对象是在初始化阶段构建的，整个 webpack 打包期间只有一个 compiler 对象，后续完成打包工作的是 compiler 对象内部创建的 compilation</p>
+<p>apply 方法会在<strong>创建好 compiler 对象后调用</strong>，并向方法传入一个 compiler 对象</p>
+<p><img src="2020-01-15-12-49-26.png"></p>
+<blockquote>
+<p>当 watch 监听代码变化以后；一旦代码变化,compiler 不会变化，但会重新创建一个 compilation 对象</p>
+<p>compiler 只有一个，但 compilation 可能会有多个</p>
+</blockquote>
+<p>compiler 对象提供了大量的钩子函数（hooks，可以理解为事件），plugin 的开发者可以注册这些钩子函数，参与 webpack 编译和生成。</p>
+<p>你可以在 apply 方法中使用下面的代码注册钩子函数:</p>
+<pre><code class="javascript">class MyPlugin &#123;
+  apply(compiler) &#123;
+    //这里一次启动只会运行一次 类型window.onload
+
+    //name是用来调试的，随便填写
+    compiler.hooks.事件名称.事件类型(name, function (compilation) &#123;
+      //事件处理函数
+    &#125;);
+  &#125;
+&#125;
+</code></pre>
+<p><strong>事件名称</strong></p>
+<p>即要监听的事件名，即钩子名，所有的钩子：<a href="compiler-hooks">compiler-hooks</a></p>
+<p><strong>事件类型</strong></p>
+<p>这一部分使用的是 Tapable API，这个小型的库是一个专门用于钩子函数监听的库。</p>
+<p>它提供了一些事件类型：</p>
+<ul>
+<li>tap：注册一个同步的钩子函数，函数运行完毕则表示事件处理结束</li>
+<li>tapAsync：注册一个基于回调的异步的钩子函数，函数通过调用一个回调表示事件处理结束</li>
+<li>tapPromise：注册一个基于 Promise 的异步的钩子函数，函数通过返回的 Promise 进入已决状态表示事件处理结束</li>
+</ul>
+<p><strong>处理函数</strong></p>
+<p>处理函数有一个事件参数<code>compilation</code></p>
+<h4 id="打包生成其他文件"><a href="#打包生成其他文件" class="headerlink" title="打包生成其他文件"></a>打包生成其他文件</h4><p>打包的时候多生成一个目录文件，来展示打包文件的信息</p>
+<p>complation.assets 就是拿到所有的打包资源信息</p>
+<pre><code class="javascript">module.exports = class FileListPlugin &#123;
+  constructor(filename = &quot;filelist.txt&quot;) &#123;
+    this.filename = filename;
+  &#125;
+
+  apply(compiler) &#123;
+    compiler.hooks.emit.tap(&quot;FileListPlugin&quot;, (complation) =&gt; &#123;
+      var fileList = [];
+      for (const key in complation.assets) &#123;
+        var content = `【$&#123;key&#125;】
+大小：$&#123;complation.assets[key].size() / 1000&#125;KB`;
+        fileList.push(content);
+      &#125;
+
+      var str = fileList.join(&quot;\n\n&quot;);
+      complation.assets[this.filename] = &#123;
+        source() &#123;
+          return str;
+        &#125;,
+        size() &#123;
+          return str.length;
+        &#125;,
+      &#125;;
+    &#125;);
+  &#125;
+&#125;;
+</code></pre>
+<h3 id="devtool（source-map）"><a href="#devtool（source-map）" class="headerlink" title="devtool（source map）"></a><font style="color:rgb(36, 41, 46);">devtool（source map）</font></h3><p>打包后的代码格式（混淆 | 可调式）</p>
+<p><font style="color:rgb(36, 41, 46);">使用 webpack 编译后的代码难以调试，可以通过 devtool 配置来</font><strong><font style="color:rgb(36, 41, 46);">优化调试体验</font></strong></p>
+<pre><code class="javascript">module.exports = &#123;
+  devtool: &quot;hidden-source-map&quot;,
+&#125;;
+</code></pre>
+<p>eval 方式</p>
+<p>webpack 在开发环境内能让你调试的方式是通过将你的代码放入 eval 函数里去执行，在开发环境下你的源码会被打包成.map 文件 然后实际运行的还是打包后的文件但是如果有报错的话他会根据 eval 函数里的注释去找到 map 文件的源代码以源代码的方式去展示以方式你调试</p>
+<p><font style="color:rgb(43, 58, 66);">eval-source-map 方式</font></p>
+<p><font style="color:rgb(43, 58, 66);">把源码嵌入到执行文件中</font></p>
+<h3 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h3><p>代码一修改，重新打包</p>
+<p>会监听文件的变化</p>
+<pre><code class="javascript">module.exports = &#123;
+  watch: true,
+&#125;;
+</code></pre>
+<p>watch 变化不会重新读初始化参数</p>
+<h3 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h3><p>编译模式，字符串，取值为 development 或 production，指定编译结果代码运行的环境，会影响 webpack 对编译结果代码格式的处理</p>
+<pre><code class="javascript">module.exports = &#123;
+  mode: &quot;development&quot;,
+&#125;;
+</code></pre>
+<h3 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h3><h4 id="context"><a href="#context" class="headerlink" title="context"></a>context</h4><pre><code class="javascript">context: path.resolve(__dirname, &quot;app&quot;);
+</code></pre>
+<p>该配置会影响入口和 loaders 的解析，入口和 loaders 的相对路径会以 context 的配置作为基准路径。（默认是当前路径开始查找）</p>
+<p>这样，你的配置会独立于 CWD（current working directory 当前执行路径）</p>
+<h4 id="output"><a href="#output" class="headerlink" title="output"></a>output</h4><h5 id="library"><a href="#library" class="headerlink" title="library"></a>library</h5><pre><code class="javascript">library: &quot;abc&quot;;
+</code></pre>
+<p>这样一来，打包后的结果中，会将自执行函数的执行结果暴露给 abc</p>
+<p>相当于是入口模块的导出执行导出结果</p>
+<h5 id="libraryTarget"><a href="#libraryTarget" class="headerlink" title="libraryTarget"></a>libraryTarget</h5><pre><code class="javascript">libraryTarget: &quot;var&quot;;
+</code></pre>
+<p>该配置可以更加精细的控制如何暴露入口包的导出结果</p>
+<p>其他可用的值有：</p>
+<ul>
+<li>var：默认值，暴露给一个普通变量</li>
+<li>window：暴露给 window 对象的一个属性</li>
+<li>this：暴露给 this 的一个属性</li>
+<li>global：暴露给 global 的一个属性</li>
+<li>commonjs：暴露给 exports 的一个属性</li>
+<li>其他：<a href=""></a></li>
+</ul>
+<h4 id="target"><a href="#target" class="headerlink" title="target"></a>target</h4><pre><code class="javascript">target: &quot;web&quot;; //默认值
+</code></pre>
+<p>设置打包结果最终要运行的环境，常用值有</p>
+<ul>
+<li>web: 打包后的代码运行在 web 环境中</li>
+<li>node：打包后的代码运行在 node 环境中</li>
+<li>其他：<a href=""></a></li>
+</ul>
+<h4 id="module"><a href="#module" class="headerlink" title="module"></a>module</h4><h5 id="noParse"><a href="#noParse" class="headerlink" title="noParse"></a>noParse</h5><pre><code class="javascript">noParse: /jquery/;
+</code></pre>
+<p>不解析正则表达式匹配的模块，通常用它来<strong>忽略那些大型的单模块库</strong>，以提高<strong>构建性能</strong></p>
+<p>提高打包的效率，如果不追求效率完全可以不用</p>
+<h4 id="resolve"><a href="#resolve" class="headerlink" title="resolve"></a>resolve</h4><p>resolve 的相关配置主要用于控制模块解析过程</p>
+<h5 id="modules"><a href="#modules" class="headerlink" title="modules"></a>modules</h5><pre><code class="javascript">modules: [&quot;node_modules&quot;]; //默认值
+</code></pre>
+<p>当解析模块时，如果遇到导入语句，<code>require(&quot;test&quot;)</code>，webpack 会从下面的位置寻找依赖的模块</p>
+<ol>
+<li>当前目录下的<code>node_modules</code>目录</li>
+<li>上级目录下的<code>node_modules</code>目录</li>
+<li>…</li>
+</ol>
+<h5 id="extensions"><a href="#extensions" class="headerlink" title="extensions"></a>extensions</h5><pre><code class="javascript">extensions: [&quot;.js&quot;, &quot;.json&quot;]; //默认值
+</code></pre>
+<p>当解析模块时，遇到无具体后缀的导入语句，例如<code>require(&quot;test&quot;)</code>，会依次测试它的后缀名</p>
+<ul>
+<li>test.js</li>
+<li>test.json</li>
+</ul>
+<h5 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h5><pre><code class="javascript">alias: &#123;
+  &quot;@&quot;: path.resolve(__dirname, &#39;src&#39;),
+  &quot;_&quot;: __dirname
+&#125;
+</code></pre>
+<p>有了 alias（别名）后，导入语句中可以加入配置的键名，例如<code>require(&quot;@/abc.js&quot;)</code>，webpack 会将其看作是<code>require(src的绝对路径+&quot;/abc.js&quot;)</code>。</p>
+<p>在大型系统中，源码结构往往比较深和复杂，别名配置可以让我们更加方便的导入依赖</p>
+<h4 id="externals"><a href="#externals" class="headerlink" title="externals"></a>externals</h4><pre><code class="javascript">externals: &#123;
+    jquery: &quot;$&quot;,
+    lodash: &quot;_&quot;
+&#125;
+</code></pre>
+<p>从最终的 bundle 中排除掉配置的配置的源码，例如，入口模块是</p>
+<pre><code class="javascript">//index.js
+require(&quot;jquery&quot;);
+require(&quot;lodash&quot;);
+</code></pre>
+<p>生成的 bundle 是：</p>
+<pre><code class="javascript">(function()&#123;
+    ...
+&#125;)(&#123;
+    &quot;./src/index.js&quot;: function(module, exports, __webpack_require__)&#123;
+        __webpack_require__(&quot;jquery&quot;)
+        __webpack_require__(&quot;lodash&quot;)
+    &#125;,
+    &quot;jquery&quot;: function(module, exports)&#123;
+        //jquery的大量源码
+    &#125;,
+    &quot;lodash&quot;: function(module, exports)&#123;
+        //lodash的大量源码
+    &#125;,
+&#125;)
+</code></pre>
+<p>但有了上面的配置后，则变成了</p>
+<pre><code class="javascript">(function()&#123;
+    ...
+&#125;)(&#123;
+    &quot;./src/index.js&quot;: function(module, exports, __webpack_require__)&#123;
+        __webpack_require__(&quot;jquery&quot;)
+        __webpack_require__(&quot;lodash&quot;)
+    &#125;,
+    &quot;jquery&quot;: function(module, exports)&#123;
+        module.exports = $;
+    &#125;,
+    &quot;lodash&quot;: function(module, exports)&#123;
+        module.exports = _;
+    &#125;,
+&#125;)
+</code></pre>
+<p>这比较适用于一些第三方库来自于外部 CDN 的情况，这样一来，即可以在页面中使用 CDN，又让 bundle 的体积变得更小，还不影响源码的编写</p>
+<h4 id="stats"><a href="#stats" class="headerlink" title="stats"></a>stats</h4><p>stats 控制的是构建过程中控制台的输出内容</p>
+<h3 id="额外"><a href="#额外" class="headerlink" title="额外"></a>额外</h3><p>webpack.config.js 的代码只能使用 common.js 的写法，因为这个文件是需要参与打包运行的，webpack 是依赖 node 环境的。</p>
+<p>loader 加载器的代码也是要参与运行的，不能使用 es module</p>
+<p>我们写的模块之所以能支持 es Module 是因为这个代码不会参与运行，而是只是读取以后编译成常规的 js 代码（一个是当作文件去处理，去分析依赖；另一个则是作为运行代码的一部分），如果要编译的文件里面写的有语法错误也不会报错，因为他们不会参与运行（所以引入 ts 之类的工具就是为了在写代码的时候就能发现一些错误，早点知道问题是好事）</p>
+<h2 id="第三方-plugin-和-loader"><a href="#第三方-plugin-和-loader" class="headerlink" title="第三方 plugin 和 loader"></a>第三方 plugin 和 loader</h2><h3 id="plugin-1"><a href="#plugin-1" class="headerlink" title="plugin"></a>plugin</h3><h4 id="clean-webpack-plugin（清除输出目录）"><a href="#clean-webpack-plugin（清除输出目录）" class="headerlink" title="clean-webpack-plugin（清除输出目录）"></a>clean-webpack-plugin（清除输出目录）</h4><p>一旦代码修改，重新打包,就会多出来文件，如果想要清除输出目录后再打包出新的文件，可以用这个插件</p>
+<pre><code class="plain">var &#123; CleanWebpackPlugin &#125; = require(&quot;clean-webpack-plugin&quot;)
+
+module.exports = &#123;
+    output: &#123;
+        filename: &quot;[name].[chunkhash:5].js&quot;
+    &#125;,
+    plugins: [new CleanWebpackPlugin()]
+&#125;
+</code></pre>
+<blockquote>
+<p>原理：可以想象，就是调用了，node 的 fs 模块，清空目录后再打包生成</p>
+</blockquote>
+<h4 id="html-webpack-plugin（自动生成页面）"><a href="#html-webpack-plugin（自动生成页面）" class="headerlink" title="html-webpack-plugin（自动生成页面）"></a>html-webpack-plugin（自动生成页面）</h4><p>当我们要在 html 引用打包出来的 js 文件时候可以使用这个插件</p>
+<p>这个插件还有各种各样的配置</p>
+<p>可以配置 html 的模板</p>
+<p>可以配置要引入哪些 js 进入 html 的模板中</p>
+<pre><code class="plain">const &#123; CleanWebpackPlugin &#125; = require(&quot;clean-webpack-plugin&quot;)
+const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;)
+module.exports = &#123;
+    mode: &quot;development&quot;,
+    devtool: &quot;source-map&quot;,
+    entry: &#123;
+        home: &quot;./src/index.js&quot;,
+        a: &quot;./src/a.js&quot;
+    &#125;,
+    output: &#123;
+        filename: &quot;scripts/[name].[chunkhash:5].js&quot;
+    &#125;,
+    plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin(&#123;
+            template: &quot;./public/index.html&quot;,
+            filename: &quot;home.html&quot;,//生成出来的文件名
+            chunks: [&quot;home&quot;]//这里填写的chunk的key
+        &#125;),
+        new HtmlWebpackPlugin(&#123;
+            template: &quot;./public/index.html&quot;,
+            filename: &quot;a.html&quot;,
+            chunks: [&quot;a&quot;]
+        &#125;)
+    ]
+&#125;
+</code></pre>
+<h4 id="copy-webpack-plugin（复制静态资源）"><a href="#copy-webpack-plugin（复制静态资源）" class="headerlink" title="copy-webpack-plugin（复制静态资源）"></a>copy-webpack-plugin（复制静态资源）</h4><p>将一些资源原封不动的放入打包结果中</p>
+<blockquote>
+<p>如果某些资源已经在最终结果中，他将不会覆盖重新处理</p>
+</blockquote>
+<pre><code class="typescript">const CopyPlugin = require(&quot;copy-webpack-plugin&quot;);
+module.exports = &#123;
+  plugins: [
+    new CopyPlugin([
+      &#123; from: &quot;./public&quot;, to: &quot;./&quot; &#125;, //复制规则
+    ]),
+  ],
+&#125;;
+</code></pre>
+<h4 id="mini-css-extract-plugin（生成-css-文件）"><a href="#mini-css-extract-plugin（生成-css-文件）" class="headerlink" title="mini-css-extract-plugin（生成 css 文件）"></a>mini-css-extract-plugin（生成 css 文件）</h4><pre><code class="javascript">const MiniCssExtractPlugin = require(&quot;mini-css-extract-plugin&quot;);
+module.exports = &#123;
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, &quot;css-loader?modules&quot;],
+      &#125;,
+    ],
+  &#125;,
+  plugins: [
+    new MiniCssExtractPlugin(), //负责生成css文件
+  ],
+&#125;;
+</code></pre>
+<h4 id="webpack-内置插件"><a href="#webpack-内置插件" class="headerlink" title="webpack 内置插件"></a>webpack 内置插件</h4><p>所有的 webpack 内置插件都作为 webpack 的静态属性存在的，使用下面的方式即可创建一个插件对象</p>
+<pre><code class="javascript">const webpack = require(&quot;webpack&quot;);
+
+new webpack.插件名(options);
+</code></pre>
+<h5 id="DefinePlugin"><a href="#DefinePlugin" class="headerlink" title="DefinePlugin"></a>DefinePlugin</h5><p>全局常量定义插件，使用该插件通常定义一些常量值，例如：</p>
+<pre><code class="javascript">new webpack.DefinePlugin(&#123;
+  PI: `Math.PI`, // PI = Math.PI
+  VERSION: `&quot;1.0.0&quot;`, // VERSION = &quot;1.0.0&quot;
+  DOMAIN: JSON.stringify(&quot;duyi.com&quot;),
+&#125;);
+</code></pre>
+<p>这样一来，在源码中，我们可以直接使用插件中提供的常量，当 webpack 编译完成后，会自动替换为常量的值</p>
+<h5 id="BannerPlugin"><a href="#BannerPlugin" class="headerlink" title="BannerPlugin"></a>BannerPlugin</h5><p>它可以为每个 chunk 生成的<strong>文件头部添加一行注释</strong>，一般用于添加作者、公司、版权等信息</p>
+<pre><code class="javascript">new webpack.BannerPlugin(&#123;
+  banner: `
+  hash:[hash]
+  chunkhash:[chunkhash]
+  name:[name]
+  author:yuanjin
+  corporation:duyi
+  `,
+&#125;);
+</code></pre>
+<h5 id="ProvidePlugin"><a href="#ProvidePlugin" class="headerlink" title="ProvidePlugin"></a>ProvidePlugin</h5><p>自动加载模块，而不必到处 import 或 require</p>
+<pre><code class="javascript">new webpack.ProvidePlugin(&#123;
+  $: &quot;jquery&quot;,
+  _: &quot;lodash&quot;,
+&#125;);
+</code></pre>
+<p>然后在我们任意源码中：</p>
+<pre><code class="javascript">$(&quot;#item&quot;); // &lt;= 起作用
+_.drop([1, 2, 3], 2); // &lt;= 起作用
+</code></pre>
+<p>如果代码中没有用到 jquery，依然不会将代码打包进去</p>
+<p>一旦使用，他的原理是采用将我们的代码又放入一个立即执行函数，立即执行函数里面有两个参数$，_这样内部就可以使用了；这个函数再调用 call 引入</p>
+<p><img src="1723883748726-2bf92937-48e6-4899-9559-494f416e88e8.png"></p>
+<h3 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h3><h4 id="file-loader"><a href="#file-loader" class="headerlink" title="file-loader"></a>file-loader</h4><p>生成依赖的文件到输出目录，然后将模块文件设置为：导出一个路径</p>
+<pre><code class="javascript">function loader(source) &#123;
+  // source：文件内容（图片内容 buffer）
+  // 1. 生成一个具有相同文件内容的文件到输出目录
+  // 2. 返回一段代码   export default &quot;文件名&quot;
+&#125;
+</code></pre>
+<pre><code class="javascript">module.exports = &#123;
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.(png)|(gif)|(jpg)$/,
+        use: [
+          &#123;
+            loader: &quot;file-loader&quot;,
+            options: &#123;
+              name: &quot;imgs/[name].[hash:5].[ext]&quot;,
+            &#125;,
+          &#125;,
+        ],
+      &#125;,
+    ],
+  &#125;,
+&#125;;
+</code></pre>
+<h4 id="url-loader"><a href="#url-loader" class="headerlink" title="url-loader"></a>url-loader</h4><p>将依赖的文件转换为：导出一个 base64 格式的字符串</p>
+<blockquote>
+<p>注意：url-loader 内部会使用 file-loader 一旦文件大小超过限制将自动启动 file-loader</p>
+</blockquote>
+<pre><code class="javascript">function loader(source) &#123;
+  // source：文件内容（图片内容 buffer）
+  // 1. 根据buffer生成一个base64编码
+  // 2. 返回一段代码   export default &quot;base64编码&quot;
+&#125;
+</code></pre>
+<pre><code class="javascript">module.exports = &#123;
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.(png)|(gif)|(jpg)$/,
+        use: [
+          &#123;
+            loader: &quot;url-loader&quot;,
+            options: &#123;
+              //不限制任何大小，所有经过loader的文件进行base64编码返回
+              // limit: false
+
+              //只要文件不超过 100*1024 字节，则使用base64编码，否则，交给file-loader进行处理
+              limit: 10 * 1024,
+
+              //虽然使用url-loader是生成base64编码不应该有这个配置
+              //但是可能会调用file-loader，所以可以把file-loader需要的配置写在这里
+              name: &quot;imgs/[name].[hash:5].[ext]&quot;,
+            &#125;,
+          &#125;,
+        ],
+      &#125;,
+    ],
+  &#125;,
+&#125;;
+</code></pre>
+<h4 id="css-loader-style-loader（解决-css-细分问题）"><a href="#css-loader-style-loader（解决-css-细分问题）" class="headerlink" title="css-loader style-loader（解决 css 细分问题）"></a>css-loader style-loader（解决 css 细分问题）</h4><p>要拆分 css，就必须把 css 当成像 js 那样的模块；要把 css 当成模块，就必须有一个构建工具（webpack），它具备合并代码的能力</p>
+<p>而 webpack 本身只能读取 css 文件的内容、将其当作 JS 代码进行分析，因此，会导致错误</p>
+<p>于是，就必须有一个 loader，能够将 css 代码转换为 js 代码</p>
+<h5 id="css-loader"><a href="#css-loader" class="headerlink" title="css-loader"></a>css-loader</h5><p>css-loader 的作用，就是将 css 代码转换为 js 代码</p>
+<p>它的处理原理极其简单：将 css 代码作为字符串导出</p>
+<p>例如：</p>
+<pre><code class="css">.red &#123;
+  color: &quot;#f40&quot;;
+&#125;
+</code></pre>
+<p>经过 css-loader 转换后变成 js 代码：</p>
+<pre><code class="javascript">module.exports = `.red&#123;
+    color:&quot;#f40&quot;;
+&#125;`;
+</code></pre>
+<blockquote>
+<p>上面的 js 代码是经过我简化后的，不代表真实的 css-loader 的转换后代码，css-loader 转换后的代码会有些复杂，同时会导出更多的信息，但核心思想不变</p>
+</blockquote>
+<p>再例如：</p>
+<pre><code class="css">.red &#123;
+  color: &quot;#f40&quot;;
+  background: url(&quot;./bg.png&quot;);
+&#125;
+</code></pre>
+<p>经过 css-loader 转换后变成 js 代码：</p>
+<pre><code class="javascript">var import1 = require(&quot;./bg.png&quot;);
+module.exports = `.red&#123;
+    color:&quot;#f40&quot;;
+    background:url(&quot;$&#123;import1&#125;&quot;)
+&#125;`;
+</code></pre>
+<p>这样一来，经过 webpack 的后续处理，会把依赖<code>./bg.png</code>添加到模块列表，然后再将代码转换为</p>
+<pre><code class="javascript">var import1 = __webpack_require__(&quot;./src/bg.png&quot;);
+module.exports = `.red&#123;
+    color:&quot;#f40&quot;;
+    background:url(&quot;$&#123;import1&#125;&quot;)
+&#125;`;
+</code></pre>
+<p>再例如：</p>
+<pre><code class="css">@import &quot;./reset.css&quot;;
+.red &#123;
+  color: &quot;#f40&quot;;
+  background: url(&quot;./bg.png&quot;);
+&#125;
+</code></pre>
+<p>会转换为：</p>
+<pre><code class="javascript">var import1 = require(&quot;./reset.css&quot;);
+var import2 = require(&quot;./bg.png&quot;);
+module.exports = `$&#123;import1&#125;
+.red&#123;
+    color:&quot;#f40&quot;;
+    background:url(&quot;$&#123;import2&#125;&quot;)
+&#125;`;
+</code></pre>
+<p>总结，css-loader 干了什么：</p>
+<ol>
+<li>将 css 文件的内容作为字符串导出</li>
+<li>将 css 中的其他依赖作为 require 导入，以便 webpack 分析依赖</li>
+</ol>
+<h5 id="style-loader"><a href="#style-loader" class="headerlink" title="style-loader"></a>style-loader</h5><p>由于 css-loader 仅提供了将 css 转换为字符串导出的能力，剩余的事情要交给其他 loader 或 plugin 来处理</p>
+<p>style-loader 可以将 css-loader 转换后的代码进一步处理，将 css-loader 导出的字符串加入到页面的 style 元素中</p>
+<p>例如：</p>
+<pre><code class="css">.red &#123;
+  color: &quot;#f40&quot;;
+&#125;
+</code></pre>
+<p>经过 css-loader 转换后变成 js 代码：</p>
+<pre><code class="javascript">module.exports = `.red&#123;
+    color:&quot;#f40&quot;;
+&#125;`;
+</code></pre>
+<p>经过 style-loader 转换后变成：</p>
+<pre><code class="javascript">module.exports = `.red&#123;
+    color:&quot;#f40&quot;;
+&#125;`;
+var style = module.exports;
+var styleElem = document.createElement(&quot;style&quot;);
+styleElem.innerHTML = style;
+document.head.appendChild(styleElem);
+module.exports = &#123;&#125;;
+</code></pre>
+<blockquote>
+<p>以上代码均为简化后的代码，并不代表真实的代码<br>style-loader 有能力避免同一个样式的重复导入</p>
+</blockquote>
+<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><pre><code class="javascript">module.exports = &#123;
+  module: &#123;
+    rules: [
+      //先运行css-loader将css变成字符串，再运行style-loader，将css字符串引用入页面（style标签方式）
+      &#123; test: /\.css$/, use: [&quot;style-loader&quot;, &quot;css-loader&quot;] &#125;,
+      //css中可能用到图片，图片也需要解析
+      &#123; test: /\.png$/, use: &quot;file-loader&quot; &#125;,
+    ],
+  &#125;,
+&#125;;
+</code></pre>
+<h4 id="postcss-loader-使用-postcss"><a href="#postcss-loader-使用-postcss" class="headerlink" title="postcss-loader(使用 postcss)"></a>postcss-loader(使用 postcss)</h4><p>.browserslistrc</p>
+<p>配置 postcss 对浏览器的兼容性</p>
+<pre><code class="javascript">last 3 version
+&gt; 1%
+not ie &lt;= 8
+</code></pre>
+<p>.postcss.config.js</p>
+<pre><code class="javascript">module.exports = &#123;
+  map: false, //关闭source-map
+  plugins: &#123;
+    &quot;postcss-preset-env&quot;: &#123;
+      stage: 0, //哪怕是处于草案阶段的语法，也需要转换
+      preserve: false,
+    &#125;,
+  &#125;,
+&#125;;
+</code></pre>
+<p>.webpack.config.js</p>
+<pre><code class="javascript">module.exports = &#123;
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.pcss$/,
+        use: [&quot;style-loader&quot;, &quot;css-loader?modules&quot;, &quot;postcss-loader&quot;],
+      &#125;,
+    ],
+  &#125;,
+&#125;;
+</code></pre>
+<h4 id="mini-css-extract-plugin（记录要生成的-css-文件的内容，同时导出开启-css-module-后的样式对象）"><a href="#mini-css-extract-plugin（记录要生成的-css-文件的内容，同时导出开启-css-module-后的样式对象）" class="headerlink" title="mini-css-extract-plugin（记录要生成的 css 文件的内容，同时导出开启 css-module 后的样式对象）"></a>mini-css-extract-plugin（记录要生成的 css 文件的内容，同时导出开启 css-module 后的样式对象）</h4><pre><code class="javascript">const MiniCssExtractPlugin = require(&quot;mini-css-extract-plugin&quot;);
+module.exports = &#123;
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, &quot;css-loader?modules&quot;],
+      &#125;,
+    ],
+  &#125;,
+  plugins: [
+    new MiniCssExtractPlugin(), //负责生成css文件
+  ],
+&#125;;
+</code></pre>
+<h4 id="babel-loader（js-兼容性）"><a href="#babel-loader（js-兼容性）" class="headerlink" title="babel-loader（js 兼容性）"></a>babel-loader（js 兼容性）</h4><p>webpack.config.js</p>
+<pre><code class="javascript">module.exports = &#123;
+  mode: &quot;development&quot;,
+  devtool: &quot;source-map&quot;,
+  module: &#123;
+    rules: [&#123; test: /\.js$/, use: &quot;babel-loader&quot; &#125;],
+  &#125;,
+&#125;;
+</code></pre>
+<p>.babelrc(babel 配置)</p>
+<pre><code class="javascript">&#123;
+    &quot;presets&quot;: [
+        [&quot;@babel/preset-env&quot;, &#123;
+            &quot;useBuiltIns&quot;: &quot;usage&quot;,
+            &quot;corejs&quot;: 3
+        &#125;]
+    ]
+&#125;
+</code></pre>
+<p>.browserslistrc（兼容到浏览器的什么程度）</p>
+<pre><code class="javascript">last 3 version
+&gt; 1%
+not ie &lt;= 8
+</code></pre>
+<h2 id="开发服务器"><a href="#开发服务器" class="headerlink" title="开发服务器"></a>开发服务器</h2><p>如果每次修改完代码，都要经过<code>打包-&gt;运行</code>，未免太过麻烦</p>
+<p>在开发阶段，我们可以运行<code>npm run serve</code>命令获得更好的打包体验</p>
+<p>该命令会让<code>webpack</code>启动一个<strong>开发服务器</strong>。</p>
+<p>在这个阶段，webpack 并不会形成打包结果文件，而是把打包的内容放到内存中，当我们请求服务器时，服务器从内存中给予我们打包结果</p>
+<p>与此同时，当源码发生变动时，webpack 会自动重新打包，同时刷新页面以访问到最新的打包结果</p>
+<p><img src="1724732145575-e926db2f-f133-40ee-99b8-915fdb663929.png"></p>
+<p>它既不是 plugin 也不是 loader</p>
+<p>如果修改 webpack.config.js(配置)，服务器必须重新运行，因为 watch 只发生在文件变化的编译阶段，而不会重新去读配置</p>
+<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h3><p>安装</p>
+<p>webpack-dev-server</p>
+<p><code>webpack-dev-server</code>命令几乎支持所有的 webpack 命令参数，如<code>--config</code>、<code>-env</code>等等，你可以把它当作 webpack 命令使用</p>
+<p>这个命令是专门为开发阶段服务的，真正部署的时候还是得使用 webpack 命令</p>
+<pre><code class="javascript">//package.json
+&quot;scripts&quot;: &#123;
+  &quot;dev&quot;: &quot;webpack-dev-server&quot;
+&#125;,
+
+//webpack.config.js
+module.exports = &#123;
+    devServer: &#123;
+        port: 8000,
+        open: true,
+        proxy: &#123; //代理规则
+            &quot;/api&quot;: &#123;
+                target: &quot;http://open.duyiedu.com&quot;,
+                changeOrigin: true //更改请求头中的host和origin
+            &#125;
+        &#125;
+    &#125;,
+&#125;
+</code></pre>
+<p>当我们执行<code>webpack-dev-server</code>命令后，它做了以下操作：</p>
+<ol>
+<li>内部执行 webpack 命令，传递命令参数</li>
+<li>开启 watch</li>
+<li>注册 hooks：类似于 plugin，webpack-dev-server 会向 webpack 中注册一些钩子函数，主要功能如下：<ol>
+<li>将资源列表（aseets）保存起来</li>
+<li>禁止 webpack 输出文件</li>
+</ol>
+</li>
+<li>用 express 开启一个服务器，监听某个端口，当请求到达后，根据请求的路径，给予相应的资源内容</li>
+</ol>
+<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><p>常见配置有：</p>
+<ul>
+<li>port：配置监听端口</li>
+<li>proxy：配置代理，常用于跨域访问</li>
+<li>stats：配置控制台输出内容</li>
+</ul>
+<h2 id="区分环境"><a href="#区分环境" class="headerlink" title="区分环境"></a>区分环境</h2><p>有些时候，我们需要针对生产环境和开发环境分别书写 webpack 配置</p>
+<p>为了更好的适应这种要求，webpack 允许配置不仅可以是一个对象，还可以是一个<strong>函数</strong></p>
+<pre><code class="javascript">module.exports = (env) =&gt; &#123;
+  return &#123;
+    //配置内容
+  &#125;;
+&#125;;
+</code></pre>
+<p>在开始构建时，webpack 如果发现配置是一个函数，会调用该函数，将函数返回的对象作为配置内容，因此，开发者可以根据不同的环境返回不同的对象</p>
+<p>在调用 webpack 函数时，webpack 会向函数传入一个参数 env，该参数的值来自于 webpack 命令中给 env 指定的值，例如</p>
+<pre><code class="shell">&quot;scripts&quot;: &#123;
+    &quot;dev&quot;: &quot;webpack&quot;,
+    &quot;prod&quot;: &quot;webpack --env.prod&quot;
+&#125;,
+</code></pre>
+<p>这样一来，我们就可以在命令中指定环境，在代码中进行判断，根据环境返回不同的配置结果。</p>
+<pre><code class="shell">var baseConfig = require(&quot;./webpack.base&quot;)
+var devConfig = require(&quot;./webpack.dev&quot;)
+var proConfig = require(&quot;./webpack.pro&quot;)
+
+//区分环境
+module.exports = function (env) &#123;
+    if (env &amp;&amp; env.prod) &#123;
+        return &#123;
+            ...baseConfig,
+            ...proConfig
+        &#125;
+    &#125;
+    else &#123;
+        return &#123;
+            ...baseConfig,
+            ...devConfig
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="不确定的动态依赖"><a href="#不确定的动态依赖" class="headerlink" title="不确定的动态依赖"></a>不确定的动态依赖</h2><p>动态依赖</p>
+<pre><code class="javascript">if (Math.random() &lt; 0.5) &#123;
+  const a = require(&quot;./utils/index.js&quot;); // 动态依赖
+  console.log(a);
+&#125;
+</code></pre>
+<p>不确定的动态依赖，这样做 webpack 会把 utils 下的所有模块都打包进入最终结果</p>
+<p>webpack 给了一个 api 可以让你来这样表达 require.context(仅在 webpack 运行过程中有效)</p>
+<pre><code class="javascript">const module = document.getElementById(&quot;txt&quot;).value;
+
+if (Math.random() &lt; 0.5) &#123;
+  const a = require(&quot;./utils/&quot; + module); // 动态依赖
+  console.log(a);
+&#125;
+
+// 仅在webpack运行过程中有效
+// 参数1：目录，哪个目录中的模块需要添加到打包结果
+// 参数2：是否递归寻找子目录，如果为true，表示需要寻找子目录
+// 参数3：正则表达式，凡是匹配的才会加入到打包结果
+const context = require.context(&quot;./utils&quot;, true, /\.js$/);
+
+//context可以拿到所有打包完成后的文件内容，给参数可以拿到指定的
+const a = context(&quot;./a.js&quot;);
+
+//数组，拿到所有的模块
+console.log(context.keys());
+</code></pre>
+<p>应用</p>
+<p>通过这种方式，就可以将一个目录下的所有模块都导入，后面就算新建的文件也会自动导入</p>
+<pre><code class="javascript">//utils/index.js
+// 导出当前目录中所有的模块
+const context = require.context(&quot;./&quot;, true, /\.js$/);
+for (const key of context.keys()) &#123;
+  if (key !== &quot;./index.js&quot;) &#123;
+    let filename = key.substr(2);
+    filename = filename.substr(0, filename.length - 3);
+    exports[filename] = context(key);
+  &#125;
+&#125;
+
+//index.js
+const util = require(&quot;./utils&quot;);
+console.log(util);
+</code></pre>
+<p>不要这样写，webpack 会不处理，至少也要给出一个大概路径，否则 webpack 无法分析</p>
+<pre><code class="javascript">const module = document.getElementById(&quot;txt&quot;).value;
+
+if (Math.random() &lt; 0.5) &#123;
+  const a = require(module);
+  console.log(a);
+&#125;
+</code></pre>
+<h2 id="动态模块"><a href="#动态模块" class="headerlink" title="动态模块"></a>动态模块</h2><p>webpack 中 es module 的动态模块会导致最终结果的包会形成单独的 js 文件，这个 js 文件一开始不会引入到页面中，只有条件触发的时候（可能是点击，也可能是等一个 js 加载完了再触发）才会通过 ajax 动态的加载这个文件</p>
+<p>通过这样的方式去导入</p>
+<pre><code class="javascript">import(&quot;xxxx&quot;).then((data) =&gt; &#123;
+  导入的数据;
+&#125;);
+</code></pre>
+<h2 id="完整配置"><a href="#完整配置" class="headerlink" title="完整配置"></a>完整配置</h2><pre><code class="javascript">const &#123; resolve &#125; = require(&quot;path&quot;);
+const HtmlWebpackPlugin = require(&quot;html-webpack-plugin&quot;);
+
+module.exports = &#123;
+  entry: &#123;
+    //属性名：chunk的名称， 属性值：入口模块（启动模块）
+    main: &quot;./src/index.js&quot;,
+    //启动模块有两个，但最终的输出的文件只有一个
+    a: [&quot;./src/a.js&quot;, &quot;./src/index.js&quot;],
+  &#125;,
+  output: &#123;
+    //必须配置一个绝对路径，表示资源放置的文件夹，默认是dist
+    path: path.resolve(__dirname, &quot;target&quot;),
+
+    filename: &quot;[id].[chunkhash:5].js&quot;,
+  &#125;,
+  module: &#123;
+    //模块
+    rules: [
+      &#123;
+        test: /\.css$/,
+        use: [&quot;style-loader&quot;, &quot;css-loader&quot;],
+      &#125;,
+    ],
+  &#125;,
+  plugins: [new HtmlWebpackPlugin()], //插件
+  mode: &quot;development&quot;, //模式
+  resolve: &#123;
+    //除css以外
+    alias: &#123;
+      $css: resolve(__dirname, &quot;src/css&quot;),
+    &#125;,
+    extensions: [&quot;.js&quot;, &quot;.json&quot;, &quot;.jsx&quot;, &quot;.css&quot;],
+    modules: [resolve(__dirname, &quot;../../node_modules&quot;), &quot;node_modules&quot;],
+  &#125;,
+  devServer: &#123;
+    //服务器配置
+    // 运行代码的目录
+    contentBase: resolve(__dirname, &quot;build&quot;),
+    // 监视 contentBase 目录下的所有文件，一旦文件变化就会 reload
+    watchContentBase: true,
+    watchOptions: &#123;
+      // 忽略文件
+      ignored: /node_modules/,
+    &#125;,
+    // 启动gzip压缩
+    compress: true,
+    // 端口号
+    port: 5000,
+    // 域名
+    host: &quot;localhost&quot;,
+    // 自动打开浏览器
+    open: true,
+    // 开启HMR功能
+    hot: true,
+    // 不要显示启动服务器日志信息
+    clientLogLevel: &quot;none&quot;,
+    // 除了一些基本启动信息以外，其他内容都不要显示
+    quiet: true,
+    // 如果出错了，不要全屏提示~
+    overlay: false,
+    // 服务器代理 --&gt; 解决开发环境跨域问题
+    proxy: &#123;
+      // 一旦devServer(5000)服务器接受到 /api/xxx 的请求，就会把请求转发到另外一个服务器(3000)
+      &quot;/api&quot;: &#123;
+        target: &quot;http://localhost:3000&quot;,
+        // 发送请求时，请求路径重写：将 /api/xxx --&gt; /xxx （去掉/api）
+        pathRewrite: &#123;
+          &quot;^/api&quot;: &quot;&quot;,
+        &#125;,
+      &#125;,
+    &#125;,
+  &#125;,
+&#125;;
+</code></pre>
+<h2 id="额外配置文件含义"><a href="#额外配置文件含义" class="headerlink" title="额外配置文件含义"></a>额外配置文件含义</h2><ul>
+<li><code>.browserslistrc</code>，表达适配的浏览器范围，会被工程化中的其他技术所使用</li>
+<li><code>babel.config.js</code>，<code>babel</code>的配置文件，做 js 降级处理</li>
+<li><code>postcss.config.js</code>，<code>postcss</code>的配置文件，做 css 代码转换</li>
+<li><code>webpack.config.js</code>，<code>webpack</code>的配置文件，整合其他工程化技术，以及配置打包细节、开发服务器、路径别名等等</li>
+</ul>
+<h2 id="webpack5-改动"><a href="#webpack5-改动" class="headerlink" title="webpack5 改动"></a>webpack5 改动</h2><h3 id="清除输出目录"><a href="#清除输出目录" class="headerlink" title="清除输出目录"></a>清除输出目录</h3><p><code>webpack5</code>清除输出目录开箱可用，无须安装<code>clean-webpack-plugin</code>，具体做法如下：</p>
+<pre><code class="javascript">module.exports = &#123;
+  output: &#123;
+    clean: true,
+  &#125;,
+&#125;;
+</code></pre>
+<h3 id="top-level-await"><a href="#top-level-await" class="headerlink" title="top-level-await"></a>top-level-await</h3><p><code>webpack5</code>现在允许在模块的顶级代码中直接使用<code>await</code></p>
+<pre><code class="javascript">// src/index.js
+const resp = await fetch(&quot;http://www.baidu.com&quot;);
+const jsonBody = await resp.json();
+export default jsonBody;
+</code></pre>
+<p>目前，<code>top-level-await</code>还未成为正式标准，因此，对于<code>webpack5</code>而言，该功能是作为<code>experiments</code>发布的，需要在<code>webpack.config.js</code>中配置开启</p>
+<pre><code class="javascript">// webpack.config.js
+module.exports = &#123;
+  experiments: &#123;
+    topLevelAwait: true,
+  &#125;,
+&#125;;
+</code></pre>
+<h3 id="打包体积优化"><a href="#打包体积优化" class="headerlink" title="打包体积优化"></a>打包体积优化</h3><p><code>webpack5</code>对模块的合并、作用域提升、<code>tree shaking</code>等处理更加智能</p>
+<h3 id="打包缓存开箱即用"><a href="#打包缓存开箱即用" class="headerlink" title="打包缓存开箱即用"></a>打包缓存开箱即用</h3><p>在<code>webpack4</code>中，需要使用<code>cache-loader</code>缓存打包结果以优化之后的打包性能</p>
+<p>而在<code>webpack5</code>中，默认就已经开启了打包缓存，无须再安装<code>cache-loader</code></p>
+<p>默认情况下，<code>webpack5</code>是将模块的打包结果缓存到内存中，可以通过<code>cache</code>配置进行更改</p>
+<pre><code class="javascript">const path = require(&quot;path&quot;);
+
+module.exports = &#123;
+  cache: &#123;
+    // 缓存类型，支持：memory、filesystem
+    type: &quot;filesystem&quot;,
+    // 缓存目录，仅类型为 filesystem 有效
+    cacheDirectory: path.resolve(__dirname, &quot;node_modules/.cache/webpack&quot;),
+  &#125;,
+&#125;;
+</code></pre>
+<blockquote>
+<p>可以配置缓存进入内存还是硬盘</p>
+<p>关于<code>cache</code>的更多配置参考：<a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/other-options/#cache">https://webpack.docschina.org/configuration/other-options/#cache</a></p>
+</blockquote>
+<h3 id="资源模块"><a href="#资源模块" class="headerlink" title="资源模块"></a>资源模块</h3><p>在<code>webpack4</code>中，针对资源型文件我们通常使用<code>file-loader</code>、<code>url-loader</code>、<code>raw-loader</code>进行处理</p>
+<p>由于大部分前端项目都会用到资源型文件，因此<code>webpack5</code>原生支持了资源型模块</p>
+<pre><code class="javascript">const path = require(&quot;path&quot;);
+const HtmlWebpackPlugin = require(&quot;html-webpack-plugin&quot;);
+module.exports = &#123;
+  mode: &quot;development&quot;,
+  devtool: &quot;source-map&quot;,
+  entry: &quot;./src/index.js&quot;,
+  devServer: &#123;
+    port: 8080,
+  &#125;,
+  plugins: [new HtmlWebpackPlugin()],
+  output: &#123;
+    filename: &quot;main.js&quot;,
+    path: path.resolve(__dirname, &quot;dist&quot;),
+    assetModuleFilename: &quot;assets/[hash:5][ext]&quot;, // 在这里自定义资源文件保存的文件名
+  &#125;,
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.png/,
+        type: &quot;asset/resource&quot;, // 作用类似于 file-loader
+      &#125;,
+      &#123;
+        test: /\.jpg/,
+        type: &quot;asset/inline&quot;, // 作用类似于 url-loader 文件大小不足的场景
+      &#125;,
+      &#123;
+        test: /\.txt/,
+        type: &quot;asset/source&quot;, // 作用类似于 raw-loader
+      &#125;,
+      &#123;
+        test: /\.gif/,
+        type: &quot;asset&quot;, // 作用类似于 url-loader。在导出一个 data uri 和发送一个单独的文件之间自动选择
+        generator: &#123;
+          filename: &quot;gif/[hash:5][ext]&quot;, // 这里的配置会覆盖 assetModuleFilename
+        &#125;,
+        parser: &#123;
+          dataUrlCondition: &#123;
+            maxSize: 4 * 1024, // 4kb以下使用 data uri
+          &#125;,
+        &#125;,
+      &#125;,
+    ],
+  &#125;,
+&#125;;
+</code></pre>
+<p>详见：<a target="_blank" rel="noopener" href="https://webpack.docschina.org/guides/asset-modules/">https://webpack.docschina.org/guides/asset-modules/</a></p>
+<h3 id="模块联邦"><a href="#模块联邦" class="headerlink" title="模块联邦"></a>模块联邦</h3><p>在大型项目中，往往会把项目中的某个区域或功能模块作为单独的项目开发，最终形成「微前端」架构</p>
+<p>在微前端架构中，不同的工程可能出现下面的场景</p>
+<p><img src="20210122172549.png"></p>
+<p>这涉及到很多非常棘手的问题：</p>
+<ul>
+<li>如何避免公共模块重复打包</li>
+<li>如何将某个项目中一部分模块分享出去，同时还要避免重复打包</li>
+<li>如何管理依赖的不同版本</li>
+<li>如何更新模块</li>
+<li><code>......</code></li>
+</ul>
+<p><code>webpack5</code>尝试着通过<code>模块联邦</code>来解决此类问题</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>现有两个微前端工程，它们各自独立开发、测试、部署，但它们有一些相同的公共模块，并有一些自己的模块需要分享给其他工程使用，同时又要引入其他工程的模块。</p>
+<p><img src="1724762204135-3b49de35-e994-4b05-9de5-daa3517cea3d.png"></p>
+<h3 id="初始化工程"><a href="#初始化工程" class="headerlink" title="初始化工程"></a>初始化工程</h3><h4 id="home-项目"><a href="#home-项目" class="headerlink" title="home 项目"></a>home 项目</h4><p>安装</p>
+<pre><code class="shell"># 初始化 package.json
+npm init -y
+
+# 安装依赖
+npm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin
+npm i jquery
+</code></pre>
+<p>修改<code>package.json</code></p>
+<pre><code class="json">&quot;scripts&quot;: &#123;
+   &quot;build&quot;: &quot;webpack&quot;,
+   &quot;dev&quot;: &quot;webpack serve&quot;
+ &#125;
+</code></pre>
+<p>配置<code>webpack.config.js</code></p>
+<pre><code class="javascript">const HtmlWebpackPlugin = require(&quot;html-webpack-plugin&quot;);
+module.exports = &#123;
+  entry: &quot;./src/index.js&quot;,
+  mode: &quot;development&quot;,
+  devtool: &quot;source-map&quot;,
+  devServer: &#123;
+    port: 8080,
+  &#125;,
+  output: &#123;
+    clean: true,
+  &#125;,
+  plugins: [new HtmlWebpackPlugin()],
+&#125;;
+</code></pre>
+<p>代码</p>
+<pre><code class="javascript">// src/now.js
+
+import $ from &quot;jquery&quot;;
+
+export default function (container) &#123;
+  const p = $(&quot;&lt;p&gt;&quot;).appendTo(container).text(new Date().toLocaleString());
+  setInterval(function () &#123;
+    p.text(new Date().toLocaleString());
+  &#125;, 1000);
+&#125;
+
+// src/bootstrap.js
+import $ from &quot;jquery&quot;;
+import now from &quot;./now&quot;;
+
+// 生成首页标题
+$(&quot;&lt;h1&gt;&quot;).text(&quot;首页&quot;).appendTo(document.body);
+
+// 首页中有一个显示当前时间的区域
+now($(&quot;&lt;div&gt;&quot;).appendTo(document.body));
+
+// src/index.js
+import(&quot;./bootstrap&quot;);
+</code></pre>
+<h4 id="active-项目"><a href="#active-项目" class="headerlink" title="active 项目"></a>active 项目</h4><p>安装</p>
+<pre><code class="shell"># 初始化 package.json
+npm init -y
+
+# 安装依赖
+npm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin
+npm i jquery
+</code></pre>
+<p>修改<code>package.json</code></p>
+<pre><code class="json">&quot;scripts&quot;: &#123;
+   &quot;build&quot;: &quot;webpack&quot;,
+   &quot;dev&quot;: &quot;webpack serve&quot;
+ &#125;
+</code></pre>
+<p>配置<code>webpack.config.js</code></p>
+<pre><code class="javascript">const HtmlWebpackPlugin = require(&quot;html-webpack-plugin&quot;);
+module.exports = &#123;
+  entry: &quot;./src/index.js&quot;,
+  mode: &quot;development&quot;,
+  devtool: &quot;source-map&quot;,
+  devServer: &#123;
+    port: 3000,
+  &#125;,
+  output: &#123;
+    clean: true,
+  &#125;,
+  plugins: [new HtmlWebpackPlugin()],
+&#125;;
+</code></pre>
+<p>代码</p>
+<pre><code class="javascript">// src/news.js
+
+import $ from &quot;jquery&quot;;
+
+export default function (container) &#123;
+  const ul = $(&quot;&lt;ul&gt;&quot;).appendTo(container);
+  let html = &quot;&quot;;
+  for (var i = 1; i &lt;= 20; i++) &#123;
+    html += `&lt;li&gt;新闻$&#123;i&#125;&lt;/li&gt;`;
+  &#125;
+  ul.html(html);
+&#125;
+
+// src/bootstrap.js
+import $ from &quot;jquery&quot;;
+import news from &quot;./news&quot;;
+
+// 生成活动页标题
+$(&quot;&lt;h1&gt;&quot;).text(&quot;活动页&quot;).appendTo(document.body);
+
+// 活动页中有一个新闻列表
+news($(&quot;&lt;div&gt;&quot;).appendTo(document.body));
+
+// src/index.js
+import(&quot;./bootstrap&quot;);
+</code></pre>
+<h3 id="暴露和引用模块"><a href="#暴露和引用模块" class="headerlink" title="暴露和引用模块"></a>暴露和引用模块</h3><h4 id="active-项目需要使用-home-项目的-now-模块"><a href="#active-项目需要使用-home-项目的-now-模块" class="headerlink" title="active 项目需要使用 home 项目的 now 模块"></a>active 项目需要使用 home 项目的 now 模块</h4><p>home 项目暴露 now 模块</p>
+<pre><code class="javascript">// webpack.config.js
+const ModuleFederationPlugin = require(&quot;webpack/lib/container/ModuleFederationPlugin&quot;);
+module.exports = &#123;
+  plugins: [
+    new ModuleFederationPlugin(&#123;
+      // 模块联邦的名称
+      // 该名称将成为一个全部变量，通过该变量将可获取当前联邦的所有暴露模块
+      name: &quot;home&quot;,
+      // 模块联邦生成的文件名，全部变量将置入到该文件中
+      filename: &quot;home-entry.js&quot;,
+      // 模块联邦暴露的所有模块
+      exposes: &#123;
+        // key：相对于模块联邦的路径
+        // 这里的 ./now 将决定该模块的访问路径为 home/now
+        // value: 模块的具体路径
+        &quot;./now&quot;: &quot;./src/now.js&quot;,
+      &#125;,
+    &#125;),
+  ],
+&#125;;
+</code></pre>
+<p>active 项目引入 now 模块</p>
+<pre><code class="javascript">// webpack.config.js
+const ModuleFederationPlugin = require(&quot;webpack/lib/container/ModuleFederationPlugin&quot;);
+module.exports = &#123;
+  plugins: [
+    new ModuleFederationPlugin(&#123;
+      // 远程使用其他项目暴露的模块
+      remotes: &#123;
+        // key: 自定义远程暴露的联邦名
+        // 比如为 abc， 则之后引用该联邦的模块则使用 import &quot;abc/模块名&quot;
+        // value: 模块联邦名@模块联邦访问地址
+        // 远程访问时，将从下面的地址加载
+        home: &quot;home@http://localhost:8080/home-entry.js&quot;,
+      &#125;,
+    &#125;),
+  ],
+&#125;;
+
+// src/bootstrap.js
+// 远程引入时间模块
+import now from &quot;home/now&quot;;
+now($(&quot;&lt;div&gt;&quot;).appendTo(document.body));
+</code></pre>
+<h4 id="home-项目需要使用-active-项目的-news-模块"><a href="#home-项目需要使用-active-项目的-news-模块" class="headerlink" title="home 项目需要使用 active 项目的 news 模块"></a>home 项目需要使用 active 项目的 news 模块</h4><p>active 项目暴露 news 模块</p>
+<pre><code class="javascript">// webpack.config.js
+const ModuleFederationPlugin = require(&quot;webpack/lib/container/ModuleFederationPlugin&quot;);
+module.exports = &#123;
+  plugins: [
+    new ModuleFederationPlugin(&#123;
+      // 模块联邦的名称
+      // 该名称将成为一个全部变量，通过该变量将可获取当前联邦的所有暴露模块
+      name: &quot;active&quot;,
+      // 模块联邦生成的文件名，全部变量将置入到该文件中
+      filename: &quot;active-entry.js&quot;,
+      // 模块联邦暴露的所有模块
+      exposes: &#123;
+        // key：相对于模块联邦的路径
+        // 这里的 ./news 将决定该模块的访问路径为 active/news
+        // value: 模块的具体路径
+        &quot;./news&quot;: &quot;./src/news.js&quot;,
+      &#125;,
+    &#125;),
+  ],
+&#125;;
+</code></pre>
+<p>home 项目引入 news 模块</p>
+<pre><code class="javascript">// webpack.config.js
+const ModuleFederationPlugin = require(&quot;webpack/lib/container/ModuleFederationPlugin&quot;);
+module.exports = &#123;
+  plugins: [
+    new ModuleFederationPlugin(&#123;
+      // 远程使用其他项目暴露的模块
+      remotes: &#123;
+        // key: 自定义远程暴露的联邦名
+        // 比如为 abc， 则之后引用该联邦的模块则使用 import &quot;abc/模块名&quot;
+        // value: 模块联邦名@模块联邦访问地址
+        // 远程访问时，将从下面的地址加载
+        active: &quot;active@http://localhost:3000/active-entry.js&quot;,
+      &#125;,
+    &#125;),
+  ],
+&#125;;
+
+// src/bootstrap.js
+// 远程引入新闻模块
+import news from &quot;active/news&quot;;
+news($(&quot;&lt;div&gt;&quot;).appendTo(document.body));
+</code></pre>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>要采用联邦模块，入口一定要采用异步加载</p>
+<p><img src="1724762348599-1398a5ae-a2ee-4e5c-a073-497f060a36ce.png"></p>
+<p>要暴露出去的文件名，会在打包结果中形成单独的文件（入口）</p>
+<p>还会将具体要引用那个文件也形成单独的文件（暴露出去）</p>
+<p><img src="1724762524102-f2925593-8734-4ca2-9ebb-10bbfe6cd89d.png"></p>
+<p>交给引用的人，引用的人会去请求你暴露出来的入口文件和具体文件</p>
+<h3 id="处理共享模块"><a href="#处理共享模块" class="headerlink" title="处理共享模块"></a>处理共享模块</h3><p>两个项目均使用了 jquery，为了避免重复，可以同时为双方使用<code>shared</code>配置共享模块</p>
+<pre><code class="javascript">const ModuleFederationPlugin = require(&quot;webpack/lib/container/ModuleFederationPlugin&quot;);
+module.exports = &#123;
+  plugins: [
+    new ModuleFederationPlugin(&#123;
+      // 配置共享模块
+      shared: &#123;
+        // jquery为共享模块
+        jquery: &#123;
+          singleton: true, // 全局唯一
+        &#125;,
+      &#125;,
+    &#125;),
+  ],
+&#125;;
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

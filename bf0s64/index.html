@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>函数集合 | 后知后觉的个人主页</title>
+        <title>函数 | 后知后觉的个人主页</title>
         <meta name="author" content="知乐" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -98,7 +98,7 @@
             <div id="main" v-show="!loading">
                 <div class="article">
     <div>
-        <h1>函数集合</h1>
+        <h1>函数</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -112,7 +112,37 @@
     </div>
 
     <div class="content" v-pre>
-        <h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><pre><code>    function Person(name , age , gender)&#123;
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>使用函数切割流程，不仅可以减少重复代码、还可以有效的降低整体复杂度，增加可维护性<br>函数具有三要素：函数名、参数、返回值</p>
+<p>函数包括<br>参数：表示完成流程所需的必要信息<br>返回值：表示完成流程后产生的结果<br>函数体：表示具体的流程</p>
+<ol>
+<li>定义函数时，只需要考虑这个函数如何实现即可，完全不需要考虑其他无关的东西。</li>
+<li>调用函数时，只需要考虑向其传递什么参数，如何使用它的返回结果，完全无需考虑函数的具体实现。</li>
+</ol>
+<p>函数注释</p>
+<pre><code class="markdown">/\*\*
+
+- 得到某个数的阶乘
+- 如果数小于了 1，则得到 0
+- @param &#123;number&#125; n 要求阶乘的数
+- @return &#123;number&#125; 阶乘结果
+  \*/
+</code></pre>
+<p><img src="1692424365458-ac36875f-4e59-450f-9376-1f3090d07a17.png#width=480" alt="image.png"><br>调用的时候这样就可以有提示</p>
+<p>函数也是一个对象，每个函数都有一个属性 prototype（原型），往往构造函数才会用他，其他也有，但不使用</p>
+<pre><code class="javascript">function m() &#123;&#125;
+
+m.a = 1;
+</code></pre>
+<h1 id="函数定义方式"><a href="#函数定义方式" class="headerlink" title="函数定义方式"></a>函数定义方式</h1><pre><code class="markdown">//变量保存函数，函数表达式（本质是匿名函数）
+var b = function () &#123;&#125;;
+
+//函数声明，使用函数声明可以将代码提到顶部
+function c() &#123;
+
+&#125;
+</code></pre>
+<h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><p>当我们需要通过函数去创建一个对象，通常使用构造函数</p>
+<pre><code>    function Person(name , age , gender)&#123;
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -125,6 +155,49 @@
     person_obj.name
 </code></pre>
 <p><strong>普通函数是直接调用，而构造函数需要使用 new 关键字来调用</strong></p>
+<p>构造函数与普通函数相比只是少了定义 obj 和返回 obj，以及把 obj 改为了 this</p>
+<pre><code class="javascript">function Person(firstName, lastName) &#123;
+  // var this = &#123;&#125;;
+
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.fullName = firstName + lastName;
+  this.sayHi = function () &#123;
+    console.log(&quot;我的名字叫做：&quot; + this.fullName);
+  &#125;;
+
+  // return this;
+&#125;
+</code></pre>
+<p><strong>JS 所有的对象，都是通过构造函数产生的</strong></p>
+<pre><code>对象，数组，函数
+
+// 语法糖
+// var obj = &#123;
+//   a: 1,
+//   b: 2,
+// &#125;;
+
+// var obj = new Object(); // 创建一个空对象
+// obj.a = 1;
+// obj.b = 2;
+
+// console.log(obj);
+
+// var arr = [1, 2, 3];
+
+// var arr = new Array(1, 2, 3); // 创建一个数组
+
+// console.log(arr);
+
+function sum(a, b) &#123;
+  return a + b;
+&#125;
+
+// var sum = new Function(&#39;a&#39;, &#39;b&#39;, &#39;return a+b&#39;);
+
+console.log(sum(1, 2));
+</code></pre>
 <h1 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h1><p><strong>如果需要获取一个函数中异步操作的结果，则必须通过回调函数来获取</strong></p>
 <pre><code>    function fn(callback) &#123;
         setTimeout(function() &#123;
@@ -140,24 +213,16 @@
 <p>如果想取到 data 的数据进行处理，就只能进行回调函数，因为定时器是异步的，函数不会等待执行完毕就直接结束了，只有在调用的时候传递一个函数给里面的定时器才行</p>
 <hr>
 <p>1). 你定义的<br>2). 你没有调<br>3). 但最终它执行了(在某个时刻或某个条件下)</p>
-<h1 id="立即执行函数和匿名函数"><a href="#立即执行函数和匿名函数" class="headerlink" title="立即执行函数和匿名函数"></a>立即执行函数和匿名函数</h1><p>函数表达式是一种匿名函数</p>
-<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><pre><code>
-function fun()&#123; //不可以这样调用
-
+<p>实例<br>数组过滤函数，通过回调可以使得使用时十分灵活<br><img src="1693723691305-7b588fad-f1fb-47c1-bcac-8ac21582c128.png#width=570" alt="image.png"></p>
+<blockquote>
+<p>如果箭头函数函数体只有一句话，那么这个句话可以不带大括号，而且这句话就是返回值（可以不用写 return）</p>
+</blockquote>
+<h1 id="立即执行函数和匿名函数"><a href="#立即执行函数和匿名函数" class="headerlink" title="立即执行函数和匿名函数"></a>立即执行函数和匿名函数</h1><h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、事件</p>
+<pre><code>var sub = document.querySelector(&quot;#sub&quot;);
+//给按钮增加点击事件。
+sub.onclick=function()&#123;
+    alert(&quot;当点击按钮时会执行&quot;);
 &#125;
-
-(function ()&#123;    //需要再加一层括号
-    //此时会输出 hello
-    console.log(&quot;hello&quot;);
-&#125;)
-</code></pre>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、事件</p>
-<pre><code>
-var sub = document.querySelector(&quot;#sub&quot;);
-  //给按钮增加点击事件。
-  sub.onclick=function()&#123;
-      alert(&quot;当点击按钮时会执行&quot;);
-  &#125;
 </code></pre>
 <p>2、对象</p>
 <pre><code>var obj = &#123;
@@ -188,34 +253,41 @@ console.log(obj.fn());//我叫lynn今年18岁了！
     // ...
 &#125;());
 
-————————————————————————————————————————————————————
-        (function(a,b)&#123;
-        console.log(&quot;a = &quot;+a);
-        console.log(&quot;b = &quot;+b);
-    &#125;)(123,456);
-</code></pre>
-<h1 id="闭包函数"><a href="#闭包函数" class="headerlink" title="闭包函数"></a>闭包函数</h1><p>当一个嵌套的内部(子)函数引用了嵌套的外部(父)函数的变量(函数)时, 就产生了闭包</p>
-<p>函数嵌套</p>
-<p>内部函数引用了外部函数的数据(变量/函数)</p>
-<pre><code>    function fn1 () &#123;
-        var a = 2
-        var b = &#39;abc&#39;
-        function fn2 () &#123; //执行函数定义就会产生闭包(不用调用内部函数)
-            console.log(a)
-        &#125;
-        // fn2()
-    &#125;
 
-    function showDelay(msg, time) &#123;
-        setTimeout(function () &#123;
-                alert(msg)
-        &#125;, time)
-    &#125;
+(function(a,b)&#123;
+  console.log(&quot;a = &quot;+a);
+  console.log(&quot;b = &quot;+b);
+&#125;)(123,456);
+
+
+let a = (function() &#123;
+    // ...
+    return &quot;ad&quot;;
+&#125;());
+
+这样可以把立即执行函数里面的数据返回出来一部分你所需要的
+</code></pre>
+<h1 id="闭包函数"><a href="#闭包函数" class="headerlink" title="闭包函数"></a>闭包函数</h1><p>当一个嵌套的内部(子)函数引用了嵌套的外部(父)函数的变量(函数)时, 就产生了闭包<br>函数嵌套<br>内部函数引用了外部函数的数据(变量/函数)</p>
+<pre><code>function fn1 () &#123;
+  var a = 2
+  var b = &#39;abc&#39;
+  function fn2 () &#123; //执行函数定义就会产生闭包(不用调用内部函数)
+      console.log(a)
+  &#125;
+  // fn2()
+&#125;
+
+function showDelay(msg, time) &#123;
+  setTimeout(function () &#123;
+      alert(msg)
+  &#125;, time)
+&#125;
 </code></pre>
 <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
 <li>使用函数内部的变量在函数执行完后, 仍然存活在内存中(延长了局部变量的生命周期)</li>
 <li>让函数外部可以操作(读写)到函数内部的数据(变量/函数)</li>
 </ul>
+<p>比如希望第一次调用和第二次调用相同函数拥有不一样的返回结果</p>
 <h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
 <li>函数执行完后, 函数内的局部变量没有释放, 占用内存时间会变长</li>
 <li>容易造成内存泄露</li>
@@ -270,24 +342,22 @@ var fn = f()
 fn()
 // 1
 </code></pre>
-<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><p>如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。</p>
-<pre><code>    var f = () =&gt; 5;
+<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><p>如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。<br>箭头函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
+<pre><code>var f = () =&gt; 5;
+// 等同于
+var f = function ()&#123;
+    return 5
+&#125;;
 
-    // 等同于
-
-    var f = function ()
-
-    &#123; return 5 &#125;;
-
-    var sum = (num1, num2) =&gt; num1 + num2;
-
-    // 等同于
-
-    var sum = function(num1, num2) &#123;
-
+var sum = (num1, num2) =&gt; num1 + num2;
+// 等同于
+var sum = function(num1, num2) &#123;
     return num1 + num2;
+&#125;
 </code></pre>
-<p>函数体内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
+<h1 id="函数方法"><a href="#函数方法" class="headerlink" title="函数方法"></a>函数方法</h1><p>我们所创建的每一个函数，解析器都会向函数中添加一个属性 prototype<br>这个属性对应着一个对象，这个对象就是我们所谓的原型对象<br>原型对象中有一个属性 constructor, 它指向函数对象</p>
+<pre><code>console.log(Date.prototype.constructor === Date)
+</code></pre>
 
     </div>
     
@@ -297,7 +367,7 @@ fn()
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

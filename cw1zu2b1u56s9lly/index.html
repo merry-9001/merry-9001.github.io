@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>前端模块化AMD,CMD,ES6 MODULE | 后知后觉的个人主页</title>
+        <title>模块化 | 后知后觉的个人主页</title>
         <meta name="author" content="知乐" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -98,7 +98,7 @@
             <div id="main" v-show="!loading">
                 <div class="article">
     <div>
-        <h1>前端模块化AMD,CMD,ES6 MODULE</h1>
+        <h1>模块化</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -112,53 +112,489 @@
     </div>
 
     <div class="content" v-pre>
-        <p>模块化的开发方式可以提高代码复用率，方便进行代码的管理。通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。目前流行的 js 模块化规范有 CommonJS、AMD、CMD 以及 ES6 的模块系统。</p>
-<h1 id="传统方法"><a href="#传统方法" class="headerlink" title="传统方法"></a>传统方法</h1><p>默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到 script 标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。<br>如果脚本体积很大，下载和执行的时间就会很长，因此造成浏览器堵塞，用户会感觉到浏览器“卡死”了，没有任何响应。这显然是很不好的体验，所以浏览器允许脚本异步加载，下面就是两种异步加载的语法。</p>
-<pre><code>&lt;script src=&quot;path/to/myModule.js&quot; defer&gt;&lt;/script&gt;
-&lt;script src=&quot;path/to/myModule.js&quot; async&gt;&lt;/script&gt;
-</code></pre>
-<p>上面代码中，script 标签打开 defer 或 async 属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行，而是直接执行后面的命令。<br>defer 与 async 的区别是：defer 要等到整个页面在内存中正常渲染结束（DOM 结构完全生成，以及其他脚本执行完成），才会执行；async 一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。一句话，defer 是“渲染完再执行”，async 是“下载完就执行”。另外，如果有多个 defer 脚本，会按照它们在页面出现的顺序加载，而多个 async 脚本是不能保证加载顺序的。</p>
-<h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h1><p>Node.js 是 commonJS 规范的主要实践者，它有四个重要的环境变量为模块化的实现提供支持：module、exports、require、global。实际使用时，用 module.exports 定义当前模块对外输出的接口（不推荐直接用 exports），用 require 加载模块。</p>
-<p>common.js 是导出同步模块</p>
-<p>node.js 中可以直接用 module.exports 导出，let module1 = require(‘./modules/module1’)引入<br>浏览器中使用需要借助工具才能正常使用</p>
-<pre><code>npm install browserify -g
-npm install browserify -save-dev
-</code></pre>
-<pre><code>module.exports.name = &quot;蛙人&quot;
-module.exports.age = 24
+        <h1 id="为什么需要模块化"><a href="#为什么需要模块化" class="headerlink" title="为什么需要模块化"></a><font style="color:rgb(37, 41, 51);">为什么需要模块化</font></h1><p><font style="color:rgb(37, 41, 51);">模块化解决的问题</font></p>
+<ul>
+<li><font style="color:rgb(37, 41, 51);"> 全局变量污染 </font></li>
+<li><font style="color:rgb(37, 41, 51);"> 依赖混乱 （复杂的依赖关系无法处理）</font></li>
+<li>代码文件难以细分</li>
+</ul>
+<p><font style="color:rgb(37, 41, 51);">模块化出现后，我们就可以把臃肿的代码细分到各个小文件中，便于后期维护管理,也可以提高代码复用率</font></p>
+<p><font style="color:rgb(37, 41, 51);">通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数</font></p>
+<h1 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a><font style="color:rgb(18, 18, 18);">CommonJS</font></h1><p>global 是 node 的全局变量（类似于 window）</p>
+<p>node 天生支持 CommonJS 模块化标准</p>
+<p>node 规定：</p>
+<ol>
+<li>每个模块文件上存在 module，require，exports, **filename , **dirname 五个变量，这五个变量我们可以在 Commonjs 规范下每一个 js 模块上直接使用它们</li>
+</ol>
+<ul>
+<li><font style="background-color:rgb(255, 245, 245);">module</font><font style="color:rgb(37, 41, 51);"> 记录当前模块信息。</font></li>
+<li><font style="background-color:rgb(255, 245, 245);">require</font> <font style="color:rgb(37, 41, 51);">引入模块的方法。</font></li>
+<li><font style="background-color:rgb(255, 245, 245);">exports</font> <font style="color:rgb(37, 41, 51);">当前模块导出的属性</font></li>
+<li><font style="color:rgb(37, 41, 51);">__filename 当前文件的绝对路径</font></li>
+<li><font style="color:rgb(37, 41, 51);">__dirname 当前文件的绝对路径(目录)</font></li>
+</ul>
+<ol start="2">
+<li>node 中的每个 js 文件都是一个 commonJS 模块，<strong>通过 node 命令运行的模块，叫做入口模块</strong></li>
+<li><strong>模块中的所有全局定义的变量、函数，都不会污染到其他模块</strong></li>
+<li>模块可以暴露（导出）一些内容给其他模块使用，需要暴露什么内容，就在模块中给 module.exports 赋值一个模块可以导入其他模块，使用函数<code>require(&quot;要导入的模块路径&quot;)</code>即可完成，该函数返回目标模块的导出结果</li>
+</ol>
+<blockquote>
+<p>导入模块时，可以省略<code>.js</code></p>
+<p>导入模块时，必须以<code>./</code>或<code>../</code>开头(导入 node_module 包的时候引入采用无前缀)</p>
+</blockquote>
+<ol start="5">
+<li><strong>一个模块在被导入时会运行一次，然后它的导出结果会被 node 缓存起来，后续对该模块导入时，不会重新运行，直接使用缓存结果</strong></li>
+</ol>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>common.js 可以导出同步函数，也可以导出异步函数</p>
+<pre><code class="javascript">//math.js
+console.log(&quot;math run&quot;);
+function isOdd(n) &#123;
+  return n % 2 !== 0;
+&#125;
 
-let data = require(&quot;./index.js&quot;)
-console.log(data) // &#123; name: &quot;蛙人&quot;, age: 24 &#125;
-</code></pre>
-<h2 id="module-exports-和-exports-的区别"><a href="#module-exports-和-exports-的区别" class="headerlink" title="module.exports 和 exports 的区别"></a><strong>module.exports 和 exports 的区别</strong></h2><p>当使用分别暴露时，module.exports 和 exports 是一样的</p>
-<pre><code>const add = (a, b) =&gt; a + b
+function sum(a, b) &#123;
+  return a + b;
+&#125;
+//导出
+module.exports = &#123;
+  isOdd,
+  sum,
+&#125;;
 
-const subtract = (a, b) =&gt; a - b
-
-module.exports.add = add
-module.exports.subtract = subtract
-
-exports.add = add
-exports.subtract = subtract
+//index.js
+//引入(.js可省略，也可以不省略)
+const math = require(&quot;./math&quot;); // 返回 &#123; isOdd: fn,  sum: fn &#125;
+console.log(math.sum(1, 2));
 </code></pre>
-<h2 id="当使用统一暴露时，它俩是不一样的"><a href="#当使用统一暴露时，它俩是不一样的" class="headerlink" title="当使用统一暴露时，它俩是不一样的"></a>当使用统一暴露时，它俩是不一样的</h2><pre><code>可以这么写
-module.exports = &#123; add, subtract &#125;
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="require-文件加载流程"><a href="#require-文件加载流程" class="headerlink" title="require 文件加载流程"></a><font style="color:rgb(37, 41, 51);">require 文件加载流程</font></h3><p>首先我们看一下 nodejs 中对标识符的处理原则。</p>
+<ul>
+<li><font style="color:rgb(37, 41, 51);">首先像 fs ，http ，path 等标识符，会被作为 nodejs 的</font><strong>核心模块</strong><font style="color:rgb(37, 41, 51);">。</font></li>
+<li><font style="color:rgb(37, 41, 51);"> ./</font><font style="color:rgb(37, 41, 51);"> 和 </font><font style="color:rgb(37, 41, 51);">../</font><font style="color:rgb(37, 41, 51);"> 作为相对路径的</font><strong>文件模块</strong><font style="color:rgb(37, 41, 51);">， </font><font style="color:rgb(37, 41, 51);">/</font><font style="color:rgb(37, 41, 51);"> 作为绝对路径的</font><strong>文件模块</strong><font style="color:rgb(37, 41, 51);">。</font></li>
+<li><font style="color:rgb(37, 41, 51);">非路径形式也非核心模块的模块，将作为</font><strong>自定义模块</strong><font style="color:rgb(37, 41, 51);">。</font></li>
+</ul>
+<p><strong>核心模块的处理：</strong></p>
+<p><font style="color:rgb(37, 41, 51);">核心模块的优先级仅次于缓存加载，在 </font><font style="color:rgb(37, 41, 51);">Node</font><font style="color:rgb(37, 41, 51);"> 源码编译中，已被编译成二进制代码，所以加载核心模块，加载过程中速度最快。</font></p>
+<p><strong>路径形式的文件模块处理：</strong></p>
+<p><font style="color:rgb(37, 41, 51);">已 </font><font style="color:rgb(37, 41, 51);">./</font><font style="color:rgb(37, 41, 51);"> ，</font><font style="color:rgb(37, 41, 51);">../</font><font style="color:rgb(37, 41, 51);"> 和 </font><font style="color:rgb(37, 41, 51);">/</font><font style="color:rgb(37, 41, 51);"> 开始的标识符，会被当作文件模块处理。</font><font style="color:rgb(37, 41, 51);">require()</font><font style="color:rgb(37, 41, 51);"> 方法会将路径转换成真实路径，并以真实路径作为索引，将编译后的结果缓存起来，第二次加载的时候会更快。至于</font><strong>怎么缓存</strong><font style="color:rgb(37, 41, 51);">的？我们稍后会讲到。</font></p>
+<p><strong>自定义模块处理：</strong><font style="color:rgb(37, 41, 51);"> 自定义模块，一般指的是非核心的模块，它可能是一个文件或者一个包，它的查找会遵循以下原则：</font></p>
+<ul>
+<li><font style="color:rgb(37, 41, 51);">在当前目录下的 </font><font style="color:rgb(37, 41, 51);">node_modules</font><font style="color:rgb(37, 41, 51);"> 目录查找。</font></li>
+<li><font style="color:rgb(37, 41, 51);">如果没有，在父级目录的 </font><font style="color:rgb(37, 41, 51);">node_modules</font><font style="color:rgb(37, 41, 51);"> 查找，如果没有在父级目录的父级目录的 </font><font style="color:rgb(37, 41, 51);">node_modules</font><font style="color:rgb(37, 41, 51);"> 中查找。</font></li>
+<li><font style="color:rgb(37, 41, 51);">沿着路径向上递归，直到根目录下的 </font><font style="color:rgb(37, 41, 51);">node_modules</font><font style="color:rgb(37, 41, 51);"> 目录。</font></li>
+<li><font style="color:rgb(37, 41, 51);">在查找过程中，会找 package.json 下 main 属性指向的文件，如果没有 package.json ，在 node 环境下会以此查找 index.js ，index.json ，index.node。</font><img src="1724724090699-34dfd218-d141-42b4-8466-687b66179c38.png"></li>
+</ul>
+<h3 id="require-模块引入与处理"><a href="#require-模块引入与处理" class="headerlink" title="require 模块引入与处理"></a><font style="color:rgb(37, 41, 51);">require 模块引入与处理</font></h3><p><font style="color:rgb(37, 41, 51);">CommonJS 模块同步加载并执行模块文件，CommonJS 模块在</font><strong><font style="color:rgb(37, 41, 51);">执行阶段分析模块依赖</font></strong></p>
+<p><font style="color:rgb(37, 41, 51);">有以下特点：</font></p>
+<ol>
+<li><font style="color:rgb(37, 41, 51);">采用</font><strong><font style="color:rgb(37, 41, 51);">深度优先遍历</font></strong><font style="color:rgb(37, 41, 51);">（depth-first traversal），执行顺序是父 -&gt; 子 -&gt; 父</font></li>
+<li><font style="color:rgb(37, 41, 51);">不会循环引用（依赖）</font></li>
+<li><font style="color:rgb(37, 41, 51);">每个模块只会被加载一次（有缓存）</font></li>
+</ol>
+<pre><code class="javascript">//main.js
+const a = require(&#39;./a&#39;)
+const b = require(&#39;./b&#39;)
 
-不能这么写
-exports = &#123; add, subtract &#125;
+console.log(&#39;node 入口文件&#39;)
+
+//a.js
+const getMes = require(&#39;./b&#39;)
+console.log(&#39;我是 a 文件&#39;)
+
+
+//b.js
+const say = require(&#39;./a&#39;)
+console.log(&#39;我是 b 文件&#39;)
+
+
+输出
+我是 b 文件
+我是 a 文件
+node 入口文件
 </code></pre>
-<p>原因</p>
-<pre><code>//源码
-const exports = this.exports;
-const thisValue = exports;
-const module = this;
+<h3 id="commonjs-实现原理"><a href="#commonjs-实现原理" class="headerlink" title="commonjs 实现原理"></a><font style="color:rgb(37, 41, 51);">commonjs 实现原理</font></h3><p>commonjs 每个模块实际上都是在一个函数环境下执行的</p>
+<p><strong><font style="color:rgb(37, 41, 51);">在编译的过程中</font></strong><font style="color:rgb(37, 41, 51);">，实际 Commonjs 对 js 的代码块进行了首尾包装，它被包装之后的样子如下：</font></p>
+<pre><code class="javascript">(function (exports, require, module, __filename, __dirname) &#123;
+  const sayName = require(&quot;./hello.js&quot;);
+  module.exports = function say() &#123;
+    return &#123;
+      name: sayName(),
+      author: &quot;我不是外星人&quot;,
+    &#125;;
+  &#125;;
+&#125;);
 </code></pre>
-<p>exports 和 module.exports 指向同一个对象。所以当你使用分别暴露时，实质上是给这个对象上添加了一个个属性，这两种方式是同一个意思。<br>但是，一旦写成统一暴露，exports = { add, subtract }改变了 exports 的指向，切断了与 module.exports 之间的引用关系，exports 不再是 module.exports 的那个对象了</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>CommonJs 解决了变量污染，文件依赖等问题，它可以动态导入(代码发生在运行时)，不可以重复导入。</p>
-<h1 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h1><p>amd 是专门为浏览器所设计的</p>
+<p><font style="color:rgb(37, 41, 51);">在 Commonjs 规范下模块中，会形成一个包装函数，我们写的代码将作为包装函数的执行上下文，使用的 </font><code>&lt;font style=&quot;color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);&quot;&gt;require&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);"> ，</font><code>&lt;font style=&quot;color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);&quot;&gt;exports&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);"> ，</font><code>&lt;font style=&quot;color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);&quot;&gt;module&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);"> 本质上是通过形参的方式传递到包装函数中的。</font></p>
+<blockquote>
+<p><font style="color:rgb(37, 41, 51);">我们写的所有 commonJs 代码都会在函数内运行，当我们在模块中打印函数特有的 arguments 的时候，我们可以拿到参数</font></p>
+</blockquote>
+<p><font style="color:rgb(37, 41, 51);"></font></p>
+<p><font style="color:rgb(37, 41, 51);">将首尾包装抽离成一个函数</font></p>
+<pre><code class="javascript">function wrapper(script) &#123;
+  return (
+    &quot;(function (exports, require, module, __filename, __dirname) &#123;&quot; +
+    script +
+    &quot;\n&#125;)&quot;
+  );
+&#125;
+
+const modulefunction = wrapper(`
+  const sayName = require(&#39;./hello.js&#39;)
+    module.exports = function say()&#123;
+        return &#123;
+            name:sayName(),
+            author:&#39;我不是外星人&#39;
+        &#125;
+    &#125;
+`);
+</code></pre>
+<p><strong>在执行过程中；</strong><font style="color:rgb(37, 41, 51);">在模块加载的时候，会通过 runInThisContext (可以理解成 eval ) 执行 </font><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">module function</font><font style="color:rgb(37, 41, 51);"> ，传入</font><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">require</font><font style="color:rgb(37, 41, 51);"> ，</font><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">exports</font><font style="color:rgb(37, 41, 51);"> ，</font><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">module</font><font style="color:rgb(37, 41, 51);"> 等参数。最终我们写的 nodejs 文件就这么执行了。</font></p>
+<pre><code class="javascript">runInThisContext(modulefunction)(
+  module.exports,
+  require,
+  module,
+  __filename,
+  __dirname
+);
+</code></pre>
+<h3 id="require-的源码"><a href="#require-的源码" class="headerlink" title="require 的源码"></a><font style="color:rgb(37, 41, 51);">require 的源码</font></h3><pre><code class="javascript"> // id 为路径标识符
+function require(id) &#123;
+   /* 查找  Module 上有没有已经加载的 js  对象*/
+   const  cachedModule = Module._cache[id]
+
+   /* 如果已经加载了那么直接取走缓存的 exports 对象  */
+  if(cachedModule)&#123;
+    return cachedModule.exports
+  &#125;
+
+  /* 创建当前模块的 module  */
+  const module = &#123; exports: &#123;&#125; ,loaded: false , ...&#125;
+
+  /* 将 module 缓存到  Module 的缓存属性中，路径标识符作为 id */
+  Module._cache[id] = module.exports
+  /* 加载文件 */
+  runInThisContext(wrapper(&#39;module.exports = &quot;123&quot;&#39;))(module.exports, require, module, __filename, __dirname)
+  /* 加载完成 *//
+  module.loaded = true
+  /* 返回值 */
+  return module.exports
+&#125;
+</code></pre>
+<p>从上面我们总结出一次 <code>require</code> 大致流程是这样的；</p>
+<ul>
+<li>require 会接收一个参数——文件标识符，然后分析定位文件，分析过程我们上述已经讲到了，加下来会从 Module 上查找有没有缓存，如果有缓存，那么直接返回缓存的内容。</li>
+<li>如果没有缓存，会创建一个 module 对象，缓存到 Module 上，然后执行文件，加载完文件，将 loaded 属性设置为 true ，然后返回 module.exports 对象。借此完成模块加载流程。</li>
+<li>模块导出就是 return 这个变量的其实跟 a = b 赋值一样， 基本类型导出的是值， 引用类型导出的是引用地址。</li>
+<li>exports 和 module.exports 持有相同引用，因为最后导出的是 module.exports， 所以对 exports 进行赋值会导致 exports 操作的不再是 module.exports 的引用。</li>
+</ul>
+<p>require 避免重复加载</p>
+<p>从上面我们可以直接得出，require 如何避免重复加载的，首先加载之后的文件的 <code>module</code> 会被缓存到 <code>Module</code> 上，比如一个模块已经 require 引入了 a 模块，如果另外一个模块再次引用 a ，那么会直接读取缓存值 module ，所以无需再次执行模块。</p>
+<p>对应 demo 片段中，首先 <code>main.js</code> 引用了 <code>a.js</code> ，<code>a.js</code> 中 require 了 <code>b.js</code> 此时 <code>b.js</code> 的 module 放入缓存 <code>Module</code> 中，接下来 <code>main.js</code> 再次引用 <code>b.js</code> ，那么直接走的缓存逻辑。所以 b.js 只会执行一次，也就是在 a.js 引入的时候。</p>
+<p>require 避免循环引用</p>
+<p>那么接下来这个循环引用问题，也就很容易解决了。为了让大家更清晰明白，那么我们接下来一起分析整个流程。</p>
+<ul>
+<li>① 首先执行 <code>node main.js</code> ，那么开始执行第一行 <code>require(a.js)</code>；</li>
+<li>② 那么首先判断 <code>a.js</code> 有没有缓存，因为没有缓存，先加入缓存，然后执行文件 a.js （<strong>需要注意 是先加入缓存， 后执行模块内容</strong>）;</li>
+<li>③ a.js 中执行第一行，引用 b.js。</li>
+<li>④ 那么判断 <code>b.js</code> 有没有缓存，因为没有缓存，所以加入缓存，然后执行 b.js 文件。</li>
+<li>⑤ b.js 执行第一行，再一次循环引用 <code>require(a.js)</code> 此时的 a.js 已经加入缓存，直接读取值。接下来打印 <code>console.log(&#39;我是 b 文件&#39;)</code>，导出方法。</li>
+<li>⑥ b.js 执行完毕，回到 a.js 文件，打印 <code>console.log(&#39;我是 a 文件&#39;)</code>，导出方法。</li>
+<li>⑦ 最后回到 <code>main.js</code>，打印 <code>console.log(&#39;node 入口文件&#39;)</code> 完成这个流程。</li>
+</ul>
+<p><code>module.exports</code>缺陷</p>
+<p>当导出一些函数等非对象属性的时候，也有一些风险，就比如循环引用的情况下。对象会保留相同的内存地址，就算一些属性是后绑定的，也能间接通过异步形式访问到。但是如果 module.exports 为一个非对象其他属性类型，在循环引用的时候，就容易造成属性丢失的情况发生了。</p>
+<h3 id="动态加载"><a href="#动态加载" class="headerlink" title="动态加载"></a>动态加载</h3><p><font style="color:rgb(37, 41, 51);">require 可以在任意的上下文，动态加载模块。</font></p>
+<pre><code class="javascript">console.log(&quot;我是 a 文件&quot;);
+exports.say = function () &#123;
+  const getMes = require(&quot;./b&quot;);
+  const message = getMes();
+  console.log(message);
+&#125;;
+</code></pre>
+<h3 id="this-exports-module-exports"><a href="#this-exports-module-exports" class="headerlink" title="this,exports,module.exports"></a>this,exports,module.exports</h3><p>刚开始 this,exports,module.exports 变量指向同一个东西，都是同一个空对象</p>
+<p>最终导出的是<strong>module.exports</strong></p>
+<h2 id="循环依赖"><a href="#循环依赖" class="headerlink" title="循环依赖"></a>循环依赖</h2><pre><code class="javascript">//index.js
+var a = require(&quot;./a&quot;);
+console.log(&quot;入口模块引用a模块：&quot;, a);
+
+// a.js
+var b = require(&quot;./b&quot;);
+console.log(&quot;a模块引用b模块：&quot;, b);
+exports.a = &quot;修改值-a模块内变量&quot;;
+
+// b.js
+var a = require(&quot;./a&quot;);
+console.log(&quot;b模块引用a模块&quot;, a);
+exports.b = &quot;原始值-b模块内变量&quot;;
+</code></pre>
+<p><font style="color:rgb(77, 77, 77);">输出结果如下</font></p>
+<p><img src="1733364567186-3ddb1d5a-e23d-455e-9ab6-41e7d6d3639d.png"></p>
+<p><font style="color:rgb(77, 77, 77);">这种 AB 模块间的互相引用，本应是个死循环，但是实际并没有，因为 CommonJS 做了特殊处理——模块缓存。</font></p>
+<p><font style="color:rgb(77, 77, 77);"></font></p>
+<p><font style="color:rgb(77, 77, 77);">上面就是对循环引用的处理过程，循环引用无非是要解决两个问题，怎么避免死循环以及输出的值是什么。CommonJS 通过模块缓存来解决：每一个模块都先加入缓存再执行，每次遇到 require 都先检查缓存，这样就不会出现死循环；借助缓存，输出的值也很简单就能找到了</font></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);"></font><font style="color:rgb(89, 89, 89);">解决了变量污染，文件依赖等问题，commonjs 是动态导入(代码发生在运行时)</font></p>
+<h1 id="ES-Module"><a href="#ES-Module" class="headerlink" title="ES Module"></a><font style="color:rgb(37, 41, 51);">ES Module</font></h1><p>浏览器中的使用<font style="color:rgb(37, 41, 51);">ES Module</font></p>
+<pre><code class="javascript">在script标签中加入type类型，这个模块就是启动模块
+&lt;script src=&quot;./index.js&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>index.js</p>
+<pre><code class="javascript">var a = 1;
+console.log(a);
+
+//此时浏览器window.a也不会有值，不会污染全局变量
+</code></pre>
+<h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a><font style="color:rgb(37, 41, 51);">使用</font></h2><pre><code class="javascript">/** 定义模块 math.js **/
+var basicNum = 0;
+var add = function (a, b) &#123;
+  return a + b;
+&#125;;
+export &#123; basicNum, add &#125;;
+
+/** 引用模块 **/
+import &#123; basicNum, add &#125; from &quot;./math&quot;;
+function test(ele) &#123;
+  ele.textContent = add(99 + basicNum);
+&#125;
+</code></pre>
+<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><p>ES Module 分为两种导出方式：</p>
+<ul>
+<li>具名导出（普通导出），可以导出多个</li>
+<li>默认导出，只能导出一个</li>
+</ul>
+<p>一个模块可以同时存在两种导出方式，最终会合并为一个「对象」导出</p>
+<p>ES Module 的导出类似导出一个对象</p>
+<pre><code class="javascript">export const a = 1; // 具名，常用
+export function b() &#123;&#125; // 具名，常用
+export const c = () =&gt; &#123;&#125;  // 具名，常用
+const d = 2;
+export &#123; d &#125; // 具名（具名导出一个d的方式，因为d在前面已经定义了，所以必须采用这样的
+方式）
+const k = 10
+export &#123; k as temp &#125; // 具名（改变导出变量的key）
+
+//默认导出只能导一次，没有覆盖关系（重复默认导出会报错）
+// export default 3 // 默认，常用（默认导出不需要名字，只需要一个值）
+// export default function() &#123;&#125; // 默认，常用
+// const e = 4;
+// export &#123; e as default &#125; // 默认
+
+const f = 4, g = 5, h = 6
+export &#123; f, g, h as default&#125; // 基本 + 默认
+
+// 以上代码将导出下面的对象
+/*
+&#123;
+    a: 1,
+    b: fn,
+    c: fn,
+    d: 2,
+    temp: 10,
+    f: 4,
+    g: 5,
+    default: 6
+&#125;
+*/
+</code></pre>
+<h4 id="混合导出"><a href="#混合导出" class="headerlink" title="混合导出"></a>混合导出</h4><p><font style="color:rgb(89, 89, 89);">可以使用</font><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">export</font><font style="color:rgb(89, 89, 89);">和</font><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">export default</font><font style="color:rgb(89, 89, 89);">同时使用并且互不影响，只需要在导入时地方注意，如果文件里有混合导入，则必须先导入默认导出的，再导入单个导入的值。</font></p>
+<pre><code class="plain">export const name = &quot;蛙人&quot;
+export const age = 24
+
+export default &#123;
+    fn() &#123;&#125;，
+    msg: &quot;hello 蛙人&quot;
+&#125;
+</code></pre>
+<h4 id="导出导入代码必须为顶级代码，即不可放到代码块中"><a href="#导出导入代码必须为顶级代码，即不可放到代码块中" class="headerlink" title="导出导入代码必须为顶级代码，即不可放到代码块中"></a>导出导入代码必须为顶级代码，即不可放到代码块中</h4><p>导入或者导出的代码不能放入判断，循环，函数体内</p>
+<p><font style="color:rgb(37, 41, 51);">ES6 的模块不是对象，</font><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">import</font><font style="color:rgb(37, 41, 51);">命令会被 JavaScript 引擎静态分析，在编译时就引入模块代码，而不是在代码运行时加载，所以无法实现条件加载。</font></p>
+<pre><code class="plain">if (true) &#123;
+    import xxx from &#39;XXX&#39; // 报错
+&#125;
+</code></pre>
+<h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>导入（import）一个模块，相当于是运行一个模块，得到模块导出结果</p>
+<p>导入可以针对性的导入，不是说导出多少个一定要用完</p>
+<p>针对具名导出和默认导出，有不同的导入语法</p>
+<pre><code class="javascript">// 仅运行一次该模块，不导入任何内容(会缓存)
+import &quot;模块路径&quot;
+
+//这句话可以不写在顶级代码里，动态加载
+//跟仅运行一次该模块就差一个() 有括号就是动态加载
+import(&quot;模块路径&quot;) // 动态导入，返回一个Promise，完成时的数据为模块对象
+
+// 常用，导入属性 a、b，放到变量a、b中。a-&gt;a, b-&gt;b
+import &#123; a, b &#125; from &quot;模块路径&quot; （这里要对应导出的名字）
+
+// 常用，导入属性 default，放入变量c中。default-&gt;c
+import c from &quot;模块路径&quot;
+
+// 常用，default-&gt;c，a-&gt;a, b-&gt;b
+import c, &#123; a, b &#125; from &quot;模块路径&quot;
+
+// 常用，将模块对象放入到变量obj中（将具名和默认的变量全部导出）
+import * as obj from &quot;模块路径&quot;
+
+// 导入属性a、b，放到变量temp1、temp2 中
+import &#123;a as temp1, b as temp2&#125; from &quot;模块路径&quot;
+
+// 导入属性default，放入变量a中，default是关键字，不能作为变量名，必须定义别名
+import &#123;default as a&#125; from &quot;模块路径&quot;
+
+//导入属性default、b，放入变量a、b中
+import &#123;default as a, b&#125; from &quot;模块路径&quot;
+// 以上均为静态导入
+</code></pre>
+<h4 id="动态加载-1"><a href="#动态加载-1" class="headerlink" title="动态加载"></a><font style="color:rgb(37, 41, 51);">动态加载</font></h4><p><font style="color:rgb(51, 51, 51);">在 JavaScript 中，可以使用 ES6 模块的动态加载特性来实现模块的动态加载。这通常是通过</font><font style="color:rgb(51, 51, 51);background-color:rgb(237, 238, 240);">import()</font><font style="color:rgb(51, 51, 51);">函数实现的，它返回一个 Promise 对象。</font></p>
+<p><font style="color:rgb(51, 51, 51);">下面是一个使用</font><font style="color:rgb(51, 51, 51);background-color:rgb(237, 238, 240);">import()</font><font style="color:rgb(51, 51, 51);">动态加载模块的例子：</font></p>
+<pre><code class="javascript">// 假设我们有一个module.js文件，内容如下：
+// module.js
+export function hello() &#123;
+  return &quot;Hello, World!&quot;;
+&#125;
+
+// 我们可以在另一个脚本中动态加载这个模块：
+// main.js
+let modulePath = &quot;./module.js&quot;; // 模块的路径
+
+// 使用import()函数动态加载模块
+import(modulePath)
+  .then((module) =&gt; &#123;
+    // 使用模块中导出的功能
+    console.log(module.hello());
+  &#125;)
+  .catch((err) =&gt; &#123;
+    // 处理加载模块时的错误
+    console.error(err);
+  &#125;);
+</code></pre>
+<p><font style="color:rgb(51, 51, 51);">在上面的代码中，</font><font style="color:rgb(51, 51, 51);background-color:rgb(237, 238, 240);">import()</font><font style="color:rgb(51, 51, 51);">函数用于动态加载</font><font style="color:rgb(51, 51, 51);background-color:rgb(237, 238, 240);">./module.js</font><font style="color:rgb(51, 51, 51);">模块。加载成功后，会输出</font><font style="color:rgb(51, 51, 51);background-color:rgb(237, 238, 240);">Hello, World!</font><font style="color:rgb(51, 51, 51);">。如果加载失败，会捕获到错误并打印出来。这种方式可以用于按需加载模块，或者根据不同的条件动态加载不同的模块。</font></p>
+<p><font style="color:rgb(51, 51, 51);"></font></p>
+<p><font style="color:rgb(51, 51, 51);">原理</font></p>
+<p><font style="color:rgb(51, 51, 51);">动态加载是异步的，后续再发 ajax 请求，一开始打包中不会有</font></p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><h3 id="静态语法"><a href="#静态语法" class="headerlink" title="静态语法"></a><font style="color:rgb(37, 41, 51);">静态语法</font></h3><p><font style="color:rgb(37, 41, 51);">ES6 module 的引入和导出是静态的，</font><code>&lt;font style=&quot;color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);&quot;&gt;import&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);"> 会自动提升到代码的顶层 ，</font><code>&lt;font style=&quot;color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);&quot;&gt;import&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);"> , </font><code>&lt;font style=&quot;color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);&quot;&gt;export&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);"> 不能放在块级作用域或条件语句中。</font></p>
+<blockquote>
+<p><font style="color:rgb(37, 41, 51);">也可以这样 import(“模块路径”) 动态依赖，返回一个 Promise，完成时的数据为模块对象</font><font style="color:rgb(89, 89, 89);">（异步）</font></p>
+</blockquote>
+<h3 id="执行特性"><a href="#执行特性" class="headerlink" title="执行特性"></a><font style="color:rgb(37, 41, 51);">执行特性</font></h3><p>所有的加载模块都会被提前</p>
+<p><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">CommonJS </font><font style="color:rgb(37, 41, 51);">模块同步加载并执行模块文件，</font><strong><font style="color:rgb(37, 41, 51);">ES6 模块提前加载并执行模块文件</font></strong><font style="color:rgb(37, 41, 51);">，ES6 模块在预处理阶段分析模块依赖，在执行阶段执行模块，两个阶段都采用深度优先遍历，执行顺序是子 -&gt; 父。</font></p>
+<pre><code class="javascript">//main.js
+console.log(&#39;main.js开始执行&#39;)
+import say from &#39;./a&#39;
+import say1 from &#39;./b&#39;
+console.log(&#39;main.js执行完毕&#39;)
+
+//a.js
+import b from &#39;./b&#39;
+console.log(&#39;a模块加载&#39;)
+export default function say ()&#123;
+    console.log(&#39;hello , world&#39;)
+&#125;
+
+//b.js
+console.log(&#39;b模块加载&#39;)
+export default function sayhello()&#123;
+    console.log(&#39;hello,world&#39;)
+&#125;
+</code></pre>
+<p><font style="color:rgb(37, 41, 51);">执行结果</font></p>
+<p><font style="color:rgb(37, 41, 51);">b 模块加载</font></p>
+<p><font style="color:rgb(37, 41, 51);">a 模块加载</font></p>
+<p><font style="color:rgb(37, 41, 51);">main.js 开始执行</font></p>
+<p><font style="color:rgb(37, 41, 51);">main.js 执行完毕</font></p>
+<p><font style="color:rgb(37, 41, 51);"></font></p>
+<p><font style="color:rgb(37, 41, 51);">说明了</font><font style="color:rgb(37, 41, 51);">es module 的加载是静态，并且每个模块也只会被加载一次,因为</font><font style="color:rgb(37, 41, 51);">b 模块加载，a 模块加载被提前了</font></p>
+<h3 id="导出绑定"><a href="#导出绑定" class="headerlink" title="导出绑定"></a><font style="color:rgb(37, 41, 51);">导出绑定</font></h3><p><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">export</font><font style="color:rgb(89, 89, 89);">导出的值是值的引用，并且内部有映射关系，这是</font><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">export</font><font style="color:rgb(89, 89, 89);">关键字的作用。而且导入的值，不能进行修改（只读状态）。</font></p>
+<pre><code class="plain">// index.js
+export let num = 0;
+export function add() &#123;
+    ++num
+&#125;
+
+
+import &#123; num, add &#125; from &quot;./index.js&quot;
+console.log(num) // 0
+add()
+console.log(num) // 1
+num = 10 // 抛出错误
+
+
+//但可以这样修改
+import &#123; num , addNumber &#125; from &#39;./a&#39;
+console.log(num) // num = 1
+addNumber()
+console.log(num) // num = 2
+</code></pre>
+<p>总结</p>
+<p>使用 import 被导入的模块运行在严格模式下。</p>
+<p>使用 import 被导入的变量是只读的，可以理解默认为 const 装饰，无法被赋值</p>
+<p>使用 import 被导入的变量是与原变量绑定/引用的，可以理解为 import 导入的变量无论是否为基本类型都是引用传递。</p>
+<h3 id="循环依赖-1"><a href="#循环依赖-1" class="headerlink" title="循环依赖"></a>循环依赖</h3><p>esm 的 import 命令是在编译阶段就执行，优先于自身内容执行。</p>
+<p>esm 并不关心是否存在循环引用，只是生成一个指向被加载模块的引用，代码未执行时，这个引用的值就是 undefined。</p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">Es Module</font><font style="color:rgb(89, 89, 89);">也是解决了变量污染问题，依赖顺序问题，</font><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">Es Module</font><font style="color:rgb(89, 89, 89);">语法也是更加灵活，导出值也都是导出的引用，导出变量是可读状态，这加强了代码可读性。</font></p>
+<h1 id="ES6-模块与-CommonJS-模块的差异"><a href="#ES6-模块与-CommonJS-模块的差异" class="headerlink" title="ES6 模块与 CommonJS 模块的差异"></a>ES6 模块与 CommonJS 模块的差异</h1><h2 id="共同点"><a href="#共同点" class="headerlink" title="共同点"></a>共同点</h2><p>不会污染全局变量</p>
+<p>保证依赖顺序</p>
+<p>可以细分与复用代码</p>
+<h2 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h2><ol>
+<li>动态与静态</li>
+</ol>
+<p><font style="color:rgb(89, 89, 89);">Es Module：静态，不可以动态加载语句，只能声明在该文件的最顶部，在代码运行之前，就需要分析出所有的依赖关系，这使得 Es Module 可以进行树摇优化（tree shaking）</font></p>
+<blockquote>
+<p><font style="color:rgb(89, 89, 89);">也可以动态依赖（异步）</font></p>
+</blockquote>
+<p><font style="color:rgb(89, 89, 89);">CommonJs：代码发生在运行时，动态依赖（需要代码运行后才能确定依赖），动态依赖是同步执行的（比如 I/O 操作需要一年就等一年）</font></p>
+<p><font style="color:rgb(89, 89, 89);"></font></p>
+<ol start="2">
+<li>值</li>
+</ol>
+<p><font style="color:rgb(89, 89, 89);">CommonJs 导出值是拷贝，可以修改导出的值，这在代码出错时，不好排查引起变量污染</font></p>
+<pre><code class="javascript">const getMes = require(&quot;./b&quot;);
+console.log(&quot;我是 a 文件&quot;);
+module.exports = &#123; b: 2 &#125;;
+
+const express = require(&quot;express&quot;);
+const a = require(&quot;./a&quot;);
+const b = require(&quot;./b&quot;);
+a.b = 3; //可以修改
+console.log(a, &quot;a&quot;);
+</code></pre>
+<p><font style="color:rgb(89, 89, 89);">Es Module 导出的是引用值，并且值都是只读的，不能修改</font></p>
+<pre><code class="javascript">import data, &#123; add &#125; from &quot;./3.js&quot;;
+data = 2; //不能修改，会报错
+</code></pre>
+<p><font style="color:rgb(89, 89, 89);"></font></p>
+<p><font style="color:rgb(89, 89, 89);">符号绑定</font></p>
+<pre><code class="javascript">import data, &#123; add &#125; from &quot;./3.js&quot;;
+console.log(data); //4
+add();
+console.log(data); //6
+
+let e = 4;
+function add() &#123;
+  e = e + 2;
+  return e;
+&#125;
+
+export &#123; e as default, add &#125;; // 默认
+</code></pre>
+<p>在这种情况下，导入 data 数据发生了变化，因为 Es Module 中，e 和 data 这两个数据使用的是同一块内存空间，这种情况叫做符号绑定（一块内存但他有多个符号，e 和 data 变量都指向他）这种情况在 js 语言中绝无仅有</p>
+<p>注意：只有导入的时候是符号绑定，后续任何的操作（赋值）都会开辟新的内存空间</p>
+<p><strong><font style="color:rgb(89, 89, 89);">所以具名导出一定是要是常量，如果导出的是对象，那他就是可变的（引用类型），如果是默认导出，那他本身就是一个对象，就是可变的</font></strong></p>
+<p><strong><font style="color:rgb(89, 89, 89);"></font></strong></p>
+<p><font style="color:rgb(89, 89, 89);">正常逻辑</font></p>
+<pre><code class="javascript">let a = 1;
+let b = a;
+a = 2; // 这时候修改a 不会影响b 因为a,b用的是两块内存空间，但是在es module中用的是同一块内存空间
+</code></pre>
+<p>3.标准不同</p>
+<p>CommonJS，简称 CMJ，这是一个<strong>社区</strong>规范，出现时间较早，使用函数实现，目前仅 node 环境支持</p>
+<p>ES Module，简称 ESM，这是随着 ES6 发布的<strong>官方</strong>模块化标准，使用语法实现，目前浏览器和新版本 node 环境均支持</p>
+<p>4.顶层 this</p>
+<p>commonjs 的 this 指向当前模块导出对象</p>
+<p>ES Module 是 undefined</p>
+<p>5.隔离变量的方式</p>
+<p>CommonJS 是通过函数</p>
+<p>ES Module 是官方语法</p>
+<h1 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a><font style="color:rgb(51, 51, 51);background-color:rgb(248, 248, 248);">AMD</font></h1><p>amd 是专门为浏览器所设计的</p>
 <p>AMD 规范采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。这里介绍用 require.js 实现 AMD 规范的模块化：用 require.config()指定引用路径等，用 define()定义模块，用 require()加载模块。</p>
 <h3 id="1-加载模块"><a href="#1-加载模块" class="headerlink" title="1.加载模块"></a>1.加载模块</h3><p><strong>首先我们需要引入 require.js 文件和一个入口文件 main.js。main.js 中配置 require.config()并规定项目中用到的基础模块。</strong></p>
-<pre><code>/** 网页中引入require.js及main.js **/
+<pre><code class="plain">/** 网页中引入require.js及main.js **/
 &lt;script src=&quot;js/require.js&quot; data-main=&quot;js/main&quot;&gt;&lt;/script&gt;
 
 /** main.js 入口文件/主模块 **/
@@ -175,11 +611,12 @@ require([&quot;jquery&quot;,&quot;underscore&quot;],function($,_)&#123;
   // some code here
 &#125;);
 </code></pre>
-<h3 id="2-定义模块"><a href="#2-定义模块" class="headerlink" title="2.定义模块"></a>2.定义模块</h3><pre><code>// name和deps都是非必选的参数，而callback可以是一个对象，或者是具有返回值的函数
+<h3 id="2-定义模块"><a href="#2-定义模块" class="headerlink" title="2.定义模块"></a>2.定义模块</h3><pre><code class="plain">// name和deps都是非必选的参数，而callback可以是一个对象，或者是具有返回值的函数
 define([name], [deps], callback)
 </code></pre>
-<p>存在依赖的模块<br>假设你要写一个依赖 jquery 的模块，那么你需要在 define 方法中声明依赖。</p>
-<pre><code>define([&#39;jquery&#39;], function($) &#123;
+<p>存在依赖的模块</p>
+<p>假设你要写一个依赖 jquery 的模块，那么你需要在 define 方法中声明依赖。</p>
+<pre><code class="plain">define([&#39;jquery&#39;], function($) &#123;
     function setColor(select, color) &#123;
         $(select).css(&#39;color&#39;, color)
     &#125;
@@ -189,7 +626,7 @@ define([name], [deps], callback)
 &#125;)
 </code></pre>
 <p>另一种方法</p>
-<pre><code>define(function(require, exports, module) &#123;
+<pre><code class="plain">define(function(require, exports, module) &#123;
     var $ = require(&#39;jquery&#39;)
     function setColor(select, color) &#123;
         $(select).css(&#39;color&#39;, color)
@@ -199,7 +636,7 @@ define([name], [deps], callback)
     &#125;
 &#125;)
 </code></pre>
-<h3 id="3-使用模块"><a href="#3-使用模块" class="headerlink" title="3.使用模块"></a>3.使用模块</h3><pre><code>require([&#39;simple&#39;, &#39;jquery&#39;, &#39;funcModule&#39;, &#39;depModule&#39;], function(simple, $, funcModule, depModule) &#123;
+<h3 id="3-使用模块"><a href="#3-使用模块" class="headerlink" title="3.使用模块"></a>3.使用模块</h3><pre><code class="plain">require([&#39;simple&#39;, &#39;jquery&#39;, &#39;funcModule&#39;, &#39;depModule&#39;], function(simple, $, funcModule, depModule) &#123;
     console.log(simple)
     console.log($)
     $(&#39;.word&#39;).css(&#123;
@@ -212,75 +649,6 @@ define([name], [deps], callback)
     depModule.setColor(&#39;.word&#39;, &#39;yellow&#39;)
 &#125;)
 </code></pre>
-<h1 id="ES6-Module"><a href="#ES6-Module" class="headerlink" title="ES6 Module"></a>ES6 Module</h1><p>ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，旨在成为浏览器和服务器通用的模块解决方案。</p>
-<pre><code>/** 定义模块 math.js **/
-var basicNum = 0;
-var add = function (a, b) &#123;
-    return a + b;
-&#125;;
-export &#123; basicNum, add &#125;;
-
-/** 引用模块 **/
-import &#123; basicNum, add &#125; from &#39;./math&#39;;
-function test(ele) &#123;
-    ele.textContent = add(99 + basicNum);
-&#125;
-</code></pre>
-<p>如上例所示，使用 import 命令的时候，用户需要知道所要加载的变量名或函数名。其实 ES6 还提供了 export default 命令，为模块指定默认输出，对应的 import 语句不需要使用大括号。这也更趋近于 ADM 的引用写法。</p>
-<pre><code>/** export default **/
-//定义输出
-export default &#123; basicNum, add &#125;;
-//引入
-import math from &#39;./math&#39;;
-function test(ele) &#123;
-    ele.textContent = math.add(99 + math.basicNum);
-&#125;
-</code></pre>
-<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><p>在 Es Module 中导出分为两种，单个导出(export)、默认导出(export default)，单个导出在导入时不像 CommonJs 一样直接把值全部导入进来了，Es Module 中可以导入我想要的值。那么默认导出就是全部直接导入进来，当然 Es Module 中也可以导出任意类型的值。</p>
-<pre><code>// 导出变量
-export const name = &quot;蛙人&quot;
-export const age = 24
-
-// 导出函数也可以
-export function fn() &#123;&#125;
-export const test = () =&gt; &#123;&#125;
-
-
-// 如果有多个的话
-const name = &quot;蛙人&quot;
-const sex = &quot;male&quot;
-export &#123; name, sex &#125;
-</code></pre>
-<h3 id="混合导出"><a href="#混合导出" class="headerlink" title="混合导出"></a>混合导出</h3><p>可以使用 export 和 export default 同时使用并且互不影响，只需要在导入时地方注意，如果文件里有混合导入，则必须先导入默认导出的，在导入单个导入的值。</p>
-<pre><code>export const name = &quot;蛙人&quot;
-export const age = 24
-
-export default &#123;
-    fn() &#123;&#125;，
-    msg: &quot;hello 蛙人&quot;
-&#125;
-</code></pre>
-<h3 id="导入值的变化"><a href="#导入值的变化" class="headerlink" title="导入值的变化"></a>导入值的变化</h3><p>export 导出的值是值的引用，并且内部有映射关系，这是 export 关键字的作用。而且导入的值，不能进行修改也就是只读状态。</p>
-<pre><code>// index.js
-export let num = 0;
-export function add() &#123;
-    ++ num
-&#125;
-
-import &#123; num, add &#125; from &quot;./index.js&quot;
-console.log(num) // 0
-add()
-console.log(num) // 1
-num = 10 // 抛出错误
-</code></pre>
-<p>ES6 的模块不是对象，import 命令会被 JavaScript 引擎静态分析，在编译时就引入模块代码，而不是在代码运行时加载，所以无法实现条件加载。</p>
-<pre><code>if (true) &#123;
-    import xxx from &#39;XXX&#39; // 报错
-&#125;
-</code></pre>
-<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>Es Module 也是解决了变量污染问题，依赖顺序问题，Es Module 语法也是更加灵活，导出值也都是导出的引用，导出变量是可读状态，这加强了代码可读性。</p>
-<h1 id="ES6-模块与-CommonJS-模块的差异"><a href="#ES6-模块与-CommonJS-模块的差异" class="headerlink" title="ES6 模块与 CommonJS 模块的差异"></a>ES6 模块与 CommonJS 模块的差异</h1><h3 id="1-动态与静态"><a href="#1-动态与静态" class="headerlink" title="1. 动态与静态"></a>1. 动态与静态</h3><p>CommonJs 可以动态加载语句，代码发生在运行时<br>Es Module 是静态的，不可以动态加载语句，只能声明在该文件的最顶部，代码发生在编译时</p>
-<h3 id="2-值"><a href="#2-值" class="headerlink" title="2. 值"></a>2. 值</h3><p>CommonJs 导出值是拷贝，可以修改导出的值，这在代码出错时，不好排查引起变量污染<br>Es Module 导出是引用值之前都存在映射关系，并且值都是可读的，不能修改</p>
 
     </div>
     
@@ -290,7 +658,7 @@ num = 10 // 抛出错误
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

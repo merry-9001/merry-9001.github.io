@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>echart | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>echart</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/11/13
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <p>生成了一个 echarts 实例,配置一个对象</p>
+<pre><code class="javascript">const myEchart = echarts.init(document.getElementById(&quot;chart1&quot;));
+
+myEchart.setOption(&#123;&#125;);
+</code></pre>
+<h2 id="title（标题）"><a href="#title（标题）" class="headerlink" title="title（标题）"></a>title（标题）</h2><p>主要是文本样式，背景样式，是否显示，位置，阴影</p>
+<pre><code class="javascript">            title: &#123;
+                id:&#39;&#39;,
+                show:true,    //是否显示标题组件
+                text:&#39;当月销售业绩清单&#39;,
+                link:&#39;http://www.baidu.com/&#39;,
+                target:&#39;self&#39;,
+                textStyle:&#123;
+                    color:&#39;gold&#39;,
+                    fontStyle:&#39;italic&#39;,
+                    fontWeight:&#39;normal&#39;,
+                    fontFamily:&#39;Microsoft YaHei&#39;,
+                    fontSize:20,
+                    lineHeight:30,
+                    textBorderColor:&#39;red&#39;,
+                    textBorderWidth:2,
+                    textShadowColor:&#39;#000&#39;,
+                    textShadowBlur:2,
+                    textShadowOffsetX:10,
+                    textShadowOffsetY:10,
+                &#125;,
+
+                //幅标题
+                subtext:&#39;陈学辉&#39;,
+                sublink:&#39;http://www.qq.com/&#39;,
+                subtarget:&#39;self&#39;,
+                subtextStyle:&#123;
+
+                &#125;,
+
+
+                textAlign:&#39;left&#39;,    //两个标题的内容不一样的话，有可能被截断
+                padding:[10,5,20,30],
+                itemGap:20,
+
+                left:10,
+                top:10,
+
+                backgroundColor:&#39;#ccc&#39;,
+                borderColor:&#39;#000&#39;,
+                borderWidth:2,
+                borderRadius:[5,10,20,30],
+
+                shadowColor: &#39;rgba(0, 0, 0, 0.5)&#39;,
+                shadowBlur: 10,
+                shadowOffsetX:5,
+                shadowOffsetY:5,
+            &#125;,
+</code></pre>
+<h2 id="legend（图例）"><a href="#legend（图例）" class="headerlink" title="legend（图例）"></a>legend（图例）</h2><p>主要设置类型(滚动非滚动),名字，图标，选中模式，动画</p>
+<pre><code class="javascript">legend: &#123;    //图例组件
+  //show:true,
+  data: [&#39;今日销量&#39;, &#39;昨日销量&#39;, &#123;
+    name: &#39;明日销量&#39;,
+    icon: &#39;image://data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7&#39;,
+    textStyle: &#123;
+      //float:&#39;left&#39;,
+    &#125;
+  &#125;],
+  type: &#39;plain&#39;,
+  left: &#39;right&#39;,
+  orient: &#39;horizontal&#39;,
+  padding: [10, 20],
+  itemGap: 20,
+  itemWidth: 35,
+  itemHeight: 24,
+  formatter: &#39;&#123;name&#125; 高么？&#39;,
+  formatter: function (name) &#123;
+    return &quot;你说 &quot; + name + &quot; 高么？&quot;;
+  &#125;,
+  selectedMode: &#39;multiple&#39;,
+  inactiveColor: &#39;#ccc&#39;,
+  selected: &#123;
+    &#39;今日销量&#39;: true,
+    &#39;昨日销量&#39;: true,
+    &#39;明日销量&#39;: true,
+  &#125;,
+  textStyle: &#123;
+    color: &#39;#f00&#39;
+  &#125;,
+
+  backgroundColor: &#39;gray&#39;,
+&#125;,
+/* tooltip:&#123;
+&#125;, */
+</code></pre>
+<h2 id="series（数据）"><a href="#series（数据）" class="headerlink" title="series（数据）"></a>series（数据）</h2><p>这里面的 type 直接决定了图表的形状</p>
+<pre><code class="javascript">            series:&#123;
+                type:&#39;radar&#39;,
+                data:[
+                    &#123;
+                        name:&#39;火箭&#39;,
+                        value:[109,38,29,6,2,60,17]
+                    &#125;,
+                    &#123;
+                        name:&#39;勇士&#39;,
+                        value:[118,36,25,6,6,77,13]
+                    &#125;
+                ]
+            &#125;
+</code></pre>
+<h2 id="dataZoom-缩放区域"><a href="#dataZoom-缩放区域" class="headerlink" title="dataZoom(缩放区域)"></a>dataZoom(缩放区域)</h2><p>图表可以缩放</p>
+<pre><code class="javascript">dataZoom：&#123;
+  type:&#39;inside&#39;
+&#125;
+</code></pre>
+<h2 id="visualMap（高亮某一部分数据的工具）"><a href="#visualMap（高亮某一部分数据的工具）" class="headerlink" title="visualMap（高亮某一部分数据的工具）"></a>visualMap（高亮某一部分数据的工具）</h2><pre><code class="javascript">visualMap: [];
+</code></pre>
+<h2 id="tooltip-提示框"><a href="#tooltip-提示框" class="headerlink" title="tooltip(提示框)"></a>tooltip(提示框)</h2><p>鼠标移到某一个位置的提示框</p>
+<pre><code class="javascript">tooltip：&#123;
+
+&#125;
+</code></pre>
+<p><img src="1731573087821-a579c18d-7d1e-4303-9d1e-aa4546034a34.png"></p>
+<h2 id="axisPointer（坐标轴指示器）"><a href="#axisPointer（坐标轴指示器）" class="headerlink" title="axisPointer（坐标轴指示器）"></a>axisPointer（坐标轴指示器）</h2><p><img src="1731573175691-e377c42c-8cfa-43ea-9c3c-4c02bad38a99.png"></p>
+<h2 id="toolbox（工具栏）"><a href="#toolbox（工具栏）" class="headerlink" title="toolbox（工具栏）"></a>toolbox（工具栏）</h2><p><img src="1731573218602-5a5f39f7-9fbf-4643-8cb0-b2490620ab58.png"></p>
+<h2 id="grid（绘图网格）"><a href="#grid（绘图网格）" class="headerlink" title="grid（绘图网格）"></a>grid（绘图网格）</h2><p><font style="color:rgb(77, 85, 94);">可以在网格上绘制</font><a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/option.html#series-line">折线图</a><font style="color:rgb(77, 85, 94);">，</font><a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/option.html#series-bar">柱状图</a><font style="color:rgb(77, 85, 94);">，</font><a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/option.html#series-scatter">散点图（气泡图）</a><font style="color:rgb(77, 85, 94);">。</font></p>
+<p><font style="color:rgb(77, 85, 94);">直角坐标系内绘图网格，单个 grid 内最多可以放置上下两个 X 轴，左右两个 Y 轴</font></p>
+<p><font style="color:rgb(77, 85, 94);"></font></p>
+<p><font style="color:rgb(77, 85, 94);">1.图表的背景显示网格，以及背景颜色等</font></p>
+<p><font style="color:rgb(77, 85, 94);">2.确定图表的位置</font></p>
+<pre><code class="javascript">grid:&#123;
+  // show:true,
+  left:&quot;20%&quot;,
+  width:&quot;100%&quot;,
+  containLabel:false,
+  backgroundColor:&#39;gray&#39;,
+  borderColor:&#39;#f00&#39;
+&#125;,
+</code></pre>
+<h2 id="【直角坐标】"><a href="#【直角坐标】" class="headerlink" title="【直角坐标】"></a>【直角坐标】</h2><h3 id="xAxis-yAxis（x-轴-y-轴）"><a href="#xAxis-yAxis（x-轴-y-轴）" class="headerlink" title="xAxis,yAxis（x 轴,y 轴）"></a>xAxis,yAxis（x 轴,y 轴）</h3><pre><code class="javascript">xAxis: [
+  &#123;
+    data: [&quot;衬衫&quot;, &quot;羊毛衫&quot;, &quot;雪纺衫&quot;, &quot;裤子&quot;, &quot;高跟鞋&quot;, &quot;袜子&quot;],
+  &#125;,
+  &#123;
+    data: [&quot;衬衫1&quot;, &quot;羊毛衫1&quot;, &quot;雪纺衫1&quot;, &quot;裤子1&quot;, &quot;高跟鞋1&quot;, &quot;袜子1&quot;],
+  &#125;,
+  &#123;
+    data: [&quot;衬衫2&quot;, &quot;羊毛衫2&quot;, &quot;雪纺衫2&quot;, &quot;裤子2&quot;, &quot;高跟鞋2&quot;, &quot;袜子2&quot;],
+    offset: -100,
+  &#125;,
+];
+</code></pre>
+<h2 id="【极坐标】"><a href="#【极坐标】" class="headerlink" title="【极坐标】"></a>【极坐标】</h2><h3 id="polor-位置"><a href="#polor-位置" class="headerlink" title="polor(位置)"></a>polor(位置)</h3><pre><code class="javascript">polar: &#123;
+  center:[&#39;50%&#39;, &#39;50%&#39;],
+  radius:&quot;80%&quot;,
+&#125;,
+</code></pre>
+<h3 id="radiusAxis（极坐标系的径向轴）（半径）"><a href="#radiusAxis（极坐标系的径向轴）（半径）" class="headerlink" title="radiusAxis（极坐标系的径向轴）（半径）"></a>radiusAxis（极坐标系的径向轴）（半径）</h3><h3 id="angleAxis（极坐标系的角度轴）（旋转角度）"><a href="#angleAxis（极坐标系的角度轴）（旋转角度）" class="headerlink" title="angleAxis（极坐标系的角度轴）（旋转角度）"></a>angleAxis（极坐标系的角度轴）（旋转角度）</h3><h2 id="【雷达图】"><a href="#【雷达图】" class="headerlink" title="【雷达图】"></a>【雷达图】</h2><pre><code class="javascript">rader: &#123;
+&#125;
+</code></pre>
+<h2 id="【地理信息】"><a href="#【地理信息】" class="headerlink" title="【地理信息】"></a>【地理信息】</h2><h3 id="geo-坐标"><a href="#geo-坐标" class="headerlink" title="geo(坐标)"></a>geo(坐标)</h3><pre><code class="javascript">geo: &#123;
+&#125;
+</code></pre>
+<p><img src="1731573551187-7d1f1d2b-07bc-4b07-af74-d5b8a4b499a9.png"></p>
+<h2 id="【平行坐标】"><a href="#【平行坐标】" class="headerlink" title="【平行坐标】"></a>【平行坐标】</h2><pre><code class="javascript">parallel：&#123;
+
+&#125;,
+parallelAxis:[
+
+]
+</code></pre>
+<p><img src="1731573647544-449d6e16-190b-4dde-8d4c-dd804a79d4e6.png"></p>
+<h2 id="【时间轴】"><a href="#【时间轴】" class="headerlink" title="【时间轴】"></a>【时间轴】</h2><h2 id="【柱状图】"><a href="#【柱状图】" class="headerlink" title="【柱状图】"></a>【柱状图】</h2><h2 id="【饼图】"><a href="#【饼图】" class="headerlink" title="【饼图】"></a>【饼图】</h2><h2 id="【气泡图】"><a href="#【气泡图】" class="headerlink" title="【气泡图】"></a>【气泡图】</h2><h2 id="【矩阵树图】"><a href="#【矩阵树图】" class="headerlink" title="【矩阵树图】"></a>【矩阵树图】</h2><p>webpack 打包分析</p>
+<h2 id="【k-线图】"><a href="#【k-线图】" class="headerlink" title="【k 线图】"></a>【k 线图】</h2><h2 id="【热力图】"><a href="#【热力图】" class="headerlink" title="【热力图】"></a>【热力图】</h2><p><img src="1731573881650-3c68b36f-af44-48f9-b0b0-7d1571e986a3.png"></p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

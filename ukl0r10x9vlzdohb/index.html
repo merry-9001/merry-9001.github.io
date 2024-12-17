@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>个人主页OKR | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>个人主页OKR</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/8/20
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><p>单文档标题导航</p>
+<p>全文章树形结构<br>首页设计一下<br>标签分类，类别分类</p>
+<p>搜索</p>
+<h3 id="文档内容"><a href="#文档内容" class="headerlink" title="文档内容"></a>文档内容</h3><p>面试</p>
+<p>简历</p>
+<p>五险一金，劳动仲裁，劳动法相关知识</p>
+<h2 id="个人主页"><a href="#个人主页" class="headerlink" title="个人主页"></a>个人主页</h2><p>一定要慢，慢慢来比较快，一边做一边也是学习的过程</p>
+<p>打游戏直接通关有啥意思，匆匆忙忙通关也只是一场空，一定要享受过程，不要心急</p>
+<p>念念不忘，必有回响</p>
+<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><ol>
+<li>个人介绍，主页介绍(首页)</li>
+<li>介绍杭州（关于杭州），高德地图制作旅游路线</li>
+<li>响应式布局</li>
+<li>更换主题色功能</li>
+<li>展示一个个功能，展示代码，写提要或者算是评价（都做成组件），做些 demo 可看，可看一些案例，记录下来，练习的教程也都可以放进去，把抖音中的渡一视频的 css 动效放入</li>
+</ol>
+<blockquote>
+<p>codemirror 可以使用</p>
+</blockquote>
+<h3 id="后端配合"><a href="#后端配合" class="headerlink" title="后端配合"></a>后端配合</h3><p>类似发朋友圈</p>
+<p>登录</p>
+<p>todolist</p>
+<h3 id="常用词以及规范"><a href="#常用词以及规范" class="headerlink" title="常用词以及规范"></a>常用词以及规范</h3><p>_</p>
+<p>sub</p>
+<p>命名用驼峰</p>
+<h2 id="架构（先做）"><a href="#架构（先做）" class="headerlink" title="架构（先做）"></a>架构（先做）</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> 自动引入组件插件</li>
+<li><input checked="" disabled="" type="checkbox"> 统一图标</li>
+<li><input checked="" disabled="" type="checkbox"> 参考代码架构与目录</li>
+<li><input checked="" disabled="" type="checkbox"> 找一个个人主页模板和后台管理模板</li>
+<li><input disabled="" type="checkbox"> 注入</li>
+<li><input disabled="" type="checkbox"> type</li>
+<li><input disabled="" type="checkbox"> constants (常量与枚举)</li>
+<li><input disabled="" type="checkbox"> .d.ts 也可以定义 declare const</li>
+<li><input checked="" disabled="" type="checkbox"> 图标,自动引入</li>
+<li><input disabled="" type="checkbox"> 整体变量 env</li>
+<li><input disabled="" type="checkbox"> 全局方法</li>
+<li><input disabled="" type="checkbox"> axios 路径问题</li>
+<li><input checked="" disabled="" type="checkbox"> pinia</li>
+</ul>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>1.git</p>
+<p>LF will be replaced by CRLF in vqov0ziio41cbqew/index.html.</p>
+<p><strong>The file will have its original line endings in your working director</strong></p>
+<p><font style="color:rgb(255, 80, 44);background-color:rgb(255, 245, 245);">git config –global core.autocrlf false</font></p>
+<h2 id="设计软件（后话，只存在想法）"><a href="#设计软件（后话，只存在想法）" class="headerlink" title="设计软件（后话，只存在想法）"></a>设计软件（后话，只存在想法）</h2><p>idea</p>
+<p>管理（个人与企业）</p>
+<p>个人比如时间，财务</p>
+<p>公司比如流程（组件拆分）</p>
+<p>electron，导入导出数据</p>
+<p>采用底层库封装，拆分代码（两部分）</p>
+<p>oem</p>
+<p>私有化数据</p>
+<p>类似于 okr 与 oa 需求</p>
+<h2 id="个人主页架构解析"><a href="#个人主页架构解析" class="headerlink" title="个人主页架构解析"></a>个人主页架构解析</h2><p>1.自动引入组件</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

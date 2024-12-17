@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>网络总览 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>网络总览</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/6
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><h3 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h3><p>域名 👉 <code>www.baidu.com</code></p>
+<p>域名的作用是帮助人类记忆网站地址，有了域名，就不用去记 IP 地址了</p>
+<p>域名的类型有以下几种：</p>
+<ul>
+<li>根域名：<code>.</code>（通常省略）</li>
+<li>顶级域名：<code>.cn .com .net .us .uk .org ...</code></li>
+<li>二级域名：<code>baidu.com jd.com taobao.com</code></li>
+<li>三级域名：<code>自定义 www.baidu.com www.jd.com www.taobao.com</code></li>
+<li>四级域名：<code>自定义 www.pku.edu.cn mail.internal.jd.com</code></li>
+</ul>
+<p>一般来说，购买二级域名后，三级、四级域名都是可以免费自定义的</p>
+<p>在二级域名相同的情况下，两个不同的三级域名可以解析到不同的 ip</p>
+<p>可以通过 cmd 里输入 ping <a target="_blank" rel="noopener" href="http://www.baidu.com去获取百度服务器的ip地址/">www.baidu.com去获取百度服务器的ip地址</a></p>
+<p>输入<a target="_blank" rel="noopener" href="http://www.baidu.com等于说输入ip地址/">www.baidu.com等于说输入ip地址</a></p>
+<p>域名是 ip 地址的别名</p>
+<p>ip 地址不能使用 https</p>
+<p>localhost 是 127.0.0.1 的域名</p>
+<h3 id="DNS-1"><a href="#DNS-1" class="headerlink" title="DNS"></a>DNS</h3><p>域名虽然有助于记忆，但是网络传输和域名没有半毛钱关系</p>
+<p><strong>网络传输必须依靠 IP</strong></p>
+<p>所以，必须有一个东西，能够将域名转换成 IP 地址，这个东西就是 DNS 服务器，翻译成 IP 地址的过程称之为<strong>域名解析</strong></p>
+<p><img src="20211027164448.png"></p>
+<p>全世界认可的 DNS 服务器一共有三种，外加一种局部使用的本地 DNS 服务器，一共四种。</p>
+<p><img src="20211027170039.png"></p>
+<p>把 DNS 转化为 IP 的过程</p>
+<p>注意：每一步，如果如果这个域名该给你什么 ip，他就不会再执行下去</p>
+<h4 id="1-查询本机-hosts"><a href="#1-查询本机-hosts" class="headerlink" title="1.查询本机 hosts"></a>1.查询本机 hosts</h4><p><img src="1721043430819-b0c09681-505d-4969-b929-79f98db7a373.png"></p>
+<pre><code class="plain">
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+# localhost name resolution is handled within DNS itself.
+#    127.0.0.1       localhost
+#    ::1             localhost
+</code></pre>
+<p>为什么输入 localhost 就能访问到本机就是因为有这个</p>
+<h4 id="2-本地域名服务器"><a href="#2-本地域名服务器" class="headerlink" title="2.本地域名服务器"></a>2.本地域名服务器</h4><p>比如学校机房，有一些网站你是不能访问的，这个时候学校机房服务器可以会配置，让你无法访问</p>
+<p>自己电脑上也 DNS 服务器，就是自己的路由器，他充当了本地 DNS 服务器的角色，当然你也可以自己去设置</p>
+<p><img src="1721043868373-c43f4b4e-7402-4496-9e21-6738281393a3.png"></p>
+<h4 id="3-根域名服务器"><a href="#3-根域名服务器" class="headerlink" title="3.根域名服务器"></a>3.根域名服务器</h4><p>比如<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></p>
+<p>他只会去找.com 有哪些域名服务器，给你一个寻找.com 域名服务器的 ip</p>
+<h4 id="4-顶级域名服务器"><a href="#4-顶级域名服务器" class="headerlink" title="4.顶级域名服务器"></a>4.顶级域名服务器</h4><p>顶部域名服务器他可能也没有三级域名的地址，有就返回</p>
+<p>没有就会给你一个权限域名服务器去查找 ip</p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>为了使得解析速度更快、查询的节点更少，上述每个节点都可能设置高速缓存来加速解析</p>
+<p>DNS prefetching</p>
+<p>DNS prefetching 允许浏览器在用户浏览时在后台对页面执行 DNS 查找。这最大限度地减少了延迟，因为一旦用户单击链接就已经进行了 DNS 查找。</p>
+<p>假如有些第三方资源，可以在 html 头上先加上后续会用到要解析的 dns 域名。域名预解析</p>
+<pre><code class="html">&lt;!-- Prefetch DNS for external assets --&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//fonts.googleapis.com&quot; /&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//www.google-analytics.com&quot; /&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//cdn.domain.com&quot; /&gt;
+</code></pre>
+<h2 id="五层网络模型"><a href="#五层网络模型" class="headerlink" title="五层网络模型"></a>五层网络模型</h2><p><img src="20211008163417.png"></p>
+<p>数据的封装和解封装</p>
+<p><img src="20211008163458.png"></p>
+<p>除了物理层以外，每一层都会进行封装与解封装在消息之前增加消息头</p>
+<p>http 在应用层,我们常用的 header 就是 http 发送之前的消息头(封装)</p>
+<p>四层、五层、七层</p>
+<p><img src="20211008164017.png"></p>
+<p>四层：合并数据链路层和物理层</p>
+<p>OSI 七层只存在理论当中，实际应用的还是 5 层网络模型</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>网络的五层模型从上到下分别为：应用层、传输层、网络层、数据链路层、物理层。在发送消息时，消息从上到下进行打包，每一层会在上一层基础上加包，而接受消息时，从下到上进行解包，最终得到原始信息。</p>
+<p>其中：</p>
+<p>应用层主要面向互联网中的应用场景，比如网页、邮件、文件中心等等，它的代表协议有 http、smtp、pop3、ftp、DNS 等等</p>
+<p>传输层主要面向传输过程，比如 TCP 协议是为了保证可靠的传输，而 UDP 协议则是一种无连接的广播，它们提供了不同的传输方式</p>
+<p>网络层主要解决如何定位目标以及如何寻找最优路径的问题，比如 IP 等等</p>
+<p>数据链路层的作用是将数据在一个子网（广播域）内有效传输，MAC 地址、交换机都是属于该层的</p>
+<p>物理层是要解决二进制数据到信号之间的互转问题，集线器、双绞线、同轴电缆等都是属于盖层的设备</p>
+<h2 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h2><h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><p><img src="20211021150521.png"></p>
+<p>常见算法：DES、3DES、TDEA、Blowfish、RC5、IDEA</p>
+<p>优点：加密、解密速度快，适合对大数据量进行加密</p>
+<p>缺点：在网络中需要分发密钥，增加了密钥被窃取的风险</p>
+<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><p><img src="20211021151158.png"></p>
+<p>常见算法：RSA、Rabin、DSA、ECC、Elgamal、D-H</p>
+<p>优点：安全（私钥仅被一方保存，不用于网络传输）</p>
+<p>缺点：仅能一方进行解密</p>
+<p>公钥加密，私钥解密（服务器保存私钥）</p>
+<p>但这样只能浏览器给服务器发送加密内容</p>
+<h3 id="摘要-哈希-散列"><a href="#摘要-哈希-散列" class="headerlink" title="摘要/哈希/散列"></a>摘要/哈希/散列</h3><p><img src="20211021151642.png"></p>
+<p>常见算法：MD4、MD5、SHA1</p>
+<p>优点：密文占用空间小（定长的短字符串）；难以被破解</p>
+<p>缺点：无法解密</p>
+<h2 id="文件打开协议"><a href="#文件打开协议" class="headerlink" title="文件打开协议"></a>文件打开协议</h2><p>文件协议</p>
+<p><img src="1690019195244-1bb8f113-5aad-4c96-880d-cf064dd4d7bc.png"></p>
+<p>网络协议</p>
+<p><img src="1690019215591-81c497c2-e6aa-40c9-83f4-23cfddbbc55c.png"></p>
+<p>我们一般要了解的都是网络协议和学习网络协议</p>
+<h4 id="直接打开文件和本地服务器打开的区别"><a href="#直接打开文件和本地服务器打开的区别" class="headerlink" title="直接打开文件和本地服务器打开的区别"></a>直接打开文件和本地服务器打开的区别</h4><p>一个是 file 协议，另一个是 http 协议。</p>
+<p>file 协议更多的是将该请求视为一个本地资源访问请求，和你使用资源管理器打开是一样的，等于打开一个 txt 文件，是纯粹的请求本地文件。</p>
+<p>http 请求方式则是通过假架设一个 web 服务器，解析 http 协议的请求然后向浏览器返回资源信息。我们所开发的 html 文件最后必定是会以网页的形式部署在服务器上，通过 http 协议访问，所以我们开发中也尽可能模拟线上环境，架设本地服务器，来避免 file 协议与 http 协议实现过程中的某些差异性，如某些 API 的差异、跨域请求的差异等。</p>
+<p>举个最容易验证的例子：在页面引入一张绝对路径的图片，即’/image/example.png’，然后分别通过这两种方式打开页面，file 协议会将资源请求到根路径，而 http 协议虽然也会请求到根路径，但是是相对本地架设的服务器的根路径，一般也就是项目文件夹的路径。</p>
+<p>本地打开</p>
+<p><img src="1683021500257-849afdd6-9921-4cd5-a563-080b042177e3.png"></p>
+<p>服务器打开</p>
+<p><img src="1683021532416-86a7038a-28fc-4c94-821b-5acdce0737b6.png"></p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

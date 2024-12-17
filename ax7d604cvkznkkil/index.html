@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>node | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>node</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/11/10
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="fs-和-require-的区别"><a href="#fs-和-require-的区别" class="headerlink" title="fs 和 require 的区别"></a>fs 和 require 的区别</h2><p>fs 是读取文件内容，读到的是静态的字符串</p>
+<p>require 是加载一个文件，并且得到他的导出值</p>
+<h2 id="node-中可以使用-es-module-吗，为什么-webpack-里可以？"><a href="#node-中可以使用-es-module-吗，为什么-webpack-里可以？" class="headerlink" title="node 中可以使用 es module 吗，为什么 webpack 里可以？"></a>node 中可以使用 es module 吗，为什么 webpack 里可以？</h2><p>node 支持 es module 是需要开启设置条件的</p>
+<p>webpack 都支持是因为他会对代码进行转换，注意其实能写 es module 的代码是工程化的运行代码，webpack 的插件代码和 webpack.config.js 这些文件依然只能使用 common.js。之所以 webpack 工程化的运行代码可以使用 es module 是因为 webpack 内部会对他进入转换处理成_**_webpack__**require</p>
+<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>node 有多个线程，但执行 js 的线程只有一个(js 主线程)</p>
+<p>这里事件循环讲的是 js 主线程</p>
+<p><img src="1731660516921-d7f2cd9f-548f-4b46-b0e1-ccedf058d712.png"></p>
+<p>1.首先运行启动入口函数(main.js)</p>
+<p>2.检查是否要进行事件循环（去找别的线程还有没有一些别的事情要处理，或者别的任务还没有完成）【网络请求，读文件，计时器等等】</p>
+<p>3.全部完成的话就 over</p>
+<p>node 的事件循环共有 6 个阶段</p>
+<p>1.timers(重点)【存放计时器的回调函数】</p>
+<p>2.pending callback</p>
+<p>3.idle prepare</p>
+<p>4.poll(重点)【轮询队列，除了 timers 和 check 的回调都会进行此队列】【文件读取，监听用户请求】</p>
+<p>5.check(重点)</p>
+<p>6.close callbacks</p>
+<p>每一个阶段会有一个事件队列，当运行到一个阶段的时候，如果队列里面有东西，就把他执行空再进入到下一个阶段</p>
+<p>poll 队列运行方式</p>
+<p>1.如果 poll 中有回调，依次执行回调，直到清空队列</p>
+<p>2.如果 poll 队列中没有回调会等待其他队列中出现回调，结束该阶段，进入下一个阶段</p>
+<p>3.如果都没有回调，js 就会卡在这个阶段，等待回调</p>
+<blockquote>
+<p>比如有一个 setTimeOut 函数要等待 5 秒，那么 js 就会卡在 poll 这个阶段等待 5 秒，等回调函数进入到 timers 后，poll 阶段结束，进入下一个阶段</p>
+<p>比如有 http 请求，那么 node.js 就不会停止，会一直卡在 poll 阶段等待用户的请求</p>
+</blockquote>
+<p>check:检查阶段</p>
+<p>使用 setImmediate 的回调会直接进入这个队列</p>
+<blockquote>
+<p>类似于 setTimeOut(fn,0)</p>
+</blockquote>
+<p>上述的全是宏任务</p>
+<p>还有 nextTick 和 Promise,这两个属于微任务</p>
+<p>每次执行一个回调之前（每一个阶段的每一个函数之前都要先检查）首先要检查 nextTick 和 promise 队列，一定要先清空</p>
+<p>Node.js 在主线程里维护了一个*事件队列，**当接到请求后，就将该请求作为一个事件放入这个队列中，然后继续接收其他请求。当主线程空闲时（没有请求接入时），就开始循环事件队列，检查队列中是否有要处理的事件，这时要分两种情况：如果是非 *I/O 任务，就亲自处理，并通过回调函数返回到上层调用；如果是 I/O 任务，就从<strong>线程池</strong>中拿出一个线程来处理这个事件，并指定回调函数，然后继续循环队列中的其他事件。</p>
+<p>当线程中的 I/O 任务完成以后，就执行指定的回调函数，并把这个完成的事件放到事件队列的尾部，等待事件循环，当主线程再次循环到该事件时，就直接处理并返回给上层调用。 这个过程就叫 <strong>事件循环</strong> (Event Loop)。</p>
+<p>无论是 Linux 平台还是 Windows 平台，Node.js 内部都是通过<strong>线程池</strong>来完成异步 I/O 操作的，而 LIBUV 针对不同平台的差异性实现了统一调用。因此，<strong>Node.js**</strong> 的单线程仅仅是指 *<strong>*JavaScript**</strong> 运行在单线程中，而并非 *<strong>*Node.js**</strong> 是单线程。**</p>
+<p>Node.JS 的事件循环分为 6 个阶段：</p>
+<ul>
+<li>timers 阶段：这个阶段执行 timer*（ *setTimeout、setInterval ）的回调</li>
+<li>I/O callbacks 阶段：处理一些上一轮循环中的少数未执行的 I/O 回调</li>
+<li>idle、prepare 阶段：仅 Node.js 内部使用</li>
+<li>poll 阶段：获取新的 I/O 事件, 适当的条件下 Node.js 将阻塞在这里</li>
+<li>check 阶段：执行 setImmediate( ) 的回调</li>
+<li>close callbacks 阶段：执行 socket 的 close 事件回调</li>
+</ul>
+<p>事件循环的执行顺序为：</p>
+<p>外部输入数据 –-&gt; 轮询阶段（ poll ）-–&gt; 检查阶段（ check ）-–&gt; 关闭事件回调阶段（ close callback ）–-&gt; 定时器检测阶段（ timer ）–-&gt; I/O 事件回调阶段（ I/O callbacks ）-–&gt;闲置阶段（ idle、prepare ）–-&gt;轮询阶段（按照该顺序反复运行）…</p>
+<p>浏览器和 Node.js 环境下，微任务任务队列的执行时机不同</p>
+<ul>
+<li>Node.js 端，微任务在事件循环的各个阶段之间执行</li>
+<li>浏览器端，微任务在事件循环的宏任务执行完之后执行</li>
+</ul>
+<p>Node.js v11.0.0 版本于 2018 年 10 月，主要有以下变化：</p>
+<ol>
+<li>V8 引擎更新至版本 7.0</li>
+<li>http、https 和 tls 模块默认使用 WHESWG URL 解析器。</li>
+<li>隐藏子进程的控制台窗口默认改为了 true。</li>
+<li>FreeBSD 10 不再支持。</li>
+<li>增加了多线程 Worker Threads</li>
+</ol>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

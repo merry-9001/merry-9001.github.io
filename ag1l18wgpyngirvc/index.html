@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>vue源码 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>vue源码</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/22
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <pre><code class="javascript">const obj = &#123;
+  a: 1,
+  b: 2,
+  c: &#123;
+    name: &quot;张三&quot;,
+    age: 18,
+  &#125;,
+&#125;;
+
+const proxyObj = reactive(obj);
+
+
+export function reactive(target) &#123;
+  const proxy = new Proxy(target, handlers);
+  return proxy;
+&#125;
+
+//delete
+export default function (target, key) &#123;
+  // 判断一下目标对象上面是否有要删除的属性
+  const hadKey = target.hasOwnProperty(key);
+
+  // 进行删除行为
+  const result = Reflect.deleteProperty(target, key);
+
+  // 派发更新之前，需要判断一下
+  if(hadKey &amp;&amp; result)&#123;
+    trigger(target, TriggerOpTypes.DELETE, key);
+  &#125;
+
+  return result;
+&#125;
+
+
+//get
+import track from &quot;../../effect/track.js&quot;;
+import &#123; TrackOpTypes, isObject &#125; from &quot;../../utils.js&quot;;
+import &#123; reactive &#125; from &quot;../../reactvie.js&quot;;
+
+export default function (target, key) &#123;
+  // 拦截到 get 操作后，要做一些额外的事情
+  // 要做的事情，就是收集依赖
+  track(target, TrackOpTypes.GET, key);
+
+  const result = Reflect.get(target, key);
+
+  // 获取到的成员可能是对象，需要递归处理，将其转换为响应式
+  if (isObject(result)) &#123;
+    return reactive(result);
+  &#125;
+
+  return result;
+&#125;
+
+
+//has
+import track from &quot;../../effect/track.js&quot;;
+import &#123; TrackOpTypes &#125; from &quot;../../utils.js&quot;;
+
+export default function (target, key) &#123;
+  // 需要进行依赖的收集
+  track(target, TrackOpTypes.HAS, key);
+  return Reflect.has(target, key);
+&#125;
+
+//ownkeys
+import track from &quot;../../effect/track.js&quot;;
+import &#123; TrackOpTypes &#125; from &quot;../../utils.js&quot;;
+export default function (target) &#123;
+  // 在此之前，因为涉及到成员的读取，所以要进行依赖收集
+  track(target, TrackOpTypes.ITERATE);
+
+  return Reflect.ownKeys(target);
+&#125;
+
+
+//set
+import trigger from &quot;../../effect/trigger.js&quot;;
+import &#123; TriggerOpTypes, hasChanged &#125; from &quot;../../utils.js&quot;;
+
+export default function (target, key, value) &#123;
+  // 关于具体的操作类型需要进一步判断
+  // 有可能是设置，有可能是新增
+  const type = target.hasOwnProperty(key)
+    ? TriggerOpTypes.SET
+    : TriggerOpTypes.ADD;
+
+  // 在设置之前需要缓存一下旧值
+  const oldValue = target[key];
+
+  // 先进行设置操作
+  const result = Reflect.set(target, key, value);
+
+  // 要不要派发更新需要一些判断
+  if (hasChanged(oldValue, value)) &#123;
+    // 派发更新
+    trigger(target, type, key);
+  &#125;
+
+  return result;
+&#125;
+</code></pre>
+<p>utils</p>
+<pre><code class="javascript">// 提供工具方法的文件
+
+/**
+ * 判断是否是对象
+ * @param &#123;*&#125; target 要判断的值
+ * @returns
+ */
+export function isObject(target) &#123;
+  return typeof target === &quot;object&quot; &amp;&amp; target !== null;
+&#125;
+
+/**
+ * 判断值是否改变
+ * @param &#123;*&#125; oldValue
+ * @param &#123;*&#125; newValue
+ * @returns
+ */
+export function hasChanged(oldValue, newValue) &#123;
+  // 使用该方法可以规避一些特殊的情况
+  // NaN === NaN 在 JS 中是 false，Object.is 返回的是 true
+  // +0 === -0 在 JS 中是 true，Object.is 返回的是 false
+  return !Object.is(oldValue, newValue);
+&#125;
+
+/**
+ * 收集依赖的操作类型
+ */
+export const TrackOpTypes = &#123;
+  GET: &quot;get&quot;,
+  HAS: &quot;has&quot;,
+  ITERATE: &quot;iterate&quot;,
+&#125;;
+
+/**
+ * 触发器的操作类型
+ */
+export const TriggerOpTypes = &#123;
+  SET: &quot;set&quot;,
+  ADD: &quot;add&quot;,
+  DELETE: &quot;delete&quot;,
+&#125;;
+
+/**
+ * 这是一个特殊标识
+ */
+export const RAW = Symbol(&quot;raw&quot;);
+
+export const ITERATE_KEY = Symbol(&quot;iterate&quot;);
+</code></pre>
+<p>effect</p>
+<pre><code class="javascript">/**
+ * 用于记录当前活动的 effect
+ */
+export let activeEffect = undefined;
+export const targetMap = new WeakMap(); // 用来存储对象和其属性的依赖关系
+const effectStack = [];
+
+/**
+ * 该函数的作用，是执行传入的函数，并且在执行的过程中，收集依赖
+ * @param &#123;*&#125; fn 要执行的函数
+ */
+export function effect(fn, options = &#123;&#125;) &#123;
+  const &#123; lazy = false &#125; = options;
+  const environment = () =&gt; &#123;
+    try &#123;
+      activeEffect = environment;
+      effectStack.push(environment);
+      cleanup(environment);
+      return fn();
+    &#125; finally &#123;
+      effectStack.pop();
+      activeEffect = effectStack[effectStack.length - 1];
+    &#125;
+  &#125;;
+  environment.deps = [];
+  environment.options = options;
+  if (!lazy) &#123;
+    environment();
+  &#125;
+  return environment;
+&#125;
+
+export function cleanup(environment) &#123;
+  let deps = environment.deps; // 拿到当前环境函数的依赖（是个数组）
+  if (deps.length) &#123;
+    deps.forEach((dep) =&gt; &#123;
+      dep.delete(environment);
+    &#125;);
+    deps.length = 0;
+  &#125;
+&#125;
+</code></pre>
+<p>track</p>
+<pre><code class="javascript">import &#123; TrackOpTypes, ITERATE_KEY &#125; from &quot;../utils.js&quot;;
+import &#123; activeEffect, targetMap &#125; from &quot;./effect.js&quot;;
+
+let shouldTrack = true; // 控制是否需要进行依赖收集的开关
+
+/**
+ * 暂停依赖收集
+ */
+export function pauseTracking() &#123;
+  shouldTrack = false;
+&#125;
+
+/**
+ * 恢复依赖收集
+ */
+export function resumeTracking() &#123;
+  shouldTrack = true;
+&#125;
+
+/**
+ * 收集器：用于收集依赖
+ * @param &#123;*&#125; target 原始对象
+ * @param &#123;*&#125; type 进行的操作类型
+ * @param &#123;*&#125; key 针对哪一个属性
+ */
+export default function (target, type, key) &#123;
+  // 先进行开关状态的判断
+  if (!shouldTrack || !activeEffect) &#123;
+    return;
+  &#125;
+
+  // 这里要做的事情其实很简单，就是一层一层的去找，找到了就存储
+  let propMap = targetMap.get(target);
+  if (!propMap) &#123;
+    propMap = new Map();
+    targetMap.set(target, propMap);
+  &#125;
+
+  // 之前如果是遍历所有的属性， key 会是 undefined
+  // 所以对 key 值做一下参数归一化
+  if (type === TrackOpTypes.ITERATE) &#123;
+    key = ITERATE_KEY;
+  &#125;
+
+  let typeMap = propMap.get(key);
+  if (!typeMap) &#123;
+    typeMap = new Map();
+    propMap.set(key, typeMap);
+  &#125;
+
+  // 最后一步，根据 type 值去找对应的 Set
+  let depSet = typeMap.get(type);
+  if (!depSet) &#123;
+    depSet = new Set();
+    typeMap.set(type, depSet);
+  &#125;
+
+  // 现在找到 set 集合了，就可以存储依赖了
+  if (!depSet.has(activeEffect)) &#123;
+    depSet.add(activeEffect);
+    activeEffect.deps.push(depSet); // 将集合存储到 deps 数组里面
+  &#125;
+&#125;
+</code></pre>
+<p>trigger</p>
+<pre><code class="javascript">// 这是触发器
+import &#123; TriggerOpTypes, TrackOpTypes, ITERATE_KEY &#125; from &quot;../utils.js&quot;;
+import &#123; targetMap, activeEffect &#125; from &quot;./effect.js&quot;;
+
+// 定义修改数据和触发数据的映射关系
+const triggerTypeMap = &#123;
+  [TriggerOpTypes.SET]: [TrackOpTypes.GET],
+  [TriggerOpTypes.ADD]: [
+    TrackOpTypes.GET,
+    TrackOpTypes.ITERATE,
+    TrackOpTypes.HAS,
+  ],
+  [TriggerOpTypes.DELETE]: [
+    TrackOpTypes.GET,
+    TrackOpTypes.ITERATE,
+    TrackOpTypes.HAS,
+  ],
+&#125;;
+
+/**
+ * 触发器
+ * @param &#123;*&#125; target 原始对象
+ * @param &#123;*&#125; type 操作的类型
+ * @param &#123;*&#125; key 操作的属性
+ */
+export default function (target, type, key) &#123;
+  // 要做的事情很简单，就是找到依赖，然后执行依赖
+  const effectFns = getEffectFns(target, type, key);
+  if (!effectFns) return;
+  for (const effectFn of effectFns) &#123;
+    if (effectFn === activeEffect) continue;
+    if (effectFn.options &amp;&amp; effectFn.options.shcheduler) &#123;
+      // 说明用户传递了回调函数，用户期望自己来处理依赖的函数
+      effectFn.options.shcheduler(effectFn);
+    &#125; else &#123;
+      // 执行依赖函数
+      effectFn();
+    &#125;
+  &#125;
+&#125;
+
+/**
+ * 根据 target、type、key 这些信息找到对应的依赖函数集合
+ * @param &#123;*&#125; target
+ * @param &#123;*&#125; type
+ * @param &#123;*&#125; key
+ */
+function getEffectFns(target, type, key) &#123;
+  const propMap = targetMap.get(target);
+  if (!propMap) return;
+
+  // 如果是新增或者删除操作，会涉及到额外触发迭代
+  const keys = [key];
+  if (type === TriggerOpTypes.ADD || type === TriggerOpTypes.DELETE) &#123;
+    keys.push(ITERATE_KEY);
+  &#125;
+
+  const effectFns = new Set(); // 用于存储依赖的函数
+
+  for (const key of keys) &#123;
+    const typeMap = propMap.get(key);
+    if (!typeMap) continue;
+
+    const trackTypes = triggerTypeMap[type];
+    for (const trackType of trackTypes) &#123;
+      const dep = typeMap.get(trackType);
+      if (!dep) continue;
+      for (const effectFn of dep) &#123;
+        effectFns.add(effectFn);
+      &#125;
+    &#125;
+  &#125;
+  return effectFns;
+&#125;
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

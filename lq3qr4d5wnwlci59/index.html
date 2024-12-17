@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Markdown | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>Markdown</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/12
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <p><img src="1694501068516-714e5558-d1cc-4540-8a49-e6ba6b93b293.webp"></p>
+<h5 id="1、标题"><a href="#1、标题" class="headerlink" title="1、标题"></a>1、标题</h5><ul>
+<li>标准语法：使用 1~6 个“#”符 + “空格” + “你的标题”。</li>
+</ul>
+<pre><code class="plain"># 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+</code></pre>
+<ul>
+<li>效果图解：</li>
+</ul>
+<p><img src="1694501068370-da15da55-2a24-47ea-97e8-767a30c422ce.webp"></p>
+<p>注：#和「标题」之间有一个空格，这是最标准的语法格式。 有些编辑器做了兼容，有的并没有。所以最好要加上空格。</p>
+<h5 id="2、列表"><a href="#2、列表" class="headerlink" title="2、列表"></a>2、列表</h5><p>标准语法：使用-符，在文本前加入-符即可。</p>
+<p>如果你希望有序，在文本前加上 1. 、2. 、3. 、4. 、…</p>
+<p>注：-、1. 、2. 等和文本之间要保留一个字符的空格。</p>
+<p><img src="1694501068394-cade1117-86ab-4c36-bd45-266d5d7e667c.webp"></p>
+<h5 id="3、超链接"><a href="#3、超链接" class="headerlink" title="3、超链接"></a>3、超链接</h5><p>标准语法：<a href="%E9%93%BE%E6%8E%A5url">链接名</a></p>
+<p><img src="1694501068377-eed8e73d-c675-447c-88b4-5449f6ea9e79.webp"></p>
+<h5 id="4、图片"><a href="#4、图片" class="headerlink" title="4、图片"></a>4、图片</h5><p>标准语法：<img src="url" alt="图名"></p>
+<p><img src="1694501068432-c8226d97-4207-4067-95d4-51c682dbc353.webp"></p>
+<h5 id="5、引用"><a href="#5、引用" class="headerlink" title="5、引用"></a>5、引用</h5><p>标准语法：&gt; 文本</p>
+<p><img src="1694501069152-443b4d2c-07e7-49c3-b347-99e5b8651dad.webp"></p>
+<h5 id="6、斜体、加粗"><a href="#6、斜体、加粗" class="headerlink" title="6、斜体、加粗"></a>6、斜体、加粗</h5><p>标准语法 <em><strong>斜体</strong><em>：_文本</em></em><strong>加粗</strong><em>：<strong>文本</strong>_<strong>斜体&amp;加粗</strong>_：**_文本</em>**</p>
+<p><img src="1694501069100-7c9a2fec-b758-44c6-b152-24120ec79206.webp"></p>
+<h5 id="7、代码块"><a href="#7、代码块" class="headerlink" title="7、代码块"></a>7、代码块</h5><p><code>你的代码</code>（前面 3 个点，后面 3 个点）</p>
+<p><img src="1694501069116-e7e7cab0-0aa7-4ced-b640-fa92ff61f1b0.webp"></p>
+<h5 id="8、表格"><a href="#8、表格" class="headerlink" title="8、表格"></a>8、表格</h5><p>标准语法：</p>
+<p><img src="1694501069293-99d8c4ae-8669-42d8-a0da-87e30164eade.webp"></p>
+<h5 id="9、特殊标记"><a href="#9、特殊标记" class="headerlink" title="9、特殊标记"></a>9、特殊标记</h5><p>标准语法：``</p>
+<p><img src="1694501069160-1b176fff-1688-4aa2-aeac-c9ac0c9b98ec.webp"></p>
+<h5 id="10、分割线"><a href="#10、分割线" class="headerlink" title="10、分割线"></a>10、分割线</h5><ul>
+<li>标准语法：— 最少 3 个</li>
+<li>效果图解：</li>
+</ul>
+<p><img src="1694501069463-ce5eaebe-ada1-4487-ae6d-db040d3f33ef.webp"></p>
+<h5 id="11、常用-html-标记"><a href="#11、常用-html-标记" class="headerlink" title="11、常用 html 标记"></a>11、常用 html 标记</h5><p>注意：html 标记只适合辅助使用，不一定所有编辑器都能生效。</p>
+<p>标准语法：</p>
+<p>换行符：<br/> （或者使用 Markdown 标准语法：空格+空格+回车，但我感觉不是很直观） 上：<sup>文本</sup> 下：<sub>文本</sub></p>
+<ul>
+<li>效果图解：</li>
+</ul>
+<p><img src="1694501069807-cf1d56ed-7caf-438f-a7d2-f4171285ed71.webp"></p>
+<h4 id="三、Markdown-优点"><a href="#三、Markdown-优点" class="headerlink" title="三、Markdown 优点"></a>三、Markdown 优点</h4><ul>
+<li><strong>纯文本</strong>，所以兼容性极强，可以用<strong>所有</strong>文本编辑器打开。</li>
+<li>让作者更专注于<strong>写作</strong>而不是排版。（大家都是技术人员嘛..）</li>
+<li>格式转化方便，markdown 文本可以很轻松转成 html、pdf 等等。（图个方便嘛）</li>
+<li>语法简单</li>
+<li><strong>可读性强</strong>，配合表格、引用、代码块等等，让读者瞬间“懂你”。</li>
+</ul>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

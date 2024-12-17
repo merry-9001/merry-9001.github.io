@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>css属性值计算过程 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>css属性值计算过程</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/12/4
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>打开调试控制台，选中一个 dom 元素它的 style 可能寥寥无几，但是显示的时候是需要 css 的每个属性都要有值的,也就是说我们所书写的任何一个 HTML 元素，实际上都有完整的一整套 CSS 样式。</p>
+<p><img src="1688878264641-4ab6ef51-2e88-4122-afd2-182d918b9012.png"></p>
+<p>我们可以在浏览器调试窗中切换到 computed 标签页，观察到一个 dom 渲染到页面中每一个属性的值</p>
+<p><img src="1688878395732-521e7e77-3458-411d-a0c2-37d23b653113.png"></p>
+<h2 id="属性值的计算过程"><a href="#属性值的计算过程" class="headerlink" title="属性值的计算过程"></a>属性值的计算过程</h2><h3 id="1-确定声明值"><a href="#1-确定声明值" class="headerlink" title="1.确定声明值"></a>1.确定声明值</h3><p>首先第一步，是确定声明值。所谓声明值就是书写的 CSS 样式</p>
+<pre><code class="typescript">p&#123;
+  color : red;
+&#125;
+这里我们声明了 p 元素为红色，那么就会应用此属性设置。
+</code></pre>
+<h3 id="2-层叠冲突-处理声明值冲突"><a href="#2-层叠冲突-处理声明值冲突" class="headerlink" title="2.层叠冲突(处理声明值冲突)"></a>2.层叠冲突(处理声明值冲突)</h3><p>css 样式表包含以下四种类型，他们会进行层叠</p>
+<p><strong>1）作者样式表中的!important 样式</strong></p>
+<p>**2) 内联样式<br>****3) 作者样式表中的普通样式**</p>
+<p>总体规则：选择器选中的范围越窄，越特殊</p>
+<p>具体规则：通过选择器，计算出一个 4 位数</p>
+<pre><code>1. 千位：如果是内联样式，记1，否则记0
+2. 百位：等于选择器中所有id选择器的数量
+3. 十位：等于选择器中所有类选择器、属性选择器、伪类选择器的数量
+4. 个位：等于选择器中所有元素选择器、伪元素选择器的数量
+</code></pre>
+<p><strong>4) 浏览器默认样式表中的样式</strong></p>
+<p>注意：</p>
+<blockquote>
+<p>在作者样式表中的普通样式中分数高的属性会被应用，分数一样高则代码书写靠后的胜出</p>
+</blockquote>
+<blockquote>
+<p>a 链接伪类的优先级排序</p>
+<p>link &gt; visited &gt; hover &gt; active</p>
+</blockquote>
+<h3 id="3-使用继承"><a href="#3-使用继承" class="headerlink" title="3.使用继承"></a>3.使用继承</h3><p>层叠冲突这一步完成后，解决了相同元素被声明了多条样式规则究竟应用哪一条样式规则的问题</p>
+<pre><code class="html">&lt;div&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="css">div &#123;
+  color: red;
+&#125;
+</code></pre>
+<p>在上面的代码中，我们针对 div 设置了 color 属性值为红色，而针对 p 元素我们没有声明任何的属性，但是由于 color 是可以继承的，因此 p 元素从<strong>最近</strong>的 div 身上继承到了 color 属性的值。</p>
+<p><img src="1689494075529-fbb022e8-f674-4c1b-aaec-b19e005e99ee.png"></p>
+<h3 id="4-使用默认值"><a href="#4-使用默认值" class="headerlink" title="4.使用默认值"></a>4.使用默认值</h3><p>走到这一步，如果属性值都还不能确定下来，那么就只能是使用默认值了</p>
+<p><img src="1692696074439-1bfef76e-775f-4896-9fe2-21798bf113d7.png"></p>
+<p>前面我们也说过，一个 HTML 元素要在浏览器中渲染出来，必须具备所有的 CSS 属性值，但是绝大部分我们是不会去设置的，用户代理样式表里面也不会去设置，也无法从继承拿到，因此最终都是用默认值。</p>
+<h2 id="属性值继承规则"><a href="#属性值继承规则" class="headerlink" title="属性值继承规则"></a>属性值继承规则</h2><p>样式和文字将被继承，我们为一个元素设置的样式同时也会应用到它的后代元素上</p>
+<p><strong>背景相关的，布局相关等的这些样式都不会被继承。</strong></p>
+<h3 id="可以被继承的-css-属性"><a href="#可以被继承的-css-属性" class="headerlink" title="可以被继承的 css 属性"></a>可以被继承的 css 属性</h3><p>1.字体系列属性:font、font-family、font-weight、font-size、fontstyle;</p>
+<p>2.文本系列属性:</p>
+<p>内联元素：</p>
+<p>color</p>
+<p>line-height</p>
+<p>word-spacing(设置单词之间的间距)</p>
+<p>letter-spacing(设置文本字符间距)</p>
+<p>text-transform(用于设置文本的大小写)</p>
+<p>uppercase(所有字符强制转为大写)</p>
+<p>lowercase(转小写)</p>
+<p>capitalize(首字符强制转为大写)</p>
+<p>块级元素：text-indent、text-align</p>
+<p>3.元素可见性：visibility</p>
+<p>4.表格布局属性：caption-side（标题位置）、border-collapse（设置边框分离还是合并）、border-spacing（边框分离状态下设置边框间距）、empty-cells（定义如何渲染无可视内容的单元格边框和背景）、table-layout（定义用于布局单元格行和列的算法）;</p>
+<p>5.列表布局属性：list-style</p>
+<h3 id="不可以被继承的-css-属性"><a href="#不可以被继承的-css-属性" class="headerlink" title="不可以被继承的 css 属性"></a>不可以被继承的 css 属性</h3><p>1.display：规定元素应该生成的框的类型；</p>
+<p>2.文本属性：vertical-align、text-decoration(用于设置文本的修饰线外观包括上/下划线，管穿线，删除线，闪烁 );</p>
+<p>3.盒子模型的属性：width、height、margin、border、padding;</p>
+<p>4.背景属性：background、background-color、background-image;</p>
+<p>5.定位属性：float、clear、position、top、right、bottom、left、min-width、min-height、maxwidth、max-height、overflow、clip;</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

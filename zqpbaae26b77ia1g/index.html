@@ -1,0 +1,467 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>pinia | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>pinia</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/4/13
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h3 id="使用层面"><a href="#使用层面" class="headerlink" title="使用层面"></a>使用层面</h3><p>安装</p>
+<pre><code class="typescript">npm install pinia
+</code></pre>
+<p>导入</p>
+<pre><code class="typescript">import &#123; createPinia &#125; from &quot;pinia&quot;;
+// 创建 pinia 实例
+const pinia = createPinia();
+createApp(App).use(router).use(pinia).mount(&quot;#app&quot;);
+</code></pre>
+<p>使用(选项式 API)</p>
+<p><strong>该风格基本上和之前的 Vuex 是非常相似的，只不过没有 mutation 了，无论是同步的方法还是异步的方法，都写在 actions 里面。</strong></p>
+<pre><code class="typescript">// 仓库文件
+import &#123; defineStore &#125; from &quot;pinia&quot;;
+
+// 第二个参数支持两种风格：options api 以及 composition api
+export const useCounterStore = defineStore(&quot;counter&quot;, &#123;
+  state: () =&gt; &#123;
+    return &#123;
+      num: 0,
+    &#125;;
+  &#125;,
+  getters: &#123;
+    // 针对上面 state 的数据做一个二次计算
+    // 可以看作是计算属性
+    doubleCount: (state) =&gt; state.num * 2,
+  &#125;,
+  actions: &#123;
+    // 同步方法
+    increment() &#123;
+      this.num++;
+    &#125;,
+    async asyncDecrement() &#123;
+      await new Promise((resolve) =&gt; setTimeout(resolve, 1000));
+      this.decrement();
+    &#125;,
+  &#125;,
+&#125;);
+
+import &#123; storeToRefs &#125; from &quot;pinia&quot;;
+// 接下来我们可以从仓库中解构数据出来
+// 想要拿到响应式数据要包一层storeToRefs
+const &#123; num, doubleCount &#125; = storeToRefs(store);
+</code></pre>
+<p>组合式 API</p>
+<p>相当于在组件里面写代码，只不过状态是通用的</p>
+<pre><code class="typescript">import &#123; defineStore &#125; from &quot;pinia&quot;;
+import &#123; reactive, computed &#125; from &quot;vue&quot;;
+
+// 引入其他仓库
+import &#123; useCounterStore &#125; from &quot;./useCounterStore.js&quot;;
+
+export const useListStore = defineStore(&quot;list&quot;, () =&gt; &#123;
+  //要使用store，直接调用导出的函数
+  const counterStore = useCounterStore();
+  // 组合 api 风格
+
+  // 创建仓库数据，类似于 state
+  const list = reactive(&#123;
+    items: [
+      &#123;
+        text: &quot;学习 Pinia&quot;,
+        isCompleted: true,
+      &#125;,
+      &#123;
+        text: &quot;打羽毛球&quot;,
+        isCompleted: false,
+      &#125;,
+      &#123;
+        text: &quot;玩游戏&quot;,
+        isCompleted: true,
+      &#125;,
+    ],
+    counter: 100,
+  &#125;);
+
+  // 使用 vue 里面的计算属性来做 getters
+  const doubleCounter = computed(() =&gt; &#123;
+    return list.counter * 2;
+  &#125;);
+  // 接下来我们再来创建一个 getter，该 getter 使用的是其他仓库的数据
+  const otherCounter = computed(() =&gt; &#123;
+    return counterStore.doubleCount * 3;
+  &#125;);
+
+  // 添加新的事项
+  function addItem(newItem) &#123;
+    list.items.push(&#123;
+      text: newItem,
+      isCompleted: false,
+    &#125;);
+  &#125;
+
+  // 切换事项对应的完成状态
+  function completeHandle(index) &#123;
+    list.items[index].isCompleted = !list.items[index].isCompleted;
+  &#125;
+
+  // 删除待办事项对应下标的某一项
+  function deleteItem(index) &#123;
+    list.items.splice(index, 1);
+  &#125;
+
+  return &#123;
+    list,
+    doubleCounter,
+    otherCounter,
+    addItem,
+    completeHandle,
+    deleteItem,
+  &#125;;
+&#125;);
+</code></pre>
+<h3 id="编写插件"><a href="#编写插件" class="headerlink" title="编写插件"></a>编写插件</h3><p>在 Pinia 中可以非常方便的添加插件。一个插件就是一个函数，该函数接收一个 context 上下文对象，通过 context 对象可以拿到诸如 store、app 等信息。</p>
+<p>每个插件在扩展内容时，<strong>会对所有的仓库进行内容扩展</strong>，如果想要针对某一个仓库进行内容扩展，可以通过 context.store.$id 来指定某一个仓库来扩展内容。(每一个仓库都相互独立，会去执行插件里的代码)</p>
+<p>使用插件的时候，可以传第三个参数给插件，插件的 context 里面可以拿到这个数据</p>
+<p>插件书写完毕后，需要通过 <em>pinia</em> 实例对插件进行一个注册操作。</p>
+<pre><code class="typescript">export function myPiniaPlugin1() &#123;
+  // 给所有的仓库添加了一条全局属性
+  return &#123;
+    secret: &quot;the cake is a lie&quot;,
+  &#125;;
+&#125;
+
+export function myPiniaPlugin2(context) &#123;
+  //   context里面有你需要用到的所有数据，这个时候都可以进行处理
+  const &#123; store &#125; = context;
+  store.test = &quot;this is a test&quot;;
+&#125;
+
+/**
+ * 给特定的仓库来扩展内容
+ * @param &#123;*&#125; param0
+ */
+export function myPiniaPlugin3(&#123; store &#125;) &#123;
+  if (store.$id === &quot;counter&quot;) &#123;
+    // 为当前 id 为 counter 的仓库来扩展属性
+    return &#123;
+      name: &quot;my name is pinia&quot;,
+    &#125;;
+  &#125;
+&#125;
+
+/**
+ * 重置仓库状态
+ */
+export function myPiniaPlugin4(&#123; store &#125;) &#123;
+  // 我们首先可以将初始状态深拷贝一份
+  const state = deepClone(store.$state);
+  store.reset = () =&gt; &#123;
+    store.$patch(deepClone(state));
+  &#125;;
+&#125;
+</code></pre>
+<p>使用</p>
+<pre><code class="typescript">// 引入自定义插件
+import &#123;
+  myPiniaPlugin1,
+  myPiniaPlugin2,
+  myPiniaPlugin3,
+  myPiniaPlugin4,
+&#125; from &quot;./plugins&quot;;
+
+pinia.use(myPiniaPlugin1);
+pinia.use(myPiniaPlugin2);
+pinia.use(myPiniaPlugin3);
+pinia.use(myPiniaPlugin4);
+</code></pre>
+<p>也可以使用一些第三方插件</p>
+<pre><code class="typescript">import piniaPersistPlugin from &quot;pinia-plugin-persist&quot;;
+const pinia = createPinia().use(piniaPersistPlugin).use(myPiniaPlugin1);
+</code></pre>
+<h3 id="pinia-和-vuex-的比较"><a href="#pinia-和-vuex-的比较" class="headerlink" title="pinia 和 vuex 的比较"></a>pinia 和 vuex 的比较</h3><ol>
+<li>pinia 更加轻量，只有 1kb</li>
+<li>pinia 无论是 vue2 还是 vue3 都可以使用</li>
+<li>弃用了 vuex 里面异步使用的 mutation</li>
+<li>在 Pinia 中，组织状态仓库的形式不再采用像 Vuex 一样的嵌套，而是采用的是扁平化的设计，每一个状态仓库都是独立的，这个其实也是 Pinia 这个名字的来源。</li>
+</ol>
+<p>vuex 会使用嵌套模块，pinia 是单独模块</p>
+<pre><code class="typescript">import Vuex from &quot;vuex&quot;;
+import Vue from &quot;vue&quot;;
+import counter from &quot;./counter&quot;;
+import loginUser from &quot;./loginUser&quot;;
+Vue.use(Vuex);
+
+const store = new Vuex.Store(&#123;
+  modules: &#123;
+    counter,
+    loginUser,
+  &#125;,
+  strict: true, // 开启严格模式后，只允许通过mutation改变状态
+&#125;);
+
+//counter
+export default &#123;
+  state: &#123;
+    count: 0,
+  &#125;,
+  mutations: &#123;&#125;,
+  actions: &#123;&#125;,
+&#125;;
+
+//loginUser
+import * as userApi from &quot;../api/user&quot;;
+
+export default &#123;
+  namespaced: true, // 开启命名空间
+  state: &#123;
+    loading: false,
+    user: null,
+  &#125;,
+  getters: &#123;
+    status(state) &#123;
+      if (state.loading) &#123;
+        return &quot;loading&quot;;
+      &#125; else if (state.user) &#123;
+        return &quot;login&quot;;
+      &#125; else &#123;
+        return &quot;unlogin&quot;;
+      &#125;
+    &#125;,
+  &#125;,
+  mutations: &#123;
+    setLoading(state, payload) &#123;
+      state.loading = payload;
+    &#125;,
+    setUser(state, payload) &#123;
+      state.user = payload;
+    &#125;,
+  &#125;,
+  actions: &#123;
+    async login(ctx, payload) &#123;
+      ctx.commit(&quot;setLoading&quot;, true);
+      const resp = await userApi.login(payload.loginId, payload.loginPwd);
+      ctx.commit(&quot;setUser&quot;, resp);
+      ctx.commit(&quot;setLoading&quot;, false);
+      return resp;
+    &#125;,
+    async whoAmI(ctx) &#123;
+      ctx.commit(&quot;setLoading&quot;, true);
+      const resp = await userApi.whoAmI();
+      ctx.commit(&quot;setUser&quot;, resp);
+      ctx.commit(&quot;setLoading&quot;, false);
+    &#125;,
+    async loginOut(ctx) &#123;
+      ctx.commit(&quot;setLoading&quot;, true);
+      await userApi.loginOut();
+      ctx.commit(&quot;setUser&quot;, null);
+      ctx.commit(&quot;setLoading&quot;, false);
+    &#125;,
+  &#125;,
+&#125;;
+
+//使用
+
+//调用mutations
+this.$store.dispatch(&quot;login&quot;);
+
+//调用actions
+this.$store.commit(&quot;setLoading&quot;);
+</code></pre>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><ol>
+<li>避免直接操作 store 的状态</li>
+</ol>
+<p>这样做的好处在于提高了代码的可维护性，应该数据的改变始终来自于 actions 的方法，而不是分散于组件的各个部分。</p>
+<ol start="2">
+<li>使用 TypeScript</li>
+</ol>
+<p>Pinia 本身就是使用 typescript 编写的，因此我们在使用 pinia 的时候，能够非常方便的、非常自然的使用 typescript，使用 typescript 可以更好的提供类型检查和代码提示，让我们的代码更加可靠和易于维护。</p>
+<ol start="3">
+<li>将状态划分为多个模块</li>
+</ol>
+<p>在一个大型应用中，如果将所有组件的状态放置在一个状态仓库中，那么会显得该状态仓库非常的臃肿。因此一般在大型项目中，是一定会将状态仓库进行拆分的。</p>
+<h3 id="订阅功能"><a href="#订阅功能" class="headerlink" title="订阅功能"></a>订阅功能</h3><p>订阅就是在某一个仓库的数据改变或者调用某个方法的钩子函数，你可以在数据改变的时候去做任何其他你要做的事情</p>
+<p>订阅 state</p>
+<pre><code class="plain">cartStore.$subscribe((mutation, state) =&gt; &#123;
+  // import &#123; MutationType &#125; from &#39;pinia&#39;
+  mutation.type // &#39;direct&#39; | &#39;patch object&#39; | &#39;patch function&#39;
+  // 和 cartStore.$id 一样
+  mutation.storeId // &#39;cart&#39;
+  // 只有 mutation.type === &#39;patch object&#39;的情况下才可用
+  mutation.payload // 传递给 cartStore.$patch() 的补丁对象。
+
+  // 每当状态发生变化时，将整个 state 持久化到本地存储。
+  localStorage.setItem(&#39;cart&#39;, JSON.stringify(state))
+&#125;)
+</code></pre>
+<p>订阅 action</p>
+<pre><code class="plain">const unsubscribe = someStore.$onAction(
+  (&#123;
+    name, // action 名称
+    store, // store 实例，类似 `someStore`
+    args, // 传递给 action 的参数数组
+    after, // 在 action 返回或解决后的钩子
+    onError, // action 抛出或拒绝的钩子
+  &#125;) =&gt; &#123;
+    // 为这个特定的 action 调用提供一个共享变量
+    const startTime = Date.now()
+    // 这将在执行 &quot;store &quot;的 action 之前触发。
+    console.log(`Start &quot;$&#123;name&#125;&quot; with params [$&#123;args.join(&#39;, &#39;)&#125;].`)
+
+    // 这将在 action 成功并完全运行后触发。
+    // 它等待着任何返回的 promise
+    after((result) =&gt; &#123;
+      console.log(
+        `Finished &quot;$&#123;name&#125;&quot; after $&#123;
+          Date.now() - startTime
+        &#125;ms.\nResult: $&#123;result&#125;.`
+      )
+    &#125;)
+
+    // 如果 action 抛出或返回一个拒绝的 promise，这将触发
+    onError((error) =&gt; &#123;
+      console.warn(
+        `Failed &quot;$&#123;name&#125;&quot; after $&#123;Date.now() - startTime&#125;ms.\nError: $&#123;error&#125;.`
+      )
+    &#125;)
+  &#125;
+)
+
+// 手动删除监听器
+unsubscribe()
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

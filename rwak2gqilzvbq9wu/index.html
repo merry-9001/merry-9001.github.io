@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>杂碎暂留 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>杂碎暂留</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/5/4
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="看课路线"><a href="#看课路线" class="headerlink" title="看课路线"></a>看课路线</h2><p>webpack-&gt;工程化-&gt;第三阶段 webpack-&gt;b 站 vite-&gt;vue3-&gt;webapp(小程序)</p>
+<p>promise async await</p>
+<p>webpack 扩展中的两节</p>
+<p>迭代器</p>
+<p>短视频也可以用来学习</p>
+<p>git</p>
+<p>看执行上下文 原型链继承</p>
+<p>额外</p>
+<p>看 node,webapp,微信小程序,echart</p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>树形结构</p>
+<p>callee 和 constrctor</p>
+<p>学一下 buffer</p>
+<p>相等判断，以及 set 的相等</p>
+<p>object.create 用来创建一个新对象 传入的对象作为他的原型 如果直接调用 a 会是一个空对象，他的属性在原型上</p>
+<p>支持迭代器，不一定支持 for 循环，因为 for 循环需要有下标，有迭代器不一定有下标</p>
+<p>有块级作用域，但块级没有执行上下文</p>
+<p>递归</p>
+<p>回调</p>
+<p>display:flex 里面的块盒内容不占满了</p>
+<p>本地服务器，大文件上传</p>
+<p>动态表单</p>
+<p>文件上传 nest</p>
+<p>某种类型的第一个元素</p>
+<p>预检请求</p>
+<p>看看 TS</p>
+<p>VUE 响应式与 DIFF</p>
+<p>reactive 原理</p>
+<p>写一个 once 修饰器</p>
+<p>ajax 中的数据加密？ ajax 数据传输</p>
+<p>ts 类数组[]?</p>
+<p>还有对象的[] 动态值</p>
+<p>vue 静态资源处理</p>
+<p>第三阶段 vue</p>
+<p>看写的代码 编译时和运行时<br>一些不用到的知识要准备应用场景</p>
+<p>递归练习</p>
+<p>对类的应用</p>
+<p>error 没整理</p>
+<p>正则没整理</p>
+<p>buffer 与流学习 node 那边会学习到 如果没有再补</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

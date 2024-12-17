@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>浏览器总览 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>浏览器总览</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/1
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="浏览器组成"><a href="#浏览器组成" class="headerlink" title="浏览器组成"></a>浏览器组成</h2><p>什么是浏览器？</p>
+<p>Web 浏览器简称为浏览器，是一种用于访问互联网上信息的应用软件。浏览器的主要功能是从服务器检索 Web 资源并将其显示在 Web 浏览器窗口中。</p>
+<p>Web 资源通常是 HTML 文档，但也可能是 PDF、图像、音频、视频或其他类型的内容。资源的位置是通过使用 URI（统一资源标识符）指定的。</p>
+<p>浏览器包含结构良好的组件，这些组件执行一系列任务让浏览器窗口能显示 Web 资源。</p>
+<p>本文我们就来聊一聊关于浏览器的组成部分。</p>
+<p>下图是关于浏览器的架构图：</p>
+<p><img src="1721545921149-f873283c-b605-468b-9a45-a607d763798b.png"></p>
+<p>一个 Web 浏览器中，主要组件有：</p>
+<ul>
+<li>用户界面（user interface）</li>
+<li>浏览器引擎（browser engine）</li>
+<li>渲染引擎（rendering engine）</li>
+<li>网络（networking）</li>
+<li>JS 解释器（JavaScript interpreter）</li>
+<li>用户界面后端（UI backend）</li>
+<li>数据存储（data storage）</li>
+</ul>
+<p>下面我们来具体看一下每一个部分的作用。</p>
+<h3 id="用户界面（user-interface）"><a href="#用户界面（user-interface）" class="headerlink" title="用户界面（user interface）"></a>用户界面（user interface）</h3><p>用户界面用于呈现浏览器窗口部件，比如地址栏、前进后退按钮、书签、顶部菜单等。</p>
+<p>如下图所示：</p>
+<p><img src="1721545921293-091b661d-723e-4f89-9911-32f4aeced3e4.png"></p>
+<h3 id="浏览器引擎（browser-engine）"><a href="#浏览器引擎（browser-engine）" class="headerlink" title="浏览器引擎（browser engine）"></a>浏览器引擎（browser engine）</h3><p>它是 UI 和渲染引擎之间的桥梁。接收来自 UI （用户界面）的输入，然后通过操纵渲染引擎将网页或者其他资源显示在浏览器中。</p>
+<h3 id="渲染引擎（rendering-engine）"><a href="#渲染引擎（rendering-engine）" class="headerlink" title="渲染引擎（rendering engine）"></a>渲染引擎（rendering engine）</h3><p>负责在浏览器窗口上显示请求的内容。例如，用户请求一个 HTML 页面，则它负责解析 HTML 文档和 CSS，并将解析和格式化的内容显示在屏幕上。我们平时说的浏览器内核就是指这部分。</p>
+<p>现代网络浏览器的渲染引擎：</p>
+<ul>
+<li>Firefox：Gecko Software</li>
+<li>Safari：WebKit</li>
+<li>Chrome、Opera (15 版本之后)：Blink</li>
+<li>Internet Explorer：Trident</li>
+</ul>
+<p>为了在屏幕上绘制像素（第一次渲染），浏览器在从网络接收数据（HTML、CSS、JavaScript）后必须经过一系列称为关键渲染路径的过程/技术。这包括 DOM、CSSOM、渲染树、布局和绘画。</p>
+<h3 id="网络（networking）"><a href="#网络（networking）" class="headerlink" title="网络（networking）"></a>网络（networking）</h3><p>该模块处理浏览器内的各种网络通信。它使用一组通信协议，如 HTTP、HTTPs、FTP，同时通过 URL 获取请求的资源。</p>
+<h3 id="JS-解释器（JavaScript-interpreter）"><a href="#JS-解释器（JavaScript-interpreter）" class="headerlink" title="JS 解释器（JavaScript interpreter）"></a>JS 解释器（JavaScript interpreter）</h3><p>JavaScript 是一种脚本语言，允许我们动态更新 Web 内容、控制由浏览器的 JS 引擎执行的多媒体和动画图像。</p>
+<p>DOM 和 CSSOM 为 JS 提供了一个接口，可以改变 DOM 和 CSSOM。由于浏览器不确定特定的 JS 会做什么，它会在遇到 script 标签后立即暂停 DOM 树的构建。</p>
+<p>每个脚本都是一个解析拦截器，会让 DOM 树的构建停止。</p>
+<p>JS 引擎在从服务器获取并输入 JS 解析器后立即开始解析代码。它将它们转换为机器理解的代表性对象。在抽象句法结构的树表示中存储所有解析器信息的对象称为对象语法树（AST）。这些对象被送入一个解释器，该解释器将这些对象翻译成字节码。</p>
+<p>这些是即时 (JIT) 编译器，这意味着从服务器下载的 JavaScript 文件在客户端的计算机上实时编译。解释器和编译器是结合在一起的。解释器几乎立即执行源代码；编译器生成客户端系统直接执行的机器代码。</p>
+<p>不同的浏览器使用不同的 JS 引擎：</p>
+<ul>
+<li>Chrome： V8 (JavaScript 引擎) (Node JS 建立在此之上)</li>
+<li>Mozilla： SpiderMonkey (旧称“松鼠鱼”)</li>
+<li>Microsoft Edge：Chakra</li>
+<li>Safari：JavaScriptCore / Nitro WebKit</li>
+</ul>
+<h3 id="用户界面后端（UI-backend）"><a href="#用户界面后端（UI-backend）" class="headerlink" title="用户界面后端（UI backend）"></a>用户界面后端（UI backend）</h3><p>用于绘制基本的窗口小部件，比如下拉列表、文本框、按钮等，向上提供公开的接口，向下调用操作系统的用户界面。</p>
+<p>比如页面中显示的文本框，按钮实际是操作系统给我们提供的，而不是浏览器</p>
+<p>用户界面后端向下去调用操作系统接口来绘制小部件，他把调用到的接口向上提供给用户界面，然后再进行绘制</p>
+<p><img src="1721546742911-438c59b5-b087-4461-8f42-38994112409d.png"></p>
+<h3 id="数据存储（data-storage）"><a href="#数据存储（data-storage）" class="headerlink" title="数据存储（data storage）"></a>数据存储（data storage）</h3><p>这是一个持久层。浏览器可能需要在本地保存各种数据，例如 cookie。浏览器还支持 localStorage、IndexedDB、WebSQL 和 FileSystem 等存储机制。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>最后，我们对浏览器的组成部分进行一个总结。</p>
+<p>浏览器由以下几个部分组成：</p>
+<ol>
+<li>用户界面（user interface）</li>
+</ol>
+<p>用于呈现浏览器窗口部件，比如地址栏、前进后退按钮、书签、顶部菜单等</p>
+<ol start="2">
+<li>浏览器引擎（browser engine）</li>
+</ol>
+<p>用户在用户界面和渲染引擎中传递指令</p>
+<ol start="3">
+<li>渲染引擎（rendering engine）</li>
+</ol>
+<p>负责解析 HTML、CSS，并将解析的内容显示到屏幕上。我们平时说的浏览器内核就是指这部分。</p>
+<ol start="4">
+<li>网络（networking）</li>
+</ol>
+<p>用户网络调用，比如发送 http 请求</p>
+<ol start="5">
+<li>用户界面后端（UI backend）</li>
+</ol>
+<p>用于绘制基本的窗口小部件，比如下拉列表、文本框、按钮等，向上提供公开的接口，向下调用操作系统的用户界面。</p>
+<ol start="6">
+<li>JS 解释器（JavaScript interpreter）</li>
+</ol>
+<p>解释执行 JS 代码。我们平时说的 JS 引擎就是指这部分。</p>
+<ol start="7">
+<li>数据存储（data storage）</li>
+</ol>
+<p>用户保存数据到磁盘中。比如 cookie、localstorage 等都是使用的这部分功能。</p>
+<h2 id="浏览器内核（渲染引擎）"><a href="#浏览器内核（渲染引擎）" class="headerlink" title="浏览器内核（渲染引擎）"></a>浏览器内核（渲染引擎）</h2><p>执行 html,css,js 代码需要依靠浏览器，浏览器由两部分组成</p>
+<ol>
+<li>shell：外壳</li>
+<li>core：内核（JS 执行引擎、渲染引擎）</li>
+</ol>
+<p>IE: Trident<br>Firfox: Gecko<br>Chrome: Webkit / Blink<br>Safari: Webkit<br>Opera: Presto / Blink</p>
+<p>只要有内核就可以执行 html 和 css 代码</p>
+<h2 id="资源提示关键词"><a href="#资源提示关键词" class="headerlink" title="资源提示关键词"></a>资源提示关键词</h2><h3 id="defer-和-async"><a href="#defer-和-async" class="headerlink" title="defer 和 async"></a>defer 和 async</h3><p>现代浏览器引入了 defer 和 async。</p>
+<p>async 表示加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。<strong>也就是说下载 JS 文件的时候不会阻塞 DOM 树的构建，但是执行该 JS 代码会阻塞 DOM 树的构建</strong>。</p>
+<pre><code class="html">&lt;script async src=&quot;script.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>defer 表示加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。<strong>也就是说，下载 JS 文件的时候不会阻塞 DOM 树的构建，然后等待 DOM 树构建完毕后再执行此 JS 文件。</strong></p>
+<pre><code class="html">&lt;script defer src=&quot;myscript.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>具体加载瀑布图如下图所示：</p>
+<p><img src="1710558873667-a7f62ae5-48b9-4558-aef6-1cb72b30fedf.png"></p>
+<h3 id="preload"><a href="#preload" class="headerlink" title="preload"></a>preload</h3><p>preload 顾名思义就是一种预加载的方式，它通过声明向浏览器声明一个需要提前加载的资源，当资源真正被使用的时候立即执行，就无需等待网络的消耗。</p>
+<pre><code class="html">&lt;link rel=&quot;preload&quot; href=&quot;style1.css&quot; as=&quot;style&quot; /&gt;
+&lt;link rel=&quot;preload&quot; href=&quot;main1.js&quot; as=&quot;script&quot; /&gt;
+</code></pre>
+<p>在上面的代码中，<strong>会先加载 style1.css 和 main1.js 文件（但不会生效），在随后的页面渲染中，一旦需要使用它们，它们就会立即可用</strong>。</p>
+<blockquote>
+<p>要使用 preload，必须使用 link 标签</p>
+</blockquote>
+<p>可以使用 as 来指定将要预加载的内容类型。</p>
+<p><img src="1710558873643-88304915-c7dd-4f9e-bc96-2fc3877f2dd7.png"></p>
+<p>preload 指令的一些优点如下：</p>
+<ul>
+<li>允许浏览器设置资源优先级，从而允许 Web 开发人员优化某些资源的交付。</li>
+<li>使浏览器能够确定资源类型，因此它可以判断将来是否可以重用相同的资源。</li>
+<li>浏览器可以通过引用 as 属性中定义的内容来确定请求是否符合内容安全策略。</li>
+<li>浏览器可以根据资源类型发送合适的 Accept 头（例如：image/webp ）</li>
+</ul>
+<p><font style="color:rgb(53, 53, 53);">对于脚本资源，可以使用 preload 属性来指示浏览器提前下载并缓存脚本文件，以便在稍后执行时能够更快地加载和执行。</font></p>
+<p><font style="color:rgb(53, 53, 53);">对于样式表资源，可以使用 preload 属性来指示浏览器提前下载并缓存样式表文件，以便在稍后应用到文档时能够更快地渲染页面。</font></p>
+<p><font style="color:rgb(53, 53, 53);">对于字体资源，可以使用 preload 属性来指示浏览器提前下载并缓存字体文件，以便在稍后应用到文档时能够更快地显示文本内容。</font></p>
+<h3 id="prefetch"><a href="#prefetch" class="headerlink" title="prefetch"></a>prefetch</h3><p><strong>prefetch 是一种利用浏览器的空闲时间加载页面将来可能用到的资源的一种机制</strong>，通常可以用于加载非首页的其他页面所需要的资源，以便加快后续页面的首屏速度。</p>
+<p>prefetch 加载的资源可以获取非当前页面所需要的资源，并且将其放入缓存至少 5 分钟（无论资源是否可以缓存）。并且，当页面跳转时，未完成的 prefetch 请求不会被中断；</p>
+<p>它的用法跟 preload 是一样的：</p>
+<pre><code class="html">&lt;link rel=&quot;prefetch&quot; href=&quot;/path/to/style.css&quot; as=&quot;style&quot; /&gt;
+</code></pre>
+<p><strong>DNS prefetching</strong></p>
+<p>DNS prefetching 允许浏览器在用户浏览时在后台对页面执行 DNS 查找。这最大限度地减少了延迟，因为一旦用户单击链接就已经进行了 DNS 查找。</p>
+<p>通过将 rel=”dns-prefetch” 标记添加到链接属性，可以将 DNS prefetching 添加到特定 URL。建议在诸如 Web 字体、CDN 之类的东西上使用它。</p>
+<pre><code class="html">&lt;!-- Prefetch DNS for external assets --&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//fonts.googleapis.com&quot; /&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//www.google-analytics.com&quot; /&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//cdn.domain.com&quot; /&gt;
+</code></pre>
+<h3 id="prerender"><a href="#prerender" class="headerlink" title="prerender"></a>prerender</h3><p>prerender 与 prefetch 非常相似，prerender 同样也是会收集用户接下来可能会用到的资源。</p>
+<p>不同之处在于 prerender 实际上是在后台渲染整个页面。</p>
+<pre><code class="html">&lt;link rel=&quot;prerender&quot; href=&quot;https://www.keycdn.com&quot; /&gt;
+</code></pre>
+<p>当浏览器遇到带有 prerender 属性的 link 标签时，它会在后台自动加载并渲染指定的页面，而不会显示在当前页面中。</p>
+<p>当用户访问到该页面时，浏览器可以立即呈现出来，从而提供更快的用户体验。</p>
+<p>prerender 属性适用于那些用户可能会访问到但不是当前页面所必需的内容，例如下一页、相关文章等。 需要注意的是，prerender 属性可能会增加网络和服务器负载，并且只有在用户设备和网络条件允许时才会生效。因此，在使用 prerender 属性时需要谨慎考虑其适用性和效果。</p>
+<h3 id="preconnect"><a href="#preconnect" class="headerlink" title="preconnect"></a>preconnect</h3><p>preconnect 指令允许浏览器在 HTTP 请求实际发送到服务器之前设置早期连接。</p>
+<p>我们知道，浏览器要建立一个连接，一般需要经过 DNS 查找，TCP 三次握手和 TLS 协商（如果是 https 的话），这些过程都是需要相当的耗时的。<strong>所以 preconnet，就是一项使浏览器能够预先建立一个连接，等真正需要加载资源的时候就能够直接请求了。</strong></p>
+<p><img src="1710558873670-a1ad3821-e867-446c-8f6e-c172308fd867.png"></p>
+<p>以下是为 CDN URL 启用 preconnect 的示例。</p>
+<pre><code class="html">&lt;link href=&quot;https://cdn.domain.com&quot; rel=&quot;preconnect&quot; crossorigin /&gt;
+</code></pre>
+<p>在上面的代码中，浏览器会进行以下步骤：</p>
+<ul>
+<li>解释 href 的属性值，判断是否是合法的 URL。如果是合法的 URL，然后继续判断 URL 的协议是否是 http 或者 https，如果不是合法的 URL，则结束处理。</li>
+<li>如果当前页面 host 不同于 href 属性中的 host，那么将不会带上 cookie，如果希望带上 cookie 等信息，可以加上 crossorign 属性。</li>
+</ul>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

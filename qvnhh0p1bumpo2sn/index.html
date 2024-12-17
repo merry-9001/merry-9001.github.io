@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>源码地图(source map) | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>源码地图(source map)</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/19
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><font style="color:rgb(36, 41, 46);">前端发展到现阶段，很多时候都不会直接运行源代码，可能需要对源代码进行合并、压缩、转换等操作，真正运行的是转换后的代码</font></p>
+<p><font style="color:rgb(36, 41, 46);">这就给调试带来了困难，因为当运行发生错误的时候，我们更加希望能看到源代码中的错误，而不是转换后代码的错误</font></p>
+<p><font style="color:rgb(36, 41, 46);">source map 实际上是一个配置，配置中不仅记录了所有源码内容，还记录了和转换后的代码的对应关系</font></p>
+<p><img src="1708765317869-123d3034-a316-4f32-821b-3245be7bd746.png"></p>
+<p>如果在加载 bundle.js 的时候发现里面还有 source map 那浏览器还会去加载 bundle.map 文件</p>
+<p><img src="1708765370835-ecf4c6ad-1a9b-4fea-b0a7-2b19ceeaa025.png"></p>
+<p><strong><font style="color:rgb(36, 41, 46);">最佳实践</font></strong><font style="color:rgb(36, 41, 46);">：</font></p>
+<ol>
+<li><font style="color:rgb(36, 41, 46);">source map 应在开发环境中使用，作为一种调试手段</font></li>
+<li><font style="color:rgb(36, 41, 46);">source map 不应该在生产环境中使用，source map 的文件一般较大，不仅会导致额外的网络传输，还容易暴露原始代码。即便要在生产环境中使用 source map，用于调试真实的代码运行问题，也要做出一些处理规避网络传输和代码暴露的问题。</font></li>
+</ol>
+<h3 id="eval-方式"><a href="#eval-方式" class="headerlink" title="eval 方式"></a>eval 方式</h3><p>如果一个代码使用 eval 函数，在调试的时候会单独写成一个 VM（虚拟机引擎编号），方便调试</p>
+<pre><code class="javascript">&lt;script&gt;
+  let a =2; let h=5; // debugger; console.log(a+h); eval(&#39;let c=5;c.abd();&#39;)
+&lt;/script&gt;
+</code></pre>
+<p>后面还可以加上注释（给浏览器看的）</p>
+<pre><code class="javascript">eval(&quot;var d = null;\nd.abc();//# sourceURL=./src/a.js&quot;);
+</code></pre>
+<p><img src="1709347463578-f5d3e59c-6ccc-4983-b425-4980bb7d4ff3.png"></p>
+<p><img src="1709347486999-43c56377-0e22-4d42-9169-83cda0d01502.png"></p>
+<p>如果我们在 sourceURL 上加上一个前缀，那么在浏览器源码中就会生成这么一个 webpack 文件，我们在实际代码里肯定是没有的，但是可以在窗口调试中看到。</p>
+<p>可以让浏览器把代码归到这个目录下</p>
+<pre><code class="javascript">eval(&quot;var d = null;\nd.abc();//# sourceURL=webpack:///./src/a.js&quot;);
+</code></pre>
+<p><img src="1709349384920-42b0c40e-ac9c-463a-9550-e5000033ae8c.png"></p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

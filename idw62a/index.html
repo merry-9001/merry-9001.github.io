@@ -126,6 +126,48 @@
 <li>fetch 不支持 abort，不支持超时控制，使用 setTimeout 及 Promise.reject 的实现的超时控制并不能阻止请求过程继续在后台运行，造成了流量的浪费</li>
 <li>fetch 没有办法原生监测请求的进度，而 XHR 可以</li>
 </ol>
+<h2 id="Request-对象"><a href="#Request-对象" class="headerlink" title="Request 对象"></a>Request 对象</h2><p>fetch 请求的地址实际上是对需要一个 Request 对象</p>
+<pre><code class="javascript">const req = new Request(url, &#123;&#125;);
+fetch(req);
+</code></pre>
+<h2 id="Response-对象"><a href="#Response-对象" class="headerlink" title="Response 对象"></a>Response 对象</h2><p>服务器返回过来的数据其实是一个 Response 对象</p>
+<pre><code class="javascript">//模拟服务器返回的请求需要使用Response对象，而不能只是一个json
+const resp = new Response(
+  `[
+        &#123;&quot;id&quot;:1, &quot;name&quot;:&quot;北京&quot;&#125;,
+        &#123;&quot;id&quot;:2, &quot;name&quot;:&quot;天津&quot;&#125;
+    ]`,
+  &#123;
+    ok: true,
+    status: 200,
+  &#125;
+);
+</code></pre>
+<h2 id="Headers-对象"><a href="#Headers-对象" class="headerlink" title="Headers 对象"></a>Headers 对象</h2><p>config 中的 Header 的一个 json 本质上是一个 Headers 对象，而不是一个普通 json，传入普通 json 能使用是因为,fetch 进行了处理</p>
+<pre><code class="javascript">new Headers(&#123;
+  a: 1,
+  b: 2,
+&#125;);
+
+req = new Request(url, &#123;
+  headers,
+&#125;);
+</code></pre>
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>请求方法：POST<br>请求的表单格式：multipart/form-data<br>请求体中必须包含一个键值对，键的名称是服务器要求的名称，值是文件数据</p>
+<p>注：js 能访问用户上传到 input 的文件数据，不能获取用户的电脑数据</p>
+<pre><code class="javascript">当body里面给一个formData数据，fetch会自动将header的content-type
+设置成multipart/form-data
+
+body内传输的FormData也是一个对象，有特定方法去添加数据
+
+const formData = new FormData(); //构建请求体
+formData.append(&#39;imagefile&#39;, inp.files[0]);
+const url = &#39;http://study.yuanjin.tech/api/upload&#39;;
+const resp = await fetch(url, &#123;
+  method: &#39;POST&#39;,
+  body: formData, //自动修改请求头
+&#125;);
+</code></pre>
 <h1 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h1><p><strong>axios</strong> 是一个基于 Promise 用于浏览器和 nodejs 的 HTTP 客户端，本质上也是对原生 XHR 的封装，只不过它是 Promise 的实现版本，符合最新的 ES 规范，它本身具有以下特征：</p>
 <ol>
 <li>从浏览器中创建 XMLHttpRequest</li>
@@ -162,7 +204,7 @@ axios
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

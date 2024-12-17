@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>react | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>react</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/12/3
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="宏观"><a href="#宏观" class="headerlink" title="宏观"></a>宏观</h2><h3 id="vue-和-react-的区别"><a href="#vue-和-react-的区别" class="headerlink" title="vue 和 react 的区别"></a>vue 和 react 的区别</h3><h4 id="描述页面方式不同"><a href="#描述页面方式不同" class="headerlink" title="描述页面方式不同"></a>描述页面方式不同</h4><p><font style="color:rgb(37, 41, 51);">Vue 使用模版来描述页面（UI），React 使用 JSX 来描述页面（UI）</font></p>
+<p><font style="color:rgb(37, 41, 51);"></font></p>
+<p>模板语法（vue）的出发点是，既然前端框架使用 HTML 来描述 UI，那么就扩展 HTML 语法，使它能够描述逻辑，也就是“从 UI 出发，扩展 UI，在 UI 中能够描述逻辑”。（扩展模板的语法，类似 ejs 等）</p>
+<p>JSX (react)的出发点是，既然前端使用 JS 来描述逻辑，那么就扩展 JS 语法，让它能够描述 UI，也就是“从逻辑出发，扩展逻辑，描述 UI”。（扩展 js 的语法）(类似 XML 形式的 JS 语法糖，由于 JSX 是 JS 的语法糖【本质上就是 JS】，因此可以非常灵活的和 JS 语法组合使用)</p>
+<p>虽然这两者都达到了同样的目的，但是对框架的实现产生了不同的影响</p>
+<p>当然这两者最后都会编译成虚拟 dom，只是书写形式上有所区别</p>
+<h4 id="级别不同"><a href="#级别不同" class="headerlink" title="级别不同"></a>级别不同</h4><p>框架都是基于状态的声明式渲染</p>
+<p>元素级框架（Svelte、Solid.js）</p>
+<p>组件级框架（Vue）</p>
+<p>应用级框架（React）</p>
+<h4 id="优化不同"><a href="#优化不同" class="headerlink" title="优化不同"></a>优化不同</h4><p>react 的优化完全交给用户，vue 在内部实现</p>
+<h3 id="vue-和-react-的相同点"><a href="#vue-和-react-的相同点" class="headerlink" title="vue 和 react 的相同点"></a>vue 和 react 的相同点</h3><p>diff 算法</p>
+<p>虚拟 dom</p>
+<p>单项数据流</p>
+<h3 id="谈一谈你对前端框架的理解？"><a href="#谈一谈你对前端框架的理解？" class="headerlink" title="谈一谈你对前端框架的理解？"></a>谈一谈你对前端框架的理解？</h3><p>在早期使用 jQuery 时代，那时的开发人员需要手动的去操作 DOM 节点；但是随着单页应用的流行，客户端的 JS 代码量出现井喷，此时如果还是采用传统的手动操作 DOM 的方式，对于开发人员来讲有非常大的心智负担。</p>
+<p>此时就出现了能够<strong>基于状态声明式渲染以及提供组件化开发模式的库</strong>，例如 Vue 和 React。这两者本质上仅仅是构建 UI 的库，但是随着应用的复杂度的提升，还需要前端路由方案、状态管理方案，所以有了 vue-router、react-router、vuex、redux 等周边生态产品。</p>
+<p>Vue 或 React 和这些周边生态产品共同构成了一个技术栈，现在我们会将 React 或者 Vue 称之为框架，这可以算是一种约定俗成的说法。</p>
+<p>一款现代前端框架，在它本身以及它的周边生态中，至少要包含以下几个方面：</p>
+<p>基于状态的声明式渲染</p>
+<blockquote>
+<p>UI = f（state）</p>
+<ul>
+<li>state：当前视图的一个状态</li>
+<li>f：框架内部的一个运行机制</li>
+<li>UI：宿主环境的视图描述</li>
+</ul>
+</blockquote>
+<p>支持组件化开发</p>
+<p>客户端路由方案</p>
+<p>状态管理方案</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="react-的常用-hook"><a href="#react-的常用-hook" class="headerlink" title="react 的常用 hook"></a>react 的常用 hook</h3><p>组件状态：useState</p>
+<pre><code class="javascript">import React, &#123; useState &#125; from &quot;react&quot;;
+function Counter() &#123;
+  const [count, setCount] = useState(0);
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked &#123;count&#125; times&lt;/p&gt;
+      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;Click me&lt;/button&gt;
+    &lt;/div&gt;
+  );
+&#125;
+</code></pre>
+<p><font style="color:rgba(0, 0, 0, 0.85);">状态管理：useReducer</font></p>
+<pre><code class="jsx">function Counter() &#123;
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Count: &#123;state.count&#125;&lt;/p&gt;
+      &lt;button onClick=&#123;() =&gt; dispatch(&#123; type: &quot;increment&quot; &#125;)&#125;&gt;Increment&lt;/button&gt;
+      &lt;button onClick=&#123;() =&gt; dispatch(&#123; type: &quot;decrement&quot; &#125;)&#125;&gt;Decrement&lt;/button&gt;
+    &lt;/div&gt;
+  );
+&#125;
+</code></pre>
+<p>useEffect</p>
+<pre><code class="jsx">import React, &#123; useState, useEffect &#125; from &quot;react&quot;;
+function App() &#123;
+  const [data, setData] = useState([]);
+  useEffect(() =&gt; &#123;
+    fetch(&quot;https://example.com/api/data&quot;)
+      .then((response) =&gt; response.json())
+      .then((jsonData) =&gt; setData(jsonData));
+  &#125;, []);
+  return (
+    &lt;div&gt;
+      &#123;data.map((item) =&gt; (
+        &lt;p key=&#123;item.id&#125;&gt;&#123;item.name&#125;&lt;/p&gt;
+      ))&#125;
+    &lt;/div&gt;
+  );
+&#125;
+</code></pre>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="React-的架构？新的-Fiber-架构相较于之前的-Stack-架构有什么优势？"><a href="#React-的架构？新的-Fiber-架构相较于之前的-Stack-架构有什么优势？" class="headerlink" title="React 的架构？新的 Fiber 架构相较于之前的 Stack 架构有什么优势？"></a>React 的架构？新的 Fiber 架构相较于之前的 Stack 架构有什么优势？</h3><blockquote>
+<p>简单回答：</p>
+<p>Stack 架构在进行虚拟 DOM 树比较的时候，采用的是递归，计算会消耗大量的时间，新的 Fiber 架构采用的是链表，可以实现时间切片，防止 JS 的计算占用过多的时间从而导致浏览器出现丢帧的现象。</p>
+<p>通过 Scheduler（调度器）：解决 i/o 优先级问题</p>
+<p>通过 fiber(可中断)：解决 cpu 密集计算问题</p>
+<p>原理：主要是将任务变成一个链表结构，当发现时间不够的时候去先渲染下一帧，然后再继续任务</p>
+</blockquote>
+<p>React v15 及其之前的架构：</p>
+<p>Reconciler（协调器）：VDOM 的实现，负责根据自变量变化计算出 UI 变化</p>
+<p>Renderer（渲染器）：负责将 UI 变化渲染到宿主环境中</p>
+<p>这种架构称之为 Stack 架构，在 Reconciler 中，mount 的组件会调用 mountComponent，update 的组件会调用 updateComponent，这两个方法都会递归更新子组件，更新流程一旦开始，中途无法中断。</p>
+<p>但是随着应用规模的逐渐增大，之前的架构模式无法再满足“快速响应”这一需求，主要受限于如下两个方面：</p>
+<p>CPU 瓶颈：由于 VDOM 在进行差异比较时，采用的是递归的方式，JS 计算会消耗大量的时间，从而导致动画、还有一些需要实时更新的内容产生视觉上的卡顿。</p>
+<p>I/O 瓶颈：由于各种基于“自变量”变化而产生的更新任务没有优先级的概念，因此在某些更新任务（例如文本框的输入）有稍微的延迟，对于用户来讲也是非常敏感的，会让用户产生卡顿的感觉。</p>
+<p>新的架构称之为 Fiber 架构（有点像浏览器的事件循环）</p>
+<p>Scheduler（调度器）：调度任务的优先级，高优先级任务会优先进入到 Reconciler</p>
+<p>Reconciler（协调器）：VDOM 的实现，负责根据自变量变化计算出 UI 变化</p>
+<p>Renderer（渲染器）：负责将 UI 变化渲染到宿主环境中</p>
+<p>首先引入了 Fiber 的概念，通过一个对象来描述一个 DOM 节点，但是和之前方案不同的地方在于，每个 Fiber 对象之间通过链表的方式来进行串联。通过 child 来指向子元素，通过 sibling 指向兄弟元素，通过 return 来指向父元素。</p>
+<p>fiber 本质是一个对象</p>
+<pre><code class="javascript">function FiberNode(tag, pendingProps, key, mode) &#123;
+  // ...
+
+  // 周围的 Fiber Node 通过链表的形式进行关联
+  this.return = null;
+  this.child = null;
+  this.sibling = null;
+  this.index = 0;
+
+  // ...
+&#125;
+</code></pre>
+<p>在新架构中，Reconciler 中的更新流程从递归变为了“可中断的循环过程”。每次循环都会调用 shouldYield 判断当前的 TimeSlice 是否有剩余时间，没有剩余时间则暂停更新流程，将主线程还给渲染流水线，等待下一个宏任务再继续执行。这样就解决了 CPU 的瓶颈问题。</p>
+<p>另外在新架构中还引入了 Scheduler 调度器，用来调度任务的优先级，从而解决了 I/O 的瓶颈问题。</p>
+<h3 id="是否了解过-React-的整体渲染流程？里面主要有哪些阶段？"><a href="#是否了解过-React-的整体渲染流程？里面主要有哪些阶段？" class="headerlink" title="是否了解过 React 的整体渲染流程？里面主要有哪些阶段？"></a>是否了解过 React 的整体渲染流程？里面主要有哪些阶段？</h3><p>React 整体的渲染流程可以分为两大阶段，分别是 render 阶段和 commit 阶段。</p>
+<p>render 阶段里面会经由调度器和协调器处理，此过程是在内存中运行，是异步可中断的。</p>
+<p>commit 阶段会由渲染器进行处理，根据副作用进行 UI 的更新，此过程是同步不可中断的，否则会造成 UI 和数据显示不一致。</p>
+<p>调度器</p>
+<p>调度器的主要工作就是调度任务，让所有的任务有优先级的概念，这样的话紧急的任务可以优先执行。Scheduler 实际上在浏览器的 API 中是有原生实现的，这个 API 叫做 requestIdleCallback，但是由于兼容性问题，React 放弃了使用这个 API，而是自己实现了一套这样的机制，并且后期会把 Scheduler 这个包单独的进行发布，变成一个独立的包。这就意味 Scheduler 不仅仅是只能在 React 中使用，后面如果有其他的项目涉及到了任务调度的需求，都可以使用这个 Scheduler。</p>
+<p>协调器</p>
+<p>协调器是 Render 的第二阶段工作。该阶段会采用深度优先的原则遍历并且创建一个一个的 FiberNode，并将其串联在一起，在遍历时分为了“递”与“归”两个阶段，其中在“递”阶段会执行 beginWork 方法，该方法会根据传入的 FiberNode 创建下一级 FiberNode。而“归”阶段则会执行 CompleteWork 方法，做一些副作用的收集</p>
+<p>渲染器</p>
+<p>渲染器的工作主要就是将各种副作用（flags 表示）commit 到宿主环境的 UI 中。整个阶段可以分为三个子阶段，分别是 BeforeMutation 阶段、Mutation 阶段和 Layout 阶段。</p>
+<h3 id="谈一谈你对-React-中-Fiber-的理解以及什么是-Fiber-双缓冲？"><a href="#谈一谈你对-React-中-Fiber-的理解以及什么是-Fiber-双缓冲？" class="headerlink" title="谈一谈你对 React 中 Fiber 的理解以及什么是 Fiber 双缓冲？"></a>谈一谈你对 React 中 Fiber 的理解以及什么是 Fiber 双缓冲？</h3><p>Fiber 可以从三个方面去理解：</p>
+<p>FiberNode 作为一种架构：在 React v15 以及之前的版本中，Reconceiler 采用的是递归的方式，因此被称之为 Stack Reconciler，到了 React v16 版本之后，引入了 Fiber，Reconceiler 也从 Stack Reconciler 变为了 Fiber Reconceiler，各个 FiberNode 之间通过链表的形式串联了起来。</p>
+<p>FiberNode 作为一种数据类型：Fiber 本质上也是一个对象，是之前虚拟 DOM 对象（React 元素，createElement 的返回值）的一种升级版本，每个 Fiber 对象里面会包含 React 元素的类型，周围链接的 FiberNode，DOM 相关信息。</p>
+<p>FiberNode 作为动态的工作单元：在每个 FiberNode 中，保存了“本次更新中该 React 元素变化的数据、要执行的工作（增、删、改、更新 Ref、副作用等）”等信息。</p>
+<p>所谓 Fiber 双缓冲树，指的是在内存中构建两颗树，并直接在内存中进行替换的技术。在 React 中使用 Wip Fiber Tree 和 Current Fiber Tree 这两颗树来实现更新的逻辑。Wip Fiber Tree 在内存中完成更新，而 Current Fiber Tree 是最终要渲染的树，两颗树通过 alternate 指针相互指向，这样在下一次渲染的时候，直接复用 Wip Fiber Tree 作为下一次的渲染树，而上一次的渲染树又作为新的 Wip Fiber Tree，这样可以加快 DOM 节点的替换与更新。</p>
+<h3 id="React-的-Scheduler-任务调度"><a href="#React-的-Scheduler-任务调度" class="headerlink" title="React 的 Scheduler 任务调度"></a>React 的 Scheduler 任务调度</h3><p>该方法主要注意以下几个关键点：</p>
+<p>关于任务队列有两个，一个 taskQueue，另一个是 timerQueue</p>
+<p>taskQueue 存放普通任务</p>
+<p>timerQueue 存放延时任务</p>
+<p>任务队列内部用到了小顶堆的算法，保证始终放进去（push）的任务能够进行正常的排序，回头通过 peek 取出任务时，始终取出的是时间优先级最高的那个任务</p>
+<p>根据传入的不同的 priorityLevel，会进行不同的 timeout 的设置，任务的 timeout 时间也就不一样了，有的比当前时间还要小，这个代表立即需要执行的，绝大部分的时间比当前时间大。</p>
+<p><img src="1733205422164-01762a3c-e752-4e6e-b158-99cbde0ac255.png"></p>
+<p>不同的任务，最终调用的函数不一样</p>
+<p>普通任务：requestHostCallback(flushWork)</p>
+<p>延时任务：requestHostTimeout(handleTimeout, startTime - currentTime);</p>
+<p>整体流程</p>
+<p>在调度过程中，Scheduler 用到了 messageChannel 来进行通信</p>
+<p><img src="1733205504277-b12ec768-59b5-4e33-aded-1d6e0ddec7dd.png"></p>
+<h3 id="beginWork-工作流程（协调器）"><a href="#beginWork-工作流程（协调器）" class="headerlink" title="beginWork 工作流程（协调器）"></a>beginWork 工作流程（协调器）</h3><p>Reconciler（协调器） 是 Render 阶段的第二阶段工作，整个工作的过程可以分为“递”和“归”：</p>
+<p>递：beginWork</p>
+<p>归：completeWork</p>
+<p>beginWork 方法主要是根据传入的 FiberNode 创建下一级的 FiberNode。</p>
+<p>在 beginWork 会根据是 mount 还是 update 有着不一样的流程。</p>
+<p>如果当前的流程是 update，则 WorkInProgressFiberNode 存在对应的 CurrentFiberNode，接下来就判断是否能够复用。</p>
+<p>如果无法复用 CurrentFiberNode，那么 mount 和 update 的流程大体上是一致的：</p>
+<p>根据 wip.tag 进入“不同类型元素的处理分支”</p>
+<p>使用 reconcile 算法生成下一级 FiberNode（diff 算法）</p>
+<p>两个流程的区别在于“最终是否会为生成的子 FiberNode 标记副作用 flags”</p>
+<p>在 beginWork 中，如果标记了副作用的 flags，那么主要与元素的位置相关，包括：</p>
+<p>标记 ChildDeletion，代表删除操作</p>
+<p>标记 Placement，代表插入或移动操作</p>
+<h3 id="最小堆算法"><a href="#最小堆算法" class="headerlink" title="最小堆算法"></a>最小堆算法</h3><h3 id="React-中哪些地方用到了位运算？"><a href="#React-中哪些地方用到了位运算？" class="headerlink" title="React 中哪些地方用到了位运算？"></a>React 中哪些地方用到了位运算？</h3><p>位运算可以很方便的表达“增、删、改、查”。在 React 内部，像 flags、状态、优先级等操作都大量使用到了位运算。</p>
+<p>细分下来主要有如下的三个地方：</p>
+<ul>
+<li>fiber 的 flags</li>
+<li>lane 模型(优先级机制)</li>
+<li>上下文（当前执行到了哪个阶段）</li>
+</ul>
+<h3 id="React-语法"><a href="#React-语法" class="headerlink" title="React 语法"></a>React 语法</h3><p>useMemo 就是定义一个没有副作用的因变量</p>
+<pre><code class="javascript">const y = useMemo(() =&gt; x * 2 + 1, [x]);
+</code></pre>
+<p>可以使用 useEffect 来定义一个有副作用的因变量</p>
+<pre><code class="javascript">useEffect(() =&gt; (document.title = x), [x]);
+</code></pre>
+<h3 id="虚拟-dom"><a href="#虚拟-dom" class="headerlink" title="虚拟 dom"></a>虚拟 dom</h3><p>在 React 中，通过 JSX 来描述 UI，JSX 仅仅是一个语法糖，会被 Babel 编译为 createElement 方法的调用。该方法调用之后会返回一个 JS 对象，该对象就是虚拟 DOM 对象，官方更倾向于称之为一个 React 元素。</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

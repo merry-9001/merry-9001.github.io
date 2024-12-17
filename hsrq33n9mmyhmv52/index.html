@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>问题回答 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>问题回答</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/3
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="svg-改颜色"><a href="#svg-改颜色" class="headerlink" title="svg 改颜色"></a>svg 改颜色</h2><p>svg 改颜色是改 fill 属性</p>
+<h2 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h2><p>nvm 是 node 版本管理工具</p>
+<h2 id="uitls-和-hooks-的区别"><a href="#uitls-和-hooks-的区别" class="headerlink" title="uitls 和 hooks 的区别"></a>uitls 和 hooks 的区别</h2><p><font style="color:rgb(25, 27, 31);background-color:rgb(248, 248, 250);">utils</font><font style="color:rgb(25, 27, 31);">是通用的工具函数，一般是纯函数 ，工具类方法；而</font><font style="color:rgb(25, 27, 31);background-color:rgb(248, 248, 250);">hooks</font><font style="color:rgb(25, 27, 31);">是对</font><font style="color:rgb(25, 27, 31);background-color:rgb(248, 248, 250);">utils</font><font style="color:rgb(25, 27, 31);">的一种封装，用于在组件中共享状态逻辑和副作用，带有生命周期或者是 vue api 的，涉及到变量保存等，通过使用 hooks，我们可以将组件的状态和生命周期方法提取出来，并在多个组件之间共享和重用。这样可以减少代码重复，提高代码的可读性和可测试性。hooks 里会用到 vue 的一些方法，比如 ref，watch，调用 pinia 数据等。</font></p>
+<h1 id="JavaScript-和-json"><a href="#JavaScript-和-json" class="headerlink" title="JavaScript 和 json"></a>JavaScript 和 json</h1><p><font style="color:rgb(33, 37, 41);">JSON 语法支持三种类型的值，分别是</font><strong><font style="color:rgb(33, 37, 41);">简单值</font></strong><font style="color:rgb(33, 37, 41);">，</font><strong><font style="color:rgb(33, 37, 41);">对象</font></strong><font style="color:rgb(33, 37, 41);">，</font><strong><font style="color:rgb(33, 37, 41);">数组，</font></strong><font style="color:rgb(33, 37, 41);">特殊值 undefined 不可以。</font></p>
+<p><font style="color:rgb(33, 37, 41);">json 格式的 key 必须是字符串(“ “),其他使用无区别。</font></p>
+<p><font style="color:rgb(33, 37, 41);">可以使用 JSON.stringify()和 JSON.parse()进行转换</font></p>
+<p><font style="color:rgb(33, 37, 41);"></font></p>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a><font style="color:rgb(33, 37, 41);">JSON</font></h2><p><font style="color:rgb(33, 37, 41);">JavaScript Object Notation JS 对象表示法</font></p>
+<p><font style="color:rgb(33, 37, 41);">JSON 和 JS 对象的格式一样，只不过 </font><strong>JSON 字符串中的属性名必须加双引号</strong></p>
+<p><font style="color:rgb(33, 37, 41);">其他的和 JS 语法一致</font></p>
+<h3 id="json-–-gt-js-对象"><a href="#json-–-gt-js-对象" class="headerlink" title="json –&gt; js 对象"></a><font style="color:rgb(33, 37, 41);">json –&gt; js 对象</font></h3><p><font style="color:rgb(33, 37, 41);">JSON.parse()</font></p>
+<p><font style="color:rgb(33, 37, 41);">可以将以 JSON 字符串转换为 js 对象</font></p>
+<p><font style="color:rgb(33, 37, 41);">它需要一个 JSON 字符串作为参数，会将该字符串转换为 JS 对象并返回</font></p>
+<pre><code class="plain">var o = JSON.parse(json);
+</code></pre>
+<h3 id="JS-对象-—-gt-JSON"><a href="#JS-对象-—-gt-JSON" class="headerlink" title="JS 对象 —&gt; JSON"></a><font style="color:rgb(33, 37, 41);">JS 对象 —&gt; JSON</font></h3><p><font style="color:rgb(33, 37, 41);">JSON.stringify()</font></p>
+<p><font style="color:rgb(33, 37, 41);">可以将一个 JS 对象转换为 JSON 字符串</font></p>
+<p><font style="color:rgb(33, 37, 41);">需要一个 js 对象作为参数，会返回一个 JSON 字符串</font></p>
+<p><font style="color:rgb(33, 37, 41);">var str = JSON.stringify(obj3);</font></p>
+<p><font style="color:rgb(33, 37, 41);"></font></p>
+<h1 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h1><p>window.requestAnimationFrame() 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行 顾名思义，请求动画帧，也称 帧循环。 其实就是该 API 能以浏览器的显示频率来作为其动画动作的频率，比如浏览器每 16.7ms 刷新一次，动画回调也每 16.7ms 调用一次，这样就不会存在过度绘制的问题，动画不会掉帧，自然流畅。</p>
+<p><font style="color:rgb(77, 77, 77);">回调函数执行次数通常是每秒 60 次，但在大多数遵循 W3C 建议的浏览器中，回调函数执行次数通常与 浏览器屏幕刷新次数 相匹配。 屏幕刷新频率（次数）： 屏幕每秒出现图像的次数。普通笔记本为 60Hz。</font></p>
+<p><font style="color:rgb(77, 77, 77);"></font></p>
+<p><font style="color:rgb(77, 77, 77);">相对定时器的优势</font></p>
+<p><font style="color:rgb(77, 77, 77);">由系统决定回调函数的执行时间,保证回调函数在屏幕每次的刷新间隔中只被执行一次,不丢帧,不卡顿.</font></p>
+<p><font style="color:rgb(77, 77, 77);"></font></p>
+<p><font style="color:rgb(77, 77, 77);">CPU 节能</font></p>
+<p><font style="color:rgb(77, 77, 77);">定时器：当页面被隐藏或最小化时,后台仍在执行动画任务,浪费资源,</font></p>
+<p><font style="color:rgb(77, 77, 77);">requestAnimationFrame：在页面处理为未激活的状态下,屏幕刷新任务也会被系统暂停,因此跟着屏幕刷新率走的 requestAnimationFrame 也会停止渲染,当页面再次被激活时,动画再次从上次停留的地方继续执行,节省 CPU 开销</font></p>
+<p><font style="color:rgb(77, 77, 77);">函数节流</font></p>
+<p><font style="color:rgb(77, 77, 77);">保证每个刷新间隔期间的刷新只被执行一次,既保证流畅性,又节省函数执行的开销,假设屏幕是 60hz 的刷新率,那么显示器每 1000/60≈16.7 毫秒刷新一次,多次绘制并不会在屏幕表现出来.</font></p>
+<p><font style="color:rgb(77, 77, 77);"></font></p>
+<pre><code class="plain">定义
+let i = 0;
+function step(timestamp) &#123;
+   console.log(i++);
+   window.requestAnimationFrame(step);
+&#125;
+window.requestAnimationFrame(step);
+
+
+清除
+let myReq;
+let i = 0;
+function step(timestamp) &#123;
+   console.log(i++);
+   myReq = window.requestAnimationFrame(step);
+&#125;
+window.requestAnimationFrame(step);
+
+document.onclick = function()&#123;
+   window.cancelAnimationFrame(myReq);    // 专属清除方式
+&#125;
+</code></pre>
+<h1 id="内存泄露"><a href="#内存泄露" class="headerlink" title="内存泄露"></a>内存泄露</h1><p>如果一个东西浏览器检测到你永远都不会再用了，那他就会清理垃圾，否则如果一个东西被引用，但你不会去用，那你就要手动释放</p>
+<h1 id="icofont-与-svg-图片的选择"><a href="#icofont-与-svg-图片的选择" class="headerlink" title="icofont 与 svg 图片的选择"></a>icofont 与 svg 图片的选择</h1><p>当在代码中选择使用 Iconfont 图标还是 SVG 图片时，有几个方面需要考虑：</p>
+<h3 id="1-性能"><a href="#1-性能" class="headerlink" title="1. 性能"></a>1. <strong>性能</strong></h3><ul>
+<li><strong>Iconfont</strong>：<ul>
+<li><strong>优点</strong>：加载较快，因为图标被合并成一个字体文件，浏览器只需下载一次，并且字体文件通常较小。图标是以字体的形式存在，因此减少了 HTTP 请求。</li>
+<li><strong>缺点</strong>：如果图标集很大，可能会导致字体文件的大小增加，从而影响加载时间。对于只需要少量图标的场景，这通常不是问题。</li>
+</ul>
+</li>
+<li><strong>SVG</strong>：<ul>
+<li><strong>优点</strong>：单个 SVG 文件通常比较小，而且可以进行压缩。SVG 文件是矢量图形，因此在不同分辨率下不会失真。</li>
+<li><strong>缺点</strong>：每个 SVG 文件都需要单独加载，可能会增加 HTTP 请求次数，尽管使用 SVG Sprites 可以解决这个问题。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-可维护性"><a href="#2-可维护性" class="headerlink" title="2. 可维护性"></a>2. <strong>可维护性</strong></h3><ul>
+<li><strong>Iconfont</strong>：<ul>
+<li><strong>优点</strong>：如果使用 Iconfont 的图标库，图标的管理和维护比较集中。修改图标或替换图标库时，通常只需更新字体文件。</li>
+<li><strong>缺点</strong>：定制图标时可能不够灵活，如果需要使用不在图标库中的图标，可能需要重新生成字体文件。</li>
+</ul>
+</li>
+<li><strong>SVG</strong>：<ul>
+<li><strong>优点</strong>：SVG 图标通常易于定制，可以直接编辑 SVG 文件以更改颜色、大小等属性。SVG 图标可以嵌入到 HTML 中，也可以作为外部文件引入，提供了更多灵活性。</li>
+<li><strong>缺点</strong>：管理多个 SVG 文件可能会变得复杂，尤其是当有很多图标时。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-样式和交互"><a href="#3-样式和交互" class="headerlink" title="3. 样式和交互"></a>3. <strong>样式和交互</strong></h3><ul>
+<li><strong>Iconfont</strong>：<ul>
+<li><strong>优点</strong>：可以通过 CSS 样式轻松控制图标的颜色、大小、阴影等。图标作为字体的一部分，因此可以使用类似于文本的样式。</li>
+<li><strong>缺点</strong>：对复杂交互的支持有限。如果需要复杂的动画效果或交互，可能需要额外的 JavaScript 和 CSS 处理。</li>
+</ul>
+</li>
+<li><strong>SVG</strong>：<ul>
+<li><strong>优点</strong>：SVG 支持丰富的样式和交互效果。你可以通过 CSS 和 JavaScript 控制 SVG 图标的细节，例如应用渐变、动画等。SVG 图标可以非常灵活地与页面元素互动。</li>
+<li><strong>缺点</strong>：复杂的 SVG 文件可能会增加代码复杂性。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-兼容性和支持"><a href="#4-兼容性和支持" class="headerlink" title="4. 兼容性和支持"></a>4. <strong>兼容性和支持</strong></h3><ul>
+<li><strong>Iconfont</strong>：<ul>
+<li><strong>优点</strong>：广泛兼容，几乎所有现代浏览器都支持字体图标。</li>
+<li><strong>缺点</strong>：老旧浏览器或某些特定环境下的支持可能不如 SVG。</li>
+</ul>
+</li>
+<li><strong>SVG</strong>：<ul>
+<li><strong>优点</strong>：现代浏览器普遍支持 SVG，包括对 SVG 的动画和交互支持。</li>
+<li><strong>缺点</strong>：老旧浏览器的支持较差，不过在现代 Web 开发中，这通常不是主要问题。</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-访问性"><a href="#5-访问性" class="headerlink" title="5. 访问性"></a>5. <strong>访问性</strong></h3><ul>
+<li><strong>Iconfont</strong>：<ul>
+<li><strong>优点</strong>：可以通过 CSS 添加<code>aria-label</code>等属性来改善访问性，但这需要额外的工作。</li>
+<li><strong>缺点</strong>：图标作为字体可能不如 SVG 直接支持访问性特性。</li>
+</ul>
+</li>
+<li><strong>SVG</strong>：<ul>
+<li><strong>优点</strong>：SVG 本身可以包含<code>aria-label</code>、<code>role</code>等访问性标签，使得屏幕阅读器更容易识别和解释图标。</li>
+<li><strong>缺点</strong>：需要确保正确使用访问性标签，否则可能会影响使用屏幕阅读器的用户。</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>如果你需要快速、简洁的图标集，并且对样式和交互要求不高，<strong>Iconfont</strong>可能是一个合适的选择。</li>
+<li>如果你需要高度自定义的图标，并且需要复杂的样式和交互，<strong>SVG</strong>可能更适合你。</li>
+</ul>
+<p>最终的选择取决于你的具体需求，包括项目的复杂性、性能要求和可维护性等因素。</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

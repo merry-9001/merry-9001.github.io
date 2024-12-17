@@ -1,0 +1,415 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>vue ssr | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>vue ssr</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <p>通过服务器渲染页面</p>
+<p>客户端渲染缺点：</p>
+<p>首屏加载慢 （落地页）</p>
+<p>SEO 不好</p>
+<p>服务器渲染缺点：</p>
+<p>服务端要跑一次，客户端也要渲染</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>利用 vue-server-renderer 包先在服务器端生成渲染后的 html 代码</p>
+<p>服务端渲染要做的三件事：</p>
+<ol>
+<li><p>创建 vue 实例</p>
+</li>
+<li><p>创建渲染器</p>
+</li>
+<li><p>利用渲染器将 vue 实例转化成 html 字符串</p>
+</li>
+</ol>
+<p>1.先搭建一个 vue 环境，入口需要特殊处理</p>
+<p>注意：其中 main.js 需要服务器端和客户端共用</p>
+<p>2.打包两套代码（服务器端使用和客户端使用）</p>
+<p>3.启动一个 node 服务器</p>
+<pre><code class="javascript">const express = require(&quot;express&quot;);
+const server = express();
+const fs = require(&quot;fs&quot;);
+const &#123; resolve &#125; = require(&quot;path&quot;);
+const &#123; createBundleRenderer &#125; = require(&quot;vue-server-renderer&quot;);
+const serverBundle = require(&quot;../dist/vue-ssr-server-bundle.json&quot;);
+const clientManifest = require(&quot;../dist/vue-ssr-client-manifest.json&quot;);
+
+server.use(express.static(resolve(&quot;../dist&quot;), &#123; index: false &#125;));
+
+server.get(&quot;*&quot;, async (req, res) =&gt; &#123;
+  try &#123;
+    // 2. 创建渲染器
+    const render = createBundleRenderer(serverBundle, &#123;
+      template: fs.readFileSync(&quot;./index.ssr.html&quot;, &quot;utf-8&quot;),
+      clientManifest,
+    &#125;);
+    const html = await render.renderToString();
+    res.send(html);
+    // 3. 利用渲染器将vue实例转化成html字符串
+  &#125; catch (error) &#123;
+    console.log(error);
+    res.status(500).send(&quot;服务器错误&quot;);
+  &#125;
+
+  // res.send(&#39;hello&#39;);
+&#125;);
+
+server.listen(12306, () =&gt; console.log(&quot;server is run at 12306&quot;));
+</code></pre>
+<p>真实的 html 页面</p>
+<p><img src="1730357793626-d37fe0e0-13d8-4f08-b5aa-ec6415a987f1.png"></p>
+<p>内部其实打包了两份代码以后 createBundleRenderer 渲染的是服务器打包出来的 html 页面，然而 css 和 js 还是靠客户端打包出来的 js 运行（只为了 seo 和渲染节约时间）</p>
+<p>4.vue-router 的模式一定是 history</p>
+<p>5.细节（router 传递 url 的值）</p>
+<p>server index.js(运行服务器)</p>
+<pre><code class="javascript">const express = require(&quot;express&quot;);
+const server = express();
+const fs = require(&quot;fs&quot;);
+const &#123; resolve &#125; = require(&quot;path&quot;);
+const &#123; createBundleRenderer &#125; = require(&quot;vue-server-renderer&quot;);
+const serverBundle = require(&quot;../dist/vue-ssr-server-bundle.json&quot;);
+const clientManifest = require(&quot;../dist/vue-ssr-client-manifest.json&quot;);
+
+server.use(express.static(resolve(&quot;../dist&quot;), &#123; index: false &#125;));
+
+server.get(&quot;*&quot;, async (req, res) =&gt; &#123;
+  // /demo, req.url /demo
+  try &#123;
+    const url = req.url;
+    // 2. 创建渲染器
+    const render = createBundleRenderer(serverBundle, &#123;
+      template: fs.readFileSync(&quot;./index.ssr.html&quot;, &quot;utf-8&quot;),
+      clientManifest,
+    &#125;);
+    const html = await render.renderToString(&#123; url &#125;); //这里可以传参数
+    res.send(html);
+    // 3. 利用渲染器将vue实例转化成html字符串
+  &#125; catch (error) &#123;
+    console.log(error);
+    if (error.code == 404) &#123;
+      res.status(404).send(&quot;页面去火星了，找不到了，404啦&quot;);
+      return;
+    &#125;
+    res.status(500).send(&quot;服务器错误&quot;);
+  &#125;
+
+  // res.send(&#39;hello&#39;);
+&#125;);
+
+server.listen(12306, () =&gt; console.log(&quot;server is run at 12306&quot;));
+</code></pre>
+<p>server.entry.js（打包的服务器端）</p>
+<pre><code class="javascript">import createApp from &quot;../main.js&quot;;
+
+export default function (ctx) &#123;
+  return new Promise((resolve, reject) =&gt; &#123;
+    const &#123; app, router, store &#125; = createApp();
+    router.push(ctx.url);
+    router.onReady(() =&gt; &#123;
+      // 判断当前路由下是否存在组件
+      const matchedComponents = router.getMatchedComponents();
+      if (matchedComponents.length == 0) &#123;
+        return reject(&#123; code: 404 &#125;);
+      &#125;
+      Promise.all(
+        matchedComponents.map((c) =&gt; &#123;
+          if (c.asyncData) &#123;
+            return c.asyncData(store);
+          &#125;
+        &#125;)
+      )
+        .then(() =&gt; &#123;
+          // window.__INITIAL_STATE__
+          ctx.state = store.state;
+          resolve(app);
+        &#125;)
+        .catch(reject);
+      // resolve(app);
+    &#125;, reject);
+  &#125;);
+&#125;
+</code></pre>
+<p>6.store 数据预取</p>
+<p>在页面加载之前，登录信息等数据想要同步获取到而不是闪烁（提前将异步数据跟着页面过来）</p>
+<pre><code class="javascript">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;我是Home页面&lt;/h1&gt;
+    &lt;div&gt;欢迎，&#123;&#123; name &#125;&#125;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import &#123; mapState &#125; from &#39;vuex&#39;;
+export default &#123;
+  computed: &#123;
+    ...mapState([&#39;name&#39;]),
+  &#125;,
+  created() &#123;
+    this.$store.dispatch(&#39;getName&#39;);
+  &#125;,
+
+  //可以在vue中编写一个方法
+  asyncData(store) &#123;
+    return store.dispatch(&#39;getName&#39;);
+  &#125;
+&#125;
+&lt;/script&gt;
+
+&lt;style&gt;
+
+&lt;/style&gt;
+</code></pre>
+<p>server.entry.js</p>
+<p>调用方法</p>
+<p>保存结果</p>
+<pre><code class="javascript">import createApp from &quot;../main.js&quot;;
+
+export default function (ctx) &#123;
+  return new Promise((resolve, reject) =&gt; &#123;
+    const &#123; app, router, store &#125; = createApp();
+    router.push(ctx.url);
+    router.onReady(() =&gt; &#123;
+      // 判断当前路由下是否存在组件
+      const matchedComponents = router.getMatchedComponents();
+      if (matchedComponents.length == 0) &#123;
+        return reject(&#123; code: 404 &#125;);
+      &#125;
+      Promise.all(
+        matchedComponents.map((c) =&gt; &#123;
+          //这边判断如果有这个方法的话就直接调用
+          if (c.asyncData) &#123;
+            return c.asyncData(store);
+          &#125;
+        &#125;)
+      )
+        .then(() =&gt; &#123;
+          // 会将结果保存到这里面
+          //服务端保存最新的state仓库数据
+          // window.__INITIAL_STATE__
+          ctx.state = store.state;
+          resolve(app);
+        &#125;)
+        .catch(reject);
+      // resolve(app);
+    &#125;, reject);
+  &#125;);
+&#125;
+</code></pre>
+<h2 id="vue-cli-改成-ssr"><a href="#vue-cli-改成-ssr" class="headerlink" title="vue-cli 改成 ssr"></a>vue-cli 改成 ssr</h2><p>1.将 vue-router vuex main.js 都变成函数</p>
+<pre><code class="javascript">import Vue from &quot;vue&quot;;
+import App from &quot;./app.vue&quot;;
+import createRouter from &quot;./router&quot;;
+import createStore from &quot;./store&quot;;
+
+export default function () &#123;
+  const router = createRouter();
+  const store = createStore();
+  const app = new Vue(&#123;
+    render: (h) =&gt; h(App),
+    router,
+    store,
+  &#125;);
+  return &#123; app, router, store &#125;;
+&#125;
+</code></pre>
+<p>2.编写 server 文件夹(最终运行的服务器)</p>
+<p>3.编写 entry 文件夹（里面分成服务器端渲染和客户端渲染两部分）</p>
+<p>4.编写 vue.config.js</p>
+<pre><code class="javascript">const VueSSRClientPlugin = require(&quot;vue-server-renderer/client-plugin&quot;);
+const VueSSRServerPlugin = require(&quot;vue-server-renderer/server-plugin&quot;);
+const TARGET_NODE = process.env.WEBPACK_TARGET === &quot;node&quot;;
+const target = TARGET_NODE ? &quot;server&quot; : &quot;client&quot;;
+
+module.exports = &#123;
+  configureWebpack: () =&gt; (&#123;
+    entry: &#123;
+      app: `./src/entry/$&#123;target&#125;.entry.js`,
+    &#125;,
+    target: TARGET_NODE ? &quot;node&quot; : &quot;web&quot;,
+    output: &#123;
+      libraryTarget: TARGET_NODE ? &quot;commonjs2&quot; : undefined,
+    &#125;,
+    plugins: [
+      TARGET_NODE ? new VueSSRServerPlugin() : new VueSSRClientPlugin(),
+    ],
+  &#125;),
+  chainWebpack: (config) =&gt; &#123;
+    config.optimization.splitChunks(undefined);
+  &#125;,
+&#125;;
+</code></pre>
+<p>5.编写脚本命令</p>
+<pre><code class="javascript">&quot;scripts&quot;: &#123;
+  &quot;serve&quot;: &quot;vue-cli-service serve&quot;,
+  &quot;build&quot;: &quot;vue-cli-service build&quot;,
+  &quot;lint&quot;: &quot;vue-cli-service lint&quot;,
+  &quot;build:client&quot;: &quot;vue-cli-service build&quot;,
+  &quot;build:server&quot;: &quot;cross-env WEBPACK_TARGET=node vue-cli-service build --mode server&quot;,
+  &quot;build:all&quot;: &quot;npm run build:server &amp;&amp; move dist\\vue-ssr-server-bundle.json bundle &amp;&amp; npm run build:client &amp;&amp; move bundle dist\\vue-ssr-server-bundle.json&quot;
+&#125;,
+</code></pre>
+<h2 id="nuxt-js"><a href="#nuxt-js" class="headerlink" title="nuxt.js"></a>nuxt.js</h2><p>vue ssr 的脚手架</p>
+<p>翻盖上面自己搭的脚手架，还多很多东西（router,vuex 都已经集合进去了）</p>
+<p>api</p>
+<p>路由</p>
+<pre><code class="javascript">&lt;nuxt-link to=&quot;/&quot;&gt;首页&lt;/nuxt-link&gt;
+</code></pre>
+<p>layouts 模板</p>
+<pre><code class="javascript">&lt;div id=&quot;components-layout-demo-basic&quot;&gt;
+  &lt;a-layout&gt;
+    &lt;a-layout-header&gt;Header&lt;/a-layout-header&gt;
+    &lt;a-layout-content&gt;
+      &lt;nuxt /&gt;
+    &lt;/a-layout-content&gt;
+    &lt;a-layout-footer&gt;Footer&lt;/a-layout-footer&gt;
+  &lt;/a-layout&gt;
+&lt;/div&gt;
+</code></pre>
+<p>nuxt 的基本目录</p>
+<p><img src="1730379255095-2f0e557a-01cb-48f2-91dc-bd2306f0faf1.png"></p>
+<p>components：组件，可以直接使用</p>
+<p>layouts:模板，每个页面可以使用不一样的模板</p>
+<p>middleware:中间件,用于打开页面的服务器前置条件</p>
+<p>pages：每一个页面对应一个路由</p>
+<p>static:静态文件(图标)</p>
+<p>store:全局可用的数据(vuex)</p>
+<p>plugins:第三方插件在这里(axios,element-plus)</p>
+<p>nuxt.config.js：基本所有的配置放在这里</p>
+<p>_开头是一个动态路由 nuxt 框架</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

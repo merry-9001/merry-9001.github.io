@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>性能优化vite | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>性能优化vite</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/24
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="开发时态构建优化（开发时）"><a href="#开发时态构建优化（开发时）" class="headerlink" title="开发时态构建优化（开发时）"></a>开发时态构建优化（开发时）</h2><p>vite 是按需加载，不太需要这方面的优化</p>
+<h2 id="传输优化（生产运行时）"><a href="#传输优化（生产运行时）" class="headerlink" title="传输优化（生产运行时）"></a>传输优化（生产运行时）</h2><h3 id="tree-shaking"><a href="#tree-shaking" class="headerlink" title="tree shaking"></a>tree shaking</h3><h3 id="split-chunk-代码分割"><a href="#split-chunk-代码分割" class="headerlink" title="split chunk(代码分割)"></a>split chunk(代码分割)</h3><p>好处：</p>
+<p>1.减少初始加载时间</p>
+<p>2.按需加载</p>
+<p>3.并行加载</p>
+<p>4.缓存利用</p>
+<p>默认行为：异步导入的 js 和 css 会单独成一个模块，当要用到的时候引入</p>
+<pre><code class="javascript">  build: &#123;
+    rollupOptions: &#123;
+      output: &#123;
+        manualChunks: &#123;
+          vue: [&#39;vue&#39;],
+          &#39;vue-router&#39;: [&#39;vue-router&#39;],
+          &#39;element-plus&#39;: [&#39;element-plus&#39;]
+        &#125;
+      &#125;
+    &#125;,
+    outDir: &quot;dist/client&quot;,
+    chunkSizeWarningLimit: 1000,
+  &#125;,
+</code></pre>
+<h3 id="代码压缩"><a href="#代码压缩" class="headerlink" title="代码压缩"></a>代码压缩</h3><pre><code class="javascript">yarn add terser
+</code></pre>
+<p>vite 配置</p>
+<pre><code class="javascript">minify: &#39;terser&#39;,
+terserOptions: &#123;
+  compress: &#123;
+      drop_console: viteEnv.VITE_DROP_CONSOLE,
+      drop_debugger: viteEnv.VITE_DROP_CONSOLE,
+  &#125;
+&#125;
+</code></pre>
+<h3 id="分包策略"><a href="#分包策略" class="headerlink" title="分包策略"></a>分包策略</h3><p>build 里配置，可以使得 build 打包不乱码</p>
+<p><img src="1724840397851-b28f82d5-f260-4b48-aafb-2e559b7fb9f0.png"></p>
+<p>因为浏览器有缓存，将第三方模块单独打包成一个 js 可以利用缓存，因为第三方模块不会变</p>
+<pre><code class="typescript">build: &#123;
+    rollupOptions: &#123;
+      output: &#123;
+        manualChunks: &#123;
+          vue: [&#39;vue&#39;],
+          &#39;vue-router&#39;: [&#39;vue-router&#39;],
+          &#39;element-plus&#39;: [&#39;element-plus&#39;]
+        &#125;
+      &#125;
+    &#125;,
+    outDir: &quot;dist/client&quot;,
+    chunkSizeWarningLimit: 1000,
+  &#125;,
+</code></pre>
+<p>配置多入口</p>
+<p><img src="1724844025818-62442076-f4b5-462b-9ae6-69fcafe9b478.png"></p>
+<h3 id="gzip-压缩"><a href="#gzip-压缩" class="headerlink" title="gzip 压缩"></a>gzip 压缩</h3><p><img src="1724844140269-4b8ef65b-0761-42d8-9658-6012e2f3e5f1.png"></p>
+<h3 id="动态导入（懒加载）"><a href="#动态导入（懒加载）" class="headerlink" title="动态导入（懒加载）"></a>动态导入（懒加载）</h3><p>vite 是按需加载，先加载 main.js 然后再根据 main.js 要引入的文件再去加载</p>
+<p>动态导入和按需加载有异曲同工之妙</p>
+<p>采用 import(xxx)的语法</p>
+<p>采用动态导入会导致打包结果分包（代码分割）</p>
+<p>应用</p>
+<p>可以用在 vue-router 里，路由组件可以用到再去加载</p>
+<p>无动态导入</p>
+<p><img src="1724848891493-0df11d47-6db8-4ed9-9054-219630f109b6.png"></p>
+<p>假如这样，那么当这个模块被加载的时候，Home 和 Login 都会被加载（读整个文件）</p>
+<p>但如果采用动态导入（懒加载），那么只会在切换到那个页面的时候才会加载</p>
+<p>原理</p>
+<pre><code class="javascript">function import(path)&#123;
+  return new Promise((resolve)=&gt;&#123;
+    //vite用的es原生的动态导入
+    //不让他进入fulfilled状态
+    //进入到对应路由时将webpack_require.e这个promoise的状态设置为fulfilled(调用resolve)
+    //如果没进入过懒加载的页面，就让webpack_require.e永远悬停在(pending状态)
+    //创造一个promise.all 创建script标签，src指向懒加载进来的这个文件，然后把他放入html的body中
+    webpack_require.e().then(()=&gt;&#123;
+      const result = await webpakc_require(path)
+    &#125;)
+  &#125;)
+&#125;
+</code></pre>
+<h3 id="cdn-加速"><a href="#cdn-加速" class="headerlink" title="cdn 加速"></a>cdn 加速</h3><p>cdn 的第三方模块会根据你的网络给你提供最近的，最快的第三方服务器</p>
+<p><img src="1724845021916-6f9f2b7b-64b6-4918-aada-bf42912d1a65.png"></p>
+<p>原理</p>
+<p>1.会把你配置的 cdn 插入到 html 中</p>
+<p>2.会根据这个配置去修改 rollup 的配置（影响 rollup 配置）</p>
+<h3 id="图片压缩"><a href="#图片压缩" class="headerlink" title="图片压缩"></a>图片压缩</h3><pre><code class="javascript">yarn vite-plugin-imagemin -D
+</code></pre>
+<pre><code class="javascript">viteImagemin(&#123;
+  gifsicle: &#123;
+    optimizationLevel: 7,
+    interlaced: false,
+  &#125;,
+  optipng: &#123;
+    optimizationLevel: 7,
+  &#125;,
+  mozjpeg: &#123;
+    quality: 20,
+  &#125;,
+  pngquant: &#123;
+    quality: [0.8, 0.9],
+    speed: 4,
+  &#125;,
+  svgo: &#123;
+    plugins: [
+      &#123;
+        name: &quot;removeViewBox&quot;,
+      &#125;,
+      &#123;
+        name: &quot;removeEmptyAttrs&quot;,
+        active: false,
+      &#125;,
+    ],
+  &#125;,
+&#125;);
+</code></pre>
+<h2 id="分析插件"><a href="#分析插件" class="headerlink" title="分析插件"></a>分析插件</h2><h3 id="rollup-plugin-visualizer"><a href="#rollup-plugin-visualizer" class="headerlink" title="rollup-plugin-visualizer"></a>rollup-plugin-visualizer</h3><p>分析依赖模块的大小占比，可以让我们更有针对性的进行体积优化</p>
+<p>构建成功之后会在根目录下生成一个 stats.html</p>
+<pre><code class="javascript">import &#123; visualizer &#125; from &quot;rollup-plugin-visualizer&quot;;
+
+plugins: [
+  visualizer(&#123;
+    open: true,
+  &#125;),
+],
+</code></pre>
+<h3 id="vite-plugin-inspect"><a href="#vite-plugin-inspect" class="headerlink" title="vite-plugin-inspect"></a>vite-plugin-inspect</h3><p>用来分析各文件的编译结果</p>
+<p>可以在 <a target="_blank" rel="noopener" href="http://localhost:5173/__inspect/">http://localhost:5173/__inspect/</a> 里面看到每一个组件编译后的结果。</p>
+<pre><code class="javascript">// vite.config.js
+import Inspect from &quot;vite-plugin-inspect&quot;;
+
+export default &#123;
+  plugins: [Inspect()],
+&#125;;
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

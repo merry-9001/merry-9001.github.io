@@ -113,10 +113,26 @@
 
     <div class="content" v-pre>
         <h1 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let 和 const"></a>let 和 const</h1><p>解决问题</p>
-<p>var 不能用于定义常量</p>
-<p>var 可以重复声明变量</p>
-<p>var 存在变量提升</p>
-<p>var 不支持块级作用域</p>
+<ul>
+<li>var 不能用于定义常量</li>
+<li>var 可以重复声明变量</li>
+<li>var 存在变量提升</li>
+<li>var 不支持块级作用域</li>
+</ul>
+<pre><code class="markdown">var a = 1,
+b = 2;
+
+function m1() &#123;
+console.log(a); //这里会输出 undefined,因为 var 存在变量提升
+var a = 3;
+function m2() &#123;
+console.log(a, b);
+&#125;
+m2();
+&#125;
+
+m1();
+</code></pre>
 <p>不可以重复声明变量</p>
 <pre><code>let site = &#39;itLike&#39;;
 
@@ -131,19 +147,17 @@ let site = &#39;itLike&#39;;
 <p>const 用来定义常量</p>
 <pre><code>const E = 2.718;
 </code></pre>
+<p><strong>const 定义的基本类型不能改变，但是定义的对象是可以通过修改对象属性等方法来改变</strong></p>
 <p>块级作用域用一组大括号定义一个块，使用 let 定义的变量在大括号的外部是访问不到的，此外，let 声明的变量不会污染全局作用域。（let 拥有块级作用域）</p>
-<p>const 定义的基本类型不能改变，但是定义的对象是可以通过修改对象属性等方法来改变的。</p>
 <pre><code>&#123;let site = &#39;itLike&#39;;&#125;
 </code></pre>
 <h1 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h1><p>对象解构允许我们使用变量的名字匹配对象的属性 匹配成功 将对象属性的值赋值给变量</p>
-<pre><code>    let person = &#123;name: &#39;lisi&#39;, age: 30, sex: &#39;男&#39;&#125;;
-    let &#123;name: myName&#125; = person;
-    console.log(myName)
+<pre><code>let person = &#123;name: &#39;lisi&#39;, age: 30, sex: &#39;男&#39;&#125;;
+let &#123;name: myName&#125; = person;
+console.log(myName)
 </code></pre>
 <pre><code>let [a, b, c] = [1, 2, 3]
-console.log(a, b, c)
 let [json, arr, num, str] = [&#123; a: 1, b: 2 &#125;, [1, 2, 3], 8, &#39;str&#39;]
-console.log(json, arr, num, str)
 let [name1, name2, name3] = nameArr;
 let &#123;name: lkName, age: lkAge, sex: lkSex&#125;= &#123;name: &#39;小煤球&#39;, age: 1, sex: &#39;公&#39;&#125;;
 </code></pre>
@@ -155,15 +169,47 @@ let &#123;name: lkName, age: lkAge, sex: lkSex&#125;= &#123;name: &#39;小煤球
 </ul>
 </li>
 </ul>
-<h1 id="函数操作"><a href="#函数操作" class="headerlink" title="函数操作"></a>函数操作</h1><h2 id="获取自身属性"><a href="#获取自身属性" class="headerlink" title="获取自身属性"></a>获取自身属性</h2><pre><code>        // 用于获取对象自身所有的属性
-        var obj = &#123;
-            id: 1,
-            pname: &#39;小米&#39;,
-            price: 1999,
-            num: 2000
-        &#125;;
-        var arr = Object.keys(obj);
-        console.log(arr);
+<p>深层解构</p>
+<pre><code class="javascript">const user = &#123;
+  name: &quot;monica&quot;,
+  age: 17,
+  addr: &#123;
+    province: &quot;黑龙江&quot;,
+    city: &quot;哈尔滨&quot;,
+  &#125;,
+&#125;;
+
+// 取出 user 中的 name 和 age
+const &#123; name, age &#125; = user;
+console.log(name, age); //  monica 17
+
+// 取出 user 中的 city
+const &#123;
+  addr: &#123; city &#125;,
+&#125; = user;
+console.log(city); //  哈尔滨
+</code></pre>
+<p>函数解构</p>
+<pre><code class="javascript">// 箭头函数也可以在参数位置进行解构
+const method = (&#123; a, b &#125;) =&gt; &#123;
+  console.log(a, b);
+&#125;;
+const obj = &#123;
+  a: 1,
+  b: 2,
+  c: 3,
+&#125;;
+method(obj); // 1 2
+</code></pre>
+<p>遍历解构</p>
+<pre><code class="javascript">const users = [
+  &#123; name: &quot;monica&quot;, age: 17 &#125;,
+  &#123; name: &quot;邓哥&quot;, age: 70 &#125;,
+];
+// 在遍历时进行解构
+for (const &#123; name, age &#125; of users) &#123;
+  console.log(name, age);
+&#125;
 </code></pre>
 <h1 id="类操作"><a href="#类操作" class="headerlink" title="类操作"></a>类操作</h1><p>在之前定义类是通过构造函数来操作的，es6 新增了 class 关键字，此时，我们也可以像其它语言一样来创建各种类了。</p>
 <pre><code>    class Person&#123;
@@ -176,220 +222,7 @@ let &#123;name: lkName, age: lkAge, sex: lkSex&#125;= &#123;name: &#39;小煤球
         &#125;
     &#125;
 </code></pre>
-<h2 id="类继承"><a href="#类继承" class="headerlink" title="类继承"></a>类继承</h2><pre><code>         class Father &#123;
-                        // constructor 里面的this 指向的是 创建的实例对象
-            constructor(x, y) &#123;
-                this.x = x;  //this.x这样这个x函数体内的所有函数都可以访问了
-                this.y = y;
-            &#125;
-            sum() &#123;
-                console.log(this.x + this.y);
-            &#125;
-        &#125;
-        class Son extends Father &#123;
-            constructor(x, y) &#123;
-                super(x, y); //调用了父类中的构造函数
-            &#125;
-        &#125;
-        var son = new Son(1, 2);
-        var son1 = new Son(11, 22);
-        son.sum();
-        son1.sum();
-</code></pre>
-<p>继承中的属性或者方法查找原则: 就近原则</p>
-<ol>
-<li> 继承中,如果实例化子类输出一个方法,先看子类有没有这个方法,如果有就先执行子类的</li>
-<li> 继承中,如果子类里面没有,就去查找父类有没有这个方法,如果有,就执行父类的这个方法(就近原则)</li>
-</ol>
-<h1 id="重载（to-do）"><a href="#重载（to-do）" class="headerlink" title="重载（to do）"></a>重载（to do）</h1><p>什么时重载？</p>
-<p>ES6 带来了 Proxy 和 Reflect，配合使用可以实现重载。</p>
-<p>Proxy 用于修改某些操作的默认行为，相当于对原始想进行的操作进行“包装”；</p>
-<h3 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h3><p>Proxy 用于修改某些操作的默认行为，即对编程语言层面进行修改，属于“元编程”，Proxy 意思为“代理”，即在访问对象之前建立一道“拦截”，任何访问该对象的操作之前都会通过这道“拦截”，即执行 Proxy 里面定义的方法。</p>
-<pre><code>ES6原生规定的Proxy的基本用法为
-let pro = new Proxy(target,handler);
-</code></pre>
-<p>其中 new Proxy 相当于创建了一个 Proxy 实例，target 为所要拦截的目标对象，handler 也是一个对象，里面定义的是对拦截对象所要进行的拦截方法。</p>
-<p>Proxy 实例 1</p>
-<pre><code> let target = &#123;
-      name:&quot;小明&quot;，
-      age: 15
- &#125;
- let handler = &#123;
-       get:(target,name,)=&gt;&#123;//读取属性
-             return &quot;success&quot;
-        &#125;
- &#125;
-let pro = new Proxy(target,handler);
-console.log(pro.name);
-//此时打印出来的结果为 success；
-</code></pre>
-<p>解释：创建的 target 对象为所要拦截的对象，handler 对象为拦截对象后执行的操作，这里 get 方法为读取操作，即用户想要读取 pro 中的属性时执行的拦截操作。最后创建一个 Proxy 实例，因为我设定的读取拦截操作为返回一个“success”字符串，所以当我想读取 pro 中的属性时，结果打印出来的总是“success”字符串。</p>
-<p>（2）Proxy 常用的拦截方法</p>
-<p>1、get(target,name,property)方法，用于拦截某个读取属性的操作</p>
-<p>第一个参数为目标对象</p>
-<p>第二个参数为属性名称</p>
-<p>第三个属性为操作所针对的对象（可选参数）。</p>
-<pre><code>      let handler = &#123;
-               get:function(target,name,property)&#123;
-                    if(name in target)&#123;
-                           cosnole.log(&quot;success&quot;);
-                     &#125;else&#123;
-                           console.log(&quot;error&quot;)
-                     &#125;
-                     return Reflect.get(target,name,property);
-                &#125;
-       &#125;
-       let target =  &#123;
-            name:&quot;小明&quot;,
-            age:15
-      &#125;
-      let pro = new Proxy(target,handler);
-      pro.name;
-     //结果为 success
-      pro.grade;
-      //结果为error
-</code></pre>
-<p>2、set(target,name,value,property),用于拦截某个属性的赋值操作，第一个参数为目标对象，第二个参数为属性名，第三个参数为属性值，第四个参数为操作行为所针对的对象（可选参数）。</p>
-<p>3、has(target,key),用来拦截对象是否具有某个属性值的操作，第一个参数为目标对象，第二个参数为属性名</p>
-<pre><code>       let handler = &#123;
-              has:function(target,key)&#123;
-                     if(key[0] != &quot;_&quot;)&#123;
-                            return  false
-                     &#125;
-                     return true;
-                &#125;
-       &#125;
-       let target =  &#123;
-            _name:&quot;小明&quot;,
-            age:15
-      &#125;
-      let pro = new Proxy(target,handler);
-      console.log(&quot;_name&quot; in pro);
-      //打印结果为 true
-      console.log(&quot;age&quot; in pro);
-      //打印结果为false
-</code></pre>
-<h3 id="Reflect-对象"><a href="#Reflect-对象" class="headerlink" title="Reflect 对象"></a>Reflect 对象</h3><p>Reflect 对象的方法与 Proxy 对象的方法一一对应，这使得 Proxy 对象可以方便的调用对应的 Reflect 方法完成默认行为。</p>
-<p>简单说，就是函数或者方法有相同的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。</p>
-<p>概述</p>
-<p>1、Reflect 对象与 Proxy 对象一样，都是 ES6 对操作对象设计的 API<br>2、对于我个人的理解而言，Reflect 设计的目的是为了优化 Object 的一些操作方法以及合理的返回 Object 操作返回的结果，对于一些命令式的 Object 行为，Reflect 对象可以将其变为函数式的行为</p>
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><ul>
-<li>映射 一个对一个</li>
-</ul>
-<pre><code>let arr = [12, 5, 8]
-let result = arr.map(function (item) &#123;
-    return item*2
-&#125;)
-let result2 = arr.map(item=&gt;item*2) // 简写
-console.log(result)
-console.log(result2)
-
-let score = [18, 86, 88, 24]
-let result3 = score.map(item =&gt; item &gt;= 60 ? &#39;及格&#39; : &#39;不及格&#39;)
-console.log(result3)
-
-// 结果
-[ 24, 10, 16 ]
-[ 24, 10, 16 ]
-[ &#39;不及格&#39;, &#39;及格&#39;, &#39;及格&#39;, &#39;不及格&#39; ]
-</code></pre>
-<h2 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h2><p>汇总 一堆出来一个</p>
-<ul>
-<li>用于比如，算个总数，算个平均</li>
-</ul>
-<pre><code>var arr = [1, 3, 5, 7]
-var result = arr.reduce(function (tmp, item, index) &#123;
-    //tmp 上次结果，item当前数，index次数1开始
-    console.log(tmp, item, index)
-    return tmp + item
-&#125;)
-console.log(result)
-
-var arr = [1, 3, 5, 7]
-var result = arr.reduce(function (tmp, item, index) &#123;
-    if (index != arr.length - 1) &#123; // 不是最后一次
-        return tmp + item
-    &#125; else &#123;
-        return (tmp + item)/arr.length
-    &#125;
-&#125;)
-console.log(result)  // 平均值
-</code></pre>
-<h2 id="some"><a href="#some" class="headerlink" title="some"></a>some</h2><pre><code>        var arr1 = [&#39;red&#39;, &#39;pink&#39;, &#39;blue&#39;];
-        var flag1 = arr1.some(function(value) &#123;
-            return value == &#39;pink&#39;;
-        &#125;);
-</code></pre>
-<p>filter 也是查找满足条件的元素 返回的是一个数组 而且是把所有满足条件的元素返回回来</p>
-<p>some 也是查找满足条件的元素是否存在 返回的是一个布尔值 如果查找到第一个满足条件的元素就终止循环</p>
-<h2 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h2><p>过滤器 保留为 true 的</p>
-<pre><code>var arr = [12, 4, 8, 9]
-var result = arr.filter(item =&gt; (item % 3 === 0) ? true : false)
-console.log(result)
-var result = arr.filter(item =&gt; item % 3 === 0)
-console.log(result)
-
-var arr = [
-    &#123; title: &#39;苹果&#39;, price: 10 &#125;,
-    &#123; title: &#39;西瓜&#39;, price: 20 &#125;,
-]
-var result = arr.filter(json =&gt; json.price &gt;= 20)
-console.log(result)
-</code></pre>
-<pre><code>        var arr = [12, 66, 4, 88, 3, 7];
-        var newArr = arr.filter(function(value, index) &#123;
-            // return value &gt;= 20;
-            return value % 2 === 0;
-        &#125;);
-        console.log(newArr);
-</code></pre>
-<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><ul>
-<li>多了两个新方法<ul>
-<li><code>startsWith</code></li>
-<li><code>endsWith</code></li>
-</ul>
-</li>
-</ul>
-<pre><code>var url = &#39;http://qq.com&#39;
-console.log(url.startsWith(&#39;http&#39;))
-console.log(url.endsWith(&#39;com&#39;))
-// 都是 true
-</code></pre>
-<p>判断是不是开头和结尾 结果是 true 和 false</p>
-<p>repeat 可以重复</p>
-<pre><code>        console.log(&quot;y&quot;.repeat(5))
-</code></pre>
-<ul>
-<li>字符串模版<ul>
-<li>使用反引号，<code>$&#123;变量&#125;</code></li>
-<li>可以折行</li>
-</ul>
-</li>
-</ul>
-<pre><code>let a = 12
-let str1 = `asdf$&#123;a&#125;`
-console.log(str1)
-
-let title = &#39;标题&#39;
-let content = &#39;内容&#39;
-let str = `&lt;div&gt;
-&lt;h1&gt;$&#123;title&#125;&lt;/h1&gt;
-&lt;p&gt;$&#123;content&#125;&lt;/p&gt;
-`
-console.log(str)
-&lt;div&gt;
-&lt;h1&gt;标题&lt;/h1&gt;
-&lt;p&gt;内容&lt;/p&gt;
-</code></pre>
-<h1 id="面向对象-基础"><a href="#面向对象-基础" class="headerlink" title="面向对象-基础"></a>面向对象-基础</h1><ul>
-<li>原来写法<ul>
-<li>类和构造函数一样</li>
-<li>属性和方法分开写的</li>
-</ul>
-</li>
-</ul>
-<pre><code>// 老版本
-function User(name, pass) &#123;
+<h2 id="类继承"><a href="#类继承" class="headerlink" title="类继承"></a>类继承</h2><h3 id="老版本版本继承"><a href="#老版本版本继承" class="headerlink" title="老版本版本继承"></a>老版本版本继承</h3><pre><code>function User(name, pass) &#123;
     this.name = name
     this.pass = pass
 &#125;
@@ -418,256 +251,614 @@ var v1 = new VipUser(&#39;blue&#39;, &#39;1234&#39;, 3)
 v1.showName()
 v1.showLevel()
 </code></pre>
+<h3 id="类继承-1"><a href="#类继承-1" class="headerlink" title="类继承"></a>类继承</h3><pre><code> class Father &#123;
+    // constructor 里面的this 指向的是 创建的实例对象
+    constructor(x, y) &#123;
+        this.x = x;  //this.x这样这个x函数体内的所有函数都可以访问了
+        this.y = y;
+    &#125;
+    sum() &#123;
+        console.log(this.x + this.y);
+    &#125;
+&#125;
+class Son extends Father &#123;
+    constructor(x, y) &#123;
+        super(x, y); //调用了父类中的构造函数
+    &#125;
+&#125;
+var son = new Son(1, 2);
+var son1 = new Son(11, 22);
+son.sum();
+son1.sum();
+</code></pre>
+<p>继承中的属性或者方法查找原则: 就近原则</p>
+<ol>
+<li> 继承中,如果实例化子类输出一个方法,先看子类有没有这个方法,如果有就先执行子类的</li>
+<li> 继承中,如果子类里面没有,就去查找父类有没有这个方法,如果有,就执行父类的这个方法(就近原则)</li>
+</ol>
+<h1 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h1><pre><code class="typescript">const s1 = `姓名：$&#123;user.name&#125;，年龄：$&#123;user.age&#125; my name is $&#123;user.name&#125;`;
+// 等同于
+const s2 =
+  &quot;姓名：&quot; + user.name + &quot;，年龄：&quot; + user.age + &quot;\nmy name is &quot; + user.name;
+</code></pre>
+<h1 id="对象速写"><a href="#对象速写" class="headerlink" title="对象速写"></a>对象速写</h1><pre><code class="javascript">const name = &quot;monica&quot;,
+  age = 17;
+const sayHello = function () &#123;
+  console.log(`my name is $&#123;this.name&#125;`);
+&#125;;
+// 过去的方式
+const user = &#123;
+  name: name,
+  age: age,
+  sayHello: sayHello,
+&#125;;
+
+// 速写
+const user = &#123;
+  name,
+  age,
+  sayHello,
+&#125;;
+</code></pre>
+<pre><code class="javascript">// 过去的方式
+const MyMath = &#123;
+  sum: function (a, b) &#123;
+    //...
+  &#125;,
+  random: function (min, max) &#123;
+    //...
+  &#125;,
+&#125;;
+
+// 速写
+const MyMath = &#123;
+  sum(a, b) &#123;
+    // ...
+  &#125;,
+  random(min, max) &#123;
+    // ...
+  &#125;,
+&#125;;
+</code></pre>
+<h1 id="展开运算符"><a href="#展开运算符" class="headerlink" title="展开运算符"></a>展开运算符</h1><p>示例 1：</p>
+<pre><code class="javascript">const arr = [3, 6, 1, 7, 2];
+// 对数组的展开
+Math.max(...arr); // 相当于：Math.max(3, 6, 1, 7, 2)
+</code></pre>
+<p>示例 2：</p>
+<pre><code class="javascript">const o1 = &#123;
+  a: 1,
+  b: 2,
+&#125;;
+const o2 = &#123;
+  a: 3,
+  c: 4,
+&#125;;
+// 对对象的展开
+const o3 = &#123;
+  ...o1,
+  ...o2,
+&#125;;
+/*
+    o3：&#123;
+        a: 3,
+        b: 2,
+        c: 4
+    &#125;
+*/
+</code></pre>
+<p>示例 3：</p>
+<pre><code class="javascript">const arr = [2, 3, 4];
+const arr2 = [1, ...arr, 5]; // [1,2,3,4,5]
+</code></pre>
+<p>示例 4：</p>
+<pre><code class="javascript">const user = &#123;
+  name: &quot;monica&quot;,
+  age: 17,
+&#125;;
+const user2 = &#123;
+  ...user,
+  name: &quot;邓哥&quot;,
+&#125;;
+// user2: &#123; name:&#39;邓哥&#39;, age: 17 &#125;
+</code></pre>
+<p>展开运算符可以展开可迭代对象</p>
+<h2 id="剩余参数和-arguments-对象"><a href="#剩余参数和-arguments-对象" class="headerlink" title="剩余参数和 arguments 对象"></a>剩余参数和 arguments 对象</h2><p>剩余参数用法是放在参数的最后一位，用…xx 来表示</p>
+<pre><code>function fn1(a,...res)&#123;
+  console.log(a);
+  console.log(res)
+&#125;
+fn1(3,4,4,5)
+a：3,res:[4, 4, 5]
+</code></pre>
+<p>在上面的例子中，theArgs 将收集该函数的第三个参数（因为第一个参数被映射到 a，而第二个参数映射到 b）和所有后续参数。</p>
+<h3 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h3><pre><code>function fn1(a,...res)&#123;
+  console.log(arguments)
+&#125;
+</code></pre>
+<p><img src="1696144478110-71cffe8c-3286-4a13-9656-5a9d7832e9f6.png#width=311" alt="image.png"></p>
+<h3 id="剩余参数和-arguments-对象的区别"><a href="#剩余参数和-arguments-对象的区别" class="headerlink" title="剩余参数和 arguments 对象的区别"></a>剩余参数和 arguments 对象的区别</h3><p>剩余参数只包含那些没有对应形参的实参，而 arguments 对象包含了传给函数的所有实参。<br>arguments 对象不是一个真正的数组，而剩余参数是真正的 Array 实例，也就是说你能够在它上面直接使用所有的数组方法，比如 sort，map，forEach 或 pop。<br>arguments 对象还有一些附加的属性 （如 callee 属性）。</p>
+<h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><p>迭代是从一个数据集合中按照一定的顺序，不断取出数据的过程<br>迭代器是用于访问集合类的<strong>标准访问方法</strong>，它可以把访问逻辑从不同类型集合中抽象出来，从而避免向外部暴露集合内部的结构。<br>.<br>迭代和遍历的区别<br><strong>迭代强调的是依次取数据，并不保证取多少，也不保证把所有的数据取完（不关心数据的长度，可以无限延伸）</strong><br>遍历强调的是要把整个数据依次全部取出</p>
+<p>迭代器语法</p>
+<pre><code class="javascript">const iterator = &#123;
+  next() &#123;
+    return &#123;
+      value: xx,
+      done: xx,
+    &#125;;
+  &#125;,
+&#125;;
+</code></pre>
+<p>通过迭代器，可以使得取数据的过程中，不用到 arr，使得不直接操作数据，等于说是一层封装，在原始数据和操作数据之间架起了桥梁</p>
+<pre><code class="javascript">const arr = [1, 2, 3, 4, 5];
+//迭代数组arr
+const iterator = &#123;
+  i: 0, //当前的数组下标
+  next() &#123;
+    var result = &#123;
+      value: arr[this.i],
+      done: this.i &gt;= arr.length,
+    &#125;;
+    this.i++;
+    return result;
+  &#125;,
+&#125;;
+
+//让迭代器不断的取出下一个数据，直到没有数据为止
+let data = iterator.next();
+while (!data.done) &#123;
+  //只要没有迭代完成，则取出数据
+  console.log(data.value);
+  //进行下一次迭代
+  data = iterator.next();
+&#125;
+</code></pre>
+<p>在一个无止境的数组中，很难去确定数组的长度，这时候迭代器就可以做到，因为他不关心数据的长度，只是给我规则我不停的去迭代，不停的去计算。</p>
+<p>依次得到斐波拉契数列前面 n 位的值</p>
+<pre><code class="javascript">function createFeiboIterator() &#123;
+  let prev1 = 1,
+    prev2 = 1, //当前位置的前1位和前2位
+    n = 1; //当前是第几位
+
+  return &#123;
+    next() &#123;
+      let value;
+      if (n &lt;= 2) &#123;
+        value = 1;
+      &#125; else &#123;
+        value = prev1 + prev2;
+      &#125;
+      const result = &#123;
+        value,
+        done: false,
+      &#125;;
+      prev2 = prev1;
+      prev1 = result.value;
+      n++;
+      return result;
+    &#125;,
+  &#125;;
+&#125;
+
+//生成器函数一调用 拿到的是一个生成器
+const iterator = createFeiboIterator();
+</code></pre>
+<p>通过迭代器统一化遍历方法<br>我们访问一个数组可能使用 for 循环或者 map,foreach,filter 等 for(int i=0; i&lt;array.size(); i++) { … get(i) … }， 但是当我们想要遍历链表(linkedlist)的时候就得使用 while 循环 while((e=e.next())!=null) { … e.data() … }, 以上两种方式我们都必须知道集合的内部结构是怎么样的我们才可以使用对应的循环方式去循环整个集合，那么这样就造成了很大的耦合度，当我们把一个集合的类型从 Arrarlist 变成 Linkedlist 的时候，那么原来客户端的代码必须重写，因为我们集合变了，遍历的方式也必须改成对应的方式。<br>为解决以上问题，Iterator 模式总是用同一种逻辑来遍历集合： for(Iterator it = c.iterater(); it.hasNext(); ) { … }，这样就在一定程度上解决了以上的问题。</p>
+<p>特点 1.不用去关心数据的长度，只需要一直迭代和告诉我能否迭代 2.用于访问集合类的标准访问方法 3.可以使得取数据的过程中，不会用到原始数据，在操作数据和原始数据之间增加了一层处理</p>
+<h2 id="可迭代协议"><a href="#可迭代协议" class="headerlink" title="可迭代协议"></a>可迭代协议</h2><p>ES6 规定，如果一个对象具有知名符号属性<code>Symbol.iterator</code>，并且属性值是一个迭代器创建函数，则该对象是可迭代的</p>
+<p>往往在原型中，比如数组，以及使用 querySelectorAll 获取下来的数据都拥有这个符号属性，说明他们都可以迭代<br><img src="1705828084729-d96206a2-3df4-4e2f-a9ca-a07d8501fc51.png#width=779" alt="image.png"></p>
+<p>for-of 循环<br>for-of 循环是迭代器的语法糖，只要一个对象拥有 Symbol.iterator 都可以使用迭代器</p>
+<pre><code class="javascript">const arr = [5, 7, 2, 3, 6];
+
+//两个代码功能完全一致
+const iterator = arr[Symbol.iterator]();
+let result = iterator.next();
+while (!result.done) &#123;
+  const item = result.value; //取出数据
+  console.log(item);
+  //下一次迭代
+  result = iterator.next();
+&#125;
+
+//两个代码功能完全一致
+for (const item of arr) &#123;
+  console.log(item);
+&#125;
+</code></pre>
+<p>tip:使用 for in 也可以遍历数组，但是会存在以下问题：</p>
+<ol>
+<li>index 索引为字符串型数字，不能直接进行几何运算</li>
+<li>遍历顺序有可能不是按照实际数组的内部顺序</li>
+<li>使用 for in 会遍历数组所有的可枚举属性，包括原型。例如上栗的原型方法 method 和 name 属性 所以 for in 更适合遍历对象，不要使用 for in 遍历数组。</li>
+</ol>
+<p>手写 obj 迭代器，使用 obj 可以被迭代</p>
+<pre><code class="javascript">let obj = &#123;
+      a: 1,
+      b: 2,
+      [Symbol.iterator]() &#123;
+          const keys = Object.keys(this);
+          let i = 0;
+          return &#123;
+              next: () =&gt; &#123;
+                  const propName = keys[i];
+                  const propValue = this[propName];
+                  const result = &#123;
+                      value: &#123;
+                          propName,
+                          propValue
+                      &#125;,
+                      done: i &gt;= keys.length
+                  &#125;
+                  i++;
+                  return result;
+              &#125;
+          &#125;
+      &#125;
+  &#125;
+
+这个对象就可以被迭代，因为手写了迭代器，拥有能被迭代的标准语法
+for (const item of obj) &#123;
+    console.log(item)
+&#125;
+
+
+
+let p=&#123;
+    name:&#39;kevin&#39;,
+    age:2,
+    sex:&#39;male&#39;
+&#125;
+
+//还可以通过属性标识符操作
+Object.defineProperty(p,Symbol.iterator,&#123;
+    enumberable:false,
+    configurable:false,
+    writable:false,
+    value:function()&#123;
+        var _this=this;
+        var nowIndex=-1;
+        var key=Object.keys(_this);
+        return &#123;
+            next:function()&#123;
+                nowIndex++;
+                return &#123;
+                    value:_this[key[nowIndex]],
+                    done:(nowIndex+1&gt;key.length)
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;)
+&#125;
+</code></pre>
+<p>展开运算符与可迭代对象<br>展开运算符可以作用于可迭代对象，这样，就可以轻松的将可迭代对象转换为数组。</p>
+<pre><code class="javascript">只要这个obj对象可以被迭代，那么就可以用这样的方式实现对象转数组
+或者放入函数参数中
+const arr = [...obj];
+console.log(arr);
+
+function test(a, b) &#123;
+  console.log(a, b)
+&#125;
+
+test(...obj);
+</code></pre>
+<h1 id="生成器-Generator"><a href="#生成器-Generator" class="headerlink" title="生成器 (Generator)"></a><strong>生成器 (Generator)</strong></h1><p>生成器，生成的是迭代器，是生成迭代器函数的语法糖</p>
+<p>什么是生成器<br>生成器是一个通过构造函数 Generator 创建的对象，生成器既是一个迭代器，同时又是一个可迭代对象</p>
+<p>如何创建生成器<br>生成器的创建，必须使用生成器函数（Generator Function）</p>
+<p>如何书写一个生成器函数呢？</p>
+<pre><code class="javascript">//这是一个生成器函数，该函数一定返回一个生成器，可以没有return值
+function* method() &#123;&#125;
+</code></pre>
+<p>生成器函数内部的执行<br>生成器函数内部是为了给生成器的每次迭代提供的数据<br>每次调用生成器的 next 方法，将导致生成器函数运行到下一个 yield 关键字位置<br>yield 是一个关键字，该关键字只能在生成器函数内部使用，表达“产生”一个迭代数据。</p>
+<pre><code class="javascript">function* test() &#123;
+    console.log(&quot;第1次运行&quot;)
+    yield 1;
+    console.log(&quot;第2次运行&quot;)
+    yield 2;
+    console.log(&quot;第3次运行&quot;)
+&#125;
+
+const generator = test();
+
+调用generator.next() 拿到yield右边的数据
+</code></pre>
+<p>有哪些需要注意的细节<br>1). 生成器函数可以有返回值，返回值出现在第一次 done 为 true 时的 value 属性中</p>
+<pre><code class="javascript">function* test() &#123;
+  console.log(&quot;第1次运行&quot;);
+  yield 1;
+  console.log(&quot;第2次运行&quot;);
+  yield 2;
+  console.log(&quot;第3次运行&quot;);
+  return 10;
+&#125;
+
+const generator = test();
+</code></pre>
+<p>2). 调用生成器的 next 方法时，可以传递参数，传递的参数会交给 yield 表达式的返回值</p>
+<pre><code class="javascript">function* test() &#123;
+  console.log(&quot;函数开始&quot;);
+
+  let info = yield 1;
+  console.log(info);
+  info = yield 2 + info;
+  console.log(info);
+&#125;
+
+const generator = test();
+</code></pre>
+<p>3). 第一次调用 next 方法时，传参没有任何意义<br>4). 在生成器函数内部，可以调用其他生成器函数，但是要注意加上*号</p>
+<pre><code class="javascript">function* t1() &#123;
+  yield &quot;a&quot;;
+  yield &quot;b&quot;;
+&#125;
+
+function* test() &#123;
+  yield* t1();
+  yield 1;
+  yield 2;
+  yield 3;
+&#125;
+
+const generator = test();
+
+//也可以调用一个普通函数
+function fn(num) &#123;
+  console.log(num);
+  return num;
+&#125;
+function* gen() &#123;
+  yield fn(1);
+  yield fn(2);
+  return 3;
+&#125;
+const g = gen();
+console.log(g.next());
+// 1
+// &#123; value: 1, done: false &#125;
+console.log(g.next());
+// 2
+//  &#123; value: 2, done: false &#125;
+console.log(g.next());
+// &#123; value: 3, done: true &#125;
+</code></pre>
+<p>生成器的其他 API</p>
 <ul>
-<li>新版面向对象<ul>
-<li>有了 class 关键字、构造器</li>
-<li>class 里面直接加方法</li>
-<li>继承，super 超类==父类</li>
+<li>return 方法：调用该方法，可以提前结束生成器函数，从而提前让整个迭代过程结束</li>
+<li>throw 方法：调用该方法，可以在生成器中产生一个错误</li>
 </ul>
-</li>
-</ul>
-<pre><code>class User &#123;
-    constructor(name, pass) &#123;
-        this.name = name
-        this.pass = pass
-    &#125;
-    showName() &#123;
-        console.log(this.name)
-    &#125;
-    showPass() &#123;
-        console.log(this.pass)
-    &#125;
-&#125;
-
-var u1 = new User(&#39;able2&#39;, &#39;111&#39;)
-u1.showName()
-u1.showPass()
-
-// 新版本继承
-class VipUser extends User &#123;
-    constructor(name, pass, level) &#123;
-        super(name, pass)
-        this.level = level
-    &#125;
-    showLevel()&#123;
-        console.log(this.level)
-    &#125;
-&#125;
-
-v1 = new VipUser(&#39;blue&#39;, &#39;123&#39;, 3)
-v1.showLevel()
-</code></pre>
-<h1 id="json"><a href="#json" class="headerlink" title="json"></a>json</h1><ul>
-<li>JSON 格式<ul>
-<li>JavaScript Object Notation 的缩写，是一种用于数据交换的文本格式</li>
-<li>JSON 是 JS 对象 的严格子集</li>
-<li>JSON 的标准写法</li>
-<li>只能用双引号</li>
-<li>所有的 key 都必须用双引号包起来</li>
-</ul>
-</li>
-<li>JSON 对象<ul>
-<li>JSON 对象是 JavaScript 的原生对象，用来处理 JSON 格式数据，有两个静态方法</li>
-<li>JSON.parse(string) ：接受一个 <strong>JSON 字符串</strong>并将其转换成一个 JavaScript <strong>对象</strong>。</li>
-<li>JSON.stringify(obj) ：接受一个 JavaScript <strong>对象</strong>并将其转换为一个 <strong>JSON 字符串</strong>。</li>
-</ul>
-</li>
-</ul>
-<pre><code>var json = &#123;a: 12, b: 5&#125;
-var str = &#39;hi,&#39; + JSON.stringify(json)
-var url = &#39;http://www.xx.com/&#39; + encodeURIComponent(JSON.stringify(json))
-console.log(str)
-console.log(url)
-
-var str = &#39;&#123;&quot;a&quot;: 12, &quot;b&quot;: 4, &quot;c&quot;: &quot;abc&quot;&#125;&#39;
-var json = JSON.parse(str)
-console.log(json)
-hi,&#123;&quot;a&quot;:12,&quot;b&quot;:5&#125;
-http://www.xx.com/%7B%22a%22%3A12%2C%22b%22%3A5%7D
-&#123; a: 12, b: 4, c: &#39;abc&#39; &#125;
-</code></pre>
-<ul>
-<li>对象（object）<ul>
-<li>是 JavaScript 语言的核心概念，也是最重要的数据类型</li>
-<li>对象就是一组“键值对”（key-value）的集合，是一种无序的复合数据集合</li>
-<li>对象的所有键名都是字符串, 所以加不加引号都可以</li>
-<li>如果键名是数值，会被自动转为字符串</li>
-<li>对象的每一个键名又称为“属性”（property），它的“键值”可以是任何数据类型</li>
-<li>如果一个属性的值为函数，通常把这个属性称为“方法”，它可以像函数那样调用</li>
-<li>in 运算符用于检查对象是否包含某个属性（注意，检查的是键名，不是键值</li>
-<li>for…in 循环用来遍历一个对象的全部属性</li>
-</ul>
-</li>
-<li>对象 简写<ul>
-<li>key-value 一样时可以简写</li>
-<li>里面函数可以简写, 去掉</li>
-</ul>
-</li>
-</ul>
-<pre><code>var a = 12, b = 5
-console.log(&#123;a:a, b:b&#125;)
-console.log(&#123;a, b&#125;)
-console.log(&#123;a, b, c:&quot;c&quot;&#125;)
-console.log(&#123; a, b, show()&#123; console.log(&#39;a&#39;) &#125;&#125;)
-&#123; a: 12, b: 5 &#125;
-&#123; a: 12, b: 5 &#125;
-&#123; a: 12, b: 5, c: &#39;c&#39; &#125;
-&#123; a: 12, b: 5, show: [Function: show] &#125;
-</code></pre>
-<h1 id="generator-to-do"><a href="#generator-to-do" class="headerlink" title="generator(to do)"></a>generator(to do)</h1><p>形式上，Generator 函数是一个普通函数，但是有两个特征。一是，<code>function</code>关键字与函数名之间有一个星号；二是，函数体内部使用<code>yield</code>表达式，定义不同的内部状态（<code>yield</code>在英语里的意思就是“产出”）。</p>
-<p>认识生成器函数</p>
-<ul>
-<li>generator 生成器函数<ul>
-<li>普通函数，一路到底</li>
-<li>generator 函数，中间可以停，到哪停呢，用 yield 配合，交出执行权</li>
-<li>yield 有 放弃、退让、退位的意思</li>
-<li>需要调用 next()方法启动执行，需要遇到 yield 停, 踹一脚走一步</li>
-<li>generator 函数前面加一个 <code>*</code> 两边可以有空格，或靠近函数或<code>function</code></li>
-<li>背后实际生成多个小函数，实现走走停停</li>
-</ul>
-</li>
-</ul>
-<pre><code>function show() &#123;
-    console.log(&#39;a&#39;)
-    console.log(&#39;b&#39;)
-&#125;
-show() // 普通函数
-
-function *show2() &#123;
-    console.log(&#39;1&#39;)
-    yield
-    console.log(&#39;2&#39;)
-&#125;
-let genObj = show2()
-genObj.next() // 1
-genObj.next() // 2
-genObj.next() // 最后了，没有结果
-</code></pre>
-<h2 id="generator-yield-是啥"><a href="#generator-yield-是啥" class="headerlink" title="generator-yield 是啥"></a>generator-yield 是啥</h2><ul>
-<li><code>yield</code><ul>
-<li>既可传参，又可以返回</li>
-<li>第一个<code>next()</code>传参无效，只用来启动</li>
-</ul>
-</li>
-<li>如果函数前漏掉 <code>*</code><ul>
-<li>就是普通函数</li>
-<li>如果有<code>yield</code>会报错， <code>ReferenceError: yield is not defined</code></li>
-<li>yield 只能在 Generator 函数内部使用</li>
-</ul>
-</li>
-</ul>
-<pre><code>function * show() &#123;
-    console.log(&#39;1&#39;)
-    var a = yield
-    console.log(&#39;2&#39;)
-    console.log(a)
-&#125;
-// yield 传参
-var gen = show()
-gen.next() // 1
-gen.next() // 2 和 undefined 因为没有传参，yield没有返回值
-var gen = show()
-gen.next(10) // 1 第一次执行到yield，但没有执行赋值
-gen.next(20) // 2 和 20
-
-function* show2() &#123;
-    console.log(&#39;1&#39;)
-    yield 10
-    console.log(&#39;2&#39;)
-&#125;
-// yield 返回
-var gen = show2()
-var res1 = gen.next()
-console.log(res1) // &#123; value: 10, done: false &#125;
-var res2 = gen.next()
-console.log(res2)
-// &#123; value: undefined, done: true &#125; 最后的value需要return返回
-</code></pre>
-<h2 id="generator-实例"><a href="#generator-实例" class="headerlink" title="generator-实例"></a>generator-实例</h2><ul>
-<li><strong>Promise 适合一次读一组</strong></li>
-<li><strong>generator 适合逻辑性的</strong></li>
-</ul>
-<pre><code>// 带逻辑-generator
-runner(function * () &#123;
-    let userData = yield $.ajax(&#123;url: &#39;getUserData&#39;&#125;)
-
-    if (userData.type == &#39;VIP&#39;) &#123;
-        let items = yield $.ajax(&#123;url: &#39;getVIPItems&#39;&#125;)
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>创建一个斐波拉契数列的迭代器</p>
+<pre><code class="javascript">function* createFeiboIterator() &#123;
+  let prev1 = 1,
+    prev2 = 1, //当前位置的前1位和前2位
+    n = 1; //当前是第几位
+  while (true) &#123;
+    if (n &lt;= 2) &#123;
+      yield 1;
     &#125; else &#123;
-        let items = yield $.ajax(&#123;url: &#39;getItems&#39;&#125;)
+      const newValue = prev1 + prev2;
+      yield newValue;
+      prev2 = prev1;
+      prev1 = newValue;
     &#125;
-&#125;)
-// yield 实例，用同步方式写异步
-server.use(function * () &#123;
-    let data = yield db.query(`select * from user_table`)
-    this.body = data
-&#125;)
+    n++;
+  &#125;
+&#125;
+
+const iterator = createFeiboIterator();
 </code></pre>
-<h1 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h1><p>第七种数据类型</p>
-<p>生成唯一的标识符来避免冲突</p>
-<p>不能被遍历</p>
-<p>可以用于当做私有属性</p>
-<h1 id="ES7-预览"><a href="#ES7-预览" class="headerlink" title="ES7 预览"></a>ES7 预览</h1><ul>
-<li>数组<ul>
-<li><code>arr.includes()</code> 数组是否包含某个东西</li>
-<li>数组的 arr.keys(), arr,entries()</li>
-<li>for … in 遍历数组 下标 key</li>
-<li>for … of 遍历数组 值 value, 不能用于 json</li>
-</ul>
-</li>
-</ul>
-<pre><code>let arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
-console.log(arr.includes(1))
-
-for (let i in arr) &#123;
-    console.log(i) // 循环的时下标 key
+<p>创建一个异步函数</p>
+<pre><code class="javascript">function* task() &#123;
+  const d = yield 1;
+  console.log(d);
+  // //d : 1
+  const resp = yield fetch(&quot;http://101.132.72.36:5100/api/local&quot;);
+  const result = yield resp.json();
+  console.log(result);
 &#125;
 
-for (let i of arr) &#123;
-    console.log(i) // 循环的是值 value
-&#125;
-for (let i of arr.keys()) &#123;
-    console.log(&#39;&gt;&#39;+i)
-&#125;
-for (let [key, value] of arr.entries()) &#123;
-    console.log(&#39;&gt;&#39; + key + value)
-&#125;
+run(task);
 
-let json = &#123; a: 12, b: 5, c: 7 &#125;
-for (let i in json) &#123;
-    console.log(i)
+function run(generatorFunc) &#123;
+  const generator = generatorFunc();
+  let result = generator.next(); //启动任务（开始迭代）, 得到迭代数据
+  handleResult();
+  //对result进行处理
+  function handleResult() &#123;
+    if (result.done) &#123;
+      return; //迭代完成，不处理
+    &#125;
+    //迭代没有完成，分为两种情况
+    //1. 迭代的数据是一个Promise
+    //2. 迭代的数据是其他数据
+    if (typeof result.value.then === &quot;function&quot;) &#123;
+      //1. 迭代的数据是一个Promise
+      //等待Promise完成后，再进行下一次迭代
+      result.value.then((data) =&gt; &#123;
+        result = generator.next(data);
+        handleResult();
+      &#125;);
+    &#125; else &#123;
+      //2. 迭代的数据是其他数据，直接进行下一次迭代
+      result = generator.next(result.value);
+      handleResult();
+    &#125;
+  &#125;
 &#125;
 </code></pre>
+<p>async 写法</p>
+<pre><code>const task = async () =&gt; &#123;
+    const d = await 1;
+    console.log(d)
+    // //d : 1
+    const resp = await fetch(&quot;http://101.132.72.36:5100/api/local&quot;)
+    const result = await resp.json();
+    console.log(result);
+&#125;
+</code></pre>
+<p>一比较就会发现，async 函数就是将 Generator 函数的星号（*）替换成 async，将 yield 替换成 await，仅此而已。</p>
+<p>async 函数对 Generator 函数的改进，体现在以下四点：</p>
+<ol>
+<li>内置执行器。Generator 函数的执行必须依靠执行器，而 async 函数自带执行器，无需手动执行 next() 方法。</li>
+<li>更好的语义。async 和 await，比起星号和 yield，语义更清楚了。async 表示函数里有异步操作，await 表示紧跟在后面的表达式需要等待结果。</li>
+<li>更广的适用性。co 模块约定，yield 命令后面只能是 Thunk 函数或 Promise 对象，而 async 函数的 await 命令后面，可以是 Promise 对象和原始类型的值（数值、字符串和布尔值，但这时会自动转成立即 resolved 的 Promise 对象）。</li>
+<li>返回值是 Promise。async 函数返回值是 Promise 对象，比 Generator 函数返回的 Iterator 对象方便，可以直接使用 then() 方法进行调用。</li>
+</ol>
+<p>async/await 的用处就是：<strong>用同步方式，执行异步操作</strong></p>
+<h1 id="set-与-map"><a href="#set-与-map" class="headerlink" title="set 与 map"></a>set 与 map</h1><h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>Set 对象是值的合集（collection）。集合（set）中的元素<strong>只会出现一次</strong>，即集合中的元素是唯一的。<br><strong>set 的 key 和 value 是相同的</strong></p>
+<h3 id="使用-Set-对象"><a href="#使用-Set-对象" class="headerlink" title="使用 Set 对象"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set#%E4%BD%BF%E7%94%A8_set_%E5%AF%B9%E8%B1%A1">使用 Set 对象</a></h3><pre><code>const mySet1 = new Set();
+
+mySet1.add(1); // Set(1) &#123; 1 &#125;
+mySet1.add(5); // Set(2) &#123; 1, 5 &#125;
+mySet1.add(5); // Set(2) &#123; 1, 5 &#125;
+mySet1.add(&quot;some text&quot;); // Set(3) &#123; 1, 5, &#39;some text&#39; &#125;
+const o = &#123; a: 1, b: 2 &#125;;
+mySet1.add(o);
+
+mySet1.add(&#123; a: 1, b: 2 &#125;); // o 是不同对象的引用，所以这是可以的
+
+mySet1.has(1); // true
+mySet1.has(3); // false，因为并未将 3 添加到集合中
+mySet1.has(5); // true
+mySet1.has(Math.sqrt(25)); // true
+mySet1.has(&quot;Some Text&quot;.toLowerCase()); // true
+mySet1.has(o); // true
+
+mySet1.size; // 5
+
+mySet1.delete(5); // 从集合中移除 5
+mySet1.has(5); // false，5 已从集合中移除
+
+mySet1.size; // 4，因为我们刚刚移除了一个值
+
+mySet1.add(5); // Set(5) &#123; 1, &#39;some text&#39;, &#123;...&#125;, &#123;...&#125;, 5 &#125;——先前删除的元素会作为新的元素被添加，不会保留删除前的原始位置
+
+console.log(mySet1); // Set(5) &#123; 1, &quot;some text&quot;, &#123;…&#125;, &#123;…&#125;, 5 &#125;
+</code></pre>
+<h3 id="迭代集合"><a href="#迭代集合" class="headerlink" title="迭代集合"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set#%E8%BF%AD%E4%BB%A3%E9%9B%86%E5%90%88">迭代集合</a></h3><p>迭代会按元素的插入顺序访问集合中的元素。</p>
+<pre><code>for (const item of mySet1) &#123;
+  console.log(item);
+&#125;
+// 1、&quot;some text&quot;、&#123; &quot;a&quot;: 1, &quot;b&quot;: 2 &#125;、&#123; &quot;a&quot;: 1, &quot;b&quot;: 2 &#125;、5
+
+for (const item of mySet1.keys()) &#123;
+  console.log(item);
+&#125;
+// 1、&quot;some text&quot;、&#123; &quot;a&quot;: 1, &quot;b&quot;: 2 &#125;、&#123; &quot;a&quot;: 1, &quot;b&quot;: 2 &#125;、5
+
+for (const item of mySet1.values()) &#123;
+  console.log(item);
+&#125;
+// 1、&quot;some text&quot;、&#123; &quot;a&quot;: 1, &quot;b&quot;: 2 &#125;、&#123; &quot;a&quot;: 1, &quot;b&quot;: 2 &#125;、5
+
+// 键和值是相同的
+for (const [key, value] of mySet1.entries()) &#123;
+  console.log(key);
+&#125;
+// 1、&quot;some text&quot;、&#123; &quot;a&quot;: 1, &quot;b&quot;: 2 &#125;、&#123; &quot;a&quot;: 1, &quot;b&quot;: 2 &#125;、5
+
+// 使用 Array.from 将 Set 对象转换为数组对象
+const myArr = Array.from(mySet1); // [1, &quot;some text&quot;, &#123;&quot;a&quot;: 1, &quot;b&quot;: 2&#125;, &#123;&quot;a&quot;: 1, &quot;b&quot;: 2&#125;, 5]
+
+// 如果在 HTML 文档中使用，也可以：
+mySet1.add(document.body);
+mySet1.has(document.querySelector(&quot;body&quot;)); // true
+
+// 在 Set 和 Array 之间转换
+const mySet2 = new Set([1, 2, 3, 4]);
+console.log(mySet2.size); // 4
+console.log([...mySet2]); // [1, 2, 3, 4]
+
+// 可以通过如下代码模拟求交集
+const intersection = new Set([...mySet1].filter((x) =&gt; mySet2.has(x)));
+
+// 可以通过如下代码模拟求差集
+const difference = new Set([...mySet1].filter((x) =&gt; !mySet2.has(x)));
+
+// 使用 forEach() 迭代集合中的条目
+mySet2.forEach((value) =&gt; &#123;
+  console.log(value);
+&#125;);
+// 1
+// 2
+// 3
+// 4
+</code></pre>
+<h3 id="与数组的关系"><a href="#与数组的关系" class="headerlink" title="与数组的关系"></a>与数组的关系</h3><pre><code>const myArray = [&quot;value1&quot;, &quot;value2&quot;, &quot;value3&quot;];
+
+// 使用常规的 Set 构造函数将 Array 转换为 Set
+const mySet = new Set(myArray);
+
+mySet.has(&quot;value1&quot;); // 返回 true
+
+// 使用展开语法将 Set 转换为 Array。
+console.log([...mySet]); // 将显示与 myArray 完全相同的数组
+</code></pre>
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><pre><code>// 用于从数组中删除重复元素
+
+const numbers = [2, 3, 4, 4, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 5, 32, 3, 4, 5];
+
+console.log([...new Set(numbers)]);
+
+// [2, 3, 4, 5, 6, 7, 32]
+</code></pre>
+<h3 id="与字符串的关系"><a href="#与字符串的关系" class="headerlink" title="与字符串的关系"></a>与字符串的关系</h3><pre><code>const text = &quot;India&quot;;
+
+const mySet = new Set(text); // Set(5) &#123;&#39;I&#39;, &#39;n&#39;, &#39;d&#39;, &#39;i&#39;, &#39;a&#39;&#125;
+mySet.size; // 5
+
+// 大小写敏感，且忽略重复项
+new Set(&quot;Firefox&quot;); // Set(7) &#123; &quot;F&quot;, &quot;i&quot;, &quot;r&quot;, &quot;e&quot;, &quot;f&quot;, &quot;o&quot;, &quot;x&quot; &#125;
+new Set(&quot;firefox&quot;); // Set(6) &#123; &quot;f&quot;, &quot;i&quot;, &quot;r&quot;, &quot;e&quot;, &quot;o&quot;, &quot;x&quot; &#125;
+</code></pre>
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p><strong>Map</strong> 对象保存键值对，并且能够记住键的原始插入顺序。任何值（对象或者<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive">基本类型</a>）都可以作为一个键或一个值。</p>
+<p>Map 对象是键值对的集合。Map 中的一个键<strong>只能出现一次</strong>；它在 Map 的集合中是独一无二的。Map 对象按键值对迭代——一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of">for…of</a> 循环在每次迭代后会返回一个形式为 [key，value] 的数组。迭代按<em>插入顺序</em>进行，即键值对按 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/set">set()</a> 方法首次插入到集合中的顺序（也就是说，当调用 set() 时，map 中没有具有相同值的键）进行迭代。</p>
+<pre><code class="html">const map1 = new Map(); map1.set(&#39;a&#39;, 1); map1.set(&#39;b&#39;, 2); map1.set(&#39;c&#39;, 3);
+console.log(map1.get(&#39;a&#39;)); // Expected output: 1 map1.set(&#39;a&#39;, 97);
+console.log(map1.get(&#39;a&#39;)); // Expected output: 97 console.log(map1.size); //
+Expected output: 3 map1.delete(&#39;b&#39;); console.log(map1.size); // Expected output:
+2
+</code></pre>
+<p>不过 Map 和 Object 有一些重要的区别</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Map</th>
+<th>Object</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>意外的键</td>
+<td>Map 默认情况不包含任何键。只包含显式插入的键。</td>
+<td>一个 Object 有一个原型，原型链上的键名有可能和你自己在对象上的设置的键名产生冲突。</td>
+</tr>
+<tr>
+<td><strong>备注：</strong>虽然可以用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create">Object.create(null)</a> 来创建一个没有原型的对象，但是这种用法不太常见。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>键的类型</td>
+<td>一个 Map 的键可以是<strong>任意值</strong>，包括函数、对象或任意基本类型。</td>
+<td>一个 Object 的键必须是一个 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></td>
+</tr>
+</tbody></table>
+<p>或是 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a><br>。 |<br>| 键的顺序 | Map 中的键是有序的。因此，当迭代的时候，一个 Map 对象以插入的顺序返回键值。 | 虽然 Object 的键目前是有序的，但并不总是这样，而且这个顺序是复杂的。因此，最好不要依赖属性的顺序。<br>自 ECMAScript 2015 规范以来，对象的属性被定义为是有序的；ECMAScript 2020 则额外定义了继承属性的顺序。参见 <a target="_blank" rel="noopener" href="https://tc39.es/ecma262/#sec-ordinaryownpropertykeys">OrdinaryOwnPropertyKeys</a> 和 <a target="_blank" rel="noopener" href="https://tc39.es/ecma262/#sec-enumerate-object-properties">EnumerateObjectProperties</a> 抽象规范说明。但是，请注意没有可以迭代对象所有属性的机制，每一种机制只包含了属性的不同子集。（<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in">for-in</a> 仅包含了以字符串为键的属性；<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys</a> 仅包含了对象自身的、可枚举的、以字符串为键的属性；<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames">Object.getOwnPropertyNames</a> 包含了所有以字符串为键的属性，即使是不可枚举的；<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols">Object.getOwnPropertySymbols</a> 与前者类似，但其包含的是以 Symbol 为键的属性，等等。） |<br>| Size | Map 的键值对个数可以轻易地通过 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map/size">size</a><br>属性获取。 | Object 的键值对个数只能手动计算。 |<br>| 迭代 | Map 是 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols">可迭代的</a><br>的，所以可以直接被迭代。 | Object 没有实现 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterable_protocol">迭代协议</a>，所以使用 JavaSctipt 的 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of">for…of</a> 表达式并不能直接迭代对象。<br><strong>备注：</strong></p>
 <ul>
-<li>字符串<ul>
-<li>padStart()/padEnd() 指定宽度，不够就补空格或指定字符</li>
+<li>对象可以实现迭代协议，或者你可以使用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys</a> 或 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/entries">Object.entries</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in">for…in</a> 表达式允许你迭代一个对象的<em>可枚举</em>属性。<br>|<br>| 性能 | 在频繁增删键值对的场景下表现更好。 | 在频繁添加和删除键值对的场景下未作出优化。 |<br>| 序列化和解析 | 没有元素的序列化和解析的支持。<br>（但是你可以使用携带 <em>replacer</em> 参数的 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify()</a> 创建一个自己的对 Map 的序列化和解析支持。参见 Stack Overflow 上的提问：<a target="_blank" rel="noopener" href="https://stackoverflow.com/q/29085197/">How do you JSON.stringify an ES6 Map?</a>） | 原生的由 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> 到 JSON 的序列化支持，使用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify()</a>。<br>原生的由 JSON 到 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> 的解析支持，使用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">JSON.parse()</a>。 |</li>
 </ul>
-</li>
-</ul>
-<pre><code>console.log(&#39;=&#39; + &#39;abcd&#39;.padStart(6, &#39;0&#39;) + &#39;=&#39;)
-console.log(&#39;=&#39; + &#39;abcd&#39;.padEnd(6, &#39;0&#39;) + &#39;=&#39;)
-=00abcd=
-=abcd00=
+<h1 id="weakSet-和-weakMap"><a href="#weakSet-和-weakMap" class="headerlink" title="weakSet 和 weakMap"></a>weakSet 和 weakMap</h1><h1 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h1><p>第七种数据类型<br>生成唯一的标识符来避免冲突<br>不能被遍历<br>可以用于当做私有属性</p>
+<p><strong>symbol</strong> 是一种基本数据类型（<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive">primitive data type</a>）。Symbol() 函数会返回 <strong>symbol</strong> 类型的值，该类型具有静态属性和静态方法。它的静态属性会暴露几个内建的成员对象；它的静态方法会暴露全局的 symbol 注册<br>每个从 Symbol() 返回的 symbol 值都是唯一的</p>
+<pre><code class="html">//直接使用Symbol()创建新的 symbol 类型，并用一个可选的字符串作为其描述。 const
+symbol1 = Symbol(); const symbol2 = Symbol(42); const symbol3 = Symbol(&#39;foo&#39;);
+console.log(typeof symbol1); // Expected output: &quot;symbol&quot; console.log(symbol2
+=== 42); // Expected output: false console.log(symbol3.toString()); // Expected
+output: &quot;Symbol(foo)&quot; console.log(Symbol(&#39;foo&#39;) === Symbol(&#39;foo&#39;)); // Expected
+output: false
 </code></pre>
-<ul>
-<li>容忍度<ul>
-<li>[1, 2, 3,] 老版数组最后不能有逗号，新的可以有</li>
-<li>函数参数最后多的逗号也可以</li>
-</ul>
-</li>
-<li>async await<ul>
-<li>和 generator yield 类似</li>
-<li>generator 不可以写成箭头函数， async 可以</li>
-</ul>
-</li>
-</ul>
-<pre><code>async function show() &#123;
-    console.log(1)
-    await
-    console.log(2)
-&#125;
-</code></pre>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2>
+<h1 id="proxy"><a href="#proxy" class="headerlink" title="proxy"></a>proxy</h1>
     </div>
     
 </div>
@@ -676,7 +867,7 @@ console.log(&#39;=&#39; + &#39;abcd&#39;.padEnd(6, &#39;0&#39;) + &#39;=&#39;)
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

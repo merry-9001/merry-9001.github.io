@@ -1,0 +1,777 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>手写题 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>手写题</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/11
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h3 id="call、apply、bind-手写"><a href="#call、apply、bind-手写" class="headerlink" title="call、apply、bind 手写"></a>call、apply、bind 手写</h3><p>实现 call 方法：</p>
+<pre><code class="javascript">Function.prototype.call2 = function (context, ...args) &#123;
+  //没传参数或者为 null 是默认是 window
+  var context = context || (typeof window !== &quot;undefined&quot; ? window : global);
+  // 首先要获取调用 call 的函数，用 this 可以获取
+  context.fn = this;
+  const result = eval(&quot;context.fn(...args)&quot;);
+  delete context.fn;
+  return result;
+&#125;;
+
+// 测试
+var value = 3;
+var foo = &#123;
+  value: 2,
+&#125;;
+
+function bar(name, age) &#123;
+  console.log(this.value);
+  console.log(name);
+  console.log(age);
+&#125;
+bar.call2(null);
+// 浏览器环境： 3 undefinde undefinde
+// Node环境：undefinde undefinde undefinde
+
+bar.call2(foo, &quot;cc&quot;, 18); // 2  cc 18
+</code></pre>
+<p>实现 apply 方法：</p>
+<pre><code class="javascript">Function.prototype.apply2 = function (context, arr) &#123;
+  var context = context || (typeof window !== &quot;undefined&quot; ? window : global);
+  context.fn = this;
+
+  var result;
+  if (!arr) &#123;
+    result = context.fn();
+  &#125; else &#123;
+    result = eval(&quot;context.fn(...arr)&quot;);
+  &#125;
+  delete context.fn;
+  return result;
+&#125;;
+
+// 测试：
+
+var value = 3;
+var foo = &#123;
+  value: 2,
+&#125;;
+
+function bar(name, age) &#123;
+  console.log(this.value);
+  console.log(name);
+  console.log(age);
+&#125;
+bar.apply2(null);
+// 浏览器环境： 3 undefinde undefinde
+// Node环境：undefinde undefinde undefinde
+
+bar.apply2(foo, [&quot;cc&quot;, 18]); // 2  cc 18
+</code></pre>
+<p>实现 bind 方法：</p>
+<pre><code class="javascript">Function.prototype.bind2 = function (ctx, ...args) &#123;
+  const fn = this;
+  return function (...restArgs) &#123;
+    return fn.apply(ctx, [...args, ...restArgs]);
+  &#125;;
+&#125;;
+
+// 测试
+var test = &#123;
+  name: &quot;jack&quot;,
+&#125;;
+var demo = &#123;
+  name: &quot;rose&quot;,
+  getName: function () &#123;
+    return this.name;
+  &#125;,
+&#125;;
+
+console.log(demo.getName()); // 输出 rose  这里的 this 指向 demo
+
+// 运用 bind 方法更改 this 指向
+var another2 = demo.getName.bind2(test);
+console.log(another2()); // 输出 jack  这里 this 指向了 test 对象了
+</code></pre>
+<h3 id="new-手写"><a href="#new-手写" class="headerlink" title="new 手写"></a>new 手写</h3><pre><code class="javascript">// 构造器函数
+let Parent = function (name, age) &#123;
+  this.name = name;
+  this.age = age;
+&#125;;
+Parent.prototype.sayName = function () &#123;
+  console.log(this.name);
+&#125;;
+//自己定义的new方法
+let newMethod = function (Parent, ...rest) &#123;
+  // 1.以构造器的prototype属性为原型，创建新对象；
+  let child = Object.create(Parent.prototype);
+  // 2.将this和调用参数传给构造器执行
+  let result = Parent.apply(child, rest);
+  // 3.如果构造器没有手动返回对象，则返回第一步的对象
+  return typeof result === &quot;object&quot; ? result : child;
+&#125;;
+//创建实例，将构造函数Parent与形参作为参数传入
+const child = newMethod(Parent, &quot;echo&quot;, 26);
+child.sayName(); //&#39;echo&#39;;
+//最后检验，与使用new的效果相同
+console.log(child instanceof Parent); //true
+console.log(child.hasOwnProperty(&quot;name&quot;)); //true
+console.log(child.hasOwnProperty(&quot;age&quot;)); //true
+console.log(child.hasOwnProperty(&quot;sayName&quot;)); //false
+</code></pre>
+<h3 id="根据-ES6-构造函数的书写方式，写出-ES5-的"><a href="#根据-ES6-构造函数的书写方式，写出-ES5-的" class="headerlink" title="根据 ES6 构造函数的书写方式，写出 ES5 的"></a>根据 ES6 构造函数的书写方式，写出 ES5 的</h3><p>ES6 的 class 和普通构造函数的区别有以下几点：</p>
+<ol>
+<li>ES6 中的 class 必须通过 new 来调用，不能当做普通函数调用，否则报错因此，在答案中，加入了 new.target 来判断调用方式</li>
+<li>ES6 的 class 中的所有代码均处于严格模式之下因此，在答案中，无论是构造函数本身，还是原型方法，都使用了严格模式</li>
+<li>ES6 中的原型方法是不可被枚举的因此，在答案中，定义原型方法使用了属性描述符，让其不可枚举</li>
+</ol>
+<pre><code class="plain">class Example &#123;
+  constructor(name) &#123;
+    this.name = name;
+  &#125;
+  init() &#123;
+    const fun = () =&gt; &#123; console.log(this.name) &#125;
+    fun();
+  &#125;
+&#125;
+const e = new Example(&#39;Hello&#39;);
+e.init();
+</code></pre>
+<pre><code class="javascript">function Example(name) &#123;
+  &quot;use strict&quot;;
+  if (!new.target) &#123;
+    throw new TypeError(&quot;Class constructor cannot be invoked without new&quot;);
+  &#125;
+  this.name = name;
+&#125;
+
+Object.defineProperty(Example.prototype, &quot;init&quot;, &#123;
+  enumerable: false,
+  value: function () &#123;
+    &quot;use strict&quot;;
+    if (new.target) &#123;
+      throw new TypeError(&quot;init is not a constructor&quot;);
+    &#125;
+    var fun = function () &#123;
+      console.log(this.name);
+    &#125;;
+    fun.call(this);
+  &#125;,
+&#125;);
+</code></pre>
+<h3 id="防抖，节流手写"><a href="#防抖，节流手写" class="headerlink" title="防抖，节流手写"></a>防抖，节流手写</h3><pre><code class="javascript">/**
+ * 函数防抖
+ * @param &#123;function&#125; fn 一段时间后，要调用的函数
+ * @param &#123;number&#125; wait 等待的时间，单位毫秒
+ */
+function debounce(fn, wait) &#123;
+  // 设置变量，记录 setTimeout 得到的 id
+  let timerId = null;
+  return function (...args) &#123;
+    if (timerId) &#123;
+      // 如果有值，说明目前正在等待中，清除它
+      clearTimeout(timerId);
+    &#125;
+    // 重新开始计时
+    timerId = setTimeout(() =&gt; &#123;
+      fn.call(this, ...args);
+    &#125;, wait);
+  &#125;;
+&#125;
+
+//节流
+function throttle(fn, wait) &#123;
+  let previous = 0;
+  return function (...args) &#123;
+    let now = +new Date();
+    if (now - previous &gt; wait) &#123;
+      fn.apply(this, ...args);
+      previous = now;
+    &#125;
+  &#125;;
+&#125;
+</code></pre>
+<h3 id="async-手写"><a href="#async-手写" class="headerlink" title="async 手写"></a>async 手写</h3><p>原始</p>
+<pre><code class="javascript">function A() &#123;
+  return new Promise((resolve) =&gt; &#123;
+    setTimeout(() =&gt; &#123;
+      resolve(3);
+    &#125;, 1000);
+  &#125;);
+&#125;
+
+async function B() &#123;
+  const b = await A();
+  const c = await A();
+  return b + c;
+&#125;
+
+B().then((data) =&gt; console.log(data));
+</code></pre>
+<p>转换结果</p>
+<pre><code class="javascript">//不变
+function A() &#123;
+  return new Promise((resolve) =&gt; &#123;
+    setTimeout(() =&gt; &#123;
+      resolve(3);
+    &#125;, 1000);
+  &#125;);
+&#125;
+
+//转换
+function B() &#123;
+  var fn = function* () &#123;
+    const b = yield A();
+    const c = yield A();
+    return b + c;
+  &#125;;
+  return new Promise(function (resolve, reject) &#123;
+    var gen = fn();
+    function _next(value) &#123;
+      asyncGeneratorStep(gen, resolve, reject, _next, value);
+    &#125;
+    _next(undefined);
+  &#125;);
+&#125;
+
+//转换
+function asyncGeneratorStep(gen, resolve, reject, _next, arg) &#123;
+  try &#123;
+    var info = gen.next(arg);
+    var value = info.value;
+  &#125; catch (error) &#123;
+    reject(error);
+    return;
+  &#125;
+
+  if (info.done) &#123;
+    resolve(value);
+  &#125; else &#123;
+    Promise.resolve(value).then((data) =&gt; &#123;
+      _next(data);
+    &#125;);
+  &#125;
+&#125;
+
+//不变
+B().then(function (data) &#123;
+  return console.log(data);
+&#125;);
+</code></pre>
+<h3 id="深拷贝手写"><a href="#深拷贝手写" class="headerlink" title="深拷贝手写"></a>深拷贝手写</h3><pre><code class="javascript">export function deepClone(obj) &#123;
+  let newObj = &#123;&#125;;
+  if (Array.isArray(obj)) &#123;
+    newObj = [];
+  &#125;
+  for (let k in obj) &#123;
+    let value = obj[k];
+    if (typeof value === &quot;object&quot; &amp;&amp; value !== null) &#123;
+      newObj[k] = deepClone(value);
+    &#125; else &#123;
+      //其他值 包括function的情况 都直接赋值
+      newObj[k] = value;
+    &#125;
+  &#125;
+  return newObj;
+&#125;
+</code></pre>
+<h3 id="flat-手写"><a href="#flat-手写" class="headerlink" title="flat 手写"></a>flat 手写</h3><pre><code class="javascript">let arr = [
+  1,
+  [2, 3, [4, 5, [12, 3, &quot;zs&quot;], 7, [8, 9, [10, 11, [1, 2, [3, 4]]]]]],
+];
+
+//自定义flat方法，注意：不可以使用箭头函数，使用后内部的this会指向window
+Array.prototype.myFlat = function (num) &#123;
+  //遍历所有子元素并判断类型，若为数组则继续递归，若不为数组则直接加入新数组
+  const result = [];
+  this.forEach((item) =&gt; &#123;
+    if (Array.isArray(item)) &#123;
+      //形参num，表示当前需要拆分多少层数组，传入Infinity则将多维直接降为一维
+
+      num--;
+      if (num &lt; 0) &#123;
+        let newArr = result.push(item);
+        return newArr;
+      &#125;
+      //使用三点运算符解构，递归函数返回的数组，并加入新数组
+      result.push(...item.myFlat(num));
+    &#125; else &#123;
+      result.push(item);
+    &#125;
+  &#125;);
+  return result;
+&#125;;
+console.log(arr.flat(Infinity)); //[1, 2, 3, 4, 5, 12, 3, &quot;zs&quot;, 7, 8, 9, 10, 11, 1, 2, 3, 4];
+</code></pre>
+<pre><code class="javascript">function flat(arr, depth = 1) &#123;
+  let result = [];
+  for (let i = 0; i &lt; arr.length; i++) &#123;
+    if (Array.isArray(arr[i]) &amp;&amp; depth &gt; 0) &#123;
+      result = result.concat(flat(arr[i], depth - 1));
+    &#125; else &#123;
+      result.push(arr[i]);
+    &#125;
+  &#125;
+  return result;
+&#125;
+</code></pre>
+<h3 id="reduce-手写"><a href="#reduce-手写" class="headerlink" title="reduce 手写"></a>reduce 手写</h3><pre><code class="javascript">Array.prototype.myReduce = function (callback, initialValue) &#123;
+  if (!Array.isArray(this) || !this.length || typeof callback !== &quot;function&quot;) &#123;
+    return [];
+  &#125; else &#123;
+    let value = initialValue ? initialValue : this[0];
+    for (let index = initialValue ? 0 : 1; index &lt; this.length; index++) &#123;
+      const element = this[index];
+      value = callback(value, element, index, this);
+    &#125;
+    return value;
+  &#125;
+&#125;;
+
+let arr = [1, 2, 3, 4, 5];
+let res = arr.myReduce((pre, cur, i, arr) =&gt; &#123;
+  console.log(pre, cur, i, arr);
+  return pre + cur;
+&#125;, 10);
+console.log(res); //25
+</code></pre>
+<h3 id="promise-手写"><a href="#promise-手写" class="headerlink" title="promise 手写"></a>promise 手写</h3><pre><code class="javascript">// 记录Promise的三种状态
+const PENDING = &quot;pending&quot;;
+const FULFILLED = &quot;fulfilled&quot;;
+const REJECTED = &quot;rejected&quot;;
+
+/**
+ * 运行一个微队列任务
+ * 把传递的函数放到微队列中
+ * @param &#123;Function&#125; callback
+ */
+function runMicroTask(callback) &#123;
+  // 判断node环境
+  // 为了避免「变量未定义」的错误，这里最好加上前缀globalThis
+  // globalThis是一个关键字，指代全局对象，浏览器环境为window，node环境为global
+  if (globalThis.process &amp;&amp; globalThis.process.nextTick) &#123;
+    process.nextTick(callback);
+  &#125; else if (globalThis.MutationObserver) &#123;
+    const p = document.createElement(&quot;p&quot;);
+    const observer = new MutationObserver(callback);
+    observer.observe(p, &#123;
+      childList: true, // 观察该元素内部的变化
+    &#125;);
+    p.innerHTML = &quot;1&quot;;
+  &#125; else &#123;
+    setTimeout(callback, 0);
+  &#125;
+&#125;
+
+/**
+ * 判断一个数据是否是Promise对象
+ * @param &#123;any&#125; obj
+ * @returns
+ */
+function isPromise(obj) &#123;
+  return !!(obj &amp;&amp; typeof obj === &quot;object&quot; &amp;&amp; typeof obj.then === &quot;function&quot;);
+&#125;
+
+class MyPromise &#123;
+  /**
+   * 创建一个Promise
+   * @param &#123;Function&#125; executor 任务执行器，立即执行
+   */
+  constructor(executor) &#123;
+    this._state = PENDING; // 状态
+    this._value = undefined; // 数据
+    this._handlers = []; // 处理函数形成的队列
+    try &#123;
+      executor(this._resolve.bind(this), this._reject.bind(this));
+    &#125; catch (error) &#123;
+      this._reject(error);
+      console.error(error);
+    &#125;
+  &#125;
+
+  /**
+   * 向处理队列中添加一个函数
+   * @param &#123;Function&#125; executor 添加的函数
+   * @param &#123;String&#125; state 该函数什么状态下执行
+   * @param &#123;Function&#125; resolve 让then函数返回的Promise成功
+   * @param &#123;Function&#125; reject 让then函数返回的Promise失败
+   */
+  _pushHandler(executor, state, resolve, reject) &#123;
+    this._handlers.push(&#123;
+      executor,
+      state,
+      resolve,
+      reject,
+    &#125;);
+  &#125;
+
+  /**
+   * 根据实际情况，执行队列
+   */
+  _runHandlers() &#123;
+    if (this._state === PENDING) &#123;
+      // 目前任务仍在挂起
+      return;
+    &#125;
+    while (this._handlers[0]) &#123;
+      const handler = this._handlers[0];
+      this._runOneHandler(handler);
+      this._handlers.shift();
+    &#125;
+  &#125;
+
+  /**
+   * 处理一个handler
+   * @param &#123;Object&#125; handler
+   */
+  _runOneHandler(&#123; executor, state, resolve, reject &#125;) &#123;
+    runMicroTask(() =&gt; &#123;
+      if (this._state !== state) &#123;
+        // 状态不一致，不处理
+        return;
+      &#125;
+
+      if (typeof executor !== &quot;function&quot;) &#123;
+        // 传递后续处理并非一个函数
+        this._state === FULFILLED ? resolve(this._value) : reject(this._value);
+        return;
+      &#125;
+      try &#123;
+        const result = executor(this._value);
+        if (isPromise(result)) &#123;
+          result.then(resolve, reject);
+        &#125; else &#123;
+          resolve(result);
+        &#125;
+      &#125; catch (error) &#123;
+        reject(error);
+        console.error(error);
+      &#125;
+    &#125;);
+  &#125;
+
+  /**
+   * Promise A+规范的then
+   * @param &#123;Function&#125; onFulfilled
+   * @param &#123;Function&#125; onRejected
+   */
+  then(onFulfilled, onRejected) &#123;
+    return new MyPromise((resolve, reject) =&gt; &#123;
+      this._pushHandler(onFulfilled, FULFILLED, resolve, reject);
+      this._pushHandler(onRejected, REJECTED, resolve, reject);
+      this._runHandlers(); // 执行队列
+    &#125;);
+  &#125;
+
+  /**
+   * 仅处理失败的场景
+   * @param &#123;Function&#125; onRejected
+   */
+  catch(onRejected) &#123;
+    return this.then(null, onRejected);
+  &#125;
+
+  /**
+   * 无论成功还是失败都会执行回调
+   * @param &#123;Function&#125; onSettled
+   */
+  finally(onSettled) &#123;
+    return this.then(
+      (data) =&gt; &#123;
+        onSettled();
+        return data;
+      &#125;,
+      (reason) =&gt; &#123;
+        onSettled();
+        throw reason;
+      &#125;
+    );
+  &#125;
+
+  /**
+   * 更改任务状态
+   * @param &#123;String&#125; newState 新状态
+   * @param &#123;any&#125; value 相关数据
+   */
+  _changeState(newState, value) &#123;
+    if (this._state !== PENDING) &#123;
+      // 目前状态已经更改
+      return;
+    &#125;
+    // 下面这个判断是为了处理value为Promise的情况
+    // 这一段代码课程中没有涉及，特此注释说明
+    if (isPromise(value)) &#123;
+      value.then(this._resolve.bind(this), this._reject.bind(this));
+      return;
+    &#125;
+    this._state = newState;
+    this._value = value;
+    this._runHandlers(); // 状态变化，执行队列
+  &#125;
+
+  /**
+   * 标记当前任务完成
+   * @param &#123;any&#125; data 任务完成的相关数据
+   */
+  _resolve(data) &#123;
+    this._changeState(FULFILLED, data);
+  &#125;
+
+  /**
+   * 标记当前任务失败
+   * @param &#123;any&#125; reason 任务失败的相关数据
+   */
+  _reject(reason) &#123;
+    this._changeState(REJECTED, reason);
+  &#125;
+
+  /**
+   * 返回一个已完成的Promise
+   * 特殊情况：
+   * 1. 传递的data本身就是ES6的Promise对象
+   * 2. 传递的data是PromiseLike（Promise A+），返回新的Promise，状态和其保持一致即可
+   * @param &#123;any&#125; data
+   */
+  static resolve(data) &#123;
+    if (data instanceof MyPromise) &#123;
+      return data;
+    &#125;
+    return new MyPromise((resolve, reject) =&gt; &#123;
+      if (isPromise(data)) &#123;
+        data.then(resolve, reject);
+      &#125; else &#123;
+        resolve(data);
+      &#125;
+    &#125;);
+  &#125;
+
+  /**
+   * 得到一个被拒绝的Promise
+   * @param &#123;any&#125;&#125; reason
+   */
+  static reject(reason) &#123;
+    return new MyPromise((resolve, reject) =&gt; &#123;
+      reject(reason);
+    &#125;);
+  &#125;
+
+  /**
+   * 得到一个新的Promise
+   * 该Promise的状态取决于proms的执行
+   * proms是一个迭代器，包含多个Promise
+   * 全部Promise成功，则返回的Promise成功，数据为所有Promise成功的数据，并且顺序是按照传入的顺序排列
+   * 只要有一个Promise失败，则返回的Promise失败，原因是第一个失败的Promise的原因
+   * @param &#123;iterator&#125; proms
+   */
+  static all(proms) &#123;
+    return new MyPromise((resolve, reject) =&gt; &#123;
+      try &#123;
+        const results = [];
+        let count = 0; // Promise的总数
+        let fulfilledCount = 0; // 已完成的数量
+        for (const p of proms) &#123;
+          let i = count;
+          count++;
+          MyPromise.resolve(p).then((data) =&gt; &#123;
+            fulfilledCount++;
+            results[i] = data;
+            if (fulfilledCount === count) &#123;
+              // 当前是最后一个Promise完成了
+              resolve(results);
+            &#125;
+          &#125;, reject);
+        &#125;
+        if (count === 0) &#123;
+          resolve(results);
+        &#125;
+      &#125; catch (error) &#123;
+        reject(error);
+        console.error(error);
+      &#125;
+    &#125;);
+  &#125;
+
+  /**
+   * 等待所有的Promise有结果之后
+   * 该方法返回的Promise完成
+   * 并且按照顺序将所有结果汇总
+   * @param &#123;iterator&#125; proms
+   */
+  static allSettled(proms) &#123;
+    const ps = [];
+    for (const p of proms) &#123;
+      ps.push(
+        MyPromise.resolve(p).then(
+          (value) =&gt; (&#123;
+            status: FULFILLED,
+            value,
+          &#125;),
+          (reason) =&gt; (&#123;
+            status: REJECTED,
+            reason,
+          &#125;)
+        )
+      );
+    &#125;
+    return MyPromise.all(ps);
+  &#125;
+
+  /**
+   * 返回的Promise与第一个有结果的一致
+   * @param &#123;iterator&#125; proms
+   */
+  static race(proms) &#123;
+    return new MyPromise((resolve, reject) =&gt; &#123;
+      for (const p of proms) &#123;
+        MyPromise.resolve(p).then(resolve, reject);
+      &#125;
+    &#125;);
+  &#125;
+&#125;
+</code></pre>
+<h3 id="instanceof-手写"><a href="#instanceof-手写" class="headerlink" title="instanceof 手写"></a>instanceof 手写</h3><pre><code class="javascript">instanceof (A,B) = &#123;
+    let L = A.__proto__;
+    let R = B.prototype;
+    if(L === R) &#123;
+        // A的内部属性 __proto__ 指向 B 的原型对象
+        return true;
+    &#125;
+    return false;
+&#125;
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

@@ -1,0 +1,543 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>移动端 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>移动端</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/23
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="webView-和-webApp"><a href="#webView-和-webApp" class="headerlink" title="webView 和 webApp"></a>webView 和 webApp</h2><p>webApp：不能够调用系统原生的接口，因为本质就是一个浏览器的网页</p>
+<blockquote>
+<p>WebApp 其实就是移动端的网站或 H5 应用，说白了就是运行在移动端浏览器上的网站应用。</p>
+<p>因为 SPA 开发模式的出现，整个网页只有一个页面，所以给人的感觉像是一个应用一样，从而出现了 WebApp 的说法。另外由于现在开发一个 Web 网站一般都使用 HTML5、CSS3 等新的技术，因此 WebApp 又被称之为 H5 应用。</p>
+<p>最大缺点：无法调用原生 api</p>
+</blockquote>
+<p>webView：是一种在应用程序内打开的网页，比如抖音扫码跳出一个网页，这个页面可以跟原生系统接口交互</p>
+<blockquote>
+<p>WebView 就是浏览器引擎部分，你可以像插入 iframe 一样将 Webview 插入到你的原生应用中，并且编程化的告诉它将会加载什么网页内容。这样我们可以用它来作为我们原生 app 的视觉部分。当你使用原生应用时，WebView 可能只是被隐藏在普通的原生 UI 元素中，你甚至用不到注意到它。</p>
+</blockquote>
+<p><img src="1730775851218-2e36105a-811e-4c83-987b-43b3ba2af222.png"></p>
+<p>Hybrid App：一整个 app 就是一个 webview，开发的时候用 webapp，就是为了能够会系统进行交互；用这种方式开发就可以不使用 xcode 和 Android studio</p>
+<h2 id="适配"><a href="#适配" class="headerlink" title="适配"></a>适配</h2><h3 id="设备像素（物理像素）"><a href="#设备像素（物理像素）" class="headerlink" title="设备像素（物理像素）"></a>设备像素（物理像素）</h3><p>设备像素就是指实际存在的像素。</p>
+<p><img src="1729671092807-83d3a05d-bfc5-4c76-a94b-62902044241f.png"></p>
+<p>这表示在设备屏幕的水平方向上有 2340 个像素点，垂直方向上有 1080 个像素点（纵横比）</p>
+<h3 id="屏幕尺寸（英寸）"><a href="#屏幕尺寸（英寸）" class="headerlink" title="屏幕尺寸（英寸）"></a>屏幕尺寸（英寸）</h3><p>1 英寸等于 2.54 厘米（cm）</p>
+<p>手机的英寸指的是对角线的长度</p>
+<h3 id="像素密度（PPI）"><a href="#像素密度（PPI）" class="headerlink" title="像素密度（PPI）"></a>像素密度（PPI）</h3><p>像素密度就是指 1 英寸下的设备像素数量</p>
+<p>计算</p>
+<pre><code class="javascript">// 屏幕斜边的像素
+const margin = Math.sqrt(Math.pow(1080, 2) + Math.pow(1920, 2));
+console.log(margin); // 2202.9071700822983
+console.log(margin / 5.5); // 400.52857637859967 PPI
+</code></pre>
+<h3 id="CSS-像素（设备独立像素、逻辑像素）"><a href="#CSS-像素（设备独立像素、逻辑像素）" class="headerlink" title="CSS 像素（设备独立像素、逻辑像素）"></a>CSS 像素（设备独立像素、逻辑像素）</h3><p>代码里面书写的像素</p>
+<h3 id="像素比（DPR）"><a href="#像素比（DPR）" class="headerlink" title="像素比（DPR）"></a>像素比（DPR）</h3><p>DPR = 设备像素 / CSS 像素。</p>
+<h3 id="视口与-meta"><a href="#视口与-meta" class="headerlink" title="视口与 meta"></a>视口与 meta</h3><p>这句话是设置视口，宽度是设备的宽度，缩放比为 1</p>
+<pre><code class="javascript">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+</code></pre>
+<blockquote>
+<p>不写这句话，视口默认宽度 980px</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>width</td>
+<td>设置 layout viewport 的宽度，为一个正整数，或字符串”device-width”</td>
+</tr>
+<tr>
+<td>height</td>
+<td>设置 layout viewport 的高度，这个属性对我们并不重要，很少使用</td>
+</tr>
+<tr>
+<td>initial-scale</td>
+<td>设置页面的初始缩放值，为一个数字，可以带小数</td>
+</tr>
+<tr>
+<td>minimum-scale</td>
+<td>允许用户的最小缩放值，为一个数字，可以带小数</td>
+</tr>
+<tr>
+<td>maximum-scale</td>
+<td>允许用户的最大缩放值，为一个数字，可以带小数</td>
+</tr>
+<tr>
+<td>user-scalable</td>
+<td>是否允许用户进行缩放，值为”no”或”yes”, no 代表不允许，yes 代表允许</td>
+</tr>
+</tbody></table>
+<h3 id="适配方案"><a href="#适配方案" class="headerlink" title="适配方案"></a>适配方案</h3><h4 id="百分比"><a href="#百分比" class="headerlink" title="百分比"></a>百分比</h4><p>宽度，高度等单位使用百分比，这种方案往往需要配合其他适配方案一起使用。</p>
+<h4 id="设置缩放"><a href="#设置缩放" class="headerlink" title="设置缩放"></a>设置缩放</h4><p>以标准的 375px 来开发，设置缩放</p>
+<p>设置 initial-scale 属性</p>
+<pre><code class="javascript">(function () &#123;
+  //获取css像素（viewport没有缩放）
+  var curWidth = document.documentElement.clientWidth;
+  console.log(curWidth);
+
+  var targetWidth = 375;
+  var scale = curWidth / targetWidth;
+  console.log(scale);
+
+  var view = document.getElementById(&quot;view&quot;);
+  console.log(view.content);
+
+  view.content =
+    &quot;initial-scale=&quot; +
+    scale +
+    &quot;,user-scalable=no,minimum-scale=&quot; +
+    scale +
+    &quot;,maximum-scale=&quot; +
+    scale +
+    &quot;&quot;;
+&#125;)();
+</code></pre>
+<p>缺点：</p>
+<p>1.就像在 viewport 设置宽度的时候，可以把宽度设置成一个固定值一样，会出现所有的手机看上去都是同样的大小，没有分别了，不太好，厂商特意做出各种大小的手机，还要弄成一样，那人家买大屏机有什么意义</p>
+<p>2.算出的的值在一些有小数的情况下可能会出现误差（无关紧要），因为设备独立像素不能有小数</p>
+<p>3.对设计稿的测量存在问题</p>
+<h4 id="修改-dpr（不使用）"><a href="#修改-dpr（不使用）" class="headerlink" title="修改 dpr（不使用）"></a>修改 dpr（不使用）</h4><p>修改 css 像素和物理像素为 1:1 的关系</p>
+<pre><code class="plain">var scale = 1 / window.devicePixelRatio;
+meta.content = &#39;width=device-width,initial-scale=&#39; + scale + &#39;,user-scalable=no,minimum-scale=&#39; + scale + &#39;,maximum-scale=&#39; + scale + &#39;&#39;;
+</code></pre>
+<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p>原理：类似栅格化布局，给出一列的宽度为根元素的 font-size,然后后续都以 rem 尺度进行计算</p>
+<p>clientWidth:document.documentElement.clientWidth（屏幕宽度）</p>
+<p>desginWidth:设计稿宽度</p>
+<pre><code class="plain">html.style.fontSize = 100 * (clientWidth（屏幕宽度） / designWidth（设计稿宽度）) + &#39;px&#39;;
+</code></pre>
+<p>到时候使用的时候，比如设计稿是 30px，那么就写 0.3rem，因为 rem 单位已经经过了计算</p>
+<h4 id="vw-vh-vmin-vmax"><a href="#vw-vh-vmin-vmax" class="headerlink" title="vw,vh,vmin,vmax"></a>vw,vh,vmin,vmax</h4><p>vw 是 Viewport’s width 的简写，1vw 等于 window.innerWidth 的 1%</p>
+<p>vh 和 vw 类似，是 Viewport’s height 的简写，1vh 等于 window.innerHeihgt 的 1%</p>
+<p>vmin 的值是当前 vw 和 vh 中较小的值</p>
+<p>vmax 的值是当前 vw 和 vh 中较大的值</p>
+<p>都是作为单位使用</p>
+<h2 id="设配与响应式"><a href="#设配与响应式" class="headerlink" title="设配与响应式"></a>设配与响应式</h2><p>设配(自适应)：移动端的网页在不同的设备下看上去都是正常的。</p>
+<p>响应式：一套代码能够在不同的设备下有着不一样的表现。</p>
+<blockquote>
+<p>缺点：</p>
+<p>代码冗余，有一些东西是特定 PC 端有，有一些东西是特定手机端有，但是因为是一套代码，因此无论是 PC 端还是手机平板端，这些代码都会有</p>
+<p>移动端和 PC 端还是有一定的差异性，比如移动端可以两根手指放大页面，而这个在 PC 端是没有的，随着移动端的代码和 PC 端差异越大，使用一套代码就会越感到力不从心</p>
+<p>媒体查询使用注意：</p>
+<p>网页宽度自动调整</p>
+<p>尽量少使用绝对宽度</p>
+<p>字体的大小使用相对单位（rem、em）</p>
+<p>布局尽量使用流式布局(flex)</p>
+</blockquote>
+<h2 id="移动端事件"><a href="#移动端事件" class="headerlink" title="移动端事件"></a>移动端事件</h2><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>touchstart：手指按下事件，类似 mousedown</p>
+<p>touchmove：手指移动事件，类似 mousemove</p>
+<p>touchend 手指抬起事件，类似 mouseup</p>
+<pre><code class="plain">box.addEventListener(&#39;touchstart&#39;, (e) =&gt; &#123;
+  console.log(e);
+&#125;);
+</code></pre>
+<p>这个 e(事件对象)中有三个对象，都是表示手指列表</p>
+<p><img src="1730442913392-130d264b-4db2-426d-9cce-6cd06ba4cd80.png"></p>
+<p>changedTouches、targetTouches、touches 这 3 个对应的值都是 TouchList（手指列表）</p>
+<p>changedTouches：触发当前事件的手指列表，也就是涉及当前（引发）事件的触摸点的列表</p>
+<p>targetTouches：位于当前 DOM 元素上的手指列表，也就是当前对象上所有触摸点的列表</p>
+<p>touches：位于当前屏幕上的所有手指列表（必需至少有 1 个手指在添加触发事件的元素上），也就是当前屏幕上所有触摸点的列表</p>
+<h3 id="移动端事件和-PC-端事件之间的区别"><a href="#移动端事件和-PC-端事件之间的区别" class="headerlink" title="移动端事件和 PC 端事件之间的区别"></a>移动端事件和 PC 端事件之间的区别</h3><h4 id="300ms-延迟"><a href="#300ms-延迟" class="headerlink" title="300ms 延迟"></a>300ms 延迟</h4><p>现在只要设置了 viewpoint 就不会有这个问题</p>
+<h4 id="触发点区别"><a href="#触发点区别" class="headerlink" title="触发点区别"></a>触发点区别</h4><p>PC 端</p>
+<p>mousemove：不需要鼠标按下，但是必需在元素上才能触发</p>
+<p>mouseup：必需在元素上抬起才能触发</p>
+<p>移动端</p>
+<p>touchmove：必需手指按下才能触发，但是，按下后不在元素上也能触发</p>
+<p>touchend：不需要在元素上抬起就能触发</p>
+<h4 id="触发顺序"><a href="#触发顺序" class="headerlink" title="触发顺序"></a>触发顺序</h4><p>触发顺序依次为：touchstart → touchend → mousedown → click → mouseup</p>
+<blockquote>
+<p>并且 PC 的事件在移动端里会有 300ms 左右 延迟</p>
+</blockquote>
+<h4 id="touchstart-与-click-的区别"><a href="#touchstart-与-click-的区别" class="headerlink" title="touchstart 与 click 的区别"></a>touchstart 与 click 的区别</h4><p>touchstart 为手指碰到元素就触发，click 为手指碰到元素并且抬起才会触发</p>
+<h3 id="移动端事件穿透"><a href="#移动端事件穿透" class="headerlink" title="移动端事件穿透"></a>移动端事件穿透</h3><p>这是因为在移动端浏览器，事件执行的顺序是 touchstart → touchmove → touched → click。而 click 事件有 300ms 的延迟，当 touchstart 事件把上层元素隐藏之后，隔了 300ms，浏览器触发了 click 事件，但是此时上层元素不见了，所以该事件被派发到了下层元素身上。</p>
+<p>阻止默认事件可解决</p>
+<pre><code class="plain">box.addEventListener(&#39;touchstart&#39;, ev =&gt; &#123;
+  box.style.display = &#39;none&#39;;
+  ev.preventDefault(); // 取消事件的默认动作
+&#125;);
+</code></pre>
+<p>阻止默认行为可能会导致有些事件不可用，所以需要自己去开发这些功能</p>
+<p>比如</p>
+<p>a 标签无法跳转</p>
+<pre><code class="plain">dom.addEventListener(&#39;touchstart&#39;,e=&gt;&#123;
+  location.href = e.target.href;
+&#125;)
+</code></pre>
+<p>手动滚动</p>
+<pre><code class="plain">var wrap = document.querySelector(&quot;#wrap&quot;); // 外层的 div
+var list = document.querySelector(&quot;#list&quot;);; // 里面的 ul
+var startPointY = 0, // 手指按下时的 Y 坐标
+    startTop = 0, // 要滑动的元素默认的 top 值
+    movePointY = 0; // 手指移动时的坐标
+// 这里我们用到了腾讯的第三方库 transform，通过 Transform(DOM节点) 进行一个初始化
+// 之后我们就可以非常方便的获取以及设置该 DOM 节点和 transform 相关的属性值
+Transform(list);
+console.log(list.translateY);
+wrap.addEventListener(&#39;touchstart&#39;, ev =&gt; &#123;
+    startPointY = ev.changedTouches[0].pageY; // 手指按下时的坐标
+    startTop = list.translateY; // list 元素垂直轴移动的距离
+&#125;)
+wrap.addEventListener(&#39;touchmove&#39;, ev=&gt;&#123;
+    // 坐标移动的距离 = 当前的距离 - 按下时的距离
+    movePointY = ev.changedTouches[0].pageY - startPointY;
+    // 元素移动的距离 = 按下时元素的 top + 坐标移动的距离
+    list.translateY = startTop + movePointY;
+&#125;)
+document.addEventListener(&#39;touchstart&#39;,ev=&gt;&#123;
+    ev.preventDefault();
+&#125;, &#123;
+    passive : false
+&#125;)
+</code></pre>
+<p>手写轮播图</p>
+<pre><code class="plain">        // 获取一些 DOM 节点
+        var banner = document.querySelector(&quot;#banner&quot;); // 最外层容器
+        var wrap = document.querySelector(&quot;.wrap&quot;); // 轮播图图片容器
+        var spans = document.querySelectorAll(&quot;.circle span&quot;); // 获取所用的小圆点
+
+        // 初始化一些变量
+        var imgWidth = banner.offsetWidth; // 一张图片的宽度
+        var startPointX = 0; // 手指按下时的坐标
+        var disPointX = 0; // 手指移动的距离
+        var startEleX = 0; // 按下时元素的位置
+        var cn = 0; // 当前图片的索引值
+        var ln = 0; // 上一个图片的索引值
+
+        Transform(wrap);
+
+        // 因为要实现的是无缝滚动，所以需要复制一份图片在后面
+        wrap.innerHTML += wrap.innerHTML; // 复制了一份
+        wrap.style.width = wrap.children.length * imgWidth + &quot;px&quot;;
+
+        // 手指按下的时候要做的事情
+        banner.addEventListener(&quot;touchstart&quot;, ev =&gt; &#123;
+            startPointX = ev.changedTouches[0].pageX; // 记录手指按下去的时候的 X 坐标
+
+            // 需要判断当前是第几张图，如果是第一张或者是最后一张，那么我们是要做特殊处理的
+            // 因为我们并不知道用户是往左边还是右边，所以我们针对第一张和最后一张直接进行跳转
+            if(cn === 0)&#123;
+                cn = wrap.children.length / 2;
+            &#125;
+
+            if(cn === wrap.children.length - 1)&#123;
+                cn = wrap.children.length / 2 - 1;
+            &#125;
+
+            wrap.style.transition = &quot;&quot;; // 去除 wrap 的过渡，否则一会儿拖动的时候就会因为过渡感觉慢半拍
+            // 因为现在图片的下标已经更新了，所以我们需要根据新的下标修正 wrap 的 translate 移动距离
+            wrap.translateX =  - imgWidth * cn;
+            // 还需要更新一下元素的移动距离
+            startEleX = wrap.translateX;
+            ev.preventDefault();
+        &#125;);
+
+        // 手指移动的时候要做的事情
+        banner.addEventListener(&quot;touchmove&quot;, ev =&gt; &#123;
+            disPointX = ev.changedTouches[0].pageX - startPointX; // 获取手指移动的距离
+            wrap.translateX = startEleX + disPointX;
+        &#125;);
+
+        // 手指抬起的时候要做的事情
+        banner.addEventListener(&quot;touchend&quot;, ev =&gt; &#123;
+            // 当用户手指抬起的时候，需要判断要不要切换图片
+            // 这个就根据用户手指移动的距离，如果用户手指移动的距离很短，我们就回弹图片
+            // 我们将整个图片宽度分为 8 份，如果用户手指移动的距离大于八分之一，我们就切换，否则我们就回弹
+            var backWidth = imgWidth / 8;
+
+            if(Math.abs(disPointX) &gt; backWidth)&#123;
+                // 大于八分之一，那我们就切换图片
+                // 分为往左还是往右
+                if(disPointX &lt; 0)&#123;
+                    // 往左边拖，想看下一张图片
+                    cn++
+                &#125;
+                if(disPointX &gt; 0)&#123;
+                    // 往右边拖，想看上一张图片
+                    cn--;
+                &#125;
+            &#125;
+            // 至此，图片的下标已经更新
+            wrap.style.transition = &quot;.3s&quot;;
+            wrap.translateX =  - imgWidth * cn;
+
+            // 最后一个事情，就是更新小圆点
+            // 这里还是根据图片的下标来做
+            // 首先去除上一次圆点身上的 class
+            spans[ln].className = &quot;&quot;;
+            // 给当前的下标添加上 class
+            // 图片当前的索引：0 1 2 3 4 5 ==&gt; 0 1 2 0 1 2
+            spans[cn % (wrap.children.length / 2)].className = &quot;active&quot;;
+            // 更新上一个索引
+            ln = cn % (wrap.children.length / 2)
+        &#125;)
+</code></pre>
+<h3 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h3><p>swiper.js 轮播图库</p>
+<p>hammer.js 手势库（各种操作监听）</p>
+<p><font style="color:rgba(0, 0, 0, 0.85);">zepto.js 类似于移动端的 jq</font></p>
+<p><font style="color:rgba(0, 0, 0, 0.85);">cropper.js 裁剪库</font></p>
+<h2 id="常见-API"><a href="#常见-API" class="headerlink" title="常见 API"></a>常见 API</h2><h3 id="调用摄像头"><a href="#调用摄像头" class="headerlink" title="调用摄像头"></a>调用摄像头</h3><pre><code class="javascript">navigator.mediaDevices.getUserMedia(myConstraints).then(
+  (stream) =&gt; &#123;
+    video.srcObject = stream;
+    //播放视频
+    video.play();
+    // 关闭摄像
+    btn2.onclick = function () &#123;
+      stream.getTracks().forEach((track) =&gt; track.stop());
+    &#125;;
+  &#125;,
+  (error) =&gt; &#123;
+    console.error(error.name || error);
+  &#125;
+);
+</code></pre>
+<h3 id="上拉刷新与下拉加载更多"><a href="#上拉刷新与下拉加载更多" class="headerlink" title="上拉刷新与下拉加载更多"></a>上拉刷新与下拉加载更多</h3><p>可用 swiper 的库</p>
+<pre><code class="javascript">var mySwiper = new Swiper(&quot;.swiper-container&quot;, &#123;
+  direction: &quot;vertical&quot;,
+  scrollbar: &quot;.swiper-scrollbar&quot;,
+  slidesPerView: &quot;auto&quot;,
+  mousewheelControl: true,
+  freeMode: true,
+  // 用户在整个轮播图上面滑动时
+  onTouchMove: function () &#123;
+    if (mySwiper.translate &lt; 50 &amp;&amp; mySwiper.translate &gt; 0) &#123;
+      $(&quot;.init-loading&quot;).html(&quot;下拉刷新...&quot;).show();
+    &#125; else if (mySwiper.translate &gt; 50) &#123;
+      $(&quot;.init-loading&quot;).html(&quot;释放刷新...&quot;).show();
+    &#125;
+  &#125;,
+  // 滑动结束时
+  onTouchEnd: function () &#123;
+    var _viewHeight =
+      document.getElementsByClassName(&quot;swiper-wrapper&quot;)[0].offsetHeight;
+    var _contentHeight =
+      document.getElementsByClassName(&quot;swiper-slide&quot;)[0].offsetHeight;
+
+    // 根据滑动的距离判断是刷新还是加载
+
+    // 上拉加载
+    if (
+      mySwiper.translate &lt;= _viewHeight - _contentHeight - 100 &amp;&amp;
+      mySwiper.translate &lt; 0
+    ) &#123;
+      if (loadFlag) &#123;
+        $(&quot;.loadtip&quot;).html(&quot;正在加载...&quot;);
+        // 模仿异步加载数据
+        setTimeout(function () &#123;
+          for (var i = 0; i &lt; 5; i++) &#123;
+            oi++;
+            $(&quot;.list-group&quot;)
+              .eq(mySwiper2.activeIndex)
+              .append(
+                &#39;&lt;li class=&quot;list-group-item&quot;&gt;我是加载出来的&#39; + oi + &quot;...&lt;/li&gt;&quot;
+              );
+          &#125;
+          $(&quot;.loadtip&quot;).html(&quot;上拉加载更多...&quot;);
+          mySwiper.update(); // 重新计算高度;
+          // 上拉加载到一定数据则不能再加载
+          if (oi &gt;= 20) &#123;
+            loadFlag = false;
+          &#125;
+        &#125;, 800);
+      &#125; else &#123;
+        $(&quot;.loadtip&quot;).html(&quot;没有更多啦！&quot;);
+      &#125;
+    &#125;
+
+    // 下拉刷新
+    if (mySwiper.translate &gt;= 50) &#123;
+      $(&quot;.init-loading&quot;).html(&quot;正在刷新...&quot;).show();
+      $(&quot;.loadtip&quot;).html(&quot;上拉加载更多&quot;);
+      // 模仿异步加载数据
+      setTimeout(function () &#123;
+        $(&quot;.refreshtip&quot;).show();
+        $(&quot;.init-loading&quot;).html(&quot;刷新成功！&quot;);
+        if (oj &lt;= 5) &#123;
+          for (var i = 0; i &lt; 5; i++) &#123;
+            oj++;
+            $(&quot;.list-group&quot;)
+              .eq(mySwiper2.activeIndex)
+              .prepend(
+                &#39;&lt;li class=&quot;list-group-item&quot;&gt;我是新增数据&#39; + oj + &quot;...&lt;/li&gt;&quot;
+              );
+          &#125;
+        &#125;
+
+        setTimeout(function () &#123;
+          $(&quot;.init-loading&quot;).html(&quot;&quot;).hide();
+        &#125;, 800);
+        $(&quot;.loadtip&quot;).show();
+
+        //刷新操作
+        mySwiper.update(); // 重新计算高度;
+      &#125;, 1000);
+    &#125; else if (mySwiper.translate &gt;= 0 &amp;&amp; mySwiper.translate &lt; 50) &#123;
+      $(&quot;.init-loading&quot;).html(&quot;&quot;).hide();
+    &#125;
+    return false;
+  &#125;,
+&#125;);
+</code></pre>
+<h3 id="本地配置-https"><a href="#本地配置-https" class="headerlink" title="本地配置 https"></a>本地配置 https</h3><p>使用 mkcert</p>
+<h3 id="重力加速度"><a href="#重力加速度" class="headerlink" title="重力加速度"></a>重力加速度</h3><pre><code class="javascript">const box = document.querySelector(&quot;.box&quot;);
+window.addEventListener(&quot;devicemotion&quot;, (ev) =&gt; &#123;
+  //console.log(ev);
+  let motion = ev.acceleration;
+  box.innerHTML = `
+        x:$&#123;motion.x&#125;&lt;br&gt;
+        y:$&#123;motion.y&#125;&lt;br&gt;
+        z:$&#123;motion.z&#125;&lt;br&gt;`;
+&#125;);
+</code></pre>
+<h3 id="横竖屏变化"><a href="#横竖屏变化" class="headerlink" title="横竖屏变化"></a>横竖屏变化</h3><pre><code class="javascript">if (window.ScreenOrientation) &#123;
+  alert(&quot;OK&quot;);
+&#125; else &#123;
+  alert(&quot;No&quot;);
+&#125;
+</code></pre>
+<pre><code class="plain">window.addEventListener(&quot;deviceorientation&quot;, (ev) =&gt; &#123;
+    box.innerHTML = `
+      z轴偏移的度数为：$&#123;ev.alpha.toFixed(2)&#125;&lt;br&gt;
+      x轴偏移的度数为：$&#123;ev.beta.toFixed(2)&#125;&lt;br&gt;
+      y轴偏移的度数为：$&#123;ev.gamma.toFixed(2)&#125;&lt;br&gt;
+    `;
+&#125;);
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

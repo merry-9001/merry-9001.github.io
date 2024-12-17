@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>跨域 | 后知后觉的个人主页</title>
+        <title>同源策略与跨域 | 后知后觉的个人主页</title>
         <meta name="author" content="知乐" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -98,7 +98,7 @@
             <div id="main" v-show="!loading">
                 <div class="article">
     <div>
-        <h1>跨域</h1>
+        <h1>同源策略与跨域</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -112,14 +112,18 @@
     </div>
 
     <div class="content" v-pre>
-        <h2 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h2><p>浏览器有一个重要的安全策略，称之为「同源策略」<br>其中，源=协议+主机+端口源=协议+主机+端口，<strong>两个源相同，称之为同源，两个源不同，称之为跨源或跨域</strong></p>
-<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源策略是指，若页面的源和页面运行过程中加载的源不一致时，出于安全考虑，浏览器会对跨域的资源访问进行一些限制</p>
+        <h1 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a><font style="color:rgb(37, 41, 51);">同源策略</font></h1><p><strong><font style="color:rgb(37, 41, 51);">浏览器</font></strong><font style="color:rgb(37, 41, 51);">有一个重要的安全策略，称之为「同源策略」</font></p>
+<p><font style="color:rgb(37, 41, 51);">其中，源=协议+主机+端口。两个源相同，称之为同源，两个源不同，称之为跨源或跨域</font></p>
+<p><font style="color:rgb(37, 41, 51);">同源策略是指，若页面的源和页面运行过程中加载的源不一致时，出于安全考虑，浏览器会对跨域的资源访问进行一些限制</font></p>
+<p><img src="1709967164886-4d91a1b9-3627-41de-9a12-6b0e34f8eff9.png"></p>
+<p><font style="color:rgb(37, 41, 51);">同源策略对 ajax 的跨域限制的最为</font>凶狠<font style="color:rgb(37, 41, 51);">，默认情况下，它不允许 ajax 访问跨域资源</font></p>
+<p><img src="1709967164907-635182b7-2904-4085-9978-c3f4669f1477.png"></p>
 <h3 id="同源策略种类"><a href="#同源策略种类" class="headerlink" title="同源策略种类"></a>同源策略种类</h3><ol>
 <li>DOM 同源策略：禁止对不同源页面 DOM 进行操作。这里主要场景是 iframe 跨域的情况，不同域名的 iframe 是限制互相访问的。</li>
 <li>XMLHttpRequest 同源策略：禁止使用 XHR 对象向不同源的服务器地址发起 HTTP 请求。（ajax 请求)</li>
-<li>Cookie、LocalStorage、IndexedDB 等存储性内容</li>
+<li><font style="color:rgb(51, 51, 51);">Cookie、LocalStorage、IndexedDB 等存储性内容</font></li>
 </ol>
-<h3 id="为什么要有同源策略"><a href="#为什么要有同源策略" class="headerlink" title="为什么要有同源策略"></a>为什么要有同源策略</h3><p><strong>如果没有 DOM 同源策略，也就是说不同域的 iframe 之间可以相互访问，那么黑客可以这样进行攻击：</strong></p>
+<h3 id="为什么要有同源策略"><a href="#为什么要有同源策略" class="headerlink" title="为什么要有同源策略"></a><font style="color:rgb(37, 41, 51);">为什么要有同源策略</font></h3><p><strong><font style="color:rgb(37, 41, 51);">如果没有 DOM 同源策略，也就是说不同域的 iframe 之间可以相互访问，那么黑客可以这样进行攻击：</font></strong></p>
 <ol>
 <li>做一个假网站，里面用 iframe 嵌套一个银行网站 <a target="_blank" rel="noopener" href="http://mybank.com./">http://mybank.com。</a></li>
 <li>把 iframe 宽高啥的调整到页面全部，这样用户进来除了域名，别的部分和银行的网站没有任何差别。</li>
@@ -133,14 +137,317 @@
 <li>银行页面从发送的 cookie 中提取用户标识，验证用户无误，response 中返回请求数据。此时数据就泄露了。</li>
 <li>而且由于 Ajax 在后台执行，用户无法感知这一过程。</li>
 </ol>
-<p>浏览器会拦截不是同源的请求，服务器是照常发的</p>
-<p>有多种方式解决跨域问题，常见的有：</p>
+<h1 id="拦截"><a href="#拦截" class="headerlink" title="拦截"></a>拦截</h1><p>如果没设置允许跨域，那么 Postman 可以请求到数据吗？</p>
+<p>拦截只是浏览器行为，用 postman 可以正常访问（即使服务器没有设置运行跨域）</p>
+<p>如果是浏览器的预检请求 后端不会参与运行代码</p>
+<p>如果是非预检请求，服务器会响应，只是浏览器进行了拦截（被拦截是浏览器的行为，但服务器会执行所请求的方法，也会将数据返回出去）</p>
+<h1 id="解决跨域"><a href="#解决跨域" class="headerlink" title="解决跨域"></a>解决跨域</h1><p>浏览器会拦截不是同源的请求，服务器是照常发的(跨域限制是浏览器的行为)</p>
+<p><font style="color:rgb(37, 41, 51);">有多种方式解决跨域问题，常见的有：</font></p>
 <ul>
-<li><strong>代理</strong>，常用</li>
-<li><strong>CORS</strong>，常用</li>
-<li>JSONP</li>
+<li><strong><font style="color:rgb(37, 41, 51);">代理</font></strong><font style="color:rgb(37, 41, 51);">，常用</font></li>
+<li><strong><font style="color:rgb(37, 41, 51);">CORS</font></strong><font style="color:rgb(37, 41, 51);">，常用</font></li>
+<li><font style="color:rgb(37, 41, 51);">JSONP</font></li>
 </ul>
-<p>无论使用哪一种方式，都是要让浏览器知道，我这次跨域请求的是自己人，就不要拦截了。</p>
+<p><font style="color:rgb(37, 41, 51);">无论使用哪一种方式，都是要让浏览器知道，我这次跨域请求的是自己人，就不要拦截了。</font></p>
+<h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a><font style="color:rgb(37, 41, 51);">代理</font></h2><p><strong><font style="color:#DF2A3F;">代理适用的场景是：生产环境不发生跨域，但开发环境发生跨域</font></strong></p>
+<p><strong>对于前端开发而言，大部分的跨域问题，都是通过代理解决的</strong></p>
+<p><font style="color:rgb(37, 41, 51);">因此，只需要在开发环境使用代理解决跨域即可，这种代理又称之为开发代理</font></p>
+<p><img src="20210916125008.png"></p>
+<p><font style="color:rgb(37, 41, 51);">在实际开发中，只需要对开发服务器稍加配置即可完成</font></p>
+<pre><code class="javascript">// vue 的开发服务器代理配置
+// vue.config.js
+module.exports = &#123;
+  devServer: &#123;
+    // 配置开发服务器
+    proxy: &#123;
+      // 配置代理
+      &quot;/api&quot;: &#123;
+        // 若请求路径以 /api 开头
+        target: &quot;http://dev.taobao.com&quot;, // 将其转发到 http://dev.taobao.com
+      &#125;,
+    &#125;,
+  &#125;,
+&#125;;
+</code></pre>
+<h2 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a><font style="color:rgb(37, 41, 51);">CORS</font></h2><p><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;CORS&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">是基于</font><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;http1.1&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">的一种跨域解决方案，它的全称是</font>C<font style="color:rgb(37, 41, 51);">ross-</font>O<font style="color:rgb(37, 41, 51);">rigin </font>R<font style="color:rgb(37, 41, 51);">esource </font>S<font style="color:rgb(37, 41, 51);">haring，跨域资源共享。</font></p>
+<p><font style="color:rgb(37, 41, 51);">它的总体思路是：</font><strong>如果浏览器要跨域访问服务器的资源，需要获得服务器的允许</strong></p>
+<p><img src="image-20200421152122793.png"></p>
+<p><font style="color:rgb(37, 41, 51);">要知道，一个请求可以附带很多信息，从而会对服务器造成不同程度的影响</font></p>
+<p><font style="color:rgb(37, 41, 51);">比如有的请求只是获取一些新闻，有的请求会改动服务器的数据</font></p>
+<p><font style="color:rgb(37, 41, 51);">针对不同的请求，CORS 规定了三种不同的交互模式，分别是：</font></p>
+<ul>
+<li><strong>简单请求</strong></li>
+<li><strong>需要预检的请求</strong></li>
+<li><strong>附带身份凭证的请求</strong></li>
+</ul>
+<p><font style="color:rgb(37, 41, 51);">这三种模式从上到下层层递进，请求可以做的事越来越多，要求也越来越严格。</font></p>
+<h3 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a><font style="color:rgb(37, 41, 51);">简单请求</font></h3><p><font style="color:rgb(37, 41, 51);">当浏览器端运行了一段 ajax 代码（无论是使用 XMLHttpRequest 还是 fetch api），浏览器会首先判断它属于哪一种请求模式</font></p>
+<h4 id="简单请求的判定"><a href="#简单请求的判定" class="headerlink" title="简单请求的判定"></a><font style="color:rgb(37, 41, 51);">简单请求的判定</font></h4><p><font style="color:rgb(37, 41, 51);">当请求</font><strong>同时满足</strong><font style="color:rgb(37, 41, 51);">以下条件时，浏览器会认为它是一个简单请求：</font></p>
+<ol>
+<li><font style="color:rgb(37, 41, 51);"> </font><strong>请求方法属于下面的一种：</strong><font style="color:rgb(37, 41, 51);"> </font><ul>
+<li><font style="color:rgb(37, 41, 51);">get</font></li>
+<li><font style="color:rgb(37, 41, 51);">post</font></li>
+<li><font style="color:rgb(37, 41, 51);">head</font></li>
+</ul>
+</li>
+<li><font style="color:rgb(37, 41, 51);"> </font><strong>请求头仅包含安全的字段，常见的安全字段如下：</strong><font style="color:rgb(37, 41, 51);"> </font><ul>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Accept&lt;/font&gt;</code></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Accept-Language&lt;/font&gt;</code></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Content-Language&lt;/font&gt;</code></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Content-Type&lt;/font&gt;</code></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;DPR&lt;/font&gt;</code></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Downlink&lt;/font&gt;</code></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Save-Data&lt;/font&gt;</code></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Viewport-Width&lt;/font&gt;</code></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Width&lt;/font&gt;</code></li>
+</ul>
+</li>
+<li><font style="color:rgb(37, 41, 51);"> </font><strong>请求头如果包含</strong><code>**Content-Type**</code><strong>，仅限下面的值之一：</strong><font style="color:rgb(37, 41, 51);"> </font><ul>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;text/plain&lt;/font&gt;</code></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;multipart/form-data&lt;/font&gt;</code></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;application/x-www-form-urlencoded&lt;/font&gt;</code></li>
+</ul>
+</li>
+</ol>
+<p><font style="color:rgb(37, 41, 51);">如果以上三个条件同时满足，浏览器判定为简单请求。</font></p>
+<p><font style="color:rgb(37, 41, 51);">下面是一些例子：</font></p>
+<pre><code class="javascript">// 简单请求
+fetch(&quot;http://crossdomain.com/api/news&quot;);
+
+// 请求方法不满足要求，不是简单请求
+fetch(&quot;http://crossdomain.com/api/news&quot;, &#123;
+  method: &quot;PUT&quot;,
+&#125;);
+
+// 加入了额外的请求头，不是简单请求
+fetch(&quot;http://crossdomain.com/api/news&quot;, &#123;
+  headers: &#123;
+    a: 1,
+  &#125;,
+&#125;);
+
+// 简单请求
+fetch(&quot;http://crossdomain.com/api/news&quot;, &#123;
+  method: &quot;post&quot;,
+&#125;);
+
+// content-type不满足要求，不是简单请求
+fetch(&quot;http://crossdomain.com/api/news&quot;, &#123;
+  method: &quot;post&quot;,
+  headers: &#123;
+    &quot;content-type&quot;: &quot;application/json&quot;,
+  &#125;,
+&#125;);
+</code></pre>
+<h4 id="简单请求的交互规范"><a href="#简单请求的交互规范" class="headerlink" title="简单请求的交互规范"></a><font style="color:rgb(37, 41, 51);">简单请求的交互规范</font></h4><p><font style="color:rgb(37, 41, 51);">当浏览器判定某个</font><strong>ajax 跨域请求</strong><font style="color:rgb(37, 41, 51);">是</font><strong>简单请求</strong><font style="color:rgb(37, 41, 51);">时，会发生以下的事情</font></p>
+<ol>
+<li><strong>请求头中会自动添加</strong><code>**Origin**</code><strong>字段</strong></li>
+</ol>
+<p><font style="color:rgb(37, 41, 51);">比如，在页面</font><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;http://my.com/index.html&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">中有以下代码造成了跨域</font></p>
+<pre><code class="javascript">// 简单请求
+fetch(&quot;http://crossdomain.com/api/news&quot;);
+</code></pre>
+<p><font style="color:rgb(37, 41, 51);">请求发出后，请求头会是下面的格式：</font></p>
+<pre><code class="plain">GET /api/news/ HTTP/1.1
+Host: crossdomain.com
+Connection: keep-alive
+...
+Referer: http://my.com/index.html
+Origin: http://my.com
+</code></pre>
+<p><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Origin&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">字段会告诉服务器，是哪个源地址在跨域请求</font></p>
+<ol start="2">
+<li><strong>服务器响应头中应包含</strong><code>**Access-Control-Allow-Origin**</code></li>
+</ol>
+<p><font style="color:rgb(37, 41, 51);">当服务器收到请求后，如果允许该请求跨域访问，需要在响应头中添加</font><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Access-Control-Allow-Origin&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">字段</font></p>
+<p><font style="color:rgb(37, 41, 51);">该字段的值可以是：</font></p>
+<ul>
+<li><font style="color:rgb(37, 41, 51);">*：表示我很开放，什么人我都允许访问</font></li>
+<li><font style="color:rgb(37, 41, 51);">具体的源：比如</font><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;http://my.com&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">，表示我就允许你访问</font></li>
+</ul>
+<blockquote>
+<p><font style="color:rgb(37, 41, 51);">实际上，这两个值对于客户端</font><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;http://my.com&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">而言，都一样，因为客户端才不会管其他源服务器允不允许，就关心自己是否被允许</font></p>
+<p><font style="color:rgb(37, 41, 51);">当然，服务器也可以维护一个可被允许的源列表，如果请求的</font><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Origin&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">命中该列表，才响应</font><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;*&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">或具体的源</font></p>
+<p><strong>为了避免后续的麻烦，强烈推荐响应具体的源</strong></p>
+</blockquote>
+<p><font style="color:rgb(37, 41, 51);">假设服务器做出了以下的响应：</font></p>
+<pre><code class="plain">HTTP/1.1 200 OK
+Date: Tue, 21 Apr 2020 08:03:35 GMT
+...
+Access-Control-Allow-Origin: http://my.com
+...
+
+消息体中的数据
+</code></pre>
+<p><font style="color:rgb(37, 41, 51);">当浏览器看到服务器允许自己访问后，高兴的像一个两百斤的孩子，于是，它就把响应顺利的交给 js，以完成后续的操作</font></p>
+<p><font style="color:rgb(37, 41, 51);">下图简述了整个交互过程</font></p>
+<p><img src="image-20200421162846480.png"></p>
+<h3 id="需要预检的请求"><a href="#需要预检的请求" class="headerlink" title="需要预检的请求"></a><font style="color:rgb(37, 41, 51);">需要预检的请求</font></h3><p><font style="color:rgb(37, 41, 51);">简单的请求对服务器的威胁不大，所以允许使用上述的简单交互即可完成。</font></p>
+<p><font style="color:rgb(37, 41, 51);">但是，如果浏览器不认为这是一种简单请求，就会按照下面的流程进行：</font></p>
+<ol>
+<li><strong>浏览器发送预检请求，询问服务器是否允许</strong></li>
+<li><strong>服务器允许</strong></li>
+<li><strong>浏览器发送真实请求</strong></li>
+<li><strong>服务器完成真实的响应</strong></li>
+</ol>
+<p><font style="color:rgb(37, 41, 51);">比如，在页面</font><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;http://my.com/index.html&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">中有以下代码造成了跨域</font></p>
+<pre><code class="javascript">// 需要预检的请求
+fetch(&quot;http://crossdomain.com/api/user&quot;, &#123;
+  method: &quot;POST&quot;, // post 请求
+  headers: &#123;
+    // 设置请求头
+    a: 1,
+    b: 2,
+    &quot;content-type&quot;: &quot;application/json&quot;,
+  &#125;,
+  body: JSON.stringify(&#123; name: &quot;袁小进&quot;, age: 18 &#125;), // 设置请求体
+&#125;);
+</code></pre>
+<p><font style="color:rgb(37, 41, 51);">浏览器发现它不是一个简单请求，则会按照下面的流程与服务器交互</font></p>
+<ol>
+<li><strong>浏览器发送预检请求，询问服务器是否允许</strong></li>
+</ol>
+<pre><code class="plain">OPTIONS /api/user HTTP/1.1
+Host: crossdomain.com
+...
+Origin: http://my.com
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: a, b, content-type
+</code></pre>
+<p><font style="color:rgb(37, 41, 51);">可以看出，这并非我们想要发出的真实请求，请求中不包含我们的请求头，也没有消息体。</font></p>
+<p><font style="color:rgb(37, 41, 51);">这是一个预检请求，它的目的是询问服务器，是否允许后续的真实请求。</font></p>
+<p><font style="color:rgb(37, 41, 51);">预检请求</font><strong>没有请求体</strong><font style="color:rgb(37, 41, 51);">，它包含了后续真实请求要做的事情</font></p>
+<p><font style="color:rgb(37, 41, 51);">预检请求有以下特征：</font></p>
+<ul>
+<li><font style="color:rgb(37, 41, 51);">请求方法为</font><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;OPTIONS&lt;/font&gt;</code></li>
+<li><font style="color:rgb(37, 41, 51);">没有请求体</font></li>
+<li><font style="color:rgb(37, 41, 51);">请求头中包含 </font><ul>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Origin&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">：请求的源，和简单请求的含义一致</font></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Access-Control-Request-Method&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">：后续的真实请求将使用的请求方法</font></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Access-Control-Request-Headers&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">：后续的真实请求会改动的请求头</font></li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>服务器允许</strong></li>
+</ol>
+<p><font style="color:rgb(37, 41, 51);">服务器收到预检请求后，可以检查预检请求中包含的信息，如果允许这样的请求，需要响应下面的消息格式</font></p>
+<pre><code class="plain">HTTP/1.1 200 OK
+Date: Tue, 21 Apr 2020 08:03:35 GMT
+...
+Access-Control-Allow-Origin: http://my.com
+Access-Control-Allow-Methods: POST
+Access-Control-Allow-Headers: a, b, content-type
+Access-Control-Max-Age: 86400
+...
+</code></pre>
+<p><font style="color:rgb(37, 41, 51);">对于预检请求，不需要响应任何的消息体，只需要在响应头中添加：</font></p>
+<ul>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Access-Control-Allow-Origin&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">：和简单请求一样，表示允许的源</font></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Access-Control-Allow-Methods&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">：表示允许的后续真实的请求方法</font></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Access-Control-Allow-Headers&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">：表示允许改动的请求头</font></li>
+<li><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Access-Control-Max-Age&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">：告诉浏览器，多少秒内，对于同样的请求源、方法、头，都不需要再发送预检请求了</font></li>
+</ul>
+<ol start="3">
+<li><strong>浏览器发送真实请求</strong></li>
+</ol>
+<p><font style="color:rgb(37, 41, 51);">预检被服务器允许后，浏览器就会发送真实请求了，上面的代码会发生下面的请求数据</font></p>
+<pre><code class="plain">POST /api/user HTTP/1.1
+Host: crossdomain.com
+Connection: keep-alive
+...
+Referer: http://my.com/index.html
+Origin: http://my.com
+
+&#123;&quot;name&quot;: &quot;袁小进&quot;, &quot;age&quot;: 18 &#125;
+</code></pre>
+<ol start="4">
+<li><strong>服务器响应真实请求</strong></li>
+</ol>
+<pre><code class="plain">HTTP/1.1 200 OK
+Date: Tue, 21 Apr 2020 08:03:35 GMT
+...
+Access-Control-Allow-Origin: http://my.com
+...
+
+添加用户成功
+</code></pre>
+<p><font style="color:rgb(37, 41, 51);">可以看出，当完成预检之后，后续的处理与简单请求相同</font></p>
+<p><font style="color:rgb(37, 41, 51);">下图简述了整个交互过程</font></p>
+<p><img src="image-20200421165913320.png"></p>
+<p><img src="1721184239298-0aecf2e8-bfa9-40c8-bf60-6897394e60e8.png"></p>
+<p>204 预检请求</p>
+<p><font style="color:rgb(17, 17, 17);">预检请求（Preflight Request）通常会返回一个 204 No Content 响应。这是因为预检请求是由浏览器发起的一种 CORS（跨源资源共享）请求，用来检查实际请求是否安全可接受。如果服务器允许实际请求，它会在预检请求的响应中设置适当的 CORS 头部，并返回 204 状态码，表示响应成功但不包含任何内容。</font></p>
+<h3 id="附带身份凭证的请求-携带-cookie"><a href="#附带身份凭证的请求-携带-cookie" class="headerlink" title="附带身份凭证的请求(携带 cookie)"></a><font style="color:rgb(37, 41, 51);">附带身份凭证的请求(携带 cookie)</font></h3><p><font style="color:rgb(37, 41, 51);">默认情况下，ajax 的跨域请求并不会附带 cookie，这样一来，某些需要权限的操作就无法进行</font></p>
+<p><font style="color:rgb(37, 41, 51);">不过可以通过简单的配置就可以实现附带 cookie</font></p>
+<pre><code class="javascript">// xhr
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+// fetch api
+fetch(url, &#123;
+  credentials: &quot;include&quot;,
+&#125;);
+</code></pre>
+<p><font style="color:rgb(37, 41, 51);">这样一来，该跨域的 ajax 请求就是一个</font>附带身份凭证的请求</p>
+<p><font style="color:rgb(37, 41, 51);">当一个请求需要附带 cookie 时，无论它是简单请求，还是预检请求，都会在请求头中添加</font><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;cookie&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">字段</font></p>
+<p><font style="color:rgb(37, 41, 51);">而服务器响应时，需要明确告知客户端：服务器允许这样的凭据</font></p>
+<p><font style="color:rgb(37, 41, 51);">告知的方式也非常的简单，只需要在响应头中添加：</font><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Access-Control-Allow-Credentials: true&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">即可</font></p>
+<p><font style="color:rgb(37, 41, 51);">对于一个附带身份凭证的请求，若服务器没有明确告知，浏览器仍然视为跨域被拒绝。</font></p>
+<p><font style="color:rgb(37, 41, 51);">另外要特别注意的是：</font>**对于附带身份凭证的请求，服务器不得设置 **<code>**Access-Control-Allow-Origin 的值为***</code><font style="color:rgb(37, 41, 51);">。这就是为什么不推荐使用*的原因</font></p>
+<h3 id="一个额外的补充"><a href="#一个额外的补充" class="headerlink" title="一个额外的补充"></a><font style="color:rgb(37, 41, 51);">一个额外的补充</font></h3><p><font style="color:rgb(37, 41, 51);">在跨域访问时，JS 只能拿到一些最基本的响应头，如：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma</font></p>
+<p><font style="color:rgb(37, 41, 51);">如果要访问其他头，则需要服务器设置本响应头。</font></p>
+<p><code>&lt;font style=&quot;color:rgb(37, 41, 51);&quot;&gt;Access-Control-Expose-Headers&lt;/font&gt;</code><font style="color:rgb(37, 41, 51);">头让服务器把允许浏览器访问的头放入白名单，例如：</font></p>
+<pre><code class="plain">Access-Control-Expose-Headers: authorization, a, b
+</code></pre>
+<p><font style="color:rgb(37, 41, 51);">这样 JS 就能够访问指定的响应头了。</font></p>
+<h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>在 CORS 出现之前，人们想了一种奇妙的办法来实现跨域，这就是 JSONP。</p>
+<p>要实现 JSONP，需要浏览器和服务器来一个天衣无缝的绝妙配合。</p>
+<p>JSONP 的做法是：当需要跨域请求时，不使用 AJAX，转而生成一个 script 元素去请求服务器，由于浏览器并不阻止 script 元素的请求，这样请求可以到达服务器。服务器拿到请求后，响应一段 JS 代码，这段代码实际上是一个函数调用，调用的是客户端预先生成好的函数，并把浏览器需要的数据作为参数传递到函数中，从而间接的把数据传递给客户端</p>
+<p><img src="20210916151516.png"></p>
+<p>JSONP 有着明显的缺点，即其只能支持 GET 请求</p>
+<p>服务器</p>
+<pre><code class="plain">const express = require(&#39;express&#39;);
+
+const app = express();
+const path = &#39;/api/user&#39;;
+const users = [
+  &#123; name: &#39;monica&#39;, age: 17, sex: &#39;female&#39; &#125;,
+  &#123; name: &#39;姬成&#39;, age: 27, sex: &#39;male&#39; &#125;,
+  &#123; name: &#39;邓旭明&#39;, age: 37, sex: &#39;male&#39; &#125;,
+];
+app.get(path, (req, res) =&gt; &#123;
+  res.setHeader(&#39;content-type&#39;, &#39;text/javascript&#39;);
+  res.send(`callback($&#123;JSON.stringify(users)&#125;)`);
+&#125;);
+
+const port = 8000;
+app.listen(port, () =&gt; &#123;
+  console.log(`server listen on $&#123;port&#125;`);
+  console.log(`request for users: http://localhost:$&#123;port&#125;$&#123;path&#125;`);
+&#125;);
+</code></pre>
+<p>浏览器</p>
+<pre><code class="plain">&lt;script&gt;
+  ajax传过来的数据导致刚好去执行callback函数
+  function callback(resp) &#123;
+    console.log(resp);
+  &#125;
+
+  function request(url) &#123;
+    const script = document.createElement(&#39;script&#39;);
+    script.src = url;
+    script.onload = function () &#123;
+      script.remove();
+    &#125;;
+    document.body.appendChild(script);
+  &#125;
+
+  document.querySelector(&#39;button&#39;).onclick = function () &#123;
+    request(&#39;http://localhost:8000/api/user&#39;);
+  &#125;;
+&lt;/script&gt;
+</code></pre>
 
     </div>
     
@@ -150,7 +457,7 @@
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

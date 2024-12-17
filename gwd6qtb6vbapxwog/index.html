@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>ESLint | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>ESLint</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/26
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h1><p>ESLint 是一个针对 JS 的代码风格<strong>检查</strong>工具，当不满足其要求的风格时，会给予警告或错误</p>
+<blockquote>
+<p>只是用于检查，不影响运行</p>
+</blockquote>
+<p>官网：<a target="_blank" rel="noopener" href="https://eslint.org/">https://eslint.org/</a></p>
+<p>民间中文网：<a target="_blank" rel="noopener" href="https://eslint.bootcss.com/">https://eslint.bootcss.com/</a></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>ESLint 通常配合编辑器使用</p>
+<ol>
+<li>在 vscode 中安装<code>ESLint</code></li>
+</ol>
+<p>该工具会自动检查工程中的 JS 文件</p>
+<p>检查的工作交给<code>eslint</code>库，如果当前工程没有，则会去全局库中查找，如果都没有，则无法完成检查</p>
+<p>另外，检查的依据是<code>eslint</code>的配置文件<code>.eslintrc</code>，如果找不到工程中的配置文件，也无法完成检查</p>
+<ol start="2">
+<li>安装<code>eslint</code></li>
+</ol>
+<p><code>npm i [-g] eslint</code></p>
+<ol start="3">
+<li>创建配置文件</li>
+</ol>
+<p>可以通过<code>eslint</code>交互式命令创建配置文件</p>
+<blockquote>
+<p>由于 windows 环境中 git 窗口对交互式命名支持不是很好，建议使用 powershell</p>
+</blockquote>
+<p><code>npx eslint --init</code></p>
+<blockquote>
+<p>eslint 会识别工程中的<code>.eslintrc.*</code>文件，也能够识别<code>package.json</code>中的<code>eslintConfig</code>字段</p>
+</blockquote>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="env"><a href="#env" class="headerlink" title="env"></a>env</h2><p>配置代码的运行环境</p>
+<ul>
+<li>browser：代码是否在浏览器环境中运行</li>
+<li>es6：是否启用 ES6 的全局 API，例如<code>Promise</code>等</li>
+</ul>
+<h2 id="parserOptions"><a href="#parserOptions" class="headerlink" title="parserOptions"></a>parserOptions</h2><p>该配置指定<code>eslint</code>对哪些语法的支持</p>
+<ul>
+<li>ecmaVersion: 支持的 ES 语法版本</li>
+<li>sourceType<ul>
+<li>script：传统脚本</li>
+<li>module：模块化脚本</li>
+</ul>
+</li>
+</ul>
+<h2 id="parser"><a href="#parser" class="headerlink" title="parser"></a>parser</h2><p><code>eslint</code>的工作原理是先将代码进行解析，然后按照规则进行分析</p>
+<p><code>eslint</code> 默认使用<code>Espree</code>作为其解析器，你可以在配置文件中指定一个不同的解析器。</p>
+<h2 id="globals"><a href="#globals" class="headerlink" title="globals"></a>globals</h2><p>配置可以使用的额外的全局变量</p>
+<pre><code class="json">&#123;
+  &quot;globals&quot;: &#123;
+    &quot;var1&quot;: &quot;readonly&quot;,
+    &quot;var2&quot;: &quot;writable&quot;
+  &#125;
+&#125;
+</code></pre>
+<p><code>eslint</code>支持注释形式的配置，在代码中使用下面的注释也可以完成配置</p>
+<pre><code class="javascript">/* global var1, var2 */
+/* global var3:writable, var4:writable */
+</code></pre>
+<h2 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h2><p>该配置继承自哪里</p>
+<p>它的值可以是字符串或者数组</p>
+<p>比如：</p>
+<pre><code class="json">&#123;
+  &quot;extends&quot;: &quot;eslint:recommended&quot;
+&#125;
+</code></pre>
+<p>表示，该配置缺失的位置，使用<code>eslint</code>推荐的规则</p>
+<h2 id="ignoreFiles"><a href="#ignoreFiles" class="headerlink" title="ignoreFiles"></a>ignoreFiles</h2><p>排除掉某些不需要验证的文件</p>
+<p><code>.eslintignore</code></p>
+<pre><code class="plain">dist/**/*.js
+node_modules
+</code></pre>
+<h2 id="rules"><a href="#rules" class="headerlink" title="rules"></a>rules</h2><p><code>eslint</code>规则集</p>
+<p>每条规则影响某个方面的代码风格</p>
+<p>每条规则都有下面几个取值：</p>
+<ul>
+<li>off 或 0 或 false: 关闭该规则的检查</li>
+<li>warn 或 1 或 true：警告，不会导致程序退出</li>
+<li>error 或 2：错误，当被触发的时候，程序会退出</li>
+</ul>
+<p>除了在配置文件中使用规则外，还可以在注释中使用：</p>
+<pre><code class="javascript">/* eslint eqeqeq: &quot;off&quot;, curly: &quot;error&quot; */
+</code></pre>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://eslint.bootcss.com/docs/rules/">https://eslint.bootcss.com/docs/rules/</a></p>
+</blockquote>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

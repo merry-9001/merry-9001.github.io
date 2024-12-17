@@ -112,10 +112,90 @@
     </div>
 
     <div class="content" v-pre>
-        <h1 id="html"><a href="#html" class="headerlink" title="html"></a>html</h1><h2 id="meta"><a href="#meta" class="headerlink" title="meta"></a>meta</h2><p><strong>meta 主要用于设置网页中的一些元数据，元数据不是给用户看</strong></p>
-<p>charset 指定网页的字符集</p>
-<p>name 指定的数据的名称</p>
-<p>content 指定的数据的内容</p>
+        <h1 id="html"><a href="#html" class="headerlink" title="html"></a>html</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>HTML：Hyper Text Markup Language，超文本标记语言。（超文本就是文档某部分内容可以跳到另一个文档）<br>HTML 是 W3C 组织定义的语言标准：HTML 是用于描述<strong>页面</strong>结构的语言。<br>结构：有什么东西，该东西表示什么含义</p>
+<h3 id="语义化"><a href="#语义化" class="headerlink" title="语义化"></a>语义化</h3><p>1.每一个 HTML 元素都有具体的含义</p>
+<pre><code class="typescript">a元素：超链接
+p元素：段落
+h1元素：一级标题
+</code></pre>
+<p>2.所有元素与展示效果无关,元素展示到页面中的效果，应该由 CSS 决定。<br><strong>选择什么元素，取决于内容的含义（语义化），而不是显示出的效果</strong></p>
+<p>语义化的作用</p>
+<ol>
+<li>为了搜索引擎优化（SEO）</li>
+</ol>
+<p>搜索引擎：百度、搜搜、Bing、Google<br>每隔一段时间，搜索引擎会从整个互联网中，抓取页面源代码,然后读取你页面的元素，来理解你要表达的东西，你表达的他越容易懂，他就会把你显示的越靠前</p>
+<ol start="2">
+<li>为了让浏览器理解网页</li>
+</ol>
+<p>阅读模式、语音模式</p>
+<h3 id="元素包含关系"><a href="#元素包含关系" class="headerlink" title="元素包含关系"></a>元素包含关系</h3><ol>
+<li>容器元素中可以包含任何元素</li>
+<li>a 元素中几乎可以包含任何元素</li>
+<li>某些元素有固定的子元素（ul&gt;li，ol&gt;li，dl&gt;dt+dd）</li>
+<li>标题元素和段落元素不能相互嵌套，并且不能包含容器元素</li>
+</ol>
+<p>不一定写错就不能运行，浏览器比较宽容，有可能能帮助你纠正</p>
+<h2 id="HTML-实体（转义符）"><a href="#HTML-实体（转义符）" class="headerlink" title="HTML 实体（转义符）"></a>HTML 实体（转义符）</h2><ol>
+<li>&amp;单词;</li>
+<li>&amp;#数字;</li>
+</ol>
+<pre><code class="markdown">小于符号
+&lt;
+
+大于符号
+
+&gt;
+
+空格符号
+
+
+
+版权符号
+©
+
+&amp;符号
+&amp;
+</code></pre>
+<h2 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h2><h3 id="pre-空白折叠"><a href="#pre-空白折叠" class="headerlink" title="pre(空白折叠)"></a>pre(空白折叠)</h3><p>在源代码中的连续空白字符（空格、换行、制表），在页面显示时，会被折叠为一个空格<br>pre 元素可以把样式原封不动的显示在页面上（不忽略空格）<br>pre 元素功能的本质：它有一个默认的 css 属性 white-space:pre</p>
+<h3 id="图片局部链接"><a href="#图片局部链接" class="headerlink" title="图片局部链接"></a>图片局部链接</h3><p>map 元素<br>map：地图<br>map 的子元素：area</p>
+<p>figure 元素<br>指代、定义，通常用于把图片、图片标题、描述包裹起来<br>子元素：figcaption</p>
+<pre><code class="html">&lt;figure&gt;
+  &lt;a
+    target=&quot;_blank&quot;
+    href=&quot;https://baike.baidu.com/item/%E5%A4%AA%E9%98%B3%E7%B3%BB/173281?fr=aladdin&quot;
+  &gt;
+    &lt;img usemap=&quot;#solarMap&quot; src=&quot;./img/solar.jpg&quot; alt=&quot;这是一张太阳系的图片&quot; /&gt;
+  &lt;/a&gt;
+  &lt;figcaption&gt;
+    &lt;h2&gt;太阳系&lt;/h2&gt;
+  &lt;/figcaption&gt;
+  &lt;p&gt;
+    太阳系是以太阳为中心，和所有受到太阳的引力约束天体的集合体。包括八大行星（由离太阳从近到远的顺序：水星、金星、地球、火星、木星、土星、天王星、海王星）、以及至少173颗已知的卫星、5颗已经辨认出来的矮行星和数以亿计的太阳系小天体,和哈雷彗星。
+  &lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;map name=&quot;solarMap&quot;&gt;
+  &lt;area
+    shape=&quot;circle&quot;
+    coords=&quot;360,204,48&quot;
+    href=&quot;https://baike.baidu.com/item/%E6%9C%A8%E6%98%9F/222105?fr=aladdin&quot;
+    target=&quot;_blank&quot;
+  /&gt;
+  &lt;area
+    shape=&quot;rect&quot;
+    coords=&quot;323,282,395,320&quot;
+    href=&quot;https://baike.baidu.com/item/%E6%9C%A8%E6%98%9F/222105?fr=aladdin&quot;
+    target=&quot;_blank&quot;
+  /&gt;
+  &lt;area
+    shape=&quot;poly&quot;
+    coords=&quot;601,371,645,312,678,338,645,392&quot;
+    href=&quot;https://baike.baidu.com/item/%E5%86%A5%E7%8E%8B%E6%98%9F/137498?fr=aladdin&quot;
+    target=&quot;_blank&quot;
+  /&gt;
+&lt;/map&gt;
+</code></pre>
+<h3 id="meta"><a href="#meta" class="headerlink" title="meta"></a>meta</h3><p><strong>meta 主要用于设置网页中的一些元数据，元数据不是给用户看</strong><br>charset 指定网页的字符集<br>name 指定的数据的名称<br>content 指定的数据的内容</p>
 <pre><code>     &lt;meta name=&quot;keywords&quot; content=&quot;HTML5,前端,CSS3&quot;&gt;
      &lt;meta name=&quot;description&quot; content=&quot;这是一个非常不错的网站&quot;&gt;
 </code></pre>
@@ -124,237 +204,732 @@
 <li>description 用于指定网站的描述</li>
 <li>keywords 表示网站的关键字，可以同时指定多个关键字，关键字间使用,隔开</li>
 </ul>
-<h2 id="样式继承"><a href="#样式继承" class="headerlink" title="样式继承"></a>样式继承</h2><p>样式的继承，我们为一个元素设置的样式同时也会应用到它的后代元素上</p>
-<p><strong>背景相关的，布局相关等的这些样式都不会被继承。</strong></p>
-<h2 id="长度单位"><a href="#长度单位" class="headerlink" title="长度单位"></a>长度单位</h2><ul>
-<li><p>像素</p>
-</li>
-<li><p>屏幕（显示器）实际上是由一个一个的小点点构成的</p>
-</li>
-<li><p>不同屏幕的像素大小是不同的，像素越小的屏幕显示的效果越清晰</p>
-</li>
-<li><p>所以同样的 200px 在不同的设备下显示效果不一样</p>
-</li>
-<li><p>百分比</p>
-</li>
-<li><p>也可以将属性值设置为相对于其父元素属性的百分比</p>
-</li>
-<li><p>设置百分比可以使子元素跟随父元素的改变而改变</p>
-</li>
-<li><p>em</p>
-</li>
-<li><p>em 是相对于元素的字体大小来计算的</p>
-</li>
-<li><p>1em = 1font-size</p>
-</li>
-<li><p>em 会根据字体大小的改变而改变</p>
-</li>
-<li><p>rem</p>
-</li>
-<li><p>rem 是相对于根元素的字体大小来计算</p>
-</li>
-</ul>
-<h2 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h2><ul>
-<li><p>网页是一个多层的结构，一层摞着一层</p>
-</li>
-<li><p>作为用户来讲只能看到最顶上一层</p>
-</li>
-<li><p>这些层中，最底下的一层称为文档流，文档流是网页的基础</p>
-</li>
-</ul>
-<p>我们所创建的元素默认都是在文档流中进行排列</p>
-<ul>
-<li>对于我们来元素主要有两个状态</li>
-</ul>
-<p>在文档流中</p>
-<p>不在文档流中（脱离文档流）</p>
-<h2 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h2><ul>
-<li><p>块元素会在页面中独占一行(自上向下垂直排列)</p>
-</li>
-<li><p>默认宽度是父元素的全部（会把父元素撑满）</p>
-</li>
-<li><p>默认高度是被内容撑开（子元素）</p>
-</li>
-</ul>
-<pre><code>&lt;div&gt;、&lt;p&gt;、&lt;h1&gt;...&lt;h6&gt;、&lt;ol&gt;、&lt;ul&gt;、&lt;dl&gt;、&lt;table&gt;、&lt;address&gt;、&lt;blockquote&gt; 、&lt;form&gt;#
+<h3 id="button"><a href="#button" class="headerlink" title="button"></a>button</h3><pre><code>加入一个type=&quot;button&quot; 就是一个普通按钮，不加则会提交表单
+&lt;button class=&quot;right&quot; type=&quot;button&quot;&gt;发送验证码&lt;/button&gt;
+
+加入一个type=&quot;reset&quot; 就是一个重置按钮
+
+这一切都是在form元素的包裹下使用
 </code></pre>
-<h2 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h2><ul>
-<li><p>行内元素不会独占页面的一行，只占自身的大小</p>
-</li>
-<li><p>行内元素的默认宽度和高度都是被内容撑开</p>
-</li>
-</ul>
-<pre><code>&lt;span&gt;...&lt;/span&gt;
+<h3 id="label"><a href="#label" class="headerlink" title="label"></a>label</h3><p>可以将文字和单选按钮关联</p>
+<pre><code>关联方式一
+&lt;label&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;sex&quot; checked /&gt;
+    &lt;span&gt;男&lt;/span&gt;
+  &lt;/label&gt;
 
-&lt;a&gt;...&lt;/a&gt;  链接
-
-&lt;br&gt;  换行
-
-&lt;b&gt;...&lt;/b&gt;  加粗
-
-&lt;strong&gt;...&lt;/strong&gt;  加粗
-
-&lt;img &gt;  图片
+关联方式二
+&lt;label for=&quot;male&quot;&gt;
+  &lt;span&gt;男&lt;/span&gt;
+&lt;/label&gt;
+&lt;input type=&quot;radio&quot; name=&quot;sex&quot; checked id=&quot;male&quot;/&gt;
 </code></pre>
-<ul>
-<li><p>行内元素不支持设置宽度和高度</p>
-</li>
-<li><p>行内元素可以设置 padding，但是垂直方向 padding 不会影响页面的布局</p>
-</li>
-<li><p>行内元素可以设置 border，垂直方向的 border 不会影响页面的布局</p>
-</li>
-<li><p>行内元素可以设置 margin，垂直方向的 margin 不会影响布局</p>
-</li>
-</ul>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>使用 position 属性来设置定位</p>
-<p>可选值：</p>
-<ul>
-<li>static 默认值，元素是静止的没有开启定位</li>
-<li>relative 开启元素的相对定位</li>
-<li>absolute 开启元素的绝对定位</li>
-<li>fixed 开启元素的固定定位</li>
-<li>sticky 开启元素的粘滞定位</li>
-</ul>
-<h3 id="相对定位（relative-）"><a href="#相对定位（relative-）" class="headerlink" title="相对定位（relative ）"></a>相对定位（relative ）</h3><ul>
-<li>相对定位是参照于元素在文档流中的位置进行定位的</li>
-<li>相对定位会提升元素的层级</li>
-<li>相对定位不会使元素脱离文档流</li>
-<li>相对定位不会改变元素的性质块还是块，行内还是行内<br>偏移量<br>top</li>
-<li>定位元素和定位位置上边的距离<br>bottom</li>
-<li>定位元素和定位位置下边的距离<br>left</li>
-<li>定位元素和定位位置的左侧距离<br>right</li>
-<li>定位元素和定位位置的右侧距离</li>
-</ul>
-<h3 id="绝对定位（absolute）"><a href="#绝对定位（absolute）" class="headerlink" title="绝对定位（absolute）"></a>绝对定位（absolute）</h3><p>2.开启绝对定位后，元素会从文档流中脱离</p>
-<p><strong>3.绝对定位会改变元素的性质，行内变成块，块的宽高被内容撑开</strong></p>
-<p>4.绝对定位会使元素提升一个层级</p>
-<p>5.绝对定位元素是相对于其包含块进行定位的</p>
-<p><strong>偏移量等同于相对定位的属性</strong></p>
-<h3 id="固定定位（fixed）"><a href="#固定定位（fixed）" class="headerlink" title="固定定位（fixed）"></a>固定定位（fixed）</h3><p>固定定位永远参照于浏览器的视口进行定位</p>
-<p>固定定位的元素不会随网页的滚动条滚动</p>
-<p><strong>偏移量等同于相对定位的属性</strong></p>
-<h2 id="元素层级"><a href="#元素层级" class="headerlink" title="元素层级"></a>元素层级</h2><p>对于开启了定位元素，可以通过 z-index 属性来指定元素的层级</p>
-<p>元素的层级越高越优先显示</p>
-<p>祖先的元素的层级再高也不会盖住后代元素</p>
-<pre><code> z-index: 3;
+<h3 id="contenteditable-属性"><a href="#contenteditable-属性" class="headerlink" title="contenteditable 属性"></a>contenteditable 属性</h3><p>该属性是一个布尔属性，可以设置到任何元素上，它可以让该元素变为可编辑的状态<br>在实际开发中，通常用于制作富文本框</p>
+<pre><code class="markdown">    &lt;div contenteditable class=&quot;content&quot;&gt;
+      &lt;p&gt;asdfasdfsaf&lt;/p&gt;
+    &lt;/div&gt;
 </code></pre>
-<h2 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h2><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="引入图片空白"><a href="#引入图片空白" class="headerlink" title="引入图片空白"></a>引入图片空白</h3><pre><code>    &lt;p&gt;
+<h1 id="css"><a href="#css" class="headerlink" title="css"></a>css</h1><h2 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h2><p>CSS：Cascading Style Sheets 层叠样式表；定义网页中的东西长什么样子<br>CSS 规则 = 选择器 + 声明块</p>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>Link 标签</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; /&gt;
+</code></pre>
+<p>import</p>
+<pre><code>@import &quot;theme.css&quot;; // 使用字符串
+@import url(&quot;theme.css&quot;); // 使用 url 地址
+</code></pre>
+<p>注意</p>
+<ul>
+<li>@import 规则必须在 CSS 文档的头部，但可以在 @charset 规则的后面；</li>
+<li>@import 规则不是一个嵌套语句，@import 不能在条件组的规则中使用；</li>
+<li>在使用@import 语句引入样式时，在一行样式的结尾需要加分号;</li>
+<li>在 html 文档中使用@import 时，需要在 style 标签里面；</li>
+<li>@import 引入的 CSS 将在页面加载完毕后才被加载。</li>
+</ul>
+<p>两者区别<br><strong>1、加载顺序不同</strong><br>link 标签会在页面加载时同时被加载，而@import 是在页面加载完毕后才会被加载，因此 link 标签的样式会优先加载和渲染，而@import 的样式则会稍后被渲染。<br><strong>2、兼容性不同</strong><br>link 标签被所有浏览器支持，而@import 在一些老的浏览器中可能不被支持。<br><strong>3、引入方式不同</strong><br>link 标签可以在 head 标签中或 body 标签中任何位置引入 CSS 文件，而@import 只能在 CSS 文件中引入其他 CSS 文件。<br><strong>4、预加载不同</strong><br>使用 link 标签可以通过设置 rel=”preload”属性来提前加载 CSS 文件，从而加快网页的加载速度。而@import 则没有这种预加载的功能。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p><strong>必须使用俩个减号(- -)开头</strong>，数字、字母、下划线、中划线都是可以的</p>
+<pre><code>    :root&#123;
+      --color:&#39;#fff&#39;;
+      --Color:&#39;#666&#39;;
+      --font-cm:20px;
+      --num_1:10;
+    &#125;
+
+
+    /* 使用CSS变量 */
+    p&#123;
+      font-size: var(--font-cm);
+    &#125;
+
+      .c&#123;
+      --color1:green;
+      color: var(--color,var(--color1)) //可以有第二个参数作为默认值
+    &#125;
+</code></pre>
+<h3 id="calc-方法"><a href="#calc-方法" class="headerlink" title="calc()方法"></a>calc()方法</h3><p>CSS 页提供了 calc()进行<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97&spm=1001.2101.3001.7020">数值计算</a>，就可以通过 var()使用自定义属性的值进行计算</p>
+<pre><code>    p&#123;
+      /* var 方法 */
+      font-size: var(--font-cm);
+      /* calc 方法 */
+      width: calc(var(--font-cm)*10);
+    &#125;
+</code></pre>
+<p>当我们使用 var()方法的时候，会首先从当前选择器进行查找，然后是父元素，祖父元素，直至根元素</p>
+<h2 id="层叠"><a href="#层叠" class="headerlink" title="层叠"></a>层叠</h2><p>css 样式表包含以下四种类型，他们会进行层叠<br><strong>1）作者样式表中的!important 样式</strong><br><strong>2) 内联样式 3) 作者样式表中的普通样式</strong><br>总体规则：选择器选中的范围越窄，越特殊<br>具体规则：通过选择器，计算出一个 4 位数</p>
+<ol>
+<li>千位：如果是内联样式，记 1，否则记 0</li>
+<li>百位：等于选择器中所有 id 选择器的数量</li>
+<li>十位：等于选择器中所有类选择器、属性选择器、伪类选择器的数量</li>
+<li>个位：等于选择器中所有元素选择器、伪元素选择器的数量</li>
+</ol>
+<p>分数高的属性会被应用，分数一样高则代码书写靠后的胜出<br>a 链接伪类的优先级排序<br>link &gt; visited &gt; hover &gt; active<br><strong>4) 浏览器默认样式表中的样式</strong></p>
+<h2 id="样式计算"><a href="#样式计算" class="headerlink" title="样式计算"></a>样式计算</h2><p>css 属性值的计算过程</p>
+<p>一个 dom 打开他的 style 可能寥寥无几，但是显示的时候是需要 css 的每个属性都要有值的,也就是说我们所书写的任何一个 HTML 元素，实际上都有完整的一整套 CSS 样式。<br><img src="1688878264641-4ab6ef51-2e88-4122-afd2-182d918b9012.png#width=691" alt="image.png"><br><img src="1688878395732-521e7e77-3458-411d-a0c2-37d23b653113.png#width=742" alt="image.png"><br>属性值的计算过程，分为如下这么 <em>4</em> 个步骤：</p>
+<ul>
+<li>确定声明值</li>
+<li>层叠冲突</li>
+<li>使用继承</li>
+<li>使用默认值</li>
+</ul>
+<h3 id="确定声明值"><a href="#确定声明值" class="headerlink" title="确定声明值"></a>确定声明值</h3><p>首先第一步，是确定声明值。所谓声明值就是作者自己所书写的 CSS 样式，例如</p>
+<pre><code class="typescript">p&#123;
+  color : red;
+&#125;
+这里我们声明了 p 元素为红色，那么就会应用此属性设置。
+</code></pre>
+<h3 id="层叠冲突"><a href="#层叠冲突" class="headerlink" title="层叠冲突"></a>层叠冲突</h3><p>在确定声明值时，可能出现一种情况，那就是声明的样式规则发生了冲突。<br>此时会进入解决层叠冲突的流程。而这一步又可以细分为下面这三个步骤：</p>
+<ul>
+<li>比较源的重要性</li>
+<li>比较优先级</li>
+<li>比较次序</li>
+</ul>
+<p>比较源的重要性<br>当不同的 CSS 样式来源拥有相同的声明时，此时就会根据样式表来源的重要性来确定应用哪一条样式规则。</p>
+<p>整体来讲有三种来源：</p>
+<ul>
+<li>浏览器会有一个基本的样式表来给任何网页设置默认样式。这些样式统称<strong>用户代理样式</strong>。</li>
+<li>网页的作者可以定义文档的样式，这是最常见的样式表，称之为<strong>页面作者样式</strong>。</li>
+<li>浏览器的用户，可以使用自定义样式表定制使用体验，称之为<strong>用户样式</strong>。</li>
+</ul>
+<p>对应的重要性顺序依次为：页面作者样式 &gt; 用户样式 &gt; 用户代理样式</p>
+<p>例如现在有<strong>页面作者样式表</strong>和<strong>用户代理样式表</strong>中存在属性的冲突，那么会以作者样式表优先。</p>
+<pre><code class="css">p &#123;
+  color: red;
+  display: inline-block;
+&#125;
+</code></pre>
+<p><img src="1692696074443-e3dc3231-71fc-4132-ba92-2f54e0edede5.png"><br>可以明显的看到，作者样式表和用户代理样式表中同时存在的 display 属性的设置，最终作者样式表干掉了用户代理样式表中冲突的属性。这就是第一步，根据不同源的重要性来决定应用哪一个源的样式。</p>
+<h3 id="比较优先级"><a href="#比较优先级" class="headerlink" title="比较优先级"></a>比较优先级</h3><p>在同一个源中有样式声明冲突会进行样式声明的优先级比较</p>
+<pre><code class="html">&lt;div class=&quot;test&quot;&gt;
+  &lt;h1&gt;test&lt;/h1&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="css">.test h1 &#123;
+  font-size: 50px;
+&#125;
+
+h1 &#123;
+  font-size: 20px;
+&#125;
+</code></pre>
+<p>在上面的代码中，同属于<strong>页面作者样式</strong>，源的重要性是相同的，此时会以选择器的权重来比较重要性。<br>很明显，上面的选择器的权重要大于下面的选择器，因此最终标题呈现为 _50px_。<br>落败的作者样式在 <em>Elements&gt;Styles</em> 中会被划掉。</p>
+<h3 id="比较次序"><a href="#比较次序" class="headerlink" title="比较次序"></a>比较次序</h3><p>经历了上面两个步骤，大多数的样式声明能够被确定下来。但是还剩下最后一种情况，那就是样式声明既是同源，权重也相同。<br>此时就会进入第三个步骤，比较样式声明的次序。<br>举个例子：</p>
+<pre><code class="css">h1 &#123;
+  font-size: 50px;
+&#125;
+
+h1 &#123;
+  font-size: 20px;
+&#125;
+</code></pre>
+<p>在上面的代码中，同样都是<strong>页面作者样式</strong>，<strong>选择器的权重也相同</strong>，此时位于下面的样式声明会层叠掉上面的那一条样式声明，最终会应用 <em>20px</em> 这一条属性值。</p>
+<p><img src="1689494015006-2eb93d24-c520-4f12-9453-af254e2dcbb3.png" alt="image.png"></p>
+<h3 id="使用继承"><a href="#使用继承" class="headerlink" title="使用继承"></a>使用继承</h3><p>层叠冲突这一步完成后，解决了相同元素被声明了多条样式规则究竟应用哪一条样式规则的问题</p>
+<pre><code class="html">&lt;div&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="css">div &#123;
+  color: red;
+&#125;
+</code></pre>
+<p>在上面的代码中，我们针对 div 设置了 color 属性值为红色，而针对 p 元素我们没有声明任何的属性，但是由于 color 是可以继承的，因此 p 元素从<strong>最近</strong>的 div 身上继承到了 color 属性的值。<br><img src="1689494075529-fbb022e8-f674-4c1b-aaec-b19e005e99ee.png" alt="image.png"></p>
+<h3 id="使用默认值"><a href="#使用默认值" class="headerlink" title="使用默认值"></a>使用默认值</h3><p>走到这一步，如果属性值都还不能确定下来，那么就只能是使用默认值了<br><img src="1692696074439-1bfef76e-775f-4896-9fe2-21798bf113d7.png"></p>
+<p>前面我们也说过，一个 HTML 元素要在浏览器中渲染出来，必须具备所有的 CSS 属性值，但是绝大部分我们是不会去设置的，用户代理样式表里面也不会去设置，也无法从继承拿到，因此最终都是用默认值。</p>
+<h2 id="样式继承"><a href="#样式继承" class="headerlink" title="样式继承"></a>样式继承</h2><p>样式和文字将被继承，我们为一个元素设置的样式同时也会应用到它的后代元素上<br><strong>背景相关的，布局相关等的这些样式都不会被继承。</strong></p>
+<p>可以被继承的 css 属性 1.字体系列属性:font、font-family、font-weight、font-size、fontstyle; 2.文本系列属性:<br>2.1）内联元素：color、line-height、word-spacing（设置单词之间的间距）、letter-spacing（设置文本字符间距）、 text-transform(用于设置文本的大小写：uppercase 所有字符强制转为大写，lowercase 转小写，capitalize 首字符强制转为大写);<br>2.2）块级元素：text-indent、text-align; 3.元素可见性：visibility 4.表格布局属性：caption-side（标题位置）、border-collapse（设置边框分离还是合并）、border-spacing（边框分离状态下设置边框间距）、empty-cells（定义如何渲染无可视内容的单元格边框和背景）、table-layout（定义用于布局单元格行和列的算法）; 5.列表布局属性：list-style</p>
+<p>不可以被继承的 css 属性<br>1.display：规定元素应该生成的框的类型； 2.文本属性：vertical-align、text-decoration(用于设置文本的修饰线外观包括上/下划线，管穿线，删除线，闪烁 ); 3.盒子模型的属性：width、height、margin、border、padding; 4.背景属性：background、background-color、background-image; 5.定位属性：float、clear、position、top、right、bottom、left、min-width、min-height、maxwidth、max-height、overflow、clip;</p>
+<h2 id="元素层级-堆叠上下文"><a href="#元素层级-堆叠上下文" class="headerlink" title="元素层级(堆叠上下文)"></a>元素层级(堆叠上下文)</h2><p>设置 z-index，通常情况下，该值越大，越靠近用户<br><strong>只有定位元素设置 z-index 有效</strong><br>z-index 可以是负数，如果是负数，则遇到常规流、浮动元素，则会被其覆盖</p>
+<h3 id="创建堆叠上下文的元素"><a href="#创建堆叠上下文的元素" class="headerlink" title="创建堆叠上下文的元素"></a>创建堆叠上下文的元素</h3><ol>
+<li>html 元素（根元素）</li>
+<li>设置了 z-index（非 auto）数值的<strong>定位元素</strong></li>
+</ol>
+<h3 id="同一个堆叠上下文中元素在-Z-轴上的排列"><a href="#同一个堆叠上下文中元素在-Z-轴上的排列" class="headerlink" title="同一个堆叠上下文中元素在 Z 轴上的排列"></a>同一个堆叠上下文中元素在 Z 轴上的排列</h3><p>从后到前的排列顺序（后指的是离我们视线远）</p>
+<ol>
+<li>创建堆叠上下文的元素的背景和边框</li>
+<li>堆叠级别(z-index, stack level)为负值的堆叠上下文</li>
+<li>常规流非定位的块盒</li>
+<li>非定位的浮动盒子</li>
+<li>常规流非定位行盒</li>
+<li>任何 z-index 是 auto 的定位子元素，以及 z-index 是 0 的堆叠上下文</li>
+<li>堆叠级别为正值的堆叠上下文</li>
+</ol>
+<p>每个堆叠上下文，独立于其他堆叠上下文，它们之间不能相互穿插。</p>
+<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><h3 id="字体与字样式"><a href="#字体与字样式" class="headerlink" title="字体与字样式"></a>字体与字样式</h3><ul>
+<li>color 用来设置字体颜色</li>
+<li>font-size 字体的大小</li>
+<li>font-weight 文字粗细</li>
+</ul>
+<p>-normal 默认值 不加粗<br>-bold 加粗</p>
+<ul>
+<li>font-style</li>
+</ul>
+<p>-font-style 字体的风格<br>-normal 正常的<br>-italic 斜体</p>
+<ul>
+<li>text-decoration</li>
+</ul>
+<p>-none 什么都没有<br>-underline 下划线<br>-line-through 删除线<br>-overline 上划线</p>
+<ul>
+<li><p>text-indent（缩进）</p>
+</li>
+<li><p>line-height</p>
+</li>
+<li><p>letter-space</p>
+</li>
+<li><p>text-align</p>
+</li>
+<li><p>font-family 字体或者字体族（填写字体或者字体族都可）</p>
+<table>
+<thead>
+<tr>
+<th>字体族</th>
+<th>说明</th>
+<th>字体</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>serif</td>
+<td>有衬线字体，即在文字笔画的结尾添加特殊的装饰线或衬线</td>
+<td>“Lucida Bright”、”Lucida Fax”、Palatino、”Palatino Linotype”、Palladio、”URW Palladio”、serif</td>
+</tr>
+<tr>
+<td>sans-serif</td>
+<td>无衬线字体，即在文字笔画结尾处是平滑的</td>
+<td>“Open Sans”、”Fira Sans”、”Lucida Sans”、”Lucida Sans Unicode”、”Trebuchet MS”、”Liberation Sans”、”Nimbus Sans L”、sans-serif</td>
+</tr>
+<tr>
+<td>monospace</td>
+<td>等宽字体，即每个文字的宽度都是相同的</td>
+<td>“Fira Mono”、”DejaVu Sans Mono”、Menlo、Consolas、”Liberation Mono”、Monaco、”Lucida Console”、monospace</td>
+</tr>
+<tr>
+<td>cursive</td>
+<td>草书字体，该字体有连笔或者特殊的斜体效果，会给人一种手写的感觉</td>
+<td>“Brush Script MT”、”Brush Script Std”、”Lucida Calligraphy”、”Lucida Handwriting”、”Apple Chancery”、cursive</td>
+</tr>
+<tr>
+<td>fantasy</td>
+<td>具有特殊艺术效果的字体</td>
+<td>Papyrus、Herculanum、”Party LET”、”Curlz MT”、Harrington、fantasy</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>指定字体的类别，浏览器会自动使用该类别下的字体</p>
+</li>
+<li><p>font-family 可以同时指定多个字体，多个字体间使用,隔开<br>字体生效时优先使用第一个，第一个无法使用则使用第二个 以此类推</p>
+</li>
+</ul>
+<pre><code>font-family: &#39;Courier New&#39;, Courier, monospace;
+</code></pre>
+<h3 id="web-字体"><a href="#web-字体" class="headerlink" title="web 字体"></a>web 字体</h3><p>让用户无感知的下载我们的字体</p>
+<pre><code>        /* 制作一个新的字体，名称叫做good night */
+        @font-face &#123;
+            font-family: &quot;good night&quot;;
+            src: url(&quot;./font/晚安体.ttf&quot;);
+        &#125;
+
+        p &#123;
+            font-family: &quot;good night&quot;;
+        &#125;
+</code></pre>
+<h3 id="字体图标"><a href="#字体图标" class="headerlink" title="字体图标"></a>字体图标</h3><p>iconfont 使用<br>方式一（常用）<br><img src="1690982020762-ab8bb1a0-913a-4ab2-96bf-448b02d8613f.png#width=980.5" alt="image.png"></p>
+<pre><code>引入
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//at.alicdn.com/t/font_1206816_qshsac4925m.css&quot;&gt;
+
+
+.fs &#123;
+    font-family: &quot;iconfont&quot; !important;
+    display: inline-block;
+    font-size: 14px;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+&#125;
+使用
+&lt;i class=&quot;iconfont icon-yonghu&quot;&gt;&lt;/i&gt;
+</code></pre>
+<p>方式二<br><img src="1690982088611-eee75b97-97ac-4268-a727-ea9e3c1410ec.png#width=810" alt="image.png"></p>
+<pre><code>引入
+@font-face &#123;
+    font-family: &#39;iconfont&#39;;
+    /* project id 1206816 */
+    src: url(&#39;//at.alicdn.com/t/font_1206816_qshsac4925m.eot&#39;);
+    src: url(&#39;//at.alicdn.com/t/font_1206816_qshsac4925m.eot?#iefix&#39;) format(&#39;embedded-opentype&#39;),
+        url(&#39;//at.alicdn.com/t/font_1206816_qshsac4925m.woff2&#39;) format(&#39;woff2&#39;),
+        url(&#39;//at.alicdn.com/t/font_1206816_qshsac4925m.woff&#39;) format(&#39;woff&#39;),
+        url(&#39;//at.alicdn.com/t/font_1206816_qshsac4925m.ttf&#39;) format(&#39;truetype&#39;),
+        url(&#39;//at.alicdn.com/t/font_1206816_qshsac4925m.svg#iconfont&#39;) format(&#39;svg&#39;);
+&#125;
+
+.iconfont &#123;
+    font-family: &quot;iconfont&quot;;
+    font-style: normal;
+&#125;
+
+使用
+&lt;i class=&quot;iconfont&quot;&gt;
+    
+&lt;/i&gt;
+</code></pre>
+<p>方式三<br>离线下载，得到这些文件<br><img src="1690982281819-bd007a97-efd4-4a79-adde-0ead8841cacc.png#width=512.5" alt="image.png"></p>
+<pre><code>直接引入
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/iconfont.css&quot;&gt;
+
+使用
+&lt;i class=&quot;iconfont icon-ditu&quot;&gt;&lt;/i&gt;
+</code></pre>
+<h3 id="行高"><a href="#行高" class="headerlink" title="行高"></a>行高</h3><p>line-height<br>行高指的是文字占有的实际高度<br>可以将行高设置为和高度一样的值，使单行文字在一个元素中垂直居中</p>
+<p>行高可以直接指定一个大小（px em）<br>也可以直接为行高设置一个整数<br>如果是一个整数的话，行高将会是字体的指定的倍数</p>
+<ul>
+<li>行高经常还用来设置文字的行间距（如果是多行字体的话就是用来设置文字的行间距的）<br>行间距 = 行高 - 字体大小</li>
+</ul>
+<h3 id="字体的用法与简写"><a href="#字体的用法与简写" class="headerlink" title="字体的用法与简写"></a>字体的用法与简写</h3><p><strong>加组 斜体 字体大小/行高   字体族</strong></p>
+<pre><code>font: bold italic 50px/2  微软雅黑, &#39;Times New Roman&#39;, Times, serif;
+</code></pre>
+<h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><p>width<br>height<br>background-color 背景颜色<br>opacity<br>cursor 鼠标<br>display<br>visibility<br>vertical-align(在两个行盒出现不对齐的情况下使用，给哪个元素设置都可以，可以设置数字)<br>outline (不占用位置，不改变盒子尺寸)</p>
+<h2 id="选择器与伪元素"><a href="#选择器与伪元素" class="headerlink" title="选择器与伪元素"></a>选择器与伪元素</h2><h3 id="选择器的组合"><a href="#选择器的组合" class="headerlink" title="选择器的组合"></a>选择器的组合</h3><ol>
+<li>并且(连写)</li>
+<li>后代元素 —— 空格</li>
+<li>子元素 —— &gt;</li>
+<li>相邻兄弟元素 —— +</li>
+<li>后面出现的所有兄弟元素 —— ~</li>
+<li>多个选择器, 用逗号分隔</li>
+</ol>
+<h3 id="css-中-ul-li-与-ul-gt-li-的区别"><a href="#css-中-ul-li-与-ul-gt-li-的区别" class="headerlink" title="css 中 ul li 与 ul&gt;li 的区别"></a>css 中 ul li 与 ul&gt;li 的区别</h3><p>ul li ：后代选择器，ul 里所有的 li 元素，包括 ol 里的 li<br>ul&gt;li ：子代选择器，下一级的 DOM 节点，不包括 ol 里的 li<br>ul&gt;ol&gt;li ：子代选择器必须一代接一代</p>
+<h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3><p>1.E[attr]:查找指定的拥有 attr 属性的 E 标签。如查找拥有 style 属性的 li 标签</p>
+<pre><code>li[style]&#123;&#125;
+</code></pre>
+<p>2.E[attr=value]:查找拥有指定的 Attr 属性并且属性值为 value 的 E 标签。如想查找拥有 class 属性并且值为 Red 的 li 标签 =是严格匹配</p>
+<pre><code>li[class=red]&#123;&#125;
+</code></pre>
+<p>3.E[attr*=value]:查找拥有指定的 attr 属性并且属性值中包含(可以在任意位置)value 的 E 标签</p>
+<pre><code>li[class*=red]&#123;&#125;
+</code></pre>
+<p>4.E[attr^=value]:查找拥有指定的 attr 属性并且属性值以 value 开头的 E 标签</p>
+<pre><code>li[class^=blue]&#123;&#125;
+</code></pre>
+<p>5.E[attr$=value]:查找拥有指定的 attr 属性并且属性值以 value 开结束的 E 标签</p>
+<pre><code>li[class$=blue]&#123;&#125;
+</code></pre>
+<h3 id="兄弟选择器"><a href="#兄弟选择器" class="headerlink" title="兄弟选择器"></a>兄弟选择器</h3><p>+：获取当前元素的相邻的满足条件的元素<br>下面这句样式说明查找 ：添加了.first 样式的标签的相邻的 li 元素 1.相邻 2.必须是指定类型的元素</p>
+<pre><code>.first + li&#123;&#125;
+</code></pre>
+<p>必须都是 li 元素，如果中间插入了其他元素，则+表示相邻的 li 元素，所以会不起作用</p>
+<p>~：获取当前元素的满足条件的兄弟元素<br>下面样式查找添加了.first 样式的元素的所有兄弟 li 元素 1.必须是指定类型的元素</p>
+<pre><code>.first ~ li&#123;&#125;
+</code></pre>
+<h3 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes">https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes</a></p>
+<pre><code>li:first-child&#123;color: red;&#125;
+</code></pre>
+<p><strong>:first-child 匹配的是某父元素的第一个子元素，可以说是结构上的第一个子元素。</strong></p>
+<pre><code>li:first-of-type&#123;
+    color: red;
+&#125;
+li:last-of-type&#123;
+    color: orange;
+&#125;
+</code></pre>
+<p><strong>first-child 强调某个父元素的第一个子元素，而:first-of-type 强调的是特定类型的第一个，不必是第一个子元素</strong><br><strong>比如 p:first-child，都是基于 p 的父元素来进行筛选的</strong></p>
+<pre><code class="html">a:first-child &#123; 不会生效 color:red; &#125; /* 选中的是子元素中第一个a元素 */ 生效
+a:first-of-type &#123; color:red; &#125; /* 必须是a元素，必须是最后一个子元素 */ 不会生效
+a:last-child&#123; color: green; &#125; /* 选中子元素中最后一个a元素 */ 生效
+a:last-of-type&#123; color: green; &#125;
+
+&lt;nav&gt;
+  &lt;p&gt;啊手动阀&lt;/p&gt;
+  &lt;a href=&quot;&quot;&gt;Lorem.&lt;/a&gt;
+  &lt;a href=&quot;&quot;&gt;Eligendi.&lt;/a&gt;
+  &lt;a href=&quot;&quot;&gt;Officia.&lt;/a&gt;
+  &lt;a href=&quot;&quot;&gt;Provident!&lt;/a&gt;
+  &lt;a href=&quot;&quot;&gt;Eaque.&lt;/a&gt;
+  &lt;a href=&quot;&quot;&gt;Delectus!&lt;/a&gt;
+  &lt;a href=&quot;&quot;&gt;Eveniet?&lt;/a&gt;
+  &lt;a href=&quot;&quot;&gt;Illo?&lt;/a&gt;
+  &lt;a href=&quot;&quot;&gt;Commodi?&lt;/a&gt;
+  &lt;a href=&quot;&quot;&gt;Nobis.&lt;/a&gt;
+  &lt;p&gt;多范式&lt;/p&gt;
+&lt;/nav&gt;
+</code></pre>
+<p>指定索引位置 nth-child(从 1 开始的索引||关键字||表达式）</p>
+<pre><code>li:nth-child(5)&#123;&#125;
+li:nth-child(even)&#123;
+    background-color: orange;
+&#125;
+li:nth-child(odd)&#123;
+    background-color: pink;
+&#125;
+li:nth-of-type(even)&#123;
+    background-color: orange;
+&#125;
+li:nth-of-type(odd)&#123;
+    background-color: pink;
+&#125;
+</code></pre>
+<p>想为前面的 5 个元素添加样式</p>
+<pre><code>li:nth-last-of-type(-n+5)&#123;
+    font-size: 30px;
+&#125;
+li:nth-of-type(-n+5)&#123;
+    font-size: 30px;
+&#125;
+</code></pre>
+<p>空值:没有任何的内容，连空格都没有</p>
+<pre><code>li:empty&#123;
+    background-color: red;
+&#125;
+</code></pre>
+<p>E:target:可以为锚点目标元素添加样式，当目标元素被触发为当前锚链接的目标时，调用此伪类样式</p>
+<pre><code>h2:target&#123;
+    color: red;
+&#125;
+&lt;a href=&quot;#title1&quot;&gt;CSS (层叠样式表)&lt;/a&gt;
+&lt;h2 id=&quot;title1&quot;&gt;CSS (层叠样式表)&lt;/h2&gt;
+</code></pre>
+<h3 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h3><p>无论是行盒还块盒都可以给他设置伪元素</p>
+<pre><code>    div:nth-of-type(2)::before&#123;
+        /**必须添加content属性，否则后期不可见**/
+        content: &quot;&quot;;
+        /**默认是行级元素，如果想设置宽高，就必须转换为块级元素**/
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        left: -10px;
+        top: -10px;
+    &#125;
+    div:nth-of-type(2)::after&#123;
+    &#125;
+</code></pre>
+<p>获取第一个字符</p>
+<pre><code>    p::first-letter&#123;
+       float: left;/**文本环绕**/
+    &#125;
+</code></pre>
+<p>获取第一行内容:如果设置了::first-letter,那么无法同时设置它的样式</p>
+<pre><code>    p::first-line&#123;
+
+   &#125;
+</code></pre>
+<p>设置当前选中内容的样式<br>它只能设置显示的样式，而不能设置<strong>内容大小（改变字号无效）</strong></p>
+<pre><code>    p::selection&#123;
+        background-color: pink;
+    &#125;
+</code></pre>
+<p>聚焦样式</p>
+<pre><code>input:focus&#123;
+    background:red;
+&#125;
+</code></pre>
+<p>按钮禁用样式</p>
+<pre><code>button:disabled&#123;
+
+&#125;
+</code></pre>
+<p>选中样式</p>
+<pre><code>input:checked&#123;
+
+&#125;
+</code></pre>
+<h2 id="扩展-不常用"><a href="#扩展-不常用" class="headerlink" title="扩展(不常用)"></a>扩展(不常用)</h2><h3 id="body-背景"><a href="#body-背景" class="headerlink" title="body 背景"></a>body 背景</h3><p>一块区域（画布）<br>特点：</p>
+<ol>
+<li>最小宽度为视口宽度</li>
+<li>最小高度为视口高度</li>
+</ol>
+<p><strong>HTML 元素的背景</strong><br>覆盖画布<br><strong>BODY 元素的背景</strong><br>如果 HTML 元素有背景，BODY 元素正常（背景覆盖边框盒）<br>如果 HTML 元素没有背景，BODY 元素的背景覆盖画布<br><strong>关于画布背景图</strong></p>
+<ol>
+<li>背景图的宽度百分比，相对于视口</li>
+<li>背景图的高度百分比，相对于网页高度</li>
+<li>背景图的横向位置百分比、预设值，相对于视口</li>
+<li>背景图的纵向位置百分比、预设值，相对于网页高度</li>
+</ol>
+<h1 id="css3"><a href="#css3" class="headerlink" title="css3"></a>css3</h1><h2 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h2><ul>
+<li>visible 默认值。内容不会被修剪，会呈现在元素框之外。</li>
+<li>hidden 内容会被修剪，并且其余内容是不可见的。</li>
+<li>scroll 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。</li>
+<li>auto 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。</li>
+<li>inherit 规定应该从父元素继承 overflow 属性的值。</li>
+</ul>
+<pre><code>overflow:scroll;
+</code></pre>
+<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2><p>添加阴影</p>
+<pre><code>text-shadow:offsetX offsetY blur color
+</code></pre>
+<p>多层阴影效果</p>
+<pre><code>.demo3&#123;
+    text-shadow: 0px 0px 30px #fff,0px 0px 50px red,0px 0px 70px #fff;
+&#125;
+</code></pre>
+<p>可以添加一层阴影，也可以添加多层阴影</p>
+<h2 id="常规盒与怪异盒"><a href="#常规盒与怪异盒" class="headerlink" title="常规盒与怪异盒"></a>常规盒与怪异盒</h2><p>content-box:你设置的 width 属性值仅仅是内容的宽度，盒子的最终的宽高值在 width 的基础上再加上 padding 和 border 的宽度(默认)</p>
+<pre><code> box-sizing: content-box;(默认)
+</code></pre>
+<p>border-box:你设置的 width 属性值就是盒子的最终的宽度，包含了 border 和 padding 和内容。如果添加了 padding 和 border,那么真正放置内容的区域会减小–但是它可以稳固页面的结构</p>
+<pre><code> box-sizing: border-box;
+</code></pre>
+<h2 id="圆角矩形"><a href="#圆角矩形" class="headerlink" title="圆角矩形"></a>圆角矩形</h2><p>1.设置一个值：四个角的圆角值都一样</p>
+<pre><code>border-radius: 10px;
+</code></pre>
+<p>2.设置两个值:第一个值控制左上/右下，第二个值控制右上/左下</p>
+<pre><code>border-radius: 10px 30px;
+</code></pre>
+<p>3.设置三个值：第一个值控制左上，第二值控制右上/左下，第三个值控制右下</p>
+<pre><code>border-radius: 10px 40px 60px;
+</code></pre>
+<p>4.设置四个值：左上 右上 右下 左</p>
+<pre><code> border-radius: 10px 30px 60px 100px;
+</code></pre>
+<p>添加/是用来设置当前个不同方向的半径值 水平 x 方向/垂直 y 方向</p>
+<pre><code>border-radius: 100px/50px;
+</code></pre>
+<p>如果想设置四个角点的不同方向上的不同圆角值</p>
+<p>分别是水平方向的：左上，右上，右下，左下 / 垂直方向的：左上，右上，右下，左下</p>
+<pre><code>border-radius: 100px 0px 0px 0px/20px 0px 0px 0px;
+</code></pre>
+<h2 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h2><h3 id="线性渐变"><a href="#线性渐变" class="headerlink" title="线性渐变"></a>线性渐变</h3><pre><code>方向：
+to top:0deg
+to right:90deg
+to bottom:180deg --默认值
+to left:270deg
+
+linear-gradient(方向，开始颜色 位置，颜色2 位置，颜色3 位置...)
+background: linear-gradient(to right, red 0%, red 50%, blue 50%, blue 100%);
+</code></pre>
+<h3 id="径向渐变"><a href="#径向渐变" class="headerlink" title="径向渐变"></a>径向渐变</h3><p>形状 shape:circle:产生正方形的渐变色<br>ellipse:适配当前的形状,如果是正方形的容器，两者效果一样.如果宽高不一样，默认效果切换到 ellipse<br>at position:坐标，默认在正中心。可以赋值坐标（参照元素的左上角），也可以赋值关键字(left center right top bottom)<br>大小 size: closest-side：最近边；<br>farthest-side：最远边；<br>closest-corner：最近角；<br>farthest-corner：最远角。<br>默认是最远的角 farthest-corner</p>
+<pre><code>    background: radial-gradient(red,blue);
+   语法：radial-gradient(形状 大小 坐标,颜色1，颜色2...)
+</code></pre>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>背景与 img 何时使用<br>当图片属于网页内容时，必须使用 img 元素<br>当图片仅用于美化页面时，必须使用背景图</p>
+<h3 id="添加背景颜色"><a href="#添加背景颜色" class="headerlink" title="添加背景颜色"></a>添加背景颜色</h3><pre><code>  background-color: skyblue;
+</code></pre>
+<h3 id="添加背影图片"><a href="#添加背影图片" class="headerlink" title="添加背影图片"></a>添加背影图片</h3><p>如果图片大于容器，那么默认就从容器左上角开始放置<br>如果图片小于容器，那么图片默认会平铺（平铺会重复，垂直和水平都会）</p>
+<pre><code>background-image: url(&quot;../images/share1.png&quot;)
+</code></pre>
+<h3 id="背景颜色和背景图片是可以共同出现的"><a href="#背景颜色和背景图片是可以共同出现的" class="headerlink" title="背景颜色和背景图片是可以共同出现的"></a>背景颜色和背景图片是可以共同出现的</h3><pre><code>
+div &#123;
+    width: 300px;
+  height: 300px;
+  background-color: red;
+  background-image: url(./imgs/1.jpg);
+  background-repeat: no-repeat;
+&#125;
+</code></pre>
+<p><strong>页面展示</strong><br><img src="1674634175867-0a510627-1b7b-4546-ab70-95076cea3ea6.webp"></p>
+<h3 id="设置背景平铺"><a href="#设置背景平铺" class="headerlink" title="设置背景平铺"></a>设置背景平铺</h3><pre><code>background-repeat:repeat (默认值)
+background-repeat:no-repeat (不平铺)
+background-repeat:repeat-x （水平方向平铺）
+background-repeat:repeat-y （垂直方向平铺）
+</code></pre>
+<h3 id="设置背景位置"><a href="#设置背景位置" class="headerlink" title="设置背景位置"></a>设置背景位置</h3><p>background-positiont 决定背景图片在盒子区域的定位位置。其方位由水平和垂直决定</p>
+<pre><code>div &#123;
+    //数字
+  background-position: 100px 100px;
+  //方向
+    水平方向:left,center,right
+    垂直方向:top,center,bottom
+    background-position: center center;
+    //比例
+    水平方向= |盒子宽-图片宽| * scale
+    垂直方向= |盒子高-图片高| * scale
+  background-position: 50% 50%;
+&#125;
+</code></pre>
+<h3 id="background-缩写方式"><a href="#background-缩写方式" class="headerlink" title="background 缩写方式"></a>background 缩写方式</h3><pre><code>background:bg-color bg-image position/bg-size bg-repeat bg-origin
+                    bg-clip bg-attachment initial|inherit
+</code></pre>
+<h3 id="background-size"><a href="#background-size" class="headerlink" title="background-size"></a>background-size</h3><p>background-size 决定背景图在盒子中显示的具体大小，属性值需要同时设置背景图的宽和高。</p>
+<pre><code>div &#123;
+  //具体数值
+  background-size: 200px 50px;
+  //百分比，根据盒子的大小来定
+  background-size: 50% 10%;
+  //auto
+  如果宽度是具体数值，高度设置auto,则背景图片的高会根据宽度数值等比拉伸
+  如果高度是具体数值，宽度设置auto,则背景图片的宽会根据高度数值等比拉伸
+  如果宽高都设置auto,直接使用原背景图的宽高
+  background-size: 200px auto;
+  //cover英文意思覆盖，那么其涵义就是要求背景图片覆盖整个盒子。
+  background-size: cover;
+    //contain,要求背景图片的宽和高必须满足其中一个覆盖盒子就行，
+    当图片宽和高都小于盒子时图片会被等比拉伸，
+    如果图片宽或高大于等于盒子宽或者高就停止拉伸。
+    background-size:contain;
+&#125;
+</code></pre>
+<h3 id="background-clip-和-background-origin"><a href="#background-clip-和-background-origin" class="headerlink" title="background-clip 和 background-origin"></a>background-clip 和 background-origin</h3><p>background-clip 决定了背景颜色从盒子的什么位置开始渲染<br>background-origin 决定了背景图片从盒子的什么位置开始渲染</p>
+<pre><code>background-clip: border-box（从盒子边距开始）
+background-clip: content-box（从盒子内容开始）
+background-clip: padding-box（默认值，从盒子padding开始）
+</code></pre>
+<h2 id="过渡"><a href="#过渡" class="headerlink" title="过渡"></a>过渡</h2><p>简写：transition:属性名称 过渡时间 时间函数 延迟</p>
+<pre><code>  transition: left 2s linear 0s;
+</code></pre>
+<p>为多个样式同时添加过渡效</p>
+<pre><code>transition: left 2s linear 0s,background-color 5s linear 0s;
+</code></pre>
+<p>所有样式的过渡效果一样<br>steps(4):可以让过渡效果分为指定的几次来完成 等于说是一帧一帧的跳动</p>
+<pre><code>  transition:all 2s steps(4);
+</code></pre>
+<blockquote>
+<p>效率低下，它会去查询所有添加的样式（使用 all）,建议以后不要这么写</p>
+</blockquote>
+<h2 id="transform-二维变换"><a href="#transform-二维变换" class="headerlink" title="transform 二维变换"></a>transform 二维变换</h2><p>使用 transform 实现元素的移动 a.移动是参照元素的左上角 b.执行完毕之后会恢复到原始状态</p>
+<pre><code>    /*transform: translate(400px,500px);*/ X,Y轴的移动
+    transform:translateY(300px);
+    transform:scaleY(0.5); 放大和缩小，1为灵界点
+    transform-origin: left top; 可以设置旋转的中心
+    transform:translateX(700px) rotate(-90deg);
+    transform:skew(-30deg);斜切
+</code></pre>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>添加动画效果<br>1.animation-name:指定动画名称</p>
+<pre><code>animation-name: moveTest;
+</code></pre>
+<p>2.设置动画的总耗时</p>
+<pre><code>animation-duration: 2s;
+</code></pre>
+<p>3.设置动画的播放次数，默认为 1 次 可以指定具体的数值，也可以指定 infinite(无限次)</p>
+<pre><code>animation-iteration-count: 1/infinite;
+</code></pre>
+<p>4.设置交替动画 alternate:来回交替</p>
+<pre><code>animation-direction: alternate;
+</code></pre>
+<p>5.设置动画的延迟</p>
+<pre><code>animation-delay: 2s;
+</code></pre>
+<p>6.设置动画结束时的状态：默认情况下，动画执行完毕之后，会回到原始状态</p>
+<p>forwards:会保留动画结束时的状态，在有延迟的情况下，并不会立刻进行到动画的初始状态<br>backwards:不会保留动画结束时的状态，在添加了动画延迟的前提下，如果动画有初始状态，那么会立刻进行到初始状态<br>both:会保留动画的结束时状态，在有延迟的情况下也会立刻进入到动画的初始状态</p>
+<pre><code>animation-fill-mode: both;
+</code></pre>
+<p>7.动画的时间函数</p>
+<p>animation-timing-function: linear; （这个表示匀速，可以开始比较满或者快或者）<br>设置动画的播放状态 paused:暂停 running:播放</p>
+<pre><code>animation-play-state: running;
+</code></pre>
+<p>动画 moveTest</p>
+<pre><code>   @keyframes moveTest &#123;
+    百分比是指整个动画耗时的百分比  10s
+    from&#123;
+        transform: translate(0,0) rotate(45deg);
+    &#125;
+    50%&#123;
+        transform: translate(0,500px);
+    &#125;
+    to&#123;
+        transform: translate(500px,600px);
+        &#125;
+    &#125;
+</code></pre>
+<h2 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h2><p>1.设置列数</p>
+<pre><code>column-count: 3;
+</code></pre>
+<p>2.添加列间隙样式,与边框样式的添加一样</p>
+<pre><code>column-rule: dashed 3px red;
+</code></pre>
+<p>3。设置列间隙大小</p>
+<pre><code>column-gap: 50px;
+</code></pre>
+<p>4.设置列宽</p>
+<p>原则：取大优先</p>
+<p>1.如果人为设置宽度更大，则取更大的值，但是会填充整个屏幕，意味最终的宽度可能也会大于设置的宽度–填充满整个屏幕</p>
+<p>2.如果人为设置宽度更小，使用默认计算的宽度</p>
+<pre><code>column-width: 200px;
+</code></pre>
+<p>设置上面这些属性应该在文字的盒子上</p>
+<p>设置跨列显示 1 / all</p>
+<pre><code>column-span: all;
+</code></pre>
+<h2 id="最大最小宽高"><a href="#最大最小宽高" class="headerlink" title="最大最小宽高"></a>最大最小宽高</h2><ul>
+<li>最大宽度：<code>max-width</code>，最大高度：<code>max-height</code></li>
+<li>最小宽度：<code>min-width</code>，最小高度：<code>min-height</code></li>
+</ul>
+<p>当一个元素的尺寸会自动变化时，设置最大最小宽高，可以让它不至于变得过小或过大。<br>在实际开发中，我们通常为 PC 端的页面设置一个最小宽度，通常此宽度为设计稿的宽度</p>
+<h2 id="尺寸的百分比"><a href="#尺寸的百分比" class="headerlink" title="尺寸的百分比"></a>尺寸的百分比</h2><p>百分比是一个相对单位，其相对于元素的<strong>参考系</strong>，比如：</p>
+<ul>
+<li>普通元素的参考系为<strong>父元素的内容区域</strong></li>
+<li>绝对（固定）定位元素的参考系为父元素中<strong>第一个定位元素的 padding 区域(内容区域+padding)</strong></li>
+</ul>
+<p>下面罗列常见的百分比情况</p>
+<table>
+<thead>
+<tr>
+<th>css 属性</th>
+<th>百分比相对于</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>width</td>
+<td>参考系的<strong>宽度</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>height</td>
+<td>参考系的<strong>高度</strong></td>
+<td>参考系高度受本身宽度影响时，设置无效</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>参考系的<strong>宽度</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>border</td>
+<td>参考系的<strong>宽度</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>margin</td>
+<td>参考系的<strong>宽度</strong></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h1><p>有些时候 div 在要不要多嵌套一层做抉择的时候，尽量去选择嵌套一层</p>
+<h1 id="常见效果与疑问"><a href="#常见效果与疑问" class="headerlink" title="常见效果与疑问"></a>常见效果与疑问</h1><h3 id="图片空白-文字空白"><a href="#图片空白-文字空白" class="headerlink" title="图片空白,文字空白"></a>图片空白,文字空白</h3><pre><code>    &lt;p&gt;
        &lt;img src=&quot;./img/an.jpg&quot; alt=&quot;&quot;&gt;
     &lt;/p&gt;
 </code></pre>
 <p>把 Img 放入 P 中的时候默认是基线对齐，所以下面会留空白</p>
-<p>将 img 设置一下垂直对齐的方式就可以解决这个问题</p>
-<pre><code>    vertical-align: bottom;
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>1.将 img 设置一下垂直对齐的方式就可以解决这个问题</p>
+<pre><code>vertical-align: bottom;
 </code></pre>
-<h3 id="text-decoration"><a href="#text-decoration" class="headerlink" title="text-decoration"></a>text-decoration</h3><p>可选值：</p>
-<p>none 什么都没有</p>
-<p>underline 下划线</p>
-<p>line-through 删除线</p>
-<p>overline 上划线</p>
-<h3 id="文字太多显示省略号"><a href="#文字太多显示省略号" class="headerlink" title="文字太多显示省略号"></a>文字太多显示省略号</h3><pre><code>.box2&#123;
-
+<p>2.设置 div font-size:0 3.设置 Img 为块盒</p>
+<p>行内文字同样如此</p>
+<h3 id="文字太多显示省略号"><a href="#文字太多显示省略号" class="headerlink" title="文字太多显示省略号"></a>文字太多显示省略号</h3><pre><code>//只对行盒文字生效
+.box2&#123;
     width: 200px;
-
     /*
-
     white-space 设置网页如何处理空白
-
     可选值：
-
     normal 正常
-
     nowrap 不换行
-
     pre 保留空白
-
-
     */
-
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
-
 &#125;
 </code></pre>
 <p>不换行   多余裁剪     文字溢出使用省略号</p>
-<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><h3 id="字体-1"><a href="#字体-1" class="headerlink" title="字体"></a>字体</h3><ul>
-<li><p>color 用来设置字体颜色</p>
-</li>
-<li><p>font-size 字体的大小</p>
-<p>em 相当于当前元素的一个 font-size</p>
-<p>rem 相对于根元素的一个 font-size</p>
-</li>
-<li><p>font-family 字体族（字体的格式）</p>
-</li>
-</ul>
-<p>可选值：</p>
-<pre><code>serif  衬线字体
+<h3 id="漂亮的选择框-以及-element-的内核不是原生-input-做的"><a href="#漂亮的选择框-以及-element-的内核不是原生-input-做的" class="headerlink" title="漂亮的选择框 以及 element 的内核不是原生 input 做的"></a>漂亮的选择框 以及 element 的内核不是原生 input 做的</h3><p>通常采用隐藏的 Input 框真实显示的是一个 span 或者 div</p>
+<h3 id="form-与-div-区别"><a href="#form-与-div-区别" class="headerlink" title="form 与 div 区别"></a>form 与 div 区别</h3><p>1.button type=sumbit 可直接提交表单<br>2.input 框敲回车可直接提交表单,如果设置了回车提交表单而不用 form，则中文输入法回车也会识别，比较麻烦，尽量还是用 form 来进行提交 3.语义化</p>
 
-sans-serif 非衬线字体
-
-monospace 等宽字体
-</code></pre>
-<ul>
-<li><p>指定字体的类别，浏览器会自动使用该类别下的字体</p>
-</li>
-<li><p>font-family 可以同时指定多个字体，多个字体间使用,隔开</p>
-</li>
-</ul>
-<p>字体生效时优先使用第一个，第一个无法使用则使用第二个 以此类推</p>
-<pre><code>font-family: &#39;Courier New&#39;, Courier, monospace;
-</code></pre>
-<p>这些字体都是必须用户电脑里装着的，也可以服务器去给用户指定</p>
-<pre><code>        @font-face &#123;
-
-            /* 指定字体的名字 */
-
-            font-family:&#39;myfont&#39; ;
-
-            /* 服务器中字体的路径 */
-
-            src: url(&#39;./font/ZCOOLKuaiLe-Regular.ttf&#39;) format(&quot;truetype&quot;);
-
-        &#125;
-</code></pre>
-<p>format(“truetype”);是指定类型，是一个保险</p>
-<p>这样就是自定义一个字体可以在 font-family 里面去使用</p>
-<h3 id="行高"><a href="#行高" class="headerlink" title="行高"></a>行高</h3><p>行高指的是文字占有的实际高度</p>
-<p>可以将行高设置为和高度一样的值，使单行文字在一个元素中垂直居中</p>
-<p>line-height 来设置行高</p>
-<p>行高可以直接指定一个大小（px em）</p>
-<p>也可以直接为行高设置一个整数</p>
-<p>如果是一个整数的话，行高将会是字体的指定的倍数</p>
-<ul>
-<li>行高经常还用来设置文字的行间距（如果是多行字体的话就是用来设置文字的行间距的）</li>
-</ul>
-<p>行间距 = 行高 - 字体大小</p>
-<h3 id="字体的用法与简写"><a href="#字体的用法与简写" class="headerlink" title="字体的用法与简写"></a>字体的用法与简写</h3><p>font 可以设置字体相关的所有属性</p>
-<p>语法：</p>
-<p>font: 字体大小/行高 字体族（<strong>字体大小和字体族是必填</strong>）</p>
-<p>行高 可以省略不写 如果不写使用默认值</p>
-<pre><code>font: bold italic 50px/2  微软雅黑, &#39;Times New Roman&#39;, Times, serif;
-</code></pre>
-<p><strong>加组 斜体 字体大小/行高   字体族</strong></p>
-<p>font-weight 字体的加粗</p>
-<p>可选值：</p>
-<p>normal 默认值 不加粗</p>
-<p>bold 加粗</p>
-<p>100-900 九个级别（没什么用）</p>
-<pre><code>font-weight: bold;
-</code></pre>
-<p>font-style 字体的风格</p>
-<p>normal 正常的</p>
-<p>italic 斜体</p>
-<pre><code>font-style: italic;
-</code></pre>
-<h3 id="字体图标"><a href="#字体图标" class="headerlink" title="字体图标"></a>字体图标</h3><p>在网页中经常需要使用一些图标，可以通过图片来引入图标</p>
-<p>但是图片大小本身比较大，并且非常的不灵活</p>
-<p>所以在使用图标时，我们还可以将图标直接设置为字体，</p>
-<p>然后通过 font-face 的形式来对字体进行引入</p>
-<p>这样我们就可以通过使用字体的形式来使用图标</p>
-<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3>
     </div>
     
 </div>
@@ -363,7 +938,7 @@ monospace 等宽字体
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

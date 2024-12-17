@@ -126,7 +126,6 @@
     &#125;
 </code></pre>
 <h1 id="img-中-alt-和-title-的区别"><a href="#img-中-alt-和-title-的区别" class="headerlink" title="img 中 alt 和 title 的区别"></a>img 中 alt 和 title 的区别</h1><p>图片中的 alt 属性是在图片不能正常显示时出现的文本提示。<br>图片中的 title 属性是在鼠标在移动到元素上的文本提示。</p>
-<h1 id="经常遇到的-CSS-的兼容性有哪些？原因，解决方法是什么？"><a href="#经常遇到的-CSS-的兼容性有哪些？原因，解决方法是什么？" class="headerlink" title="经常遇到的 CSS 的兼容性有哪些？原因，解决方法是什么？"></a>经常遇到的 CSS 的兼容性有哪些？原因，解决方法是什么？</h1><p>各浏览器不同标签 margin,padding 不同<br>居中问题，div 里的内容，IE 默认为居中，而 Firefox 默认为左对齐<br>IE 浮动 margin 产生的双倍距离<br>ul 标签在 FF 中默认是有 padding 值的，而在 IE 中只有 margin 有值，还有缩进问题</p>
 <h1 id="为什么要初始化-CSS-样式。"><a href="#为什么要初始化-CSS-样式。" class="headerlink" title="为什么要初始化 CSS 样式。"></a>为什么要初始化 CSS 样式。</h1><p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对 CSS 初始化往往会出现浏览器之间的页面显示差异。<br>当然，初始化样式会对 SEO 有一定的影响，但鱼和熊掌不可兼得，但力求影响最小的情况下初始化。</p>
 <h1 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h1><p>浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及 overflow 值不为“visiable”的块级盒子，都会为他们的内容创建新的 BFC（块级格式上下文）。</p>
 <p><strong>BFC 有一下特性：</strong><br>1、内部的 Box 会在垂直方向，从顶部开始一个接一个地放置。<br>2、Box 垂直方向的距离由 margin 决定。属于同一个 BFC 的两个相邻 Box 的 margin 会发生叠加<br>3、每个元素的 margin box 的左边， 与包含块 border box 的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。<br>4、BFC 的区域不会与 float box 叠加。<br>5、BFC 就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然。<br>6、计算 BFC 的高度时，浮动元素也参与计算。<br><strong>那么我们怎样做就可以触发 BFC 呢</strong></p>
@@ -176,7 +175,7 @@
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

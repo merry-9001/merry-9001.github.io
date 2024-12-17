@@ -112,60 +112,135 @@
     </div>
 
     <div class="content" v-pre>
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>浏览器对象模型</p>
-<p>BOM 可以使我们通过 JS 来操作浏览器（Browser Object Model, BOM）</p>
-<p>在 BOM 中为我们提供了一组对象，用来完成对浏览器的操作</p>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h3><p>代表的是整个浏览器的窗口，同时 window 也是网页中的全局对象</p>
-<h3 id="Navigator"><a href="#Navigator" class="headerlink" title="Navigator"></a>Navigator</h3><p>代表的当前浏览器的信息，通过该对象可以来识别不同的浏览器</p>
-<h3 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h3><p>代表当前浏览器的地址栏信息，通过 Location 可以获取地址栏信息，或者操作浏览器跳转页面</p>
-<pre><code>location.assign(&quot;http://www.baidu.com&quot;);//跳转
-Object.assign()方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。
-const target = &#123; a: 1 &#125;;
-const source1 = &#123; b: 2 &#125;;
-const source2 = &#123; c: 3 &#125;;
-Object.assign(target, source1, source2);
-target // &#123;a:1, b:2, c:3&#125;
-location.reload(true);//刷新
+        <p>BOM 提供了一系列的对象和函数，提供和浏览器本身相关的操作</p>
+<h2 id="window"><a href="#window" class="headerlink" title="window"></a>window</h2><p>全局对象<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/window">https://developer.mozilla.org/zh-CN/docs/Web/API/Window/window</a></p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[open()](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)</code></td>
+<td>打开一个新的浏览器窗口</td>
+<td>返回新窗口的 window 对象</td>
+</tr>
+<tr>
+<td><code>[close()](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/close)</code></td>
+<td>关闭浏览器窗口</td>
+<td>只能关闭使用 open 打开的浏览器窗口</td>
+</tr>
+<tr>
+<td>setTimeout()</td>
+<td>设置一个计时器</td>
+<td></td>
+</tr>
+<tr>
+<td>在一段时间后自动执行某个函数</td>
+<td>参数 1：函数，无参，this 指向 window</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>参数 2：时间，毫秒<br>返回：计时器的 ID |<br>| clearTimeout() | 清除指定 ID 的计时器 | 传入计时器的 ID |<br>| setInterval() | 设置一个计时器<br>每隔一段时间自动执行某个函数 | 参数 1：函数，无参，this 指向 window<br>参数 2：时间，毫秒<br>返回：计时器的 ID |<br>| clearInterval() | 清除指定 ID 的计时器 | 传入计时器的 ID |<br>| <code>[alert()](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/alert)</code> | 弹出提示框 | 不同的操作系统外观有差异 |<br>| <code>[confirm()](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/confirm)</code> | 弹出确认框 | 不同的操作系统外观有差异 |</p>
+<p>我们经常只使用一个计时器，当重复开启多个时，这样处理</p>
+<pre><code class="javascript">var timerId;
+
+// 开始（继续）
+function start() &#123;
+  if (timerId) &#123;
+    // 当前已经有计时器了
+    return;
+  &#125;
+  timerId = setInterval(function () &#123;
+    console.clear();
+    console.log(new Date().toLocaleString());
+  &#125;, 1000);
+&#125;
+
+// 停止
+function stop() &#123;
+  clearInterval(timerId);
+  timerId = null;
+&#125;
 </code></pre>
-<h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><p>代表浏览器的历史记录，可以通过该对象来操作浏览器的历史记录</p>
-<p>由于隐私原因，该对象不能获取到具体的历史记录，只能操作浏览器向前或向后翻页</p>
-<p>而且该操作只在当次访问时有效</p>
-<p>可以用来回退到上一个页面，作用和浏览器的回退按钮一样</p>
-<pre><code>history.back()
-</code></pre>
-<p>可以跳转下一个页面，作用和浏览器的前进按钮一样</p>
-<pre><code>history.forward()
-</code></pre>
-<p>可以前进或者后退几个页面</p>
-<pre><code>history.go(-2);
-</code></pre>
-<h3 id="Screen"><a href="#Screen" class="headerlink" title="Screen"></a>Screen</h3><p>代表用户的屏幕的信息，通过该对象可以获取到用户的显示器的相关的信息</p>
-<h2 id="定时器和延时器"><a href="#定时器和延时器" class="headerlink" title="定时器和延时器"></a>定时器和延时器</h2><p>定时器 setInterval 周期性触发；</p>
-<p>延时器 setTimeout 一段事件后触发；</p>
-<p>clearInterval();//关闭定时器</p>
-<p>clearTimeout(timer);关闭延时器</p>
-<p>关闭延时器，因为本身也就执行一次，关闭就不执行了</p>
-<pre><code>        var timer = setInterval(function()&#123;
-          count.innerHTML = num++;
-          if(num == 11)&#123;
-            //关闭定时器
-            clearInterval(timer);
-          &#125;
-        &#125;,1000);
-</code></pre>
-<p>JSON</p>
-<p>JavaScript Object Notation JS 对象表示法</p>
-<p>JSON 和 JS 对象的格式一样，只不过 <strong>JSON 字符串中的属性名必须加双引号</strong></p>
-<p>其他的和 JS 语法一致</p>
-<h3 id="json-–-gt-js-对象"><a href="#json-–-gt-js-对象" class="headerlink" title="json –&gt; js 对象"></a>json –&gt; js 对象</h3><p>JSON.parse()</p>
-<p>可以将以 JSON 字符串转换为 js 对象</p>
-<p>它需要一个 JSON 字符串作为参数，会将该字符串转换为 JS 对象并返回</p>
+<h3 id="window-location"><a href="#window-location" class="headerlink" title="window.location"></a>window.location</h3><p>提供地址栏的相关操作</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Location.href</td>
+<td>获取或设置页面当前地址</td>
+<td>设置地址回导致页面跳转</td>
+</tr>
+<tr>
+<td><code>[Location.protocol](https://developer.mozilla.org/en-US/docs/Web/API/Location/protocol)</code></td>
+<td>获取或设置地址中的协议部分</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[Location.host](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/host)</code></td>
+<td>获取或设置地址中的主机名和端口号</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[Location.hostname](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/hostname)</code></td>
+<td>获取或设置地址中的主机名</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>| <code>[Location.port](https://developer.mozilla.org/en-US/docs/Web/API/Location/port)</code><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Location/port"> </a> | 获取或设置地址中的端口号 | |<br>| <code>[Location.pathname](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname)</code><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname"> </a> | 获取或设置地址中的路径部分 | |<br>| <code>[Location.search](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/search)</code> | 获取或设置地址中的参数部分 | |<br>| <code>[Location.hash](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/hash)</code> | 获取或设置地址中的 hash 部分 | |<br>| <code>[Location.reload()](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/reload)</code> | 刷新页面 | |</p>
+<h3 id="window-history"><a href="#window-history" class="headerlink" title="window.history"></a>window.history</h3><p>提供当前窗口历史记录的操作</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[History.back()](https://developer.mozilla.org/zh-CN/docs/Web/API/History/back)</code></td>
+<td>后退</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[History.forward()](https://developer.mozilla.org/zh-CN/docs/Web/API/History/forward)</code></td>
+<td>前进</td>
+<td></td>
+</tr>
+<tr>
+<td><code>[History.go()](https://developer.mozilla.org/zh-CN/docs/Web/API/History/go)</code></td>
+<td>根据相对当前页面的偏移量，</td>
+<td></td>
+</tr>
+<tr>
+<td>进入指定的记录页</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>[History.pushState()](https://developer.mozilla.org/zh-CN/docs/Web/API/History/pushState)</code></td>
+<td>在历史记录中添加一条记录</td>
+<td>页面不刷新</td>
+</tr>
+<tr>
+<td><code>[History.replaceState()](https://developer.mozilla.org/zh-CN/docs/Web/API/History/replaceState)</code></td>
+<td>替换当前记录</td>
+<td>页面不刷新</td>
+</tr>
+</tbody></table>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>JavaScript Object Notation JS 对象表示法<br>JSON 和 JS 对象的格式一样，只不过 <strong>JSON 字符串中的属性名必须加双引号</strong><br>其他的和 JS 语法一致</p>
+<h3 id="json-–-gt-js-对象"><a href="#json-–-gt-js-对象" class="headerlink" title="json –&gt; js 对象"></a>json –&gt; js 对象</h3><p>JSON.parse()<br>可以将以 JSON 字符串转换为 js 对象<br>它需要一个 JSON 字符串作为参数，会将该字符串转换为 JS 对象并返回</p>
 <pre><code>var o = JSON.parse(json);
 </code></pre>
-<h3 id="JS-对象-—-gt-JSON"><a href="#JS-对象-—-gt-JSON" class="headerlink" title="JS 对象 —&gt; JSON"></a>JS 对象 —&gt; JSON</h3><p>JSON.stringify()</p>
-<p>可以将一个 JS 对象转换为 JSON 字符串</p>
-<p>需要一个 js 对象作为参数，会返回一个 JSON 字符串</p>
-<p>var str = JSON.stringify(obj3);</p>
+<h3 id="JS-对象-—-gt-JSON"><a href="#JS-对象-—-gt-JSON" class="headerlink" title="JS 对象 —&gt; JSON"></a>JS 对象 —&gt; JSON</h3><p>JSON.stringify()<br>可以将一个 JS 对象转换为 JSON 字符串<br>需要一个 js 对象作为参数，会返回一个 JSON 字符串<br>var str = JSON.stringify(obj3);</p>
 
     </div>
     
@@ -175,7 +250,7 @@ location.reload(true);//刷新
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

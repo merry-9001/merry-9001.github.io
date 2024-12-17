@@ -112,7 +112,10 @@
     </div>
 
     <div class="content" v-pre>
-        <h1 id="http-状态码有那些？分别代表是什么意思？"><a href="#http-状态码有那些？分别代表是什么意思？" class="headerlink" title="http 状态码有那些？分别代表是什么意思？"></a>http 状态码有那些？分别代表是什么意思？</h1><ul>
+        <p>http 请求报错</p>
+<p>一种情况是返回 200，但参数里附带着 code=0 或者 code=500 来表示请求有没有通过（成功访问或者没有成功访问），无论哪种都是这次 http 请求返回的状态码是 200，只是内容不同而已</p>
+<p>还有一种是 catch 或者服务器的代码错误，或者直接 throw error 这时候如果不统一处理的话，会显示这次请求是错误的，状态码是 500 等信息<br><img src="1703816792230-a8e94cfb-c605-44db-a3f7-54b97401eab7.png#width=1126" alt="image.png"><br>当然 nest 也给予了统一处理 catch 错误，这时候你可以修改错误代码，信息等内容<br><img src="1703816851657-e2deb568-3c1d-4748-b2ab-27bc9efa534a.png#width=1118" alt="image.png"></p>
+<h1 id="http-状态码和含义"><a href="#http-状态码和含义" class="headerlink" title="http 状态码和含义"></a>http 状态码和含义</h1><ul>
 <li>100-199 用于指定客户端应相应的某些动作。</li>
 <li>200-299 用于表示请求成功。</li>
 <li>300-399 用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。</li>
@@ -157,7 +160,7 @@ RST表示连接重置。
 <li>生成 Dom 树、解析 css 样式、js 交互</li>
 <li>在生成 Render 树的过程中，浏览器就开始调用 GPU 绘制，合成图层，将内容显示在屏幕上了</li>
 </ul>
-<h1 id="优化渲染过程"><a href="#优化渲染过程" class="headerlink" title="优化渲染过程"></a>优化渲染过程</h1><p>代码层面的优化（参考浏览器篇如何减少重绘和回流）<br>懒执行 —— 将某些逻辑放到使用时再进行，可以通过定时器或事件进行唤醒<br>懒加载 —— 将不关键的资源延后加载，如图片、视频资源等。<br>图片优化：<br>可以用 css 模拟代替的尽量不要用图片<br>小图片用 base64 格式<br>雪碧图<br>选择正确的图片格式<br>选择使用 WebP 格式，体积较小，缺点是兼容性不好<br>小图使用 PNG ，图标类可以使用 SVG 代替<br>照片使用 JPEG</p>
+<h1 id="优化渲染过程"><a href="#优化渲染过程" class="headerlink" title="优化渲染过程"></a>优化渲染过程</h1><p>减少重绘和回流<br>懒执行 —— 将某些逻辑放到使用时再进行，可以通过定时器或事件进行唤醒<br>懒加载 —— 将不关键的资源延后加载，如图片、视频资源等。<br>图片优化：<br>可以用 css 模拟代替的尽量不要用图片<br>小图片用 base64 格式<br>雪碧图<br>小图使用 PNG ，图标类可以使用 SVG 代替<br>照片使用 JPEG</p>
 <h1 id="http-缓存控制"><a href="#http-缓存控制" class="headerlink" title="http 缓存控制"></a>http 缓存控制</h1><ol>
 <li>http 缓存能够帮助服务器提高并发性能，很多资源不需要重复请求直接从浏览器中拿缓存</li>
 <li>http 缓存分类 ：强缓存 协商缓存</li>
@@ -189,7 +192,7 @@ RST表示连接重置。
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

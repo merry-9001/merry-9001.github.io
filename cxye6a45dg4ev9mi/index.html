@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>其他 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>其他</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/30
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="http-请求报错"><a href="#http-请求报错" class="headerlink" title="http 请求报错"></a>http 请求报错</h2><p>一种情况是返回 200，但参数里附带着 code=0 或者 code=500 来表示请求有没有通过（成功访问或者没有成功访问），无论哪种都是这次 http 请求返回的状态码是 200，只是内容不同而已</p>
+<p><img src="1703817020780-429f9acf-13be-40e0-acf4-84555752d9e3.png"></p>
+<p><img src="1703817081638-2f435dc8-4842-4c58-9b0f-bc9d964c0c94.png"></p>
+<p>还有一种是 catch 或者服务器的代码错误，或者直接 throw error 这时候如果不统一处理的话，会显示这次请求是错误的，状态码是 500 等信息</p>
+<p><img src="1703816792230-a8e94cfb-c605-44db-a3f7-54b97401eab7.png"></p>
+<p>当然 nest 也给予了统一处理 catch 错误，这时候你可以修改错误代码，信息等内容</p>
+<pre><code class="plain">@Catch()
+export class ProjectExceptionFilter implements ExceptionFilter&lt;unknown&gt; &#123;
+  private readonly logger = new Logger(&quot;ProjectExceptionFilter&quot;);
+  catch(exception: unknown, host: ArgumentsHost) &#123;
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse&lt;Response&gt;();
+    this.logger.debug(&quot;catch exception&quot;, exception);
+    if (exception instanceof Error) &#123;
+      response.status(400).json(&#123;
+        status: &quot;fail&quot;,
+        reason: exception.message,
+      &#125;);
+    &#125; else &#123;
+      response.status(400).json(&#123;
+        status: &quot;fail&quot;,
+        reason: &quot;unknown&quot;,
+        exception,
+      &#125;);
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<p><img src="1703816851657-e2deb568-3c1d-4748-b2ab-27bc9efa534a.png"></p>
+<h2 id="水印"><a href="#水印" class="headerlink" title="水印"></a>水印</h2><p>Watermark 文件</p>
+<p>MutationObserver</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

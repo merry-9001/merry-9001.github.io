@@ -112,8 +112,180 @@
     </div>
 
     <div class="content" v-pre>
-        <h1 id="flex-布局"><a href="#flex-布局" class="headerlink" title="flex 布局"></a>flex 布局</h1><h2 id="伸缩盒子"><a href="#伸缩盒子" class="headerlink" title="伸缩盒子"></a>伸缩盒子</h2><p>设置父容器为伸缩盒子：会使每一个子元素自动变成伸缩项</p>
-<pre><code>    display: flex;
+        <h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1><h3 id="盒子的组成部分"><a href="#盒子的组成部分" class="headerlink" title="盒子的组成部分"></a>盒子的组成部分</h3><p>无论是行盒、还是块盒，都由下面几个部分组成，从内到外分别是：</p>
+<ol>
+<li>内容  content</li>
+</ol>
+<p>width、height，设置的是盒子内容的宽高<br>内容部分通常叫做整个盒子的<strong>内容盒 content-box</strong></p>
+<ol start="2">
+<li>填充(内边距)  padding</li>
+</ol>
+<p>盒子边框到盒子内容的距离<br>padding-left、padding-right、padding-top、padding-bottom<br>padding: 简写属性<br>padding: 上 右 下 左<br>填充区+内容区 = <strong>填充盒 padding-box</strong></p>
+<ol start="3">
+<li>边框  border</li>
+</ol>
+<p>边框 = 边框样式 + 边框宽度 + 边框颜色<br>边框样式：border-style<br>边框宽度：border-width<br>边框颜色：border-color<br>边框+填充区+内容区 = <strong>边框盒 border-box</strong></p>
+<ol start="4">
+<li>外边距  margin</li>
+</ol>
+<p>边框到其他盒子的距离<br>margin-top、margin-left、margin-right、margin-bottom<br>速写属性 margin</p>
+<h3 id="行盒"><a href="#行盒" class="headerlink" title="行盒"></a>行盒</h3><p>常见的行盒：包含具体内容的元素</p>
+<pre><code class="typescript">span、strong、em、i、img、video、audio
+</code></pre>
+<p>行内元素不会独占页面的一行，只占自身的大小,行内元素的默认宽度和高度都是被内容撑开<br>特点</p>
+<ol>
+<li>盒子沿着内容沿伸</li>
+<li>行盒不能设置宽高<br>调整行盒的宽高，应该使用字体大小、行高、字体类型，间接调整。</li>
+<li>内边距（填充区）<br>水平方向有效，垂直方向不会实际占据空间。</li>
+<li>边框<br>水平方向有效，垂直方向不会实际占据空间。</li>
+<li>外边距<br>水平方向有效，垂直方向不会实际占据空间。</li>
+</ol>
+<h3 id="行块盒"><a href="#行块盒" class="headerlink" title="行块盒"></a>行块盒</h3><pre><code class="typescript">display：inline-block 的盒子
+</code></pre>
+<ol>
+<li>不独占一行</li>
+<li>盒模型中所有尺寸都有效 3.有许多问题，打包完的样式与开发样式可能不一样，不建议使用</li>
+</ol>
+<p>空白折叠<br>空白折叠，发生在行盒（行块盒）内部 或 行盒（行块盒）之间<br>可以将标签和内容写在同一行，以防止发生空白折叠<br>这个不太有解决方法，所以尽量减少行块盒的使用，常用于分页</p>
+<p>可替换元素 和 非可替换元素<br>大部分元素，页面上显示的结果，取决于元素内容，称为<strong>非可替换元素</strong><br>少部分元素，页面上显示的结果，取决于元素属性，称为<strong>可替换元素</strong></p>
+<p>可替换元素：img、video、audio，iframe<br><strong>绝大部分可替换元素均为行盒。<br>可替换元素类似于行块盒，盒模型中所有尺寸都有效。</strong></p>
+<h3 id="块盒"><a href="#块盒" class="headerlink" title="块盒"></a>块盒</h3><p>display 等于 block 的元素<br>浏览器默认样式表设置的块盒：div、h1~h6、p</p>
+<h1 id="常规流"><a href="#常规流" class="headerlink" title="常规流"></a>常规流</h1><p>所有元素，默认情况下，都属于常规流布局<br>总体规则：<strong>块盒独占一行，行盒水平依次排列</strong><br>包含块（containing block）：<strong>每个盒子都有它的包含块，包含块决定了盒子的排列区域。(父元素)</strong><br>绝大部分情况下：<strong>盒子的包含块，为其父元素的内容盒</strong></p>
+<h3 id="块盒-1"><a href="#块盒-1" class="headerlink" title="块盒"></a>块盒</h3><ol>
+<li>每个块盒的总宽度，必须刚好等于包含块的宽度</li>
+</ol>
+<p>宽度的默认值是 auto(宽度撑满屏幕)<br>margin 的取值也可以是 auto（margin 的撑满屏幕），默认值 0<br>auto：将剩余空间吸收掉（宽度和 margin 宽度都会去吸收剩余空间，但 width 吸收能力强于 margin）</p>
+<p><strong>若宽度、边框、内边距、外边距计算后，仍然有剩余空间，该剩余空间被 margin-right 全部吸收，总之，</strong><br><strong>每个块盒的总宽度，必须刚好等于包含块的宽度</strong></p>
+<p>块盒居中方式<br>在常规流中，块盒在其包含快中居中，可以定宽、然后左右 margin 设置为 auto。</p>
+<ol start="2">
+<li>每个块盒垂直方向上的 auto 值</li>
+</ol>
+<p>height:auto， 适应内容的高度<br>margin:auto， 表示 0</p>
+<ol start="3">
+<li>百分比取值</li>
+</ol>
+<p>padding、宽度、margin 可以取值为百分比<br>以上的所有百分比相对于<strong>包含块的宽度</strong>。</p>
+<p>高度的百分比：<br>1）包含块的高度是否取决于子元素的高度，设置百分比无效<br>2）包含块的高度不取决于子元素的高度，百分比相对于父元素高度</p>
+<ol start="4">
+<li>上下外边距的合并</li>
+</ol>
+<p>两个常规流块盒，上下外边距相邻，会进行合并。<br>两个外边距取最大值。</p>
+<h1 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h1><h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ol>
+<li>文字环绕</li>
+<li>横向排列</li>
+</ol>
+<h3 id="浮动的基本特点"><a href="#浮动的基本特点" class="headerlink" title="浮动的基本特点"></a>浮动的基本特点</h3><p>修改 float 属性值为：</p>
+<ul>
+<li>left：左浮动，元素靠上靠左</li>
+<li>right：右浮动，元素靠上靠右</li>
+</ul>
+<p>默认值为 none</p>
+<ol>
+<li>当一个元素浮动后，元素必定为块盒(更改 display 属性为 block)</li>
+<li>浮动元素的包含块，和常规流一样，为父元素的内容盒</li>
+</ol>
+<h3 id="盒子尺寸"><a href="#盒子尺寸" class="headerlink" title="盒子尺寸"></a>盒子尺寸</h3><ol>
+<li>宽度为 auto 时，适应内容宽度</li>
+<li>高度为 auto 时，与常规流一致，适应内容的高度</li>
+<li>margin 为 auto，为 0.</li>
+<li>边框、内边距、百分比设置与常规流一样</li>
+</ol>
+<h3 id="盒子排列"><a href="#盒子排列" class="headerlink" title="盒子排列"></a>盒子排列</h3><ol>
+<li>左浮动的盒子靠上靠左排列</li>
+<li>右浮动的盒子考上靠右排列</li>
+<li><strong>浮动盒子在包含块中排列时，会避开常规流块盒</strong></li>
+<li><strong>常规流块盒在排列时，无视浮动盒子</strong></li>
+<li>行盒在排列时，会避开浮动盒子（所以可以用浮动来制作文字环绕效果）</li>
+<li>外边距合并不会发生<blockquote>
+<p>如果文字没有在行盒中，浏览器会自动生成一个行盒包裹文字，该行盒叫做匿名行盒。</p>
+</blockquote>
+</li>
+</ol>
+<p>常规盒在浮动盒中间的时候，前面的浮动盒不会受到影响，这个常规盒子后面的盒子将会避开常规流盒子<br><img src="1690698464897-ad87c7b0-343b-4741-b5f4-5c6f3ff6d365.png#width=975.5" alt="image.png"></p>
+<p>常规流盒子在最后，就完全垫在了浮动盒子下面<br><img src="1690698584358-ac0f8283-b63a-4e6c-a976-f633cebc51f4.png#width=971.5" alt="image.png"></p>
+<p>常规盒子在最前<br><img src="1690698623674-10b68fd5-1b5b-415c-8a26-0a86a8d0fb9d.png#width=1020" alt="image.png"></p>
+<p>浮动盒子的顶边不得高于上一个盒子的顶边<br>若剩余空间无法放下浮动的盒子，则该盒子向下移动，直到具备足够的空间能容纳盒子，然后再向左或向右移动<br><img src="1691417396351-0207952a-978c-4981-8300-a673abf784ce.png#width=919.5" alt="image.png"></p>
+<h3 id="高度坍塌"><a href="#高度坍塌" class="headerlink" title="高度坍塌"></a>高度坍塌</h3><p>高度坍塌的根源：常规流盒子的自动高度，在计算时，不会考虑浮动盒子<br>清除浮动，涉及 css 属性：clear</p>
+<ul>
+<li>默认值：none</li>
+<li>left：清除左浮动，该元素必须出现在前面所有左浮动盒子的下方</li>
+<li>right：清除右浮动，该元素必须出现在前面所有右浮动盒子的下方</li>
+<li>both：清除左右浮动，该元素必须出现在前面所有浮动盒子的下方</li>
+</ul>
+<p>可以给父元素上写上.clearfix 这个类名，因为这个伪元素放在了所有浮动盒子的最后</p>
+<pre><code class="html">.clearfix::after&#123; content: &quot;&quot;; display: block; clear: both; &#125;
+</code></pre>
+<h1 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h1><p>使用 position 属性来设置定位<br>可选值：</p>
+<ul>
+<li>static 默认值，元素是静止的没有开启定位</li>
+<li>relative 开启元素的相对定位</li>
+<li>absolute 开启元素的绝对定位</li>
+<li>fixed 开启元素的固定定位</li>
+<li>sticky 开启元素的粘滞定位</li>
+</ul>
+<h3 id="相对定位（relative）"><a href="#相对定位（relative）" class="headerlink" title="相对定位（relative）"></a>相对定位（relative）</h3><ul>
+<li>相对定位是参照于元素在文档流中的位置进行定位的</li>
+<li>相对定位会提升元素的层级</li>
+<li>相对定位不会使元素脱离文档流</li>
+<li>相对定位不会改变元素的性质块还是块，行内还是行内</li>
+</ul>
+<p>偏移量<br>top 定位元素和定位位置上边的距离<br>bottom 定位元素和定位位置下边的距离<br>left 定位元素和定位位置的左侧距离<br>right 定位元素和定位位置的右侧距离<br><strong>在水平方向不能同时设置 left 和 right 属性，如果同时设置，只会加载 left 属性，垂直方向如果 top 和 bottom 同时设置，只会加载 top 属性。</strong></p>
+<h3 id="绝对定位（absolute）"><a href="#绝对定位（absolute）" class="headerlink" title="绝对定位（absolute）"></a>绝对定位（absolute）</h3><ol>
+<li>宽高为 auto，适应内容</li>
+<li>含块变化：找祖先中第一个定位元素，该元素的填充盒为其包含块。若找不到，则它的包含块为整个网页（初始化包含块）</li>
+<li>开启绝对定位后，元素会从文档流中脱离</li>
+<li>绝对定位会使元素提升一个层级</li>
+</ol>
+<p><strong>偏移量等同于相对定位的属性</strong></p>
+<p><strong>容器设置绝对定位且 left、top、right、bottom 为 0，不设置宽高，默认是铺满整个父容器的</strong><br>一个绝对定位的元素，同时指明了 left 和 right。如果没有其他属性影响(没有指明 width)，那么这个元素会拉伸去满足 left 和 right。比如设置了 left:0;right:0;的效果就和单独设置 data-width:100%;一样。不过如果同时又设置了宽度，那么 right 属性将会被忽略。top 和 bottom 同理。但如果设置了宽高，可以让他根据父容器垂直居中<br><strong>1.让明确宽高的盒子垂直水平居中</strong><br><strong>2. 让无宽高的盒子填满父容器</strong></p>
+<h3 id="固定定位（fixed）"><a href="#固定定位（fixed）" class="headerlink" title="固定定位（fixed）"></a>固定定位（fixed）</h3><p>固定为视口（浏览器的可视窗口）</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><ul>
+<li>绝对定位、固定定位元素一定是块盒（不是也会自动变为是）</li>
+<li>绝对定位、固定定位元素一定不是浮动</li>
+<li>没有外边距合并</li>
+</ul>
+<h1 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h1><h2 id="渲染区域"><a href="#渲染区域" class="headerlink" title="渲染区域"></a>渲染区域</h2><p>这个区域由某个 HTML 元素创建，以下元素会在其内部创建 BFC 区域</p>
+<ul>
+<li>根元素</li>
+<li>浮动</li>
+<li>绝对定位元素</li>
+<li>overflow 不等于 visible 的块盒</li>
+</ul>
+<p><img src="1690982710136-9d9d9d39-0805-4f5f-98a2-9ddcfd0703f6.png#width=810" alt="image.png"></p>
+<p>不同的 BFC 区域，它们进行渲染时互不干扰<br>创建 BFC 的元素，<strong>隔绝了它内部和外部的联系</strong>，内部的渲染不会影响到外部具体规则：</p>
+<ul>
+<li><strong>创建 BFC 的元素，它的自动高度需要计算浮动元素创建 BFC 的元素</strong>（如果单纯想要避免高度塌陷，还是使用原来的方式较好，不会产生副作用）</li>
+<li><strong>它的边框盒不会与浮动元素重叠创建 BFC 的元素</strong></li>
+</ul>
+<p>设置 BFC 以后一定会避开浮动元素</p>
+<pre><code>.float&#123;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    background: red;
+    float: left;
+&#125;
+
+.container&#123;
+    height: 500px;
+    background: #008c8c;
+    /* bfc */
+    overflow: hidden;
+&#125;
+
+    &lt;div class=&quot;float&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;container&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>他并没有无视浮动元素<br><img src="1690983198823-144a7e5c-6fcb-4486-a583-269a7a00aef4.png#width=1433.5" alt="image.png"></p>
+<ul>
+<li><strong>不会和它的子元素进行外边距合并</strong><blockquote>
+<p>这些规则和绝对定位元素没有关系，不会受到影响</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="flex-布局"><a href="#flex-布局" class="headerlink" title="flex 布局"></a>flex 布局</h1><p>将父元素设置为 display:flex 时，子元素不设高度时（宽度需要设置）会默认撑开满父元素高度</p>
+<h2 id="伸缩盒子"><a href="#伸缩盒子" class="headerlink" title="伸缩盒子"></a>伸缩盒子</h2><p>设置父容器为伸缩盒子：会使每一个子元素自动变成伸缩项</p>
+<pre><code>display: flex;
 </code></pre>
 <h2 id="子元素排列方式"><a href="#子元素排列方式" class="headerlink" title="子元素排列方式"></a>子元素排列方式</h2><p>设置子元素的排列方式<br>flex-start:让子元素从父容器的起始位置开始排列<br>flex-end:让子元素从父容器的结束位置开始排列<br>center:让子元素从父容器的中间位置开始排列<br>space-between:左右对齐父容器的开始和结束，中间平均分页，产生相同的间距<br>space-around:将多余的空间平均的分页在每一个子元素的两边</p>
 <pre><code>justify-content: space-around; - 如何分配主轴上的空白空间（主轴上的元素如何排列）
@@ -131,64 +303,124 @@
 <pre><code>    align-items: center;
 </code></pre>
 <h2 id="align-content-与-align-items"><a href="#align-content-与-align-items" class="headerlink" title="align-content 与 align-items"></a>align-content 与 align-items</h2><p>align-content 属性值就是 align-items 的值</p>
-<p>align-content:center 对单行是没有效果的,而 align-items:center 不管是对单行还是多行都有效果,而在我们日常开发中用的比较多的就是 align-items.</p>
+<p><strong>如果设置了高度，两者会有区别</strong><br>align-content:center 对单行是没有效果的,而 align-items:center 不管是对单行还是多行都有效果,而在我们日常开发中用的比较多的就是 align-items.</p>
 <hr>
 <p>**以上都是给 display:flex 盒子设置的，以下是子元素的属性 **<br>**一个元素可以既是弹性盒子，又是子元素 **</p>
 <h2 id="子元素属性"><a href="#子元素属性" class="headerlink" title="子元素属性"></a>子元素属性</h2><p>flow-grow:可以来扩展子元素的宽度：设置当前元素应该占据剩余空间的比例值<br>比例值计算 ：当前空间的 flex-grow/所有兄弟元素的 flex-grow 的和<br>flex-grow 的默认是 0:说明子元素并不会去占据剩余的空间</p>
 <pre><code>flex-grow: 1;
 </code></pre>
-<p>flex-shrink:定义收缩比例，通过设置的值来计算收缩空间<br>比例值计算 ：当前空间的 flex-shrink/所有兄弟元素的 flex-shrink 的和<br>默认值为 1</p>
+<p>flex-shrink:定义收缩比例，通过设置的值来计算收缩空间<br>比例值计算 ：当前空间的 flex-shrink/所有兄弟元素的 flex-shrink 的和默认值为 1</p>
 <pre><code>flex-shrink: 3;
 </code></pre>
 <p>flex 是用来设置当前伸缩子项占据剩余空间的比例值</p>
-<pre><code>    flex: 1;
+<pre><code>flex: 1;
 </code></pre>
-<pre><code>            flex 可以设置弹性元素所有的三个样式
-            flex 增长 缩减 基础;
-            initial &quot;flex: 0 1 auto&quot;.
-            auto  &quot;flex: 1 1 auto&quot;
-            none &quot;flex: 0 0 auto&quot; 弹性元素没有弹性
+<pre><code>flex 可以设置弹性元素所有的三个样式
+flex 增长 缩减 基础;
+initial &quot;flex: 0 1 auto&quot;.
+auto  &quot;flex: 1 1 auto&quot;
+none &quot;flex: 0 0 auto&quot; 弹性元素没有弹性
+
+可以设置flex:0 0 200px给予固定宽度（这样没有弹性，可以溢出）
 </code></pre>
 <h2 id="align-self-flex-start-子元素内可以再次单独调整位置"><a href="#align-self-flex-start-子元素内可以再次单独调整位置" class="headerlink" title="align-self: flex-start; 子元素内可以再次单独调整位置"></a>align-self: flex-start; 子元素内可以再次单独调整位置</h2><p>align-self: 用来覆盖当前弹性元素上的 align-items ，属性值就是 align-items 的值<br>center:设置在侧轴方向上居中对齐<br>flex-start:设置在侧轴方向上顶对齐<br>flex-end:设置在侧轴方向上底对齐<br>stretch:拉伸：让子元素在侧轴方向上进行拉伸，填充满整个侧轴方向&gt;&gt; 默认值<br>baseline:文本基线</p>
-<h1 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h1><h2 id="浮动的特点"><a href="#浮动的特点" class="headerlink" title="浮动的特点"></a>浮动的特点</h2><p>所谓 css 浮动就是浮动元素会脱离文档的普通流，根据 float 的值向左或向右移动，直到它的外边界碰到父元素的内边界或另一个浮动元素的外边界为止，浮动元素默认不会从父元素中移出<br><strong>浮动就是脱离文档流了，叠在文档流上面，在文档流里面的数据就会覆盖在他的下面，原来是原来将文字环绕的，文字不会叠在他的下面，而是环绕排列</strong><br><strong>脱离文档流以后，不需要再区分块和行内了 直接变成块元素</strong></p>
-<p>css 属性 float：left/right/none 左浮动/右浮动/不浮动（默认）<br>浮动是给要浮动的元素添加的，跟父元素无关，给某个子元素添加后，</p>
-<h2 id="BFC-块级格式化环境"><a href="#BFC-块级格式化环境" class="headerlink" title="BFC:块级格式化环境"></a>BFC:块级格式化环境</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>BFC(Block Formatting Context) 块级格式化环境</p>
-<p>开启 BFC 该元素会变成一个独立的布局区域</p>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>1.开启 BFC 的元素不会被浮动元素所覆盖</p>
-<p>2.开启 BFC 的元素子元素和父元素外边距不会重叠</p>
-<p>3.开启 BFC 的元素可以包含浮动的子元素</p>
-<h3 id="开启方式"><a href="#开启方式" class="headerlink" title="开启方式"></a>开启方式</h3><p>1、设置元素的浮动（不推荐）</p>
-<p>2、将元素设置为行内块元素（不推荐）</p>
-<p>3、将元素的 overflow 设置为一个非 visible 的值</p>
+<h1 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h1><h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><p>使用@media 媒体查询可以针对不同的媒体类型定义不同的样式，特别是响应式页面，可以针对不同屏幕的大小，编写多套样式，从而达到自适应的效果</p>
+<pre><code>@media screen and (max-width: 960px)&#123;
+ body&#123;
+     background-color:#FF6699
+ &#125;
+&#125;
+
+@media screen and (max-width: 768px)&#123;
+ body&#123;
+     background-color:#00FF66;
+ &#125;
+&#125;
+</code></pre>
+<h2 id="长度单位控制"><a href="#长度单位控制" class="headerlink" title="长度单位控制"></a>长度单位控制</h2><p>像素(px)<br>屏幕（显示器）实际上是由一个一个的小点点构成的,不同屏幕的像素大小是不同的，像素越小的屏幕显示的效果越清晰,所以同样的 200px 在不同的设备下显示效果不一样<br>百分比<br>设置百分比可以使子元素跟随父元素的改变而改变<br>em<br>em 会根据父元素字体大小来计算<br>rem<br>rem 是相对于根元素的字体大小来计算</p>
+<h2 id="vw-vh"><a href="#vw-vh" class="headerlink" title="vw/vh"></a>vw/vh</h2><p>css3 中引入了一个新的单位 vw/vh，与视图窗口有关，vw 表示相对于视图窗口的宽度，vh 表示相对于视图窗口高度。 任意层级元素，在使用 vw 单位的情况下，1vw 都等于视图宽度的百分之一。</p>
+<h2 id="min-width-和-max-width"><a href="#min-width-和-max-width" class="headerlink" title="min-width 和 max-width"></a>min-width 和 max-width</h2><p>可以设置最大最小宽度</p>
+<h2 id="flex-布局-1"><a href="#flex-布局-1" class="headerlink" title="flex 布局"></a>flex 布局</h2><h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h3 id="fixed-和-absolute-的区别"><a href="#fixed-和-absolute-的区别" class="headerlink" title="fixed 和 absolute 的区别"></a>fixed 和 absolute 的区别</h3><p>fixed 是绝对定位的一种特殊情况，它们的参考系不一样</p>
 <ul>
-<li>常用的方式 为元素设置 overflow:hidden 开启其 BFC 以使其可以包含浮动元素</li>
+<li>absolute 参考有定位的父元素</li>
+<li>fixed 参考视口(viewport)</li>
 </ul>
-<h4 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h4><p>子元素是在父元素的内容区中排列的，</p>
-<p>如果子元素的大小超过了父元素，则子元素会从父元素中溢出</p>
-<p>使用 overflow 属性来设置父元素如何处理溢出的子元素</p>
-<p>可选值：<br>visible，默认值 子元素会从父元素中溢出，在父元素外部的位置显示<br>hidden 溢出内容将会被裁剪不会显示<br>scroll 生成两个滚动条，通过滚动条来查看完整的内容<br>auto 根据需要生成滚动条</p>
-<h3 id="高度塌陷"><a href="#高度塌陷" class="headerlink" title="高度塌陷"></a>高度塌陷</h3><p>在浮动布局中，父元素的高度默认是被子元素撑开的，</p>
-<p>当子元素浮动后，其会完全脱离文档流，子元素从文档流中脱离</p>
-<p>将会无法撑起父元素的高度，导致父元素的高度丢失</p>
-<p>父元素高度丢失以后，其下的元素会自动上移，导致页面的布局混乱</p>
-<h3 id="高度塌陷解决方案"><a href="#高度塌陷解决方案" class="headerlink" title="高度塌陷解决方案"></a>高度塌陷解决方案</h3><pre><code>        .clearfix::before,
-        .clearfix::after&#123;
-            content: &#39;&#39;;
-            display: table;
-            clear: both;
+<h3 id="什么时候使用绝对定位"><a href="#什么时候使用绝对定位" class="headerlink" title="什么时候使用绝对定位"></a>什么时候使用绝对定位</h3><p>下面三个条件满足任何一个时，使用绝对定位：</p>
+<ol>
+<li>元素出现在一个天马行空的位置</li>
+<li>元素是否存在，不影响其他元素的排列</li>
+<li>单个元素在某个区域内水平垂直居中</li>
+</ol>
+<h3 id="width-100-和-width-auto-有什么区别"><a href="#width-100-和-width-auto-有什么区别" class="headerlink" title="width: 100%和 width: auto 有什么区别"></a>width: 100%和 width: auto 有什么区别</h3><p>width：100%<br>100%表示子元素的宽度和父元素的宽度相等，其中并不包括子元素内外边距以及边框的值，为子元素真正的宽度<br>width：auto<br>auto 表示子元素的 宽度+内边距+外边距+边框 才等于父元素的宽度</p>
+<blockquote>
+<p>上述父元素的宽度都是父元素真正的宽度，即父元素 width 属性值</p>
+</blockquote>
+<p><img src="1697188840570-7f94e1ae-a669-4e4c-be6d-e8bf7c3b3a0a.png#width=1108" alt="image.png"><br>如果设置了 width:100%,那么无论如何他的内容宽度都必须 1px 都不能少，得是 width:100%</p>
+<h3 id="文字居中"><a href="#文字居中" class="headerlink" title="文字居中"></a>文字居中</h3><p>如果采用这一套使 div 居中的方式可能并不奏效或者效果不是最好，最好还是设置 line-height</p>
+<pre><code class="html">display: flex; justify-content: center; align-items: center;
+</code></pre>
+<h3 id="flex-布局子元素宽度超出父元素问题"><a href="#flex-布局子元素宽度超出父元素问题" class="headerlink" title="flex 布局子元素宽度超出父元素问题"></a>flex 布局子元素宽度超出父元素问题</h3><p>当 flex 子元素里的子元素的宽度过大，超出 flex 父元素时，设置 flex:1 并不能限制 flex 子元素的尺寸；具体表现如下：<br><img src="1703053104855-d527e702-c9bb-4896-b00b-853d819c44dd.webp"></p>
+<h4 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h4><p>right 的宽度该如何计算？<br>正常情况下的元素宽度，如果设置有具体的值，那就是设置的值；如果没有设置，那就是该元素内容区占据的宽度。上面的例子可以看到，.right 并没有设置 width 属性，所以.right 是由.right-content 撑开</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>限制子元素原本宽度，.right 设置 width 属性</li>
+</ol>
+<p>修改.right 元素 css 如下，</p>
+<pre><code>.wrap &#123;
+    ...
+    .right &#123;
+        width: 0; //新增
+        flex: 1;
+        background: lightblue;
+        &amp;-content &#123;
+            ...
         &#125;
+    &#125;
+&#125;
 </code></pre>
-<p>这个既可以解决高度塌陷的问题，也可以解决父元素和子元素的 margin-top 重合的问题</p>
-<p>clearfix 这个样式可以同时解决高度塌陷和外边距重叠的问题，当你在遇到这些问题时，直接使用 clearfix 这个类即可</p>
-<h2 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h2><p>如果我们不希望某个元素因为其他元素浮动的影响而改变位置，<br>可以通过 clear 属性来清除浮动元素对当前元素所产生的影响<br><strong>因为如果前面的浮动的话，这个元素进入到原来浮动的元素上，所以如果不想这么做，就必须清除浮动</strong>，设置这个元素的属性</p>
-<pre><code>clear
-    - 作用：清除浮动元素对当前元素所产生的影响
-    - 可选值：
-        left 清除左侧浮动元素对当前元素的影响
-        right 清除右侧浮动元素对当前元素的影响
-        both 清除两侧中最大影响的那侧
+<p>原理：强行设置.right 原本宽度为 0，让.right 盒模型宽度完全由 flex: 1 这个属性来分配。<br>chrome 浏览器效果完美：<br><img src="1703053104932-ca051af3-ddf4-43bd-a670-bb92e4e150d2.webp"><br>但是在 firefox 浏览器时，即使设置 width: 0，也不会生效，子元素还是超出；min-width: 0 可以</p>
+<ol start="2">
+<li>.right 设置 overflow 属性不为 visible 设置 width: 0 可行的前提是:.right-content 元素宽度继承父元素.right。如果当.right-content 元素设置了自己的宽度时，方法 1 就不能满足了，如下所示：</li>
+</ol>
+<p><img src="1703053104921-51eeae93-39be-4b8c-949e-bc4fc8bc3350.webp"><br>设置.right-content 元素 css 如下，子元素依然会超出</p>
+<pre><code>.wrap &#123;
+    ...
+    .right &#123;
+        width: 0; //新增
+        flex: 1;
+        background: lightblue;
+        &amp;-content &#123;
+            width: 300px; //新增
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            background: lightyellow;
+        &#125;
+    &#125;
+&#125;
 </code></pre>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+<p>这时候就回到了基本的 css 问题，子元素内容超出如何展示，给.right 设置 overflow 搞定</p>
+<pre><code>.wrap &#123;
+    ...
+    .right &#123;
+        // width: 0;
+        flex: 1;
+        background: lightblue;
+        overflow: auto; //新增
+        &amp;-content &#123;
+            width: 300px; //新增
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            background: lightyellow;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ol>
+<li>设置 min-width：0 可以解决当 flex 子元素的子元素大小为 auto 的情况；</li>
+<li>设置 overflow 不为 visible 可以解决所有情况下的麻烦；</li>
+</ol>
+
     </div>
     
 </div>
@@ -197,7 +429,7 @@
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

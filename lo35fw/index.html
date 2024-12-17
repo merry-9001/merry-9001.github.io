@@ -113,6 +113,7 @@
 
     <div class="content" v-pre>
         <h1 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a><strong>node.js</strong></h1><p>node.js 没有 dom 和 bom 操作<br>Node.js 是什么<br>既不是语言，也不是框架，它是一个平台<br>没有 BOM、DOM<br>EcmaScript 基本的 JavaScript 语言部分<br>在 Node 中为 JavaScript 提供了一些服务器级别的 API</p>
+<h2 id="node-启动"><a href="#node-启动" class="headerlink" title="node 启动"></a>node 启动</h2><p><code>node index.js</code></p>
 <h2 id="创建-web-服务器"><a href="#创建-web-服务器" class="headerlink" title="创建 web 服务器"></a><strong>创建 web 服务器</strong></h2><pre><code>1.加载 http 核心模块
 var http = require(&#39;http&#39;)
 2.使用 http.createServer() 方法创建一个 Web 服务器
@@ -209,7 +210,7 @@ console.log(path.extname(&#39;c:/a/b/c/d/hello.txt&#39;))
 <li><p>而它的商品评论列表为了用户体验，而且也不需要 SEO 优化，所以采用是客户端渲染</p>
 </li>
 </ul>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="Express"><a href="#Express" class="headerlink" title="Express"></a><strong>Express</strong></h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><strong>介绍</strong></h2><ul>
+<h1 id="Express"><a href="#Express" class="headerlink" title="Express"></a><strong>Express</strong></h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><strong>介绍</strong></h2><ul>
 <li><p>第三方 Web 开发框架</p>
 </li>
 <li><p>高度封装了 http 模块</p>
@@ -313,20 +314,6 @@ console.log(path.extname(&#39;c:/a/b/c/d/hello.txt&#39;))
 <p>__dirname 是用来获取文件的目录</p>
 <p>__filename 可以用来获取当前的文件名</p>
 <p>就是专门用来动态的获取当前文件以及文件所属目录的绝对路径</p>
-<h1 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h1><h2 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h2><ul>
-<li><p>就是产品的说明书</p>
-</li>
-<li><p><code>dependencies</code> 属性，用来保存项目的第三方包依赖项信息</p>
-</li>
-<li><p>所以建议每个项目都要有且只有一个 package.json (存放在项目的根目录)</p>
-</li>
-<li><p>我们可以通过 <code>npm init [--yes]</code> 来生成 package.json 文件</p>
-</li>
-<li><p>同样的，为了保存依赖项信息，我们每次安装第三方包的时候都要加上：<code>--save</code> 选项。</p>
-</li>
-</ul>
-<p>在文件夹 cmd 中输入 npm init，获取 package.json 文件</p>
-<p>然后你使用 npm 装包就可以看见，package.json-lock 可以帮助锁定版本，也可以提高速速</p>
 <h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><h3 id="中间件：处理请求的，本质就是个函数"><a href="#中间件：处理请求的，本质就是个函数" class="headerlink" title="中间件：处理请求的，本质就是个函数"></a>中间件：处理请求的，本质就是个函数</h3><p>当请求进来，会从第一个中间件开始进行匹配</p>
 <ul>
 <li>如果匹配，则进来</li>
@@ -376,7 +363,7 @@ console.log(path.extname(&#39;c:/a/b/c/d/hello.txt&#39;))
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>浏览器跨标签页数据通信 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>浏览器跨标签页数据通信</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/10
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="什么是跨标签页通信"><a href="#什么是跨标签页通信" class="headerlink" title="什么是跨标签页通信"></a>什么是跨标签页通信</h2><p><img src="2021-12-04-052442.png"></p>
+<p>一个标签页能够发送信息给另一个标签页。</p>
+<h2 id="跨标签页通信常见方案"><a href="#跨标签页通信常见方案" class="headerlink" title="跨标签页通信常见方案"></a>跨标签页通信常见方案</h2><h3 id="BroadCast-Channel-同源"><a href="#BroadCast-Channel-同源" class="headerlink" title="BroadCast Channel(同源)"></a>BroadCast Channel(同源)</h3><p>BroadCast Channel 可以帮我们创建一个用于广播的通信频道。当所有页面都监听同一频道的消息时，其中某一个页面通过它发送的消息就会被其他所有页面收到。<strong>但是前提是同源页面</strong>。</p>
+<p>index.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;input type=&quot;text&quot; name=&quot;&quot; id=&quot;content&quot; /&gt;
+  &lt;button id=&quot;btn&quot;&gt;发送数据&lt;/button&gt;
+  &lt;script&gt;
+    const content = document.querySelector(&quot;#content&quot;);
+    const btn = document.querySelector(&quot;#btn&quot;);
+
+    // 创建一个名字是 load1 的 BroadcastChannel 对象
+    var BroadcastChanne1 = new BroadcastChannel(&quot;load1&quot;);
+
+    btn.onclick = function () &#123;
+      BroadcastChanne1.postMessage(&#123;
+        value: content.value,
+      &#125;);
+    &#125;;
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>index2.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;script&gt;
+    var BroadcastChanne1 = new BroadcastChannel(&quot;load1&quot;); //要接收到数据，BroadcastChannel对象的名字必须相同
+    BroadcastChanne1.onmessage = function (e) &#123;
+      console.log(e.data); //发送的数据
+    &#125;;
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>在上面的代码中，我们在页面一注册了一个名为 load1 的 BroadcastChannel 对象，之后所有的页面也创建同名的 BroadcastChannel 对象，然后就可以通过 postMessage 和 onmessage 方法进行相互通信了。</p>
+<h3 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h3><p>Service Worker 实际上是浏览器和服务器之间的代理服务器，它最大的特点是在页面中注册并安装成功后，运行于浏览器后台，不受页面刷新的影响，可以监听和截拦作用域范围内所有页面的 HTTP 请求。</p>
+<p><strong>Service Worker 的目的在于离线缓存，转发请求和网络代理。</strong></p>
+<p>index.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;h1&gt;页面一&lt;/h1&gt;
+  &lt;button&gt;发送&lt;/button&gt;
+  &lt;script&gt;
+    navigator.serviceWorker.register(&quot;sw.js&quot;).then(() =&gt; &#123;
+      console.log(&quot;service worker 注册成功&quot;);
+    &#125;);
+    document.querySelector(&quot;button&quot;).onclick = function () &#123;
+      navigator.serviceWorker.controller.postMessage(&quot;hello&quot;);
+    &#125;;
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>index2.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;h1&gt;页面二&lt;/h1&gt;
+  &lt;script&gt;
+    navigator.serviceWorker.register(&quot;sw.js&quot;).then(() =&gt; &#123;
+      console.log(&quot;service worker 注册成功&quot;);
+    &#125;);
+    navigator.serviceWorker.onmessage = function (&#123; data &#125;) &#123;
+      console.log(data);
+    &#125;;
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>sw.js</p>
+<pre><code class="javascript">self.addEventListener(&quot;message&quot;, async (event) =&gt; &#123;
+  const clients = await self.clients.matchAll();
+  clients.forEach(function (client) &#123;
+    client.postMessage(event.data);
+  &#125;);
+&#125;);
+</code></pre>
+<h3 id="LocalStorage-window-onstorage-监听-同源"><a href="#LocalStorage-window-onstorage-监听-同源" class="headerlink" title="LocalStorage window.onstorage 监听(同源)"></a>LocalStorage window.onstorage 监听(同源)</h3><p>在 Web Storage 中，每次将一个值存储到本地存储时，就会触发一个 storage 事件。</p>
+<p>由事件监听器发送给回调函数的事件对象有几个自动填充的属性如下：</p>
+<ul>
+<li>key：告诉我们被修改的条目的键。</li>
+<li>newValue：告诉我们被修改后的新值。</li>
+<li>oldValue：告诉我们修改前的值。</li>
+<li>storageArea：指向事件监听对应的 Storage 对象。</li>
+<li>url：原始触发 storage 事件的那个网页的地址。</li>
+</ul>
+<blockquote>
+<p>注意：这个事件只在<strong>同一域下</strong>的任何窗口或者标签上触发，并且只在被存储的条目改变时触发。</p>
+</blockquote>
+<p>示例如下：这里我们需要打开服务器进行演示，本地文件无法触发 storage 事件</p>
+<p>index.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;script&gt;
+    localStorage.name = &quot;谢杰&quot;;
+    localStorage.age = 20;
+    console.log(&quot;信息已经设置!&quot;);
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>在上面的代码中，我们在该页面下设置了两个 localStorage 本地数据。</p>
+<p>index2.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;script&gt;
+    let name = localStorage.getItem(&quot;name&quot;);
+    let age = localStorage.age;
+    console.log(`姓名为$&#123;name&#125;,年龄为$&#123;age&#125;`);
+    window.addEventListener(
+      &quot;storage&quot;,
+      (e) =&gt; &#123;
+        console.log(`$&#123;e.key&#125;从$&#123;e.oldValue&#125;修改为$&#123;e.newValue&#125;`);
+        console.log(e.storageArea);
+        console.log(`被改变的url为$&#123;e.url&#125;`);
+      &#125;,
+      true
+    );
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>在该页面中我们安装了一个 storage 的事件监听器，安装之后只要是同一域下面的其他 storage 值发生改变，该页面下面的 storage 事件就会被触发。</p>
+<h3 id="Shared-Worker-定时器轮询（-setInterval-）-同源"><a href="#Shared-Worker-定时器轮询（-setInterval-）-同源" class="headerlink" title="Shared Worker 定时器轮询（ setInterval ） 同源"></a>Shared Worker 定时器轮询（ setInterval ） 同源</h3><p>SharedWorker 接口代表一种特定类型的 worker，可以从几个浏览上下文中访问，例如几个窗口、iframe 或其他 worker。它们实现一个不同于普通 worker 的接口，具有不同的全局作用域，如果要使 SharedWorker 连接到多个不同的页面，这些页面必须是同源的（相同的协议、host 以及端口）。</p>
+<p>index.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;input type=&quot;text&quot; name=&quot;&quot; id=&quot;content&quot; placeholder=&quot;请输入要发送的信息&quot; /&gt;
+  &lt;button id=&quot;btn&quot;&gt;发送&lt;/button&gt;
+  &lt;script&gt;
+    const content = document.querySelector(&quot;#content&quot;);
+    const btn = document.querySelector(&quot;#btn&quot;);
+    const worker = new SharedWorker(&quot;worker.js&quot;);
+    btn.onclick = function () &#123;
+      worker.port.postMessage(content.value);
+    &#125;;
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>index2.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;script&gt;
+    const btn = document.querySelector(&quot;#btn&quot;);
+    var worker = new SharedWorker(&quot;worker.js&quot;);
+    worker.port.start();
+    worker.port.addEventListener(
+      &quot;message&quot;,
+      (e) =&gt; &#123;
+        if (e.data) &#123;
+          console.log(&quot;来自worker的数据：&quot;, e.data);
+        &#125;
+      &#125;,
+      false
+    );
+
+    setInterval(function () &#123;
+      // 获取和发送消息都是调用 postMessage 方法，我这里约定的是传递&#39;get&#39;表示获取数据。
+      worker.port.postMessage(&quot;get&quot;);
+    &#125;, 1000);
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>worker.js</p>
+<pre><code class="javascript">var data = &quot;&quot;;
+onconnect = function (e) &#123;
+  var port = e.ports[0];
+  port.onmessage = function (e) &#123;
+    // 如果是 get 则返回数据给客户端
+    if (e.data === &quot;get&quot;) &#123;
+      port.postMessage(data);
+      data = &quot;&quot;;
+    &#125; else &#123;
+      // 否则把数据保存
+      data = e.data;
+    &#125;
+  &#125;;
+&#125;;
+</code></pre>
+<h3 id="IndexedDB-定时器轮询（-setInterval-）"><a href="#IndexedDB-定时器轮询（-setInterval-）" class="headerlink" title="IndexedDB 定时器轮询（ setInterval ）"></a>IndexedDB 定时器轮询（ setInterval ）</h3><p>IndexedDB 是一种底层 API，用于在客户端存储大量的结构化数据（也包括文件/二进制大型对象（blobs））。该 API 使用索引实现对数据的高性能搜索。</p>
+<p>通过对 IndexedDB 进行定时器轮询的方式，我们也能够实现跨标签页的通信。</p>
+<p>index.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;h1&gt;新增学生&lt;/h1&gt;
+  &lt;div&gt;
+    &lt;span&gt;学生学号：&lt;/span&gt;
+    &lt;input type=&quot;text&quot; name=&quot;stuId&quot; id=&quot;stuId&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;span&gt;学生姓名：&lt;/span&gt;
+    &lt;input type=&quot;text&quot; name=&quot;stuName&quot; id=&quot;stuName&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;span&gt;学生年龄：&lt;/span&gt;
+    &lt;input type=&quot;text&quot; name=&quot;stuAge&quot; id=&quot;stuAge&quot; /&gt;
+  &lt;/div&gt;
+  &lt;button id=&quot;addBtn&quot;&gt;新增学生&lt;/button&gt;
+  &lt;script src=&quot;./db.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    openDB(&quot;stuDB&quot;, 1).then((db) =&gt; &#123;
+      document.getElementById(&quot;addBtn&quot;).onclick = function () &#123;
+        addData(db, &quot;stu&quot;, &#123;
+          stuId: stuId.value,
+          stuName: stuName.value,
+          stuAge: stuAge.value,
+        &#125;);
+        stuId.value = stuName.value = stuAge.value = &quot;&quot;;
+      &#125;;
+    &#125;);
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>index2.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;h1&gt;学生表&lt;/h1&gt;
+  &lt;table id=&quot;tab&quot;&gt;&lt;/table&gt;
+  &lt;script src=&quot;./db.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    function render(arr) &#123;
+      let tab = document.querySelector(&quot;#tab&quot;);
+      tab.innerHTML = `
+                &lt;tr&gt;
+                    &lt;td&gt;学号&lt;/td&gt;
+                    &lt;td&gt;姓名&lt;/td&gt;
+                    &lt;td&gt;年龄&lt;/td&gt;
+                &lt;/tr&gt;
+            `;
+      var str = arr
+        .map((item) =&gt; &#123;
+          return `
+                    &lt;tr&gt;
+                        &lt;td&gt;$&#123;item.stuId&#125;&lt;/td&gt;
+                        &lt;td&gt;$&#123;item.stuName&#125;&lt;/td&gt;
+                        &lt;td&gt;$&#123;item.stuAge&#125;&lt;/td&gt;
+                    &lt;/tr&gt;
+                `;
+        &#125;)
+        .join(&quot;&quot;);
+      tab.innerHTML += str;
+    &#125;
+
+    async function renderTable() &#123;
+      let db = await openDB(&quot;stuDB&quot;, 1);
+      let stuInfo = await getDataByKey(db, &quot;stu&quot;);
+      render(stuInfo);
+
+      setInterval(async function () &#123;
+        let stuInfo2 = await getDataByKey(db, &quot;stu&quot;);
+        if (stuInfo2.length !== stuInfo.length) &#123;
+          stuInfo = stuInfo2;
+          render(stuInfo);
+        &#125;
+      &#125;, 1000);
+    &#125;
+    renderTable();
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>db.js</p>
+<pre><code class="javascript">/**
+ * 打开数据库
+ * @param &#123;object&#125; dbName 数据库的名字
+ * @param &#123;string&#125; storeName 仓库名称
+ * @param &#123;string&#125; version 数据库的版本
+ * @return &#123;object&#125; 该函数会返回一个数据库实例
+ */
+function openDB(dbName, version = 1) &#123;
+  return new Promise((resolve, reject) =&gt; &#123;
+    var db; // 存储创建的数据库
+    // 打开数据库，若没有则会创建
+    const request = indexedDB.open(dbName, version);
+
+    // 数据库打开成功回调
+    request.onsuccess = function (event) &#123;
+      db = event.target.result; // 存储数据库对象
+      console.log(&quot;数据库打开成功&quot;);
+      resolve(db);
+    &#125;;
+
+    // 数据库打开失败的回调
+    request.onerror = function (event) &#123;
+      console.log(&quot;数据库打开报错&quot;);
+    &#125;;
+
+    // 数据库有更新时候的回调
+    request.onupgradeneeded = function (event) &#123;
+      // 数据库创建或升级的时候会触发
+      console.log(&quot;onupgradeneeded&quot;);
+      db = event.target.result; // 存储数据库对象
+      var objectStore;
+      // 创建存储库
+      objectStore = db.createObjectStore(&quot;stu&quot;, &#123;
+        keyPath: &quot;stuId&quot;, // 这是主键
+        autoIncrement: true, // 实现自增
+      &#125;);
+      // 创建索引，在后面查询数据的时候可以根据索引查
+      objectStore.createIndex(&quot;stuId&quot;, &quot;stuId&quot;, &#123; unique: true &#125;);
+      objectStore.createIndex(&quot;stuName&quot;, &quot;stuName&quot;, &#123; unique: false &#125;);
+      objectStore.createIndex(&quot;stuAge&quot;, &quot;stuAge&quot;, &#123; unique: false &#125;);
+    &#125;;
+  &#125;);
+&#125;
+
+/**
+ * 新增数据
+ * @param &#123;object&#125; db 数据库实例
+ * @param &#123;string&#125; storeName 仓库名称
+ * @param &#123;string&#125; data 数据
+ */
+function addData(db, storeName, data) &#123;
+  var request = db
+    .transaction([storeName], &quot;readwrite&quot;) // 事务对象 指定表格名称和操作模式（&quot;只读&quot;或&quot;读写&quot;）
+    .objectStore(storeName) // 仓库对象
+    .add(data);
+
+  request.onsuccess = function (event) &#123;
+    console.log(&quot;数据写入成功&quot;);
+  &#125;;
+
+  request.onerror = function (event) &#123;
+    console.log(&quot;数据写入失败&quot;);
+  &#125;;
+&#125;
+
+/**
+ * 通过主键读取数据
+ * @param &#123;object&#125; db 数据库实例
+ * @param &#123;string&#125; storeName 仓库名称
+ * @param &#123;string&#125; key 主键值
+ */
+function getDataByKey(db, storeName, key) &#123;
+  return new Promise((resolve, reject) =&gt; &#123;
+    var transaction = db.transaction([storeName]); // 事务
+    var objectStore = transaction.objectStore(storeName); // 仓库对象
+    var request = objectStore.getAll(); // 通过主键获取数据
+
+    request.onerror = function (event) &#123;
+      console.log(&quot;事务失败&quot;);
+    &#125;;
+
+    request.onsuccess = function (event) &#123;
+      // console.log(&quot;主键查询结果: &quot;, request.result);
+      resolve(request.result);
+    &#125;;
+  &#125;);
+&#125;
+</code></pre>
+<h3 id="cookie-定时器轮询（-setInterval-）"><a href="#cookie-定时器轮询（-setInterval-）" class="headerlink" title="cookie 定时器轮询（ setInterval ）"></a>cookie 定时器轮询（ setInterval ）</h3><p>我们同样可以通过定时器轮询的方式来监听 Cookie 的变化，从而达到一个多标签页通信的目的。</p>
+<p>index.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;script&gt;
+    // 设置 cookie
+    document.cookie = &quot;name=zhangsan&quot;;
+    console.log(&quot;cookie 已经设置&quot;);
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>index2.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;script&gt;
+    // 获取当前的 cookie
+    var cookie = document.cookie;
+    console.log(`当前的 cookie 值为 $&#123;document.cookie&#125;`);
+    setInterval(function () &#123;
+      if (cookie !== document.cookie) &#123;
+        console.log(
+          `cookie 信息已经改变，最新的 cookie 值为$&#123;document.cookie&#125;`
+        );
+        cookie = document.cookie;
+        console.log(&quot;最新的 cookie 值已经保存&quot;);
+      &#125;
+    &#125;, 1000);
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>在上面的代码中，我们为 index2.html 设置了一个定时器，之后每过一秒钟都会重新去读取本地的 Cookie 信息，并比较和之前获取到的 Cookie 信息有没有变化，如果有变化就进行更新操作。</p>
+<h3 id="window-open、window-postMessage"><a href="#window-open、window-postMessage" class="headerlink" title="window.open、window.postMessage"></a>window.open、window.postMessage</h3><p>MDN 上是这样介绍 window.postMessage 的：</p>
+<blockquote>
+<p>window.postMessage( ) 方法可以安全地实现跨源通信。通常，对于两个不同页面的脚本，只有当执行它们的页面位于具有相同的协议（通常为 https），端口号（443 为 https 的默认值），以及主机  (两个页面的模数 Document.domain 设置为相同的值) 时，这两个脚本才能相互通信。window.postMessage( ) 方法提供了一种受控机制来规避此限制，只要正确的使用，这种方法就很安全。</p>
+</blockquote>
+<blockquote>
+<p>从广义上讲，一个窗口可以获得对另一个窗口的引用（比如 targetWindow = window.opener），然后在窗口上调用 targetWindow.postMessage( ) 方法分发一个  MessageEvent 消息。接收消息的窗口可以根据需要自由处理此事件 (en-US)。传递给 window.postMessage( ) 的参数（比如 message ）将通过消息事件对象暴露给接收消息的窗口。</p>
+</blockquote>
+<p>这种方式可以让页面给 iframe 之间有通信</p>
+<pre><code class="typescript">window.onload = function () &#123;
+  var iframe = document.getElementById(&quot;myFrame&quot;);
+  var message = &#123; type: &quot;greeting&quot;, text: &quot;Hello from the parent page!&quot; &#125;;
+  // 向iframe发送消息，指定目标源为iframe所在页面的源
+  iframe.contentWindow.postMessage(message, &quot;http://example.com&quot;);
+&#125;;
+</code></pre>
+<p>index.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;button id=&quot;popBtn&quot;&gt;弹出新的窗口&lt;/button&gt;
+  &lt;input type=&quot;text&quot; name=&quot;&quot; id=&quot;content&quot; /&gt;
+  &lt;button id=&quot;btn&quot;&gt;发送数据&lt;/button&gt;
+  &lt;script&gt;
+    const popBtn = document.querySelector(&quot;#popBtn&quot;);
+    const content = document.querySelector(&quot;#content&quot;);
+    const btn = document.querySelector(&quot;#btn&quot;);
+    let opener = null; // 保存打开窗口的引用
+    popBtn.onclick = function () &#123;
+      opener = window.open(
+        &quot;index2.html&quot;,
+        &quot;123&quot;,
+        &quot;height=400,width=400,top=10,resizable=yes&quot;
+      );
+    &#125;;
+    btn.onclick = function () &#123;
+      let data = &#123;
+        value: content.value,
+      &#125;;
+      // data 代表的是发送是数据，origin 用来限制访问来源，也可以用 * 代替
+      opener.postMessage(data, &quot;*&quot;);
+    &#125;;
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>index2.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;p&gt;这是弹出页面&lt;/p&gt;
+  &lt;script&gt;
+    window.addEventListener(
+      &quot;message&quot;,
+      function (e) &#123;
+        console.log(e.data);
+      &#125;,
+      false
+    ); //事件监听
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>在上面的代码中，我们在页面一通过 open 方法打开页面二，然后通过 postMessage 的方式向页面二传递信息。页面二通过监听 message 事件来接收信息。</p>
+<h3 id="Websocket"><a href="#Websocket" class="headerlink" title="Websocket"></a>Websocket</h3><p>WebSocket 协议在 2008 年诞生，2011 年成为国际标准。所有浏览器都已经支持了。</p>
+<p>它的最大特点就是，服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话，属于服务器推送技术的一种。</p>
+<p>server.js</p>
+<pre><code class="javascript">// 初始化一个 node 项目 npm init -y
+// 安装依赖 npm i -save ws
+
+// 获得 WebSocketServer 类型
+var WebSocketServer = require(&quot;ws&quot;).Server;
+
+// 创建 WebSocketServer 对象实例，监听指定端口
+var wss = new WebSocketServer(&#123;
+  port: 8080,
+&#125;);
+
+// 创建保存所有已连接到服务器的客户端对象的数组
+var clients = [];
+
+// 为服务器添加 connection 事件监听，当有客户端连接到服务端时，立刻将客户端对象保存进数组中
+wss.on(&quot;connection&quot;, function (client) &#123;
+  // 如果是首次连接
+  if (clients.indexOf(client) === -1) &#123;
+    // 就将当前连接保存到数组备用
+    clients.push(client);
+    console.log(&quot;有&quot; + clients.length + &quot;客户端在线&quot;);
+
+    // 为每个 client 对象绑定 message 事件，当某个客户端发来消息时，自动触发
+    client.on(&quot;message&quot;, function (msg) &#123;
+      console.log(msg, typeof msg);
+      console.log(&quot;收到消息&quot; + msg);
+      // 遍历 clients 数组中每个其他客户端对象，并发送消息给其他客户端
+      for (var c of clients) &#123;
+        // 排除自己这个客户端连接
+        if (c !== client) &#123;
+          // 把消息发给别人
+          c.send(msg.toString());
+        &#125;
+      &#125;
+    &#125;);
+
+    // 当客户端断开连接时触发该事件
+    client.onclose = function () &#123;
+      var index = clients.indexOf(this);
+      clients.splice(index, 1);
+      console.log(&quot;有&quot; + clients.length + &quot;客户端在线&quot;);
+    &#125;;
+  &#125;
+&#125;);
+
+console.log(&quot;服务器已启动...&quot;);
+</code></pre>
+<p>在上面的代码中，我们创建了一个 Websocket 服务器，监听 8080 端口。每一个连接到该服务器的客户端，都会触发服务器的 connection 事件，并且会将此客户端连接实例作为回调函数的参数传入。</p>
+<p>我们将所有的客户端连接实例保存到一个数组里面。为该实例绑定了 message 和 close 事件，当某个客户端发来消息时，自动触发 message 事件，然后遍历 clients 数组中每个其他客户端对象，并发送消息给其他客户端。</p>
+<p>close 事件在客户端断开连接时会触发，我们要做的事情就是从数组中删除该连接。</p>
+<p>index.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;!-- 这个页面是用来发送信息的 --&gt;
+  &lt;input type=&quot;text&quot; id=&quot;msg&quot; /&gt;
+  &lt;button id=&quot;send&quot;&gt;发送&lt;/button&gt;
+  &lt;script&gt;
+    // 建立到服务端 webSoket 连接
+    var ws = new WebSocket(&quot;ws://localhost:8080&quot;);
+    send.onclick = function () &#123;
+      // 如果 msg 输入框内容不是空的
+      if (msg.value.trim() != &quot;&quot;) &#123;
+        // 将 msg 输入框中的内容发送给服务器
+        ws.send(msg.value.trim());
+      &#125;
+    &#125;;
+    // 断开 websoket 连接
+    window.onbeforeunload = function () &#123;
+      ws.close();
+    &#125;;
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>index2.html</p>
+<pre><code class="html">&lt;body&gt;
+  &lt;script&gt;
+    //建立到服务端webSoket连接
+    var ws = new WebSocket(&quot;ws://localhost:8080&quot;);
+    var count = 1;
+    ws.onopen = function (event) &#123;
+      // 当有消息发过来时，就将消息放到显示元素上
+      ws.onmessage = function (event) &#123;
+        var oP = document.createElement(&quot;p&quot;);
+        oP.innerHTML = `第$&#123;count&#125;次接收到的消息：$&#123;event.data&#125;`;
+        document.body.appendChild(oP);
+        count++;
+      &#125;;
+    &#125;;
+    // 断开 websoket 连接
+    window.onbeforeunload = function () &#123;
+      ws.close();
+    &#125;;
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

@@ -1,3 +1,7 @@
+blockquote{
+    display: block;
+}
+
 #archives {
     margin: auto;
     margin-top: 100px;
@@ -658,7 +662,7 @@ blockquote {
     background: #d9e8ff6b;
     border-left: 3px solid #1e3e3f;
     border-radius: 3px;
-    display: flex;
+    display: block;
     padding: 0 15px;
 }
 body {

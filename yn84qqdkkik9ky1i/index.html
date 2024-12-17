@@ -1,0 +1,1626 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>标准库（API） | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>标准库（API）</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/1
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <p><strong>最不重要的就是 api，不记得也没关系，重要的是你知道有这个方法</strong></p>
+<p><strong>写在这里，可以查阅</strong></p>
+<hr>
+<p>实例方法和静态方法</p>
+<pre><code class="javascript">Number.NaN; //这个叫静态属性
+Number.isNaN(); //这个叫静态方法
+let a = Number.isNaN(b);
+
+Number.prototype.toFixed(); // 这个叫实例方法
+let a = 1;
+let b = a.toFixed(2);
+</code></pre>
+<h1 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a><strong>常用方法</strong></h1><h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a><strong>typeof</strong></h3><p>返回的类型</p>
+<p>string,boolean,number,undefined,bigInt,symbol</p>
+<p>object,function</p>
+<pre><code class="plain">console.log(typeof b);
+</code></pre>
+<h3 id="in"><a href="#in" class="headerlink" title="in"></a><strong>in</strong></h3><p>属性名 in 对象 —&gt; 判断 属性名 是否在<strong>对象自身及其隐式原型</strong>上</p>
+<pre><code class="javascript">console.log(&quot;abc&quot; in obj);
+</code></pre>
+<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a><strong>instanceof</strong></h3><p>判断 object 的原型链中，是否存在 constructor 的原型</p>
+<p>如果 <code>object</code> 不是对象（比如是一个原始值），<code>instanceof</code>会返回<code>false</code></p>
+<pre><code class="javascript">object instanceof constructor;
+</code></pre>
+<hr>
+<pre><code class="javascript">let arr = [1,2,3];
+arr instanceof Array  //arr是不是数组
+
+arr是实例，arr的原型链上有没有Array的原型
+</code></pre>
+<h1 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h1><pre><code class="plain">alert(&quot;hello&quot;);  //跳出一个弹窗输出
+document.write(&quot;hello&quot;);  //在页面中输出
+console.log(&quot;hello&quot;); //在控制台中输出
+</code></pre>
+<h1 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h1><pre><code class="plain">let num = new Number(1); //得到一个数字对象
+let num = Number(1);  //得到一个数字
+</code></pre>
+<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><h4 id="Number-isFinite"><a href="#Number-isFinite" class="headerlink" title="Number.isFinite() "></a><font style="color:rgb(27, 27, 27);">Number.isFinite() </font></h4><p><font style="color:rgb(27, 27, 27);">判断传入值是否是一个有限数，除了 Infinity，NaN，-Infinity 以外都为 true</font></p>
+<pre><code class="typescript">Number.isFinite(Infinity); // false
+Number.isFinite(NaN); // false
+Number.isFinite(-Infinity); // false
+
+Number.isFinite(0); // true
+Number.isFinite(2e64); // true
+</code></pre>
+<h4 id="Number-isInteger"><a href="#Number-isInteger" class="headerlink" title="Number.isInteger()"></a><font style="color:rgb(27, 27, 27);">Number.isInteger()</font></h4><p><font style="color:rgb(27, 27, 27);">如果给定值是整数，则返回布尔值 </font><font style="color:rgb(27, 27, 27);">true</font><font style="color:rgb(27, 27, 27);">。否则为 </font><font style="color:rgb(27, 27, 27);">false</font><font style="color:rgb(27, 27, 27);">。</font></p>
+<pre><code class="typescript">Number.isInteger(0); // true
+Number.isInteger(1); // true
+
+Number.isInteger(0.1); // false
+Number.isInteger(Math.PI); // false
+Number.isInteger(&quot;1&quot;); // false
+</code></pre>
+<h4 id="Number-isNaN"><a href="#Number-isNaN" class="headerlink" title="Number.isNaN()"></a><font style="color:rgb(27, 27, 27);">Number.isNaN()</font></h4><p>除非是 NaN 其他为 false</p>
+<h4 id="Number-parseFloat-和-Number-parseInt"><a href="#Number-parseFloat-和-Number-parseInt" class="headerlink" title="Number.parseFloat()和 Number.parseInt()"></a><font style="color:rgb(27, 27, 27);">Number.parseFloat()和 Number.parseInt()</font></h4><p>**<font style="color:rgb(27, 27, 27);">要解析的值，会被</font>****强制转换为字符串（不是字符串会先转化为字符串）**<font style="color:rgb(27, 27, 27);">。该参数开头的</font>空白<font style="color:rgb(27, 27, 27);">会被忽略。</font></p>
+<p><font style="color:rgb(27, 27, 27);">如果第一个非空白字符不能被转换为数字，则返回 </font>NaN<font style="color:rgb(27, 27, 27);">。</font></p>
+<h3 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h3><h4 id="Number-prototype-toFixed"><a href="#Number-prototype-toFixed" class="headerlink" title="Number.prototype.toFixed()"></a><font style="color:rgb(27, 27, 27);">Number.prototype.toFixed()</font></h4><p>参数：<font style="color:rgb(27, 27, 27);">小数点后的位数。应该是一个介于 0 和 100 之间的值，包括 0 和 100。如果这个参数被省略，则被视为 0。</font></p>
+<p><font style="color:rgb(27, 27, 27);">返回：四舍五入返回一个字符串</font></p>
+<pre><code class="typescript">(2.34).toFixed(1); // &#39;2.3&#39;
+</code></pre>
+<h4 id="Number-prototype-toPrecision"><a href="#Number-prototype-toPrecision" class="headerlink" title="Number.prototype.toPrecision()"></a><font style="color:rgb(27, 27, 27);">Number.prototype.toPrecision()</font></h4><p>参数：数字的位数</p>
+<p>返回：字符串</p>
+<p><font style="color:rgb(27, 27, 27);">toPrecision 保留位数，toFixed 保留小数位数</font></p>
+<h4 id="Number-prototype-toString"><a href="#Number-prototype-toString" class="headerlink" title="Number.prototype.toString()"></a><font style="color:rgb(27, 27, 27);">Number.prototype.toString()</font></h4><p>转化为字符串</p>
+<p>方法有重写，可以填写参数，转换 2 进制，8 进制等</p>
+<pre><code class="javascript">let c = 12;
+c.toString(2); //&#39;1100&#39;
+</code></pre>
+<h4 id="Number-prototype-valueOf"><a href="#Number-prototype-valueOf" class="headerlink" title="Number.prototype.valueOf()"></a><font style="color:rgb(27, 27, 27);">Number.prototype.valueOf()</font></h4><p>一般是数字的包装对象调用，得到一个数字</p>
+<h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><p>直接调用和构造函数调用</p>
+<pre><code class="plain">var str = new String(&quot;hello&quot;); //得到一个字符串对象
+var str = String(&quot;hello&quot;);  //得到一个字符串
+</code></pre>
+<h3 id="实例方法-1"><a href="#实例方法-1" class="headerlink" title="实例方法"></a>实例方法</h3><h4 id="Symbol-iterator"><a href="#Symbol-iterator" class="headerlink" title="[Symbol.iterator]"></a><font style="color:rgb(27, 27, 27);">[Symbol.iterator]</font></h4><p><font style="color:rgb(27, 27, 27);">实现了</font>可迭代协议</p>
+<p>迭代每一个字符</p>
+<h4 id="String-prototype-concat"><a href="#String-prototype-concat" class="headerlink" title="String.prototype.concat()"></a><font style="color:rgb(27, 27, 27);">String.prototype.concat()</font></h4><p><font style="color:rgb(27, 27, 27);">concat() 方法将字符串参数连接到调用的字符串，并返回一个新的字符串。</font></p>
+<p><font style="color:rgb(27, 27, 27);">参数：一个或多个字符串（不是字符串强制转换为字符串）</font></p>
+<p><font style="color:rgb(27, 27, 27);">返回：一个包含所提供的多个字符串文本组合的新字符串。</font></p>
+<pre><code class="plain">const hello = &quot;Hello, &quot;;
+console.log(hello.concat(&quot;Kevin&quot;, &quot;. Have a nice day.&quot;));
+// Hello, Kevin. Have a nice day.
+&quot;&quot;.concat(&#123;&#125;); // &quot;[object Object]&quot;
+</code></pre>
+<h4 id="String-prototype-includes"><a href="#String-prototype-includes" class="headerlink" title="String.prototype.includes()"></a><font style="color:rgb(27, 27, 27);">String.prototype.includes()</font></h4><p><font style="color:rgb(27, 27, 27);">是否可以在一个字符串中找到另一个字符串</font></p>
+<p><font style="color:rgb(27, 27, 27);">参数：1.要筛选的字符串 </font></p>
+<p><font style="color:rgb(27, 27, 27);"> 2.在字符串中开始搜索 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;searchString&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 的位置。默认值为 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;0&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">。</font></p>
+<p><font style="color:rgb(27, 27, 27);">返回: true 或 false</font></p>
+<h4 id="String-prototype-indexOf"><a href="#String-prototype-indexOf" class="headerlink" title="String.prototype.indexOf()"></a><font style="color:rgb(27, 27, 27);">String.prototype.indexOf()</font></h4><p><font style="color:rgb(27, 27, 27);">是否可以在一个字符串中找到另一个字符串（从头开始）</font></p>
+<p><font style="color:rgb(27, 27, 27);">参数：1.要筛选的字符串 </font></p>
+<p><font style="color:rgb(27, 27, 27);"> 2.</font><font style="color:rgb(27, 27, 27);">在字符串中开始搜索 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;searchString&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 的位置。默认值为 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;0&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">。</font></p>
+<p><font style="color:rgb(27, 27, 27);">返回：返回索引位置（未找到返回-1）</font></p>
+<h4 id="String-prototype-lastIndexOf"><a href="#String-prototype-lastIndexOf" class="headerlink" title="String.prototype.lastIndexOf()"></a><font style="color:rgb(27, 27, 27);">String.prototype.lastIndexOf()</font></h4><p><font style="color:rgb(27, 27, 27);">是否可以在一个字符串中找到另一个字符串（从尾开始）</font></p>
+<p><font style="color:rgb(27, 27, 27);">参数：1.要筛选的字符串 </font></p>
+<p><font style="color:rgb(27, 27, 27);"> 2.返回指定子字符串在小于或等于 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;position&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 的位置中的最后一次出现的索引，默认为 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;+Infinity&lt;/font&gt;</code></p>
+<p><font style="color:rgb(27, 27, 27);">返回: 返回索引位置,否则为-1</font></p>
+<h4 id="String-prototype-match-正则"><a href="#String-prototype-match-正则" class="headerlink" title="String.prototype.match() 正则"></a><font style="color:rgb(27, 27, 27);">String.prototype.match() 正则</font></h4><h4 id="String-prototype-matchALL-正则"><a href="#String-prototype-matchALL-正则" class="headerlink" title="String.prototype.matchALL() 正则"></a><font style="color:rgb(27, 27, 27);">String.prototype.matchALL() 正则</font></h4><p>需要学习</p>
+<h4 id="String-prototype-padEnd"><a href="#String-prototype-padEnd" class="headerlink" title="String.prototype.padEnd()"></a><font style="color:rgb(27, 27, 27);">String.prototype.padEnd()</font></h4><p>重复填充，直到长度到达指定长度，<strong>从尾部向后填充</strong></p>
+<p>参数：1.填充后的长度</p>
+<p>2.填充值</p>
+<p>返回：一个字符串</p>
+<pre><code class="plain">const str1 = &#39;Breaded Mushrooms&#39;;
+
+console.log(str1.padEnd(25, &#39;.&#39;));
+// Expected output: &quot;Breaded Mushrooms........&quot;
+</code></pre>
+<h4 id="String-prototype-padStart"><a href="#String-prototype-padStart" class="headerlink" title="String.prototype.padStart()"></a><font style="color:rgb(27, 27, 27);">String.prototype.padStart()</font></h4><p>重复填充，直到长度到达指定长度，<strong>从头部填充</strong></p>
+<h4 id="String-prototype-repeat"><a href="#String-prototype-repeat" class="headerlink" title="String.prototype.repeat()"></a><font style="color:rgb(27, 27, 27);">String.prototype.repeat()</font></h4><p>重复当前字符串</p>
+<p>参数：数字(次数)</p>
+<pre><code class="plain">const mood = &#39;Happy! &#39;;
+
+console.log(`I feel $&#123;mood.repeat(3)&#125;`);
+// Expected output: &quot;I feel Happy! Happy! Happy! &quot;
+</code></pre>
+<h4 id="String-prototype-replace-正则"><a href="#String-prototype-replace-正则" class="headerlink" title="String.prototype.replace() 正则"></a><font style="color:rgb(27, 27, 27);">String.prototype.replace() 正则</font></h4><p><font style="color:rgb(27, 27, 27);">其中一个、多个或所有匹配的 </font><font style="color:rgb(27, 27, 27);">pattern</font><font style="color:rgb(27, 27, 27);"> 被替换为 </font><font style="color:rgb(27, 27, 27);">replacement</font><font style="color:rgb(27, 27, 27);">。</font></p>
+<p><font style="color:rgb(27, 27, 27);">如果是替换字符串，则只会替换一次，如果是正则表达式，则根据正则表达式来计算<br></font><font style="color:rgb(27, 27, 27);">参数：1.要替换的字符串或正则表达式（</font><font style="color:rgb(27, 27, 27);">pattern</font><font style="color:rgb(27, 27, 27);">）</font></p>
+<p><font style="color:rgb(27, 27, 27);"> 2.替换成什么内容（</font><font style="color:rgb(27, 27, 27);">replacement</font><font style="color:rgb(27, 27, 27);">）</font></p>
+<p><font style="color:rgb(27, 27, 27);">返回：方法返回一个新字符串</font></p>
+<pre><code class="plain">const paragraph = &quot;I think Ruth&#39;s dog is cuter than your dog!&quot;;
+
+console.log(paragraph.replace(&quot;Ruth&#39;s&quot;, &#39;my&#39;));
+// Expected output: &quot;I think my dog is cuter than your dog!&quot;
+</code></pre>
+<h4 id="String-prototype-replaceAll-正则"><a href="#String-prototype-replaceAll-正则" class="headerlink" title="String.prototype.replaceAll() 正则"></a><font style="color:rgb(27, 27, 27);">String.prototype.replaceAll() 正则</font></h4><p>与 replace 相比就是替换字符串的时候，是匹配多次</p>
+<h4 id="String-prototype-search-正则"><a href="#String-prototype-search-正则" class="headerlink" title="String.prototype.search() 正则"></a><font style="color:rgb(27, 27, 27);">String.prototype.search() 正则</font></h4><p>匹配正则表达式</p>
+<p>参数：正则表达式</p>
+<p>返回：<font style="color:rgb(27, 27, 27);">如果匹配成功，则返回正则表达式在字符串中首次匹配的索引；否则，返回 </font><font style="color:rgb(27, 27, 27);">-1</font><font style="color:rgb(27, 27, 27);">。</font></p>
+<h4 id="String-prototype-split-正则"><a href="#String-prototype-split-正则" class="headerlink" title="String.prototype.split() 正则"></a><font style="color:rgb(27, 27, 27);">String.prototype.split() 正则</font></h4><p>切割字符串，返回一个数组</p>
+<p>参数：根据什么分割</p>
+<h4 id="String-prototype-startsWith"><a href="#String-prototype-startsWith" class="headerlink" title="String.prototype.startsWith()"></a><font style="color:rgb(27, 27, 27);">String.prototype.startsWith()</font></h4><p><font style="color:rgb(27, 27, 27);">当前字符串是否以另外一个给定的子字符串开头</font></p>
+<p>参数：字符串</p>
+<p>返回：<font style="color:rgb(27, 27, 27);">true</font><font style="color:rgb(27, 27, 27);"> 或 </font><font style="color:rgb(27, 27, 27);">false</font><font style="color:rgb(27, 27, 27);">。</font></p>
+<h4 id="String-prototype-endsWith"><a href="#String-prototype-endsWith" class="headerlink" title="String.prototype.endsWith()"></a><font style="color:rgb(27, 27, 27);">String.prototype.endsWith()</font></h4><p><font style="color:rgb(27, 27, 27);">endsWith() 方法用于判断一个字符串是否以指定字符串结尾，如果是则返回 </font><font style="color:rgb(27, 27, 27);">true</font><font style="color:rgb(27, 27, 27);">，否则返回 </font><font style="color:rgb(27, 27, 27);">false</font><font style="color:rgb(27, 27, 27);">。</font></p>
+<p><font style="color:rgb(27, 27, 27);">参数：1.要筛选的字符串 </font></p>
+<p><font style="color:rgb(27, 27, 27);"> 2.预期找到 </font><font style="color:rgb(27, 27, 27);">searchString</font><font style="color:rgb(27, 27, 27);"> 的末尾位置。默认为 </font><font style="color:rgb(27, 27, 27);">str.length</font></p>
+<p><font style="color:rgb(27, 27, 27);">返回: true 或 false</font></p>
+<pre><code class="plain">const str = &quot;生存还是毁灭，这是一个问题。&quot;;
+
+console.log(str.endsWith(&quot;问题。&quot;)); // true
+console.log(str.endsWith(&quot;毁灭&quot;)); // false
+console.log(str.endsWith(&quot;毁灭&quot;, 6)); // true
+</code></pre>
+<h4 id="String-prototype-substring"><a href="#String-prototype-substring" class="headerlink" title="String.prototype.substring()"></a><font style="color:rgb(27, 27, 27);">String.prototype.substring()</font></h4><pre><code class="plain">const str = &#39;Mozilla&#39;;
+
+console.log(str.substring(1, 3));
+// Expected output: &quot;oz&quot;
+</code></pre>
+<p><font style="color:rgb(27, 27, 27);">参数：</font></p>
+<p>indexStart</p>
+<p><font style="color:rgb(27, 27, 27);">要返回的子字符串中包含的第一个字符的索引。(开始)</font></p>
+<p>indexEnd<font style="color:rgb(27, 27, 27);"> </font>可选</p>
+<p><font style="color:rgb(27, 27, 27);">要返回的子字符串中排除的第一个字符的索引。(结束)</font></p>
+<p>返回：</p>
+<p>一个新字符串</p>
+<h4 id="String-prototype-slice"><a href="#String-prototype-slice" class="headerlink" title="String.prototype.slice()"></a><font style="color:rgb(27, 27, 27);">String.prototype.slice()</font></h4><p><strong><font style="color:rgb(27, 27, 27);">slice()</font></strong><font style="color:rgb(27, 27, 27);"> 方法提取字符串的一部分，并将其作为新字符串返回，而不修改原始字符串。</font></p>
+<p><font style="color:rgb(27, 27, 27);">参数：</font></p>
+<p>indexStart</p>
+<p><font style="color:rgb(27, 27, 27);">要返回的子字符串中包含的第一个字符的索引。</font></p>
+<p>indexEnd<font style="color:rgb(27, 27, 27);"> </font>可选</p>
+<p><font style="color:rgb(27, 27, 27);">要返回的子字符串中排除的第一个字符的索引。</font></p>
+<p>返回：</p>
+<p>一个新字符串</p>
+<pre><code class="plain">const str1 = &quot;The morning is upon us.&quot;;
+// str1 的长度是 23。
+const str2 = str1.slice(1, 8); // he morn
+//从1到8，一共7位
+const str3 = str1.slice(4, -2); // morning is upon u
+//从4到倒数第二(倒数第二不会被截取)
+const str4 = str1.slice(12); // is upon us.
+const str5 = str1.slice(30); // &quot;&quot;
+</code></pre>
+<font style="color:rgb(27, 27, 27);">  
+</font><font style="color:rgb(27, 27, 27);">两者区别</font>
+
+<ul>
+<li><strong>参数处理</strong><font style="color:rgb(51, 51, 51);">：</font><ul>
+<li><font style="color:rgb(51, 51, 51);">substring</font><font style="color:rgb(51, 51, 51);">方法在处理参数时，如果结束位置参数小于开始位置参数，它会自动交换这两个参数的位置。此外，如果参数小于 0，</font><font style="color:rgb(51, 51, 51);">substring</font><font style="color:rgb(51, 51, 51);">会将其视为 0 处理。</font></li>
+<li><font style="color:rgb(51, 51, 51);">slice</font><font style="color:rgb(51, 51, 51);">方法在处理参数时，不会因为参数的大小而交换它们的位置。对于负数参数，</font><font style="color:rgb(51, 51, 51);">slice</font><font style="color:rgb(51, 51, 51);">会从字符串的末尾开始计数，而不是将负数视为 0。</font></li>
+</ul>
+</li>
+<li><strong>负数参数的处理</strong><font style="color:rgb(51, 51, 51);">：</font><ul>
+<li><font style="color:rgb(51, 51, 51);">在</font><font style="color:rgb(51, 51, 51);">substring</font><font style="color:rgb(51, 51, 51);">中，如果提供的参数中包含负数，这些负数参数会被视为 0。</font></li>
+<li><font style="color:rgb(51, 51, 51);">在 slice 中，负数参数被视为从字符串末尾开始计数的索引，例如 slice(-1)会返回字符串的最后一个字符。</font></li>
+</ul>
+</li>
+</ul>
+<h4 id="String-prototype-toLocaleLowerCase"><a href="#String-prototype-toLocaleLowerCase" class="headerlink" title="String.prototype.toLocaleLowerCase()"></a><font style="color:rgb(27, 27, 27);">String.prototype.toLocaleLowerCase()</font></h4><p>转小写</p>
+<p>返回一个新的字符串</p>
+<h4 id="String-prototype-toLocaleUpperCase"><a href="#String-prototype-toLocaleUpperCase" class="headerlink" title="String.prototype.toLocaleUpperCase()"></a><font style="color:rgb(27, 27, 27);">String.prototype.toLocaleUpperCase()</font></h4><p>转大写</p>
+<p>返回一个新的字符串</p>
+<h4 id="String-prototype-toLowerCase"><a href="#String-prototype-toLowerCase" class="headerlink" title="String.prototype.toLowerCase()"></a><font style="color:rgb(27, 27, 27);">String.prototype.toLowerCase()</font></h4><p>转小写,用法与上面基本一致（不扣细节）</p>
+<p>返回一个新的字符串</p>
+<h4 id="String-prototype-toUpperCase"><a href="#String-prototype-toUpperCase" class="headerlink" title="String.prototype.toUpperCase()"></a>String.prototype.toUpperCase()</h4><p>转大写,用法与上面基本一致（不扣细节）</p>
+<p>返回一个新的字符串</p>
+<h4 id="String-prototype-trim"><a href="#String-prototype-trim" class="headerlink" title="String.prototype.trim()"></a><font style="color:rgb(27, 27, 27);">String.prototype.trim()</font></h4><p><font style="color:rgb(27, 27, 27);">去两端空格</font></p>
+<h4 id="String-prototype-trimEnd"><a href="#String-prototype-trimEnd" class="headerlink" title="String.prototype.trimEnd()"></a><font style="color:rgb(27, 27, 27);">String.prototype.trimEnd()</font></h4><p><font style="color:rgb(27, 27, 27);">去后空格</font></p>
+<h4 id="String-prototype-trimStart"><a href="#String-prototype-trimStart" class="headerlink" title="String.prototype.trimStart()"></a><font style="color:rgb(27, 27, 27);">String.prototype.trimStart()</font></h4><p><font style="color:rgb(27, 27, 27);">去前空格</font></p>
+<h1 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h1><pre><code class="plain">//通过new Boolean()将会得一个对象
+new Boolean();
+
+//tovalueOf可以得到一个boolean类型值
+//toString可以得到一个字符串类型
+
+//如果要转化为boolean类型，直接调用
+// 0、-0、null、false、NaN、undefined，&quot;&quot; 这些值为false，其他为true
+let b = Boolean(a);
+</code></pre>
+<h1 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a><font style="color:rgb(27, 27, 27);">Symbol</font></h1><p><strong><font style="color:rgb(27, 27, 27);">symbol</font></strong><font style="color:rgb(27, 27, 27);"> 是一种</font><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive"><font style="color:rgb(27, 27, 27);">原始数据类型</font></a><font style="color:rgb(27, 27, 27);">。</font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 函数会返回 </font><strong><font style="color:rgb(27, 27, 27);">symbol</font></strong><font style="color:rgb(27, 27, 27);"> 类型的值，该类型具有静态属性和静态方法</font></p>
+<ol>
+<li><font style="color:rgb(27, 27, 27);">它的静态属性会暴露几个内建的成员对象</font></li>
+<li><font style="color:rgb(27, 27, 27);">它的静态方法会暴露全局的 symbol 注册，且类似于内建对象类</font></li>
+<li><font style="color:rgb(27, 27, 27);">不支持</font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;new Symbol()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">语法</font></li>
+</ol>
+<p><strong><font style="color:rgb(27, 27, 27);">每个从 </font></strong><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol()&lt;/font&gt;**</code><strong><font style="color:rgb(27, 27, 27);"> 返回的 symbol 值都是唯一的。一个 symbol 值能作为对象属性的标识符；这是该数据类型仅有的目的</font></strong></p>
+<blockquote>
+<p><font style="color:rgb(27, 27, 27);">内建的成员对象包括 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Object&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">, </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Array&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">, </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Function&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">, </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Date&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">, </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Math&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">, </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;RegExp&lt;/font&gt;</code></p>
+<p><font style="color:rgb(27, 27, 27);"> 内建的 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 值指的是 JavaScript 语言中预定义的一些特殊 Symbol 值，它们在语言的规范中是预先定义好的，用于实现语言的内建功能或约定 </font></p>
+</blockquote>
+<pre><code class="dart">const symbol1 = Symbol();
+const symbol2 = Symbol(42);
+const symbol3 = Symbol(&#39;foo&#39;);
+
+console.log(typeof symbol1);
+// Expected output: &quot;symbol&quot;
+
+console.log(symbol2 === 42);
+// Expected output: false
+
+console.log(symbol3.toString());
+// Expected output: &quot;Symbol(foo)&quot;
+
+console.log(Symbol(&#39;foo&#39;) === Symbol(&#39;foo&#39;));
+// Expected output: false
+</code></pre>
+<p>在 JavaScript 中，<code>Symbol()</code> 函数创建的 Symbol 是不会全局注册的，它是一种局部的、不可变的数据类型。这意味着使用 <code>Symbol()</code> 创建的每个 Symbol 实例都是唯一的，即使它们的描述文本（可选参数）相同也是如此。</p>
+<p>相比之下，<code>Symbol.for()</code> 函数创建的 Symbol 是全局注册的。这意味着通过 <code>Symbol.for()</code> 创建的 Symbol 会被存储在一个全局 Symbol 注册表中，并且可以通过相同的键名检索到同一个 Symbol。</p>
+<p>用 symbol 的时候要加[]</p>
+<p>在 JavaScript 中，当你使用 Symbol 类型作为对象的属性名时，需要将 Symbol 包裹在方括号 <code>[]</code> 中，这是因为 Symbol 本身是一种特殊的数据类型，直接使用它作为属性名会导致语法错误或意外的行为。</p>
+<p><strong>唯一性和保护性</strong>：</p>
+<ul>
+<li>Symbol 是一种唯一且不可改变的数据类型，使用它作为属性名可以确保属性名的唯一性，不会与其他属性名冲突。</li>
+<li>将 Symbol 包裹在 <code>[]</code> 中，有助于明确标识这是一个 Symbol 类型的属性名，而不是一个普通的字符串。</li>
+</ul>
+<p><strong>语法要求</strong>：</p>
+<ul>
+<li>在 JavaScript 中，对象的属性名可以是字符串或 Symbol 类型。当你希望使用 Symbol 作为属性名时，必须使用方括号包裹它，否则会被解析为字符串。</li>
+<li>如果直接使用 <code>obj.mySymbol</code>，实际上会访问到一个名为 <code>&#39;mySymbol&#39;</code> 的普通属性，而不是 Symbol 类型的属性。</li>
+</ul>
+<pre><code class="dart">// 创建一个 Symbol
+const mySymbol = Symbol(&#39;description&#39;);
+
+// 使用 Symbol 作为对象的属性名需要加 []
+const obj = &#123;
+    [mySymbol]: &#39;value&#39;
+&#125;;
+
+console.log(obj[mySymbol]); // 输出: &#39;value&#39;
+</code></pre>
+<p>通过加 <code>[ ]</code> 使用 Symbol 类型作为属性名，你可以确保正确地利用 Symbol 的唯一性和特性，在对象中创建符号属性。</p>
+<h2 id="静态方法-1"><a href="#静态方法-1" class="headerlink" title="静态方法"></a>静态方法</h2><h3 id="Symbol-for"><a href="#Symbol-for" class="headerlink" title="Symbol.for()"></a><font style="color:rgb(27, 27, 27);">Symbol.for()</font></h3><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.for(key)&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法会根据给定的键 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;key&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">，来从运行时的 symbol 注册表中找到对应的 symbol，如果找到了，则返回它，否则，新建一个与该键关联的 symbol，并放入全局 symbol 注册表中。</font></p>
+<p><font style="color:rgb(27, 27, 27);">语法</font></p>
+<pre><code class="dart">Symbol.for(key);
+</code></pre>
+<pre><code class="dart">Symbol.for(&quot;foo&quot;); // 创建一个 symbol 并放入 symbol 注册表中，键为 &quot;foo&quot;
+Symbol.for(&quot;foo&quot;); // 从 symbol 注册表中读取键为&quot;foo&quot;的 symbol
+
+Symbol.for(&quot;bar&quot;) === Symbol.for(&quot;bar&quot;); // true，证明了上面说的
+Symbol(&quot;bar&quot;) === Symbol(&quot;bar&quot;); // false，Symbol() 函数每次都会返回新的一个 symbol
+</code></pre>
+<h3 id="Symbol-keyFor"><a href="#Symbol-keyFor" class="headerlink" title="Symbol.keyFor()"></a><font style="color:rgb(27, 27, 27);">Symbol.keyFor()</font></h3><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.keyFor(sym)&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法用来获取全局 symbol 注册表中与某个 symbol 关联的键。如果全局注册表中查找到该 symbol，则返回该 symbol 的 key 值，返回值为字符串类型。否则返回 undefined</font></p>
+<pre><code class="dart">Symbol.keyFor(sym);
+</code></pre>
+<pre><code class="dart">// 创建一个全局 Symbol
+var globalSym = Symbol.for(&quot;foo&quot;);
+Symbol.keyFor(globalSym); // &quot;foo&quot;
+
+var localSym = Symbol();
+Symbol.keyFor(localSym); // undefined，
+</code></pre>
+<h2 id="静态属性"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h2><h3 id="Symbol-iterator（迭代器）"><a href="#Symbol-iterator（迭代器）" class="headerlink" title="Symbol.iterator（迭代器）"></a><font style="color:rgb(27, 27, 27);">Symbol.iterator（迭代器）</font></h3><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.iterator&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 为每一个对象定义了默认的迭代器。该迭代器可以被 </font>for…of<font style="color:rgb(27, 27, 27);"> 循环使用。</font></p>
+<pre><code class="plain">const iterable1 = &#123;&#125;;
+
+iterable1[Symbol.iterator] = function* () &#123;
+  yield 1;
+  yield 2;
+  yield 3;
+&#125;;
+
+console.log([...iterable1]);
+</code></pre>
+<p>内置可迭代的类型</p>
+<p>array</p>
+<p>string</p>
+<p>map</p>
+<p>set</p>
+<h3 id="Symbol-toPrimitive（类型转换内部调用）"><a href="#Symbol-toPrimitive（类型转换内部调用）" class="headerlink" title="Symbol.toPrimitive（类型转换内部调用）"></a><font style="color:rgb(27, 27, 27);">Symbol.toPrimitive（类型转换内部调用）</font></h3><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.toPrimitive&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 是内置的 symbol 属性，其指定了一种接受首选类型并返回对象原始值的表示的方法。它被所有的</font>强类型转换制<font style="color:rgb(27, 27, 27);">算法优先调用。</font></p>
+<pre><code class="plain">const object1 = &#123;
+  [Symbol.toPrimitive](hint) &#123;
+    if (hint === &#39;number&#39;) &#123;
+      return 42;
+    &#125;
+    return null;
+  &#125;,
+&#125;;
+
+console.log(+object1);
+// Expected output: 42
+</code></pre>
+<p><font style="color:rgb(27, 27, 27);">没有 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.toPrimitive&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 属性的对象将通过不同的顺序调用 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;valueOf()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 和 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;toString()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 方法将其转换为原始值。</font></p>
+<p><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.toPrimitive&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 允许完全控制原始转换过程。</font>Date.prototype[Symbol.toPrimitive]<font style="color:rgb(27, 27, 27);"> 将 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;&quot;default&quot;&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 视为 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;&quot;string&quot;&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 并且调用 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;toString()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 而不是 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;valueOf()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">。</font>Symbol.prototype[Symbol.toPrimitive]<font style="color:rgb(27, 27, 27);"> 忽略 hint，并总是返回一个 symbol，这意味着即使在字符串上下文中，也不会调用 </font>Symbol.prototype.toString()<font style="color:rgb(27, 27, 27);">，并且 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 对象必须始终通过 </font>String()<font style="color:rgb(27, 27, 27);"> 显式转换为字符串。</font></p>
+<h3 id="下面不重要"><a href="#下面不重要" class="headerlink" title="下面不重要"></a>下面不重要</h3><h3 id="Symbol-isConcatSpreadable（数组使用）"><a href="#Symbol-isConcatSpreadable（数组使用）" class="headerlink" title="Symbol.isConcatSpreadable（数组使用）"></a><font style="color:rgb(27, 27, 27);">Symbol.isConcatSpreadable（数组使用）</font></h3><p><font style="color:rgb(27, 27, 27);">内置的 </font><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.isConcatSpreadable&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 符号用于配置某对象作为 </font>Array.prototype.concat()<font style="color:rgb(27, 27, 27);"> 方法的参数时是否展开其数组元素。</font></p>
+<pre><code class="plain">const alpha = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+const numeric = [1, 2, 3];
+let alphaNumeric = alpha.concat(numeric);
+
+console.log(alphaNumeric);
+// Expected output: Array [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, 1, 2, 3]
+
+numeric[Symbol.isConcatSpreadable] = false;
+alphaNumeric = alpha.concat(numeric);
+
+console.log(alphaNumeric);
+// Expected output: Array [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, Array [1, 2, 3]]
+</code></pre>
+<h3 id="Symbol-asyncIterator"><a href="#Symbol-asyncIterator" class="headerlink" title="Symbol.asyncIterator"></a><font style="color:rgb(27, 27, 27);">Symbol.asyncIterator</font></h3><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.asyncIterator&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 符号指定了一个对象的默认异步迭代器。如果一个对象设置了这个属性，它就是异步可迭代对象，可用于</font><font style="color:rgb(27, 27, 27);">for await…of</font><font style="color:rgb(27, 27, 27);">循环。</font></p>
+<p><font style="color:rgb(27, 27, 27);"></font></p>
+<p><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.asyncIterator&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 是一个用于访问对象的 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;[Symbol.asyncIterator]()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 方法的内建符号。一个异步可迭代对象必须要有 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.asyncIterator&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 属性。、</font></p>
+<p><font style="color:rgb(27, 27, 27);"></font></p>
+<p><font style="color:rgb(27, 27, 27);">特性</font></p>
+<p><font style="color:rgb(27, 27, 27);">不可写（不可重新赋值）</font></p>
+<p><font style="color:rgb(27, 27, 27);">不可枚举</font></p>
+<p><font style="color:rgb(27, 27, 27);">不可配置（不能删除）</font></p>
+<pre><code class="dart">const myAsyncIterable = new Object();
+myAsyncIterable[Symbol.asyncIterator] = async function* () &#123;
+  yield &quot;hello&quot;;
+  yield &quot;async&quot;;
+  yield &quot;iteration!&quot;;
+&#125;;
+
+for await (const x of myAsyncIterable) &#123;
+  console.log(x);
+  // expected output:
+  //    &quot;hello&quot;
+  //    &quot;async&quot;
+  //    &quot;iteration!&quot;
+&#125;
+</code></pre>
+<h3 id="Symbol-hasInstance（instanceof-使用）"><a href="#Symbol-hasInstance（instanceof-使用）" class="headerlink" title="Symbol.hasInstance（instanceof 使用）"></a><font style="color:rgb(27, 27, 27);">Symbol.hasInstance（instanceof 使用）</font></h3><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.hasInstance&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 用于判断某对象是否为某构造器的实例。因此你可以用它自定义 </font><font style="color:rgb(27, 27, 27);">instanceof</font><font style="color:rgb(27, 27, 27);"> 操作符在某个类上的行为。</font></p>
+<pre><code class="plain">class MyArray &#123;
+  static [Symbol.hasInstance](instance) &#123;
+    return Array.isArray(instance);
+  &#125;
+&#125;
+console.log([] instanceof MyArray); // true
+
+
+obj instanceof A
+//等效于
+A[Symbol.hasInstance](obj) // Function.prototype[Symbol.hasInstance]
+</code></pre>
+<p>也可以这样判断</p>
+<pre><code class="plain">class A&#123;
+
+&#125;
+let a = new A();
+let b = &#123;&#125;;
+A[Symbol.hasInstance](a) // true
+A[Symbol.hasInstance](b) // false
+</code></pre>
+<h3 id="Symbol-species"><a href="#Symbol-species" class="headerlink" title="Symbol.species"></a><font style="color:rgb(27, 27, 27);">Symbol.species</font></h3><p><font style="color:rgb(27, 27, 27);"></font><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.species&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 是个函数值属性，其被构造函数用以创建派生对象。</font></p>
+<p><font style="color:rgb(27, 27, 27);">你可能想在扩展数组类 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;MyArray&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 上返回 </font>Array<font style="color:rgb(27, 27, 27);"> 对象。例如，当使用例如 </font>map()<font style="color:rgb(27, 27, 27);"> 这样的方法返回默认的构造函数时，你希望这些方法能够返回父级的 Array 对象，以取代 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;MyArray&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 对象。</font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.species&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 允许你这么做</font></p>
+<pre><code class="plain">class MyArray extends Array &#123;
+  // 覆盖 species 到父级的 Array 构造函数上
+  static get [Symbol.species]() &#123;
+    return Array;
+  &#125;
+&#125;
+var a = new MyArray(1, 2, 3);
+var mapped = a.map((x) =&gt; x * x);
+
+console.log(mapped instanceof MyArray); // false
+console.log(mapped instanceof Array); // true
+</code></pre>
+<h3 id="Symbol-toStringTag（Object-内部调用）"><a href="#Symbol-toStringTag（Object-内部调用）" class="headerlink" title="Symbol.toStringTag（Object 内部调用）"></a><font style="color:rgb(27, 27, 27);">Symbol.toStringTag（Object 内部调用）</font></h3><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.toStringTag&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 内置通用（well-known）symbol 是一个字符串值属性，用于创建对象的默认字符串描述。它由 </font>Object.prototype.toString()<font style="color:rgb(27, 27, 27);"> 方法内部访问。</font></p>
+<pre><code class="plain">class ValidatorClass &#123;
+  get [Symbol.toStringTag]() &#123;
+    return &#39;Validator&#39;;
+  &#125;
+&#125;
+
+console.log(Object.prototype.toString.call(new ValidatorClass()));
+// Expected output: &quot;[object Validator]&quot;
+</code></pre>
+<h3 id="Symbol-unscopables（类似属性描述符）"><a href="#Symbol-unscopables（类似属性描述符）" class="headerlink" title="Symbol.unscopables（类似属性描述符）"></a><font style="color:rgb(27, 27, 27);">Symbol.unscopables（类似属性描述符）</font></h3><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Symbol.unscopables&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 指用于指定对象值，其对象自身和继承的从关联对象的 with 环境绑定中排除的属性名称。</font></p>
+<pre><code class="plain">const object1 = &#123;
+  property1: 42,
+&#125;;
+
+object1[Symbol.unscopables] = &#123;
+  property1: true,
+&#125;;
+
+with (object1) &#123;
+  console.log(property1);
+  // Expected output: Error: property1 is not defined
+&#125;
+</code></pre>
+<h3 id="字符串的内部调用方法"><a href="#字符串的内部调用方法" class="headerlink" title="字符串的内部调用方法"></a>字符串的内部调用方法</h3><p><font style="color:rgb(27, 27, 27);">Symbol.match</font></p>
+<p><font style="color:rgb(27, 27, 27);">Symbol.matchAll</font></p>
+<p><font style="color:rgb(27, 27, 27);">Symbol.replace</font></p>
+<p><font style="color:rgb(27, 27, 27);">Symbol.search</font></p>
+<p><font style="color:rgb(27, 27, 27);">Symbol.split</font></p>
+<h2 id="实例方法-2"><a href="#实例方法-2" class="headerlink" title="实例方法"></a>实例方法</h2><h3 id="Symbol-prototype-Symbol-toPrimitive"><a href="#Symbol-prototype-Symbol-toPrimitive" class="headerlink" title="Symbol.prototype.[Symbol.toPrimitive]"></a><font style="color:rgb(27, 27, 27);">Symbol.prototype.[Symbol.toPrimitive]</font></h3><p><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;[Symbol.toPrimitive]()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 方法可将 </font>Symbol<font style="color:rgb(27, 27, 27);"> 对象转换为 symbol 值。</font></p>
+<p><font style="color:rgb(27, 27, 27);">返回指定的 </font>Symbol<font style="color:rgb(27, 27, 27);"> 对象的原始值。</font></p>
+<p><font style="color:rgb(27, 27, 27);">JavaScript 调用 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;[Symbol.toPrimitive]()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 方法将一个对象转换为原始值表示。你不需要自己调用 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;[Symbol.toPrimitive]()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 方法；当对象需要被转换为原始值时，JavaScript 会自动地调用该方法。</font></p>
+<h3 id="Symbol-prototype-toString"><a href="#Symbol-prototype-toString" class="headerlink" title="Symbol.prototype.toString()"></a><font style="color:rgb(27, 27, 27);">Symbol.prototype.toString()</font></h3><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;toString()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法返回当前 symbol 对象的字符串表示。</font></p>
+<p><font style="color:rgb(27, 27, 27);"></font></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toString#symbol_%E5%8E%9F%E5%A7%8B%E5%80%BC%E4%B8%8D%E8%83%BD%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><font style="color:rgb(27, 27, 27);">symbol 原始值不能转换为字符串</font></a></p>
+<p><font style="color:rgb(27, 27, 27);">symbol 原始值不能转换为字符串，所以只能先转换成它的包装对象，再调用 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;toString()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 方法</font></p>
+<pre><code class="plain">Symbol(&quot;foo&quot;) + &quot;bar&quot;;
+// TypeError: Can&#39;t convert symbol to string
+Symbol(&quot;foo&quot;).toString() + &quot;bar&quot;;
+// &quot;Symbol(foo)bar&quot;，就相当于下面的：
+Object(Symbol(&quot;foo&quot;)).toString() + &quot;bar&quot;;
+// &quot;Symbol(foo)bar&quot;
+</code></pre>
+<h3 id="Symbol-prototype-valueOf"><a href="#Symbol-prototype-valueOf" class="headerlink" title="Symbol.prototype.valueOf()"></a><font style="color:rgb(27, 27, 27);">Symbol.prototype.valueOf()</font></h3><p>Symbol<font style="color:rgb(27, 27, 27);"> 值的 </font><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;valueOf()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法会返回该符号（symbol）的值。</font></p>
+<pre><code class="plain">const symbol1 = Symbol(&#39;foo&#39;);
+
+console.log(typeof Object(symbol1));
+// Expected output: &quot;object&quot;
+
+console.log(typeof Object(symbol1).valueOf());
+// Expected output: &quot;symbol&quot;
+</code></pre>
+<h2 id="实例属性"><a href="#实例属性" class="headerlink" title="实例属性"></a>实例属性</h2><h3 id="Symbol-prototype-description"><a href="#Symbol-prototype-description" class="headerlink" title="Symbol.prototype.description"></a><font style="color:rgb(27, 27, 27);">Symbol.prototype.description</font></h3><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;description&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 是一个只读属性，它会返回 </font>Symbol<font style="color:rgb(27, 27, 27);"> 对象的可选描述的字符串。</font></p>
+<pre><code class="plain">console.log(Symbol(&#39;desc&#39;).description);
+// Expected output: &quot;desc&quot;
+
+console.log(Symbol.iterator.description);
+// Expected output: &quot;Symbol.iterator&quot;
+
+console.log(Symbol.for(&#39;foo&#39;).description);
+// Expected output: &quot;foo&quot;
+
+console.log(`$&#123;Symbol(&#39;foo&#39;).description&#125;bar`);
+// Expected output: &quot;foobar&quot;
+</code></pre>
+<h1 id="bigInt"><a href="#bigInt" class="headerlink" title="bigInt"></a>bigInt</h1><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;BigInt&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 是一种内置对象，它提供了一种方法来表示大于 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;2^53 - 1&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 的整数</font></p>
+<p>获取一个 bigInt 类型</p>
+<p><font style="color:rgb(27, 27, 27);">1.可以用在一个整数字面量后面加 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;n&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 的方式定义一个 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;BigInt&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> ，如：</font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;10n&lt;/font&gt;</code></p>
+<p><font style="color:rgb(27, 27, 27);">2.调用函数 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;BigInt()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">并传递一个整数值或字符串值。</font></p>
+<p>直接调用</p>
+<pre><code class="plain">BigInt(123);
+</code></pre>
+<h1 id="数学（Math）"><a href="#数学（Math）" class="headerlink" title="数学（Math）"></a>数学（Math）</h1><table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Math.PI</td>
+<td>得到圆周率 π</td>
+<td></td>
+</tr>
+<tr>
+<td>Math.abs()</td>
+<td>求某个数绝对值</td>
+<td>传入一个数</td>
+</tr>
+<tr>
+<td>Math.ceil()</td>
+<td>向上取整</td>
+<td>传入一个数</td>
+</tr>
+<tr>
+<td>Math.floor()</td>
+<td>向下取整</td>
+<td>传入一个数</td>
+</tr>
+<tr>
+<td>Math.max()</td>
+<td>求一个数列中的最大值</td>
+<td>把数列依次传入</td>
+</tr>
+<tr>
+<td>Math.min()</td>
+<td>求一个数列中的最小值</td>
+<td>把数列依次传入</td>
+</tr>
+<tr>
+<td>Math.random()</td>
+<td>得到一个 0-1 之间的随机小数</td>
+<td>无参；无法取到 1</td>
+</tr>
+<tr>
+<td>Math.round()</td>
+<td>返回四舍五入的结果</td>
+<td>传入一个数</td>
+</tr>
+</tbody></table>
+<h4 id="max"><a href="#max" class="headerlink" title="max"></a>max</h4><p>无论多少参数，每一项必须是个数字</p>
+<pre><code class="plain">console.log(Math.max(1, 3, 2));
+// Expected output: 3
+
+console.log(Math.max(-1, -3, -2));
+// Expected output: -1
+
+const array1 = [1, 3, 2];
+
+console.log(Math.max(...array1));
+// Expected output: 3
+</code></pre>
+<h4 id="round"><a href="#round" class="headerlink" title="round"></a>round</h4><p>四舍五入返回数字</p>
+<h4 id="random"><a href="#random" class="headerlink" title="random"></a>random</h4><p>得到一个 0 到 1 之间的随机数</p>
+<pre><code class="plain">Math.random()
+0.5588771849592984
+</code></pre>
+<p>得到一个两个数字之间的随机数</p>
+<pre><code class="plain">function getRandomArbitrary(min, max) &#123;
+  return Math.random() * (max - min) + min;
+&#125;
+</code></pre>
+<p>得到一个两个数字之间的随机整数</p>
+<pre><code class="plain">function getRandomInt(min, max) &#123;
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // 不包含最大值，包含最小值
+&#125;
+</code></pre>
+<h1 id="日期（Date）"><a href="#日期（Date）" class="headerlink" title="日期（Date）"></a>日期（Date）</h1><h3 id="时间基础知识"><a href="#时间基础知识" class="headerlink" title="时间基础知识"></a>时间基础知识</h3><h4 id="单位"><a href="#单位" class="headerlink" title="单位"></a>单位</h4><table>
+<thead>
+<tr>
+<th>单位</th>
+<th>名称</th>
+<th>换算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hour</td>
+<td>小时</td>
+<td>1 day = 24 hours</td>
+</tr>
+<tr>
+<td>minute</td>
+<td>分钟</td>
+<td>1 hour = 60 minutes</td>
+</tr>
+<tr>
+<td>second</td>
+<td>秒</td>
+<td>1 minute = 60 seconds</td>
+</tr>
+<tr>
+<td>millisecond （ms）</td>
+<td>毫秒</td>
+<td>1 second = 1000 ms</td>
+</tr>
+<tr>
+<td>nanosecond （ns）</td>
+<td>纳秒</td>
+<td>1 ms = 1000 ns</td>
+</tr>
+</tbody></table>
+<h4 id="GMT-和-UTC"><a href="#GMT-和-UTC" class="headerlink" title="GMT 和 UTC"></a>GMT 和 UTC</h4><p>世界划分为 24 个时区，北京在东 8 区，格林威治在 0 时区。</p>
+<p><strong>GMT</strong>：Greenwish Mean Time 格林威治世界时。太阳时，精确到毫秒。</p>
+<p><strong>UTC</strong>：Universal Time Coodinated 世界协调时。以原子时间为计时标准，精确到纳秒。</p>
+<blockquote>
+<p>国际标准中，已全面使用 UTC 时间，而不再使用 GMT 时间</p>
+</blockquote>
+<p>GMT 和 UTC 时间在文本表示格式上是一致的，均为<code>星期缩写, 日期 月份 年份 时间 GMT</code>，例如：</p>
+<pre><code class="plain">Thu, 27 Aug 2020 08:01:44 GMT
+</code></pre>
+<h4 id="Unix-时间戳"><a href="#Unix-时间戳" class="headerlink" title="Unix 时间戳"></a>Unix 时间戳</h4><blockquote>
+<p>Unix 时间戳（Unix Timestamp）是 Unix 系统最早提出的概念</p>
+</blockquote>
+<p>它将 UTC 时间 1970 年 1 月 1 日凌晨作为起始时间，到指定时间经过的秒数（毫秒数）</p>
+<p><strong>时间戳不分时区</strong></p>
+<h3 id="日期-API"><a href="#日期-API" class="headerlink" title="日期 API"></a>日期 API</h3><p>构造函数：</p>
+<pre><code class="javascript">new Date(); // 得到一个当前日期对象
+new Date(value); // 根据时间戳得到一个日期对象
+new Date(dateString); // 根据一个标准日期字符串得到一个日期对象
+// 根据年、月、日、小时、分钟、秒、毫秒得到一个日期对象
+new Date(year, monthIndex [, day [, hours [, minutes [, seconds [, milliseconds]]]]]);
+
+const birthday = new Date(&quot;1995-12-17T03:24:00&quot;); // 这是符合 ISO-8601 标准的，将可靠地工作
+const birthday = new Date(1995, 11, 17); // 月份是以 0 为索引的
+const birthday = new Date(1995, 11, 17, 3, 24, 0);
+const birthday = new Date(628021800000); // 传递纪元时间戳参数
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/now">Date.now()</a></td>
+<td>得到当前时间戳</td>
+<td>无参</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear">Date.prototype.getFullYear()</a></td>
+<td>得到年</td>
+<td>无参；本地时间；</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth">Date.prototype.getMonth()</a></td>
+<td>得到月</td>
+<td>无参；本地时间；范围 0-11</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate">Date.prototype.getDate()</a></td>
+<td>得到日</td>
+<td>无参；本地时间；</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/getHours">Date.prototype.getHours()</a></td>
+<td>得到小时</td>
+<td>无参；本地时间；</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/getMinutes">Date.prototype.getMinutes()</a></td>
+<td>得到分钟</td>
+<td>无参；本地时间；</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/getSeconds">Date.prototype.getSeconds()</a></td>
+<td>得到秒</td>
+<td>无参；本地时间；</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/getMilliseconds">Date.prototype.getMilliseconds()</a></td>
+<td>得到毫秒</td>
+<td>无参；本地时间；</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString">Date.prototype.toLocaleString()</a></td>
+<td>得到日期本地的表示方式</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><ul>
+<li><font style="color:rgb(27, 27, 27);">如果该值是</font><font style="color:rgb(27, 27, 27);"> </font>null<font style="color:rgb(27, 27, 27);"> </font><font style="color:rgb(27, 27, 27);">或者</font><font style="color:rgb(27, 27, 27);"> </font>undefined<font style="color:rgb(27, 27, 27);">，它会生成并返回一个空对象。</font></li>
+<li><font style="color:rgb(27, 27, 27);">如果该值已经是一个对象，则返回该值。</font></li>
+<li><font style="color:rgb(27, 27, 27);">否则，它将返回与给定值对应的类型的对象。例如，传递 </font>BigInt<font style="color:rgb(27, 27, 27);"> 基本类型会返回一个 BigInt 封装对象。</font></li>
+</ul>
+<p>调用构造函数一定会返回一个对象</p>
+<pre><code class="plain">//都可以创建一个对象
+const o = new Object();
+const o = new Object(undefined);
+const o = new Object(null);
+
+//可以创建一个Number
+const a = new Object(2);
+</code></pre>
+<h4 id="直接调用"><a href="#直接调用" class="headerlink" title="直接调用"></a>直接调用</h4><p>效果一致</p>
+<h2 id="静态方法-2"><a href="#静态方法-2" class="headerlink" title="静态方法"></a>静态方法</h2><h4 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a><font style="color:rgb(27, 27, 27);">Object.assign()</font></h4><p><font style="color:rgb(27, 27, 27);">将一个或者多个源对象中所有</font><strong>可枚举**</strong><font style="color:rgb(27, 27, 27);">的</font>*<strong>*自有属性</strong><font style="color:rgb(27, 27, 27);">复制到目标对象，并返回修改后的目标对象。</font></p>
+<pre><code class="plain">const target = &#123; a: 1, b: 2 &#125;;
+const source = &#123; b: 4, c: 5 &#125;;
+
+//source可以有多个，改变原来的target
+const returnedTarget = Object.assign(target, source);
+</code></pre>
+<h4 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create()"></a><font style="color:rgb(27, 27, 27);">Object.create()</font></h4><p><font style="color:rgb(27, 27, 27);">以一个现有对象作为原型，创建一个新对象。</font></p>
+<p><font style="color:rgb(27, 27, 27);">是一种继承方式</font></p>
+<pre><code class="plain">const person = &#123;
+  isHuman: false,
+  printIntroduction: function () &#123;
+    console.log(`My name is $&#123;this.name&#125;. Am I human? $&#123;this.isHuman&#125;`);
+  &#125;,
+&#125;;
+
+const me = Object.create(person);
+
+me.name = &#39;Matthew&#39;; // &quot;name&quot; is a property set on &quot;me&quot;, but not on &quot;person&quot;
+me.isHuman = true; // Inherited properties can be overwritten
+
+me.printIntroduction();
+// Expected output: &quot;My name is Matthew. Am I human? true&quot;
+
+
+//会创建一个没有隐式原型的对象
+let obj = Object.create(null);
+
+
+//这就是一个数组，他把数组的原型作为自己的隐式原型
+let obj = Object.create(Array.prototype);
+</code></pre>
+<h4 id="Object-defineProperty-obj-property-descriptor"><a href="#Object-defineProperty-obj-property-descriptor" class="headerlink" title="Object.defineProperty(obj,property,descriptor)"></a><font style="color:rgb(27, 27, 27);">Object.defineProperty(obj,property,descriptor)</font></h4><p><font style="color:rgb(27, 27, 27);">属性描述符</font></p>
+<p><font style="color:rgb(27, 27, 27);">参数一：obj（绑定属性的目标对象）</font></p>
+<p><font style="color:rgb(27, 27, 27);">参数二：property（绑定的属性名）</font></p>
+<p><font style="color:rgb(27, 27, 27);">参数三：descriptor（属性描述（配置），且此参数本身为一个对象</font></p>
+<pre><code class="typescript">&#123;
+  value: 10, //设置值
+  writable: false, // 是否可以重写
+  enumerable: false, // 是否可以遍历
+  configurable: false, // 不可修改描述符本身,不可在其他地方再进行Object.defineProperty对其属性进行操作
+  get: function () &#123;
+    return 123;
+  &#125;, // 读取器 getter
+  set: function (val) &#123;
+    throw new Error(
+      `兄弟，你正在给a这个属性重新赋值，你所赋的值是$&#123;val&#125;，但是，这个属性是不能复制，你再考虑考虑`
+    );
+  &#125;
+&#125;
+</code></pre>
+<pre><code class="typescript">var obj = &#123;
+  b: 2,
+&#125;;
+
+// 得到属性描述符
+let desc = Object.getOwnPropertyDescriptor(obj, &quot;a&quot;);
+console.log(desc);
+
+// 设置属性描述符
+Object.defineProperty(obj, &quot;a&quot;, &#123;
+  value: 10,
+  writable: false, // 不可重写
+  enumerable: false, // 不可遍历
+  configurable: false, // 不可修改描述符本身,不可在其他地方再进行Object.defineProperty对其属性进行操作
+  get: function () &#123;
+    return 123;
+  &#125;, // 读取器 getter
+  set: function (val) &#123;
+    throw new Error(
+      `兄弟，你正在给a这个属性重新赋值，你所赋的值是$&#123;val&#125;，但是，这个属性是不能复制，你再考虑考虑`
+    );
+  &#125;, // 设置器 setter
+&#125;);
+</code></pre>
+<p><strong>当你打开属性面板有三个点隐藏说明他是 get 属性，在你点击三个点的时候进行动态计算</strong></p>
+<h4 id="Object-defineProperties"><a href="#Object-defineProperties" class="headerlink" title="Object.defineProperties()"></a><font style="color:rgb(27, 27, 27);">Object.defineProperties()</font></h4><p>同时定义多个属性</p>
+<pre><code class="typescript">const obj = &#123;&#125;;
+Object.defineProperties(obj, &#123;
+  property1: &#123;
+    value: true,
+    writable: true,
+  &#125;,
+  property2: &#123;
+    value: &quot;Hello&quot;,
+    writable: false,
+  &#125;,
+  // 等等……
+&#125;);
+</code></pre>
+<h4 id="Object-getOwnPropertyDescriptor-obj-propertyName"><a href="#Object-getOwnPropertyDescriptor-obj-propertyName" class="headerlink" title="Object.getOwnPropertyDescriptor(obj, propertyName)"></a>Object.getOwnPropertyDescriptor(obj, propertyName)</h4><p><strong><font style="color:rgb(27, 27, 27);">返回一个对象描述给定对象上特定属性</font></strong><font style="color:rgb(27, 27, 27);">（即直接存在于对象上而不在对象的原型链中的属性）的配置。返回的对象是可变的，但对其进行更改不会影响原始属性的配置。</font></p>
+<pre><code class="markdown">const user = &#123;
+name: &#39;monica&#39;,
+age: 17
+&#125;
+
+Object.getOwnPropertyDescriptor(user, &#39;name&#39;);
+/_
+&#123;
+value: &#39;monica&#39;,
+configurable: true, // 该属性的描述符是否可以被重新定义
+enumerable: true, // 该属性是否允许被遍历，会影响 for-in 循环
+writable: true // 该属性是否允许被修改
+&#125;
+_/
+</code></pre>
+<h4 id="Object-getOwnPropertyDescriptors"><a href="#Object-getOwnPropertyDescriptors" class="headerlink" title="Object.getOwnPropertyDescriptors()"></a><font style="color:rgb(27, 27, 27);">Object.getOwnPropertyDescriptors()</font></h4><p><font style="color:rgb(27, 27, 27);">返回给定对象的所有自有属性描述符。</font></p>
+<p><font style="color:rgb(27, 27, 27);">返回的是一个对象，key 为要查询的 key，value 为属性描述符（当前状态）</font></p>
+<pre><code class="typescript">const object1 = &#123;
+  a:42,
+  b:24
+&#125;;
+
+&#123;
+  &quot;a&quot;: &#123;
+    &quot;value&quot;: 42,
+    &quot;writable&quot;: true,
+    &quot;enumerable&quot;: true,
+    &quot;configurable&quot;: true
+  &#125;,
+  &quot;b&quot;: &#123;
+    &quot;value&quot;: 24,
+    &quot;writable&quot;: true,
+    &quot;enumerable&quot;: true,
+    &quot;configurable&quot;: true
+  &#125;
+&#125;
+</code></pre>
+<h4 id="Object-freeze"><a href="#Object-freeze" class="headerlink" title="Object.freeze()"></a><font style="color:rgb(27, 27, 27);">Object.freeze()</font></h4><p><font style="color:rgb(27, 27, 27);">Object.freeze()</font><font style="color:rgb(27, 27, 27);"> 静态方法可以使一个对象被</font><font style="color:rgb(27, 27, 27);">冻结</font><font style="color:rgb(27, 27, 27);">。冻结对象可以</font>防止扩展<font style="color:rgb(27, 27, 27);">，并使现有的属性</font><strong><font style="color:rgb(27, 27, 27);">不可写入和不可配置</font></strong><font style="color:rgb(27, 27, 27);">。</font></p>
+<p><font style="color:rgb(27, 27, 27);">被冻结的对象不能再被更改：</font></p>
+<ol>
+<li><font style="color:rgb(27, 27, 27);">不能添加新的属性</font></li>
+<li><font style="color:rgb(27, 27, 27);">不能移除现有的属性</font></li>
+<li><font style="color:rgb(27, 27, 27);">不能更改它们的可枚举性、可配置性、可写性或值</font></li>
+<li><font style="color:rgb(27, 27, 27);">对象的原型也不能被重新指定。</font></li>
+</ol>
+<pre><code class="typescript">const obj = &#123;
+  prop: 42,
+&#125;;
+
+Object.freeze(obj);
+
+obj.prop = 33;
+// Throws an error in strict mode
+
+console.log(obj.prop);
+// Expected output: 42
+</code></pre>
+<p>解冻</p>
+<pre><code class="typescript">let thawedObj = Object.assign(&#123;&#125;, obj);
+// 或者
+let thawedObj = &#123; ...obj &#125;;
+</code></pre>
+<h4 id="Object-isFrozen"><a href="#Object-isFrozen" class="headerlink" title="Object.isFrozen()"></a>Object.isFrozen()</h4><p><font style="color:rgb(27, 27, 27);">判断一个对象是否被</font>冻结<font style="color:rgb(27, 27, 27);">。</font></p>
+<h4 id="Object-preventExtensions"><a href="#Object-preventExtensions" class="headerlink" title="Object.preventExtensions()"></a><font style="color:rgb(27, 27, 27);">Object.preventExtensions()</font></h4><p><font style="color:rgb(27, 27, 27);">可以防止新属性被添加到对象中（即防止该对象被扩展）。它还可以防止对象的原型被重新指定。</font></p>
+<pre><code class="typescript">const object1 = &#123;&#125;;
+
+Object.preventExtensions(object1);
+
+try &#123;
+  Object.defineProperty(object1, &quot;property1&quot;, &#123;
+    value: 42,
+  &#125;);
+&#125; catch (e) &#123;
+  console.log(e);
+  // Expected output: TypeError: Cannot define property property1, object is not extensible
+&#125;
+</code></pre>
+<h4 id="Object-isExtensible"><a href="#Object-isExtensible" class="headerlink" title="Object.isExtensible()"></a><font style="color:rgb(27, 27, 27);">Object.isExtensible()</font></h4><p><font style="color:rgb(27, 27, 27);">判断一个对象是否是可扩展的（是否可以在它上面添加新的属性）</font></p>
+<h4 id="Object-seal"><a href="#Object-seal" class="headerlink" title="Object.seal()"></a><font style="color:rgb(27, 27, 27);">Object.seal()</font></h4><p><font style="color:rgb(27, 27, 27);">密封一个对象会</font>阻止其扩展<font style="color:rgb(27, 27, 27);">并且使得现有属性不可配置。密封对象有一组固定的属性：</font><strong><font style="color:rgb(27, 27, 27);">不能添加新属性、不能删除现有属性或更改其可枚举性和可配置性、不能重新分配其原型。只要现有属性的值是可写的，它们仍然可以更改</font></strong><font style="color:rgb(27, 27, 27);">。</font><font style="color:rgb(27, 27, 27);">seal()</font><font style="color:rgb(27, 27, 27);"> 返回传入的同一对象</font></p>
+<pre><code class="typescript">const object1 = &#123;
+  property1: 42,
+&#125;;
+
+Object.seal(object1);
+object1.property1 = 33;
+console.log(object1.property1);
+// Expected output: 33
+
+delete object1.property1; // Cannot delete when sealed
+console.log(object1.property1);
+// Expected output: 33
+</code></pre>
+<h4 id="Object-isSealed"><a href="#Object-isSealed" class="headerlink" title="Object.isSealed()"></a><font style="color:rgb(27, 27, 27);">Object.isSealed()</font></h4><p><font style="color:rgb(27, 27, 27);">判断一个对象是否被密封。</font></p>
+<h4 id="Object-getOwnPropertyNames"><a href="#Object-getOwnPropertyNames" class="headerlink" title="Object.getOwnPropertyNames()"></a><font style="color:rgb(27, 27, 27);">Object.getOwnPropertyNames()</font></h4><p><font style="color:rgb(27, 27, 27);">返回一个数组，其包含给定对象中所有自有属性（包括不可枚举属性，但不包括使用 symbol 值作为名称的属性）</font></p>
+<pre><code class="typescript">const object1 = &#123;
+  a: 1,
+  b: 2,
+  c: 3,
+&#125;;
+
+console.log(Object.getOwnPropertyNames(object1));
+// Expected output: Array [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+</code></pre>
+<h4 id="Object-getOwnPropertySymbols"><a href="#Object-getOwnPropertySymbols" class="headerlink" title="Object.getOwnPropertySymbols()"></a><font style="color:rgb(27, 27, 27);">Object.getOwnPropertySymbols()</font></h4><p><font style="color:rgb(27, 27, 27);">返回一个包含给定对象所有自有 Symbol 属性的数组。</font></p>
+<pre><code class="typescript">const object1 = &#123;&#125;;
+const a = Symbol(&quot;a&quot;);
+const b = Symbol.for(&quot;b&quot;);
+const c = 1;
+
+object1[a] = &quot;localSymbol&quot;;
+object1[b] = &quot;globalSymbol&quot;;
+object1[c] = &quot;123&quot;;
+
+const objectSymbols = Object.getOwnPropertySymbols(object1);
+
+console.log(objectSymbols);
+//&gt; Array [Symbol(a), Symbol(b)]
+console.log(objectSymbols.length);
+// Expected output: 2
+</code></pre>
+<h4 id="Object-hasOwn"><a href="#Object-hasOwn" class="headerlink" title="Object.hasOwn()"></a><font style="color:rgb(27, 27, 27);">Object.hasOwn()</font></h4><p><font style="color:rgb(27, 27, 27);">如果指定的对象自身有指定的属性，则返回 true,否则为 false</font></p>
+<pre><code class="typescript">const object1 = &#123;
+  prop: &quot;exists&quot;,
+&#125;;
+
+console.log(Object.hasOwn(object1, &quot;prop&quot;));
+// Expected output: true
+
+console.log(Object.hasOwn(object1, &quot;toString&quot;));
+// Expected output: false
+
+console.log(Object.hasOwn(object1, &quot;undeclaredPropertyValue&quot;));
+// Expected output: false
+</code></pre>
+<p><font style="color:rgb(27, 27, 27);"></font></p>
+<h4 id="Object-entries-object"><a href="#Object-entries-object" class="headerlink" title="Object.entries(object)"></a>Object.entries(object)</h4><p>参数:对象</p>
+<p>返回值：<font style="color:rgb(27, 27, 27);">一个由给定对象自有的可枚举字符串键属性的键值对组成的数组。(得到的是一个二维数组)</font></p>
+<p><font style="color:rgb(27, 27, 27);"></font></p>
+<p><font style="color:rgb(27, 27, 27);">每个键值对都是一个包含两个元素的数组：</font></p>
+<p><font style="color:rgb(27, 27, 27);">第一个元素是属性的键（始终是字符串）</font></p>
+<p><font style="color:rgb(27, 27, 27);">第二个元素是属性值。</font></p>
+<p><font style="color:rgb(27, 27, 27);"></font></p>
+<pre><code class="typescript">const object1 = &#123;
+  a: &quot;somestring&quot;,
+  b: 42,
+&#125;;
+
+for (const [key, value] of Object.entries(object1)) &#123;
+  console.log(`$&#123;key&#125;: $&#123;value&#125;`);
+&#125;
+</code></pre>
+<h4 id="Object-fromEntries"><a href="#Object-fromEntries" class="headerlink" title="Object.fromEntries()"></a><font style="color:rgb(27, 27, 27);">Object.fromEntries()</font></h4><p><font style="color:rgb(27, 27, 27);">将键值对列表转换为一个对象(二维数组转对象)</font></p>
+<pre><code class="typescript">const entries = new Map([
+  [&quot;foo&quot;, &quot;bar&quot;],
+  [&quot;baz&quot;, 42],
+]);
+
+const obj = Object.fromEntries(entries);
+
+console.log(obj);
+// Expected output: Object &#123; foo: &quot;bar&quot;, baz: 42 &#125;
+</code></pre>
+<pre><code class="typescript">const arr = [
+  [&quot;0&quot;, &quot;a&quot;],
+  [&quot;1&quot;, &quot;b&quot;],
+  [&quot;2&quot;, &quot;c&quot;],
+];
+const obj = Object.fromEntries(arr);
+console.log(obj); // &#123; 0: &quot;a&quot;, 1: &quot;b&quot;, 2: &quot;c&quot; &#125;
+</code></pre>
+<h4 id="Object-setPrototypeOf"><a href="#Object-setPrototypeOf" class="headerlink" title="Object.setPrototypeOf()"></a>Object.setPrototypeOf()</h4><p>设置实例的隐式原型</p>
+<pre><code class="javascript">let obj = &#123;&#125;;
+obj.__proto__ = 123;
+
+//两者相等
+
+Object.setPrototypeOf(obj, 123);
+</code></pre>
+<h4 id="Object-getPrototypeOf"><a href="#Object-getPrototypeOf" class="headerlink" title="Object.getPrototypeOf()"></a><font style="color:rgb(27, 27, 27);">Object.getPrototypeOf()</font></h4><p><font style="color:rgb(27, 27, 27);">返回指定对象的原型（即内部 </font><font style="color:rgb(27, 27, 27);">[[Prototype]]</font><font style="color:rgb(27, 27, 27);"> 属性的值）</font></p>
+<pre><code class="typescript">const prototype1 = &#123;&#125;;
+const object1 = Object.create(prototype1);
+
+console.log(Object.getPrototypeOf(object1) === prototype1);
+// Expected output: true
+
+console.log(Object.getPrototypeOf(object1));
+&#123;
+&#125; //里面有原型链
+</code></pre>
+<h4 id="Object-is"><a href="#Object-is" class="headerlink" title="Object.is()"></a><font style="color:rgb(27, 27, 27);">Object.is()</font></h4><p><font style="color:rgb(27, 27, 27);">确定两个值是否为</font>相同值</p>
+<pre><code class="typescript">console.log(Object.is(&quot;1&quot;, 1));
+// Expected output: false
+
+console.log(Object.is(NaN, NaN));
+// Expected output: true
+
+console.log(Object.is(-0, 0));
+// Expected output: false
+
+const obj = &#123;&#125;;
+console.log(Object.is(obj, &#123;&#125;));
+// Expected output: false
+</code></pre>
+<h4 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a><font style="color:rgb(27, 27, 27);">Object.keys()</font></h4><p><font style="color:rgb(27, 27, 27);">返回一个由给定对象自身的可枚举的字符串键属性名组成的数组</font></p>
+<pre><code class="typescript">const object1 = &#123;
+  a: &quot;somestring&quot;,
+  b: 42,
+  c: false,
+&#125;;
+
+console.log(Object.keys(object1));
+// Expected output: Array [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+</code></pre>
+<h4 id="Object-values"><a href="#Object-values" class="headerlink" title="Object.values()"></a><font style="color:rgb(27, 27, 27);">Object.values()</font></h4><p><font style="color:rgb(27, 27, 27);">返回一个给定对象的自有可枚举字符串键属性值组成的数组。</font></p>
+<pre><code class="typescript">const object1 = &#123;
+  a: &quot;somestring&quot;,
+  b: 42,
+  c: false,
+&#125;;
+
+console.log(Object.values(object1));
+// Expected output: Array [&quot;somestring&quot;, 42, false]
+</code></pre>
+<h2 id="实例方法-3"><a href="#实例方法-3" class="headerlink" title="实例方法"></a>实例方法</h2><h4 id="Object-prototype-hasOwnProperty"><a href="#Object-prototype-hasOwnProperty" class="headerlink" title="Object.prototype.hasOwnProperty()"></a><font style="color:rgb(27, 27, 27);">Object.prototype.hasOwnProperty()</font></h4><p><font style="color:rgb(27, 27, 27);">返回一个布尔值，表示对象自有属性（而不是继承来的属性）中是否具有指定的属性。（包括不可枚举属性）</font></p>
+<pre><code class="typescript">const object1 = &#123;&#125;;
+object1.property1 = 42;
+
+console.log(object1.hasOwnProperty(&quot;property1&quot;));
+// Expected output: true
+
+console.log(object1.hasOwnProperty(&quot;toString&quot;));
+// Expected output: false
+
+console.log(object1.hasOwnProperty(&quot;hasOwnProperty&quot;));
+// Expected output: false
+</code></pre>
+<h4 id="Object-prototype-propertyIsEnumerable"><a href="#Object-prototype-propertyIsEnumerable" class="headerlink" title="Object.prototype.propertyIsEnumerable()"></a><font style="color:rgb(27, 27, 27);">Object.prototype.propertyIsEnumerable()</font></h4><p><font style="color:rgb(27, 27, 27);">返回一个布尔值，表示指定的属性是否是对象的</font>可枚举自有<font style="color:rgb(27, 27, 27);">属性。</font></p>
+<pre><code class="javascript">const object1 = &#123;&#125;;
+const array1 = [];
+object1.property1 = 42;
+array1[0] = 42;
+
+console.log(object1.propertyIsEnumerable(&quot;property1&quot;));
+// Expected output: true
+
+console.log(array1.propertyIsEnumerable(0));
+// Expected output: true
+
+console.log(array1.propertyIsEnumerable(&quot;length&quot;));
+// Expected output: false
+</code></pre>
+<h4 id="Object-prototype-isPrototypeOf"><a href="#Object-prototype-isPrototypeOf" class="headerlink" title="Object.prototype.isPrototypeOf()"></a><font style="color:rgb(27, 27, 27);">Object.prototype.isPrototypeOf()</font></h4><p><font style="color:rgb(27, 27, 27);">用于检查一个对象是否存在于另一个对象的原型链中。</font></p>
+<pre><code class="typescript">function Foo() &#123;&#125;
+function Bar() &#123;&#125;
+
+Bar.prototype = Object.create(Foo.prototype);
+
+const bar = new Bar();
+
+console.log(Foo.prototype.isPrototypeOf(bar));
+// Expected output: true
+console.log(Bar.prototype.isPrototypeOf(bar));
+// Expected output: true
+</code></pre>
+<h2 id="实例属性-1"><a href="#实例属性-1" class="headerlink" title="实例属性"></a>实例属性</h2><h4 id="object-prototype-constructor"><a href="#object-prototype-constructor" class="headerlink" title="object.prototype.constructor"></a><font style="color:rgb(27, 27, 27);">object.prototype.constructor</font></h4><p>Object<font style="color:rgb(27, 27, 27);">实例的 </font><strong><font style="color:rgb(27, 27, 27);">constructor</font></strong><font style="color:rgb(27, 27, 27);"> 数据属性返回一个引用，指向创建该实例对象的构造函数。注意，此属性的值是对函数本身的引用，而不是一个包含函数名称的字符串。</font></p>
+<p><font style="color:rgb(27, 27, 27);">这个值</font><font style="color:rgb(27, 27, 27);background-color:rgb(249, 249, 251);">可写，可配置，不可枚举</font></p>
+<pre><code class="javascript">let a = &#123;&#125;;
+a.constructor; //Object() &#123; [native code] &#125;
+let b = [];
+b.constructor; //Array() &#123; [native code] &#125;
+</code></pre>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Function.prototype.apply()</td>
+<td>执行函数，绑定 this</td>
+<td>参数列表以数组的形式传递</td>
+</tr>
+<tr>
+<td>Function.prototype.call()</td>
+<td>执行函数，绑定 this</td>
+<td>参数列表依次传递</td>
+</tr>
+<tr>
+<td>Function.prototype.bind(obj, …args)</td>
+<td>返回一个函数的拷贝，新函数的 this 被绑定为 obj，起始参数被绑定为 args</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>这三个方法都是用来改变函数内部的 this 指向</p>
+<p><strong>常规条件**</strong><font style="color:rgb(37, 41, 51);">this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象，this 永远指向最后调用它的那个对象。</font>**</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply"><strong><font style="color:rgb(37, 41, 51);">apply()</font></strong></a><strong><font style="color:rgb(37, 41, 51);">,call(),bind()可以改变函数的 this 指向</font></strong></p>
+<pre><code class="javascript">var a = &#123;
+  name: &quot;Cherry&quot;,
+
+  func1: function () &#123;
+    console.log(this.name);
+  &#125;,
+
+  func2: function () &#123;
+    setTimeout(
+      function () &#123;
+        this.func1();
+      &#125;.call(a),
+      100
+    );
+  &#125;,
+&#125;;
+a.func2();
+</code></pre>
+<p><font style="color:rgb(37, 41, 51);">apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。</font></p>
+<p><font style="color:rgb(37, 41, 51);">bind 是创建一个新的函数，我们必须要手动去调用</font></p>
+<p><font style="color:rgb(37, 41, 51);"></font></p>
+<p><font style="color:rgb(37, 41, 51);">call 与 apply</font></p>
+<pre><code class="javascript">function m(a, b) &#123;
+  console.log(this, a, b);
+&#125;
+
+var arr = &#123;&#125;;
+// m.call(arr, 1, 2); // 调用m函数，让它里面的this指向arr
+//call与apply的不同是参数的传递方式
+m.apply(arr, [1, 2]);
+</code></pre>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>可迭代</p>
+<h2 id="构造函数-1"><a href="#构造函数-1" class="headerlink" title="构造函数"></a>构造函数</h2><p>使用</p>
+<p>new Array()和 Array 效果是一样的，都会创建一个数组</p>
+<p>单参数</p>
+<p>传入数字会给定长度</p>
+<pre><code class="typescript">const arrayEmpty = new Array(2);
+
+console.log(arrayEmpty.length); // 2
+console.log(arrayEmpty[0]); // undefined；实际上是一个空槽
+console.log(0 in arrayEmpty); // false
+console.log(1 in arrayEmpty); // false
+</code></pre>
+<p>传入其他会作为数组第一项的值</p>
+<pre><code class="typescript">const arrayOfOne = new Array(&quot;2&quot;); // 这里是字符串 &quot;2&quot; 而不是数字 2
+
+console.log(arrayOfOne.length); // 1
+console.log(arrayOfOne[0]); // &quot;2&quot;
+</code></pre>
+<p>多参数</p>
+<p>每一项作为数组的值</p>
+<pre><code class="typescript">const fruits = new Array(&quot;Apple&quot;, &quot;Banana&quot;);
+
+console.log(fruits.length); // 2
+console.log(fruits[0]); // &quot;Apple&quot;
+</code></pre>
+<h2 id="静态方法-3"><a href="#静态方法-3" class="headerlink" title="静态方法"></a>静态方法</h2><h4 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a><font style="color:rgb(27, 27, 27);">Array.from()</font></h4><p><font style="color:rgb(27, 27, 27);">从</font><strong>可迭代</strong><font style="color:rgb(27, 27, 27);">或</font><strong>类数组</strong><font style="color:rgb(27, 27, 27);">对象创建一个新的浅拷贝的数组实例（真正的数组）</font></p>
+<blockquote>
+<p><font style="color:rgb(27, 27, 27);">函数的参数</font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;arguments&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">就是一个类数组</font></p>
+<p><font style="color:rgb(27, 27, 27);">类数组就是有 length 属性，有 0:’a’,1:’b’这样的编号属性</font></p>
+</blockquote>
+<p>参数</p>
+<p>arrayLike</p>
+<p><font style="color:rgb(27, 27, 27);">想要转换成数组的类数组或可迭代对象。</font></p>
+<p>mapFn<font style="color:rgb(27, 27, 27);"> </font>可选</p>
+<p><font style="color:rgb(27, 27, 27);">调用数组每个元素的函数。如果提供，每个将要添加到数组中的值首先会传递给该函数，然后将 mapFn 的返回值增加到数组中。使用以下参数调用该函数：</font></p>
+<p>element</p>
+<p><font style="color:rgb(27, 27, 27);">数组当前正在处理的元素。</font></p>
+<p>index</p>
+<p><font style="color:rgb(27, 27, 27);">数组当前正在处理的元素的索引。</font></p>
+<p>thisArg<font style="color:rgb(27, 27, 27);"> </font>可选</p>
+<p><font style="color:rgb(27, 27, 27);">执行 mapFn 时用作 this 的值。</font></p>
+<pre><code class="typescript">console.log(Array.from(&quot;foo&quot;));
+// Expected output: Array [&quot;f&quot;, &quot;o&quot;, &quot;o&quot;]
+
+console.log(Array.from([1, 2, 3], (x) =&gt; x + x));
+// Expected output: Array [2, 4, 6]
+</code></pre>
+<h4 id="Array-isArray"><a href="#Array-isArray" class="headerlink" title="Array.isArray()"></a><font style="color:rgb(27, 27, 27);">Array.isArray()</font></h4><p><font style="color:rgb(27, 27, 27);">用于确定传递的值是否是一个</font>数组<font style="color:rgb(27, 27, 27);">。（必须要一个真正的数组，类数组不行）</font></p>
+<pre><code class="typescript">console.log(Array.isArray([1, 3, 5]));
+// Expected output: true
+
+console.log(Array.isArray(&quot;[]&quot;));
+// Expected output: false
+
+console.log(Array.isArray(new Array(5)));
+// Expected output: true
+
+console.log(Array.isArray(new Int16Array([15, 33])));
+// Expected output: false
+</code></pre>
+<h4 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of()"></a>Array.of()</h4><p>与构造函数创建数组的区别就是单参数传入数字的时候也是给定值，而不是给定数组长度</p>
+<h2 id="实例方法-4"><a href="#实例方法-4" class="headerlink" title="实例方法"></a>实例方法</h2><h4 id="Array-prototype-at"><a href="#Array-prototype-at" class="headerlink" title="Array.prototype.at()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.at()</font></h4><p>给一个数组下标，相等于通过 a[1]访问</p>
+<h4 id="Array-prototype-concat"><a href="#Array-prototype-concat" class="headerlink" title="Array.prototype.concat()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.concat()</font></h4><p><font style="color:rgb(27, 27, 27);">用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。</font></p>
+<p><font style="color:rgb(27, 27, 27);">但此方法是</font><strong><font style="color:rgb(27, 27, 27);">浅拷贝</font></strong><font style="color:rgb(27, 27, 27);">，不会深度遍历</font></p>
+<pre><code class="typescript">const num1 = [1, 2, 3];
+const num2 = [4, 5, 6];
+const num3 = [7, 8, 9];
+
+const numbers = num1.concat(num2, num3，10);
+
+console.log(numbers);
+// results in [1, 2, 3, 4, 5, 6, 7, 8, 9，10]
+</code></pre>
+<h4 id="Array-prototype-every"><a href="#Array-prototype-every" class="headerlink" title="Array.prototype.every()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.every()</font></h4><p><font style="color:rgb(27, 27, 27);">every() 方法测试一个数组内的所有元素是否都能通过指定函数的测试。</font></p>
+<p><font style="color:rgb(27, 27, 27);">它返回一个布尔值。</font></p>
+<pre><code class="typescript">const isBelowThreshold = (currentValue) =&gt; currentValue &lt; 40;
+
+const array1 = [1, 30, 39, 29, 10, 13];
+
+console.log(array1.every(isBelowThreshold));
+// Expected output: true
+</code></pre>
+<h4 id="Array-prototype-some"><a href="#Array-prototype-some" class="headerlink" title="Array.prototype.some()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.some()</font></h4><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;some()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法测试数组中是否至少有一个元素通过了由提供的函数实现的测试。如果在数组中找到一个元素使得提供的函数返回 true，则返回 true；否则返回 false。它不会修改数组。</font></p>
+<p><font style="color:rgb(27, 27, 27);">语法</font></p>
+<pre><code class="plain">some(callbackFn)
+some(callbackFn, thisArg)
+</code></pre>
+<pre><code class="plain">const array = [1, 2, 3, 4, 5];
+
+// Checks whether an element is even
+const even = (element) =&gt; element % 2 === 0;
+
+console.log(array.some(even));
+// Expected output: true
+</code></pre>
+<h4 id="Array-prototype-filter"><a href="#Array-prototype-filter" class="headerlink" title="Array.prototype.filter()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.filter()</font></h4><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;filter()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法创建给定数组一部分的</font>浅拷贝<font style="color:rgb(27, 27, 27);">，其包含通过所提供函数实现的测试的所有元素。</font></p>
+<pre><code class="plain">filter(callbackFn, thisArg)
+</code></pre>
+<pre><code class="typescript">const words = [&quot;spray&quot;, &quot;elite&quot;, &quot;exuberant&quot;, &quot;destruction&quot;, &quot;present&quot;];
+
+const result = words.filter((word) =&gt; word.length &gt; 6);
+
+console.log(result);
+// Expected output: Array [&quot;exuberant&quot;, &quot;destruction&quot;, &quot;present&quot;]
+</code></pre>
+<h4 id="Array-prototype-flat"><a href="#Array-prototype-flat" class="headerlink" title="Array.prototype.flat()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.flat()</font></h4><p><font style="color:rgb(27, 27, 27);">创建一个新的数组，并根据指定深度递归地将所有子数组元素拼接到</font><strong><font style="color:rgb(27, 27, 27);">新的数组</font></strong><font style="color:rgb(27, 27, 27);">中</font></p>
+<pre><code class="plain">const arr1 = [0, 1, 2, [3, 4]];
+
+console.log(arr1.flat());
+// expected output: Array [0, 1, 2, 3, 4]
+</code></pre>
+<p>语法</p>
+<pre><code class="plain">//depth默认为1，可传infinity
+flat(depth)
+</code></pre>
+<h4 id="Array-prototype-flatMap"><a href="#Array-prototype-flatMap" class="headerlink" title="Array.prototype.flatMap()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.flatMap()</font></h4><p><font style="color:rgb(27, 27, 27);">它等价于在调用 </font>map()<font style="color:rgb(27, 27, 27);"> 方法后再调用深度为 1 的 </font>flat()<font style="color:rgb(27, 27, 27);"> 方法（</font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;arr.map(...args).flat()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">）</font></p>
+<pre><code class="plain">let arr = [[1, 2], [3, 4], [5, 6]];
+
+let result = arr.flatMap(subArr =&gt; subArr.map(num =&gt; num * 2));
+console.log(result);
+// 输出 [2, 4, 6, 8, 10, 12]
+</code></pre>
+<h4 id="Array-prototype-forEach"><a href="#Array-prototype-forEach" class="headerlink" title="Array.prototype.forEach()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.forEach()</font></h4><p>遍历数组，没有返回值</p>
+<p>只可放在链式调用最后</p>
+<p>不能 break 退出</p>
+<p>只能使用同步调用（异步操作会在后台执行，<code>forEach</code> 本身不会等待它们完成 ）</p>
+<p>语法</p>
+<pre><code class="plain">forEach(callbackFn, thisArg)
+</code></pre>
+<h4 id="Array-prototype-join"><a href="#Array-prototype-join" class="headerlink" title="Array.prototype.join()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.join()</font></h4><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;join()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法将一个数组（或一个</font>类数组对象<font style="color:rgb(27, 27, 27);">）的所有元素连接成一个字符串并返回这个字符串，用逗号或指定的分隔符字符串分隔。如果数组只有一个元素，那么将返回该元素而不使用分隔符。</font></p>
+<pre><code class="plain">const elements = [&#39;Fire&#39;, &#39;Air&#39;, &#39;Water&#39;];
+
+console.log(elements.join());
+// Expected output: &quot;Fire,Air,Water&quot;
+
+console.log(elements.join(&#39;&#39;));
+// Expected output: &quot;FireAirWater&quot;
+
+console.log(elements.join(&#39;-&#39;));
+// Expected output: &quot;Fire-Air-Water&quot;
+</code></pre>
+<p>语法</p>
+<pre><code class="plain">join()
+join(separator)
+</code></pre>
+<h4 id="Array-prototype-entries"><a href="#Array-prototype-entries" class="headerlink" title="Array.prototype.entries()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.entries()</font></h4><p><font style="color:rgb(27, 27, 27);">entries() 方法返回一个新的</font>数组迭代器<font style="color:rgb(27, 27, 27);">对象，该对象包含数组中每个索引的键/值对。</font></p>
+<pre><code class="javascript">const array1 = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
+
+const iterator1 = array1.entries();
+
+console.log(iterator1.next().value);
+// Expected output: Array [0, &quot;a&quot;]
+
+console.log(iterator1.next().value);
+// Expected output: Array [1, &quot;b&quot;]
+
+const a = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
+
+for (const [index, element] of a.entries()) &#123;
+  console.log(index, element);
+&#125;
+
+const array = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
+const arrayEntries = array.entries();
+
+for (const element of arrayEntries) &#123;
+  console.log(element);
+&#125;
+
+// [0, &#39;a&#39;]
+// [1, &#39;b&#39;]
+// [2, &#39;c&#39;]
+</code></pre>
+<h4 id="Array-prototype-keys"><a href="#Array-prototype-keys" class="headerlink" title="Array.prototype.keys()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.keys()</font></h4><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;keys()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法返回一个新的</font>数组迭代器<font style="color:rgb(27, 27, 27);">对象，其中包含数组中每个索引的键。</font></p>
+<pre><code class="plain">const array1 = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+const iterator = array1.keys();
+
+for (const key of iterator) &#123;
+  console.log(key);
+&#125;
+
+// Expected output: 0
+// Expected output: 1
+// Expected output: 2
+</code></pre>
+<h4 id="Array-prototype-values"><a href="#Array-prototype-values" class="headerlink" title="Array.prototype.values()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.values()</font></h4><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;values()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法返回一个新的</font>数组迭代器<font style="color:rgb(27, 27, 27);">对象，该对象迭代数组中每个元素的值。</font></p>
+<pre><code class="plain">const array1 = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+const iterator = array1.values();
+
+for (const value of iterator) &#123;
+  console.log(value);
+&#125;
+
+// Expected output: &quot;a&quot;
+// Expected output: &quot;b&quot;
+// Expected output: &quot;c&quot;
+</code></pre>
+<h4 id="Array-prototype-map"><a href="#Array-prototype-map" class="headerlink" title="Array.prototype.map()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.map()</font></h4><p><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;map()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 方法创建一个新数组，这个新数组由原数组中的每个元素都调用一次提供的函数后的返回值组成。</font></p>
+<p><font style="color:rgb(27, 27, 27);">语法</font></p>
+<pre><code class="plain">map(callbackFn, thisArg)
+</code></pre>
+<h4 id="Array-prototype-reduce"><a href="#Array-prototype-reduce" class="headerlink" title="Array.prototype.reduce()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.reduce()</font></h4><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;reduce()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法对数组中的每个元素按序执行一个提供的 </font><strong><font style="color:rgb(27, 27, 27);">reducer</font></strong><font style="color:rgb(27, 27, 27);"> 函数，每一次运行 </font><strong><font style="color:rgb(27, 27, 27);">reducer</font></strong><font style="color:rgb(27, 27, 27);"> 会将先前元素的计算结果作为参数传入，最后将其结果汇总为</font><strong><font style="color:rgb(27, 27, 27);">单个返回值</font></strong><font style="color:rgb(27, 27, 27);">。</font></p>
+<p><font style="color:rgb(27, 27, 27);">第一次执行回调函数时，不存在“上一次的计算结果”。如果需要回调函数从数组索引为 0 的元素开始执行，则需要传递初始值。否则，数组索引为 0 的元素将被用作初始值，迭代器将从第二个元素开始执行（即从索引为 1 而不是 0 的位置开始）。</font></p>
+<pre><code class="plain">const array1 = [1, 2, 3, 4];
+
+// 0 + 1 + 2 + 3 + 4
+const initialValue = 0;
+const sumWithInitial = array1.reduce(
+  (accumulator, currentValue) =&gt; accumulator + currentValue,
+  initialValue,
+);
+</code></pre>
+<p>语法</p>
+<pre><code class="plain">reduce(callbackFn, initialValue)
+</code></pre>
+<p>callbackFn 参数</p>
+<p>1.上一次的计算值</p>
+<p>2.当前元素</p>
+<p>3.索引</p>
+<p>4.整个数组</p>
+<h4 id="Array-prototype-reduceRight"><a href="#Array-prototype-reduceRight" class="headerlink" title="Array.prototype.reduceRight()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.reduceRight()</font></h4><p>采用从右到左的顺序</p>
+<h4 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.slice()</font></h4><p><font style="color:rgb(27, 27, 27);">返回一个新的数组对象，这一对象是一个由 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;start&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 和 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;end&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 决定的原数组的</font>浅拷贝<font style="color:rgb(27, 27, 27);">（包括 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;start&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">，不包括 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;end&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">）</font></p>
+<pre><code class="plain">const animals = [&#39;ant&#39;, &#39;bison&#39;, &#39;camel&#39;, &#39;duck&#39;, &#39;elephant&#39;];
+
+console.log(animals.slice(2));
+// Expected output: Array [&quot;camel&quot;, &quot;duck&quot;, &quot;elephant&quot;]
+
+console.log(animals.slice(2, 4));
+// Expected output: Array [&quot;camel&quot;, &quot;duck&quot;]
+</code></pre>
+<p><font style="color:rgb(27, 27, 27);">语法</font></p>
+<pre><code class="plain">//截取下标arr[start] - arr[end-1]
+slice()
+slice(start)
+slice(start, end)
+</code></pre>
+<h4 id="Array-prototype-toString"><a href="#Array-prototype-toString" class="headerlink" title="Array.prototype.toString()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.toString()</font></h4><p>返回一个字符串</p>
+<pre><code class="plain">const array1 = [1, 2, &#39;a&#39;, &#39;1a&#39;];
+
+console.log(array1.toString());
+// Expected output: &quot;1,2,a,1a&quot;
+</code></pre>
+<h4 id="以下修改原数组"><a href="#以下修改原数组" class="headerlink" title="以下修改原数组"></a>以下修改原数组</h4><h4 id="Array-prototype-copyWithin"><a href="#Array-prototype-copyWithin" class="headerlink" title="Array.prototype.copyWithin()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.copyWithin()</font></h4><p><font style="color:rgba(0, 0, 0, 0.85);">指定位置的元素复制到其他位置（</font><strong><font style="color:rgba(0, 0, 0, 0.85);">会覆盖原有元素</font></strong><font style="color:rgba(0, 0, 0, 0.85);">），并返回修改后的数组。</font></p>
+<pre><code class="typescript">arr.copyWithin(target, start [, end])
+</code></pre>
+<ul>
+<li><code>target</code>：必需。从该位置开始替换数据。如果为负值，则表示从数组末尾开始的偏移量。</li>
+<li><code>start</code>：可选。开始复制元素的起始位置。默认为 0 。如果为负值，则表示从数组末尾开始的偏移量。</li>
+<li><code>end</code>：可选。停止复制元素的结束位置（不包括该位置的元素）。默认为 <code>arr.length</code> 。如果为负值，则表示从数组末尾开始的偏移量。</li>
+</ul>
+<p>例子</p>
+<pre><code class="typescript">let arr = [1, 2, 3, 4, 5];
+
+// 将索引 0 到索引 2 的元素复制到索引 3 开始的位置
+arr.copyWithin(3, 0, 3);
+console.log(arr);
+// 输出 [1, 2, 3, 1, 2]
+设置开始位置为索引3，arr[3]
+设置开始为索引0，结束位置为索引3（不包括3）
+从arr[3]向后一直填充arr[0],arr[1],arr[2]
+</code></pre>
+<h4 id="Array-prototype-fill"><a href="#Array-prototype-fill" class="headerlink" title="Array.prototype.fill()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.fill()</font></h4><p><font style="color:rgb(27, 27, 27);">固定值填充一个数组，</font><strong><font style="color:rgb(27, 27, 27);">修改原数组</font></strong></p>
+<p><font style="color:rgb(27, 27, 27);">参数</font></p>
+<p><font style="color:rgb(27, 27, 27);">1.填充值</font></p>
+<p><font style="color:rgb(27, 27, 27);">2.开始位置(可选）</font></p>
+<p><font style="color:rgb(27, 27, 27);">3.结束位置(可选)</font></p>
+<pre><code class="typescript">const array1 = [1, 2, 3, 4];
+
+// Fill with 0 from position 2 until position 4
+console.log(array1.fill(0, 2, 4));
+// Expected output: Array [1, 2, 0, 0]
+</code></pre>
+<h4 id="Array-prototype-pop-删末尾"><a href="#Array-prototype-pop-删末尾" class="headerlink" title="Array.prototype.pop() 删末尾"></a><font style="color:rgb(27, 27, 27);">Array.prototype.pop() 删末尾</font></h4><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;pop()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法从数组中删除</font><strong><font style="color:rgb(27, 27, 27);">最后一个</font></strong><font style="color:rgb(27, 27, 27);">元素，并返回该元素的值。此方法会更改数组的长度。</font></p>
+<pre><code class="plain">const plants = [&#39;broccoli&#39;, &#39;cauliflower&#39;, &#39;cabbage&#39;, &#39;kale&#39;, &#39;tomato&#39;];
+
+console.log(plants.pop());
+// Expected output: &quot;tomato&quot;
+</code></pre>
+<h4 id="Array-prototype-push-进末尾"><a href="#Array-prototype-push-进末尾" class="headerlink" title="Array.prototype.push() 进末尾"></a><font style="color:rgb(27, 27, 27);">Array.prototype.push() 进末尾</font></h4><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;push()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法将指定的元素添加到数组的末尾，并返回新的数组长度。</font></p>
+<p><font style="color:rgb(27, 27, 27);">可传多个参数</font></p>
+<h4 id="Array-prototype-shift-删头"><a href="#Array-prototype-shift-删头" class="headerlink" title="Array.prototype.shift() 删头"></a><font style="color:rgb(27, 27, 27);">Array.prototype.shift() 删头</font></h4><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;shift()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法从数组中删除</font><strong><font style="color:rgb(27, 27, 27);">第一个</font></strong><font style="color:rgb(27, 27, 27);">元素，并返回该元素的值。此方法更改数组的长度。</font></p>
+<h4 id="Array-prototype-unshift-进头"><a href="#Array-prototype-unshift-进头" class="headerlink" title="Array.prototype.unshift() 进头"></a><font style="color:rgb(27, 27, 27);">Array.prototype.unshift() 进头</font></h4><p><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;unshift()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 方法将指定元素添加到数组的开头，并返回数组的新长度。</font></p>
+<h4 id="Array-prototype-reverse"><a href="#Array-prototype-reverse" class="headerlink" title="Array.prototype.reverse()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.reverse()</font></h4><p><font style="color:rgb(27, 27, 27);">组中的元素顺序将被翻转，变为与之前相反的方向，返回数组的引用</font></p>
+<h4 id="Array-prototype-toRreverse-不修改原数组"><a href="#Array-prototype-toRreverse-不修改原数组" class="headerlink" title="Array.prototype.toRreverse() 不修改原数组"></a><font style="color:rgb(27, 27, 27);">Array.prototype.toRreverse() 不修改原数组</font></h4><p>浅拷贝一个原始数组</p>
+<h4 id="Array-prototype-sort"><a href="#Array-prototype-sort" class="headerlink" title="Array.prototype.sort()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.sort()</font></h4><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;sort()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 方法</font>就地<font style="color:rgb(27, 27, 27);">对数组的元素进行排序，并返回对相同数组的引用。默认排序是将元素转换为字符串，然后按照它们的 UTF-16 码元值升序排序。</font></p>
+<p><font style="color:rgb(27, 27, 27);">语法</font></p>
+<pre><code class="plain">sort()
+sort(compareFn)
+
+compareFn有两个参数，可依次比较
+</code></pre>
+<h4 id="Array-prototype-toSort-不修改原数组"><a href="#Array-prototype-toSort-不修改原数组" class="headerlink" title="Array.prototype.toSort() 不修改原数组"></a><font style="color:rgb(27, 27, 27);">Array.prototype.toSort() 不修改原数组</font></h4><h4 id="Array-prototype-splice"><a href="#Array-prototype-splice" class="headerlink" title="Array.prototype.splice()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.splice()</font></h4><p>就地<font style="color:rgb(27, 27, 27);">移除或者替换已存在的元素和/或添加新的元素。</font></p>
+<p><font style="color:rgb(27, 27, 27);">语法</font></p>
+<pre><code class="plain">splice(start)
+splice(start, deleteCount)
+splice(start, deleteCount, item1)
+splice(start, deleteCount, item1, item2)
+</code></pre>
+<p>start:默认是 0，表示要改变数组的位置</p>
+<p>deleteCount：<font style="color:rgb(27, 27, 27);">一个整数，表示数组中要从 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;start&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 开始删除的元素</font><strong><font style="color:rgb(27, 27, 27);">数量</font></strong><font style="color:rgb(27, 27, 27);">。0 表示不删除，不填等于无穷大，从 start 开始全删</font></p>
+<p><font style="color:rgb(27, 27, 27);">剩余参数表示加入数组的值</font></p>
+<h4 id="Array-prototype-toSplice-不修改原数组"><a href="#Array-prototype-toSplice-不修改原数组" class="headerlink" title="Array.prototype.toSplice() 不修改原数组"></a><font style="color:rgb(27, 27, 27);">Array.prototype.toSplice() 不修改原数组</font></h4><h4 id="查找相关"><a href="#查找相关" class="headerlink" title="查找相关"></a>查找相关</h4><h4 id="Array-prototype-find"><a href="#Array-prototype-find" class="headerlink" title="Array.prototype.find()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.find()</font></h4><p><font style="color:rgb(27, 27, 27);">返回数组中满足提供的测试函数的第一个元素的值。否则返回</font>undefined<font style="color:rgb(27, 27, 27);">。</font></p>
+<p><font style="color:rgb(27, 27, 27);">语法</font></p>
+<pre><code class="plain">find(callbackFn, thisArg)
+</code></pre>
+<h4 id="Array-prototype-findIndex"><a href="#Array-prototype-findIndex" class="headerlink" title="Array.prototype.findIndex()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.findIndex()</font></h4><p>与 find 的区别就是返回的是索引，没找到返回-1</p>
+<h4 id="Array-prototype-findLast"><a href="#Array-prototype-findLast" class="headerlink" title="Array.prototype.findLast()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.findLast()</font></h4><p>与 find 的区别是他是从末尾开始查找</p>
+<h4 id="Array-prototype-findLastIndex"><a href="#Array-prototype-findLastIndex" class="headerlink" title="Array.prototype.findLastIndex()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.findLastIndex()</font></h4><p>与 findIndex 的区别是他是从末尾开始查找</p>
+<h4 id="Array-prototype-includes"><a href="#Array-prototype-includes" class="headerlink" title="Array.prototype.includes()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.includes()</font></h4><p><font style="color:rgb(27, 27, 27);">用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;true&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">，否则返回 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;false&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">。</font></p>
+<p><font style="color:rgb(27, 27, 27);">语法</font></p>
+<pre><code class="plain">//fromIndex开始查找位置，默认为0
+includes(searchElement, fromIndex)
+</code></pre>
+<h4 id="Array-prototype-indexOf"><a href="#Array-prototype-indexOf" class="headerlink" title="Array.prototype.indexOf()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.indexOf()</font></h4><p><font style="color:rgb(27, 27, 27);">返回数组中第一次出现给定元素的下标，如果不存在则返回 -1。</font></p>
+<p><font style="color:rgb(27, 27, 27);">语法</font></p>
+<pre><code class="plain">indexOf(searchElement, fromIndex)
+</code></pre>
+<h4 id="Array-prototype-lastIndexOf"><a href="#Array-prototype-lastIndexOf" class="headerlink" title="Array.prototype.lastIndexOf()"></a><font style="color:rgb(27, 27, 27);">Array.prototype.lastIndexOf()</font></h4><p>与 indexOf 的区别是从后向前查找</p>
+<h4 id="查找总结"><a href="#查找总结" class="headerlink" title="查找总结"></a>查找总结</h4><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;find()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> </font><font style="color:rgb(27, 27, 27);">方法返回数组中满足提供的测试函数的第一个元素的值。否则返回</font><font style="color:rgb(27, 27, 27);"> </font><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined"><font style="color:rgb(27, 27, 27);">undefined</font></a><font style="color:rgb(27, 27, 27);">。</font></p>
+<p><font style="color:rgb(27, 27, 27);">如果需要在数组中找到对应元素的</font><strong><font style="color:rgb(27, 27, 27);">索引</font></strong><font style="color:rgb(27, 27, 27);">，请使用 </font><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex"><font style="color:rgb(27, 27, 27);">findIndex()</font></a><font style="color:rgb(27, 27, 27);">。</font></p>
+<p><font style="color:rgb(27, 27, 27);">如果需要查找</font><strong><font style="color:rgb(27, 27, 27);">某个值的索引</font></strong><font style="color:rgb(27, 27, 27);">，请使用 </font><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf"><font style="color:rgb(27, 27, 27);">Array.prototype.indexOf()</font></a><font style="color:rgb(27, 27, 27);">。（它类似于 </font><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex"><font style="color:rgb(27, 27, 27);">findIndex()</font></a><font style="color:rgb(27, 27, 27);">，但只是检查每个元素是否与值相等，而不是使用测试函数。）</font></p>
+<p><font style="color:rgb(27, 27, 27);">如果需要查找数组中是否</font><strong><font style="color:rgb(27, 27, 27);">存在某个值</font></strong><font style="color:rgb(27, 27, 27);">，请使用 </font><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/includes"><font style="color:rgb(27, 27, 27);">Array.prototype.includes()</font></a><font style="color:rgb(27, 27, 27);">。同样，它检查每个元素是否与值相等，而不是使用测试函数。</font></p>
+<p><font style="color:rgb(27, 27, 27);">如果需要查找是否有元素满足所提供的测试函数，请使用 </font><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/some"><font style="color:rgb(27, 27, 27);">Array.prototype.some()</font></a><font style="color:rgb(27, 27, 27);">。</font></p>
+<h2 id="关键词含义"><a href="#关键词含义" class="headerlink" title="关键词含义"></a>关键词含义</h2><h3 id="thisArg"><a href="#thisArg" class="headerlink" title="thisArg"></a>thisArg</h3><pre><code class="typescript">let mapper = &#123;
+  factor: 2,
+  map: function (x) &#123;
+    return x * this.factor;
+  &#125;,
+&#125;;
+let arr = Array.from([1, 2, 3], mapper.map, mapper);
+console.log(arr); // [2, 4, 6]
+</code></pre>
+<h3 id="callbackFn-element-index-array"><a href="#callbackFn-element-index-array" class="headerlink" title="callbackFn(element,index,array)"></a>callbackFn(element,index,array)</h3><p>当前遍历元素，索引，整个数组</p>
+<h3 id="fromIndex"><a href="#fromIndex" class="headerlink" title="fromIndex "></a>fromIndex<font style="color:rgb(27, 27, 27);"> </font></h3><p><font style="color:rgb(27, 27, 27);">开始搜索的索引（从零开始），</font><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number#%E6%95%B4%E6%95%B0%E8%BD%AC%E6%8D%A2"><font style="color:rgb(27, 27, 27);">会转换为整数</font></a><font style="color:rgb(27, 27, 27);">。</font></p>
+<ul>
+<li><font style="color:rgb(27, 27, 27);">负索引从数组末尾开始计数——如果</font><font style="color:rgb(27, 27, 27);"> </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;frommindex &lt; 0&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">，使用</font><font style="color:rgb(27, 27, 27);"> </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;frommindex + array.length&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">。注意，在这种情况下，仍然从前到后搜索数组。</font></li>
+<li><font style="color:rgb(27, 27, 27);">如果</font><font style="color:rgb(27, 27, 27);"> </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;fromIndex &lt; -array.length&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> </font><font style="color:rgb(27, 27, 27);">或者省略了</font><font style="color:rgb(27, 27, 27);"> </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;fromIndex&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> </font><font style="color:rgb(27, 27, 27);">，将使用</font><font style="color:rgb(27, 27, 27);"> </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;0&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">，而导致整个数组被搜索。</font></li>
+<li><font style="color:rgb(27, 27, 27);">如果 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;fromIndex &gt;= array.length&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">，数组不会继续搜索并返回 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;-1&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">。</font></li>
+</ul>
+<h1 id="类型化数组（Uint8Array）"><a href="#类型化数组（Uint8Array）" class="headerlink" title="类型化数组（Uint8Array）"></a>类型化数组（Uint8Array）</h1><p>Int8Array： 8 位有符号整数（-128 ~ 127）</p>
+<p>Uint8Array： 8 位无符号整数（0 ~ 255）</p>
+<p>64 位浮点数：又称为双精度浮点数，它用 1 位表示符号，11 位表示阶码，52 位表示尾数</p>
+<p>JS 中的所有数字，均使用双精度浮点数保存</p>
+<p>说明在 js 中一个数字占 64 位</p>
+<pre><code class="javascript">//初始化数组
+const arr = new Int32Array(10);
+//初始化元素并赋值
+const arr = Uint8Array.of(12, 5, 6, 7);
+
+//数组长度
+console.log(arr.length);
+
+//数组字节数
+console.log(arr.byteLength);
+</code></pre>
+<p>注意点</p>
+<p>不能增加和删除数据，类型化数组的长度固定</p>
+<p>一些返回数组的方法，返回的数组是同类型化的新数组</p>
+<h1 id="arrayBuffer"><a href="#arrayBuffer" class="headerlink" title="arrayBuffer"></a>arrayBuffer</h1><p>ArrayBuffer：一个对象，用于存储一块固定内存大小的数据。</p>
+<pre><code class="javascript">new ArrayBuffer(字节数);
+</code></pre>
+<p>可以通过属性<code>byteLength</code>得到字节数，可以通过方法<code>slice</code>得到新的 ArrayBuffer</p>
+<pre><code class="html">//创建了一个用于存储10个字节的内存空间 const bf = new ArrayBuffer(10);
+//可以切割 const bf2 = bf.slice(3, 5); console.log(bf, bf2);
+</code></pre>
+<p>读写 ArrayBuffer</p>
+<ol>
+<li>使用 DataView</li>
+</ol>
+<p>通常会在需要混用多种存储格式时使用 DataView</p>
+<pre><code class="html">//创建了一个用于存储10个字节的内存空间 const bf = new ArrayBuffer(10);
+//创建一个DataView，参数的含义是操作bf这个buffer,从第三位开始，向后操作四位
+const view = new DataView(bf, 3, 4); // console.log(view); //设置值
+view.setInt16(1, 3); console.log(view); //读值 console.log(view.getInt16(1));
+</code></pre>
+<ol start="2">
+<li>使用类型化数组</li>
+</ol>
+<p>实际上，每一个类型化数组都对应一个 ArrayBuffer，如果没有手动指定 ArrayBuffer，类型化数组创建时，会新建一个 ArrayBuffer</p>
+<p>实际上类型化数组里面就有一个字段数组.buffer 表示存储的内存位置</p>
+<pre><code class="html">const bf = new ArrayBuffer(10); //10个字节的内存 const arr1 = new Int8Array(bf);
+const arr2 = new Int16Array(bf); console.log(arr1 === arr2);
+console.log(arr1.buffer === arr2.buffer); arr1[0] = 10; console.log(arr1)
+console.log(arr2); const bf = new ArrayBuffer(10); //10个字节的内存 const arr =
+new Int16Array(bf); arr[0] = 2344; //操作了两个字节 console.log(arr);
+</code></pre>
+<p>拿到服务器传过来的图片数据信息</p>
+<pre><code class="html">async function test()&#123; const resp = await fetch(&quot;./img/liao.jpg&quot;) //拿到一个blob
+const blob = await resp.blob(); //拿到一个buffer const bf = await
+blob.arrayBuffer(); const arr = new Int8Array(bf, 3, 2); console.log(arr) &#125;
+</code></pre>
+<p>fetch 请求图片放到页面中(base64 和 url 生成)</p>
+<pre><code class="html">const data = await fetch(&quot;http://localhost:3000/public/test.png&quot;); const blob =
+await data.blob(); const reader = new FileReader(); reader.onload = function
+(event) &#123; // 将图片的 src 属性设置为 base64 编码的数据
+document.getElementById(&#39;imageDisplay&#39;).src = event.target.result; &#125;; //
+将二进制数据读取为 base64 编码的字符串 reader.readAsDataURL(blob); const img =
+document.createElement(&#39;img&#39;); img.src = URL.createObjectURL(blob);
+document.body.appendChild(img);
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

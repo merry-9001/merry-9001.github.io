@@ -1,0 +1,2192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>TS | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>TS</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/2/5
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="ts-优势"><a href="#ts-优势" class="headerlink" title="ts 优势"></a>ts 优势</h1><ul>
+<li>更早的发现错误</li>
+<li>任何位置都有<strong>代码提示</strong>，增加开发效率</li>
+<li>类型系统提升了代码的可维护性，重构更容易</li>
+<li>ts 类型推断机制，降低成本</li>
+</ul>
+<h1 id="ts-与-js-的区别"><a href="#ts-与-js-的区别" class="headerlink" title="ts 与 js 的区别"></a>ts 与 js 的区别</h1><table>
+<thead>
+<tr>
+<th>JavaScript</th>
+<th>TypeScript</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>动态语言</td>
+<td>具有静态语言的特点</td>
+</tr>
+<tr>
+<td>运行时报错</td>
+<td>编译期间报错</td>
+</tr>
+<tr>
+<td>弱类型语言，没有类型</td>
+<td>强类型语言，类似 java, C++等，定义时指明类型</td>
+</tr>
+<tr>
+<td>不支持模块、接口、泛型</td>
+<td>支持模块、接口、泛型</td>
+</tr>
+<tr>
+<td>基本数据类型和引用数据类型</td>
+<td>更多的基本数据类型和引用数据类型，如 any, never, enum 等</td>
+</tr>
+<tr>
+<td>在浏览器中直接执行</td>
+<td>编译为 js 后才能在浏览器进行执行</td>
+</tr>
+</tbody></table>
+<p><font style="color:rgb(51, 51, 51);">J</font><font style="color:rgb(51, 51, 51);">avaScript 是一门解释型语言，没有编译阶段，所以它是动态类型；动态类型是指在运行时才会进行类型检查，这种语言的类型错误往往会导致运行时错误</font></p>
+<p><font style="color:rgb(51, 51, 51);">TypeScript 在运行前需要先编译为 JavaScript，而在编译阶段就会进行类型检查；所以 TypeScript 是静态类型，静态类型是指编译阶段就能确定每个变量的类型，这种语言的类型错误往往会导致语法错误</font></p>
+<p><font style="color:rgb(51, 51, 51);"></font></p>
+<p><font style="color:rgb(51, 51, 51);">解释性语言和编译型语言执行方式</font></p>
+<p><img src="1687163182796-e8ff7f61-fc12-4a27-9ac5-2aeb782b2f0c.png"></p>
+<p>无论是浏览器环境，还是 node 环境，无法直接识别 ts 代码</p>
+<p>ts 代码需要运行必须通过 tsc 编译成 js</p>
+<p>ts 的类型检查都是静态的</p>
+<p>静态：类型检查发生的时间，在编译的时候，而非运行时</p>
+<p><strong>ts 代码会参与运行的只有装饰器和枚举</strong></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>可以全局安装，也可以工程内安装</p>
+<pre><code class="plain">yarn add typescript --dev
+</code></pre>
+<p>安装完成以后就可以使用 tsc 命令来完成将 ts 编译成 js</p>
+<p>tsconfig.json 是用来读取 tsc 运行时候的配置，但在使用了配置文件后，使用 tsc 进行编译时，不能跟上文件名，如果跟上文件名，会忽略配置文件。</p>
+<p>tsc –watch 使用这个命令会让 ts 代码在改变的时候重新编译（不会运行）</p>
+<p>其他库来简化使用 ts 命令的流程</p>
+<ol>
+<li>ts-node</li>
+</ol>
+<p>将 ts 代码在内存中完成编译，同时完成运行，用这个命令不会生成真实的 js 文件，但却可以运行（在内存中打包，不需要生成本地文件），使用 ts-node 需要指定入口文件</p>
+<ol start="2">
+<li>nodemon</li>
+</ol>
+<p>用于检测文件的变化，只要代码一发生改变，就可以重新运行</p>
+<p>文件一变化就执行(–exec)</p>
+<pre><code class="javascript">nodemon --watch src -e ts --exec
+</code></pre>
+<p>-e ts extension,表示要监控的扩展名是 ts</p>
+<p>–watch src 只需要监控 src 这个目录</p>
+<p>ts-node src/index.ts 使用 ts-node 需要给他一个入口文件（使用这个命令，他会自动去读 tsconfig.json 这个配置）</p>
+<pre><code class="json">&quot;scripts&quot;: &#123;
+  &quot;dev&quot;: &quot;nodemon --watch src -e ts --exec ts-node src/index.ts&quot;,
+  &quot;build&quot;: &quot;tsc&quot;
+&#125;,
+</code></pre>
+<h1 id="tsconfig-json-配置文件"><a href="#tsconfig-json-配置文件" class="headerlink" title="tsconfig.json 配置文件"></a>tsconfig.json 配置文件</h1><p>这个文件是通过 tsc –init 命令生成的</p>
+<p>tsconfig.json 是 TypeScript 项目的配置文件。如果一个目录下存在一个 tsconfig.json 文件，那么往往意味着这个目录就是 TypeScript 项目的根目录。</p>
+<p>tsconfig.json 包含 TypeScript 编译的相关配置，通过更改编译配置项，我们可以让 TypeScript 编译出 ES6、ES5、node 的代码。</p>
+<h3 id="配置详解"><a href="#配置详解" class="headerlink" title="配置详解"></a>配置详解</h3><p>配置分类(compilerOptions 选项)</p>
+<pre><code class="typescript">&#123;
+  &quot;compilerOptions&quot;: &#123;
+
+    /* 基本选项 */
+    &quot;target&quot;: &quot;es5&quot;,                       // 指定 ECMAScript 目标版本: &#39;ES3&#39; (default), &#39;ES5&#39;, &#39;ES6&#39;/&#39;ES2015&#39;, &#39;ES2016&#39;, &#39;ES2017&#39;, or &#39;ESNEXT&#39;
+    &quot;module&quot;: &quot;commonjs&quot;,                  // 指定使用模块: &#39;commonjs&#39;, &#39;amd&#39;, &#39;system&#39;, &#39;umd&#39; or &#39;es2015&#39;
+    &quot;lib&quot;: [],                             // 指定要包含在编译中的库文件
+    &quot;allowJs&quot;: true,                       // 允许编译 javascript 文件
+    &quot;checkJs&quot;: true,                       // 报告 javascript 文件中的错误
+    &quot;jsx&quot;: &quot;preserve&quot;,                     // 指定 jsx 代码的生成: &#39;preserve&#39;, &#39;react-native&#39;, or &#39;react&#39;
+    &quot;declaration&quot;: true,                   // 生成相应的 &#39;.d.ts&#39; 文件
+    &quot;sourceMap&quot;: true,                     // 生成相应的 &#39;.map&#39; 文件
+    &quot;outFile&quot;: &quot;./&quot;,                       // 将输出文件合并为一个文件
+    &quot;outDir&quot;: &quot;./&quot;,                        // 指定输出目录
+    &quot;rootDir&quot;: &quot;./&quot;,                       // 用来控制输出目录结构 --outDir.
+    &quot;removeComments&quot;: true,                // 删除编译后的所有的注释
+    &quot;noEmit&quot;: true,                        // 不生成输出文件
+    &quot;importHelpers&quot;: true,                 // 从 tslib 导入辅助工具函数
+    &quot;isolatedModules&quot;: true,               // 将每个文件做为单独的模块 （与 &#39;ts.transpileModule&#39; 类似）.
+
+    /* 严格的类型检查选项 */
+    &quot;strict&quot;: true,                        // 启用所有严格类型检查选项
+    &quot;noImplicitAny&quot;: true,                 // 在表达式和声明上有隐含的 any类型时报错
+    &quot;strictNullChecks&quot;: true,              // 启用严格的 null 检查
+    &quot;noImplicitThis&quot;: true,                // 当 this 表达式值为 any 类型的时候，生成一个错误
+    &quot;alwaysStrict&quot;: true,                  // 以严格模式检查每个模块，并在每个文件里加入 &#39;use strict&#39;
+
+    /* 额外的检查 */
+    &quot;noUnusedLocals&quot;: true,                // 有未使用的变量时，抛出错误
+    &quot;noUnusedParameters&quot;: true,            // 有未使用的参数时，抛出错误
+    &quot;noImplicitReturns&quot;: true,             // 并不是所有函数里的代码都有返回值时，抛出错误
+    &quot;noFallthroughCasesInSwitch&quot;: true,    // 报告 switch 语句的 fallthrough 错误。（即，不允许 switch 的 case 语句贯穿）
+
+    /* 模块解析选项 */
+    &quot;moduleResolution&quot;: &quot;node&quot;,            // 选择模块解析策略： &#39;node&#39; (Node.js) or &#39;classic&#39; (TypeScript pre-1.6)
+    &quot;baseUrl&quot;: &quot;./&quot;,                       // 用于解析非相对模块名称的基目录
+    &quot;paths&quot;: &#123;&#125;,                           // 模块名到基于 baseUrl 的路径映射的列表
+    &quot;rootDirs&quot;: [],                        // 根文件夹列表，其组合内容表示项目运行时的结构内容
+    &quot;typeRoots&quot;: [],                       // 包含类型声明的文件列表
+    &quot;types&quot;: [],                           // 需要包含的类型声明文件名列表
+    &quot;allowSyntheticDefaultImports&quot;: true,  // 允许从没有设置默认导出的模块中默认导入。
+
+    /* Source Map Options */
+    &quot;sourceRoot&quot;: &quot;./&quot;,                    // 指定调试器应该找到 TypeScript 文件而不是源文件的位置
+    &quot;mapRoot&quot;: &quot;./&quot;,                       // 指定调试器应该找到映射文件而不是生成文件的位置
+    &quot;inlineSourceMap&quot;: true,               // 生成单个 soucemaps 文件，而不是将 sourcemaps 生成不同的文件
+    &quot;inlineSources&quot;: true,                 // 将代码与 sourcemaps 生成到一个文件中，要求同时设置了 --inlineSourceMap 或 --sourceMap 属性
+
+    /* 其他选项 */
+    &quot;experimentalDecorators&quot;: true,        // 启用装饰器
+    &quot;emitDecoratorMetadata&quot;: true          // 为装饰器提供元数据的支持
+  &#125;
+&#125;
+</code></pre>
+<h3 id="include"><a href="#include" class="headerlink" title="include"></a>include</h3><p>指定编译文件默认是编译当前目录下所有的 ts 文件</p>
+<ul>
+<li>这个是在中括号中填入路径，路径指向的那个 ts 文件会被编译出一个 js 文件出来。这个我们就可以用来编译指定文件</li>
+</ul>
+<h3 id="exclude"><a href="#exclude" class="headerlink" title="exclude"></a>exclude</h3><p>指定排除的文件</p>
+<ul>
+<li>跟 include 反过来了，除了写入的路径之外，其他全部编译</li>
+</ul>
+<h3 id="target"><a href="#target" class="headerlink" title="target"></a>target</h3><p>指定编译 js 的版本例如 es5 es6</p>
+<ul>
+<li>有些低配置的浏览器是不兼容 es6 的，这个时候我们就可以将其编译成 es5 使其适配</li>
+</ul>
+<h3 id="allowJS"><a href="#allowJS" class="headerlink" title="allowJS"></a>allowJS</h3><p>是否允许编译 js 文件</p>
+<ul>
+<li>是否允许 TypeScript 帮你编译 js 文件，默认是不允许的</li>
+</ul>
+<h3 id="removeComments"><a href="#removeComments" class="headerlink" title="removeComments"></a>removeComments</h3><p>是否在编译过程中删除文件中的注释</p>
+<h3 id="rootDir"><a href="#rootDir" class="headerlink" title="rootDir"></a>rootDir</h3><p>编译文件的目录</p>
+<h3 id="outDir"><a href="#outDir" class="headerlink" title="outDir"></a>outDir</h3><p>输出的目录</p>
+<ul>
+<li>改变输出的目录，也就是编译后输出到这里设置的文件夹目录中</li>
+</ul>
+<h3 id="sourceMap"><a href="#sourceMap" class="headerlink" title="sourceMap"></a>sourceMap</h3><p>代码源文件</p>
+<ul>
+<li>这个文件会打包压缩成一行，sourceMap 会记录行数，到时候会比较好找</li>
+</ul>
+<h3 id="strict"><a href="#strict" class="headerlink" title="strict"></a>strict</h3><p>严格模式</p>
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a>module</h3><p>默认 common.js 可选 es6 模式 amd umd 等</p>
+<h1 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h1><p>TS 中，导入和导出模块，统一使用 ES6 的模块化标准</p>
+<p>在转化为 js 的时候可配置导出的时候使用什么模式(es module,commonjs)</p>
+<h1 id="类型兼容性"><a href="#类型兼容性" class="headerlink" title="类型兼容性"></a>类型兼容性</h1><p>B-&gt;A，如果能完成赋值，则 B 和 A 类型兼容</p>
+<ul>
+<li>基本类型：完全匹配</li>
+<li>对象类型：鸭子辨型法</li>
+</ul>
+<blockquote>
+<p>鸭子辨型法（子结构辨型法）：目标类型需要某一些特征，赋值的类型只要能满足该特征即可</p>
+</blockquote>
+<p>当直接使用对象字面量赋值的时候，会进行更加严格的判断</p>
+<pre><code class="typescript">type a = &#123;
+  b: string;
+  c: number;
+&#125;;
+
+//不能通过直接字面量赋值，会报错
+const d: a = &#123;
+  b: &quot;2&quot;,
+  c: 9,
+  h: &quot;e&quot;,
+&#125;;
+
+//但是可以通过变量赋值，通过变量赋值的时候不会那么严格
+let c = &#123;
+  b: &quot;1&quot;,
+  c: 2,
+  d: 4,
+&#125;;
+let r: a = c;
+</code></pre>
+<ul>
+<li>函数类型</li>
+</ul>
+<p>一切无比自然</p>
+<p><strong>参数</strong>：传递给目标函数的参数可以少，但不可以多</p>
+<p><strong>返回值</strong>：要求返回必须返回；不要求返回，你随意</p>
+<h1 id="类型"><a href="#类型" class="headerlink" title="类型"></a><font style="color:rgb(51, 51, 51);">类型</font></h1><h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><h3 id="八种内置类型"><a href="#八种内置类型" class="headerlink" title="八种内置类型"></a>八种内置类型</h3><pre><code class="typescript">let str: string = &quot;jimmy&quot;;
+let num: number = 24;
+let bool: boolean = false;
+let u: undefined = undefined;
+let n: null = null;
+let big: bigint = 100n;
+let sym: symbol = Symbol(&quot;me&quot;);
+
+let obj: object = &#123; x: 1 &#125;;
+</code></pre>
+<p>null 和 undefined</p>
+<p>默认情况下 <code>null</code> 和 <code>undefined</code> 是所有类型的子类型。 就是说你可以把 <code>null</code> 和 <code>undefined</code> 赋值给其他类型。</p>
+<pre><code class="javascript">// null和undefined赋值给string
+let str: string = &quot;666&quot;;
+str = null;
+str = undefined;
+</code></pre>
+<p><strong>tip:</strong></p>
+<p>如果你在 tsconfig.json 指定了 <code>&quot;strictNullChecks&quot;:true</code> ，<code>null</code> 和 <code>undefined</code> 只能赋值给 <code>void</code> 和它们各自的类型。</p>
+<p>number 和 bigint</p>
+<p>虽然 <code>number</code> 和 <code>bigint</code> 都表示数字，但是这两个类型不兼容。</p>
+<pre><code class="javascript">let big: bigint =  100n;
+let num: number = 6;
+big = num;
+num = big;
+会抛出一个类型不兼容的 ts (2322) 错误。
+</code></pre>
+<h3 id="any-任意值"><a href="#any-任意值" class="headerlink" title="any(任意值)"></a>any(任意值)</h3><p>any 类型就跟原生的是一样的，能够给任意的类型进行定义，所以在 TypeScript 中，任何类型都可以被归为 any 类型。这让 any 类型成为了类型系统的顶级类型 (也被称作全局超级类型 )。</p>
+<pre><code class="typescript">let anys: any = &quot;测试&quot;;
+
+anys = [];
+anys = 18;
+anys = &#123;&#125;;
+anys = Symbol(&quot;666&quot;);
+</code></pre>
+<p>作用的地方：</p>
+<ol>
+<li>有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用 <code>any</code> 类型来标记这些变量</li>
+<li>在对现有代码进行改写的时候，<code>any</code> 类型是十分有用的，它允许你在编译时可选择地包含或移除类型检查。 你可能认为 <code>Object</code> 有相似的作用，但是 <code>Object</code> 类型的变量只是允许你给它赋任意值，却不能够在它上面调用任意的方法，即便它真的有这些方法</li>
+<li>当你只知道一部分数据的类型时，<code>any</code> 类型也是有用的。 比如，你有一个数组，它包含了不同的类型的数据</li>
+</ol>
+<h3 id="unknown-类型"><a href="#unknown-类型" class="headerlink" title="unknown 类型"></a>unknown 类型</h3><p>就像所有类型都可以被归为 <code>any</code>，所有类型也都可以被归为 <code>unknown</code>。这使得 <code>unknown</code> 成为 TypeScript 类型系统的另一种顶级类型（另一种的<code>any</code>）</p>
+<p><strong>unkonwn 类型是不能够去调用属性跟函数的，它是 any 类型对应的安全类型</strong></p>
+<pre><code class="typescript">let unknow: unknown = &#123;
+  a: (): number =&gt; 123,
+&#125;;
+unknow.a(); //报错
+</code></pre>
+<h3 id="object-类型"><a href="#object-类型" class="headerlink" title="object 类型"></a>object 类型</h3><p>object 代表所有非值类型(非原始类型)的类型，例如 数组 对象 函数等，常用于泛型约束</p>
+<p>所有原始类型都不支持，所有引用类型都支持</p>
+<pre><code class="typescript">//错误 原始类型(字符串)
+let f: object = &quot;努力会获得回报的&quot;;
+//错误 原始类型(数字)
+let g: object = 123;
+//错误 原始类型(布尔值类型)
+let h: object = true;
+
+//正确 引用类型(数组类型)
+let i: object = [123, &quot;学姐学习Vue3&quot;, true];
+//正确 引用类型(对象类型)
+let j: object = &#123;
+  name: &quot;小满&quot;,
+  identity: [&quot;B站UP主&quot;, &quot;二次元&quot;, &quot;京东员工&quot;, &quot;全栈开发工程师&quot;],
+  sex: &quot;女&quot;,
+&#125;;
+//正确 引用类型(函数类型)
+let k: object = () =&gt; &quot;不要对自己pua，相信自己是最棒的，尊重自己，人生更精彩&quot;;
+</code></pre>
+<h3 id="Object-类型"><a href="#Object-类型" class="headerlink" title="Object 类型"></a>Object 类型</h3><p>这个类型是跟原型链有关的，原型链顶层就是 Object，所有值类型和引用类型最终都指向 Object，所以在 TypeScript 中 Object 他包含所有类型。就可以等于任何一个值</p>
+<pre><code class="typescript">//数字类型
+let a: Object = 123;
+//字符串类型
+let b: Object = &quot;小满今天没穿裤子&quot;;
+//数组类型
+let c: Object = [1314, 520];
+//对象类型
+let d: Object = &#123; name: &quot;草莓&quot;, sex: &quot;女&quot;, address: &quot;小满微信一群&quot; &#125;;
+//any或者function
+let e: Object = () =&gt; &quot;学姐贴贴&quot;;
+</code></pre>
+<h3 id="字面量类型"><a href="#字面量类型" class="headerlink" title="{}字面量类型"></a>{}字面量类型</h3><p>与 Object 基本一样 包含所有类型</p>
+<p><strong>虽然可以赋值任意类型，赋值结束后，是没办法进行一个修改和增加的操作的</strong></p>
+<pre><code class="typescript">//字面量模式：
+let b: &#123;&#125; = &#123; num: 1 &#125;;
+b.age = 2; //无法增加
+</code></pre>
+<h3 id="void-类型"><a href="#void-类型" class="headerlink" title="void 类型"></a>void 类型</h3><pre><code class="javascript">function logMessage(): void &#123;
+  console.log(&quot;Hello, TypeScript!&quot;);
+&#125;
+</code></pre>
+<h3 id="never-类型"><a href="#never-类型" class="headerlink" title="never 类型"></a>never 类型</h3><p>简单理解，报错类型</p>
+<p><code>never</code>类型通常用于表示不可能出现的情况，它可以用于增强代码的类型安全性和可读性。</p>
+<p>当一个变量被推断为<code>never</code>类型时，表示该变量的类型不能是任何其他类型，即不存在任何值与其兼容</p>
+<pre><code class="typescript">type A = string &amp; number; //同时推断A是string和number类型，那显然是不可能的。这时就显示为never类型
+
+//当一个函数抛出异常时，其返回类型为never类型。
+//因为抛出异常时，函数永远不会返回任何值(包括void的值)
+function xy(): never &#123;
+  //这里选择never，而不是void
+  //1.报错
+  throw new Error(&quot;小余&quot;);
+
+  //2.while死循环
+  while (true) &#123;
+    //xxx
+  &#125;
+&#125;
+</code></pre>
+<p>在许多编程语言中，包括 TypeScript，void 类型表示函数不返回任何值。这意味着函数执行完毕后不会返回任何内容，而只是执行某些操作或返回到调用方。</p>
+<p>然而，当一个函数抛出异常时，它并没有正常地执行完毕。相反，它会在抛出异常的位置停止执行，并将控制权交回到调用方，因此它不会返回任何值，包括 void 类型的值。</p>
+<p>在 TypeScript 中，never 类型表示“永远不会发生”的值。函数的返回类型为 never 时，它表明函数不会正常地返回任何值，而是可能抛出异常、无限循环或导致类型错误等情况。</p>
+<p>因此，当一个函数抛出异常时，其返回类型应该是 never，而不是 void。这有助于编译器在类型检查和推断方面更准确地处理异常情况</p>
+<p>never 是底层的内容，所以在联合类型上面会有问题</p>
+<pre><code class="typescript">type A = void | number | never; //联合类型中never类型会被忽略掉
+</code></pre>
+<pre><code class="typescript">type A = &quot;唱&quot; | &quot;跳&quot; | &quot;rap&quot;;
+
+function ikun(value: A) &#123;
+  switch (value) &#123;
+    case &quot;唱&quot;:
+      break;
+    case &quot;跳&quot;:
+      break;
+    case &quot;rap&quot;:
+      break;
+    default: //兜底逻辑
+      //最后来到这说明前面都没有生效，那就是超出我们预料的情况，这时候估计就是有问题的
+      const error: never = value; //看你想写啥来提示自己
+      break;
+  &#125;
+&#125;
+</code></pre>
+<h3 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h3><h4 id="声明方式-1：普通声明"><a href="#声明方式-1：普通声明" class="headerlink" title="声明方式 1：普通声明"></a>声明方式 1：普通声明</h4><pre><code class="typescript">//类型加中括号
+let arr: number[] = [1, 2, 3, 4]; //数字类型的数组
+let arr2: string[] = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;]; //字符串类型的数组
+let arr3: any[] = [1, &quot;2&quot;, true, undefined, [], &#123;&#125;]; //任意类型的数组
+</code></pre>
+<h4 id="声明方式-2：Array-lt-类型-gt"><a href="#声明方式-2：Array-lt-类型-gt" class="headerlink" title="声明方式 2：Array&lt;类型&gt;"></a>声明方式 2：Array&lt;类型&gt;</h4><pre><code class="typescript">let arr1: Array&lt;number&gt; = [1, 2, 3, 4, 5];
+let arr2: Array&lt;string&gt; = [&quot;1,2,3,4,5&quot;];
+let arr3: Array&lt;boolean&gt; = [true];
+//泛型数组套娃写法(还能够决定数组里面数组的类型之类的)
+let arr4: Array&lt;Array&lt;number&gt;&gt; = [[123], [456]];
+</code></pre>
+<h4 id="声明方式-3：元组类型"><a href="#声明方式-3：元组类型" class="headerlink" title="声明方式 3：元组类型"></a>声明方式 3：元组类型</h4><p>数组合并了相同类型的对象，而元组（Tuple）合并了不同类型的对象。</p>
+<pre><code class="typescript">let arr: [string, number] = [&quot;小满&quot;, 22]; //这样的方式就叫做元组，定义了每个位置需要满足的不同类型
+arr[0].length; //有
+arr[1].length; //无，因为上面的定义类型会自动帮我们推断是否有该方法
+//Number 类型是没有 length 属性的
+</code></pre>
+<p>越界的元组</p>
+<p>当添加的元组越界的时候，越界的类型会被限制为元组类型中每个类型的联合类型</p>
+<pre><code class="typescript">let arr: [string, number] = [&quot;小满&quot;, 22]; //这样的方式就叫做元组，定义了每个位置需要满足的不同类型
+arr.push(true); //会报错，因为类型boolean参数不能赋值给string|number的类型
+//这个就是元组对越界元素的处理
+
+arr.push(&quot;111&quot;, 2222); //这种就可以
+//也可以对二维数组进行限制规定类型
+</code></pre>
+<h3 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h3><p>可以定义函数的参数和返回值</p>
+<pre><code class="typescript">const fn = (name: string, age: number): string =&gt; &#123;
+  return name + age;
+&#125;;
+let a = fn(&quot;小满&quot;, 10000); //输入不符合上述参数内定义的类型就会出错
+console.log(a); //输出小满10000
+</code></pre>
+<h4 id="interface-形式定义函数"><a href="#interface-形式定义函数" class="headerlink" title="interface 形式定义函数"></a>interface 形式定义函数</h4><p>跟定义对象差不多，但是在针对多个参数的时候会更加的方便，且记得引用的时候要写成({xxxx})形式，不然会报错，输出的是数组形式的</p>
+<pre><code class="typescript">interface User &#123;
+  name: string;
+  age: number;
+&#125;
+
+const fn = (user: User): User =&gt; &#123;
+  //这里的参数填写方式就变得简单了
+  return user;
+&#125;;
+let a = fn(&#123;
+  name: &quot;&#39;小满&quot;,
+  age: 18,
+&#125;); //输入不符合上述参数内定义的类型就会出错
+console.log(a); //输出&#123;name:&#39;小满&#39;,age:18&#125;
+</code></pre>
+<h4 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h4><p>重载是方法名字相同，而参数不同，返回类型可以相同也可以不同。</p>
+<p>如果参数类型不同，则参数类型应设置为 <strong>any</strong>。</p>
+<p>参数数量不同你可以将不同的参数设置为可选。</p>
+<p>为了让编译器能够选择正确的检查类型，它与 JavaScript 里的处理流程相似。 它查找重载列表，尝试使用第一个重载定义。 如果匹配的话就使用这个。 因此，在定义重载的时候，一定要把最精确的定义放在最前面。</p>
+<pre><code class="typescript">function fn(params: number): void; //第一套规则
+function fn(params: string, params2: number): void; //第二套规则
+function fn(params: any, params2?: any): void &#123;
+  console.log(params);
+  console.log(params2);
+&#125;
+
+let a = fn(1);
+//输出1跟undefined，因为遵循的是第一套规则
+let a = fn(&quot;1&quot;, 1);
+//输出&quot;1&quot;跟1，遵循的是第二套规则
+</code></pre>
+<h2 id="扩展类型"><a href="#扩展类型" class="headerlink" title="扩展类型"></a>扩展类型</h2><h3 id="枚举类型（注意：会参与运行的类型）"><a href="#枚举类型（注意：会参与运行的类型）" class="headerlink" title="枚举类型（注意：会参与运行的类型）"></a>枚举类型（注意：会参与运行的类型）</h3><p>js 中是没有枚举的概念的，TS 帮我们定义了枚举这个类型</p>
+<p>enum 关键字定义枚举</p>
+<p>枚举类型参与运行</p>
+<h4 id="数字定义枚举"><a href="#数字定义枚举" class="headerlink" title="数字定义枚举"></a>数字定义枚举</h4><p>默认从 0 开始的</p>
+<pre><code class="typescript">enum Color &#123;
+  red,
+  green,
+  blue,
+&#125;
+console.log(Color.red, Color.blue, Color.green); //能够得到他们的顺序数字，这里返回0，2，1
+</code></pre>
+<p>增长枚举</p>
+<p>能够通过自定义开头决定从哪个数字开始枚举，其他位置的都可以定义，后面的数字就按顺序枚举</p>
+<pre><code class="typescript">enum Color &#123;
+  red = 2,
+  green,
+  blue,
+&#125;
+console.log(Color.red, Color.blue, Color.green); //能够得到他们的顺序数字，这里返回2，4，3
+</code></pre>
+<h4 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h4><p>字符串枚举的概念很简单。 在一个字符串枚举里，每个成员都必须用字符串字面量，或另外一个字符串枚举成员进行初始化。</p>
+<p>由于字符串枚举没有自增长的行为，字符串枚举可以很好的序列化。 换句话说，如果你正在调试并且必须要读一个数字枚举的运行时的值，这个值通常是很难读的</p>
+<p>它并不能表达有用的信息，字符串枚举允许你提供一个运行时有意义的并且可读的值，独立于枚举成员的名字。</p>
+<pre><code class="typescript">enum Types &#123;
+  Red = &quot;red&quot;,
+  Green = &quot;green&quot;,
+  BLue = &quot;blue&quot;,
+&#125;
+</code></pre>
+<h4 id="异构枚举"><a href="#异构枚举" class="headerlink" title="异构枚举"></a>异构枚举</h4><p>枚举可以混合字符串和数字成员</p>
+<pre><code class="typescript">enum Types &#123;
+  No = &quot;No&quot;,
+  Yes = 1,
+&#125;
+console.log(Types.NO, Types.Yes);
+</code></pre>
+<h4 id="接口枚举"><a href="#接口枚举" class="headerlink" title="接口枚举"></a>接口枚举</h4><p>定义一个枚举 Types 定义一个接口 A 他有一个属性 red 值为 Types.yyds</p>
+<p>声明对象的时候要遵循这个规则</p>
+<pre><code class="typescript">enum Color &#123;
+  no = &quot;NO&quot;,
+  yes = 1,
+&#125;
+
+interface A &#123;
+  red: Color.yes;
+&#125;
+
+let B: A = &#123;
+  red: Color.yes,
+  //或者直接red:1，只能填入这两个内容其中之一，其他的会报错
+&#125;;
+</code></pre>
+<h4 id="const-枚举"><a href="#const-枚举" class="headerlink" title="const 枚举"></a>const 枚举</h4><p>let 和 var 都是不允许的声明枚举的，只能使用 const</p>
+<p>大多数情况下，枚举是十分有效的方案。 然而在某些情况下需求很严格。 为了避免在额外生成的代码上的开销和额外的非直接的对枚举成员的访问，我们可以使用 const 枚举。 常量枚举通过在枚举上使用 const 修饰符来定义</p>
+<p>const 声明的枚举会被编译成常量</p>
+<p>普通声明的枚举编译完后是个对象</p>
+<p><font style="color:#DF2A3F;">使用 const 枚举没办法反向映射</font></p>
+<pre><code class="typescript">const enum Types &#123; //有没有const决定是编译成对象还是编译成常量
+  sucess,
+  fail,
+&#125;
+let code: number = 0;
+if (code === Types.sucess) &#123;
+  //是能执行的
+  console.log(&quot;我在人民广场吃炸鸡&quot;);
+&#125;
+</code></pre>
+<h4 id="反向映射"><a href="#反向映射" class="headerlink" title="反向映射"></a>反向映射</h4><p>它包含了正向映射（ name -&gt; value）和反向映射（ value -&gt; name）</p>
+<p>要注意的是 不会为字符串枚举成员生成反向映射。</p>
+<pre><code class="typescript">enum Types &#123;
+  one,
+&#125;
+let success: number = Types.one;
+
+console.log(one); //读取得出来为0
+</code></pre>
+<pre><code class="typescript">enum Types &#123;
+  success,
+&#125;
+let success: number = Types.success;
+
+let key = Types[success];
+
+console.log(`value---$&#123;success&#125;`, `key----$&#123;key&#125;`); //value---0,key----success
+</code></pre>
+<h3 id="interface-类型-接口类型"><a href="#interface-类型-接口类型" class="headerlink" title="interface 类型(接口类型)"></a>interface 类型(接口类型)</h3><p>在 typescript 中，我们定义对象的方式要用关键字 <strong>interface</strong>（接口），使用 <strong>interface</strong> 来定义一种约束，让数据的结构满足约束的格式。</p>
+<pre><code class="typescript">interface A &#123;
+  //这个readonly是只读属性，意思就是说只能读取，不能将其他值赋值给他
+  readonly name: string;
+  //这个问号就是可选的意思，条件稍微宽松了一些，下面引用这个age的话有没有这个属性都可以，不会报错
+  age?: number;
+&#125;
+
+let obj: A = &#123;
+  //这里如果不写name就会报错，因为我们在上面定义了A类型集合，并且在这个变量中引入了(里面必须要有name属性且类型为字符串)
+  name: &quot;小满嗷嗷叫&quot;,
+  age: 18,
+&#125;;
+</code></pre>
+<p>注意：这个规定的属性不能多也不能少，参考我上面的案例</p>
+<p><strong>无论是 type 还是 Interface 当进行字面量赋值的时候一个也不能多，一个也不能少，但当作变量的时候，可以进行增加（鸭子辩型法）</strong></p>
+<pre><code class="typescript">interface A&#123;
+    readonly name:string
+    age:number
+&#125;
+
+let obj = &#123;
+    type:&quot;好人&quot;
+    name:&quot;小满嗷嗷叫&quot;,
+    age:18
+&#125;
+//可以这样使用
+let c:A = obj
+</code></pre>
+<h4 id="可选属性-–-操作符"><a href="#可选属性-–-操作符" class="headerlink" title="可选属性 – ?操作符"></a>可选属性 – <code>?</code>操作符</h4><pre><code class="typescript">interface A&#123;
+    readonly name:string
+    age?:number//这个问号就是可选的意思，条件稍微宽松了一些，下面引用这个age的话有没有这个属性都可以，不会报错
+&#125;
+
+let obj:A = &#123;
+    name:&quot;小满嗷嗷叫&quot;
+    age:18//age写不写无所谓
+&#125;
+</code></pre>
+<h4 id="任意属性-–-propName-string"><a href="#任意属性-–-propName-string" class="headerlink" title="任意属性 – [propName:string]"></a>任意属性 – [propName:string]</h4><blockquote>
+<p>需要注意的是，<strong>一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集</strong></p>
+</blockquote>
+<pre><code class="typescript">interface Person &#123;
+  name: string;
+  age?: number;
+  [propName: string]: string | number; //这个属性一旦定义了，引用这个Person的对象就能够写入任意属性，属性的形式主要看冒号后面你定义了什么类型，比如在这里定义的类型就是string和number类型，不是这两者的类型就会报错，包括在Person里面定义除了string跟number之外其他类型也会报错
+&#125;
+</code></pre>
+<h4 id="只读属性-–-readonly"><a href="#只读属性-–-readonly" class="headerlink" title="只读属性 – readonly"></a>只读属性 – readonly</h4><blockquote>
+<p>只读属性必须在声明时或构造函数里被初始化。</p>
+</blockquote>
+<pre><code class="typescript">interface A &#123;
+  readonly name: string; //这个readonly是只读属性，意思就是说只能读取，不能将其他值赋值给他
+&#125;
+let obj: A = &#123;
+  name: &quot;小满嗷嗷叫&quot;,
+&#125;;
+obj.name = &quot;小满芳龄18&quot;; //报错
+let name1 = obj.name; //能够读取
+</code></pre>
+<h4 id="继承属性-–-extends"><a href="#继承属性-–-extends" class="headerlink" title="继承属性 – extends"></a>继承属性 – extends</h4><pre><code class="typescript">interface A &#123;
+  name: string;
+&#125;
+
+interface B extends A &#123;
+  age: number;
+&#125;
+
+let p: B = &#123;
+  name: &quot;有看到小满的裤子吗？&quot;,
+  age: 88, //两种类型都要写
+&#125;;
+</code></pre>
+<p>接口还可以进行多继承</p>
+<pre><code class="typescript">interface B extends A, C &#123;&#125;
+</code></pre>
+<h4 id="interface-定义方法"><a href="#interface-定义方法" class="headerlink" title="interface 定义方法"></a>interface 定义方法</h4><pre><code class="typescript">interface User &#123;
+  name: string;
+  age: number;
+  sayHello(): void;
+&#125;
+let u: User = &#123;
+  name: &quot;sdfds&quot;,
+  age: 33,
+  sayHello() &#123;
+    console.log(&quot;asfadasfaf&quot;);
+  &#125;,
+&#125;;
+
+type Condition = (n: number) =&gt; boolean;
+
+interface Condition &#123;
+  (n: number): boolean;
+&#125;
+
+function sum(numbers: number[], callBack: Condition) &#123;
+  let s = 0;
+  numbers.forEach((n) =&gt; &#123;
+    if (callBack(n)) &#123;
+      s += n;
+    &#125;
+  &#125;);
+  return s;
+&#125;
+</code></pre>
+<h4 id="interface-定义类"><a href="#interface-定义类" class="headerlink" title="interface 定义类"></a>interface 定义类</h4><p><strong>此能力使用 type 进行类型判断做不到</strong></p>
+<p>ts interface 定义类 使用关键字 implements 后面跟 interface 的名字多个用逗号隔开 继承还是用 extends</p>
+<p>通过接口去约束类</p>
+<p>这代表这个类必须要有这个方法</p>
+<p>在转化为 js 后这些都会消失</p>
+<pre><code class="typescript">interface Person &#123;
+  run(type: boolean): boolean;
+&#125;
+
+class Man implements Person &#123;
+  //会提示我们Man中缺少属性run，但类型Person中需要该属性
+&#125;
+</code></pre>
+<pre><code class="typescript">//通过接口去约束类
+interface Person &#123;
+  run(type: boolean): boolean;
+&#125;
+
+interface H &#123;
+  set(): void;
+&#125;
+
+class Man implements Person, H &#123;
+  //会报错，提示我们缺少set属性
+  run(type: boolean): boolean &#123;
+    return type;
+  &#125;
+&#125;
+</code></pre>
+<h4 id="interface-继承类"><a href="#interface-继承类" class="headerlink" title="interface 继承类"></a>interface 继承类</h4><pre><code class="typescript">interface Person &#123;
+  run(type: boolean): boolean;
+&#125;
+
+interface H &#123;
+  set(): void;
+&#125;
+
+class A &#123;
+  params: string;
+  constructor(params: string) &#123;
+    this.params = params;
+  &#125;
+&#125;
+
+//也可以使用继承再使用
+class Man extends A implements Person, H &#123;
+  run(type: boolean): boolean &#123;
+    return type;
+  &#125;
+  set() &#123;
+    //啥也没有，这就是用接口去描述类
+  &#125;
+&#125;
+</code></pre>
+<pre><code class="typescript">class A &#123;
+  a1: string = &quot;&quot;;
+  a2: string = &quot;&quot;;
+  a3: string = &quot;&quot;;
+&#125;
+
+class B &#123;
+  b1: number = 0;
+  b2: number = 0;
+  b3: number = 0;
+&#125;
+
+interface C extends A, B &#123;&#125;
+
+const c: C = &#123;
+  a1: &quot;&quot;,
+  a2: &quot;&quot;,
+  a3: &quot;&quot;,
+  b1: 0,
+  b2: 3,
+  b3: 4,
+&#125;;
+</code></pre>
+<h3 id="类型别名-type"><a href="#类型别名-type" class="headerlink" title="类型别名(type)"></a>类型别名(type)</h3><p>type 关键字（可以给一个类型定义一个名字）<strong>多用于符合类型</strong>，但也可以要求有固定的东西</p>
+<h4 id="定义类型别名"><a href="#定义类型别名" class="headerlink" title="定义类型别名"></a>定义类型别名</h4><pre><code class="typescript">type str = string;
+let s: str = &quot;我是小满&quot;;
+console.log(s);
+</code></pre>
+<h4 id="定义函数别名"><a href="#定义函数别名" class="headerlink" title="定义函数别名"></a>定义函数别名</h4><pre><code class="typescript">type str = () =&gt; string;
+let s: str = () =&gt; &quot;我是小满&quot;;
+console.log(s);
+</code></pre>
+<h4 id="定义联合类型别名"><a href="#定义联合类型别名" class="headerlink" title="定义联合类型别名"></a>定义联合类型别名</h4><pre><code class="typescript">type str = string | number;
+let s: str = 123;
+let s2: str = &quot;123&quot;;
+console.log(s, s2);
+</code></pre>
+<h4 id="定义值的别名"><a href="#定义值的别名" class="headerlink" title="定义值的别名"></a>定义值的别名</h4><pre><code class="typescript">type value = boolean | 0 | &#39;213&#39;\
+
+//还可以使用&amp;符号，使用&amp;的话表示需要同时满足
+type value2 = &#123;name:string&#125; &amp; B
+
+let s:value = true
+//变量s的值  只能是上面value定义的值
+</code></pre>
+<h4 id="类型别名-type-跟-interface-的区别"><a href="#类型别名-type-跟-interface-的区别" class="headerlink" title="类型别名 type 跟 interface 的区别"></a>类型别名 type 跟 interface 的区别</h4><ul>
+<li>区别 1：interface 是可以继承 type 的，但是 type 是没办法继承 interface 的，只能够使用&amp;进行合并</li>
+<li>区别 2：interface 是没办法写联合类型的，必须要里面写一个属性才能够去写联合类型(不能直接在外面添加联合类型)，而 type 能够直接写联合类型</li>
+<li>区别 3：interface 重复写是会合并在一起的，type 不行</li>
+</ul>
+<p>区别 1</p>
+<pre><code class="typescript">type s = number[] &amp; B; //使用&amp;合并
+
+interface A extends B &#123;
+  //interface继承B
+&#125;
+interface B &#123;&#125;
+</code></pre>
+<p>区别 2</p>
+<pre><code class="typescript">type s = number[] | string; //type直接写联合类型
+
+interface A extends B &#123;
+  name: string | number; //要在内部属性才能写联合类型
+&#125;
+interface B &#123;&#125;
+</code></pre>
+<p>区别 3</p>
+<pre><code class="typescript">interface A &#123;
+  name: string | number;
+&#125;
+interface A &#123;
+  age: number;
+&#125; //name跟age会进行合并
+</code></pre>
+<h4 id="类型别名高阶用法"><a href="#类型别名高阶用法" class="headerlink" title="类型别名高阶用法"></a>类型别名高阶用法</h4><p>extends ：包含的意思</p>
+<p>左边的值 会作为右边类型的子类型</p>
+<pre><code class="typescript">type num = 1 extends number ? 1 : 0; //返回1
+//其中除了number之外，其他类型包括any、unknown、Object、Number也都是返回1
+//类型never返回0
+//其中的关系图放在下面，他们(类型)是有层级关系的，下面的图由上往下，层级逐级递减
+//never返回不了1是因为他是最底层的，连1都比不过，包含不了，所以返回0
+</code></pre>
+<h3 id="联合类型-交叉类型"><a href="#联合类型-交叉类型" class="headerlink" title="联合类型|交叉类型"></a>联合类型|交叉类型</h3><h4 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h4><p>联合类型能够让我们可选我们自己需要的类型部分，如果需要的类型超过或者达到 2 个，那就可以使用。</p>
+<p>那为什么不使用 any 呢？那是因为我们需要的并不是所有类型都能通过，我只希望这两个或者 3 个类型能够通过，如果需要的类型超过或着达到两个都使用 any 的话，那就和 JavaScript 原生没有区别了</p>
+<pre><code class="typescript">//例如我们的手机号通常是13XXXXXXX 为数字类型 这时候产品说需要支持座机
+//所以我们就可以使用联合类型支持座机字符串
+let myPhone: number | string = &quot;010-820&quot;;
+
+//这样写是会报错的应为我们的联合类型只有数字和字符串并没有布尔值
+let myPhone: number | string = true; //报错
+</code></pre>
+<h4 id="交叉类型"><a href="#交叉类型" class="headerlink" title="交叉类型"></a>交叉类型</h4><p>多种类型的集合，联合对象将具有所联合类型的所有成员</p>
+<pre><code class="typescript">interface Pople &#123;
+  name: string;
+  age: number;
+&#125;
+interface Man &#123;
+  sex: number;
+&#125;
+
+const xiaoman = (man: Pople &amp; Man): void =&gt; &#123;
+  //这里通过了&amp;将Pople跟Man交叉在了一起，则man需要处理Pople也要处理Man。还可以继续跟更多个interface
+  console.log(man);
+&#125;;
+
+xiaoman(&#123;
+  name: &quot;小满今天坏掉了&quot;,
+  age: 18,
+  sex: 1, //如果sex不写是会报错的，会提示你少写了一个sex
+&#125;);
+</code></pre>
+<h2 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h2><p>类型断言就是你自己清楚的知道你这个变量需要一个什么类型，抛弃 ts 给你判断出来的类型</p>
+<p>语法格式，<strong>值 as 类型</strong> 或者 <strong>&lt;类型&gt;值</strong></p>
+<p>需要注意的是，类型断言只能够「欺骗」TypeScript 编译器，无法避免运行时的错误，反而滥用类型断言可能会导致运行时错误</p>
+<p>覆盖它的推断，并且能以你任何你想要的方式分析它，这种机制被称为「类型断言」。TypeScript 类型断言用来告诉编译器你比它更了解这个类型，并且它不应该再发出错误</p>
+<p>当 <code>S</code> 类型是 <code>T</code> 类型的子集，或者 <code>T</code> 类型是 <code>S</code> 类型的子集时，<code>S</code> 能被成功断言成 <code>T</code>。这是为了在进行类型断言时提供额外的安全性，完全毫无根据的断言是危险的，如果你想这么做，你可以使用 <code>any</code>。</p>
+<p>类型断言的用途</p>
+<p>（1）将一个联合类型推断为其中一个类型</p>
+<p>（2）将一个父类断言为更加具体的子类</p>
+<p>（3）将任何一个类型断言为 any(扩大范围)</p>
+<p>（4）将 any 断言为一个具体的类型(缩小范围 )</p>
+<p>举例 1</p>
+<pre><code class="typescript">原型：
+let fn = function(num:number | string):void&#123;
+    console.log(num.length);//这里会报错，因为我们确实没有.length这个内容
+&#125;
+fn(&quot;12345&quot;)
+
+断言写法
+let fn = function(num:number | string):void&#123;
+    console.log((num as string).length);//用括号括起来，as断言他是string类型
+&#125;
+fn(&quot;12345&quot;)//这样会打印出5
+fn(12345)//这样会打印出undefined
+</code></pre>
+<p>举例 2</p>
+<pre><code class="typescript">interface A &#123;
+  run: string;
+&#125;
+interface B &#123;
+  build: string;
+&#125;
+
+let fn = (type: A | B) =&gt; &#123;
+  console.log((&lt;A&gt;type).run);
+&#125;;
+
+//不能这样用
+fn(&#123;
+  build: &quot;123&quot;, //这里是没办法传过去的，断言是不能够滥用的，因为我们确实没有.run这个内容
+&#125;);
+</code></pre>
+<p>举例 3</p>
+<p>使用 any 临时断言</p>
+<pre><code class="typescript">window.abc = 123(
+  //这样写会报错因为window没有abc这个东西
+  window as any
+).abc = 123;
+//可以使用any临时断言在 any 类型的变量上，访问任何属性都是允许的。
+</code></pre>
+<p>举例 4</p>
+<p>将 something 断言为 boolean 虽然可以通过编译，但是并没有什么用 并不会影响结果，因为编译过程中会删除类型断言</p>
+<pre><code class="typescript">function toBoolean(something: any): boolean &#123;
+  return something as boolean;
+&#125;
+
+let bbb = toBoolean(1);
+console.log(bbb);
+// 返回值为 1
+//
+</code></pre>
+<h4 id="as-const"><a href="#as-const" class="headerlink" title="as const"></a>as const</h4><p>是对字面值的<strong>断言</strong>，与 const 直接定义常量是有区别的</p>
+<p>如果是普通类型跟直接 const 声明是一样的</p>
+<pre><code class="typescript">const names = &quot;小满&quot;;
+names = &quot;aa&quot;; //无法修改
+
+let names2 = &quot;小满&quot; as const;
+names2 = &quot;aa&quot;; //无法修改
+</code></pre>
+<pre><code class="typescript">// 数组
+let a1 = [10, 20] as const;
+const a2 = [10, 20];
+
+a1.unshift(30); // 错误，此时已经断言字面量为[10, 20],数据无法做任何修改
+a2.unshift(30); // 通过，没有修改指针。之所以没有修改指针是因为const的性质是决定了指针指向的位置是已经固定不会发生改变的了，这个30想要添加进去除非直接修改存储值的地方
+</code></pre>
+<h2 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h2><h4 id="ECMAScript-的内置对象"><a href="#ECMAScript-的内置对象" class="headerlink" title="ECMAScript 的内置对象"></a>ECMAScript 的内置对象</h4><blockquote>
+<p>JavaScript 中有很多内置对象，它们可以直接在 <code>TypeScript</code>中当做定义好了的类型。</p>
+<p><code>**Boolean**</code><strong>、Number、</strong><code>**String**</code><strong>、</strong><code>**RegExp**</code><strong>、</strong><code>**Date**</code><strong>、</strong><code>**Error**</code></p>
+</blockquote>
+<pre><code class="typescript">let b: Boolean = new Boolean(1);
+console.log(b);
+let n: Number = new Number(true);
+console.log(n);
+let s: String = new String(&quot;小满今天穿白丝&quot;);
+console.log(s);
+let d: Date = new Date();
+console.log(d);
+let r: RegExp = /^1/;
+console.log(r);
+let e: Error = new Error(&quot;error!&quot;);
+console.log(e);
+</code></pre>
+<h4 id="DOM-和-BOM-的内置对象"><a href="#DOM-和-BOM-的内置对象" class="headerlink" title="DOM 和 BOM 的内置对象"></a>DOM 和 BOM 的内置对象</h4><blockquote>
+<p><code>**Document**</code><strong>、</strong><code>**HTMLElement**</code><strong>、</strong><code>**Event**</code><strong>、</strong><code>**NodeList**</code>** 等**</p>
+</blockquote>
+<pre><code class="typescript">const list: NodeList = document.querySelectorAll(&quot;#list li&quot;);
+console.log(list);
+//NodeList 实例对象是一个类似数组的对象，它的成员是节点对象。Node.childNodes、document.querySelectorAll () 返回的都是 NodeList 实例对象。 [1]  NodeList 对象代表一个有序的节点列表。
+
+const body: HTMLElement = document.body;
+console.log(body);
+
+const div: HTMLDivElement = document.querySelector(&quot;div&quot;);
+console.log(div);
+
+document.body.addEventListener(&quot;click&quot;, (e: MouseEvent) =&gt; &#123;
+  console.log(e);
+&#125;);
+
+//promise
+function promise1(): Promise&lt;number&gt; &#123;
+  //Promise是类型,number是泛型
+  return new Promise&lt;number&gt;((resolve, rejects) =&gt; &#123;
+    resolve(1); //如果不进行断言的话会报错
+  &#125;);
+&#125;
+
+promise().then((res) =&gt; &#123;
+  console.log(res); //返回1，这里会提示你res应该输入number类型
+&#125;);
+</code></pre>
+<h2 id="类型推论"><a href="#类型推论" class="headerlink" title="类型推论"></a>类型推论</h2><p>我声明了一个变量但是没有定义类型</p>
+<p>TypeScript 会在没有明确的指定类型的时候推测出一个类型，这就是类型推论(TS 本身支持的功能)</p>
+<pre><code class="typescript">let str = &quot;小满&quot;;
+str = 123; //会报错，虽然我们没用明确限制类型，但是TS编辑器会自动推论为string类型。就不能够在赋值给别的类型
+</code></pre>
+<p>如果你声明变量没有定义类型也没有赋值这时候 TS 会推断成 any 类型可以进行任何操作</p>
+<pre><code class="typescript">let str; //为any类型
+str = 123;
+str = &quot;马杀鸡&quot;;
+str = false;
+str = [];
+</code></pre>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型简单来说就是类型变量，在 ts 中存在类型，如 number、string、boolean 等。泛型就是使用一个类型变量来表示一种类型，类型值通常是在使用的时候才会设置。泛型的使用场景非常多，可以在函数、类、interface 接口中使用</p>
+<p>TypeScript 中不建议使用 any 类型，不能保证类型安全，调试时缺乏完整的信息。</p>
+<p>TypeScript 可以使用泛型来创建可重用的组件。支持当前数据类型，同时也能支持未来的数据类型。扩展灵活，可以在编译时发现类型错误，从而保证了类型安全。</p>
+<h3 id="无泛型用法"><a href="#无泛型用法" class="headerlink" title="无泛型用法"></a>无泛型用法</h3><pre><code class="typescript">//数字类型
+function num(A: number, B: number): Array&lt;number&gt; &#123;
+  //Array&lt;number&gt;为希望返回number类型的数组
+  return [A, B];
+&#125;
+num(6, 9);
+//字符串类型
+function str(A: string, B: string): Array&lt;string&gt; &#123;
+  //Array&lt;number&gt;为希望返回number类型的数组
+  return [A, B];
+&#125;
+str(&quot;小满&quot;, &quot;穿女装&quot;);
+</code></pre>
+<p>一个笨的方法就像上面那样，也就是说 JS 提供多少种类型，就需要复制多少份代码，然后改下类型签名。这对程序员来说是致命的。这种复制粘贴增加了出错的概率，使得代码难以维护，牵一发而动全身。并且将来 JS 新增新的类型，你仍然需要修改代码，也就是说你的代码<strong>对修改开放</strong>，这样不好。</p>
+<p>如果你使用 any 的话，怎么写都是 ok 的， 这就丧失了类型检查的效果。实际上我知道我传给你的是 string，返回来的也一定是 string，而 string 上没有 toFixed 方法，因此需要报错才是我想要的。也就是说我真正想要的效果是：当我用到 id 的时候，你根据我传给你的<strong>类型进行推导</strong>。比如我传入的是 string，但是使用了 number 上的方法，你就应该报错。</p>
+<h3 id="使用泛型优化"><a href="#使用泛型优化" class="headerlink" title="使用泛型优化"></a>使用泛型优化</h3><p>为了解决上面的这些问题，我们<strong>使用泛型对上面的代码进行重构</strong>。和我们的定义不同，这里用了一个类型 T，这个 <strong>T 是一个抽象类型，只有在调用的时候才确定它的值</strong>，这就不用我们复制粘贴无数份代码了。</p>
+<p>其中 T 代表 <strong>Type</strong>，在定义泛型时通常用作第一个类型变量名称。但实际上 T 可以用任何有效名称代替。除了 T 之外，以下是常见泛型变量代表的意思</p>
+<ul>
+<li>K（Key）：表示对象中的键类型（仅含义）</li>
+<li>V（Value）：表示对象中的值类型（仅含义）</li>
+<li>E（Element）：表示元素类型（仅含义）</li>
+</ul>
+<blockquote>
+<p>泛型并不是说一定要使用 K,V,E;实际上使用任何类型都可以，只是大家习惯用这几个字母</p>
+</blockquote>
+<pre><code class="typescript">function add&lt;T&gt;(a: T, b: T): Array&lt;T&gt; &#123;
+  //通常定义的时候类型是不明确的，所以一般使用T来定义
+  return [a, b];
+&#125;
+
+add&lt;number&gt;(1, 2); //1对应a，2对应b、返回的都是number类型
+add&lt;string&gt;(&quot;1&quot;, &quot;2&quot;); //这个时候，我们只需要改动这个string，传递到上面的时候就会自动推断为string类型了
+
+//甚至我们可以简写
+add(1, 2);
+add(&quot;1&quot;, &quot;2&quot;); //编辑器会自动推断类型，但最好还是写一下，如果你知道你具体需要的是什么的话
+
+//对泛型进行总结就是：定义前不明确类型，使用的时候再明确类型，能够给我们保留有足够的自由度，又不会像any丧失类型检查的效果
+</code></pre>
+<p>我们也可以使用不同的泛型参数名，只要在数量上和使用方式上能对应上就可以。</p>
+<pre><code class="typescript">function Sub&lt;T, U&gt;(a: T, b: U): Array&lt;T | U&gt; &#123;
+  //这个T跟U随便起名字都行，没有强制规范
+  const params: Array&lt;T | U&gt; = [a, b];
+  return params;
+&#125;
+
+Sub&lt;Boolean, number&gt;(false, 1); //我们这里就将其定义为布尔值类型跟数字类型
+</code></pre>
+<h3 id="定义泛型接口"><a href="#定义泛型接口" class="headerlink" title="定义泛型接口"></a>定义泛型接口</h3><p>声明接口的时候 在名字后面加一个&lt;参数&gt;</p>
+<p>使用的时候传递类型</p>
+<pre><code class="typescript">interface MyInter&lt;T&gt; &#123;
+  (arg: T): T;
+&#125;
+
+function fn&lt;T&gt;(arg: T): T &#123;
+  return arg;
+&#125;
+
+let result: MyInter&lt;number&gt; = fn;
+
+result(123);
+</code></pre>
+<h3 id="对象字面量泛型"><a href="#对象字面量泛型" class="headerlink" title="对象字面量泛型"></a>对象字面量泛型</h3><pre><code class="typescript">let foo: &#123; &lt;T&gt;(arg: T): T &#125;;
+foo = function &lt;T&gt;(arg: T): T &#123;
+  return arg;
+&#125;;
+foo(123);
+</code></pre>
+<h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><p>声明方法跟函数类似名称后面定义&lt;类型&gt;</p>
+<p>使用的时候确定类型 new Sub()</p>
+<pre><code class="typescript">//定义泛型的一个类
+class Sub&lt;T&gt; &#123;
+  attr: T[] = []; //这里的:只是普通的：
+  add(a: T): T[] &#123;
+    return [a];
+  &#125;
+&#125;
+
+let s = new Sub&lt;number&gt;(); //这里已经使用泛型固定为number了
+s.attr = [123]; //正常运行
+s.attr = [&quot;123&quot;]; //报错
+s.add(123); //也是只能传数字
+
+let str = new Sub&lt;string&gt;(); //这里已经使用泛型固定为number了
+str.attr = [123]; //报错
+str.attr = [&quot;123&quot;]; //正常运行
+str.add(&quot;123&quot;); //也是只能传字符串
+
+console.log(s, str);
+</code></pre>
+<h3 id="泛型约束（各类约束用法）"><a href="#泛型约束（各类约束用法）" class="headerlink" title="泛型约束（各类约束用法）"></a>泛型约束（各类约束用法）</h3><p>我们期望在一个泛型的变量上面，获取其 length 参数，但是，有的数据类型是没有 length 属性的</p>
+<pre><code class="typescript">function getLegnth&lt;T&gt;(arg: T) &#123;
+  return arg.length;
+&#125;
+</code></pre>
+<ul>
+<li>这个时候，我们就可以对其进行约束</li>
+</ul>
+<pre><code class="typescript">interface Len&#123;
+    length:number
+&#125;
+
+&lt;T extends Len&gt; 这句话就等于说是给T下了定义，后面再用到T的时候都要符合这个规则
+
+function getLegth&lt;T extends Len&gt;(arg:T) &#123;//使用接口让泛型T继承了Len
+  return arg.length
+&#125;
+
+getLength(1)//这个时候我们这样使用就会提示我们类型&quot;number&quot;的参数不能赋给&quot;Len&quot;的参数
+//我们依次对数组、字符串、布尔值都进行尝试，分别为可以、可以、不可以
+</code></pre>
+<h2 id="类型演算"><a href="#类型演算" class="headerlink" title="类型演算"></a>类型演算</h2><p>根据已知的信息，计算出新的类型</p>
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><p>typeof 的主要用途是在类型上下文中获取变量或者属性的类型（获取别的变量的 ts 类型）</p>
+<pre><code class="javascript">interface Person &#123;
+  name: string;
+  age: number;
+&#125;
+const sem: Person = &#123; name: &quot;semlinker&quot;, age: 30 &#125;;
+type Sem = typeof sem; // type Sem = Person
+</code></pre>
+<p>在上面代码中，我们通过 <code>typeof</code> 操作符获取 sem 变量的类型并赋值给 Sem 类型变量，之后我们就可以使用 Sem 类型：</p>
+<pre><code class="javascript">const lolo: Sem = &#123; name: &quot;lolo&quot;, age: 5 &#125;;
+</code></pre>
+<p>你也可以对嵌套对象执行相同的操作：</p>
+<pre><code class="javascript">const Message = &#123;
+  name: &quot;jimmy&quot;,
+  age: 18,
+  address: &#123;
+    province: &quot;四川&quot;,
+    city: &quot;成都&quot;,
+  &#125;,
+&#125;;
+
+type message = typeof Message;
+
+//相当于
+type message = &#123;
+  name: string,
+  age: number,
+  address: &#123;
+    province: string,
+    city: string,
+  &#125;,
+&#125;;
+</code></pre>
+<p>此外，<code>typeof</code> 操作符除了可以获取对象的结构类型之外，它也可以用来获取函数对象的类型，比如：</p>
+<pre><code class="javascript">function toArray(x: number): Array&lt;number&gt; &#123;
+  return [x];
+&#125;
+type Func = typeof toArray; // -&gt; (x: number) =&gt; number[]
+</code></pre>
+<p>当 typeof 作用于类的时候，得到的类型，是该类的构造函数当 typeof 作用于类的时候，得到的类型，是该类的构造函数</p>
+<pre><code class="html">class User&#123; loginid:string, loginpwd:string, &#125; function createUser(cls: typeof
+User) :User&#123; &#125; // User 表示用户的类，构造函数 // new User
+表示用户对象，通过构造函数创建的对象 // User 表示构造函数 // :User
+ts表达的是一个用户对象
+</code></pre>
+<p>typeof User 表示类本身</p>
+<p>User 表达的是一个用户对象</p>
+<p>ts 表达”类(构造函数)”类型的方法</p>
+<pre><code class="javascript">class User&#123;
+  loginid:string,
+  loginpwd:string,
+&#125;
+//第一种
+type class1 = typeof User;
+
+//第二种 构造函数约束
+type class2 = new () =&gt; User
+</code></pre>
+<h3 id="keyof"><a href="#keyof" class="headerlink" title="keyof"></a>keyof</h3><p>作用于类、接口、类型别名，用于获取其他类型中的所有成员名组成的联合类型</p>
+<p>该操作符可以用于获取某种类型的<font style="color:#DF2A3F;">所有键</font>，其返回类型是联合类型。</p>
+<p>在 TypeScript 中支持两种索引签名，数字索引和字符串索引：</p>
+<pre><code class="javascript">interface StringArray &#123;
+  // 字符串索引 -&gt; keyof StringArray =&gt; string | number
+  [index: string]: string;
+&#125;
+
+interface StringArray1 &#123;
+  // 数字索引 -&gt; keyof StringArray1 =&gt; number
+  [index: number]: string;
+&#125;
+</code></pre>
+<pre><code class="javascript">interface Person &#123;
+  name: string;
+  age: number;
+&#125;
+
+type K1 = keyof Person; // &quot;name&quot; | &quot;age&quot;
+type K2 = keyof Person[]; // &quot;length&quot; | &quot;toString&quot; | &quot;pop&quot; | &quot;push&quot; | &quot;concat&quot; | &quot;join&quot;
+type K3 = keyof &#123; [x: string]: Person &#125;;  // string | number
+</code></pre>
+<p>为了同时支持两种索引类型，就得要求数字索引的返回值必须是字符串索引返回值的子类。<strong>其中的原因就是当使用数值索引时，JavaScript 在执行索引操作时，会先把数值索引先转换为字符串索引</strong>。所以 <code>keyof &#123; [x: string]: Person &#125;</code> 的结果会返回 <code>string | number</code>。</p>
+<p>keyof 也支持基本数据类型：</p>
+<pre><code class="vbnet">let K1: keyof boolean; // let K1: &quot;valueOf&quot;
+let K2: keyof number; // let K2: &quot;toString&quot; | &quot;toFixed&quot; | &quot;toExponential&quot; | ...
+let K3: keyof symbol; // let K1: &quot;valueOf&quot;
+</code></pre>
+<p>keyof 的作用</p>
+<p>JavaScript 是一种高度动态的语言。有时在静态类型系统中捕获某些操作的语义可能会很棘手。以一个简单的 <code>prop</code> 函数为例：</p>
+<pre><code class="javascript">function prop(obj, key) &#123;
+  return obj[key];
+&#125;
+</code></pre>
+<p>该函数接收 obj 和 key 两个参数，并返回对应属性的值。对象上的不同属性，可以具有完全不同的类型，我们甚至不知道 obj 对象长什么样。</p>
+<p>那么在 TypeScript 中如何定义上面的 <code>prop</code> 函数呢？我们来尝试一下：</p>
+<pre><code class="javascript">function prop(obj: object, key: string) &#123;
+  return obj[key];
+&#125;
+</code></pre>
+<p>在上面代码中，为了避免调用 prop 函数时传入错误的参数类型，我们为 obj 和 key 参数设置了类型，分别为 <code>&#123;&#125;</code> 和 <code>string</code> 类型。然而，事情并没有那么简单。</p>
+<p>针对上述的代码，TypeScript 编译器会输出以下错误信息：</p>
+<pre><code class="javascript">Element implicitly has an &#39;any&#39; type because expression of type &#39;string&#39; can&#39;t be used to index type &#39;&#123;&#125;&#39;.
+</code></pre>
+<p>元素隐式地拥有 <code>any</code> 类型，因为 <code>string</code> 类型不能被用于索引 <code>&#123;&#125;</code> 类型。要解决这个问题，你可以使用以下非常暴力的方案：</p>
+<pre><code class="javascript">function prop(obj: object, key: string) &#123;
+  return (obj as any)[key];
+&#125;
+</code></pre>
+<p>很明显该方案并不是一个好的方案，我们来回顾一下 <code>prop</code> 函数的作用，该函数用于获取某个对象中指定属性的属性值。因此我们期望用户输入的属性是对象上已存在的属性，那么如何限制属性名的范围呢？这时我们可以利用本文的主角 <code>keyof</code> 操作符：</p>
+<pre><code class="javascript">function prop&lt;T extends object, K extends keyof T&gt;(obj: T, key: K) &#123;
+  return obj[key];
+&#125;
+</code></pre>
+<p>在以上代码中，我们使用了 TypeScript 的泛型和泛型约束。<strong>首先定义了 T 类型并使用 <strong><code>**extends**</code></strong> 关键字约束该类型必须是 object 类型的子类型，然后使用 <strong><code>**keyof**</code></strong> 操作符获取 T 类型的所有键，其返回类型是联合类型，最后利用 <strong><code>**extends**</code></strong> 关键字约束 K 类型必须为 <strong><code>**keyof T**</code></strong> 联合类型的子类型。</strong> 是骡子是马拉出来遛遛就知道了，我们来实际测试一下：</p>
+<pre><code class="javascript">type Todo = &#123;
+  id: number;
+  text: string;
+  done: boolean;
+&#125;
+
+const todo: Todo = &#123;
+  id: 1,
+  text: &quot;Learn TypeScript keyof&quot;,
+  done: false
+&#125;
+
+function prop&lt;T extends object, K extends keyof T&gt;(obj: T, key: K) &#123;
+  return obj[key];
+&#125;
+
+const id = prop(todo, &quot;id&quot;); // const id: number
+const text = prop(todo, &quot;text&quot;); // const text: string
+const done = prop(todo, &quot;done&quot;); // const done: boolean
+</code></pre>
+<p>很明显使用泛型，重新定义后的 <code>prop&lt;T extends object, K extends keyof T&gt;(obj: T, key: K)</code> 函数，已经可以正确地推导出指定键对应的类型。那么当访问 todo 对象上不存在的属性时，会出现什么情况？比如：</p>
+<pre><code class="javascript">const date = prop(todo, &quot;date&quot;);
+</code></pre>
+<p>对于上述代码，TypeScript 编译器会提示以下错误：</p>
+<pre><code class="javascript">Argument of type &#39;&quot;date&quot;&#39; is not assignable to parameter of type &#39;&quot;id&quot; | &quot;text&quot; | &quot;done&quot;&#39;.
+</code></pre>
+<p>这就阻止我们尝试读取不存在的属性。</p>
+<h3 id="in"><a href="#in" class="headerlink" title="in"></a>in</h3><p>该关键字往往和 keyof 联用，限制某个索引类型的取值范围。</p>
+<pre><code class="javascript">interface Person &#123;
+  name: string;
+  age: string;
+&#125;
+
+
+约束:属性名是一个字符串，属性值也得是一个字符串
+type Obj = &#123;
+  [p: string]:string
+&#125;
+
+进一步约束属性名只能是name或者age,采用in关键字
+type Obj = &#123;
+  [p in &quot;name&quot; | &quot;age&quot; ]:string
+&#125;
+//相等于
+type Obj = &#123;
+  name:string,
+  age:string,
+&#125;
+
+进一步,相等于修改了Person的age属性类型(数字变成了字符串)
+type Obj = &#123;
+  [p in keyof Person ]:string
+&#125;
+
+复制一个Person类型
+type Obj = &#123;
+  [p in keyof Person]: Person[p]
+&#125;
+
+复制一个Person类型 全部只读
+type ObjReadonly = &#123;
+  readonly [p in keyof Person]: Person[p]
+&#125;
+
+复制一个Person类型 全部可选
+type ObjPartial = &#123;
+    [p in keyof Person]?: Person[p]
+&#125;
+
+
+
+进一步处理的不止是Person,采用泛型
+type String&lt;T&gt; = &#123;
+    [p in keyof T]: string
+&#125;
+
+type Readonly&lt;T&gt; = &#123;
+    readonly [p in keyof T]: T[p]
+&#125;
+
+type Partial&lt;T&gt; = &#123;
+    [p in keyof T]?: T[p]
+&#125;
+</code></pre>
+<p>in 用来遍历联合类型：</p>
+<pre><code class="javascript">type Keys = &quot;a&quot; | &quot;b&quot; | &quot;c&quot;
+
+type Obj =  &#123;
+  [p in Keys]: any
+&#125; // -&gt; &#123; a: any, b: any, c: any &#125;
+</code></pre>
+<pre><code class="html">interface Article &#123; title: string publishDate: Date &#125;
+//将User的所有属性值类型变成字符串，得到一个新类型 type String&lt;T&gt;
+  = &#123; [p in keyof T]: string &#125; //先执行keyof
+  T得到所有的key，然后p的取值来自这里面的key const u: String
+  &lt;article&gt;= &#123; title: &quot;Sfsdf&quot;, publishDate: &quot;sdf&quot; &#125;&lt;/article&gt;&lt;/T
+&gt;
+</code></pre>
+<h3 id="infer"><a href="#infer" class="headerlink" title="infer"></a>infer</h3><p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">infer 关键字通常与条件类型一起使用，用于推断类型参数的值。它的语法形式为 </font><strong><font style="background-color:rgb(247, 247, 248);">infer TypeParameter</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">，其中 “TypeParameter” 是一个占位符，用于表示待推断的类型。</font></p>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">下面是一个示例，展示了如何使用 “infer” 关键字：</font></p>
+<pre><code class="plain">type ExtractReturnType&lt;T&gt; = T extends (...args: any[]) =&gt; infer R ? R : never;
+
+function greet(): string &#123;
+  return &quot;Hello!&quot;;
+&#125;
+
+type ReturnTypeOfGreet = ExtractReturnType&lt;typeof greet&gt;;  // string
+</code></pre>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">在上面的代码中，我们定义了一个类型别名 </font><strong><font style="background-color:rgb(247, 247, 248);">ExtractReturnType<T></font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">，它接受一个泛型参数 </font><strong><font style="background-color:rgb(247, 247, 248);">T</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">。通过使用条件类型和 “infer” 关键字，我们判断 </font><strong><font style="background-color:rgb(247, 247, 248);">T</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 是否是一个函数类型，如果是，</font><font style="color:#DF2A3F;background-color:rgb(247, 247, 248);">就推断出函数的返回类型(R 就是返回的类型)</font><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">，并将其赋值给 </font><strong><font style="background-color:rgb(247, 247, 248);">R</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">。如果不是函数类型，则返回 </font><strong><font style="background-color:rgb(247, 247, 248);">never</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 类型。</font></p>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">然后，我们定义了一个函数 </font><strong><font style="background-color:rgb(247, 247, 248);">greet</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">，它返回一个字符串类型。</font></p>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">最后，我们使用 </font><strong><font style="background-color:rgb(247, 247, 248);">ExtractReturnType</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 来提取函数 </font><strong><font style="background-color:rgb(247, 247, 248);">greet</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 的返回类型，并将其赋值给 </font><strong><font style="background-color:rgb(247, 247, 248);">ReturnTypeOfGreet</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">。根据推断结果，</font><strong><font style="background-color:rgb(247, 247, 248);">ReturnTypeOfGreet</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 的类型将为 </font><strong><font style="background-color:rgb(247, 247, 248);">string</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">。</font></p>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"></font></p>
+<h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><p>有时候我们定义的泛型不想过于灵活或者说想继承某些类等，可以通过 extends 关键字添加泛型约束。</p>
+<pre><code class="javascript">interface Lengthwise &#123;
+  length: number;
+&#125;
+
+function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T): T &#123;
+  console.log(arg.length);
+  return arg;
+&#125;
+</code></pre>
+<p>现在这个泛型函数被定义了约束，因此它不再是适用于任意类型：</p>
+<pre><code class="javascript">loggingIdentity(3); // Error, number doesn&#39;t have a .length property
+</code></pre>
+<p>这时我们需要传入符合约束类型的值，必须包含 length 属性：</p>
+<pre><code class="javascript">loggingIdentity(&#123; length: 10, value: 3 &#125;);
+</code></pre>
+<h3 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h3><p>在实际开发中，我们经常能遇到这样的场景，在对象中获取一些属性的值，然后建立对应的集合。</p>
+<pre><code class="javascript">let person = &#123;
+  name: &quot;musion&quot;,
+  age: 35,
+&#125;;
+
+function getValues(person: any, keys: string[]) &#123;
+  return keys.map((key) =&gt; person[key]);
+&#125;
+
+console.log(getValues(person, [&quot;name&quot;, &quot;age&quot;])); // [&#39;musion&#39;, 35]
+console.log(getValues(person, [&quot;gender&quot;])); // [undefined]
+</code></pre>
+<p>在上述例子中，可以看到 getValues (persion, [‘gender’]) 打印出来的是 [undefined]，但是 ts 编译器并没有给出报错信息，那么如何使用 ts 对这种模式进行类型约束呢？这里就要用到了索引类型，改造一下 getValues 函数，通过 <strong>索引类型查询</strong>和 <strong>索引访问</strong> 操作符：</p>
+<pre><code class="javascript">function getValues&lt;T, K extends keyof T&gt;(person: T, keys: K[]): T[K][] &#123;
+  return keys.map(key =&gt; person[key]);
+&#125;
+
+interface Person &#123;
+    name: string;
+    age: number;
+&#125;
+
+const person: Person = &#123;
+    name: &#39;musion&#39;,
+    age: 35
+&#125;
+
+getValues(person, [&#39;name&#39;]) // [&#39;musion&#39;]
+getValues(person, [&#39;gender&#39;]) // 报错：
+// Argument of Type &#39;&quot;gender&quot;[]&#39; is not assignable to parameter of type &#39;(&quot;name&quot; | &quot;age&quot;)[]&#39;.
+// Type &quot;gender&quot; is not assignable to type &quot;name&quot; | &quot;age&quot;.
+</code></pre>
+<h3 id="映射类型"><a href="#映射类型" class="headerlink" title="映射类型"></a>映射类型</h3><blockquote>
+<p>根据旧的类型创建出新的类型，我们称之为映射类型</p>
+</blockquote>
+<p>比如我们定义一个接口</p>
+<pre><code class="javascript">interface TestInterface &#123;
+  name: string;
+  age: number;
+&#125;
+</code></pre>
+<p>我们把上面定义的接口里面的属性全部变成可选</p>
+<pre><code class="javascript">// 我们可以通过+/-来指定添加还是删除
+
+type OptionalTestInterface&lt;T&gt; = &#123;
+  [p in keyof T]+?:T[p]
+&#125;
+
+type newTestInterface = OptionalTestInterface&lt;TestInterface&gt;
+// type newTestInterface = &#123;
+//    name?:string,
+//    age?:number
+// &#125;
+</code></pre>
+<p>比如我们再加上只读</p>
+<pre><code class="javascript">type OptionalTestInterface&lt;T&gt; = &#123;
+ +readonly [p in keyof T]+?:T[p]
+&#125;
+
+type newTestInterface = OptionalTestInterface&lt;TestInterface&gt;
+// type newTestInterface = &#123;
+//   readonly name?:string,
+//   readonly age?:number
+// &#125;
+</code></pre>
+<p>由于生成只读属性和可选属性比较常用，所以 TS 内部已经给我们提供了现成的实现 Readonly / Partial, 会面内置的工具类型会介绍（等于说是这是工具类型的实现）</p>
+<h2 id="Class-类"><a href="#Class-类" class="headerlink" title="Class 类"></a>Class 类</h2><h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>TS 为前端面向对象开发带来了契机</p>
+<p>JS 语言没有类型检查，如果使用面向对象的方式开发，会产生大量的接口，而大量的接口会导致调用复杂度剧增，这种复杂度必须通过严格的类型检查来避免错误，尽管可以使用注释或文档或记忆力，但是它们没有强约束力。</p>
+<p>TS 带来了完整的类型系统，因此开发复杂程序时，无论接口数量有多少，都可以获得完整的类型检查，并且这种检查是据有强约束力的。</p>
+<p>面向对象中有许多非常成熟的模式，能处理复杂问题</p>
+<p>在过去的很多年中，在大型应用或复杂领域，面向对象已经积累了非常多的经验。</p>
+<p>是一种编程思想，它提出一切以类对切入点思考问题。</p>
+<p>其他编程思想：面向过程、函数式编程</p>
+<p><strong>学开发最重要最难的是什么？思维</strong></p>
+<p><strong>最重要的也是思维，代码是最不值钱的，脑中的知识才值钱</strong></p>
+<p>面向过程：以功能流程为思考切入点，不太适合大型应用</p>
+<p>函数式编程：以数学运算为思考切入点</p>
+<p>面向对象：以划分类为思考切入点。类是最小的功能单元</p>
+<p>类：可以产生对象的模板。</p>
+<h4 id="成员的重写"><a href="#成员的重写" class="headerlink" title="成员的重写"></a>成员的重写</h4><p>重写(override)：子类中覆盖父类的成员</p>
+<p>子类成员不能改变父类成员的类型（修饰符可以改，比如 readonly）</p>
+<p>无论是属性还是方法，子类都可以对父类的相应成员进行重写，但是重写时，需要保证类型的匹配。</p>
+<p>注意 this 关键字：在继承关系中，this 的指向是动态——调用方法时，根据具体的调用者确定 this 指向</p>
+<p>super 关键字：在子类的方法中，可以使用 super 关键字读取父类成员</p>
+<h3 id="构造函数创建"><a href="#构造函数创建" class="headerlink" title="构造函数创建"></a>构造函数创建</h3><p><code>ES6</code>提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过 <code>class</code> 关键字，可以定义类。基本上，ES6 的 <code>class</code> 可以看作只是一个<code>语法糖</code>，它的绝大部分功能，ES5 都可以做到，新的 <code>class</code> 写法只是让对象原型的写法更加清晰、更像<code>面向对象</code>编程的语法而已。上面的代码用 ES6 的 “类” 改写</p>
+<blockquote>
+<p>JavaScript 写法</p>
+</blockquote>
+<pre><code class="typescript">//定义类 JavaScript写法
+class Person &#123;
+  constructor(name, age, sub) &#123;
+    this.name = name;
+    this.age = age;
+    this.sub = sub;
+  &#125;
+&#125;
+
+new Person(&quot;小满&quot;, 22, false);
+</code></pre>
+<blockquote>
+<p>TypeScript 写法</p>
+</blockquote>
+<pre><code class="typescript">//在TypeScript中是需要提前声明类型的
+class Person &#123;
+  name: string;
+  age: number;
+  sub: boolean;
+  constructor(name: string, age: number, sub: boolean) &#123;
+    this.name = name;
+    this.age = age;
+    this.sub = sub;
+  &#125;
+&#125;
+
+new Person(&quot;小满&quot;, 22, false);
+</code></pre>
+<h3 id="public"><a href="#public" class="headerlink" title="public"></a>public</h3><blockquote>
+<p>public 内部外部都可以访问，如果定义了 public，像 p 就能够访问 constructor 内部的变量了。当然，默认情况下也是 public</p>
+</blockquote>
+<pre><code class="typescript">//在TypeScript中是需要提前声明类型的
+class Person &#123;
+    public name:string
+    public age:number
+    public sub:boolean
+    constructor (name:string,age:number,sub:boolean) &#123;
+        this.name = name
+        this.age = age
+        this.sub = sub
+    &#125;
+&#125;
+
+let p = new Person(&quot;小满&quot;,22,false)
+p.age p.name p.sub//都可以访问
+</code></pre>
+<h3 id="private"><a href="#private" class="headerlink" title="private"></a>private</h3><blockquote>
+<p>private 私有变量只能在内部访问</p>
+</blockquote>
+<pre><code class="typescript">//在TypeScript中是需要提前声明类型的
+class Person &#123;
+    private name:string
+    private age:number
+    private sub:boolean
+    constructor (name:string,age:number,sub:boolean) &#123;
+        this.name = name
+        this.age = age
+        this.sub = sub
+    &#125;
+&#125;
+
+let p = new Person(&quot;小满&quot;,22,false)
+p.age p.name p.sub//都访问不到了
+</code></pre>
+<h3 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h3><blockquote>
+<p>protected 内部和子类中访问</p>
+<p>private 跟 protectd 他们的区别是一个是只能在内部使用，一个是内部与子类访问，例子如下</p>
+</blockquote>
+<pre><code class="typescript">//在TypeScript中是需要提前声明类型的
+class Person &#123;
+    protected name:string
+    private age:number
+    public sub:boolean//没错，没使用标红的是这些
+    constructor (name:string,age:number,sub:boolean) &#123;
+        this.name = name
+        this.age = age
+        this.sub = sub//上面定义了变量就需要使用，如果没用使用的话声明的变量就会标红(就算不标红不提示，真运行下去也会报错)，不能就那么放着，要么就用上，要么就给他个默认值0塞着
+    &#125;
+&#125;
+
+class Man extends Person&#123;
+    constructor()&#123;
+        super(&quot;小满&quot;,22,false)
+        this.name
+        this.sub//这两个都可以访问到，this.age访问不到。因为age是private，private只能在内部使用而不能在子类访问，Man是Person的子类
+    &#125;
+&#125;
+
+let p = new Person(&quot;小满&quot;,22,false)
+p.age p.name p.sub
+</code></pre>
+<h3 id="访问器"><a href="#访问器" class="headerlink" title="访问器"></a>访问器</h3><p>控制属性的读写，本身 js 也支持</p>
+<h3 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h3><pre><code class="typescript">class Person &#123;
+    constructor (
+      public name:string,
+      public age:number,
+      public sub:boolean)
+    &#123;&#125;
+&#125;
+let p = new Person(&quot;小满&quot;,22,false)
+p.age p.name p.sub
+</code></pre>
+<p>加了 public 以后就会默认写上 this.name=name</p>
+<p><strong>在类中 this 指向实例对象</strong></p>
+<h3 id="抽象类，抽象成员"><a href="#抽象类，抽象成员" class="headerlink" title="抽象类，抽象成员"></a>抽象类，抽象成员</h3><p>父类中，可能知道有些成员是必须存在的，但是不知道该成员的值或实现是什么，因此，需要有一种强约束，让继承该类的子类，必须要实现该成员。</p>
+<p><strong>抽象类中</strong>，可以有抽象成员，这些抽象成员必须在子类中实现</p>
+<p>用关键词<code>abstract</code>修饰的类称为 abstract 类（<strong>抽象类</strong>）</p>
+<p>应用场景如果你写的类实例化之后毫无用处此时我可以把他定义为抽象类</p>
+<p>或者你也可以把他作为一个基类 -&gt; 通过继承一个<strong>派生类</strong>去实现基类的一些方法</p>
+<p>对于 abstract 方法只允许声明，不允许实现（因为没有方法体）（毕竟叫抽象，当然不能实实在在的让你实现），并且不允许使用 final 和 abstract 同时修饰一个方法或者类，也不允许使用 static 修饰 abstract 方法。也就是说，abstract 方法只能是实例方法，不能是类方法。</p>
+<pre><code class="typescript">abstract class A &#123;
+  name: string;
+  construct(name: string) &#123;
+    //construct：构造器
+    this.name = name;
+  &#125;
+
+  setName(name: string) &#123;
+    this.name = name;
+  &#125;
+
+  abstract getName(): string; //抽象成员
+
+  //abstract getName()&#123;//方法getName不能具有实现，因为它标记为抽象。定义抽象类的函数
+  //   return 213
+  //&#125;
+&#125;
+
+class B extends A &#123;
+  //派生类。定义了抽象类必须在派生类里实现
+  //B类是继承A类的，此时A类就是一个抽象类
+  constructor() &#123;
+    super(&quot;小满&quot;);
+  &#125;
+  getName(): string &#123;
+    return this.name;
+  &#125;
+&#125;
+//此时A类是无法被创建实例的(new A)，也就是无法创建抽象类的实例
+//B类是可以创建实例的(new B)
+
+let b = new B();
+b.setName(&quot;小满2&quot;); //通过抽象类的设置，成功修改掉子类的内容
+//    setName(name:string)&#123;
+//        this.name = name
+//    &#125;
+console.log(b.getName());
+</code></pre>
+<p>普通类不能有抽象成员</p>
+<p>抽象类中还可以有抽象成员，抽象方法</p>
+<pre><code class="typescript">abstract class Chess &#123;
+  abstract readonly name: string;
+
+  abstract move(targetX: number, targetY: number): boolean;
+&#125;
+</code></pre>
+<h3 id="静态方法，静态成员"><a href="#静态方法，静态成员" class="headerlink" title="静态方法，静态成员"></a>静态方法，静态成员</h3><pre><code class="typescript">class Board &#123;
+  width: number = 500;
+  height: number = 700;
+
+  init() &#123;
+    console.log(&quot;初始化棋盘&quot;);
+  &#125;
+
+  private constructor() &#123;&#125;
+
+  private static _board;
+
+  static createBoard(): Board &#123;
+    if (this._board) &#123;
+      return this._board;
+    &#125;
+    this._board = new Board();
+    return this._board;
+  &#125;
+&#125;
+
+//直接调用
+Board.createBoard();
+</code></pre>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>实例方法中的 this 指向的是<strong>当前对象(实例对象)</strong></p>
+<p>静态方法中的 this 指向的是<strong>当前类</strong></p>
+<p>明确：大部分时候，this 的指向取决于函数的调用方式</p>
+<ul>
+<li><strong>如果直接调用函数（全局调用），this 指向全局对象或 undefined (启用严格模式)</strong></li>
+<li><strong>如果使用</strong><code>**``对象.方法``**</code><strong>调用，this 指向对象本身</strong></li>
+<li><strong>如果是 dom 事件的处理函数，this 指向事件处理对象</strong></li>
+</ul>
+<p><strong>特殊情况：</strong></p>
+<ul>
+<li><strong>箭头函数，this 在函数声明时确定指向，指向函数位置的 this</strong></li>
+<li><strong>使用 bind、apply、call 手动绑定 this 对象</strong></li>
+</ul>
+<h4 id="TS-中的-this"><a href="#TS-中的-this" class="headerlink" title="TS 中的 this"></a>TS 中的 this</h4><p><strong>配置 noImplicitThis 为 true，表示不允许 this 隐式的指向 any</strong></p>
+<p><strong>在 TS 中，允许在书写函数时，手动声明该函数中 this 的指向，将 this 作为函数的第一个参数，该参数只用于约束 this，并不是真正的参数，也不会出现在编译结果中。</strong></p>
+<pre><code class="typescript">// interface IUser &#123;
+//     name: string,
+//     age: number,
+//可以控制this的指向
+//     sayHello(this: IUser): voidk
+// &#125;
+
+// const u: IUser = &#123;
+//     name: &quot;ssf&quot;,
+//     age: 33,
+//     sayHello() &#123;
+//         console.log(this.name, this.age)
+//     &#125;
+// &#125;
+// const say = u.sayHello;
+</code></pre>
+<h3 id="索引器"><a href="#索引器" class="headerlink" title="索引器"></a>索引器</h3><p><code>对象[值]</code>，使用成员表达式</p>
+<p>在 TS 中，默认情况下，不对索引器（成员表达式）做严格的类型检查</p>
+<p>使用配置<code>noImplicitAny</code>开启对隐式 any 的检查。</p>
+<p>隐式 any：TS 根据实际情况推导出的 any 类型</p>
+<p>在索引器中，键的类型可以是字符串，也可以是数字</p>
+<p>在类中，索引器书写的位置应该是所有成员之前</p>
+<p>TS 中索引器的作用</p>
+<ul>
+<li>在严格的检查下，可以实现为类动态增加成员</li>
+<li>可以实现动态的操作类成员</li>
+</ul>
+<p><strong>在 JS 中，所有的成员名本质上，都是字符串，如果使用数字作为成员名，会自动转换为字符串。</strong></p>
+<p>在 TS 中，如果某个类中使用了两种类型的索引器，要求两种索引器的值类型必须匹配</p>
+<pre><code class="typescript">class B &#123;&#125;
+
+class A &#123;
+  [prop: number]: B;
+  [prop: string]: object;
+&#125;
+
+class D &#123;
+  [prop: string]: string;
+&#125;
+let d = new D();
+d.a = 12; //可以扩展
+</code></pre>
+<h2 id="工具类型（说到底，工具类型都是进行了基本类型和约束的封装而已）"><a href="#工具类型（说到底，工具类型都是进行了基本类型和约束的封装而已）" class="headerlink" title="工具类型（说到底，工具类型都是进行了基本类型和约束的封装而已）"></a>工具类型（说到底，工具类型都是进行了基本类型和约束的封装而已）</h2><h3 id="Partial"><a href="#Partial" class="headerlink" title="Partial"></a>Partial</h3><blockquote>
+<p><code>Partial&lt;T&gt;</code> 将类型的属性变成可选</p>
+</blockquote>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><pre><code class="javascript">type Partial&lt;T&gt; = &#123;
+  [P in keyof T]?: T[P];
+&#125;;
+</code></pre>
+<p>在以上代码中，首先通过 <code>keyof T</code> 拿到 <code>T</code> 的所有属性名，然后使用 <code>in</code> 进行遍历，将值赋给 <code>P</code>，最后通过 <code>T[P]</code> 取得相应的属性值的类。中间的 <code>?</code> 号，用于将所有属性变为可选。</p>
+<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code class="javascript">interface UserInfo &#123;
+  id: string;
+  name: string;
+&#125;
+// error：Property &#39;id&#39; is missing in type &#39;&#123; name: string; &#125;&#39; but required in type &#39;UserInfo&#39;
+const xiaoming: UserInfo = &#123;
+  name: &quot;xiaoming&quot;,
+&#125;;
+</code></pre>
+<p>使用 <code>Partial&lt;T&gt;</code></p>
+<pre><code class="javascript">type NewUserInfo = Partial&lt;UserInfo&gt;;
+const xiaoming: NewUserInfo = &#123;
+  name: &quot;xiaoming&quot;,
+&#125;;
+</code></pre>
+<p>这个 NewUserInfo 就相当于</p>
+<pre><code class="javascript">interface NewUserInfo &#123;
+  id?: string;
+  name?: string;
+&#125;
+</code></pre>
+<p>但是 <code>Partial&lt;T&gt;</code> 有个局限性，就是只支持处理第一层的属性，如果我的接口定义是这样的</p>
+<pre><code class="javascript">interface UserInfo &#123;
+  id: string;
+  name: string;
+  fruits: &#123;
+    appleNumber: number,
+    orangeNumber: number,
+  &#125;;
+&#125;
+
+type NewUserInfo = Partial&lt;UserInfo&gt;;
+
+// Property &#39;appleNumber&#39; is missing in type &#39;&#123; orangeNumber: number; &#125;&#39; but required in type &#39;&#123; appleNumber: number; orangeNumber: number; &#125;&#39;.
+const xiaoming: NewUserInfo = &#123;
+  name: &quot;xiaoming&quot;,
+  fruits: &#123;
+    orangeNumber: 1,
+  &#125;,
+&#125;;
+</code></pre>
+<p>可以看到，第二层以后就不会处理了，如果要处理多层，就可以自己实现</p>
+<h4 id="DeepPartial-非内置"><a href="#DeepPartial-非内置" class="headerlink" title="DeepPartial(非内置)"></a>DeepPartial(非内置)</h4><pre><code class="javascript">type DeepPartial&lt;T&gt; = &#123;
+     // 如果是 object，则递归类型
+    [U in keyof T]?: T[U] extends object
+      ? DeepPartial&lt;T[U]&gt;
+      : T[U]
+&#125;;
+
+type PartialedWindow = DeepPartial&lt;T&gt;; // 现在T上所有属性都变成了可选啦
+</code></pre>
+<h3 id="Required"><a href="#Required" class="headerlink" title="Required"></a>Required</h3><blockquote>
+<p>Required 将类型的属性变成必选</p>
+</blockquote>
+<h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><pre><code class="javascript">type Required&lt;T&gt; = &#123;
+    [P in keyof T]-?: T[P]
+&#125;;
+</code></pre>
+<p>其中 <code>-?</code> 是代表移除 <code>?</code> 这个 modifier 的标识</p>
+<h3 id="Readonly"><a href="#Readonly" class="headerlink" title="Readonly"></a>Readonly</h3><blockquote>
+<p><code>Readonly&lt;T&gt;</code> 的作用是将某个类型所有属性变为只读属性，也就意味着这些属性不能被重新赋值。</p>
+</blockquote>
+<h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><pre><code class="javascript">type Readonly&lt;T&gt; = &#123;
+ readonly [P in keyof T]: T[P];
+&#125;;
+</code></pre>
+<h4 id="举例说明-1"><a href="#举例说明-1" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code class="javascript">interface Todo &#123;
+  title: string;
+&#125;
+
+const todo: Readonly&lt;Todo&gt; = &#123;
+  title: &quot;Delete inactive users&quot;,
+&#125;;
+
+todo.title = &quot;Hello&quot;; // Error: cannot reassign a readonly property
+</code></pre>
+<h3 id="Pick"><a href="#Pick" class="headerlink" title="Pick"></a>Pick</h3><blockquote>
+<p>Pick 从某个类型中挑出一些属性出来</p>
+</blockquote>
+<h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><pre><code class="javascript">type Pick&lt;T, K extends keyof T&gt; = &#123;
+    [P in K]: T[P];
+&#125;;
+</code></pre>
+<h4 id="举例说明-2"><a href="#举例说明-2" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code class="javascript">interface Todo &#123;
+  title: string;
+  description: string;
+  completed: boolean;
+&#125;
+
+type TodoPreview = Pick&lt;Todo, &quot;title&quot; | &quot;completed&quot;&gt;;
+
+const todo: TodoPreview = &#123;
+  title: &quot;Clean room&quot;,
+  completed: false,
+&#125;;
+</code></pre>
+<p>可能是<code>TodoPreview</code>中只有<code>title</code>和<code>completed</code>属性</p>
+<h3 id="Record"><a href="#Record" class="headerlink" title="Record"></a>Record</h3><p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">用于创建具有指定键类型和值类型的对象类型。它的语法形式为 </font><strong><font style="background-color:rgb(247, 247, 248);">Record&lt;K, T&gt;</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">，其中 “K” 是键类型，”T” 是值类型。</font></p>
+<h4 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h4><pre><code class="javascript">type Record&lt;K extends keyof any, T&gt; = &#123;
+    [P in K]: T;
+&#125;;
+</code></pre>
+<h4 id="举例说明-3"><a href="#举例说明-3" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code class="plain">type Person = &#123;
+  name: string;
+  age: number;
+&#125;;
+
+type PersonRecord = Record&lt;string, Person&gt;;
+
+const people: PersonRecord = &#123;
+  person1: &#123; name: &quot;Alice&quot;, age: 25 &#125;,
+  person2: &#123; name: &quot;Bob&quot;, age: 30 &#125;,
+&#125;;
+</code></pre>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">在上面的代码中，我们首先定义了一个类型 </font><strong><font style="background-color:rgb(247, 247, 248);">Person</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">，它表示一个具有 </font><strong><font style="background-color:rgb(247, 247, 248);">name</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 和 </font><strong><font style="background-color:rgb(247, 247, 248);">age</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 属性的对象类型。</font></p>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">然后，我们使用 </font><strong><font style="background-color:rgb(247, 247, 248);">Record&lt;string, Person&gt;</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 创建了一个 </font><strong><font style="background-color:rgb(247, 247, 248);">PersonRecord</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 类型。这表示 </font><strong><font style="background-color:rgb(247, 247, 248);">PersonRecord</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 是一个对象类型，其中键类型为字符串，值类型为 </font><strong><font style="background-color:rgb(247, 247, 248);">Person</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">。</font></p>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">最后，我们创建了一个 </font><strong><font style="background-color:rgb(247, 247, 248);">people</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 对象，其类型为 </font><strong><font style="background-color:rgb(247, 247, 248);">PersonRecord</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">。它具有两个属性，每个属性的键为字符串，值为 </font><strong><font style="background-color:rgb(247, 247, 248);">Person</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 类型的对象。</font></p>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">通过使用 “Record” 类型工具，我们可以更方便地定义具有特定键类型和值类型的对象类型，避免手动编写类型声明。这对于处理字典、映射和索引对象非常有用。</font></p>
+<pre><code class="javascript">interface PageInfo &#123;
+  title: string;
+&#125;
+
+type Page = &quot;home&quot; | &quot;about&quot; | &quot;contact&quot;;
+
+const x: Record&lt;Page, PageInfo&gt; = &#123;
+  about: &#123; title: &quot;about&quot; &#125;,
+  contact: &#123; title: &quot;contact&quot; &#125;,
+  home: &#123; title: &quot;home&quot; &#125;,
+&#125;;
+</code></pre>
+<h3 id="ReturnType"><a href="#ReturnType" class="headerlink" title="ReturnType"></a>ReturnType</h3><blockquote>
+<p>用来得到一个函数的返回值类型</p>
+</blockquote>
+<h4 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h4><pre><code class="javascript">type ReturnType&lt;T extends (...args: any[]) =&gt; any&gt; = T extends (
+  ...args: any[]
+) =&gt; infer R
+  ? R
+  : any;
+</code></pre>
+<p><code>infer</code> 在这里用于提取函数类型的返回值类型。<code>ReturnType&lt;T&gt;</code> 只是将 infer R 从参数位置移动到返回值位置，因此此时 R 即是表示待推断的返回值类型。</p>
+<h4 id="举例说明-4"><a href="#举例说明-4" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code class="javascript">type Func = (value: number) =&gt; string;
+const foo: ReturnType&lt;Func&gt; = &quot;1&quot;;
+</code></pre>
+<p><code>ReturnType</code> 获取到 <code>Func</code> 的返回值类型为 <code>string</code>，所以，<code>foo</code> 也就只能被赋值为字符串了。</p>
+<h3 id="Exclude"><a href="#Exclude" class="headerlink" title="Exclude"></a>Exclude</h3><blockquote>
+<p><code>Exclude&lt;T, U&gt;</code> 的作用是将某个类型中属于另一个的类型移除掉。</p>
+</blockquote>
+<h4 id="定义-6"><a href="#定义-6" class="headerlink" title="定义"></a>定义</h4><pre><code class="javascript">type Exclude&lt;T, U&gt; = T extends U ? never : T;
+</code></pre>
+<p>如果 <code>T</code> 能赋值给 <code>U</code> 类型的话，那么就会返回 <code>never</code> 类型，否则返回 <code>T</code> 类型。最终实现的效果就是将 <code>T</code> 中某些属于 <code>U</code> 的类型移除掉。</p>
+<h4 id="举例说明-5"><a href="#举例说明-5" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code class="javascript">type T0 = Exclude&lt;&quot;a&quot; | &quot;b&quot; | &quot;c&quot;, &quot;a&quot;&gt;; // &quot;b&quot; | &quot;c&quot;
+type T1 = Exclude&lt;&quot;a&quot; | &quot;b&quot; | &quot;c&quot;, &quot;a&quot; | &quot;b&quot;&gt;; // &quot;c&quot;
+type T2 = Exclude&lt;string | number | (() =&gt; void), Function&gt;; // string | number
+</code></pre>
+<h3 id="Extract"><a href="#Extract" class="headerlink" title="Extract"></a>Extract</h3><blockquote>
+<p><code>Extract&lt;T, U&gt;</code> 的作用是从 <code>T</code> 中提取出 <code>U</code>。</p>
+</blockquote>
+<h4 id="定义-7"><a href="#定义-7" class="headerlink" title="定义"></a>定义</h4><pre><code class="javascript">type Extract&lt;T, U&gt; = T extends U ? T : never;
+</code></pre>
+<h4 id="举例说明-6"><a href="#举例说明-6" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code class="javascript">type T0 = Extract&lt;&quot;a&quot; | &quot;b&quot; | &quot;c&quot;, &quot;a&quot; | &quot;f&quot;&gt;; // &quot;a&quot;
+type T1 = Extract&lt;string | number | (() =&gt; void), Function&gt;; // () =&gt;void
+</code></pre>
+<h3 id="Omit"><a href="#Omit" class="headerlink" title="Omit"></a>Omit</h3><blockquote>
+<p><code>Omit&lt;T, K extends keyof any&gt;</code> 的作用是使用 <code>T</code> 类型中除了 <code>K</code> 类型的所有属性，来构造一个新的类型。</p>
+</blockquote>
+<h4 id="定义-8"><a href="#定义-8" class="headerlink" title="定义"></a>定义</h4><pre><code class="javascript">type Omit&lt;T, K extends keyof any&gt; = Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt;;
+</code></pre>
+<h4 id="举例说明-7"><a href="#举例说明-7" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code class="javascript">interface Todo &#123;
+  title: string;
+  description: string;
+  completed: boolean;
+&#125;
+
+type TodoPreview = Omit&lt;Todo, &quot;description&quot;&gt;;
+一个新类型，去掉description
+
+const todo: TodoPreview = &#123;
+  title: &quot;Clean room&quot;,
+  completed: false,
+&#125;;
+</code></pre>
+<h3 id="NonNullable"><a href="#NonNullable" class="headerlink" title="NonNullable"></a>NonNullable</h3><blockquote>
+<p><code>NonNullable&lt;T&gt;</code> 的作用是用来过滤类型中的 <code>null</code> 及 <code>undefined</code> 类型。</p>
+</blockquote>
+<h4 id="定义-9"><a href="#定义-9" class="headerlink" title="定义"></a>定义</h4><pre><code class="javascript">type NonNullable&lt;T&gt; = T extends null | undefined ? nerver : T
+</code></pre>
+<h4 id="举例说明-8"><a href="#举例说明-8" class="headerlink" title="举例说明"></a>举例说明</h4><pre><code class="javascript">type T0 = NonNullable&lt;string | number | undefined&gt;; // string | number
+type T1 = NonNullable&lt;string[] | null | undefined&gt;; // string[]
+</code></pre>
+<h3 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h3><blockquote>
+<p><code>Parameters&lt;T&gt;</code> 的作用是用于获得函数的参数类型组成的元组类型。</p>
+</blockquote>
+<h4 id="定义-10"><a href="#定义-10" class="headerlink" title="定义"></a>定义</h4><pre><code class="javascript">type Parameters&lt;T extends (...args: any) =&gt; any&gt; = T extends (...args: infer P) =&gt; any
+? P : never;
+</code></pre>
+<h4 id="举例说明-9"><a href="#举例说明-9" class="headerlink" title="举例说明"></a>举例说明</h4><p>获取这些方法的入参</p>
+<pre><code class="javascript">type A = Parameters&lt;() =&gt; void&gt;; // []
+type B = Parameters&lt;typeof Array.isArray&gt;; // [any]
+type C = Parameters&lt;typeof parseInt&gt;; // [string, (number | undefined)?]
+type D = Parameters&lt;typeof Math.max&gt;; // number[]
+</code></pre>
+<pre><code class="plain">type AddFunc = (a: number, b: number) =&gt; number;
+
+type AddFuncParams = Parameters&lt;AddFunc&gt;;  // [number, number]
+</code></pre>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">在上面的代码中，我们首先定义了一个类型 </font><strong><font style="background-color:rgb(247, 247, 248);">AddFunc</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">，它表示一个接受两个参数（都是数字类型）并返回一个数字类型的函数类型。</font></p>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">然后，我们使用 </font><strong><font style="background-color:rgb(247, 247, 248);">Parameters<AddFunc></font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 获取了 </font><strong><font style="background-color:rgb(247, 247, 248);">AddFunc</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);"> 函数类型的参数类型列表。结果类型为元组类型 </font><strong><font style="background-color:rgb(247, 247, 248);">[number, number]</font></strong><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">，其中第一个元素表示第一个参数的类型，第二个元素表示第二个参数的类型。</font></p>
+<p><font style="color:rgb(55, 65, 81);background-color:rgb(247, 247, 248);">通过使用 “Parameters” 类型工具，我们可以轻松地提取函数类型的参数类型列表，这对于需要对函数参数进行类型操作或进行类型推断的情况非常有用。</font></p>
+<h1 id="声明文件-d-ts"><a href="#声明文件-d-ts" class="headerlink" title="声明文件 d.ts"></a>声明文件 d.ts</h1><h2 id="什么是声明文件"><a href="#什么是声明文件" class="headerlink" title="什么是声明文件"></a>什么是声明文件</h2><p>以<code>.d.ts</code>结尾的文件</p>
+<h2 id="声明文件有什么作用"><a href="#声明文件有什么作用" class="headerlink" title="声明文件有什么作用"></a>声明文件有什么作用</h2><p>为 JS 代码提供类型声明</p>
+<p>js 代码本身是没有类型约束的，ts 去读 js 的时候得不到类型声明，我们要把 js 代码声明的参数与变量告诉 ts,就必须应用声明文件。（不用改动 js 代码，额外再增加一个声明文件）</p>
+<p>console 是 node 的内置模块，node 本身是用 js 写的，但是我们写 console.log 的时候会有类型提示，是因为我们引用了类型编写文件@type/node 里面帮我们补足了类型</p>
+<p><img src="1722145277699-5a7ec294-9283-43d5-9245-dde140c1886a.png"></p>
+<p>当使用第三方库时，我们需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能（因为那些库可能本身都是用 js 去写的）</p>
+<p>声明文件的位置</p>
+<ol>
+<li>放置到 tsconfig.json 配置中包含的目录中（include 配置的路径下）</li>
+<li>放置到 node_modules/@types 文件夹中</li>
+<li>手动配置</li>
+</ol>
+<p>tsconfig.json 里面配置路径</p>
+<pre><code class="plain">&quot;typeRoots&quot;: [&quot;./node_modules/@types&quot;, &quot;./src/types&quot;]
+</code></pre>
+<p>如果采用这种方式，前两种配置将会失效</p>
+<ol start="4">
+<li>与 JS 代码所在目录相同，并且文件名也相同的文件。用 ts 代码书写的工程发布之后的格式。</li>
+</ol>
+<h2 id="编写声明文件"><a href="#编写声明文件" class="headerlink" title="编写声明文件"></a>编写声明文件</h2><h3 id="自动生成"><a href="#自动生成" class="headerlink" title="自动生成"></a>自动生成</h3><p>工程是使用 ts 开发的，发布（编译）之后，是 js 文件，发布的是 js 文件。</p>
+<p>如果发布的文件，需要其他开发者使用，可以使用声明文件，来描述发布结果中的类型。</p>
+<p>配置<code>tsconfig.json</code>中的<code>declaration:true</code>即可</p>
+<p>配置<code>tsconfig.json</code>中的<code>sourceMap</code>可以配置源码地图，方便调试</p>
+<h3 id="手动编写"><a href="#手动编写" class="headerlink" title="手动编写"></a>手动编写</h3><ol>
+<li>对已有库，它是使用 js 书写而成，并且更改该库的代码为 ts 成本较高，可以手动编写声明文件</li>
+<li>对一些第三方库，它们使用 js 书写而成，并且这些第三方库没有提供声明文件，可以手动编写声明文件。</li>
+</ol>
+<h4 id="全局声明"><a href="#全局声明" class="headerlink" title="全局声明"></a>全局声明</h4><p>声明一些全局的对象、属性、变量</p>
+<p>声明文件 declare</p>
+<pre><code class="typescript">declare var       声明全局变量
+declare function  声明全局方法
+declare class     声明全局类
+declare enum      声明全局枚举类型
+declare namespace 声明（含有子属性的）全局对象
+</code></pre>
+<p>给 console.log 写一个声明文件</p>
+<pre><code class="typescript">declare var console:object
+
+//字面量方式
+declare var console:&#123;
+  log(message: any):void
+&#125;
+
+//用接口方式
+interface Console&#123;
+  log(message: any):void
+&#125;
+declare var console: Console
+
+//命名空间方式
+declare namespace console&#123;
+  function log(message?: any):void
+  function error(message? any):void
+&#125;
+</code></pre>
+<blockquote>
+<p>namespace: 表示命名空间，可以将其认为是一个对象，命名空间中的内容，必须通过<code>命名空间.成员名</code>访问</p>
+</blockquote>
+<p>声明 setTimeout</p>
+<pre><code class="typescript">declare function setTimeout(handler: () =&gt; void, time: number): number;
+</code></pre>
+<p>完整示例</p>
+<pre><code class="typescript">//index.ts文件，用来使用express，为了不报错，我们要在后面自己写express的声明文件(当然这只是个例子，espress是有声明文件可以直接下载的)
+
+import express from &quot;express&quot;;
+
+xiaoyu = &quot;大二学生&quot;;
+
+const app = express();
+
+const router = express.Router();
+
+app.use(&quot;/api&quot;, router);
+
+router.get(&quot;/list&quot;, (req, res) =&gt; &#123;
+  res.json(&#123;
+    code: 200,
+  &#125;);
+&#125;);
+
+app.listen(9001, () =&gt; &#123;
+  //监听端口
+  console.log(9001);
+&#125;);
+</code></pre>
+<pre><code class="typescript">//我们进行编写express.d.ts文件
+
+declare module &quot;express&quot; &#123;
+  interface Router &#123;
+    //我们上面使用了两个参数，这里对其进行定义
+    get(path: string, cb: (req: any, res: any) =&gt; void): void;
+  &#125;
+  interface App &#123;
+    use(path: string, router: any): void;
+    listen(port: number, cb?: () =&gt; void): void;
+  &#125;
+  interface Express &#123;
+    (): App;
+    Router(): Router;
+  &#125;
+  //定义全局变量，那就能够在index.js中直接使用
+  declare var xiaoyu: string;
+  //扩充函数，类，枚举等等都是可以的，然后直接在index直接使用
+
+  const express: Express;
+  export default express;
+&#125;
+</code></pre>
+<h4 id="模块声明"><a href="#模块声明" class="headerlink" title="模块声明"></a>模块声明</h4><pre><code class="typescript">declare moudle &quot;lodash&quot; &#123;
+  export function chunk&lt;T&gt;(array: T[], size: number)
+&#125;:T[][]
+</code></pre>
+<p>额外问题</p>
+<p>在使用 ts-node 启动 ts 的时候，他不会去读 tsconfig.json 下的配置文件选项，导入编写了声明文件以后，依然 dev 会报错</p>
+<p>解决方法</p>
+<p>配置</p>
+<p><img src="1722149822038-80bd7395-82a0-4622-a536-4eae4ed503e6.png"></p>
+<h4 id="三斜线指令"><a href="#三斜线指令" class="headerlink" title="三斜线指令"></a>三斜线指令</h4><p>在一个声明文件中，包含另一个声明文件,相等于 import</p>
+<pre><code class="typescript">/// &lt;reference path=&quot;../../index.d.ts&quot;
+</code></pre>
+<p>ts 会来读这个文件</p>
+<p>给 import.meta.env 对象下面的 key 增加声明文件</p>
+<p><img src="1724837146491-e1fead25-dd1e-4082-aec6-b92d812ced12.png"></p>
+<h1 id="Mixins-混入"><a href="#Mixins-混入" class="headerlink" title="Mixins 混入"></a>Mixins 混入</h1><p>TypeScript 混入 Mixins 其实 vue 也有 mixins 这个东西 你可以把他看作为合并</p>
+<h3 id="对象混入"><a href="#对象混入" class="headerlink" title="对象混入"></a>对象混入</h3><p>可以使用 ES6 的 Object.assign 合并多个对象</p>
+<p>此时 people 会被推断成一个交差类型 Name &amp; Age &amp; sex;</p>
+<p>Object.assign()</p>
+<ul>
+<li>Object.assign () 这个方法来实现浅复制</li>
+<li>主要的用途是用来合并多个 JavaScript 的对象</li>
+<li>Object.assign () 接口可以接收多个参数，第一个参数是目标对象，后面的都是源对象，assign 方法将多个原对象的属性和方法都合并到了目标对象上面，如果在这个过程中出现同名的属性（方法），后合并的属性（方法）会覆盖之前的同名属性（方法）</li>
+<li>Object.assign 拷贝的属性是有限制的，只会拷贝对象本身的属性（不会拷贝继承属性），也不会拷贝不可枚举的属性</li>
+<li>Object.assign 不会跳过那些值为 [null] 或 [undefined] 的源对象</li>
+</ul>
+<pre><code class="typescript">interface Name &#123;
+  name: string;
+&#125;
+interface Age &#123;
+  age: number;
+&#125;
+interface Sex &#123;
+  sex: number;
+&#125;
+
+let people1: Name = &#123; name: &quot;小满&quot; &#125;;
+let people2: Age = &#123; age: 20 &#125;;
+let people3: Sex = &#123; sex: 1 &#125;;
+
+//Object.assign(a,b,c)
+
+const people = Object.assign(people1, people2, people3);
+</code></pre>
+<h3 id="类的混入"><a href="#类的混入" class="headerlink" title="类的混入"></a>类的混入</h3><p>首先声明两个 mixins 类 （严格模式要关闭不然编译不过）</p>
+<pre><code class="typescript">//混入类
+class A &#123;
+  type: boolean;
+  changeType() &#123;
+    this.type = !this.type;
+  &#125;
+&#125;
+
+class B &#123;
+  name: string;
+  getName() &#123;
+    return this.name;
+  &#125;
+&#125;
+
+//实现类    首先应该注意到的是，没使用 extends 而是使用 implements。 把类当成了接口。我们可以这么做来达到目的，为将要 mixin 进来的属性方法创建出占位属性。 这告诉编译器这些成员在运行时是可用的。 这样就能使用 mixin 带来的便利，虽说需要提前定义一些占位属性
+class C implements A, B &#123;
+  //这个时候编辑器会给出提示类&quot;C&quot;错误实现&quot;A&quot;。你是想扩展&quot;A&quot;并将其成员作为子继承吗？
+  //类型&quot;C&quot;缺少类型&quot;A&quot;中的以下属性:type,changeType
+  //B类同理
+  //这个时候就需要我们提前定义占位符
+  type: boolean = false;
+  name: string = &quot;小余&quot;;
+  changeType: () =&gt; void;
+  getName: () =&gt; string;
+&#125;
+
+mixins(C, [A, B]); //第一个为目标对象，后面为要混入的对象
+//最后，创建这个帮助函数，帮我们做混入操作。 它会遍历 mixins 上的所有属性，并复制到目标上去，把之前的占位属性替换成真正的实现代码
+//帮助函数，把我们在实现类中写的去进行一个实现
+
+function mixins(curClas: any, itemCls: any[]) &#123;
+  itemCls.forEach((item) =&gt; &#123;
+    console.log(item); //输出[class A][class B]，我们要读取的不是这个，而是他原型上的一些属性
+    Object.getOwnPropertyNames(item.prototype).forEach((name) =&gt; &#123;
+      //Object.getOwnPropertyNames () 可以获取对象自身的属性，除去他继承来的属性，对它所有的属性遍历，它是一个数组，遍历一下它所有的属性名
+      console.log(name); //打印出来了changeType跟getName
+      curClas.prototype[name] = item.prototype[name];
+    &#125;);
+  &#125;);
+&#125;
+
+let ccc = new C(); //实例化一下
+console.log(ccc.type); //false
+ccc.changeType(); //这里切换了布尔值
+console.log(ccc.type); //true
+</code></pre>
+<h1 id="TS-书写位置与语法"><a href="#TS-书写位置与语法" class="headerlink" title="TS 书写位置与语法"></a>TS 书写位置与语法</h1><p>1.变量</p>
+<pre><code class="javascript">let a: number = 2;
+</code></pre>
+<p>数组里面给予泛型</p>
+<pre><code class="typescript">let arr1: Array&lt;number&gt; = [1, 2, 3, 4, 5];
+let arr2: Array&lt;string&gt; = [&quot;1,2,3,4,5&quot;];
+let arr3: Array&lt;boolean&gt; = [true];
+//泛型数组套娃写法(还能够决定数组里面数组的类型之类的)
+let arr4: Array&lt;Array&lt;number&gt;&gt; = [[123], [456]];
+</code></pre>
+<p>2.函数参数</p>
+<pre><code class="javascript">getMonthRange(selectYear: number, selectMonth: number) &#123;&#125;
+</code></pre>
+<p>3.函数返回值</p>
+<pre><code class="javascript">getMonthRange():void &#123;&#125;
+</code></pre>
+<p>4.方法</p>
+<pre><code class="typescript">type Condition = (n: number) =&gt; boolean;
+
+interface Condition &#123;
+  (n: number): boolean;
+&#125;
+
+function sum(numbers: number[], callBack: Condition) &#123;
+  let s = 0;
+  numbers.forEach((n) =&gt; &#123;
+    if (callBack(n)) &#123;
+      s += n;
+    &#125;
+  &#125;);
+  return s;
+&#125;
+</code></pre>
+<p>5.断言</p>
+<pre><code class="typescript">let fn = function (num: number | string): void &#123;
+  console.log((num as string).length); //用括号括起来，as断言他是string类型
+&#125;;
+</code></pre>
+<pre><code class="typescript">let fn = (type: A | B) =&gt; &#123;
+  console.log((&lt;A&gt;type).run);
+&#125;;
+</code></pre>
+<p>6.泛型</p>
+<pre><code class="typescript">function Sub&lt;T, U&gt;(a: T, b: U): Array&lt;T | U&gt; &#123;
+  //这个T跟U随便起名字都行，没有强制规范
+  const params: Array&lt;T | U&gt; = [a, b];
+  return params;
+&#125;
+
+Sub&lt;Boolean, number&gt;(false, 1); //我们这里就将其定义为布尔值类型跟数字类型
+</code></pre>
+<p>6.构造函数约束</p>
+<pre><code class="html">class User&#123; loginid:string, loginpwd:string, &#125; function createUser(cls:new() =&gt;
+User) :User&#123; return new cls(); &#125;
+</code></pre>
+<p>7.typeof 可以获取到真实代码的类型，而比如 partial,required,readonly 之类的只能作用在 ts 类型之上</p>
+<pre><code class="javascript">let a = &#123;
+  b: 1,
+  c: 2,
+&#125;;
+
+type b = typeof a;
+</code></pre>
+<h1 id="ts-常用库"><a href="#ts-常用库" class="headerlink" title="ts 常用库"></a>ts 常用库</h1><h2 id="types-node"><a href="#types-node" class="headerlink" title="@types/node"></a>@types/node</h2><p>@types 是一个 ts 官方的类型库，其中包含了很多对 js 代码的类型描述。</p>
+<blockquote>
+<p>JQuery：用 js 写的，没有类型检查<br>安装@types/jquery，为 jquery 库添加类型定义</p>
+</blockquote>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

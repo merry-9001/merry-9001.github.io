@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>css | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>css</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/24
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h3 id="介绍下-BFC-及其应用"><a href="#介绍下-BFC-及其应用" class="headerlink" title="介绍下 BFC 及其应用"></a>介绍下 BFC 及其应用</h3><p>块级格式化上下文 Block Formatting Context，决定元素的内容如何渲染以及与其他元素的关系。</p>
+<p>触发 BFC 的方式有很多，常见的有：</p>
+<ul>
+<li>设置浮动</li>
+<li>overflow 设置为 auto、scroll、hidden</li>
+<li>positon 设置为 absolute、fixed</li>
+</ul>
+<p>规则：</p>
+<ol>
+<li>BFC 有隔离作用，内部元素不受外部元素影响，反之亦然。</li>
+<li>一个元素只能存在于一个 BFC 中，如果能同时存在于两个 BFC 中，那么就违反了 BFC 的隔离原则。</li>
+<li>BFC 内的元素按正常流排列，元素间的间隙由元素外边距控制。</li>
+<li>BFC 中的内容不会与外面的浮动元素重叠。</li>
+<li>计算 BFC 的高度需要包括 BFC 内的浮动子元素的高度。</li>
+</ol>
+<p>常见的 BFC 应用有：</p>
+<ul>
+<li>解决浮动元素令父元素高度坍塌的问题</li>
+<li>解决非浮动元素被浮动元素覆盖问题</li>
+<li>解决外边距垂直方向重合的问题</li>
+</ul>
+<h3 id="介绍下-BFC、IFC、GFC-和-FFC"><a href="#介绍下-BFC、IFC、GFC-和-FFC" class="headerlink" title="介绍下 BFC、IFC、GFC 和 FFC"></a>介绍下 BFC、IFC、GFC 和 FFC</h3><ul>
+<li>BFC：块级格式上下文，指的是一个独立的布局环境，BFC 内部的元素布局与外部互不影响。</li>
+<li>IFC：行内格式化上下文，将一块区域以行内元素的形式来格式化。</li>
+<li>GFC：网格布局格式化上下文，将一块区域以 grid 网格的形式来格式化</li>
+<li>FFC：弹性格式化上下文，将一块区域以弹性盒的形式来格式化</li>
+</ul>
+<h3 id="flex-布局如何使用"><a href="#flex-布局如何使用" class="headerlink" title="flex 布局如何使用"></a>flex 布局如何使用</h3><p>指定容器 display: flex 即可。</p>
+<p>容器有以下属性：flex-direction，flex-wrap，flex-flow，justify-content，align-items，align-content。</p>
+<ul>
+<li>flex-direction 属性决定主轴的方向；</li>
+<li>flex-wrap 属性定义，如果一条轴线排不下，如何换行；</li>
+<li>flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap；</li>
+<li>justify-content 属性定义了项目在主轴上的对齐方式。</li>
+<li>align-items 属性定义项目在交叉轴上如何对齐。</li>
+<li>align-content 属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</li>
+</ul>
+<p>项目（子元素）也有一些属性：order，flex-grow，flex-shrink，flex-basis，flex，align-self。</p>
+<ul>
+<li>order 属性定义项目的排列顺序。数值越小，排列越靠前，默认为 0。</li>
+<li>flex-grow 属性定义项目的放大比例，默认为 0，即如果存在剩余空间，也不放大。</li>
+<li>flex-shrink 属性定义了项目的缩小比例，默认为 1，即如果空间不足，该项目将缩小。</li>
+<li>flex-basis 属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。</li>
+<li>flex 属性是 flex-grow, flex-shrink 和 flex-basis 的简写，默认值为 0 1 auto。后两个属性可选。</li>
+<li>align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性。默认值为 auto，表示继承父元素的 align-items 属性，如果没有父元素，则等同于 stretch。</li>
+</ul>
+<h3 id="4-怎么让一个-div-水平垂直居中"><a href="#4-怎么让一个-div-水平垂直居中" class="headerlink" title="4. 怎么让一个 div 水平垂直居中"></a>4. 怎么让一个 div 水平垂直居中</h3><pre><code class="javascript">element.style &#123;
+ position: absolute;
+ left: 50%;
+ top: 50%;
+ transform: translate3d(-50%,-50%,0);
+&#125;
+</code></pre>
+<h3 id="5-分析比较-opacity-0、visibility-hidden、display-none-优劣和适用场景。"><a href="#5-分析比较-opacity-0、visibility-hidden、display-none-优劣和适用场景。" class="headerlink" title="5. 分析比较 opacity: 0、visibility: hidden、display: none 优劣和适用场景。"></a>5. 分析比较 opacity: 0、visibility: hidden、display: none 优劣和适用场景。</h3><ul>
+<li>结构：<ul>
+<li>display:none: 会让元素完全从渲染树中消失，渲染的时候不占据任何空间, 不能点击</li>
+<li>visibility: hidden:不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，不能点击</li>
+<li>opacity: 0: 不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，可以点击</li>
+</ul>
+</li>
+<li>继承：<ul>
+<li>display: none 和 opacity: 0：是非继承属性，子孙节点消失由于元素从渲染树消失造成。</li>
+<li>visibility: hidden：是继承属性，子孙节点消失由于继承了 hidden，通过设置 visibility: visible;可以让子孙节点显式。</li>
+</ul>
+</li>
+<li>性能：<ul>
+<li>display：none : 修改元素会造成文档回流,读屏器不会读取 display: none 元素内容，性能消耗较大</li>
+<li>visibility：hidden: 修改元素只会造成本元素的重绘,性能消耗较少读屏器读取 visibility: hidden 元素内容</li>
+<li>opacity：0 ： 修改元素会造成重绘，性能消耗较少</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-已知如下代码，如何修改才能让图片宽度为-300px-？注意下面代码不可修改。"><a href="#6-已知如下代码，如何修改才能让图片宽度为-300px-？注意下面代码不可修改。" class="headerlink" title="6. 已知如下代码，如何修改才能让图片宽度为 300px ？注意下面代码不可修改。"></a>6. 已知如下代码，如何修改才能让图片宽度为 300px ？注意下面代码不可修改。</h3><pre><code class="javascript">&lt;img src=&quot;1.jpg&quot; style=&quot;width:480px!important;”&gt;
+</code></pre>
+<ol>
+<li>transform: scale(0.625) 按比例缩放图片；</li>
+<li>利用 CSS 动画的样式优先级高于 !important 的特性</li>
+</ol>
+<h3 id="7-如何用-css-或-js-实现多行文本溢出省略效果，考虑兼容性"><a href="#7-如何用-css-或-js-实现多行文本溢出省略效果，考虑兼容性" class="headerlink" title="7. 如何用 css 或 js 实现多行文本溢出省略效果，考虑兼容性"></a>7. 如何用 css 或 js 实现多行文本溢出省略效果，考虑兼容性</h3><p>css 方式</p>
+<pre><code class="css">display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3; //行数
+overflow: hidden;
+</code></pre>
+<p>js 方式</p>
+<ul>
+<li>使用 split + 正则表达式将单词与单个文字切割出来存入 words</li>
+<li>加上 ‘…’</li>
+<li>判断 scrollHeight 与 clientHeight，超出的话就从 words 中 pop 一个出来</li>
+</ul>
+<h3 id="8-居中为什么要使用-transform（为什么不使用-marginLeft-Top）"><a href="#8-居中为什么要使用-transform（为什么不使用-marginLeft-Top）" class="headerlink" title="8. 居中为什么要使用 transform（为什么不使用 marginLeft/Top）"></a>8. 居中为什么要使用 transform（为什么不使用 marginLeft/Top）</h3><p>top/left 属于布局属性，该属性的变化会导致重排（reflow/relayout），transform 属于合成属性（composite property），对合成属性进行 transition/animation 动画将会创建一个合成层（composite layer），这使得被动画元素在一个独立的层中进行动画。</p>
+<h3 id="9-介绍下粘性布局（sticky）"><a href="#9-介绍下粘性布局（sticky）" class="headerlink" title="9. 介绍下粘性布局（sticky）"></a>9. 介绍下粘性布局（sticky）</h3><p>在屏幕范围（viewport）时该元素的位置并不受到定位影响（设置是 top、left 等属性无效），当该元素的位置将要移出偏移范围时，定位又会变成 fixed，根据设置的 left、top 等属性成固定位置的效果。</p>
+<p>sticky 属性值有以下几个特点：</p>
+<ul>
+<li>该元素并不脱离文档流，仍然保留元素原本在文档流中的位置。</li>
+<li>当元素在容器中被滚动超过指定的偏移值时，元素在容器内固定在指定位置。亦即如果你设置了 top: 50px，那么在 sticky 元素到达距离相对定位的元素顶部 50px 的位置时固定，不再向上移动。</li>
+<li>元素固定的相对偏移是相对于离它最近的具有滚动框的祖先元素，如果祖先元素都不可以滚动，那么是相对于 viewport 来计算元素的偏移量</li>
+</ul>
+<h3 id="10-说出-space-between-和-space-around-的区别？"><a href="#10-说出-space-between-和-space-around-的区别？" class="headerlink" title="10. 说出 space-between 和 space-around 的区别？"></a>10. 说出 space-between 和 space-around 的区别？</h3><p>其实就是一个边距的区别，按水平布局来说，<code>space-between</code>是两端对齐，在左右两侧没有边距，而<code>space-around</code>是每个 子项目左右方向的 margin 相等，所以两个 item 中间的间距会比较大。</p>
+<p><img src="1727170573456-8365049e-c34d-49c3-8c50-229d6dc86288.png"></p>
+<h3 id="11-CSS3-中-transition-和-animation-的属性分别有哪些"><a href="#11-CSS3-中-transition-和-animation-的属性分别有哪些" class="headerlink" title="11. CSS3 中 transition 和 animation 的属性分别有哪些"></a>11. CSS3 中 transition 和 animation 的属性分别有哪些</h3><p>transition 过渡动画：</p>
+<ul>
+<li>transition-property：指定过渡的 CSS 属性</li>
+<li>transition-duration：指定过渡所需的完成时间</li>
+<li>transition-timing-function：指定过渡函数</li>
+<li>transition-delay：指定过渡的延迟时间</li>
+</ul>
+<p>animation 关键帧动画：</p>
+<ul>
+<li>animation-name：指定要绑定到选择器的关键帧的名称</li>
+<li>animation-duration：动画指定需要多少秒或毫秒完成</li>
+<li>animation-timing-function：设置动画将如何完成一个周期</li>
+<li>animation-delay：设置动画在启动前的延迟间隔</li>
+<li>animation-iteration-count：定义动画的播放次数</li>
+<li>animation-direction：指定是否应该轮流反向播放动画</li>
+<li>animation-fill-mode：规定当动画不播放时（当动画完成时，或当动画有一个延迟未开始播放时），要应用到元素的样式</li>
+<li>animation-play-state：指定动画是否正在运行或已暂停</li>
+</ul>
+<h3 id="13-层叠上下文"><a href="#13-层叠上下文" class="headerlink" title="13. 层叠上下文"></a>13. 层叠上下文</h3><p>层叠顺序</p>
+<p><img src="1727170573487-900cc505-7f84-422e-ab44-fd5db70133bd.png"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="17-介绍下-positon-属性"><a href="#17-介绍下-positon-属性" class="headerlink" title="17. 介绍下 positon 属性"></a>17. 介绍下 positon 属性</h3><p>position 属性主要用来定位，常见的属性值如下：</p>
+<ul>
+<li><code>absolute</code> 绝对定位，相对于 <code>static</code> 定位以外的第一个父元素进行定位。</li>
+<li><code>relative</code> 相对定位，相对于其自身正常位置进行定位。</li>
+<li><code>fixed</code> 固定定位，相对于浏览器窗口进行定位。</li>
+<li><code>static</code> 默认值。没有定位，元素出现在正常的流中。</li>
+<li><code>inherit</code> 规定应该从父元素继承 position 属性的值。</li>
+<li><code>sticky</code> 粘性定位，当元素在容器中被滚动超过指定的偏移值时，元素在容器内固定在指定位置。</li>
+</ul>
+<h3 id="18-如何用-CSS-实现一个三角形"><a href="#18-如何用-CSS-实现一个三角形" class="headerlink" title="18. 如何用 CSS 实现一个三角形"></a>18. 如何用 CSS 实现一个三角形</h3><pre><code class="plain">
+div&#123;
+  width: 0;
+  height: 0;
+  border: 10px solid red;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+&#125;
+</code></pre>
+<h3 id="19-如何实现一个自适应的正方形"><a href="#19-如何实现一个自适应的正方形" class="headerlink" title="19. 如何实现一个自适应的正方形"></a>19. 如何实现一个自适应的正方形</h3><p><strong>方法 1：利用 CSS3 的 vw 单位</strong></p>
+<p><code>vw</code> 会把视口的宽度平均分为 100 份</p>
+<pre><code class="plain">.square &#123;
+ width: 10vw;
+ height: 10vw;
+ background: red;
+&#125;
+</code></pre>
+<p><strong>方法 2：利用 margin 或者 padding 的百分比计算是参照父元素的 width 属性</strong></p>
+<pre><code class="plain">.square &#123;
+ width: 10%;
+ padding-bottom: 10%;
+ height: 0; // 防止内容撑开多余的高度
+ background: red;
+&#125;
+</code></pre>
+<h3 id="20-如何实现三栏布局"><a href="#20-如何实现三栏布局" class="headerlink" title="20. 如何实现三栏布局"></a>20. 如何实现三栏布局</h3><pre><code class="plain">.container&#123;
+ display: flex;
+&#125;
+.left&#123;
+ flex-basis:200px;
+ background: green;
+&#125;
+.main&#123;
+ flex: 1;
+ background: red;
+&#125;
+.right&#123;
+ flex-basis:200px;
+ background: green;
+&#125;
+</code></pre>
+<h3 id="21-import-和-link-区别"><a href="#21-import-和-link-区别" class="headerlink" title="21. import 和 link 区别"></a>21. import 和 link 区别</h3><ol>
+<li>从属关系区别</li>
+</ol>
+<p><code>@import</code>是 CSS 提供的语法规则，只有导入样式表的作用；<code>link</code>是 HTML 提供的标签，不仅可以加载 CSS 文件，还可以定义 RSS、rel 连接属性等。</p>
+<ol start="2">
+<li>加载顺序区别</li>
+</ol>
+<p>加载页面时，<code>link</code>标签引入的 CSS 被同时加载；<code>@import</code>引入的 CSS 将在页面加载完毕后被加载。</p>
+<ol start="3">
+<li>兼容性区别</li>
+</ol>
+<p><code>@import</code>是 CSS2.1 才有的语法，故只可在 IE5+ 才能识别；<code>link</code> 标签作为 HTML 元素，不存在兼容性问题。</p>
+<ol start="4">
+<li>DOM 可控性区别</li>
+</ol>
+<p>可以通过 JS 操作 DOM ，插入<code>link</code>标签来改变样式；由于 DOM 方法是基于文档的，无法使用<code>@import</code>的方式插入样式。</p>
+<h3 id="23-清除浮动的方法"><a href="#23-清除浮动的方法" class="headerlink" title="23. 清除浮动的方法"></a>23. 清除浮动的方法</h3><ul>
+<li>clear 清除浮动（添加空 div 法）在浮动元素下方添加空 div，并给该元素写 css 样式： {clear:both;height:0;overflow:hidden;}</li>
+<li>给浮动元素父级设置高度</li>
+<li>父级同时浮动（需要给父级同级元素添加浮动）</li>
+<li>父级设置成 inline-block，其 margin: 0 auto 居中方式失效</li>
+<li>给父级添加 overflow:hidden 清除浮动方法</li>
+<li>万能清除法 after 伪类清浮动（现在主流方法，推荐使用）</li>
+</ul>
+<h3 id="28-如何触发重排和重绘？"><a href="#28-如何触发重排和重绘？" class="headerlink" title="28. 如何触发重排和重绘？"></a>28. 如何触发重排和重绘？</h3><p>任何改变用来构建渲染树的信息都会导致一次重排或重绘：</p>
+<ul>
+<li>添加、删除、更新 DOM 节点</li>
+<li>通过 display: none 隐藏一个 DOM 节点-触发重排和重绘</li>
+<li>通过 visibility: hidden 隐藏一个 DOM 节点-只触发重绘，因为没有几何变化</li>
+<li>移动或者给页面中的 DOM 节点添加动画</li>
+<li>添加一个样式表，调整样式属性</li>
+<li>用户行为，例如调整窗口大小，改变字号，或者滚动。</li>
+</ul>
+<h3 id="29-重绘与重排的区别？"><a href="#29-重绘与重排的区别？" class="headerlink" title="29. 重绘与重排的区别？"></a>29. 重绘与重排的区别？</h3><ul>
+<li>重排: 部分渲染树（或者整个渲染树）需要重新分析并且节点尺寸需要重新计算，表现为重新生成布局，重新排列元素</li>
+<li>重绘: 由于节点的几何属性发生改变或者由于样式发生改变，例如改变元素背景色时，屏幕上的部分内容需要更新，表现为某些元素的外观被改变</li>
+</ul>
+<p>单单改变元素的外观，肯定不会引起网页重新生成布局，但当浏览器完成重排之后，将会重新绘制受到此次重排影响的部分</p>
+<p>重排和重绘代价是高昂的，它们会破坏用户体验，并且让 UI 展示非常迟缓，而相比之下重排的性能影响更大，在两者无法避免的情况下，一般我们宁可选择代价更小的重绘。</p>
+<p>『重绘』不一定会出现『重排』，『重排』必然会出现『重绘』。</p>
+<h3 id="30-如何优化图片"><a href="#30-如何优化图片" class="headerlink" title="30. 如何优化图片"></a>30. 如何优化图片</h3><ol>
+<li>对于很多装饰类图片，尽量不用图片，因为这类修饰图片完全可以用 CSS 去代替。</li>
+<li>对于移动端来说，屏幕宽度就那么点，完全没有必要去加载原图浪费带宽。一般图片都用 CDN 加载，可以计算出适配屏幕的宽度，然后去请求相应裁剪好的图片。</li>
+<li>小图使用 base64 格式</li>
+<li>选择正确的图片格式：</li>
+</ol>
+<ul>
+<li>对于能够显示 WebP 格式的浏览器尽量使用 WebP 格式。因为 WebP 格式具有更好的图像数据压缩算法，能带来更小的图片体积，而且拥有肉眼识别无差异的图像质量，缺点就是兼容性并不好</li>
+<li>小图使用 PNG，其实对于大部分图标这类图片，完全可以使用 SVG 代替</li>
+<li>照片使用 JPEG</li>
+</ul>
+<h3 id="33-如何在页面上实现一个圆形的可点击区域？"><a href="#33-如何在页面上实现一个圆形的可点击区域？" class="headerlink" title="33. 如何在页面上实现一个圆形的可点击区域？"></a>33. 如何在页面上实现一个圆形的可点击区域？</h3><pre><code class="plain">border-radius:50%;
+</code></pre>
+<h3 id="34-什么是渐进式渲染（progressive-rendering）？"><a href="#34-什么是渐进式渲染（progressive-rendering）？" class="headerlink" title="34. 什么是渐进式渲染（progressive rendering）？"></a>34. 什么是渐进式渲染（progressive rendering）？</h3><ul>
+<li>图片懒加载——页面上的图片不会一次性全部加载。当用户滚动页面到图片部分时，JavaScript 将加载并显示图像。</li>
+<li>确定显示内容的优先级（分层次渲染）——为了尽快将页面呈现给用户，页面只包含基本的最少量的 CSS、脚本和内容，然后可以使用延迟加载脚本或监听<code>DOMContentLoaded</code>/<code>load</code>事件加载其他资源和内容。</li>
+</ul>
+<h3 id="35-CSS3-新增了那些东西？"><a href="#35-CSS3-新增了那些东西？" class="headerlink" title="35. CSS3 新增了那些东西？"></a>35. CSS3 新增了那些东西？</h3><p>CSS3 新增东西众多，这里列举出一些关键的新增内容：</p>
+<ul>
+<li>选择器</li>
+<li>盒子模型属性：border-radius、box-shadow、border-image</li>
+<li>背景：background-size、background-origin、background-clip</li>
+<li>文本效果：text-shadow、word-wrap</li>
+<li>颜色：新增 RGBA，HSLA 模式</li>
+<li>渐变：线性渐变、径向渐变</li>
+<li>字体：@font-face</li>
+<li>2D/3D 转换：transform、transform-origin</li>
+<li>过渡与动画：transition、@keyframes、animation</li>
+<li>多列布局</li>
+<li>媒体查询</li>
+</ul>
+<h3 id="36-我想实现一根只有-1px-的长线怎么实现"><a href="#36-我想实现一根只有-1px-的长线怎么实现" class="headerlink" title="36. 我想实现一根只有 1px 的长线怎么实现?"></a>36. 我想实现一根只有 1px 的长线怎么实现?</h3><pre><code class="css">.line &#123;
+  width: 100%;
+  height: 1px;
+  overflow: hidden;
+  font-size: 0px;
+  border-bottom: dashed 1px #ccc;
+&#125;
+</code></pre>
+<h3 id="45-什么是响应式设计"><a href="#45-什么是响应式设计" class="headerlink" title="45. 什么是响应式设计"></a>45. 什么是响应式设计</h3><p>响应式设计简而言之，就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。</p>
+<p>优点：</p>
+<ul>
+<li>面对不同分辨率设备灵活性强</li>
+<li>能够快捷解决多设备显示适应问题</li>
+</ul>
+<p>缺点：</p>
+<p>兼容各种设备工作量大，效率低下</p>
+<p>代码累赘，会出现隐藏无用的元素，加载时间加长</p>
+<p>其实这是一种折中性质的设计解决方案，多方面因素影响而达不到最佳效果</p>
+<p>一定程度上改变了网站原有的布局结构，会出现用户混淆的情况</p>
+<p>具体步骤：</p>
+<ul>
+<li>第一步：meta 标签</li>
+</ul>
+<p>为了适应屏幕，多数的移动浏览器会把 HTML 网页缩放到设备屏幕的宽度。你可以使用 meta 标签的 viewport 属性来设置。下面的代码告诉浏览器使用设备屏幕宽度作为内容的宽度，并且忽视初始的宽度设置。这段代码写在 <code>&lt;head&gt;</code>里面</p>
+<pre><code class="plain">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+</code></pre>
+<ul>
+<li>第二步：HTML 结构</li>
+</ul>
+<p>这个例子里面，有 header、content、sidebar 和 footer 等基本的网页布局。</p>
+<p>header 有固定的高 180px，content 容器的宽是 600px，sidebar 的宽是 300px。</p>
+<ul>
+<li>第三步：媒体查询</li>
+</ul>
+<p>CSS3 media query 响应式网页设计的关键。它像一个 if 语句，告诉浏览器如何根据特定的屏幕宽口来加载网页。</p>
+<p>下面是一个媒体查询示例代码：</p>
+<p>如果文档宽度小于 300 像素则修改背景演示(background-color)</p>
+<pre><code class="javascript">@media screen and (max-width: 300px) &#123;
+    body &#123;
+        background-color:lightblue;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="48-px-和-em-的区别"><a href="#48-px-和-em-的区别" class="headerlink" title="48. px 和 em 的区别"></a>48. px 和 em 的区别</h3><ul>
+<li>px 即 pixel 像素，是相对于屏幕分辨率而言的，是一个相对绝对单位，即在同一设备上每个设备像素所代表的物理长度是固定不变的（绝对性），但在不同设备间每个设备像素所代表的物理长度是可以变化的（相对性）。</li>
+<li>em 一个相对单位，不是一个固定的值，来源于纸张印刷业，在 web 领域它指代基准字号，浏览器默认渲染文字大小是 16px ，它会继承计算后的父级元素的 font-size。</li>
+</ul>
+<h3 id="55-less、sass-是什么？为什么要用它？"><a href="#55-less、sass-是什么？为什么要用它？" class="headerlink" title="55. less、sass 是什么？为什么要用它？"></a>55. less、sass 是什么？为什么要用它？</h3><p>Less 和 Sass 被称之为 CSS 预处理器。</p>
+<p>CSS 预处理器可以为 CSS 增加变编程特性，通过编译器将使用新语法的文件输出为一个 CSS 文件，解决 CSS 难以复用、代码冗余、可维护性低的缺点。常见的预处理器有 less、sass、stylus。</p>
+<p>使用他们来书写 CSS 代码可以更符合编程思维、简化代码、提高代码重用、便于维护。</p>
+<h3 id="57-你怎么处理页面兼容性问题？"><a href="#57-你怎么处理页面兼容性问题？" class="headerlink" title="57. 你怎么处理页面兼容性问题？"></a>57. 你怎么处理页面兼容性问题？</h3><ol>
+<li>利用 CSS 重置技术初始化默认样式</li>
+<li>针对不同浏览器采用不同的解决方案（工程化）</li>
+</ol>
+<h3 id="60-display：inline-block-在什么情况下会产生间隙？"><a href="#60-display：inline-block-在什么情况下会产生间隙？" class="headerlink" title="60. display：inline-block 在什么情况下会产生间隙？"></a>60. display：inline-block 在什么情况下会产生间隙？</h3><p><strong>空隙产生的原因</strong></p>
+<p>元素被当成行内元素排版的时候，元素之间的空白符（空格、回车换行等）都会被浏览器处理，根据 white-space 的处理方式（默认是 normal，合并多余空白），原来 HTML 代码中的回车换行被转成一个空白符，在字体不为 0 的情况下，空白符占据一定宽度，所以 inline-block 的元素之间就出现了空隙。</p>
+<p>这些元素之间的间距会随着字体的大小而变化，例如：当行内元素 font-size:16px 时，间距为 8px。</p>
+<p>解决方法</p>
+<p>1.将前一个标签结束符和后一个标签开始符写在同一行</p>
+<pre><code class="plain">&lt;div class=&quot;child&quot;&gt;child1&lt;/div&gt;&lt;div class=&quot;child&quot;&gt;child2&lt;/div&gt;
+</code></pre>
+<p>2.为父元素中设置 font-size:0；</p>
+<h3 id="62-什么是选择器？有哪些选择器？"><a href="#62-什么是选择器？有哪些选择器？" class="headerlink" title="62. 什么是选择器？有哪些选择器？"></a>62. 什么是选择器？有哪些选择器？</h3><p>选择器决定将样式应用在哪个或哪些元素身上。</p>
+<ul>
+<li>元素选择器：例如 div{…} p{…}</li>
+<li>id 选择器： 例如 #box{…}</li>
+<li>类选择器： 例如 .box{…}</li>
+<li>属性选择器：[href=”#”]{…}</li>
+<li>通配：*{…}</li>
+<li>组合（并集）选择器：div,p,a,.main{…}</li>
+<li>交集选择器：input[type=”text”]{…}</li>
+<li>后代选择器：header nav{…}</li>
+<li>子级选择器： ul&gt;li{…}</li>
+<li>伪类选择器：<ul>
+<li>:nth-child(num){…}</li>
+<li>:nth-child(odd){…}</li>
+<li>:nth-child(even){…}</li>
+<li>:nth-of-type{…}</li>
+<li>:first-child{…}</li>
+<li>:last-child{…}</li>
+<li>only-child{…}</li>
+<li>a:link{…}</li>
+<li>a:visited{…}</li>
+<li>:hover{…}</li>
+<li>a:active{…}</li>
+</ul>
+</li>
+<li>伪元素选择器：<ul>
+<li>::before{…}</li>
+<li>::after{…}</li>
+<li>::first-letter{…}</li>
+<li>::first-line{…}</li>
+</ul>
+</li>
+</ul>
+<h3 id="65-CSS-的计算属性知道吗"><a href="#65-CSS-的计算属性知道吗" class="headerlink" title="65. CSS 的计算属性知道吗"></a>65. CSS 的计算属性知道吗</h3><p>即 calc( ) 函数，主要用于指定元素的长度，支持所有 CSS 长度单位，运算符前后都需要保留一个空格。</p>
+<p>比如： width: calc(100% - 50px);</p>
+<h3 id="66-为何-CSS-放在-HTML-头部？"><a href="#66-为何-CSS-放在-HTML-头部？" class="headerlink" title="66. 为何 CSS 放在 HTML 头部？"></a>66. 为何 CSS 放在 HTML 头部？</h3><p>为了尽早让浏览器拿到 CSS 并且生成 CSSOM，然后与 HTML 一次性生成最终的 RenderTree，渲染一次即可。如果放在 HTML 底部，会出现渲染卡顿的现象影响性能和用户体验。</p>
+<h3 id="67-background-size-有哪-4-种值类型？"><a href="#67-background-size-有哪-4-种值类型？" class="headerlink" title="67. background-size 有哪 4 种值类型？"></a>67. background-size 有哪 4 种值类型？</h3><ul>
+<li>length：设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为 auto(自动)</li>
+<li>percentage：将计算相对于背景定位区域的百分比。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为“auto(自动)”</li>
+<li>cover：此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小。</li>
+<li>contain：此时会保持图像的纵横比并将图像缩放成将适合背景定位区域的最大大小。</li>
+</ul>
+<h3 id="76-position-的值-relative-和-absolute-的定位原点是？"><a href="#76-position-的值-relative-和-absolute-的定位原点是？" class="headerlink" title="76. position 的值 relative 和 absolute 的定位原点是？"></a>76. position 的值 relative 和 absolute 的定位原点是？</h3><ul>
+<li><strong>absolute</strong>：生成绝对定位的元素，定位原点是离自己这一级元素最近的一级 position 设置为 absolute 或者 relative 的父元素的左上角为原点的。</li>
+<li><strong>relative</strong>：生成相对定位的元素，定位原点是元素本身所在位置。</li>
+</ul>
+<h3 id="77-当-margin-top、padding-top-的值是百分比时，分别是如何计算的？"><a href="#77-当-margin-top、padding-top-的值是百分比时，分别是如何计算的？" class="headerlink" title="77. 当 margin-top、padding-top 的值是百分比时，分别是如何计算的？"></a>77. 当 margin-top、padding-top 的值是百分比时，分别是如何计算的？</h3><p>A. 相对父级元素的 height，相对自身的 height</p>
+<p>B. 相对最近父级块级元素的 height，相对自身的 height</p>
+<p>C. 相对父级元素的 width，相对自身的 width</p>
+<p>D. 相对最近父级块级元素的 width，相对最近父级块级元素的 width</p>
+<p>D</p>
+<p>可以对元素的 margin 设置百分数，百分数是相对于父元素的 width 计算，不管是 margin-top/margin-bottom 还是 margin-left/margin-right。（padding 同理）</p>
+<p>如果没有为元素声明 width，在这种情况下，元素框的总宽度包括外边距取决于父元素的 width，这样可能得到“流式”页面，即元素的外边距会扩大或缩小以适应父元素的实际大小。如果对这个文档设置样式，使其元素使用百分数外边距，当用户修改浏览窗口的宽度时，外边距会随之扩大或缩小。</p>
+<h3 id="78-伪元素-before-after-的作用？"><a href="#78-伪元素-before-after-的作用？" class="headerlink" title="78. 伪元素 :before :after 的作用？"></a>78. 伪元素 :before :after 的作用？</h3><p>特有的 content 可用于在 CSS 中向元素的头部或尾部添加内容，常用于制作小图标。</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="80-transition-和-animation-的区别以及应用场景？"><a href="#80-transition-和-animation-的区别以及应用场景？" class="headerlink" title="80. transition 和 animation 的区别以及应用场景？"></a>80. transition 和 animation 的区别以及应用场景？</h3><ul>
+<li>区别：<ol>
+<li>触发条件不同。transition 通常需要交互，由事件触发。animation 则与 gif 动图差不多，立即播放。</li>
+<li>循环。animation 可以设定循环次数。</li>
+<li>精确性。animation 可以设定每一帧的样式和时间，其中的每一帧都可以有单独的变化。而 transition 中的所有样式都是一起变化的。</li>
+<li>与 JS 的交互。使用 JS 去操作时，transition 更多。</li>
+</ol>
+</li>
+<li>应用场景：<ol>
+<li>如果需要灵活定制多帧以及循环，使用 animation 。</li>
+<li>如果只是简单的从 XX 样式变到 XX 样式，两者皆可。</li>
+<li>如果要使用 JS 设定动画，使用 transition 。</li>
+</ol>
+</li>
+</ul>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><h3 id="83-谈一谈-CSS-中的-2D-转换。"><a href="#83-谈一谈-CSS-中的-2D-转换。" class="headerlink" title="83. 谈一谈 CSS 中的 2D 转换。"></a>83. 谈一谈 CSS 中的 2D 转换。</h3><p>即 transform，能够对元素进行移动、缩放、拉伸。</p>
+<ol>
+<li>translate(x, y): 元素从当前位置根据给定的 x 坐标 y 坐标移动。</li>
+<li>rotate(angle): 元素顺时针旋转指定的角度，若为负值则逆时针旋转。</li>
+<li>scale(num, num): 放大或缩小元素。</li>
+<li>skew(angle, angle): 围绕 X Y 轴进行转动。</li>
+</ol>
+<h3 id="84-谈一谈-CSS3-多列属性是什么？以及其使用场景"><a href="#84-谈一谈-CSS3-多列属性是什么？以及其使用场景" class="headerlink" title="84. 谈一谈 CSS3 多列属性是什么？以及其使用场景"></a>84. 谈一谈 CSS3 多列属性是什么？以及其使用场景</h3><p>多列布局是 CSS3 新增的一组属性，常用的属性如下：</p>
+<ul>
+<li>column-count: num: 规定元素被分隔的列数。</li>
+<li>column-gap: num; 规定列之间的间隔。</li>
+<li>column-rule: width style color: 规定列之间的样式规则。</li>
+</ul>
+<h3 id="85-vw、vh-是什么？"><a href="#85-vw、vh-是什么？" class="headerlink" title="85. vw、vh 是什么？"></a>85. vw、vh 是什么？</h3><p>vw 和 vh 是 CSS3 新单位，即 view width 可视窗口宽度 和 view height 可视窗口高度。1vw 就等于可视窗口宽度的百分之一，1vh 就等于可视窗口高度的百分之一。</p>
+<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><h3 id="87-页面布局有几种方式？"><a href="#87-页面布局有几种方式？" class="headerlink" title="87. 页面布局有几种方式？"></a>87. 页面布局有几种方式？</h3><ol>
+<li>固定宽度布局：为网页设置一个固定的宽度，通常以 px 做为长度单位，常见于 PC 端网页。</li>
+<li>流式布局：为网页设置一个相对的宽度，通常以百分比做为长度单位。</li>
+<li>栅格化布局：将网页宽度人为的划分成均等的长度，然后排版布局时则以这些均等的长度做为度量单位，通常利用百分比做为长度单位来划分成均等的长度。</li>
+<li>响应式布局：通过检测设备信息，决定网页布局方式，即用户如果采用不同的设备访问同一个网页，有可能会看到不一样的内容，一般情况下是检测设备屏幕的宽度来实现。</li>
+</ol>
+<h3 id="88-什么是流式布局？"><a href="#88-什么是流式布局？" class="headerlink" title="88. 什么是流式布局？"></a>88. 什么是流式布局？</h3><p>即 Fluid Layout 。这种布局方式在前端开发的早期历史上用来应对不同尺寸的 PC 屏幕，那时的屏幕尺寸差异不会太大，在当今的移动设备开发也常用。</p>
+<p>流式布局是页面元素宽度依照屏幕分辨率进行适配调整，但整体布局不变，其代表就是栅格系统（网格布局）。划分区域的尺寸使用百分比（通常也会搭配 min-_ 或 max-_）。例如设置网页主体宽度为 85%，min-width 为 960px，图片也做类似的处理 width: 100%; max-width 设置为图片本身尺寸以防止被拉伸变形。</p>
+<p>布局特点在于：屏幕分辨率发生变化时布局不变元素尺寸变。但缺点也很明显，如果屏幕尺寸跨度太大，那么在相对其原始设计而言过大过小的屏幕上就不能正常显示。</p>
+<h3 id="89-什么是静态布局？"><a href="#89-什么是静态布局？" class="headerlink" title="89. 什么是静态布局？"></a>89. 什么是静态布局？</h3><p>即 Static Layout。传统的 web 设计，网页中所有元素的尺寸一律使用 px 作为单位。</p>
+<p>布局特点在于：无论浏览器尺寸为多少，布局始终按照最初的设计稿布局来显示。常规的 PC 网站都是使用的静态（定宽度）布局，如果浏览器小于这个宽度则出现滚动条，如果浏览器大于这个宽度则内容居中或添加背景。这些设计方式是最常见的。</p>
+<p>在 PC 中，居中布局，所有样式使用一个绝对宽度（定宽）适配当今主流屏幕宽度。在移动设备中，另外建立移动网站，单独设计一个布局，使用不同的域名，比如 wap. 或 m.。</p>
+<p>这种布局方案对于 UI 设计师和前端开发人员来说都是最简单、没有兼容性问题的。但缺点显而易见，需要做两次开发。当前大部门门户网站、企业宣传站点都采用了这种布局方式。</p>
+<h3 id="90-什么是自适应布局？什么是响应式布局？"><a href="#90-什么是自适应布局？什么是响应式布局？" class="headerlink" title="90. 什么是自适应布局？什么是响应式布局？"></a>90. 什么是自适应布局？什么是响应式布局？</h3><p><strong>自适应布局</strong></p>
+<p>即 Adaptive Layout ，可以把自适应布局看作是静态布局的一个系列。其特点就是分别为不同屏幕分辨率定义布局，即创建多个静态布局，每个静态布局对应一个屏幕分辨率范围，改变分辨率可以切换不同的静态布局，页面元素位置发生改变，元素不随窗口大小的调整而变化。</p>
+<p>布局特点在于：屏幕分辨率变化时元素位置发生变化，尺寸不变。</p>
+<p><strong>响应式布局</strong></p>
+<p>即 Responsive Layout，其目标是确保一个页面在所有终端（各种尺寸的 PC、手机、电视等）都能完美展现，对于开发人员来说通常是结合了流式布局 + 弹性布局 + 媒介查询。分别为不同屏幕分辨率定义布局。</p>
+<p>其特点在于：每个屏幕分辨率下都会有一个布局样式，元素位置、尺寸都会随之发生改变。使用多种布局方法配合，如果足够耐心效果完美。但缺点在于：媒介查询有限只能适应主流宽高，需要匹配足够多的屏幕大小工作量巨大，设计和开发都要需要多个版本。</p>
+<h3 id="91-对比各种布局方式的特点。"><a href="#91-对比各种布局方式的特点。" class="headerlink" title="91. 对比各种布局方式的特点。"></a>91. 对比各种布局方式的特点。</h3><p>原理其实类似，都是检测设备，根据不同的设备采用不同的 CSS，而且 CSS 都是采取百分比的方式。不同点在于：</p>
+<ul>
+<li>响应式的模板在不同设备上看上去不同，会随着设备的改变而改变表现样式，常用于解决不同设备间分辨率间的兼容。</li>
+<li>自适应则是所有设备看起来都是一个模板，不过就是元素长度、图片尺寸变化。</li>
+<li>流式则是采用了一些设置，当宽度大于多少时将怎样展示，小于多少时将怎样展示，并且，展示方向像水流一样一部分一部分的加载。常用于解决分辨率差异较小的情况。</li>
+<li>静态即采用固定宽度。</li>
+</ul>
+<h3 id="92-文字超出了元素的宽度如何使用-CSS-处理？"><a href="#92-文字超出了元素的宽度如何使用-CSS-处理？" class="headerlink" title="92. 文字超出了元素的宽度如何使用 CSS 处理？"></a>92. 文字超出了元素的宽度如何使用 CSS 处理？</h3><pre><code class="css">p &#123;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+&#125;
+</code></pre>
+<h3 id="102-不使用-border-属性，使用其他属性模拟边框。"><a href="#102-不使用-border-属性，使用其他属性模拟边框。" class="headerlink" title="102. 不使用 border 属性，使用其他属性模拟边框。"></a>102. 不使用 border 属性，使用其他属性模拟边框。</h3><p>使用 outline 或 box-shadow 都可以模拟出边框。</p>
+<h3 id="113-first-child-和-first-of-type-有什么不同？"><a href="#113-first-child-和-first-of-type-有什么不同？" class="headerlink" title="113. :first-child 和 :first-of-type 有什么不同？"></a>113. :first-child 和 :first-of-type 有什么不同？</h3><ul>
+<li>伪类 :first-child 表示父元素第一个子元素，只要这个元素是在第一个位置就会被匹配。</li>
+<li>伪类 :first-of-type 表示父元素中第一个相同类型的子元素，这个类型得是相同的元素名。</li>
+</ul>
+<h3 id="120-文本“强制换行”的属性是什么？"><a href="#120-文本“强制换行”的属性是什么？" class="headerlink" title="120. 文本“强制换行”的属性是什么？"></a>120. 文本“强制换行”的属性是什么？</h3><p>word-break: break-all;</p>
+<h3 id="122-设置了元素的过渡后需要有触发条件才能看到效果，列举出可用的触发条件。"><a href="#122-设置了元素的过渡后需要有触发条件才能看到效果，列举出可用的触发条件。" class="headerlink" title="122. 设置了元素的过渡后需要有触发条件才能看到效果，列举出可用的触发条件。"></a>122. 设置了元素的过渡后需要有触发条件才能看到效果，列举出可用的触发条件。</h3><ol>
+<li>:hover 、:checked 等伪类</li>
+<li>媒体查询，当改变窗口尺寸触发</li>
+<li>js 触发，用脚本更改元素样式</li>
+</ol>
+<h3 id="123-怎样把背景图附着在内容上？"><a href="#123-怎样把背景图附着在内容上？" class="headerlink" title="123. 怎样把背景图附着在内容上？"></a>123. 怎样把背景图附着在内容上？</h3><p>background-attachment: fixed;</p>
+<h3 id="126-margin-和-padding-分别适合什么场景使用？"><a href="#126-margin-和-padding-分别适合什么场景使用？" class="headerlink" title="126. margin 和 padding 分别适合什么场景使用？"></a>126. margin 和 padding 分别适合什么场景使用？</h3><ul>
+<li>使用 margin：需要在 border 外侧添加空白、空白处不需要背景色、上下相连的两个盒子之间的空白，需要相互抵消时。</li>
+<li>使用 padding: 需要在 border 内侧添加空白、空白处需要背景色</li>
+</ul>
+<h3 id="127-对于-line-height-是如何理解的？"><a href="#127-对于-line-height-是如何理解的？" class="headerlink" title="127. 对于 line-height 是如何理解的？"></a>127. 对于 line-height 是如何理解的？</h3><ul>
+<li>行高指一行文字的高度，两行文字间基线与基线之间的距离。在 CSS 中，起高度作用的是 height 和 line-height</li>
+<li>使用行高等于高的方式可以实现单行文字垂直居中</li>
+<li>将 display 设置为 inline-block 可以实现多行文本居中</li>
+</ul>
+<h3 id="128-如何让-Chrome-支持小于-12px-的文字？"><a href="#128-如何让-Chrome-支持小于-12px-的文字？" class="headerlink" title="128. 如何让 Chrome 支持小于 12px 的文字？"></a>128. 如何让 Chrome 支持小于 12px 的文字？</h3><pre><code class="css">p &#123;
+  font-size: 10px;
+  -webkit-transform: scale(0.8);
+&#125;
+</code></pre>
+<h3 id="129-如果需要手动写动画，你认为最小时间间隔是多久？"><a href="#129-如果需要手动写动画，你认为最小时间间隔是多久？" class="headerlink" title="129. 如果需要手动写动画，你认为最小时间间隔是多久？"></a>129. 如果需要手动写动画，你认为最小时间间隔是多久？</h3><p>多数显示器默认频率是 60Hz，即 1s 刷新 60 次，理论上最小间隔为 1/60*1000ms = 16.7s</p>
+<h3 id="130-简述-png、jpg、gif-这些图片格式的适用场景，有没有了解过-webp"><a href="#130-简述-png、jpg、gif-这些图片格式的适用场景，有没有了解过-webp" class="headerlink" title="130. 简述 png、jpg、gif 这些图片格式的适用场景，有没有了解过 webp?"></a>130. 简述 png、jpg、gif 这些图片格式的适用场景，有没有了解过 webp?</h3><ul>
+<li>png 是便携式网络图片，一种无损数据压缩位图，优点：压缩比高，色彩好。 大多数地方都可以用。</li>
+<li>jpg 是一种针对相片使用的一种有损的压缩格式，在色调及颜色平滑变化做的不错。常被用来储存和传输照片的格式。</li>
+<li>gif 是一种位图文件格式，以 8 位色重现真色彩的图像。可以实现动画效果。</li>
+<li>webp 格式是谷歌在 2010 年推出的图片格式，压缩率只有 jpg 的 2/3，大小比 png 小了 45%。缺点是压缩的时间更久了，兼容性不好，目前只有 Google 和 opera 支持。</li>
+</ul>
+<h3 id="131-style-标签写在-body-后面与-body-前面有什么区别？"><a href="#131-style-标签写在-body-后面与-body-前面有什么区别？" class="headerlink" title="131. style 标签写在 body 后面与 body 前面有什么区别？"></a>131. style 标签写在 body 后面与 body 前面有什么区别？</h3><p>页面加载自上而下，当然是先加载样式。写在 body 标签后由于浏览器以逐行方式对 HTML 文档进行解析，当解析到写在尾部的样式表（外联或写在 style 标签）会导致浏览器停止之前的渲染，等待加载且解析样式表完成之后重新渲染，在 windows 的 IE 下可能会出现 fouc 现象（即样式失效导致的页面闪烁问题）。</p>
+<h3 id="import-和-import-url-的区别"><a href="#import-和-import-url-的区别" class="headerlink" title="@import 和 @import url()的区别"></a>@import 和 @import url()的区别</h3><p>@import：用于引入本地的文件<br>@import url()：用于网络请求</p>
+<h3 id="一个元素设置了-position-fixed-后，一定会相对视口吗"><a href="#一个元素设置了-position-fixed-后，一定会相对视口吗" class="headerlink" title="一个元素设置了 position:fixed 后，一定会相对视口吗"></a>一个元素设置了 position:fixed 后，一定会相对视口吗</h3><p>一个 div 设置了 position:fixed 之后，这个元素也不一定会相对于视口，一旦他的父元素有设置了 transform 属性，那么这个元素定位就会相对于设置了 transform 属性父元素的填充盒(padding-box)</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

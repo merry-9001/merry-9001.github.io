@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>TS用法（语法） | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>TS用法（语法）</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/11/15
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>基本类型</p>
+<p>1.八种内置类型</p>
+<p>2.any nuknown onject Object void never</p>
+<h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1><h2 id="变量类型标注（除数组）"><a href="#变量类型标注（除数组）" class="headerlink" title="变量类型标注（除数组）"></a>变量类型标注（除数组）</h2><pre><code class="javascript">let a: number = 2;
+</code></pre>
+<h2 id="变量类型标注（数组）"><a href="#变量类型标注（数组）" class="headerlink" title="变量类型标注（数组）"></a>变量类型标注（数组）</h2><p>数字类型数组</p>
+<pre><code class="typescript">let arr: number[] = [1, 2, 3, 4]; //数字类型的数组
+</code></pre>
+<p>数字类型数组</p>
+<pre><code class="typescript">let arr1: Array&lt;number&gt; = [1, 2, 3, 4, 5];
+</code></pre>
+<p>定义数组每一个位置的类型的数组（也叫元组）</p>
+<pre><code class="typescript">let arr: [string, number] = [&quot;小满&quot;, 22]; //这样的方式就叫做元组，定义了每个位置需要满足的不同类型
+</code></pre>
+<p>嵌套写法</p>
+<pre><code class="typescript">let arr1: Array&lt;number&gt; = [1, 2, 3, 4, 5];
+let arr2: Array&lt;string&gt; = [&quot;1,2,3,4,5&quot;];
+let arr3: Array&lt;boolean&gt; = [true];
+//泛型数组套娃写法(还能够决定数组里面数组的类型之类的)
+let arr4: Array&lt;Array&lt;number&gt;&gt; = [[123], [456]];
+</code></pre>
+<h2 id="函数类型标注"><a href="#函数类型标注" class="headerlink" title="函数类型标注"></a>函数类型标注</h2><pre><code class="javascript">function test(a: number, b: number): void &#123;&#125;
+
+const fn = (name: string, age: number): string =&gt; &#123;
+  return name + age;
+&#125;;
+</code></pre>
+<h2 id="interface-与-type"><a href="#interface-与-type" class="headerlink" title="interface 与 type"></a>interface 与 type</h2><p>这两个 ts 的语法就像是函数一样，一次生成多次调用，因为要描述的类型往往可能是一个复杂对象，或者是一个函数，那么用这两种方式定义好类型之后，就可以在后面随便引用而不用每次遇到就写一遍</p>
+<p>定义函数</p>
+<pre><code class="typescript">type Condition = (n: number) =&gt; boolean;
+
+interface Condition &#123;
+  (n: number): boolean;
+&#125;
+
+function sum(numbers: number[], callBack: Condition) &#123;
+  let s = 0;
+  numbers.forEach((n) =&gt; &#123;
+    if (callBack(n)) &#123;
+      s += n;
+    &#125;
+  &#125;);
+  return s;
+&#125;
+</code></pre>
+<p>定义对象</p>
+<pre><code class="typescript">interface User &#123;
+  name: string;
+  age: number;
+&#125;
+
+type User = &#123;
+  name: string;
+  age: number;
+&#125;;
+
+const fn = (user: User): User =&gt; &#123;
+  //这里的参数填写方式就变得简单了
+  return user;
+&#125;;
+</code></pre>
+<h2 id="联合类型与交叉类型"><a href="#联合类型与交叉类型" class="headerlink" title="联合类型与交叉类型"></a>联合类型与交叉类型</h2><p>凡是进行 ts 标注的地方都是可以使用&amp; 和 | 的语法来表示</p>
+<pre><code class="typescript">let myPhone: number | string = &quot;010-820&quot;;
+
+interface Pople &#123;
+  name: string;
+  age: number;
+&#125;
+interface Man &#123;
+  sex: number;
+&#125;
+
+const xiaoman = (man: Pople &amp; Man): void =&gt; &#123;
+  console.log(man);
+&#125;;
+</code></pre>
+<h2 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h2><p>对类型采用 as 的语法来明确变量的类型</p>
+<pre><code class="typescript">let fn = function (num: number | string): void &#123;
+  console.log((num as string).length); //用括号括起来，as断言他是string类型
+&#125;;
+</code></pre>
+<pre><code class="typescript">let fn = (type: A | B) =&gt; &#123;
+  console.log((&lt;A&gt;type).run);
+&#125;;
+</code></pre>
+<h2 id="枚举（参与运行）"><a href="#枚举（参与运行）" class="headerlink" title="枚举（参与运行）"></a>枚举（参与运行）</h2><p>枚举其实是 js 真正要运行的内容，可以认为就是一个变量</p>
+<pre><code class="typescript">enum Color &#123;
+  no = &quot;NO&quot;,
+  yes = 1,
+&#125;
+
+//可以认为这就是一个变量
+console.log(Color.no);
+</code></pre>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型函数</p>
+<pre><code class="typescript">function Sub&lt;T, U&gt;(a: T, b: U): Array&lt;T | U&gt; &#123;
+  //这个T跟U随便起名字都行，没有强制规范
+  const params: Array&lt;T | U&gt; = [a, b];
+  return params;
+&#125;
+
+Sub&lt;Boolean, number&gt;(false, 1); //我们这里就将其定义为布尔值类型跟数字类型
+</code></pre>
+<p>interface + 泛型</p>
+<pre><code class="typescript">interface MyInter&lt;T&gt; &#123;
+  (arg: T): T;
+&#125;
+
+function fn&lt;T&gt;(arg: T): T &#123;
+  return arg;
+&#125;
+
+let result: MyInter&lt;number&gt; = fn;
+</code></pre>
+<p>泛型定义类</p>
+<pre><code class="typescript">class Sub&lt;T&gt; &#123;
+  attr: T[] = []; //这里的:只是普通的：
+  add(a: T): T[] &#123;
+    return [a];
+  &#125;
+&#125;
+</code></pre>
+<h2 id="类型演算"><a href="#类型演算" class="headerlink" title="类型演算"></a>类型演算</h2><p>根据已知的信息，计算出新的类型</p>
+<p>typeof</p>
+<p>typeof 是用在实际的对象上，函数上，获取他的类型</p>
+<pre><code class="typescript">interface Person &#123;
+  name: string;
+  age: number;
+&#125;
+const sem: Person = &#123; name: &quot;semlinker&quot;, age: 30 &#125;;
+type Sem = typeof sem; // type Sem = Person
+</code></pre>
+<p>keyof</p>
+<p>同理，获取 key 值</p>
+<p>in</p>
+<p>进一步约束属性名只能是 name 或者 age,采用 in 关键字</p>
+<pre><code class="typescript">type Obj = &#123;
+  [p in &quot;name&quot; | &quot;age&quot;]: string;
+&#125;;
+</code></pre>
+<p>infer</p>
+<p>占位符</p>
+<p><font style="color:rgba(0, 0, 0, 0.85);">假设你想从一个函数类型中推断出它的参数类型。可以使用 </font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;infer&lt;/font&gt;</code></p>
+<pre><code class="typescript">type FunctionArgs&lt;T&gt; = T extends (arg: infer U) =&gt; any ? U : never;
+
+// 示例函数
+function add(a: number, b: number) &#123;
+  return a + b;
+&#125;
+
+// 推断add函数的参数类型
+type AddArgs = FunctionArgs&lt;typeof add&gt;;
+// AddArgs的类型为number[]，因为add函数有两个参数，所以推断出参数类型的数组
+</code></pre>
+<p><font style="color:rgba(0, 0, 0, 0.85);">在这个例子中，</font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;FunctionArgs&lt;/font&gt;</code><font style="color:rgba(0, 0, 0, 0.85);"> 是一个条件类型，它的定义是：如果 </font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;T&lt;/font&gt;</code><font style="color:rgba(0, 0, 0, 0.85);">（这里 </font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;T&lt;/font&gt;</code><font style="color:rgba(0, 0, 0, 0.85);"> 代表一个函数类型）扩展自一个函数，这个函数接受一个参数 </font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;arg&lt;/font&gt;</code><font style="color:rgba(0, 0, 0, 0.85);">，并且参数类型是通过 </font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;infer&lt;/font&gt;</code><font style="color:rgba(0, 0, 0, 0.85);"> 占位符 </font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;U&lt;/font&gt;</code><font style="color:rgba(0, 0, 0, 0.85);"> 来表示的，那么就返回 </font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;U&lt;/font&gt;</code><font style="color:rgba(0, 0, 0, 0.85);">；否则返回 </font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;never&lt;/font&gt;</code><font style="color:rgba(0, 0, 0, 0.85);">。通过将 </font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;typeof add&lt;/font&gt;</code><font style="color:rgba(0, 0, 0, 0.85);"> 代入 </font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;T&lt;/font&gt;</code><font style="color:rgba(0, 0, 0, 0.85);">，就可以推断出 </font><code>&lt;font style=&quot;color:rgba(0, 0, 0, 0.85);&quot;&gt;add&lt;/font&gt;</code><font style="color:rgba(0, 0, 0, 0.85);"> 函数的参数类型数组。</font></p>
+<p><font style="color:rgba(0, 0, 0, 0.85);">extend</font></p>
+<p><font style="color:rgba(0, 0, 0, 0.85);">继承（约束）</font></p>
+<pre><code class="typescript">interface Lengthwise &#123;
+  length: number;
+&#125;
+
+function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T): T &#123;
+  console.log(arg.length);
+  return arg;
+&#125;
+</code></pre>
+<h2 id="特殊用法"><a href="#特殊用法" class="headerlink" title="特殊用法"></a>特殊用法</h2><p>构造函数约束</p>
+<pre><code class="html">class User&#123; loginid:string, loginpwd:string, &#125; function createUser(cls:new() =&gt;
+User) :User&#123; return new cls(); &#125;
+</code></pre>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

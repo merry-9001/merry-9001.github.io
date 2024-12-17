@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>响应式问题 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>响应式问题</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/11/19
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <p>响应式布局方案</p>
+<p>1.尽量不定宽，使用 flex 布局</p>
+<p>2.媒体查询</p>
+<p>3.使用 vw/vh,min-width 和 max-width 这样的参数</p>
+<p>媒体查询可以采用 sass 封装函数</p>
+<p>主题方案也可以封装函数</p>
+<pre><code class="javascript">.header&#123;
+  width:100%;
+  @inclue reposeTo(&#39;phone&#39;)&#123;
+    height:100px;
+  &#125;
+  @inclue reposeTo(&#39;pad&#39;)&#123;
+    height:200px;
+  &#125;
+&#125;
+
+@mixin reposeTo($name)&#123;
+  if($name === &#39;phone)&#123;
+    @media(min-with:320px) and (max-width:400px)&#123;
+      @content
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<p>移动端布局</p>
+<p>1.后面单位都使用 rem，本质就是等比缩放</p>
+<pre><code class="javascript">html.style.fontSize = 100 * (clientWidth（屏幕宽度） / designWidth（设计稿宽度）) + &#39;px&#39;;
+</code></pre>
+<p>2.使用 transform</p>
+<pre><code class="javascript">transform: scale(0.5);
+</code></pre>
+<p>过渡</p>
+<pre><code class="javascript">transition: left 2s linear 0s;
+</code></pre>
+<p>动画</p>
+<pre><code class="javascript">@keyframes moveTest &#123;
+  //百分比是指整个动画耗时的百分比  10s
+  from&#123;
+    transform: translate(0,0) rotate(45deg);
+  &#125;
+  50%&#123;
+    transform: translate(0,500px);
+  &#125;
+  to&#123;
+    transform: translate(500px,600px);
+  &#125;
+&#125;
+animation: 动画名称 持续时间 运行的速度变化 延迟时间 播放次数(默认一次) 播放方向
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

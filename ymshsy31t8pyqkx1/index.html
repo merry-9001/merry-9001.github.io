@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>装饰器 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>装饰器</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/3/31
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h2><p>装饰器，能够带来额外的信息量，可以达到分离关注点的目的。</p>
+<ul>
+<li>信息书写位置的问题</li>
+<li>重复代码的问题</li>
+</ul>
+<p>上述两个问题产生的根源：某些信息，在定义时，能够附加的信息量有限。</p>
+<p>装饰器的作用：为某些属性、类、参数、方法提供元数据信息(metadata)</p>
+<h2 id="装饰器的本质"><a href="#装饰器的本质" class="headerlink" title="装饰器的本质"></a>装饰器的本质</h2><p>在 JS 中，装饰器是一个函数。（装饰器是要参与运行的）</p>
+<p>装饰器可以修饰：</p>
+<ul>
+<li>类</li>
+<li>成员（属性+方法）</li>
+<li>参数</li>
+</ul>
+<h2 id="类装饰器"><a href="#类装饰器" class="headerlink" title="类装饰器"></a>类装饰器</h2><p><strong>类装饰器的本质是一个函数，该函数接收一个参数，表示类本身（构造函数本身）</strong></p>
+<p>在 TS 中要使用装饰器，需要开启<code>experimentalDecorators</code></p>
+<p>使用装饰器<code>@得到一个函数</code></p>
+<blockquote>
+<p>@后面的东西一定要是一个函数，而且函数的格式需要符合要求</p>
+</blockquote>
+<p>在 TS 中，如何约束一个变量为类</p>
+<ul>
+<li>Function</li>
+<li><code>new (参数)=&gt;object</code></li>
+</ul>
+<p><strong>装饰器函数的运行时间：在类定义后直接运行</strong></p>
+<p>装饰器写法(test 是这个装饰器函数)</p>
+<pre><code class="typescript">function test(target: new () =&gt; object) &#123;
+  console.log(target);
+&#125;
+
+@test
+class A &#123;&#125;
+</code></pre>
+<p>类装饰器可以具有的返回值：</p>
+<p>1.void：仅运行函数</p>
+<p>2.返回一个新的类：会将新的类替换掉装饰目标</p>
+<pre><code class="typescript">function test(target: new () =&gt; object) &#123;
+  return class B &#123;&#125;;
+&#125;
+
+@test
+class A &#123;&#125;
+
+let a = new B();
+这里的a将得到一个B构造函数的实例对象;
+</code></pre>
+<p>构造函数带参数的写法</p>
+<p>通过..args 可以将构造函数的参数传进来</p>
+<p><img src="1712311650487-79b5e6e7-ccba-4a60-b96b-734b6a5bd759.png"></p>
+<p>如果采用函数调用的方法，就必须要做到函数的返回结果要满足装饰器函数的要求(装饰器工厂)</p>
+<p>一个要给@语法一个符合要求的装饰器函数</p>
+<p><img src="1712311876848-42bc813b-dd3f-48a9-8fb6-85dca935fc3a.png"></p>
+<p>多个装饰器的情况：会按照后加入先调用的顺序进行调用。</p>
+<p><img src="1712311926129-2c031e53-75ce-4a3e-a1d0-52abea87f179.png"></p>
+<p>输出 d1,d2(装饰器函数内向外调用)</p>
+<p>装饰器工厂调用顺序</p>
+<p><img src="1712312059396-9d3cb7c8-4852-4ee2-bbd3-d18a6d2d13eb.png"></p>
+<p>在运行装饰器函数之前 d1 与 d2 就已经执行完了</p>
+<p>先运行 d1 函数与 d2 函数得到两个装饰器，然后两个装饰器从内向外调用</p>
+<p>输出 d1,d2(装饰器函数内向外调用，装饰器工厂函数从外向内调用)</p>
+<p><img src="1720344529323-ef5668b6-3ff3-4369-ba94-473d19edbc57.png"></p>
+<p>函数的调用是在运行装饰器之前的</p>
+<h2 id="成员装饰器"><a href="#成员装饰器" class="headerlink" title="成员装饰器"></a>成员装饰器</h2><ul>
+<li>属性</li>
+</ul>
+<p>属性装饰器也是一个函数，该函数需要两个参数：</p>
+<ol>
+<li>如果是静态属性，则为类本身；如果是实例属性，则为类的原型；</li>
+<li>固定为一个字符串，表示属性名</li>
+</ol>
+<p>如果是实例属性，则为类的原型(A 的原型)</p>
+<p><img src="1712312653040-1ad0401a-0966-4072-8d48-1a176a420968.png"></p>
+<p>由于 prop2 是静态属性，则拿到 A 本身</p>
+<p><img src="1712312733295-cf93ea60-8065-45c7-b554-1a2bcd234b53.png"></p>
+<p>装饰器工厂</p>
+<p><img src="1712312918295-407ac0ac-992f-4f0e-b39e-3f7caab874fa.png"></p>
+<ul>
+<li>方法</li>
+</ul>
+<p>方法装饰器也是一个函数，该函数需要三个参数：</p>
+<ol>
+<li>如果是静态方法，则为类本身；如果是实例方法，则为类的原型；</li>
+<li>固定为一个字符串，表示方法名</li>
+<li>属性描述对象</li>
+</ol>
+<blockquote>
+<p>方法可以当作属性来对待，但是也可以写第三个参数属性描述对象</p>
+</blockquote>
+<p><img src="1712313105426-9fe6b431-dbc7-43fa-afcf-ea9709125b4b.png"></p>
+<p>可以有多个装饰器修饰</p>
+<h2 id="参数装饰器"><a href="#参数装饰器" class="headerlink" title="参数装饰器"></a>参数装饰器</h2><p>要求函数有三个参数：</p>
+<ol>
+<li>如果方法是静态的，则为类本身；如果方法是实例方法，则为类的原型</li>
+<li>方法名称</li>
+<li>在参数列表中的索引</li>
+</ol>
+<p><img src="1712316772666-e62a4392-b3a6-4b43-a0a5-3937fd7387e0.png"></p>
+<p><img src="1712316834629-e770c1cf-25e6-4b64-9e6b-3d3f33001bd0.png"></p>
+<p>类的原型是什么？</p>
+<pre><code class="plain">function Person(name, age) &#123;
+  this.name = name;
+  this.age = age;
+&#125;
+
+// Person 的 prototype 属性
+console.log(Person.prototype); // 输出：&#123; constructor: Person &#125;
+</code></pre>
+<p>Person.prototype 就是类的原型</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

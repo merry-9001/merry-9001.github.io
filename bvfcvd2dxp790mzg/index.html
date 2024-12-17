@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>术语 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>术语</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/8/15
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h3 id="开箱即用"><a href="#开箱即用" class="headerlink" title="开箱即用"></a>开箱即用</h3><p>开箱即用(out of box): 你不需要做任何额外的配置就可以使用 vite 来帮你处理构建工作</p>
+<h3 id="web-api"><a href="#web-api" class="headerlink" title="web api"></a>web api</h3><p>浏览器环境统称 web api</p>
+<p><img src="1706955915362-41e0060f-b2f3-40ab-b16f-e1988a729cb5.png"></p>
+<h2 id="js-术语"><a href="#js-术语" class="headerlink" title="js 术语"></a>js 术语</h2><h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><p>js 的本质是处理数据</p>
+<p>js 提供了三种方式去描述数据</p>
+<ul>
+<li>变量（存放在内存中）</li>
+<li>字面量（直接书写的数据叫字面量）</li>
+</ul>
+<pre><code class="plain">let a = 1;
+a是变量
+1是字面量
+</code></pre>
+<ul>
+<li>表达式</li>
+</ul>
+<pre><code class="plain">这就是个表达式
+1+2
+</code></pre>
+<p><strong>程序中任何需要数据的地方，都可以使用上面任意一种数据表达。</strong></p>
+<h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>程序中有些可以自行命名的地方，称之为<strong>标识符</strong></p>
+<blockquote>
+<p>常见的标识符有：变量名、函数名、参数名</p>
+</blockquote>
+<h3 id="纯函数"><a href="#纯函数" class="headerlink" title="纯函数"></a>纯函数</h3><p>纯函数:只要参数不变，返回值一定不变 这个可以做缓存</p>
+<h3 id="函数副作用"><a href="#函数副作用" class="headerlink" title="函数副作用"></a>函数副作用</h3><p>函数副作用:我调用一次与两次结果是一样的，不影响别的东西</p>
+<h3 id="静态语言与动态语言"><a href="#静态语言与动态语言" class="headerlink" title="静态语言与动态语言"></a>静态语言与动态语言</h3><p><font style="color:rgb(51, 51, 51);">静态语言（强类型语言）。在编译时确定变量的数据类型，这意味着在使用变量之前必须声明其数据类型。静态语言的优势在于它们提供了严格的编程环境，可以预防类型相关的错误，并且在编译阶段可以进行类型匹配检查，这有助于提高代码的可靠性和效率。静态语言通常用于开发大型商业系统，因为它们的类型强制声明可以减少第三方开发包对代码的潜在侵害。</font></p>
+<p><font style="color:rgb(51, 51, 51);">动态语言（弱类型语言）。在运行时确定数据类型，使用动态语言时，变量在使用前不需要声明数据类型，通常，变量的类型是由它所赋的值决定的。动态语言的主要优势在于它们提供了更高的编程灵活性，使开发人员可以更容易地应对变化，动态语言特别适合于需要快速开发和适应变化的领域，如网页应用程序开发。</font></p>
+<h3 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h3><p>描述数据的数据</p>
+<h3 id="hash-算法"><a href="#hash-算法" class="headerlink" title="hash 算法"></a>hash 算法</h3><p>能将内容转化成一个固定长度的字符串，内容不变，加密结果不变，内容一变，加密结果千差万别</p>
+<h2 id="编程范式"><a href="#编程范式" class="headerlink" title="编程范式"></a>编程范式</h2><p>命令式编程：告诉计算机怎么做（How），我们需要给计算机指明每一个步骤</p>
+<p>面向过程</p>
+<p>面向对象</p>
+<p>声明式编程：告诉计算机我要什么（What）</p>
+<p>函数式编程</p>
+<h2 id="PRD"><a href="#PRD" class="headerlink" title="PRD"></a><font style="color:rgba(0, 0, 0, 0.85);">PRD</font></h2><p><font style="color:rgba(0, 0, 0, 0.85);">通常是指产品需求文档（Product Requirement Document）。</font></p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

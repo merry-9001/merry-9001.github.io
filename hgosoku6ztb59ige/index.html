@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>前端页面呈现方式 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>前端页面呈现方式</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/6
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h3 id="SSR-Server-side-Render-服务器端渲染。"><a href="#SSR-Server-side-Render-服务器端渲染。" class="headerlink" title="SSR (Server side Render) 服务器端渲染。"></a>SSR (Server side Render) 服务器端渲染。</h3><p>渲染：页面形成的过程，html 文件，内容形成的过程。</p>
+<h3 id="CSR-client-side-Render-客户端渲染"><a href="#CSR-client-side-Render-客户端渲染" class="headerlink" title="CSR (client side Render) 客户端渲染"></a>CSR (client side Render) 客户端渲染</h3><p>渲染：页面内容通过 js 执行形成。</p>
+<h3 id="服务端渲染"><a href="#服务端渲染" class="headerlink" title="服务端渲染"></a>服务端渲染</h3><p>在服务器端把整张页面传给浏览器</p>
+<p><img src="https://cdn.nlark.com/yuque/__mermaid_v3/1e3e5065adc74474bc1fcf13d61ca948.svg"></p>
+<p>公司的官网代码采用的就是服务端渲染</p>
+<p>hexo 采用的就是服务端渲染</p>
+<p>优点：</p>
+<ol>
+<li><p>前端压力小，直接渲染</p>
+</li>
+<li><p>有利于 SEO (搜索引擎优化)</p>
+</li>
+</ol>
+<p>缺点：</p>
+<p>1.服务器压力大</p>
+<h3 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h3><p><img src="https://cdn.nlark.com/yuque/__mermaid_v3/f146946e73c78c6057da52665c3a07b3.svg"></p>
+<p>查看网页源代码以后会发现服务器给的是一个空的 html，整个页面都由 js 来创建，在浏览器端组装页面</p>
+<p><img src="1696771584568-6abb020b-6d85-41b6-8d3d-feb657baa9b0.png"></p>
+<p>优点</p>
+<ol>
+<li><p>前后端分离， 前端（UI + 交互）， 后端（API 和 数据）</p>
+</li>
+<li><p>体验好（native). SPA</p>
+</li>
+</ol>
+<p>缺点</p>
+<ol>
+<li><p>首屏加载慢 （落地页）</p>
+</li>
+<li><p>SEO 不好</p>
+</li>
+</ol>
+<h3 id="单页应用"><a href="#单页应用" class="headerlink" title="单页应用"></a>单页应用</h3><p><img src="https://cdn.nlark.com/yuque/__mermaid_v3/61558329bd402dbd6cef9b228b074b47.svg"></p>
+<p>因为如果跳转页面就要重新向服务器请求的话，那切来切去还是要重新加载页面。所以希望把网页也做成单页，变成像客户端一样的应用程序，所以点击跳转页面的时候，通过 js 把当前页面的内容删掉，再重新构建新的元素，页面不刷新。</p>
+<h3 id="vue-框架"><a href="#vue-框架" class="headerlink" title="vue 框架"></a>vue 框架</h3><p><img src="https://cdn.nlark.com/yuque/__mermaid_v3/94be95193dbf6bf92ffde8787e7b74ac.svg"></p>
+<p>框架是用来降低复杂度的，运行在浏览器中</p>
+<p>利用 vue 进行无刷新界面跳转的优点</p>
+<p><img src="1726131703733-432fd6b8-4b88-4eb7-93e0-4dec730eb8f2.png"></p>
+<h3 id="同构（Vue-SSR-SSR-CSR"><a href="#同构（Vue-SSR-SSR-CSR" class="headerlink" title="同构（Vue SSR, SSR + CSR)"></a>同构（Vue SSR, SSR + CSR)</h3><p>nodejs， 会 js 就可以开发服务端。</p>
+<p>缺点：服务端要跑一次，客户端也要渲染（浪费资源）</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

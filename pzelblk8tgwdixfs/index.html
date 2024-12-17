@@ -1,0 +1,888 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>长视野 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>长视野</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/3
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><h2 id="取色器-EyeDropper"><a href="#取色器-EyeDropper" class="headerlink" title="取色器(EyeDropper)"></a>取色器(EyeDropper)</h2><p>EyeDropper</p>
+<pre><code class="javascript">const box = document.queryselector(&quot;.box&quot;);
+const label = document.queryselector(&quot;label&quot;);
+
+//点击以后就可以开始取色
+btn.onclick = async () =&gt; &#123;
+  const dropper = new Eyedropper();
+  try &#123;
+    const result = await dropper.open();
+    label.textContenet = result.sRGBHex;
+    box.style.backgroundcolorlabel = result.sRGBHex;
+  &#125; catch &#123;
+    console.log(&quot;user canceled&quot;);
+  &#125;
+&#125;;
+</code></pre>
+<h2 id="单页内部跳转"><a href="#单页内部跳转" class="headerlink" title="单页内部跳转"></a>单页内部跳转</h2><p>1.hash</p>
+<pre><code class="javascript">&lt;a href=&quot;#app&quot;&gt;&lt;/a&gt;
+</code></pre>
+<p>2.scrollIntoView</p>
+<pre><code class="javascript">//将页面跳转到dom元素的位置
+dom.scrollIntoView(&#123;
+  behavior: &quot;smooth&quot;,
+&#125;);
+</code></pre>
+<h2 id="交叉观察器-IntersectionObserver"><a href="#交叉观察器-IntersectionObserver" class="headerlink" title="交叉观察器(IntersectionObserver)"></a>交叉观察器(IntersectionObserver)</h2><p>监听某个元素跟视口是否有交叉</p>
+<pre><code class="javascript">const ob = new Intersectionobserver(()=&gt;&#123;&#125;,&#123;
+  root:null
+  threshold:0,
+&#125;)
+const dom = document.queryselector(&#39;.loading&#39;);
+ob.observe(dom)
+</code></pre>
+<h2 id="尺寸变化观察器（ResizeObserver）"><a href="#尺寸变化观察器（ResizeObserver）" class="headerlink" title="尺寸变化观察器（ResizeObserver）"></a>尺寸变化观察器（ResizeObserver）</h2><p>观察的元素尺寸变化时会运行里面的函数</p>
+<pre><code class="vue">const ob = new ResizeObserver(()=&gt;&#123; //dom尺寸发生变化后，运行这里面的函数 &#125;)
+ob.observe(dom)
+</code></pre>
+<h2 id="元素观察器（MutationObserver）"><a href="#元素观察器（MutationObserver）" class="headerlink" title="元素观察器（MutationObserver）"></a>元素观察器（MutationObserver）</h2><pre><code class="javascript">const p = document.createElement(&quot;p&quot;);
+const observer = new MutationObserver(() =&gt; &#123;
+  //一旦元素发生变化，就把这个函数放入微任务中去执行
+&#125;);
+observer.observe(p, &#123;
+  childList: true, // 观察该元素内部的变化
+&#125;);
+p.innerHTML = &quot;1&quot;;
+</code></pre>
+<h2 id="文件读取器-FileReader"><a href="#文件读取器-FileReader" class="headerlink" title="文件读取器(FileReader)"></a>文件读取器(FileReader)</h2><pre><code class="javascript">const reader = new FileReader();
+reader.onload = (e) =&gt; &#123;
+  e.target.result; //一段时间后得到一个base64的文件数据
+&#125;;
+reader.readAsDataURL(file); //读文件的二进制数据
+</code></pre>
+<h2 id="requestIdleCallback"><a href="#requestIdleCallback" class="headerlink" title="requestIdleCallback"></a><font style="color:rgb(27, 27, 27);">requestIdleCallback</font></h2><p>空闲时优化渲染</p>
+<p><font style="color:rgb(27, 27, 27);">插入一个函数，这个函数将在浏览器空闲时期被调用。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应</font></p>
+<h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a><font style="color:rgb(27, 27, 27);">requestAnimationFrame</font></h2><p>requestAnimationFrame 是一个用于在下一个浏览器重绘之前执行回调函数的方法。它可以用于创建流畅的动画效果</p>
+<p>浏览器大概是 16.6ms 渲染一次</p>
+<h2 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h2><p>Service Worker 是一种在 Web 浏览器后台运行的脚本，它独立于网页，能够拦截和处理网络请求，实现离线缓存、后台同步等功能，从而提升 Web 应用的性能和用户体验。</p>
+<p>注册</p>
+<pre><code class="typescript">navigator.serviceWorker
+  .register(&quot;./service-worker.js&quot;)
+  .then((registration) =&gt; &#123;
+    console.log(&quot;Service Worker registered:&quot;, registration);
+  &#125;)
+  .catch((error) =&gt; &#123;
+    console.error(&quot;Service Worker registration failed:&quot;, error);
+  &#125;);
+</code></pre>
+<p>拦截请求</p>
+<pre><code class="typescript">self.addEventListener(&quot;fetch&quot;, (event) =&gt; &#123;
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) =&gt; &#123;
+      // 如果缓存中存在请求的响应，则直接返回缓存的响应
+      if (cachedResponse) &#123;
+        console.log(&quot;Response from cache:&quot;, event.request.url);
+        return cachedResponse;
+      &#125;
+
+      // 如果缓存中不存在请求的响应，则继续向网络发出请求
+      return fetch(event.request)
+        .then((networkResponse) =&gt; &#123;
+          // 将从网络获取到的响应添加到缓存中
+          return caches.open(&quot;dynamic-cache&quot;).then((cache) =&gt; &#123;
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          &#125;);
+        &#125;)
+        .catch((error) =&gt; &#123;
+          console.error(&quot;Fetch error:&quot;, error);
+          // 如果网络请求失败，可以返回一个自定义的响应
+          return new Response(&quot;Network request failed!&quot;, &#123;
+            status: 500,
+            statusText: &quot;Internal Server Error&quot;,
+          &#125;);
+        &#125;);
+    &#125;)
+  );
+&#125;);
+</code></pre>
+<h2 id="web-worker"><a href="#web-worker" class="headerlink" title="web worker"></a><font style="color:rgb(27, 27, 27);">web worker</font></h2><p>js 是运行在渲染主线程的。这才是导致在单线程的原因；大量密集型计算会导致主线程卡死，可以利用 web work 来让非主线程进行计算，使得主线程不卡</p>
+<pre><code class="javascript">// worker.js
+self.onmessage = function (e) &#123;
+  // 接收到主线程发送的任务数据
+  let data = e.data;
+
+  // 在这里执行具体的任务，比如计算斐波那契数列
+
+  // 将计算结果发送回主线程
+  self.postMessage(result);
+&#125;;
+
+//index.js
+let worker = new Worker(&quot;worker.js&quot;);
+worker.onmessage = function (e) &#123;
+  // 接收到Worker线程发送的结果
+  let result = e.data;
+  console.log(&quot;计算结果:&quot;, result);
+&#125;;
+
+// 向Worker线程发送任务数据
+worker.postMessage(10);
+</code></pre>
+<p>什么时候用 webworker?</p>
+<p>1.cpu 密集型任务</p>
+<p>2.任务可被分割</p>
+<p>应用</p>
+<p>1.大文件计算 hash</p>
+<p>2.加密与解密，解析 json，分块显示</p>
+<h2 id="new-target"><a href="#new-target" class="headerlink" title="new.target"></a>new.target</h2><p>这个东西可以知道你是怎么调用这个函数的</p>
+<p>如果是直接调用,new.target = undefined;</p>
+<p>如果是 new 调用,new.target 就只想你 new 的那个构造函数</p>
+<h2 id="textdecoder"><a href="#textdecoder" class="headerlink" title="textdecoder"></a>textdecoder</h2><p>文字解码器</p>
+<pre><code class="javascript">const str = testDecoder.decode(类型化数组);
+</code></pre>
+<h2 id="剪切板-clipboard-API"><a href="#剪切板-clipboard-API" class="headerlink" title="剪切板 clipboard API"></a>剪切板 clipboard API</h2><pre><code class="javascript">navigator.clipboard.readText().then((text) =&gt; &#123;
+  //text就是剪切板里面的内容
+&#125;);
+</code></pre>
+<p>监听复制行为</p>
+<pre><code class="javascript">window.addEventListener(&quot;copy&quot;, fun);
+</code></pre>
+<h2 id="音频处理-audiocontext"><a href="#音频处理-audiocontext" class="headerlink" title="音频处理 audiocontext"></a>音频处理 audiocontext</h2><h2 id="网络状态-navigator-connection"><a href="#网络状态-navigator-connection" class="headerlink" title="网络状态 navigator.connection"></a>网络状态 navigator.connection</h2><p>获取电脑的网络状态</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="1731405805369-81a381b3-a966-49f3-b943-2e523a8544a0.png"></h2><h2 id="URL-createObjectURL-文件对象"><a href="#URL-createObjectURL-文件对象" class="headerlink" title="URL.createObjectURL(文件对象)"></a>URL.createObjectURL(文件对象)</h2><p>传入一个 blob，得到一个临时的 url 对象</p>
+<pre><code class="javascript">const objectURL = URL.createObjectURL(blobOrFile);
+</code></pre>
+<p>可以拿到一个本地的播放地址</p>
+<p>blob:<a target="_blank" rel="noopener" href="http://localhost:5500/xxxxxx">http://localhost:5500/xxxxxx</a></p>
+<h2 id="utf8-array"><a href="#utf8-array" class="headerlink" title="utf8-array"></a>utf8-array</h2><p>utf8 编码的数组，可以使用构造函数互相转换</p>
+<pre><code class="javascript">const encoder = new TextEncoder();
+const decoder = new TextDecoder();
+
+const str = &quot;你好，世界！&quot;;
+const utf8Array = encoder.encode(str);
+console.log(utf8Array); // Uint8Array(15) [228, 189, 160, 229, 165, 189, 44, 32, 228, 184, 173, 229, 155, 189, 33]
+
+const decodedStr = decoder.decode(utf8Array);
+</code></pre>
+<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><h2 id="纵向滚动变横向滚动"><a href="#纵向滚动变横向滚动" class="headerlink" title="纵向滚动变横向滚动"></a>纵向滚动变横向滚动</h2><p><img src="1725432371365-2736a799-71ea-4be8-99bf-3cfbfc8eeba9.png"></p>
+<p>思路</p>
+<p><img src="1725432468771-1f0fa96d-65f5-4a91-87cc-dcc705af4bd6.png"></p>
+<p>套三层 div</p>
+<p>中间那层 div 的宽度是父元素的高度，高度是父元素的宽度（为了滚动条）</p>
+<p>最里面那层 div 旋转 180 跟中间层贴合</p>
+<p>中间那层 div 再旋转 180 跟最外层贴合</p>
+<h2 id="文字下划线滑动"><a href="#文字下划线滑动" class="headerlink" title="文字下划线滑动"></a>文字下划线滑动</h2><p>行盒背景图是随着文字变化而变化的</p>
+<p>把背景做成下划线，然后再加上 css 动画</p>
+<h2 id="文字镂空效果"><a href="#文字镂空效果" class="headerlink" title="文字镂空效果"></a>文字镂空效果</h2><p><img src="1725434379990-9faea8ed-f6b2-4e26-9cd7-e5140e3dab8a.png"></p>
+<p>1.背景图再加上一个黑色半透明蒙层</p>
+<p>2.文字本身颜色透明，把文字背景颜色设置一下，同时只作用于文字</p>
+<h2 id="css-吸附效果"><a href="#css-吸附效果" class="headerlink" title="css 吸附效果"></a>css 吸附效果</h2><p>scroll-snap-type</p>
+<h2 id="下拉高度过渡动画"><a href="#下拉高度过渡动画" class="headerlink" title="下拉高度过渡动画"></a>下拉高度过渡动画</h2><p>1.给最大高度（但还原的时候可能会延迟）</p>
+<p>2.采用 transform:scaleY(0) -&gt;transform:scaleY(1)(效果有一点偏差，会被压缩)</p>
+<p>3.采用 js 先设置为 auto 拿到高度，再给他这个高度</p>
+<p><img src="1725456785679-742bcefe-f434-42db-abc4-26f7c07cbcce.png"></p>
+<h2 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h2><p>inital,unset,revert</p>
+<p>这三个是 css 的属性值（通用）</p>
+<p>inital,unset 是返回默认样式</p>
+<p>revert 是返回浏览器的默认样式</p>
+<h2 id="dpr"><a href="#dpr" class="headerlink" title="dpr"></a>dpr</h2><p>设备像素比</p>
+<p>设备像素就是买笔记本的物理像素</p>
+<p><img src="1725519710060-3cf34518-37f4-4834-9af6-c43c55a61dc0.png"></p>
+<p>但我们操作系统会对我们的屏幕像素有缩放</p>
+<p><img src="1725519756762-4e76e279-ea77-415f-9f8a-afcaad755e55.png"></p>
+<p>同时浏览器的窗口大小也可以缩放</p>
+<p><img src="1725519794958-7cb6e822-1d6c-492a-8cf1-62f3f3cd78bc.png"></p>
+<p>window.devicePixelRatio 可以拿到比例</p>
+<p>想要图片清晰就是要容器的 width * dpr 等于图片的原始宽度(natureWidth)</p>
+<h2 id="css-变量的应用"><a href="#css-变量的应用" class="headerlink" title="css 变量的应用"></a>css 变量的应用</h2><p>注意：在 translateX 中，百分比是相对于自身的，这里的 100%指的就是.circle 类的宽度的 100%。</p>
+<p>这里的父元素宽度 css 不好计算，但 js 好计算。css 好做动画，js 不好做动画</p>
+<p>解决方案就是定义一个 css 变量，js 去修改 css 变量的值，css 去应用这个变量</p>
+<pre><code class="javascript">.circle&#123;
+  animation: move 1s;
+  width:400px;
+&#125;
+
+@keyframes move&#123;
+  50%&#123;
+    transform: translateX(calc(父元素的宽度-100%))
+  &#125;
+&#125;
+</code></pre>
+<h2 id="多元素组合动画"><a href="#多元素组合动画" class="headerlink" title="多元素组合动画"></a>多元素组合动画</h2><p>抛物线：先要横向弹跳一下，再垂直向下</p>
+<p>思路：</p>
+<p>可以设置两个元素的运动，父元素横向运动（可以设置贝塞尔曲线），子元素垂直运动</p>
+<h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><h2 id="浏览器指纹"><a href="#浏览器指纹" class="headerlink" title="浏览器指纹"></a>浏览器指纹</h2><p>假设世界上没有两个一摸一样的浏览器环境（型号，版本，操作系统的型号版本，硬件的型号与版本）</p>
+<p>比如采用 canvas 签名</p>
+<p><img src="1725436500710-ec692369-06f4-490a-a442-62b1c5b1540f.png"></p>
+<p>画一个东西，转化成数据进行比对</p>
+<p>作用</p>
+<p>广告</p>
+<p>防刷</p>
+<h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><p><img src="1731060662186-b0101976-15ce-4bca-bcb0-d05ba110a79e.png"></p>
+<h2 id="fetch-超时和中断"><a href="#fetch-超时和中断" class="headerlink" title="fetch 超时和中断"></a>fetch 超时和中断</h2><p>也是柯里化的一个应用</p>
+<pre><code class="javascript">//这样的用法有点像闭包，柯里化，可以在外层保留超时时间
+function createFetchWithTimeout(timeout = 1000) &#123;
+  return function (url, options) &#123;
+    //想要这个promise完成
+    // 1.fetch的then去调用resolve或者reject
+    // 2.超时时间到,setTimeout去调用reject
+    return new Promise((resolve, reject) =&gt; &#123;
+      const singalController = new AbortController();
+      fetch(url, &#123;
+        ...options,
+        signal: singalcontroller.signal,
+      &#125;).then(resolve, reject);
+
+      //一旦有结果，setTimeout去改变promise的状态就是无效的，所以可以直接计时，当计时到的时候如果promise的状态还是pending,才会将promise的状态修改成reject
+      setTimeout(() =&gt; &#123;
+        reject(new Error(&quot;fetch timeout&quot;));
+        singalcontroller.abort();
+      &#125;, timeout);
+    &#125;);
+  &#125;;
+&#125;
+</code></pre>
+<blockquote>
+<p>singalcontroller.abort()一旦调用，就会丢弃掉这次响应，浏览器不会理会，关闭连接</p>
+<p>对于服务器来说要在响应的接口加入判断浏览器的连接是否关闭，来使得自己要不要继续响应这个请求</p>
+</blockquote>
+<h2 id="并发任务请求"><a href="#并发任务请求" class="headerlink" title="并发任务请求"></a>并发任务请求</h2><pre><code class="javascript">function timeout(time) &#123;
+  return new Promise((resolve, reject) =&gt; &#123;
+    setTimeout(() =&gt; &#123;
+      resolve();
+    &#125;, time);
+  &#125;);
+&#125;
+
+// tasks 任务队列
+// concurrency 最大并发数量
+// currentCount 正在执行的任务数量
+
+class SuperTask &#123;
+  constructor(concurrency = 2) &#123;
+    this.concurrency = concurrency;
+    this.tasks = [];
+    this.currentCount = 0;
+  &#125;
+
+  add(task) &#123;
+    return new Promise((resolve, reject) =&gt; &#123;
+      this.tasks.push(&#123;
+        task,
+        resolve,
+        reject,
+      &#125;);
+      //当有新的任务进来，要看这个任务能否执行
+      this._run();
+    &#125;);
+  &#125;
+
+  // 等待叫号
+  _run() &#123;
+    while (this.currentCount &lt; this.concurrency &amp;&amp; this.tasks.length) &#123;
+      const &#123; task, resolve, reject &#125; = this.tasks.shift();
+      this.currentCount++;
+      Promise.resolve(task().then(resolve, reject)).finally(() =&gt; &#123;
+        this.currentCount--;
+        this._run();
+      &#125;);
+    &#125;
+  &#125;
+&#125;
+const superTask = new SuperTask();
+function addTask(time, name) &#123;
+  superTask
+    .add(() =&gt; timeout(time))
+    .then(() =&gt; &#123;
+      console.log(`任务$&#123;name&#125;完成了`);
+    &#125;);
+&#125;
+addTask(1000, 1);
+addTask(1000, 2);
+addTask(1000, 4);
+addTask(1000, 3);
+</code></pre>
+<h2 id="请求取消"><a href="#请求取消" class="headerlink" title="请求取消"></a>请求取消</h2><p>应用：比如说输入的东西需要远程请求，那么下一次请求需要把上一次请求给取消，以免请求</p>
+<p>的顺序和响应的数据不一致。</p>
+<p>请求取消还是使用:abortController</p>
+<h2 id="fetch-请求（流式读取）"><a href="#fetch-请求（流式读取）" class="headerlink" title="fetch 请求（流式读取）"></a>fetch 请求（流式读取）</h2><p>需要等两次</p>
+<p>第一次等的是响应头</p>
+<p>第二次是表明你需要的响应体格式，然后继续等他全部到来</p>
+<p>这里也可以做响应数据的进度监控</p>
+<pre><code class="javascript">async function request() &#123;
+  //第一次等待的是响应头到达的时间
+  const resp = await fetch(&quot;https://www.baidu.com&quot;);
+
+  //这里等待的是响应数据（完整数据）
+  const body = await resp.json();
+
+  const total = resp.headers.get(&quot;content-length&quot;); //请求体的总字节数
+
+  //也可以分块读数据
+  const reader = resp.body.getReader();
+  let loader = 0; //刚开始是0
+  while (1) &#123;
+    const &#123; done, value &#125; = await reader.read();
+    if (done) &#123;
+      break;
+    &#125;
+    const str = textDecoder.decode(value);
+    loader = loader + value.length; //当前的传输量
+  &#125;
+&#125;
+</code></pre>
+<h2 id="数据监控-响应数据和请求数据进度"><a href="#数据监控-响应数据和请求数据进度" class="headerlink" title="数据监控(响应数据和请求数据进度)"></a>数据监控(响应数据和请求数据进度)</h2><h3 id="响应数据"><a href="#响应数据" class="headerlink" title="响应数据"></a>响应数据</h3><p>xhr</p>
+<pre><code class="javascript">const xhr = new XMLHttpRequest();
+xhr.open(&quot;GET&quot;, &quot;https://example.com/data.json&quot;, true);
+xhr.onload = function () &#123;
+  if (xhr.status === 200) &#123;
+    const data = JSON.parse(xhr.responseText);
+    console.log(data);
+  &#125;
+&#125;;
+xhr.addEventListener(&quot;progress&quot;, (e) =&gt; &#123;
+  e.loader; //当前传输了多少
+  e.total; //一共有多少
+&#125;);
+xhr.onerror = function () &#123;
+  console.error(&quot;Request failed&quot;);
+&#125;;
+xhr.send();
+</code></pre>
+<p>axios(xhr 框架)</p>
+<pre><code class="javascript">axios
+  .get(&quot;/your-api-url&quot;, &#123;
+    onDownloadProgress: (progressEvent) =&gt; &#123;
+      const percentCompleted = Math.round(
+        (progressEvent.loaded * 100) / progressEvent.total
+      );
+      console.log(`下载进度：$&#123;percentCompleted&#125;%`);
+    &#125;,
+  &#125;)
+  .then((response) =&gt; &#123;
+    console.log(response.data);
+  &#125;)
+  .catch((error) =&gt; &#123;
+    console.error(error);
+  &#125;);
+</code></pre>
+<h3 id="请求数据"><a href="#请求数据" class="headerlink" title="请求数据"></a>请求数据</h3><p>xhr</p>
+<pre><code class="javascript">const xhr = new XMLHttpRequest();
+xhr.open(&quot;GET&quot;, &quot;https://example.com/data.json&quot;, true);
+xhr.onload = function () &#123;
+  if (xhr.status === 200) &#123;
+    const data = JSON.parse(xhr.responseText);
+    console.log(data);
+  &#125;
+&#125;;
+xhr.upload.addEventListener(&quot;progress&quot;, (e) =&gt; &#123;
+  e.loader; //当前传输了多少
+  e.total; //一共有多少
+&#125;);
+xhr.onerror = function () &#123;
+  console.error(&quot;Request failed&quot;);
+&#125;;
+xhr.send();
+</code></pre>
+<p>axios</p>
+<pre><code class="javascript">axios.post(&quot;/upload&quot;, formData, &#123;
+  onUploadProgress: (progressEvent) =&gt; &#123;
+    const percentCompleted = Math.round(
+      (progressEvent.loaded * 100) / progressEvent.total
+    );
+    console.log(`上传进度：$&#123;percentCompleted&#125;%`);
+  &#125;,
+&#125;);
+</code></pre>
+<h1 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h1><h2 id="自定义防抖-ref"><a href="#自定义防抖-ref" class="headerlink" title="自定义防抖 ref"></a>自定义防抖 ref</h2><p>正常做防抖</p>
+<p>由于要使用防抖，就不能使用 v-model 来进行绑定（这样是实时的）</p>
+<pre><code class="javascript">&lt;template&gt;
+  &lt;input @input=&quot;debounceHandler&quot; :value=text /&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+  const text = ref(&#39;&#39;);
+  const inputHandler = (e) =&gt;&#123;
+    text.value = e.target.value;
+  &#125;
+  const debounceHandler = debounce(inputHandler,1000);
+&lt;/script&gt;
+</code></pre>
+<p>自定义 ref，利用 vue 提供的一个叫 customRef 的 api</p>
+<pre><code class="javascript">&lt;template&gt;
+  &lt;input v-model=&quot;text&quot; /&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+  import &#123;customRef&#125; from &#39;vue&#39;;
+  const text = debounceRef(&#39;&#39;);
+
+  function debounceRef(value,delay)&#123;
+    let timer;
+    return customRef((track,trigger)=&gt;&#123;
+      get()&#123;
+        track();
+        return value;
+      &#125;,
+      set(val)&#123;
+        clearTimeOut(timer);
+        timer = setTimeOut(()=&gt;&#123;
+          value = val;
+          trigger();
+        &#125;)
+      &#125;
+    &#125;)
+  &#125;
+&lt;/script&gt;
+</code></pre>
+<h2 id="vue-冻结提升效率"><a href="#vue-冻结提升效率" class="headerlink" title="vue 冻结提升效率"></a>vue 冻结提升效率</h2><p>利用 Object.freeze(‘响应式数据’)，这样可以提升效率</p>
+<p>有些时候响应式数据只是用来展示到页面，但是不会修改，可以使用这种方式</p>
+<p>这个方式只能用于 vue2(因为 vue3 使用的是 proxy,不用再循环遍历了)</p>
+<h2 id="vue-在-methods-中获取函数方法会丢失问题"><a href="#vue-在-methods-中获取函数方法会丢失问题" class="headerlink" title="vue 在 methods 中获取函数方法会丢失问题"></a>vue 在 methods 中获取函数方法会丢失问题</h2><p>一个可取消的防抖函数</p>
+<pre><code class="javascript">function debounce(func, duration = 1000) &#123;
+  let timerId;
+  function _executor(...agrs) &#123;
+    clearTimeout(timerId);
+    timerId = setTimeout(() =&gt; &#123;
+      func.apply(this, ...agrs);
+    &#125;, duration);
+  &#125;
+  _executor.cancel = () =&gt; &#123;
+    clearTimeout(timerId);
+  &#125;;
+  return _executor;
+&#125;
+</code></pre>
+<p>在 methods 中使用</p>
+<pre><code class="javascript">methods:&#123;
+  querySearch:debounce(async fnnction(query,cb)&#123;
+    cb(await search(query));
+  &#125;,1000),
+  cancel()&#123;
+    //这将会是undefined
+    this.querySearch.cancel();
+  &#125;
+&#125;
+</code></pre>
+<p>原因</p>
+<p>vue 会把你配置在 methods 中的方法提取到实例，所以可以用 this.querySearch 去调用。</p>
+<p>他提取的方法是 this.querySearch = methods.querySearch.bind(实例)</p>
+<p>由于 bind 绑定过后，函数已经不是之前的函数，所以函数的属性会丢失</p>
+<p>解决</p>
+<p>把函数放入 data 中，就不会有这样的绑定</p>
+<h2 id="组件循环依赖问题"><a href="#组件循环依赖问题" class="headerlink" title="组件循环依赖问题"></a>组件循环依赖问题</h2><p>a 组件引用 b 组件，b 组件又引用 a 组件；会导致跟 js 模块循环依赖一样，有一个组件没法拿到另一个组件的导出值</p>
+<p>解决</p>
+<p>动态导入</p>
+<pre><code class="javascript">components: &#123;
+  productInfo: () =&gt; import(&quot;./productInfo.vue&quot;);
+&#125;
+</code></pre>
+<p>全局导入</p>
+<h1 id="TS"><a href="#TS" class="headerlink" title="TS"></a>TS</h1><h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><p>在 ts 里面可以提供在编译时态提供重载，所以可以在一开始定义好各种各样的参数组合，这样在调用的时候去可以得到明确的类型提示</p>
+<p>定义全局的函数</p>
+<pre><code class="javascript">function fn(params:number):void//第一套规则
+function fn(params:string,params2:number):void//第二套规则
+function fn(params:number | string,params2?:number):void&#123;
+    console.log(params)
+    console.log(params2)
+&#125;
+
+let a = fn(1)
+//输出1跟undefined，因为遵循的是第一套规则
+let b = fn(&quot;1&quot;,1)
+//输出&quot;1&quot;跟1，遵循的是第二套规则
+</code></pre>
+<p>定义对象中的函数</p>
+<pre><code class="javascript">interface fn &#123;
+  (params: number): void; //第一套规则
+  (params: string, params2?: number): void; //第二套规则
+&#125;
+
+interface utils &#123;
+  fn1: fn;
+&#125;
+const utils: utils = &#123;
+  fn1(params: string | number, params2?: number): void &#123;
+    console.log(params);
+    console.log(params2);
+  &#125;,
+&#125;;
+</code></pre>
+<h2 id="never-的使用"><a href="#never-的使用" class="headerlink" title="never 的使用"></a>never 的使用</h2><p>ts 中需要有一个东西来表达他不存在</p>
+<p>示例：</p>
+<p>刚开始的时候一个请求方法只有 get 和 post，ts 会有类型收缩，所以进到 get 分支 method 变量就是 get,进到 post 分支,method 变量就是 post，由于刚开始的时候只有两种定义方式，所以就保证了一开始 default 的 n 变量一定是 never 类型，不过如果有人改动了 Method，就可以及时报错提醒</p>
+<pre><code class="javascript">type Method = &#39;GET&#39; | &#39;POST&#39; | &#39;PUT&#39;
+
+function request(method: Method,url: string)&#123;
+  switch (method)&#123;
+    case &#39;GET&#39;
+      return &quot;ok
+    case &#39;POST&#39;
+      return &quot;ok
+    default:
+      const n: never = method;
+  &#125;
+&#125;
+</code></pre>
+<h1 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h1><h2 id="工程化中的-sass-变量与函数的全局导入"><a href="#工程化中的-sass-变量与函数的全局导入" class="headerlink" title="工程化中的 sass 变量与函数的全局导入"></a>工程化中的 sass 变量与函数的全局导入</h2><p><strong>注意：这个不是全局样式，这个是全局使用 sass 变量</strong></p>
+<p>如果在 main.js 中导入全局变量的 scss，当然样式会生效，当 vite 发现一个 style.sass 文件的时候，样式会交给 sass-loader 去处理，这个时候当然可以解析出来</p>
+<p>可是在解析 vue 单文件组件的时候，样式还是会交给 sass-loader 去处理，这个时候他是不知道之前你全员定义过这个变量。</p>
+<p>必须要在工程化的 css 配置项中的 scss 中设置引入</p>
+<pre><code class="javascript">export default defineconfig(&#123;
+  plugins:[vue()],
+  css:&#123;
+    preprocessorOptions:&#123;
+      scss:&#123;
+        additionalData:@import &quot;~@/var.less&quot;;
+      &#125;
+    &#125;
+  &#125;
+&#125;)
+</code></pre>
+<h2 id="模块自动导入"><a href="#模块自动导入" class="headerlink" title="模块自动导入"></a>模块自动导入</h2><pre><code class="javascript">import AutoImport from &#39;unplugin-auto-import/vite&#39;
+AutoImport(&#123;
+  dirs: [&quot;./views/&quot;, &quot;./components&quot;],//这样这两个目录下的东西都不需要导入语句了
+  // imports:[&quot;vue&quot;],表示什么第三方模块不需要导入语句
+  // resolvers: [],
+  dts:path.resolve(__dirname,&#39;src/types/auto-imports.d.ts&#39;)//告诉ts不要报错
+&#125;),
+</code></pre>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="a-标签-download-属性"><a href="#a-标签-download-属性" class="headerlink" title="a 标签 download 属性"></a>a 标签 download 属性</h2><p>如果不加这个属性，点击 a 标签会在当前的标签页中打开</p>
+<p>如果加了，就变成了下载行为</p>
+<h2 id="使用表单与不使用"><a href="#使用表单与不使用" class="headerlink" title="使用表单与不使用"></a>使用表单与不使用</h2><p><img src="1725446237521-f83e9cb5-1df9-477e-bd76-2a9131436e03.png"></p>
+<p>用 form 表单去处理可以减少很多 bug</p>
+<h2 id="脚本加载失败处理方式"><a href="#脚本加载失败处理方式" class="headerlink" title="脚本加载失败处理方式"></a>脚本加载失败处理方式</h2><p>一般是域名不可用，可以写一段脚本，去捕获加载脚本的 error，然后用一些后备域名去重试</p>
+<h2 id="dataUrl-和-base64"><a href="#dataUrl-和-base64" class="headerlink" title="dataUrl 和 base64"></a>dataUrl 和 base64</h2><p>url:资源定位符 是用来获取资源数据</p>
+<img src="url">
+
+<p>比如在 img 的 src 中写一个 url,那么他就会发出一个请求，通过这个 url 地址拿到一个图片的资源数据，就是这个图片的二进制数据</p>
+<blockquote>
+<p>注意：真正的二进制数据在 vscode 中是写不出来的，必须要转换成 base64 才能看到</p>
+</blockquote>
+<h3 id="dataurl"><a href="#dataurl" class="headerlink" title="dataurl"></a>dataurl</h3><p>dataurl 本质就是一个字符串</p>
+<p>dataurl 也是用来获取资源数据的，但他不会经过网络请求(获取本地数据)</p>
+<p>格式：</p>
+<pre><code class="javascript">用法一：data:content/type;base64，内容
+用法二：data:content/type;内容
+</code></pre>
+<p>content/type 表示 MIME 类型 用这种字符串的格式，来表达资源的类型</p>
+<pre><code class="javascript">text / html;
+text / plain;
+application / javascript;
+application / json;
+image / png;
+</code></pre>
+<p>dataurl 最后一个地方可以写一个 base64 的数据</p>
+<p>作用：</p>
+<p>有些 js 代码可能是动态生成的，动态生成的代码就可以动态的拼接到 base64 的位置</p>
+<h3 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h3><p>任意数据–&gt;base64–&gt;纯文本数据</p>
+<p>比如图片是一个二进制数据（二进制数据是无法在编辑器里书写的）通过 base64 可以在编辑器里表示</p>
+<h2 id="svg"><a href="#svg" class="headerlink" title="svg"></a>svg</h2><p>scalable vector graphics 可伸缩矢量图形 (新的图片格式)</p>
+<p>传统图片格式: jpg, jpeg…</p>
+<p>svg 优点</p>
+<ol>
+<li><p>svg 是不会失真的</p>
+</li>
+<li><p>尺寸小</p>
+</li>
+</ol>
+<p>svg 缺点</p>
+<p>没法很好的去表示层次丰富的图片信息</p>
+<p>我们在前端领域里更多的是用 svg 去做图标</p>
+<h2 id="不要让-git-忽略大小写"><a href="#不要让-git-忽略大小写" class="headerlink" title="不要让 git 忽略大小写"></a>不要让 git 忽略大小写</h2><p>设置成 false 就是不要忽略大小写</p>
+<pre><code class="javascript">git config core.ignorecase false
+</code></pre>
+<h2 id="通过代理创建单例模式"><a href="#通过代理创建单例模式" class="headerlink" title="通过代理创建单例模式"></a>通过代理创建单例模式</h2><p>单例模式：一个构造函数，只能创建一个实例</p>
+<p>要保持代码的正确性方法：</p>
+<p>1.路径唯一（只能写出正确代码）</p>
+<p>2.错误提示(提早发现问题，es lint 和 TS)</p>
+<p>给一个类，返回一个只能创建单例模式的类(利用代理)</p>
+<pre><code class="javascript">function singleton(className) &#123;
+  let ins;
+  return new Proxy(className, &#123;
+    construct(target, args) &#123;
+      if (!ins) &#123;
+        ins = new className(target, ...args);
+      &#125;
+      return ins;
+    &#125;,
+  &#125;);
+&#125;
+</code></pre>
+<h2 id="flip-动画"><a href="#flip-动画" class="headerlink" title="flip 动画"></a>flip 动画</h2><p>可以在元素结构发送变化的时候使用动画</p>
+<h2 id="随机数求整问题"><a href="#随机数求整问题" class="headerlink" title="随机数求整问题"></a>随机数求整问题</h2><p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Math.floor()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 函数总是返回小于等于一个给定数字的最大整数。</font></p>
+<p><code>**&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;Math.random()&lt;/font&gt;**</code><font style="color:rgb(27, 27, 27);"> 静态方法返回一个大于等于 0 且小于 1 的伪随机浮点数</font></p>
+<p><font style="color:rgb(27, 27, 27);"></font></p>
+<pre><code class="javascript">Math.floor(Math.random() * (max - min) + min);
+</code></pre>
+<p><strong><font style="color:rgb(27, 27, 27);">Math.floor()与 parseInt 与 Math.ceil()</font></strong></p>
+<p><font style="color:rgb(27, 27, 27);">Math.floor()向下取整是指负无穷</font></p>
+<p><font style="color:rgb(27, 27, 27);">parseInt()向下取整是指 0</font></p>
+<p><font style="color:rgb(27, 27, 27);">Math.ceil()向上取整指正无穷</font></p>
+<h2 id="迭代器应用"><a href="#迭代器应用" class="headerlink" title="迭代器应用"></a>迭代器应用</h2><p>让字符串一部分一部分取出来</p>
+<pre><code class="javascript">function* walk(str) &#123;
+  let s = &quot;&quot;;
+  for (const c of str) &#123;
+    if (c === &quot;-&quot;) &#123;
+      yield Number(s);
+      s = &quot;&quot;;
+    &#125; else &#123;
+      s = s + c;
+    &#125;
+  &#125;
+  if (s) &#123;
+    yield Number(s);
+  &#125;
+&#125;
+</code></pre>
+<h2 id="循环转递归"><a href="#循环转递归" class="headerlink" title="循环转递归"></a>循环转递归</h2><p><img src="1726211437692-e4f87cd9-9a6a-4634-a9c0-62ab4a019424.png"></p>
+<h2 id="对象转原始"><a href="#对象转原始" class="headerlink" title="对象转原始"></a>对象转原始</h2><p>1.如果有[symbol.toPrimitive]函数就直接调用</p>
+<p>2.调用 tostring 和 valueof</p>
+<h2 id="数组解构本质"><a href="#数组解构本质" class="headerlink" title="数组解构本质"></a>数组解构本质</h2><p><img src="1726212459032-76612896-39c1-4dab-95ca-0bad9edb9e3a.png"></p>
+<h2 id="动画方案"><a href="#动画方案" class="headerlink" title="动画方案"></a>动画方案</h2><p>1.css</p>
+<p>2.js</p>
+<p>计时器（不使用）</p>
+<p>RAF(requestAnmailFrame)</p>
+<p>animation api</p>
+<h2 id="object"><a href="#object" class="headerlink" title="object"></a>object</h2><p>1.key 只有两种类型:字符串和 symbol</p>
+<p>2.数字会别提前到 object 的前面(key 的前面)</p>
+<p>3.属性名加一个[]后可以写 js 表达式</p>
+<h2 id="file-对象"><a href="#file-对象" class="headerlink" title="file 对象"></a>file 对象</h2><p><font style="color:rgba(0, 0, 0, 0.85);">文件在底层存储和传输时是以二进制数据的形式存在的，但在 JavaScript 中，通过文件输入框获取的文件表现为一个具有特定属性和方法的对象，而不是直接以二进制数的形式呈现给开发者。</font></p>
+<h2 id="node-浏览器与-js"><a href="#node-浏览器与-js" class="headerlink" title="node,浏览器与 js"></a>node,浏览器与 js</h2><p>js 代码可以运行在 node 环境也可以运行在浏览器环境</p>
+<p>换句话说 node 和浏览器都可以解析我们的 js 语言来执行</p>
+<h2 id="相对路径与绝对路径"><a href="#相对路径与绝对路径" class="headerlink" title="相对路径与绝对路径"></a>相对路径与绝对路径</h2><p>分为 2 层含义</p>
+<p>1.请求网络</p>
+<p>2.请求本地文件</p>
+<p>请求网络</p>
+<p>url 组成：协议+主机+端口+路径（path）</p>
+<p>使用绝对路径，可省略一些,在浏览器发送请求的时候会补全（与当前页面在哪无关）</p>
+<pre><code class="typescript">https://www.baidu.com/1/s.html
+
+
+&lt;a href=&quot;/2.html&quot;&gt;
+完整路径
+&lt;a href=&quot;https://www.baidu.com/2.htm&quot;&gt;
+</code></pre>
+<p>使用相对路径，相对的是路径的 path 部分</p>
+<pre><code class="typescript">https://www.baidu.com/1/s.html
+
+./可省略，表达的也是相对路径
+&lt;a href=&quot;./2.html&quot;&gt;
+完整路径
+&lt;a href=&quot;https://www.baidu.com/1/2.html&quot;&gt;
+</code></pre>
+<h2 id="圈复杂度"><a href="#圈复杂度" class="headerlink" title="圈复杂度"></a>圈复杂度</h2><p>其实就是一个代码可阅读性的一个标准，复杂度越高说明 if 越多,越不好维护和阅读</p>
+<p>eslint 可以设置去检查</p>
+<h3 id="css-变量（关联-js-和-css）"><a href="#css-变量（关联-js-和-css）" class="headerlink" title="css 变量（关联 js 和 css）"></a>css 变量（关联 js 和 css）</h3><p>css 变量的设置与使用</p>
+<pre><code class="javascript">:root &#123;
+  --main-color: #007bff;
+  --font-size: 16px;
+&#125;
+
+.my-element &#123;
+   color: var(--main-color);
+   font-size: var(--font-size);
+ &#125;
+</code></pre>
+<p>css transform:translateX 这里面使用百分比的时候，百分比是相对于元素自身的</p>
+<p>小球滚动,滚到哪里的位置由 js 来计算决定</p>
+<pre><code class="javascript">@keyframe move&#123;
+  50% &#123;
+    transform:translateX(cale(父元素的宽度 - 100%))
+  &#125;
+&#125;
+
+
+document.body.style.setProperty(&quot;--父元素的宽度&quot;,clientWidth+&#39;px&#39;)
+</code></pre>
+<h2 id="生产环境下的内容更新提示"><a href="#生产环境下的内容更新提示" class="headerlink" title="生产环境下的内容更新提示"></a>生产环境下的内容更新提示</h2><p>客户端这边写一段 js，去请求当前页面（默认是在 vue 的客户端渲染的情况，其实拿到的内容很小），然后把里面的 js 和 css 文件 hash 拿出来匹配看有没有变化，如果有就帮用户进行刷新</p>
+<h2 id="深拷贝（属性有循环引用的情况）"><a href="#深拷贝（属性有循环引用的情况）" class="headerlink" title="深拷贝（属性有循环引用的情况）"></a>深拷贝（属性有循环引用的情况）</h2><p>思路</p>
+<p>1.先手写深拷贝</p>
+<p>2.使用 weakMap 缓存 key，当是复杂类型的时候，如果这个值有缓存就使用缓存</p>
+<h2 id="工程化-publicPath-和-vue-router-base"><a href="#工程化-publicPath-和-vue-router-base" class="headerlink" title="工程化(publicPath)和 vue-router(base)"></a>工程化(publicPath)和 vue-router(base)</h2><p>publicPath:影响外部资源的获取</p>
+<p>base:影响组件匹配</p>
+<h2 id="对等依赖报错"><a href="#对等依赖报错" class="headerlink" title="对等依赖报错"></a>对等依赖报错</h2><p>比如一个插件只支持 vue2(因为他里面用到了 vue2 的构造类)</p>
+<p>那么在 package.json 中有一个 peerDependencies{</p>
+<p>“vue”:”2.0”</p>
+<p>}</p>
+<p>他会标明</p>
+<p>当安装的时候一旦版本不匹配就会报错</p>
+<p>解决（在确定版本不会影响的情况下）</p>
+<pre><code class="javascript">npm i --legacy-peer-deps
+</code></pre>
+<h2 id="网络-I-O-与本地-I-O"><a href="#网络-I-O-与本地-I-O" class="headerlink" title="网络 I/O 与本地 I/O"></a>网络 I/O 与本地 I/O</h2><p>无论是网络还是本地都是异步操作(需要 await 等待)</p>
+<p>但是本地 i/o 比网络 i/o 速度要快很多</p>
+<h2 id="如何学习（资料）"><a href="#如何学习（资料）" class="headerlink" title="如何学习（资料）"></a>如何学习（资料）</h2><p>学习资料的标准要么是官方文档要么就是源码</p>
+<h2 id="服务监控"><a href="#服务监控" class="headerlink" title="服务监控"></a>服务监控</h2><p>监控用户（错误监控，性能监控，行为监控）</p>
+<p>第三方库</p>
+<p>ARMS（付费）</p>
+<p>神策（付费）</p>
+<p>sentry（免费）</p>
+<p>数据埋点是前端做的 服务监控是交给第三方的</p>
+<p>数据埋点</p>
+<p>入侵性</p>
+<p>非入侵性</p>
+<h2 id="行为认证"><a href="#行为认证" class="headerlink" title="行为认证"></a>行为认证</h2><p>真正认证的不是选出一个东西，而是分析出什么时候选出，多少时间选出等，这个也需要交给第三方去认证</p>
+<h2 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释"></a>文档注释</h2><p><img src="1733143546407-a7594d00-87fd-4de6-9b4f-6eb1e8488903.png"></p>
+<h1 id="小工具"><a href="#小工具" class="headerlink" title="小工具"></a>小工具</h1><p>保存代码片段</p>
+<p>snippets lab</p>
+<p>屏幕绘制工具</p>
+<p>screenbrush</p>
+<h1 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h1><h3 id="highlight-js-代码着色"><a href="#highlight-js-代码着色" class="headerlink" title="highlight.js(代码着色)"></a>highlight.js(代码着色)</h3><h3 id="particles-js-粒子效果，方块效果，雪花效果"><a href="#particles-js-粒子效果，方块效果，雪花效果" class="headerlink" title="particles.js(粒子效果，方块效果，雪花效果)"></a>particles.js(粒子效果，方块效果，雪花效果)</h3><h3 id="alibaba-formily-表单库"><a href="#alibaba-formily-表单库" class="headerlink" title="alibaba formily 表单库"></a>alibaba formily 表单库</h3><p>（低代码平台）阿里出品</p>
+<h3 id="vue-flow-流程图"><a href="#vue-flow-流程图" class="headerlink" title="vue-flow 流程图"></a>vue-flow 流程图</h3><p><a target="_blank" rel="noopener" href="https://vueflow.dev/">https://vueflow.dev/</a></p>
+<pre><code class="typescript">&#123;
+  id: &#39;1&#39;,
+  type: &#39;input&#39;,
+  data: &#123; label: &#39;Node 1&#39; &#125;,
+  position: &#123; x: 250, y: 0 &#125;,
+  class: &#39;light&#39;,
+&#125;,
+</code></pre>
+<h2 id="depcheck-工程依赖检查"><a href="#depcheck-工程依赖检查" class="headerlink" title="depcheck 工程依赖检查"></a>depcheck 工程依赖检查</h2><p>安装</p>
+<p>npm i -g depcheck 全局安装工具</p>
+<p>使用</p>
+<p>depcheck</p>
+<p>他会告诉你工程中缺少了哪些依赖</p>
+<h1 id="浏览器中使用第三方库"><a href="#浏览器中使用第三方库" class="headerlink" title="浏览器中使用第三方库"></a>浏览器中使用第三方库</h1><p>Console Importer</p>
+<p>在浏览器中使用$i(‘jquery’)安装 jquey</p>
+<p>lorem picsum 可以获取随机图片</p>
+<h1 id="vscode-插件"><a href="#vscode-插件" class="headerlink" title="vscode 插件"></a>vscode 插件</h1><h3 id="any-rule-自动生成正则"><a href="#any-rule-自动生成正则" class="headerlink" title="any-rule(自动生成正则)"></a>any-rule(自动生成正则)</h3><pre><code class="javascript">按F1(mac下fn+F1)打开正则列表.
+输入关键词搜索, 比如&quot;手机&quot;.
+</code></pre>
+<h3 id="regex-previewer-正则预览"><a href="#regex-previewer-正则预览" class="headerlink" title="regex previewer(正则预览)"></a>regex previewer(正则预览)</h3><p>点击可测试，然后右边的东西如果可以匹配就会底色高亮</p>
+<p><img src="1731065053451-c8de9356-b4cb-4c99-8d22-5fd28d6a0b36.png"></p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

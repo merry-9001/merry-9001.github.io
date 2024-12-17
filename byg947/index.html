@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>vue理论 | 后知后觉的个人主页</title>
+        <title>vue3 | 后知后觉的个人主页</title>
         <meta name="author" content="知乐" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -98,7 +98,7 @@
             <div id="main" v-show="!loading">
                 <div class="article">
     <div>
-        <h1>vue理论</h1>
+        <h1>vue3</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -112,7 +112,194 @@
     </div>
 
     <div class="content" v-pre>
-        
+        <h2 id="各种-Vue-指令用法"><a href="#各种-Vue-指令用法" class="headerlink" title="各种 Vue 指令用法"></a>各种 Vue 指令用法</h2><h3 id="v-text（纯文本）"><a href="#v-text（纯文本）" class="headerlink" title="v-text（纯文本）"></a>v-text（纯文本）</h3><pre><code class="vue">&lt;template&gt;
+  &lt;div v-text=&quot;zs&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;
+const zs: string = &quot;ok&quot;;
+&lt;/script&gt;
+</code></pre>
+<h3 id="v-html"><a href="#v-html" class="headerlink" title="v-html"></a>v-html</h3><pre><code class="vue">&lt;template&gt;
+  &lt;div v-html=&quot;zs&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;
+//使用v-html，外面一层要是section
+const zs: string = &#39;&lt;section style=&quot;color:red&quot;&gt;小红帽班花姐姐&lt;/section&gt;&#39;;
+&lt;/script&gt;
+</code></pre>
+<h2 id="ref-与-reactive"><a href="#ref-与-reactive" class="headerlink" title="ref 与 reactive"></a>ref 与 reactive</h2><h3 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h3><p>ref() 接收参数，并将其包裹在一个带有 .value 属性的 ref 对象中返回<br>要响应改变值的话，加.value,因为这是一个代理对象，真正的值存放在.value 中<br>ref 在模板中会自动解包，所以使用不需要加.value（包括在模版的 js 表达式中）</p>
+<p>DOM 更新时机<br>当你修改了响应式状态时，DOM 会被自动更新。但是需要注意的是，DOM 更新不是同步的。Vue 会在“next tick”更新周期中缓冲所有状态的修改，以确保不管你进行了多少次状态修改，每个组件都只会被更新一次。<br>要等待 DOM 更新完成后再执行额外的代码，可以使用 nextTick() 全局 API</p>
+<pre><code>import &#123; nextTick &#125; from &#39;vue&#39;
+
+async function increment() &#123;
+  count.value++
+  await nextTick()
+  // 现在 DOM 已经更新了
+&#125;
+</code></pre>
+<h3 id="reactive"><a href="#reactive" class="headerlink" title="reactive"></a>reactive</h3><p>reactive 方法是不允许传递原始类型的值的，它并没有和 ref 一样检测到原始类型之后做对应的转换</p>
+<pre><code>const reactive1 = reactive(0);  // NOT OK
+const reactive2 = reactive(&#123; count: 0 &#125;) // OK
+</code></pre>
+<p>可以做到深层响应式</p>
+<p>对解构操作不友好<br>当我们将响应式对象的原始类型属性解构为本地变量时，或者将该属性传递给函数时，我们将丢失响应性连接</p>
+<pre><code>const state = reactive(&#123; count: 0 &#125;)
+
+// 当解构时，count 已经与 state.count 断开连接
+let &#123; count &#125; = state
+// 不会影响原始的 state
+count++
+
+// 该函数接收到的是一个普通的数字
+// 并且无法追踪 state.count 的变化
+// 我们必须传入整个对象以保持响应性
+callSomeFunction(state.count)
+</code></pre>
+<h4 id="readonly-属性"><a href="#readonly-属性" class="headerlink" title="readonly 属性"></a>readonly 属性</h4><pre><code class="vue">&lt;script&gt;
+let obj = reactive(&#123; name: &quot;小余&quot; &#125;);
+const read = readonly(obj);
+//readonly就是把被他包在里面的变成只读的，但会受到reactive的影响
+//修改obj的属性值会影响read的值
+&lt;/script&gt;
+</code></pre>
+<h4 id="shallowReactive"><a href="#shallowReactive" class="headerlink" title="shallowReactive"></a>shallowReactive</h4><p>一样跟 shallowRef 是浅层次的修改<br>但一样跟 shallowRef 一样，shallowReactive 也会受到 Reactive 的影响</p>
+<h3 id="ref-与-reactive-的对比"><a href="#ref-与-reactive-的对比" class="headerlink" title="ref 与 reactive 的对比"></a>ref 与 reactive 的对比</h3><p>1.ref 支持所有类型，Reactive 支持引用类型，Array，Object，Map，Set<br>2.ref 的 watch 需要加参数{ deep: true }，而 reactive 不需要<br>3.ref 取值是需要.value 的，reactive 取值的话不需要.value（在 script 中） 4.都支持深层响应式</p>
+<h3 id="额外细节"><a href="#额外细节" class="headerlink" title="额外细节"></a>额外细节</h3><p>为什么要使用 ref？<br>额外的 ref 解包细节</p>
+<h2 id="toRef-toRefs-toRaw"><a href="#toRef-toRefs-toRaw" class="headerlink" title="toRef,toRefs,toRaw"></a>toRef,toRefs,toRaw</h2><h3 id="toRef"><a href="#toRef" class="headerlink" title="toRef"></a>toRef</h3><p>用法</p>
+<pre><code class="typescript">let props = defineProps&lt;&#123; msg: string; data: any &#125;&gt;();
+
+//toref接收两个参数，第一个为对象，第二个key
+const refName = toRef(props.data, &quot;name&quot;);
+</code></pre>
+<p>toref 只能修改响应式对象的值，对于非响应式视图毫无变化，但值会改变（可以改变数据，但是数据此时不能驱动试图）<br>应用场景<br>vue 是单向数据流，父组件向子组件传值，子组件无法修改值，但通过 toref 即可影响父组件传过来的值</p>
+<h3 id="toRefs"><a href="#toRefs" class="headerlink" title="toRefs"></a>toRefs</h3><pre><code class="typescript">let props = defineProps&lt;&#123; msg: string ,data: any&#125;&gt;();
+
+用于解构reactive的值，一旦reactive解构，响应式就不存在了，所以需要toRefs保持响应式
+const &#123;msg,data&#125; = toRefs(props)
+console.log(msg,data)
+
+//注意这边无法修改传进来的值
+msg.value = &#39;hhhh&#39;;
+</code></pre>
+<h3 id="toRaw"><a href="#toRaw" class="headerlink" title="toRaw"></a>toRaw</h3><p>toRaw 把 reactive 套上的 Proxy 外壳给脱掉了，一个响应式对象通过 toRaw 之后将变成一个普通对象</p>
+<h2 id="isRef"><a href="#isRef" class="headerlink" title="isRef"></a>isRef</h2><p>作用：判断一个东西是不是一个 ref 对象，结果返回布尔值</p>
+<pre><code>console.log(isRef(Man))
+</code></pre>
+<h4 id="shallowRef"><a href="#shallowRef" class="headerlink" title="shallowRef"></a>shallowRef</h4><p>作用：shallowRef 是浅层次的响应，而 ref 是深层次的响应<br>shallowRef 只响应到.value，如果这个.value 后面在跟值进行修改，就只能在控制台中看见值改变了，而没办法响应到页面中<br>也就是创建一个跟踪自身 .value 变化的 ref，但不会使其值也变成响应式的<br>注意：<strong>ref 不能跟 shallowRef 一起使用，不然 shallowRef 会被 Ref 影响，从而造成视图的更新(失去浅层次响应的作用)</strong></p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;Ref:&#123;&#123;XiaoYu&#125;&#125;&lt;/div&gt;
+  &lt;div&gt;shallowRef:&#123;&#123;XiaoYu2&#125;&#125;&lt;/div&gt;
+  &lt;button @click=&quot;change()&quot;&gt;修改&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;
+  import &#123;ref,isRef,shallowRef&#125; from &#39;vue&#39;
+  const XiaoYu = ref(&#123;name:&quot;小余&quot;&#125;)
+  const XiaoYu2 = shallowRef(&#123;name:&quot;小余2号&quot;&#125;)
+  const yupi = &#123;name:&quot;鱼皮&quot;&#125;
+
+  const change = () =&gt;&#123;
+    // XiaoYu.value.name = &#39;小余抓住了一只yupi&#39; 这里必须注销掉，不如ref会影响到shallowRef，导致视图的更新(也就是会造成下方的小余今天摸鱼了也一同刷新)
+    XiaoYu2.value.name = &#39;小余今天摸鱼了&#39;
+    console.log(XiaoYu)
+    console.log(&quot;这是小余&quot;,isRef(XiaoYu))
+    console.log(&quot;这是鱼皮&quot;,isRef(yupi))
+  &#125;
+&lt;/script&gt;
+</code></pre>
+<h4 id="triggerRef"><a href="#triggerRef" class="headerlink" title="triggerRef"></a>triggerRef</h4><ul>
+<li>因为在 ref 底层更新的逻辑的时候，会调用 triggerRef</li>
+<li>而 triggerRef 会强制更新我们这个收集的依赖</li>
+<li>强制更新页面 DOM</li>
+</ul>
+<h4 id="customRef"><a href="#customRef" class="headerlink" title="customRef"></a>customRef</h4><ul>
+<li>让我们自己去自定义一个 ref（可以自己去写 get,set 就是在实现响应式的时候去做其他事情）</li>
+<li>customRef 是个工厂函数要求我们返回一个对象 并且实现 get 和 set 适合去做防抖之类的</li>
+<li>customRef 也是一个浅层的响应</li>
+<li>里面返回的是 set 跟 get 两个方法，回调里面接收的是两个函数，一个是 track，一个是 trigger<ul>
+<li>track：收集依赖，收集完 return 回去</li>
+<li>触发依赖交给 set，接收一个 newVal</li>
+<li><strong>track 作用：通知 Vue 追踪 value 的变化 (相当于提前和 get 商量一下，让他认为这个 value 有用的！)</strong></li>
+<li><strong>trigger 作用：通知 Vue 重新解析模板。</strong></li>
+</ul>
+</li>
+</ul>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;&#123;&#123; obj &#125;&#125;&lt;/div&gt;
+  //不用设置ref了，因为我们自己手动实现了一个
+  &lt;hr /&gt;
+  &lt;div&gt;
+    &#123;&#123; name &#125;&#125;
+  &lt;/div&gt;
+  &lt;hr /&gt;
+  &lt;button @click=&quot;change()&quot;&gt;修改&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;
+import &#123; ref, reactive, onMounted, shallowRef, customRef &#125; from &#39;vue&#39;
+ //这下面是customRef的演示，自己定义ref，接近源码的表现
+  const change = ()=&gt;&#123;
+  function MyRef&lt;T&gt;(value:T)&#123;//泛型
+    let timer:any
+    return customRef((track, trigger)=&gt;&#123;//track：收集依赖的 trigger：触发依赖
+      return&#123;
+        get()&#123;
+          track()
+          return value//收集完依赖就返回 回去了
+        &#125;,
+        set(newVal)&#123;//这里会收到新的值，调用接口，调用太多次的话，服务器的压力就会很大，这个时候我们就可以自己设置一个防抖节流
+          clearTimeout(timer)//清除定时器，不让他同时存在多个定时器(同一时间只能有一个定时器)
+          timer = setTimeout(()=&gt;&#123;
+            console.log(&quot;吃午饭了&quot;)
+            value = newVal//将新值赋给value
+            timer = null//清空一下时间
+            trigger()
+          &#125;,500)//时间间隔设置为0.5秒，防抖节流
+        &#125;
+      &#125;
+    &#125;)
+  &#125;
+
+
+const obj = MyRef&lt;string&gt;(&#39;customRef小余&#39;)
+
+
+  const change = ()=&gt;&#123;
+    obj.value = &quot;customRef被修改了，到饭点准备干饭了&quot;
+  &#125;
+&lt;/script&gt;
+&lt;style scoped&gt;&lt;/style&gt;
+</code></pre>
+<h4 id="ref-获取-DOM-元素"><a href="#ref-获取-DOM-元素" class="headerlink" title="ref 获取 DOM 元素"></a>ref 获取 DOM 元素</h4><p>在 html 部分中 ref=”xxx”，这个 xxx 要与在 JavaScript 里面声明的变量名一样，比如 const xxx = ref&lt;泛型&gt;()，然后 console 控制台输出一下，ref.value.innerText 就能够获取到了</p>
+<h5 id="ref-小技巧"><a href="#ref-小技巧" class="headerlink" title="ref 小技巧"></a>ref 小技巧</h5><ol>
+<li>打开这个能够让我们观察 value 方便一点，控制台点一下就行，少点一下。就是格式化了，ref 系列跟 reactive 系列都可以使用</li>
+</ol>
+<p><img src="1685245067631-8aa1a6ea-222d-4800-87b2-3e2813c24b6d.png#width=644" alt="image.png"></p>
+<h2 id="computer"><a href="#computer" class="headerlink" title="computer"></a>computer</h2><pre><code class="markdown">const publishedBooksMessage = computed(() =&gt; &#123;
+return author.books.length &gt; 0 ? &#39;Yes&#39; : &#39;No&#39;
+&#125;)
+</code></pre>
+<p>若我们将同样的函数定义为一个方法而不是计算属性，两种方式在结果上确实是完全相同的，然而，不同之处在于<strong>计算属性值会基于其响应式依赖被缓存</strong>。一个计算属性仅会在其响应式依赖更新时才重新计算。这意味着只要 author.books 不改变，无论多少次访问 publishedBooksMessage 都会立即返回先前的计算结果，而不用重复执行 getter 函数。<br>这也解释了为什么下面的计算属性永远不会更新，因为 Date.now() 并不是一个响应式依赖：</p>
+<pre><code>const now = computed(() =&gt; Date.now())
+</code></pre>
+<p>相比之下，方法调用<strong>总是</strong>会在重渲染发生时再次执行函数。<br>为什么需要缓存呢？想象一下我们有一个非常耗性能的计算属性 list，需要循环一个巨大的数组并做许多计算逻辑，并且可能也有其他计算属性依赖于 list。没有缓存的话，我们会重复执行非常多次 list 的 getter，然而这实际上没有必要！如果你确定不需要缓存，那么也可以使用方法调用。</p>
+<h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2><p>在内联事件处理器中访问事件参数</p>
+<pre><code class="markdown">&lt;!-- 使用特殊的 $event 变量 --&gt;
+
+&lt;button @click=&quot;warn(&#39;Form cannot be submitted yet.&#39;, $event)&quot;&gt;
+Submit
+&lt;/button&gt;
+
+&lt;!-- 使用内联箭头函数 --&gt;
+
+&lt;button @click=&quot;(event) =&gt; warn(&#39;Form cannot be submitted yet.&#39;, event)&quot;&gt;
+Submit
+&lt;/button&gt;
+</code></pre>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>动态组件<br>异步组件</p>
+<h2 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h2>
     </div>
     
 </div>
@@ -121,7 +308,7 @@
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

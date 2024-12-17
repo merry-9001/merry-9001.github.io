@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>网络优化 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>网络优化</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/12/17
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h3 id="列举优化网络性能方法"><a href="#列举优化网络性能方法" class="headerlink" title="列举优化网络性能方法"></a>列举优化网络性能方法</h3><ul>
+<li>优化打包体积<br>利用一些工具压缩、混淆最终打包代码，减少包体积</li>
+</ul>
+<blockquote>
+<p>压缩：去掉换行，代码变量缩短，尽可能压缩</p>
+</blockquote>
+<ul>
+<li>多目标打包<br>利用一些打包插件，针对不同的浏览器打包出不同的兼容性版本，这样一来，每个版本中的兼容性代码就会大大减少，从而减少包体积</li>
+</ul>
+<blockquote>
+<p>如果需要兼容性好，就需要写更多的代码，导致体积大，如果我们确实需要兼容性很好，那无法避免，如果我们知道对方的浏览器版本，那我们可以让兼容性提高，这样可以减少兼容代码</p>
+<p>比如旧版本没有 promise，那代码可能就需要写一个进去</p>
+<p>多目标打包：针对不同的浏览器打不一样的包</p>
+</blockquote>
+<ul>
+<li>压缩<br>现代浏览器普遍支持压缩格式，因此服务端的各种文件可以压缩后再响应给客户端，只要解压时间小于优化的传输时间，压缩就是可行的</li>
+</ul>
+<blockquote>
+<p>gzip 压缩（其中一种压缩算法，浏览器支持）</p>
+<p>这种压缩方式是减少传输体积</p>
+<p>整体思维</p>
+<p>比如一个字符串:121jkk4khjkhk;</p>
+<p>他会这样记录</p>
+<p>k 出现在 10,23,5 这三个位置</p>
+<p>字母是 acsll 字符，占用体积大，数字占用体积小</p>
+<p>解压缩的时候再给他还原</p>
+</blockquote>
+<ul>
+<li>CDN<br>利用 CDN 可以大幅缩减<strong>静态资源</strong>的<strong>访问时间</strong>，特别是对于公共库的访问，可以使用知名的 CDN 资源，这样可以实现跨越站点的缓存</li>
+</ul>
+<blockquote>
+<p>有 CDN 服务器以后拿静态资源就可以使用就近原则，减少传输时间</p>
+<p>使用 CDN 还可以跨网站共享</p>
+<p>比如一个用户浏览过 A 网站，用到了 vue 的 CDN</p>
+<p>那么下次再浏览我们的网站的时候，假如也需要这个 CDN，那么可以直接使用，因为他还会跨网站缓存</p>
+</blockquote>
+<ul>
+<li>缓存<br>对于除 HTML 外的所有静态资源均可以开启<strong>协商缓存</strong>，利用构建工具打包产生的文件 hash 值来置换缓存</li>
+<li>http2<br>开启 http2 后，利用其多路复用、头部压缩等特点，充分利用带宽传递大量的文件数据 （需要浏览器支持）</li>
+<li>雪碧图<br>对于不使用 HTTP2 的场景，可以将多个图片合并为雪碧图，以达到减少文件的目的</li>
+<li>defer、async<br>通过 defer 和 async 属性，可以让页面尽早加载 js 文件</li>
+<li>prefetch、preload<br>通过 prefetch 属性，可以让页面在空闲时预先下载其他页面可能要用到的资源<br>通过 preload 属性，可以让页面预先下载本页面可能要用到的资源</li>
+<li>多个静态资源域<br>对于不使用 HTTP2 的场景，将相对独立的静态资源分到多个域中保存，可以让浏览器同时开启多个 TCP 连接，并行下载</li>
+</ul>
+<blockquote>
+<p>在 http2 以前，一个网站最多开启 6 个 tcp 连接，完成并行加载</p>
+<p>6 个限制是针对域名的，所以可以把资源放在多个域名下，完成并行加载</p>
+</blockquote>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

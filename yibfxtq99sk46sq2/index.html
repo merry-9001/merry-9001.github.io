@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>测试 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>测试</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/6/4
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="开发模式"><a href="#开发模式" class="headerlink" title="开发模式"></a>开发模式</h2><h3 id="瀑布模式"><a href="#瀑布模式" class="headerlink" title="瀑布模式"></a>瀑布模式</h3><p>将软件开发过程视为一系列按顺序进行的阶段，如同瀑布流水一样，每个阶段都有明确的输入和输出，前一个阶段完成后才进入下一个阶段。典型的阶段包括需求分析、设计、编码、测试、维护等</p>
+<h3 id="敏捷开发模式"><a href="#敏捷开发模式" class="headerlink" title="敏捷开发模式"></a>敏捷开发模式</h3><p>敏捷开发是一种以人为核心、迭代、循序渐进的开发方法。它强调团队与客户的紧密合作，通过一系列短周期的迭代来逐步交付满足用户需求的软件产品。短周期不停迭代</p>
+<h3 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h3><p>DevOps 是一组过程、方法与系统的集合，它旨在打破开发（Development）和运维（Operations）之间的传统壁垒，实现软件的持续集成、持续交付和持续部署。DevOps 将开发、测试、运维等多个环节紧密结合起来，通过自动化工具和流程来提高软件交付的速度和质量。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h3 id="静态测试"><a href="#静态测试" class="headerlink" title="静态测试"></a>静态测试</h3><p>typescript</p>
+<p>eslint</p>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p>单元测试往往是验证某一个单独的部分是否能够正常的工作，它是我们软件测试中的最小测试单位，通常是一个函数或者一个方法。单元测试往往是由开发人员来编写一个一个的测试用例，通过一些自动化的工具来进行测试。</p>
+<pre><code class="plain">// 这是一个函数，该函数是对传入的两个参数做相加操作
+function calculateSum(a, b) &#123;
+  return a + b;
+&#125;
+
+// 接下来我们要对上面的函数进行一个测试
+describe(&quot;calculateSum&quot;, function() &#123;
+  // 这个就是一个测试用例
+  it(&quot;should add two numbers correctly&quot;, function() &#123;
+    expect(calculateSum(1, 2)).toEqual(3); // 期望传入 1，2 的时候得到的值为 3
+    expect(calculateSum(3, 4)).toEqual(7); // 期望传入 3，4 的时候得到的值为 7
+  &#125;);
+&#125;);
+</code></pre>
+<p>单元测试由于是对一个函数或者方法进行测试，是独立的一个单元，因此在进行单元测试的时候，往往会屏蔽发送请求，连接数据库等功能，这些功能一般都通过 mock （模拟）的形式来实现。</p>
+<h3 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h3><p>所谓集成测试，就是将多个单元组装起来一起进行测试，主要是看这些单元在一起的时候是否能够正常工作，也就是说，集成测试的目的是确保整个系统中各个部分连接起来是能够正常工作的。</p>
+<p>到了集成测试的时候，就会连接真实的数据，发送真实的网络请求，确保它们在协作的时候能够正常的工作。</p>
+<p>下面是一个集成测试的例子：</p>
+<pre><code class="javascript">// Express 里面的一个集成测试的示例
+const request = require(&quot;supertest&quot;);
+const app = require(&quot;./app&quot;);
+
+describe(&quot;User API&quot;, function () &#123;
+  let userId;
+  // 测试用例
+  // 测试添加新的用户，测试的是一个功能，涉及到发送真实的请求
+  it(&quot;should add a new user&quot;, function (done) &#123;
+    request(app)
+      .post(&quot;/users&quot;)
+      .send(&#123; name: &quot;Alice&quot;, email: &quot;alice@example.com&quot; &#125;)
+      .expect(201)
+      .end(function (err, res) &#123;
+        if (err) return done(err);
+        userId = res.body.id;
+        done();
+      &#125;);
+  &#125;);
+  // ...
+&#125;);
+</code></pre>
+<h3 id="E2E-测试"><a href="#E2E-测试" class="headerlink" title="E2E 测试"></a>E2E 测试</h3><p>End To End，翻译成中文就是端到端的测试。这种测试就会测试整个软件系统的功能以及完整性，这种测试会去模拟用户的行为和软件进行一个交互，相比集成测试，E2E 测试会测试更加完整的功能，更像是一个真实的用户在和软件进行交互。</p>
+<p>下面使用一个 E2E 测试的示例：</p>
+<pre><code class="plain">import &#123;generate&#125; from &#39;todo-test-utils&#39;
+
+describe(&#39;todo app&#39;, () =&gt; &#123;
+  it(&#39;should work for a typical user&#39;, () =&gt; &#123;
+    const user = generate.user()
+    const todo = generate.todo()
+    cy.visitApp()
+    cy.findByText(/register/i).click()
+    cy.findByLabelText(/username/i).type(user.username)
+    cy.findByLabelText(/password/i).type(user.password)
+    cy.findByText(/login/i).click()
+    cy.findByLabelText(/add todo/i)
+      .type(todo.description)
+      .type(&#39;&#123;enter&#125;&#39;)
+    cy.findByTestId(&#39;todo-0&#39;).should(&#39;have.value&#39;, todo.description)
+    cy.findByLabelText(&#39;complete&#39;).click()
+    cy.findByTestId(&#39;todo-0&#39;).should(&#39;have.class&#39;, &#39;complete&#39;)
+  &#125;)
+&#125;)
+</code></pre>
+<p>上面的代码描述了一个完整的流程，从打开应用程序到注册用户、创建待办事项、完成待办事项、直到最终验证应用程序的状态，这就是一个典型的 E2E 测试，它会验证整个应用程序的功能和用户体验。</p>
+<h2 id="项目驱动模式"><a href="#项目驱动模式" class="headerlink" title="项目驱动模式"></a>项目驱动模式</h2><p>TDD：英语全称为 Test-Driven Development，翻译成中文就是测试驱动开发</p>
+<p>BDD：英语全称为 Behavior-Driven Development，翻译成中文就是行为驱动开发</p>
+<h3 id="测试驱动开发"><a href="#测试驱动开发" class="headerlink" title="测试驱动开发"></a>测试驱动开发</h3><p>TDD 模式是一种以测试为中心的开发方法，强调在编写代码之前先编写测试用例，然后再运行测试用例，如果测试用例失败了，就说明代码有问题，那么就需要修改代码直到所有的测试用例都通过，然后再去编写实际的代码。</p>
+<h3 id="行为驱动开发"><a href="#行为驱动开发" class="headerlink" title="行为驱动开发"></a>行为驱动开发</h3><p>BDD 是通过行为来驱动软件的开发。这里的行为实际上指的是用户的行为，也就是说 BDD 的模式关注焦点在用户行为和业务上面，更加注重协作和沟通，BDD 的测试用例一般会采用自然语言来进行编写，以便与业务人员和 QA 都能读得懂该测试用例。</p>
+<p>BDD 的测试用例一般会采用 Given-When-Then 的模式来描述测试场景。</p>
+<p>例如下面是一个基于 Given-When-Then 模式的测试用例，假设我们要测试一个登陆页面，这个登陆页面里面包含用户名和密码框以及登陆按钮，测试用例如下：</p>
+<p>Given：用户已经打开登录页面，并且没有输入任何内容</p>
+<p>When：用户输入错误的用户名或密码，然后点击登录按钮</p>
+<p>Then：页面上会显示错误提示信息“用户名或密码错误”</p>
+<p>这是一种非常常见的模式，很多中小型企业，在没有使用自动化的测试框架的背景下，往往就是通过这种方式来对软件进行测试。</p>
+<h2 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h2><p>了解了上面所介绍的软件开发模型之后，那么自动化的概念也就非常好懂了。自动化测试属于 DevOps 开发模式里面的一个阶段，主要就是指对新的代码通过一些自动化工具和测试框架进行一个全自动的测试操作。测试通过之后，进入下一个步骤。</p>
+<h3 id="测试框架"><a href="#测试框架" class="headerlink" title="测试框架"></a>测试框架</h3><p>前面我们介绍过测试有不同的类型，不同的测试框架会有不同的测试重点，比如有的偏向于单元测试，有的偏向于 E2E 测试。</p>
+<p>Jest：是一个由 Facebook 开发的 JavaScript 测试框架。它可以用于测试 React 应用程序，也可以用于测试其他类型的 JavaScript 应用程序。它具有简单易用、快速执行、自动化断言等特点。</p>
+<p>Mocha：是一个功能强大的 JavaScript 测试框架，可用于测试任何类型的 JavaScript 应用程序。它支持多种测试风格（如 BDD 和 TDD），具有丰富的插件和扩展功能。</p>
+<p>Jasmine：是一个行为驱动的 JavaScript 测试框架，提供了一个易于阅读和编写测试的语法。它可以运行在浏览器和 Node.js 环境中，具有自动化断言、Spy 等功能。</p>
+<p>Cypress：是一个现代化的自动化测试工具，专注于端到端的功能测试。它具有简单易用、快速执行、可靠性高、可视化测试等特点，支持 Chrome、Firefox、Edge 等多个浏览器。</p>
+<p>Puppeteer：是一个由 Google 开发的 Node.js 库，Puppeteer 基于 Chrome DevTools 协议开发，可以完全控制 Chromium 或 Chrome 浏览器，包括页面的加载、截图、交互等操作。Puppeteer 提供了一套稳定的 API，可以确保测试结果的可靠性和一致性。另外，Puppeteer 不仅可以用于自动化测试，还可以用于爬虫、性能测试、页面截图等各种场景。</p>
+<p>后面我们会选择 Jest 这个老牌的测试框架进行介绍。</p>
+<p>Jest 是由 Facebook 开发的一个 js 测试框架，jest 主要侧重于被用于做单元测试和集成测试，特点如下：</p>
+<p>Jest 的特点包括：</p>
+<p>简单易用：Jest 的 API 简单易用，测试用例编写起来非常简单。</p>
+<p>快速执行：Jest 使用并发执行，可以大大缩短测试时间。</p>
+<p>自动化断言：Jest 自带了一个断言库，可以自动化地对测试结果进行断言。</p>
+<p>Mock 支持：Jest 支持 Mock，可以方便地模拟各种场景，例如网络请求、计时器等。</p>
+<p>Snapshot 测试：Jest 支持 Snapshot 测试，可以方便地对组件的渲染结果进行比较和验证。</p>
+<p>集成测试支持：Jest 支持集成测试，可以方便地测试整个应用程序的功能。</p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

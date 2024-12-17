@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>TS | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>TS</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/11/14
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="unknown-与-any-的区别"><a href="#unknown-与-any-的区别" class="headerlink" title="unknown 与 any 的区别"></a>unknown 与 any 的区别</h2><p>unknown 类型的变量是不能调用方法的（可以保证安全）</p>
+<p>any 就跟没有写类型一样</p>
+<h2 id="object-与-Object-的区别"><a href="#object-与-Object-的区别" class="headerlink" title="object 与 Object 的区别"></a>object 与 Object 的区别</h2><p>object 代表所有非值类型(非原始类型)的类型，例如 数组 对象 函数等</p>
+<p>Object 可以给任意值赋值</p>
+<h2 id="type-和-interface-的区别"><a href="#type-和-interface-的区别" class="headerlink" title="type 和 interface 的区别"></a>type 和 interface 的区别</h2><p>interface 一定以对象的方式开始</p>
+<pre><code class="css">type Condition = (n: number) = &gt; boolean interface Condition &#123;
+  (n:number):boolean ;
+&#125;
+</code></pre>
+<p>区别：</p>
+<p>1.interface 可以使用 extends/implements 继承；type 不能</p>
+<p>注意：implements 是继承其他 ts 类型,而 extends 是继承真正的类(js 代码)</p>
+<pre><code class="css">interface Person&#123;
+    run(type:boolean):boolean
+&#125;
+
+interface H&#123;
+    set():void
+&#125;
+
+class A&#123;
+    params:string
+    constructor(params:string)&#123;
+        this.params = params
+    &#125;
+&#125;
+
+//也可以使用继承再使用
+class Man extends A implements Person,H&#123;
+    run(type:boolean):boolean&#123;
+       return type
+   &#125;
+    set()&#123;
+        //啥也没有，这就是用接口去描述类
+    &#125;
+&#125;
+</code></pre>
+<p>type 如果要扩展类型可以使用 &amp;</p>
+<pre><code class="css">type s = &#123;
+  name: string;
+&#125;
+&amp; &#123;
+  age: number;
+&#125;
+</code></pre>
+<p>2.重复定义处理，interface 会合并，type 会导致错误</p>
+<p>interface</p>
+<pre><code class="css">interface A &#123;
+  name: string | number;
+&#125;
+interface A &#123;
+  age: number;
+&#125; //name跟age会进行合并
+</code></pre>
+<p>type</p>
+<pre><code class="css">type Animal = &#123;
+  kind: string;
+&#125;
+
+// 以下这行代码会导致错误
+type Animal = &#123;
+  sound: string;
+&#125;
+</code></pre>
+<h2 id="介绍一下-never-类型"><a href="#介绍一下-never-类型" class="headerlink" title="介绍一下 never 类型"></a>介绍一下 never 类型</h2><p>never 类型通常用于表示不可能出现的情况，它可以用于增强代码的类型安全性和可读性。</p>
+<p>当一个变量被推断为 never 类型时，表示该变量的类型不能是任何其他类型，即不存在任何值与其兼容。</p>
+<p>这个类型通用会用于报错</p>
+<h2 id="如何定义类数组"><a href="#如何定义类数组" class="headerlink" title="如何定义类数组"></a>如何定义类数组</h2><p>函数的 arguments 就是一个类数组</p>
+<pre><code class="javascript">function test() &#123;
+  arguments; //类数组
+&#125;
+</code></pre>
+<p>定义</p>
+<pre><code class="typescript">interface IArguments &#123;
+  [index: number]: any;
+  length: number;
+  callee: Function;
+&#125;
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

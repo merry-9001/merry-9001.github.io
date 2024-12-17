@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>浏览器调试 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>浏览器调试</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/2/7
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h1 id="元素面板（Element）"><a href="#元素面板（Element）" class="headerlink" title="元素面板（Element）"></a>元素面板（Element）</h1><h2 id="左侧-DOM-树"><a href="#左侧-DOM-树" class="headerlink" title="左侧 DOM 树"></a>左侧 DOM 树</h2><p>左侧为 DOM 元素树，支持多种操作，如编辑、删除、新增、复制 DOM 元素，更多可查看右键菜单。</p>
+<p>鼠标选择 dom 元素，蓝色表示本体部分，绿色表示 padding,橘黄色表示 margin</p>
+<p><img src="1709296260243-d140c65b-cc37-4a89-b673-49f223b3d2f0.png"></p>
+<p>搜索 dom 节点，搜索到的节点会被高亮显示</p>
+<pre><code class="javascript">ctrl+f 打开搜索
+搜索方式一：//section/p        //表示全局
+搜索方式二：直接搜内容，会匹配名字相同的
+搜索方式三: 节点选择器
+</code></pre>
+<p><img src="1709296426280-f233997d-ba61-40ea-b23a-544f08637072.png"></p>
+<p><img src="1709296582567-636c0e7d-643d-4438-bb38-a56eb3ec7686.png"></p>
+<p>右键属性有各种方法可以使用</p>
+<p><img src="1709297327522-5c218b67-d153-472e-8f56-018f550a7584.png"></p>
+<p>发生中断的条件：可以在代码更改的时候强行断点断住</p>
+<p>复制:可以复制元素，可以复制样式等</p>
+<h2 id="右侧菜单"><a href="#右侧菜单" class="headerlink" title="右侧菜单"></a>右侧菜单</h2><p><strong><font style="color:#C99103;">右侧菜单选项里的内容对应的都是当前选中的元素</font></strong></p>
+<h3 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h3><p>选中元素的样式，可编辑、添加 CSS 样式，实时预览。</p>
+<p><img src="1707293895650-0ffd9369-9f52-4c47-a404-2a3f326e4d6c.webp"></p>
+<p>可以给某个元素增加新类或者取消</p>
+<p><img src="1707962443580-0df8f6ad-7579-42cf-9e69-9c9af1b7bf4b.png"></p>
+<p>可以修改应用的 css 类属性以及增加新的类，方便测试</p>
+<p><img src="1707294754388-3d6e8f3d-347e-4aab-8713-21b899e9cec3.png"></p>
+<p>可以激活伪类，可以搜索</p>
+<p><img src="1709296707210-946a469a-73c7-4107-be63-a29343c46fcc.png"></p>
+<blockquote>
+<p>这个用户代理样式表(user agent stylesheet)表示浏览器给我们的样式</p>
+<p>如果有继承样式，也可以查看是从哪里继承过来的</p>
+</blockquote>
+<p>可以查看源代码</p>
+<p><img src="1709296754984-0e37cce6-ef78-4556-924b-5e025f64f1a2.png"></p>
+<p>可视化编辑器</p>
+<p>可视化的颜色、贝塞尔曲线、阴影编辑器，所见即所得</p>
+<ul>
+<li><strong>颜色编辑器</strong>：只要是颜色属性，都可以点击色块按钮可视化编辑颜色，支持拖动设置颜色、取色、设置对比度。</li>
+<li><strong>Grid、Flex 布局编辑器</strong>：当使用弹性布局 Grid、Flex 时，支持可视化编辑布局对齐方式。</li>
+<li><strong>阴影编辑器</strong>：阴影 shadow 属性上，会出现编辑器按钮，可视化编辑阴影效果。</li>
+</ul>
+<p><img src="1707293895665-cabb0771-a696-4cb8-a2f7-c2052db3f0f7.webp"></p>
+<ul>
+<li><strong>贝塞尔曲线编辑器</strong>：在动画 transition、animation 中会用到贝塞尔曲线函数（缓动函数）。</li>
+</ul>
+<p><img src="1707293895650-2f1c207e-a152-4e25-86a8-0c7784039001.webp"></p>
+<h3 id="计算样式"><a href="#计算样式" class="headerlink" title="计算样式"></a>计算样式</h3><p>可以看一个 dom 被渲染时候的实际属性，所有的属性都会有值(层叠样式)，总之，一个元素的所有 css 属性值都必须有值；还有一张图，可以直观展示 padding,margin,content 的大小；还可以进行搜索和筛选</p>
+<p><img src="1707294630269-79a4d0e8-3405-4be6-bd76-2171c8837f87.png"></p>
+<p>点小箭头可以找到是哪句 css 导致他生效的</p>
+<p><img src="1709297623081-2931ef48-3454-46c8-b9b3-774ace05f8df.png"></p>
+<p>还可以查看字体</p>
+<p><img src="1709297691494-3f124760-9569-4da1-8c8c-92e9a9522db9.png"></p>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><p>grid 布局,flex 布局调试</p>
+<p>可以勾选会进行高亮，方便查看和调试</p>
+<p>也可以通过左侧 dom 树的小标来打开和关闭</p>
+<p><img src="1709302605323-35c49513-a6c0-46ea-a85b-3a3300fcfdab.png"></p>
+<h3 id="事件监听器"><a href="#事件监听器" class="headerlink" title="事件监听器"></a>事件监听器</h3><p>可以查看当前这个元素上挂载的事件，也可以勾选查看所有祖先的监听，也可以移除，也可以进入到源码。</p>
+<p>framework 监听器？</p>
+<p><img src="1709302784296-3199663e-77a8-453f-a5c0-17d10899dcb3.png"></p>
+<h3 id="DOM-断点"><a href="#DOM-断点" class="headerlink" title="DOM 断点"></a>DOM 断点</h3><p>选中 DOM 元素，右键设置中断点，可以在元素更改（JS 代码修改 DOM）时触发断点。</p>
+<p><img src="1707293895958-099b2e36-ae87-4d35-8b72-d8daa35640c5.webp"></p>
+<p>添加后可以在源代码中查看到已添加的 DOM 断点，或者元素面板中的“DOM 断点”。</p>
+<p><img src="1707293895986-821003bc-679b-4211-b6be-b336e9bee8e6.webp"></p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>查看一个节点的所有属性</p>
+<p><img src="1709302860536-4f19bb1b-c13c-4035-9fe1-40627c7d252d.png"></p>
+<h1 id="控制台面板（Console）"><a href="#控制台面板（Console）" class="headerlink" title="控制台面板（Console）"></a>控制台面板（Console）</h1><p>主要功能就是调试 JavaScript 代码</p>
+<h3 id="运行代码"><a href="#运行代码" class="headerlink" title="运行代码"></a>运行代码</h3><p>可执行任意 JS 代码，包括调用页面已有的 JS 对象、函数。</p>
+<p>在里面输入 js 代码回车运行以后会运行 js 代码，同时打印出返回值</p>
+<p><img src="1709303101855-aca5a78d-c890-4987-9ff9-e9457445259d.png"></p>
+<h4 id="快捷命令"><a href="#快捷命令" class="headerlink" title="快捷命令"></a>快捷命令</h4><p>输入$_可以返回上一条语句输出的结果</p>
+<p>输入$0 可以获得当前选中的 DOM 节点，$1 是上次,$2 是上上次</p>
+<h3 id="console-输出"><a href="#console-输出" class="headerlink" title="console 输出"></a>console 输出</h3><p>代码中的 Console、异常错误都会在这里输出。</p>
+<p><img src="1707293896041-151b65ae-56ed-4d1e-a9e4-24940dd4329a.webp"></p>
+<h4 id="console-函数"><a href="#console-函数" class="headerlink" title="console 函数"></a>console 函数</h4><p>用 console 函数输出变量，是比较常用的调试技巧，console 的常用函数：</p>
+<table>
+<thead>
+<tr>
+<th>console<strong>函数</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>console.<strong>log</strong>(str)</td>
+<td>控制台输出一条消息</td>
+</tr>
+<tr>
+<td>console.<strong>error</strong>(str);</td>
+<td>打印一条错误信息，类似的还有 info、warn</td>
+</tr>
+<tr>
+<td>console.<strong>table</strong>(data [, columns])</td>
+<td>将数据以表格的形式显示，很实用，data 为数组或对象，第二个参数（数组）可指定输出的列</td>
+</tr>
+<tr>
+<td>console.<strong>dir</strong>(object)</td>
+<td>树形方式打印对象，特别是 DOM 对象非常实用</td>
+</tr>
+<tr>
+<td>console.<strong>assert</strong>(false, ‘false’)</td>
+<td>断言输出，为 false 才会输出</td>
+</tr>
+<tr>
+<td>console.<strong>trace</strong>()</td>
+<td>输出当前位置的执行堆栈，用断点会更实用一些。</td>
+</tr>
+<tr>
+<td>console.<strong>time</strong>(label)</td>
+<td>计时器，可用来计算耗时（毫秒），三个函数配合使用：<strong>time</strong>(开始计时) &gt; <strong>timeLog</strong>(计时) &gt; <strong>timeEnd</strong>(结束)</td>
+</tr>
+<tr>
+<td>console.<strong>clear</strong>()</td>
+<td>清空控制台，并输出 Console was cleared。</td>
+</tr>
+</tbody></table>
+<h3 id="监听函数"><a href="#监听函数" class="headerlink" title="监听函数"></a>监听函数</h3><p>通过如下（调试工具）的全局函数可监听一个函数、事件的执行。</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>monitor</strong>( function )</td>
+<td>监听一个函数，当被监听函数执行的时候，会打印被调用信息</td>
+</tr>
+<tr>
+<td><strong>monitorEvents</strong> ( event )</td>
+<td>监听一个事件，当事件被触发时打印触发事件日志</td>
+</tr>
+</tbody></table>
+<p><img src="1707293896329-597da6ba-9740-4ead-a34b-97cfb11ef648.webp"></p>
+<h3 id="活动表达式"><a href="#活动表达式" class="headerlink" title="活动表达式"></a>活动表达式</h3><p>一个不错的小功能，点击下图中的眼睛图标，相当于添加了一个动态表达式，然后实时监控（显示）该表达式的值。</p>
+<p><img src="1707293896368-fd6be6ea-48b1-4a86-affc-cb70b2da88bd.webp"></p>
+<p><img src="1707293896381-6e514940-af96-41d8-ba39-366590d173c4.webp"></p>
+<h1 id="源代码面板（Sources）"><a href="#源代码面板（Sources）" class="headerlink" title="源代码面板（Sources）"></a>源代码面板（Sources）</h1><p>管理网页所有的源代码文件，包括 JS、CSS、图片等资源，经常就是在这里断点调试 JS 代码</p>
+<p>在调试模式下可以查看（鼠标悬浮在变量上）变量值、上下文作用域、函数调用堆栈信息。</p>
+<p><img src="1707293896624-88db1912-db6b-4099-bb7e-b2daa5e1462d.webp"></p>
+<ul>
+<li><strong>① 页面资源目录</strong>：页面涉及的所有资源（树）。</li>
+<li><strong>② 源代码</strong>：文件源代码，可以在这里添加断点调试 JS 代码，如果想编辑在线 JS 代码，也是可以的，详见后文。</li>
+<li><strong>③ Debug 工具栏</strong>：断点调试的操作工具，可以控制暂停、继续、单步、执行代码。</li>
+</ul>
+<p><img src="1707295226598-423afeac-4b86-403b-9ea7-350c57b1e075.webp"></p>
+<ul>
+<li><strong>④ 断点调试器</strong>：这里包含多个断点调试器（展示断点的信息）</li>
+<li><strong>监视（Watch）</strong>：可添加对变量的监视。</li>
+<li><strong>断点（Breakpoints）</strong>：所有添加的断点，可在这里编辑、删除管理。</li>
+<li><strong>作用域（Scope）</strong>：当前代码上下文的作用域，含闭包。<ul>
+<li><strong>Local**<strong>本地作用域</strong>：代码当前 {} 内存在的变量，</strong>this*<strong>*就可以在这里找到</strong>。</li>
+<li>**Closure****闭包作用域**：代码当前所处闭包里的变量。注意名称后用括号注明了这是哪个闭包里的内容，因为闭包可以嵌套，所以可能出现多个 Closure 作用域。</li>
+<li>**Script****代码标签作用域**：当前 <script />标签里存在的变量，这个用的不多。</li>
+<li><strong>Global 全局作用域</strong>：这个就不用解释了吧。</li>
+</ul>
+</li>
+<li><strong>调用堆栈（Call Stack</strong>）：当前函数的调用堆栈</li>
+</ul>
+<p>如果我们利用框架的话，很有可能调试一个点击事件，就跳入了框架，但我们希望调试我们自己的代码，就可以修改调用堆栈</p>
+<p><img src="1709304809851-5277f3e0-f3da-47f9-a815-a7aa11e0b4bf.png"></p>
+<ul>
+<li><strong>XHR/提取断点</strong>：可以在这里添加对 AJAX 请求（XHR、Fetch）的断点，添加 URL 地址即可。</li>
+<li><strong>DOM 断点</strong>：在元素页面添加的 DOM 断点会在这里显示。</li>
+<li><strong>事件监听器断点</strong>：我们可以勾选一些事件，当这些事件被触发的时候代码就会进入断点</li>
+</ul>
+<p><img src="1709304978770-1128e3c7-6607-4a8d-a8db-5113ee63280f.png"></p>
+<h2 id="debugger"><a href="#debugger" class="headerlink" title="debugger"></a>debugger</h2><p>在源代码中输入 debugger，但代码被运行时会被断点断住，右侧还会提示你是因为什么造成的断点</p>
+<p><img src="1709304313475-e0a373e6-737e-4668-b142-411fad894e45.png"></p>
+<h2 id="断点调试"><a href="#断点调试" class="headerlink" title="断点调试"></a>断点调试</h2><p><img src="1709304397654-1781cf76-04a8-4405-ae79-8c1773b5f5a4.png"></p>
+<p>如下图，在源代码行号位置添加断点。</p>
+<p><img src="1707293896569-67ebf304-308b-4fb3-8ae2-6949ad77ac54.webp"></p>
+<ul>
+<li><strong>添加断点（Add breakpoint）</strong>：添加一个普通断点，最左侧行号处，点击添加断点，或者右键菜单。</li>
+</ul>
+<p>也可以在 JS 代码中设置断点，关键字：debugger</p>
+<pre><code class="plain">debugger // 会在这里断点
+console.log(&#39;debugger&#39;)
+</code></pre>
+<ul>
+<li><strong>添加条件断点（Add conditional breakpoint）</strong>：添加一个条件断点，符合条件断点才会生效，条件可使用当前代码上下文中的变量。</li>
+</ul>
+<p><img src="1707293896728-1a11d7fa-a0bc-46da-a5dc-77a11b71fef6.webp"></p>
+<ul>
+<li><strong>添加记录点（Add logpoint）</strong>：添加一个日志打印，打印当前代码环境的变量，非常方便，不用在源码下添加 console 了。</li>
+</ul>
+<p><img src="1707293896767-cc558bf3-24c9-4f94-946b-1010e36b1bdc.webp"></p>
+<h2 id="调试线上代码：本地工作区"><a href="#调试线上代码：本地工作区" class="headerlink" title="调试线上代码：本地工作区"></a>调试线上代码：本地工作区</h2><p>如果是线上的环境，能不能直接修改源代码（JS、CSS）调试呢？—— 可以的。思路就是创建本地的 JS 副本，页面加载本地的 JS 文件，就可以在本地 JS 文件上修改了。</p>
+<p><strong>① 创建本地工作目录</strong>：</p>
+<ul>
+<li>如下图，源代码下面找到“覆盖（Override）”。</li>
+</ul>
+<p><img src="1707293896908-aebcc3de-1b1a-450a-b1ea-1938c63c3eb9.webp"></p>
+<ul>
+<li>然后点击“选择替代文件夹”，添加一个本地空的文件夹，作为本地工作目录。</li>
+<li>添加后要注意要确认授权。</li>
+</ul>
+<p><img src="1707293897101-dcdd35d7-bc92-4aca-8dd4-89ea1500ac64.webp"></p>
+<p><strong>② 创建源代码的本地副本</strong>：选择需要修改的源代码右键“保存以备替代”，就会在本地目录创建副本文件，网页使用本地的 JS 文件。</p>
+<ul>
+<li>创建的本地副本，可以在“覆盖”下看到，也可以在本地文件夹下看到。</li>
+</ul>
+<p><img src="1707293897194-2c606a78-1873-4218-9954-4bdf1e3ab9d1.webp"></p>
+<p><strong>③ 编辑代码</strong>：该 JS 文件就可以直接在源代码中编辑修改了，实时生效。</p>
+<ul>
+<li>CSS、HTML、JavaScript 都支持。</li>
+<li>可以在浏览器的源代码中修改，也可以本地其他工具中打开编辑。</li>
+</ul>
+<p><img src="1707293897229-5a54b5ad-88c8-4c11-b869-9420adbc6261.webp"></p>
+<hr>
+<h1 id="网络面板（Network）"><a href="#网络面板（Network）" class="headerlink" title="网络面板（Network）"></a>网络面板（Network）</h1><p><img src="1707293897382-eaaf12b0-1c08-4017-8e8a-19f5d17357f7.webp"></p>
+<p>工具栏中两个比较实用的小功能：禁用缓存、模拟弱网环境。</p>
+<p><img src="1707293897416-bf849ee7-937a-4e52-b7a4-9bb333130c92.webp"></p>
+<p>点击请求的资源项，可以查看详细的请求、响应数据，常用于服务端接口的联调。</p>
+<p><img src="1707293897444-fbc5c874-42bb-439a-8b06-165d12369169.webp"></p>
+<p>保留历史请求，刷新页面的时候不清空下面的请求</p>
+<p><img src="1709305121838-78f88d17-98da-49d7-8ae0-b1614e9eef47.png"></p>
+<p>导入 har 与导出 har，可以从电脑上导出以后再在另一台电脑上还原当时的请求</p>
+<p><img src="1709305325757-4eff08d6-f79f-46c5-820a-61a9a9fb9a03.png"></p>
+<p>还可以编辑参数，重新发起请求</p>
+<p><img src="1707293897493-a66bff7d-96b9-43a2-b615-68e2afca27a3.webp"></p>
+<p>切换 web 识别电脑系统</p>
+<p><img src="1644758224872-7221c096-efd0-4093-9597-496a2647d77c.png"></p>
+<h1 id="存储面板-Application"><a href="#存储面板-Application" class="headerlink" title="存储面板(Application)"></a>存储面板(Application)</h1><p><font style="color:rgb(53, 53, 53);">这里最主要的是查看 LocalStorage、SessionStorag、Cookies</font></p>
+<p><img src="1707296492269-5e11363d-ba06-48c4-9741-31a403019ee7.webp"></p>
+<h1 id="性能面板（Performance）"><a href="#性能面板（Performance）" class="headerlink" title="性能面板（Performance）"></a>性能面板（Performance）</h1><p>先录制，后分析，分析网络、CPU、内存、渲染 FPS 帧率，用于定位、解决页面性能问题。</p>
+<p><img src="1707293897581-f6aa789b-ce6e-47f1-a479-227b059e6152.webp"></p>
+<h1 id="性能监视器（Performance-monitor）"><a href="#性能监视器（Performance-monitor）" class="headerlink" title="性能监视器（Performance monitor）"></a>性能监视器（Performance monitor）</h1><p>面板可以<strong>实时</strong>的监控页面性能参数。</p>
+<p><img src="1707293897749-40962d1b-0b0a-4819-9ce9-31d9a59a75dd.webp"></p>
+<h1 id="Lighthouse"><a href="#Lighthouse" class="headerlink" title="Lighthouse"></a>Lighthouse</h1><p>这个就很厉害了，对页面进行综合分析，包括性能、PWA（Progressive Web App，渐进式 Web 应用）、SEO、无障碍访问等，分析完后产出报告，给出得分，还给出了页面改进建议。</p>
+<blockquote>
+<p>不要用附着网页，而是单独窗口，使用的过程他会刷新页面</p>
+</blockquote>
+<p><img src="1707293897752-3276a16b-858a-49f5-83ea-4568463814da.webp"></p>
+<h1 id="其他额外功能"><a href="#其他额外功能" class="headerlink" title="其他额外功能"></a>其他额外功能</h1><p>这里可以查找更多工具</p>
+<p><img src="1707295818591-dbc58060-8ffb-449d-9b8f-4ff7c1db48d6.png"></p>
+<p>调试分层</p>
+<p>跟堆叠上下文有关的属性会影响浏览器的分层决定</p>
+<p><img src="1689498144673-7aa3e465-268c-4de3-8297-7ae21f83a94a.png"></p>
+<h1 id="基础操作汇总"><a href="#基础操作汇总" class="headerlink" title="基础操作汇总"></a>基础操作汇总</h1><table>
+<thead>
+<tr>
+<th><strong>操作类型</strong></th>
+<th><strong>快捷键/说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>切换浏览器标签</td>
+<td>Ctrl+1 到 8 切换到对应序号的浏览器标签</td>
+</tr>
+<tr>
+<td>浏览器全屏</td>
+<td>F11</td>
+</tr>
+<tr>
+<td>打开调试模式</td>
+<td>F12，Ctrl + Shift + I (Windows) 页面右键菜单“检查”，浏览器菜单“开发者工具”</td>
+</tr>
+<tr>
+<td>切换调试工具位置（下面、右边）</td>
+<td>ctrl + shift + D</td>
+</tr>
+<tr>
+<td>内容搜索查找</td>
+<td>Ctrl+F：元素、控制台、源代码、网络都支持搜索查找</td>
+</tr>
+<tr>
+<td>使用命令 Command 面板</td>
+<td>Ctrl] + [Shift] + [P] 类似 VSCode 的命令面板，有大量的隐藏功能，可以在这里搜索使用</td>
+</tr>
+<tr>
+<td>复制元素</td>
+<td>元素面板：选中元素》Ctrl+C 元素面板：选中元素》右键菜单》复制元素 copy($0) 控制台中代码复制当前选中元素</td>
+</tr>
+<tr>
+<td>控制台：全局 copy 方法</td>
+<td>复制任何对象到剪切板，copy(window.location)</td>
+</tr>
+<tr>
+<td>控制台：保存堆栈信息( Stack trace )</td>
+<td>报错信息可以右键另存为文件，保存完整堆栈信息</td>
+</tr>
+<tr>
+<td>控制台：$、$$查询 Dom 元素</td>
+<td>- $ = document.querySelector - $$ = document.querySelectorAll</td>
+</tr>
+<tr>
+<td>Store as global（存储为全局变量）</td>
+<td>控制台（右键）：把一个对象设置为全局变量，自动命名为 temp* 元素面板（右键）：把一个元素设置全局变量，同上</td>
+</tr>
+<tr>
+<td>元素：h 快速隐藏、显示该元素</td>
+<td>选中元素，按下 h 快速隐藏、显示该元素。</td>
+</tr>
+<tr>
+<td>元素：移动元素</td>
+<td>鼠标拖动到任意位置</td>
+</tr>
+</tbody></table>
+<p>******Store as global（存储为全局变量）**：类似 copy 方法，将一个对象保存为全局变量，变量命名依次为 temp1、temp2。</p>
+<p><img src="1707293895138-6362a832-176d-4b94-a108-8fb8ac78f291.webp"></p>
+<p>******保存堆栈信息( Stack trace )**：错误堆栈信息另存为文件，保存完整堆栈信息。</p>
+<p><img src="1707293895095-f9e9f449-4061-4c4e-bd3b-91f0e1c366be.webp"></p>
+<p>******Command 面板**：同 VSCode 的命令面板，可以找到调试工具的所有的（隐藏）功能。Ctrl] + [Shift] + [P] （Mac： [⌘] + [Shift]+ [P]）</p>
+<p><img src="1707293895106-880244dc-c1da-427e-85ba-b2fde1ed6326.webp"></p>
+<ul>
+<li><strong>设置主题</strong>：打开 Command 面板，搜索“主题”，可以切换多种主题</li>
+</ul>
+<p><img src="1707293895109-f46d869a-c007-4c5e-8c48-1399c824444c.webp"></p>
+<ul>
+<li><strong>分析代码的覆盖率</strong>：打开 Command 面板，如下图搜索“覆盖”，分析首次页面加载过程中哪些代码执行了，那些没有执行，输出一个报告。</li>
+</ul>
+<p><img src="1707293895154-4b5bc786-d6c2-4888-b978-c33631fd3f85.webp"></p>
+<p>选择文件可进一步查看代码的使用分析，红色 = 尚未执行，青蓝色 = 至少执行了一次。</p>
+<p><img src="1707293895627-dc52b505-04c0-4a66-9068-4b59bd5e301d.webp"></p>
+<p>******元素截图**：输出指定元素的截图，包含隐藏滚动的内容，这个功能挺好用的。</p>
+<ul>
+<li>通过 Command 面板：搜索“截图”，全屏截图、指定节点截图。</li>
+<li>元素面板中，选中元素》右键菜单》“捕获节点屏幕截图”。</li>
+</ul>
+<p><img src="1707293895647-1f2f4c0f-eb05-4246-825c-2f5d48398a1b.webp"></p>
+<p><img src="1709295914473-0379e498-a02a-45ec-9981-4de91eec18a3.png"></p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>做题技巧 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>做题技巧</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/19
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="promise-分析技巧"><a href="#promise-分析技巧" class="headerlink" title="promise 分析技巧"></a>promise 分析技巧</h2><h3 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h3><p>then 函数中 onfulfilled 回调函数的执行时机（进微队列的时机）</p>
+<p>1.如果注册回调函数的时候 promise 对象的状态已经完成了，onfulfilled 直接进微队列</p>
+<p>2.如果注册回调函数的时候 promise 对象的状态还是 pending,那就等 promise 调用 reslove()之后再进微队列</p>
+<p>then 里面的回调函数如果不是函数，相等于是没有</p>
+<pre><code class="javascript">Promise.resolve(1).then(2).then(Promise.resolve(3)).then(console.log);
+//相等于
+Promise.resolve(1).then(console.log);
+
+1;
+</code></pre>
+<p>3.(特殊可以不学)如果 then 方法要吸收一个新的 promise 状态，他需要等待两个微队列的时机</p>
+<p>注意 await 后面的代码（下一行的代码）其实在一个事件队列中</p>
+<p>await 后面的函数还是会立即执行的</p>
+<p>最外层的 await 要等里层的 await 先返回才会继续进行</p>
+<pre><code class="javascript">async function m() &#123;
+  console.log(0);
+  const n = await 1; //当m函数运行到await就其实已经结束了
+  console.log(n);
+&#125;
+
+// function m() &#123;
+//   return Promise.resolve(1).then((n) =&gt; &#123;
+//     console.log(n);
+//   &#125;);
+// &#125;
+
+console.log(m())
+
+先执行0，然后运行到await,相当于是要进入一个微队列，m()函数的返回值是then方法这个promise对象的返回值
+所以输出结果：
+0
+pending
+1
+</code></pre>
+<p>注意</p>
+<p>如果 promise 里面没有异步代码，那会直接返回 fulfilled</p>
+<pre><code class="javascript">const a = new Promise((resolve) =&gt; &#123;
+  resolve();
+&#125;);
+console.log(a);
+</code></pre>
+<p><img src="1726739893807-89b9672d-4157-426c-99c0-ef06fa8c0ee1.png"></p>
+<p>如果用 promise 的静态方法 all,any,race 的任务数组的每一项如果不是 Promise 对象，则使用 Promise.resolve 转成 Promise 对象，静态方法无论里面代码是否异步，一开始的状态都是 pending</p>
+<blockquote>
+<p>跟上面不一样</p>
+</blockquote>
+<pre><code class="javascript">const a = Promise.all([1]);
+console.log(a);
+</code></pre>
+<p><img src="1726744038512-c5368e6c-3273-42c8-98e0-67db80be9ee6.png"></p>
+<h3 id="做题方式"><a href="#做题方式" class="headerlink" title="做题方式"></a>做题方式</h3><p>做题的时候准备好两个队列，把要执行的函数依次排入</p>
+<p>上面可以再来一行记录 Promise 的状态</p>
+<p>执行栈：</p>
+<p>宏队列：</p>
+<p>微队列：</p>
+<p>1.分析每一个 promise 对象的状态的数据</p>
+<p>2.根据事件循环机制执行代码</p>
+<h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子 1"></a>例子 1</h3><pre><code class="javascript">const promise = new Promise((resolve, reject) =&gt; &#123;
+  console.log(1);
+  setTimeout(() =&gt; &#123;
+    console.log(2);
+    resolve();
+    console.log(3);
+  &#125;);
+&#125;);
+
+promise.then(() =&gt; &#123;
+  console.log(4);
+&#125;);
+
+console.log(5);
+</code></pre>
+<blockquote>
+<p>分析</p>
+<p>promise 状态 返回值</p>
+<p>执行栈</p>
+<p>宏队列 setFn()</p>
+<p>微队列</p>
+<p>控制台</p>
+<p>开始做题</p>
+<p>1.先执行 promise 里面的执行函数，控制台输出 1</p>
+<p>2.setTimeout 由于计时为 0 秒，于是立马完成，推入宏队列</p>
+<p>3.promise 这个变量的值被赋为 promise 对象，状态是 pending（promise 这个变量会拿到后面的运算结果）</p>
+<p>4.promise 对象注册成功之后的回调，但此时不会推入微队列中，因为他要等 promise 对象状态变为成功以后再执行（微队列中）</p>
+<p>5.执行 log，控制台输出 5</p>
+<p>6.这个时候执行栈已经执行完毕了，这个时候微队列里面没有东西，于是把宏队列里面的东西拿出来执行，控制台输出 2，把 promise 对象的状态改为 fufilled,同时把注册的回调函数(onfulfilled)推入微队列中，继续执行（必须要先把执行栈里面的东西执行完），控制台输出 5</p>
+<p>7.执行栈执行完毕，这个时候把微队列里面的函数拿来执行</p>
+</blockquote>
+<h3 id="例子-2"><a href="#例子-2" class="headerlink" title="例子 2"></a>例子 2</h3><pre><code class="javascript">var a;
+var b = new Promise((resolve, reject) =&gt; &#123;
+  console.log(&quot;promise1&quot;);
+  setTimeout(() =&gt; &#123;
+    resolve();
+  &#125;, 1000);
+&#125;)
+  .then(() =&gt; &#123;
+    console.log(&quot;promise2&quot;);
+  &#125;)
+  .then(() =&gt; &#123;
+    console.log(&quot;promise3&quot;);
+  &#125;)
+  .then(() =&gt; &#123;
+    console.log(&quot;promise4&quot;);
+  &#125;);
+
+a = new Promise(async (resolve, reject) =&gt; &#123;
+  console.log(a);
+  await b;
+  console.log(a);
+  console.log(&quot;after1&quot;);
+  await a;
+  resolve(true);
+  console.log(&quot;after2&quot;);
+&#125;);
+
+console.log(&quot;end&quot;);
+</code></pre>
+<blockquote>
+<p>分析</p>
+<p>1.刚开始定义 a，a 的值为 undefined</p>
+<p>2.定义 b，b 的值要等后面的函数执行完才会得到结果，刚开始也是 undefined</p>
+<p>3.开始执行函数，输出 promise1</p>
+<p>4.运行到一个 setTimeout 函数，等计时线程（1 秒后）推入宏队列中</p>
+<p>5.调用三个 then 方法，但是由于前一个 promise 对象的状态还是挂起，所以 then 方法里面的函数不会执行</p>
+<p>6.三个 then 函数运行完成以后 b 的值被赋值为一个 promise 对象，状态是挂起</p>
+<p>7.开始给 a 赋值，同样 a 的值要等后面的 promise 执行完毕以后才能拿到结果，刚开始是 undefined，下一行代码等待 b,这个时候 promise 构造函数内部的函数已经执行完毕了，主线程不会等，所以这个 a 的值变成了 promise 对象，状态是挂起</p>
+<p>8.输出 end</p>
+</blockquote>
+<p>promise1，undefined，end，promise2，promise3，promise4,promise<pending>,after1</p>
+<h2 id="值和引用分析技巧"><a href="#值和引用分析技巧" class="headerlink" title="值和引用分析技巧"></a>值和引用分析技巧</h2><p><img src="1725503768687-095356ce-08b6-4dc6-bddd-0e9ff004bd73.png"></p>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

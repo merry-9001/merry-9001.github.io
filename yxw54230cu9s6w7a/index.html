@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>高频题整理 | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>高频题整理</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/19
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="事件循环（运行机制）"><a href="#事件循环（运行机制）" class="headerlink" title="事件循环（运行机制）"></a>事件循环（运行机制）</h2><p>事件循环是浏览器渲染主线程的工作方式，每次循环从消息队列中取出第⼀个任务执行，当然<font style="color:rgb(54,60,66);">代码在执行过程中，会遇到⼀些无法立即处理的任务（网络请求，I/O 操作，计时器等），</font>主线程将任务交给其他线程去处理，自身立即结束任务的执行，转而执行后续代码。当其他线程完成时，将事先传递的回调函数包装成任务，加⼊到消息队列的末尾排队，等待主线程调度执行。每个任务有不同的类型，同类型的任务必须在同⼀个队列，不同的任务可以属于不同的队列。不同任务队列有不同的优先级，在⼀次事件循环中，由浏览器⾃行决定取哪⼀个队列的任务。但浏览器必须有⼀个微队列，微队列的任务⼀定具有最⾼的优先级，必须优先调度执行。</p>
+<blockquote>
+<p>浏览器一个页面会有一个进程，然后一个页面中进程中会有一个渲染主线程</p>
+<p>js 是运行在渲染主线程的。这才是导致 js 是单线程的原因</p>
+<p>队列：计时队列，交互队列，渲染队列，微任务队列</p>
+</blockquote>
+<h2 id="在浏览器地址栏输入地址，并按下回车键后，发生了哪些事情？"><a href="#在浏览器地址栏输入地址，并按下回车键后，发生了哪些事情？" class="headerlink" title="在浏览器地址栏输入地址，并按下回车键后，发生了哪些事情？"></a>在浏览器地址栏输入地址，并按下回车键后，发生了哪些事情？</h2><ol>
+<li>浏览器自动补全协议、端口，完成 url 编码</li>
+<li>浏览器根据 url 地址查找本地缓存，根据缓存规则看是否命中缓存，若命中缓存则直接使用缓存，不再发出请求</li>
+<li>通过 DNS 解析找到服务器的 IP 地址</li>
+<li>浏览器向服务器发出建立 TCP 连接的申请，完成三次握手后，连接通道建立</li>
+<li>若使用了 HTTPS 协议，则还会进行 SSL 握手，建立加密信道。</li>
+<li>浏览器决定要附带哪些 cookie 到请求头中</li>
+<li>浏览器自动设置好请求头、协议版本、cookie，发出 GET 请求</li>
+<li>服务器处理请求，进入后端处理流程。完成处理后，服务器响应一个 HTTP 报文给浏览器。</li>
+<li>浏览器根据使用的协议版本，以及 Connection 字段的约定，决定是否要保留 TCP 连接。</li>
+<li>浏览器根据响应状态码决定如何处理这一次响应</li>
+<li>浏览器根据响应头中的 Content-Type 字段识别响应类型，如果是 text/html，则对响应体的内容进行 HTML 解析，否则做其他处理</li>
+<li>浏览器根据响应头的其他内容完成缓存、cookie 的设置</li>
+<li>浏览器开始从上到下解析 HTML，若遇到外部资源链接，则进一步请求资源</li>
+<li>解析过程中生成 DOM 树、CSSOM 树，然后一边生成，一边把二者合并为渲染树（rendering tree），随后对渲染树中的每个节点计算位置和大小（reflow），最后把每个节点利用 GPU 绘制到屏幕（repaint）</li>
+<li>在解析过程中还会触发一系列的事件，当 DOM 树完成后会触发 DOMContentLoaded 事件，当所有资源加载完毕后会触发 load 事件</li>
+</ol>
+<h2 id="浏览器的渲染原理"><a href="#浏览器的渲染原理" class="headerlink" title="浏览器的渲染原理"></a>浏览器的渲染原理</h2><p>1.解析 dom 树和 cssom 树(预解析线程下载外部的 css 文件和 js 文件)，最终解析两棵树</p>
+<p>2.样式计算（经历 css 属性值的计算过程【单位转化和层叠】），生成带样式的 dom 树</p>
+<p>3.布局，生成布局树【计算盒子大小和页面上 x,y，伪元素，隐藏元素】</p>
+<p>4.分层【z-index】</p>
+<p>5.绘制【生成绘制指令，类似 canvas】</p>
+<p>6.分块—合成线程</p>
+<p>7.光栅化 –gpu 进程 将块变成位图</p>
+<p>8.画 真正的展示</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h2><p>发送 http 请求之后，先看本地有没有缓存，如果有就直接使用，没有再发送，发送接收到数据以后，根据响应头保存数据。当有一天过期的时候，再发起协商缓存，如果服务器响应 304 就继续使用。现在基本都会把文件的本地缓存时间设置的很长，因为由于工程化，上传的文件都是 hash 文件，只要有变动就会请求新的地址</p>
+<p>Cache-Control：max-age=3600（缓存方式）</p>
+<p>ETag: W/“121-171ca289ebf”（资源编号）</p>
+<p>Date：Thu, 30 Apr 2020 12:39:56 GMT（响应时间）</p>
+<p>Last-Modified：Thu, 30 Apr 2020 08:16:31 GMT（资源最后一次修改时间）</p>
+<p>如果缓存过期，携带这两个头文件，再次询问服务器，这个资源能否接着使用</p>
+<p>If-Modified-Since: 资源最后一次修改时间</p>
+<p>If-None-Match: 资源编号</p>
+<h2 id="讲讲三次握手与四次挥手"><a href="#讲讲三次握手与四次挥手" class="headerlink" title="讲讲三次握手与四次挥手"></a>讲讲三次握手与四次挥手</h2><p>这个事情发生的在网络的传输层,在 tcp 连接上</p>
+<p>主要目的是保证发送和请求的顺序</p>
+<p>握手过程：</p>
+<p>浏览器———&gt;syn=1——–&gt;服务器</p>
+<p>服务器——–&gt;ack=1———&gt;浏览器</p>
+<p>浏览器——–&gt;ack=1———&gt;服务器</p>
+<p>ack 表示确认</p>
+<p>挥手过程：</p>
+<p>浏览器——–&gt;fin=1——&gt;服务器</p>
+<p>服务器——-&gt;ack=1——&gt;浏览器</p>
+<p>服务器——-&gt;ack=1 fin=1——&gt;浏览器</p>
+<p>浏览器—–&gt;ack=1——-&gt;服务器</p>
+<h2 id="http-和-https"><a href="#http-和-https" class="headerlink" title="http 和 https"></a>http 和 https</h2><p>HTTPS 是建立在 SSL 协议之上的 HTTP 协议</p>
+<p>如果没有第三方机构(ca)，那么你收到的信息可能会被篡改(中间人攻击)</p>
+<p>我们交给第三方机构：钱+要认证的域名+一个公钥（服务器生成的）</p>
+<blockquote>
+<p>服务器花钱去买一个证书</p>
+</blockquote>
+<p>第三方机构给我们一个证书包括：域名+证书颁发机构+<strong>加密的</strong>你发给他的公钥信息（私钥加密)+<strong>加密的</strong>证书签名（私钥加密）</p>
+<p>由于公钥全世界有所以我就用公钥解密，一旦被篡改，公钥就解密不了</p>
+<p>服务器由于有证书了，于是客户端通信的时候，把这个证书交给客户端（客户端验证一下）</p>
+<p>用服务器的公钥进行加密进行传输一个密钥，后续就用这个密钥传输</p>
+<h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>作用域在定义时就确定，并且不会改变</p>
+<p>当在函数作用域操作一个变量时，它会先在自身作用域中寻找，如果有就直接使用</p>
+<p>如果没有则向上一级作用域中寻找，直到找到全局作用域，<strong>如果使用了上级的作用域则形成了闭包</strong></p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>浏览器会被不被使用的变量自动进行清理【清理的时机是异步的】</p>
+<p>一般现在使用的原理是标记清除</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>闭包 = 执行函数 + 词法作用域</p>
+<p>执行函数时，只要在函数中使用了外部的数据，就创建了闭包。作用域链是实现闭包的手段。</p>
+<p><font style="color:rgb(27, 27, 27);">闭包让开发者可以从内部函数访问外部函数的作用域。闭包会随着函数的创建而被同时创建。</font></p>
+<p><font style="color:rgb(27, 27, 27);"></font></p>
+<p><font style="color:rgb(27, 27, 27);">闭包可以防止内部的变量污染全局</font></p>
+<p><font style="color:rgb(27, 27, 27);"></font></p>
+<p><font style="color:rgb(27, 27, 27);">闭包内存泄漏：</font></p>
+<p><font style="color:rgb(27, 27, 27);">词法作用域会膨胀</font></p>
+<pre><code class="javascript">function test() &#123;
+  let a;
+  let b;
+  function sub() &#123;
+    a;
+  &#125;
+  function sub2() &#123;
+    b;
+  &#125;
+  return sub;
+&#125;
+</code></pre>
+<p>虽然只用到了 sub 与 a，但是 b 变量的由于跟 a 在同一个词法作用域，所以他也不会销毁</p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>原型的作用就是要保证对象的类型可溯</p>
+<p>每个函数都会自动附带一个属性<code>prototype</code>，这个属性的值是一个普通对象，称之为原型对象</p>
+<p>每个对象都会自动附带一个属性<strong>proto</strong>，这个属性的值是一个普通对象，称之为实例对象</p>
+<p>当我们访问对象的一个属性或方法时，它会先在对象自身中寻找，如果有则直接使用， 如果没有则会去原型对象中寻找，如果找到则直接使用,于是就这样一直找下去，也就是我们平时所说的原型链的概念。</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>组合继承</p>
+<p>1.继承构造方法</p>
+<p>2.继承原型</p>
+<pre><code class="vue">function Parent(name) &#123; this.name = name; &#125; Parent.prototype.sayName = function
+() &#123; console.log(this.name); &#125;; function Child(name) &#123; Parent.call(this, name);
+&#125; Child.prototype = new Parent(); Child.prototype.constructor = Child;
+</code></pre>
+<p>es6 extends 继承(本质也是用这种方式)</p>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>目的</p>
+<p>不污染全局变量</p>
+<p>保证依赖的顺序</p>
+<p>细分与复用代码</p>
+<p>common.js 和 es module 的区别</p>
+<p>1.动态与静态</p>
+<p>静态可以进行 tree shaking</p>
+<p><font style="color:rgb(89, 89, 89);"></font></p>
+<ol start="2">
+<li>值</li>
+</ol>
+<p><font style="color:rgb(89, 89, 89);">CommonJs 导出值是拷贝，可以修改导出的值，Es Module 导出的是引用值，并且值都是只读的，不能修改</font></p>
+<p><font style="color:rgb(89, 89, 89);">Es Module 有符号绑定【共享一块内存地址】</font></p>
+<p>3.标准不同</p>
+<p>一个<strong>社区</strong>规范，一个<strong>官方</strong>模块化标准</p>
+<h2 id="Promise-async"><a href="#Promise-async" class="headerlink" title="Promise async"></a>Promise async</h2><p>promise 解决的问题：</p>
+<p>1.回调地狱</p>
+<p>2.统一了异步模型</p>
+<p>有了 Promise，异步任务就有了一种统一的处理方式，解决了回调地狱，统一了异步模型</p>
+<p>每一个异步任务，都是一个 promise 对象（两个阶段、三个状态）</p>
+<p><strong>then 方法必定会返回一个新的 Promise</strong>,可理解为<code>后续处理也是一个任务</code></p>
+<p>新任务的状态取决于前一个任务的后续处理（因为 then 方法是没有 resolve 和 reject，所以他会有自己的规则）</p>
+<pre><code>-  若前一个任务没有相关的后续处理，新任务的状态和前任务一致，数据为前任务的数据
+-  若前一个任务有后续处理但还未执行，新任务挂起。
+-  若前一个任务后续处理执行了，则根据后续处理的情况确定新任务的状态
+    * 后续处理执行无错，新任务的状态为完成，数据为后续处理的返回值
+    * 后续处理执行有错，新任务的状态为失败，数据为异常对象
+    * 后续执行后返回的是一个任务对象(promise)，新任务的状态和数据与该任务对象一致
+</code></pre>
+<p>async 关键字用于修饰函数，被它修饰的函数，一定返回一个新的 Promise,如果返回的是值，则会包装成 promise。</p>
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p>webpack 是基于模块化的打包（构建）工具，它把一切视为模块（图片,css 等）</p>
+<p>编译过程</p>
+<ol>
+<li>初始化【形成一个最终的配置对象】</li>
+<li>编译</li>
+</ol>
+<p>根据入口创建 chunk,转化 loader,转化为抽象语法树，分析依赖（转化代码,webpck_require）【chunk】</p>
+<p>放入执行模板中（立即执行函数）【bundle】</p>
+<ol start="3">
+<li>输出</li>
+</ol>
+<p>利用 fs 模块将内存中的数据写入文件</p>
+<p>loader</p>
+<p>loader 本质上是一个函数，它的作用是将某个源码字符串转换成另一个源码字符串返回</p>
+<p>如果要执行多个规则，从后向前执行</p>
+<p><img src="1728965552376-b10b212f-f350-4a2a-bde5-9a4349a17cfc.png"></p>
+<p>postcss-loader 处理 css 兼容性</p>
+<p>babel-loader 处理 js 兼容性</p>
+<p>file-loader 生成依赖文件到输出目录</p>
+<p>plugin</p>
+<p>当 webpack xxx 时，就 xxx。</p>
+<p>有各种各样的钩子，可以在各个时机做事</p>
+<pre><code class="vue">class MyPlugin&#123; apply(compiler)&#123; //这里一次启动只会运行一次 类型window.onload
+//name是用来调试的，随便填写 compiler.hooks.事件名称.事件类型(name,
+function(compilation)&#123; //事件处理函数 &#125;) &#125; &#125;
+</code></pre>
+<p>copy-webpack-plugin（复制静态资源）</p>
+<p>mini-css-extract-plugin（生成 css 文件）</p>
+<h2 id="vite"><a href="#vite" class="headerlink" title="vite"></a>vite</h2><h3 id="依赖预构建"><a href="#依赖预构建" class="headerlink" title="依赖预构建"></a>依赖预构建</h3><p>第三方模块会进行依赖预构建</p>
+<p>解决的问题：</p>
+<p>不同的第三方包会有不同的导出格式</p>
+<p>对路径的处理上可以直接使用.vite/deps, 方便路径重写</p>
+<p>叫做网络多包传输的性能问题(也是原生 esmodule 规范不敢支持 node_modules 的原因之一), 有了依赖预构建以后无论他有多少的额外 export 和 import, vite 都会尽可能的将他们进行集成最后只生成一个或者几个模块</p>
+<h3 id="开发阶段"><a href="#开发阶段" class="headerlink" title="开发阶段"></a>开发阶段</h3><p>es build 打包进行依赖预构建,而且还会进行缓存,es build 打包速度快</p>
+<h3 id="打包阶段"><a href="#打包阶段" class="headerlink" title="打包阶段"></a>打包阶段</h3><p>rollup 打包</p>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><pre><code class="vue">vue(), VueSetupExtend(), AutoImport(&#123; resolvers: [ElementPlusResolver()] &#125;),
+Components(&#123; resolvers: [ ElementPlusResolver(&#123; importStyle: &quot;sass&quot;, &#125;),
+IconsResolver(&#123; prefix: &quot;icon&quot;, alias: &#123; antd: &quot;ant-design&quot;, // iconify
+图标集合名称过长可设置别名 https://icon-sets.iconify.design/ant-design/ ven:
+&quot;ven-icon&quot; &#125;, customCollections: [&quot;ven-icon&quot;], //
+使用自定义本地图标需要定义集合名称 &#125;) ] &#125;),
+</code></pre>
+<h2 id="优化问题"><a href="#优化问题" class="headerlink" title="优化问题"></a>优化问题</h2><h3 id="构造性能"><a href="#构造性能" class="headerlink" title="构造性能"></a>构造性能</h3><p>webpack</p>
+<p>1.设置不需要解析的模块</p>
+<p>2.cache-loader 缓存</p>
+<p>3.热更新</p>
+<p>4.开发阶段不计算文件 hash</p>
+<h3 id="传输性能"><a href="#传输性能" class="headerlink" title="传输性能"></a>传输性能</h3><p>分包（split-chunk）</p>
+<p>tree-shaking</p>
+<p>terser 代码压缩</p>
+<p>gzip 压缩</p>
+<p>cdn</p>
+<p>懒加载</p>
+<p>NDS 解析优化</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>webpack scope hoisting</p>
+<p>webpack 内置优化，减少执行上下文，合并函数</p>
+<p>webpack-bundle-analyzer</p>
+<p>分析打包体积</p>
+<p>speed-measure-webpack-plugin</p>
+<p>分析打包耗时</p>
+<p>rollup-plugin-visualizer</p>
+<p>分析打包体积</p>
+<p>rollup-plugin-visualizer</p>
+<p>用来分析各文件的编译结果</p>
+<h2 id="项目难点亮点"><a href="#项目难点亮点" class="headerlink" title="项目难点亮点"></a>项目难点亮点</h2><h3 id="请求库"><a href="#请求库" class="headerlink" title="请求库"></a>请求库</h3><p>之前对 lib 库参与过封装请求，这里面还是相对复杂的，我们公司希望能有一个通用库，对一些重复请求，请求缓存，有些串行等进行封装，同样也是给大文件上传打下了很好的基础。这个库分为三层，一层是 base 层，里面会注册一些发送前和得到请求后的钩子，会注册一些权鉴的 token 携带，会对请求的地址和超时时间进行封装，中间有 core 层然后可以对串行请求，重复请求，缓存请求进行操作。最上层就是业务请求层，由于请求的接口很多，很多都是重复代码，于是我写了一个脚本，在 api fox 里面先把接口的参数是否缓存之类的全部定义好，然后导出成 json 格式，然后根据 json 格式去生成代码，当然有些代码可能还需要再次修改，也可以进行打补丁。当然中间由于缓存的地方很多，于是可以运用依赖倒置原则由上层来决定存储位置</p>
+<h3 id="大文件上传"><a href="#大文件上传" class="headerlink" title="大文件上传"></a>大文件上传</h3><p>把大文件分片上传需要有各种各样的协议，创建文件的协议，服务器给一个 token 标识，hash 校验协议，如果没有这个分片再发送，上传文件碎片协议，最后碎片上次完毕合并协议。中间用到了发布订阅模式，用来监控上传的进度，中间还用到了并发请求控制。</p>
+<h3 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h3><p>将 views 下的所有 vue 文件生成路由，当然需要补充 meta 数据，其他的依靠 import.meta.glob 读到所有路径和组件，然后还有嵌套路由，需要一级一级展开。其他还有一些细节，比如有些 vue 文件不需要生成路由，有一些层级嵌套等。这样的好处是不用写一个文件就重复些路由了。同时右边菜单运用 el-menu 同时递归有子路由的地方，这样就可以要有的页面的时候只需要写 vue 即可</p>
+<h3 id="封装动态表单"><a href="#封装动态表单" class="headerlink" title="封装动态表单"></a>封装动态表单</h3><p>就是表单项之间是有关联的，上一项的选择会决定下一项如何去显示</p>
+<p>思路：把一个表单项就看成是一个对象，对象里面就是表单的配置，然后把这一个个对象形成一个链表结构，对象里面加一个 next(当前选择，之前的选择)函数，调用得到下一项是什么。</p>
+<p>然后当在页面中选择一项后，就会自动调用 next，next 函数返回的是一个组件</p>
+<h3 id="权限控制指令"><a href="#权限控制指令" class="headerlink" title="权限控制指令"></a>权限控制指令</h3><pre><code class="vue">app.directive(&#39;permiss&#39;, &#123; mounted(el, binding) &#123; if
+(!permiss.key.includes(String(binding.value))) &#123; el[&#39;hidden&#39;] = true; &#125; &#125;, &#125;);
+</code></pre>
+<p>后台系统有权限控制，于是封装了指令，用在 el-menu 上</p>
+<h3 id="resize-指令"><a href="#resize-指令" class="headerlink" title="resize 指令"></a>resize 指令</h3><p>将监听的 dom 放入 weakMap，当后面尺寸变化的时候执行传进来的函数</p>
+<pre><code class="vue">const map = new WeakMap(); const ob = new ResizeObserver((entries)=&gt;&#123; for(const
+entry of entries)&#123; const handler = map.get(entry.target); handler &amp;&amp;
+handler(entry.contentRect) &#125; //dom尺寸发生变化后，运行这里面的函数 &#125;) export
+default&#123; mounted(el,binding)&#123; ob.observe(el) map.set(el,binding.value) &#125;,
+unmounted(el)&#123; ob.unobserve(el) &#125; &#125;
+</code></pre>
+<h3 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h3><p>1.判断视口</p>
+<p>2.Intersectionobserver</p>
+<p>封装方法如上</p>
+<h3 id="白屏优化"><a href="#白屏优化" class="headerlink" title="白屏优化"></a>白屏优化</h3><p>首页元素太多</p>
+<p>思路：</p>
+<p>一开始只渲染用户看得见的部分</p>
+<p>第一帧渲染第一个组件，第二帧渲染第二个组件</p>
+<p>每执行一帧，count 的数字就会增加，一旦 count 的数字大于传进来的数字就说明你可以加载了</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;comp1 v-if=&quot;defer(1)&quot;&gt;&lt;/comp1&gt;
+  &lt;comp2 v-if=&quot;defer(2)&quot;&gt;&lt;/comp2&gt;
+&lt;/template&gt;
+
+defer()&#123; const count = ref(0); function update()&#123; count.value++;
+requestAnimationFrame(update); &#125; update(); return function(n)&#123; return
+count.value &gt;= n; &#125; &#125;
+</code></pre>
+<h3 id="虚拟滚动（长列表优化）"><a href="#虚拟滚动（长列表优化）" class="headerlink" title="虚拟滚动（长列表优化）"></a>虚拟滚动（长列表优化）</h3><p>有一些后端里面，渲染的下拉项特别多，非常卡顿，就使用了虚拟滚动</p>
+<p>如果有白屏问题可以增加缓冲区，多加载一些数据</p>
+<pre><code class="vue">&lt;!-- 可视区域容器 --&gt;
+&lt;div class=&quot;infinite-list-container&quot;&gt;
+
+  &lt;!-- 这是容器里面的占位，高度是总列表高度，用于形成滚动条 --&gt;
+  &lt;div class=&quot;infinite-list-phantom&quot;&gt;&lt;/div&gt;
+
+  &lt;!-- 列表项渲染区域 --&gt;
+  &lt;div class=&quot;infinite-list&quot;&gt;
+    &lt;!-- item-1 --&gt;
+    &lt;!-- item-2 --&gt;
+    &lt;!-- ...... --&gt;
+    &lt;!-- item-n --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>组件接受参数</p>
+<p>1.列表所有的元素</p>
+<p>2.每个元素的高度</p>
+<p>提供一个插槽 item 给予外面如何展示这个元素</p>
+<p>内部其实是一个绝对定位</p>
+<p>根据监听滚动条来生成的一个只有几个元素的列表，看上去是在滚动，其实只有几个元素</p>
+<p>具体原理就是根据滚动条现在的位置来确定展示哪些数据</p>
+<h3 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h3><p>我们那个软件采用的是 electron,然后后端先向阿里云请求模板数据(流)</p>
+<pre><code class="vue">const &#123; data, headers &#125; = await axios.get(url, &#123; headers: &#123; &#39;Connection&#39;:
+&#39;keep-alive&#39;, &#125;, responseType: &#39;stream&#39;, timeout: 60000, &#125;)
+</code></pre>
+<p>然后 pipe 一点一点保存到本地</p>
+<pre><code class="vue">data.on(&#39;data&#39;, (chunk) =&gt; &#123; curSize += chunk.length; if (Date.now() -
+lastUpdateTime &gt; 100) &#123; onDownloadProgress &amp;&amp; onDownloadProgress(curSize /
+totalLength); lastUpdateTime = Date.now(); &#125; &#125;) .pipe(writer)
+</code></pre>
+<p>通过 track 和 emit 交换当前的下载进度</p>
+<pre><code class="vue">const socket = await getSocket(); socket.on(&quot;connect&quot;, () =&gt; &#123;
+socket.on(&quot;progress&quot;, (data) =&gt; &#123; progress.value = data * 100; &#125;);
+socket.on(&quot;downloaded&quot;, (projectMeta: ProjectMeta) =&gt; &#123; progress.value = 100;
+emit(&quot;created&quot;,projectMeta) emit(&quot;update:modelValue&quot;,false); &#125;, 320) &#125;);
+track(&quot;create-project&quot;, &#123;templateId: themeMd5&#125;); &#125;);
+</code></pre>
+<h3 id="组件透传"><a href="#组件透传" class="headerlink" title="组件透传"></a>组件透传</h3><p>二次封装往往只改动一部分内容</p>
+<p>1.透传属性和事件 v-bind=attrs</p>
+<p>2.透传插槽</p>
+<pre><code class="vue">import &#123; useSlots &#125; from &#39;vue&#39;;
+</code></pre>
+<p>3.透传 ref</p>
+<p>把内部组件 ref 里面的方法提到自己的这个组件，循环遍历，暴露</p>
+<h3 id="右键菜单封装"><a href="#右键菜单封装" class="headerlink" title="右键菜单封装"></a>右键菜单封装</h3><p>1.右键后调出的位置计算</p>
+<p>通过<strong>鼠标的位置</strong>,<strong>响应式视口的大小,菜单的大小</strong>决定调出框的位置</p>
+<blockquote>
+<p>要用到一个方法对监控某个 dom 的尺寸变化</p>
+</blockquote>
+<p>2.弹出的框必须要放到元素的最外部，通过<Telport>，否则定位不一定准确</p>
+<p>3.组件的设计，应该是类似插槽方式，内容放入组件的内部，同时传递选中事件和菜单</p>
+<p>4.右键事件弹出（contextMenu 事件），阻止冒泡，阻止默认事件</p>
+<p>5.卸载组件 取消监听，右键其他区域隐藏</p>
+<p>6.动画，要计算高度</p>
+<h3 id="css-动效"><a href="#css-动效" class="headerlink" title="css 动效"></a>css 动效</h3><p>轮播图</p>
+<p>全屏视频</p>
+<p>视差滚动</p>
+<h3 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h3><p>利用 sass 混合</p>
+<pre><code class="vue">.header&#123; width:100%; @inclue reposeTo(&#39;phone&#39;)&#123; height:100px; &#125; @inclue
+reposeTo(&#39;pad&#39;)&#123; height:200px; &#125; &#125; @mixin reposeTo($name)&#123; if($name === &#39;phone)&#123;
+@media(min-with:320px) and (max-width:400px)&#123; @content &#125; &#125; &#125;
+</code></pre>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3>
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

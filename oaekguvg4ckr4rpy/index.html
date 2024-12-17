@@ -1,0 +1,672 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>DOM | 后知后觉的个人主页</title>
+        <meta name="author" content="知乐" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <link rel="icon" href="/images/avatar.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div class="desktop-menu">
+        <a class="title" href="/">
+            <span>后知后觉的个人主页</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文档中心</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;后知后觉的个人主页</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="showMenuItems">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">文档中心</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+
+            <transition name="into">
+            <div id="main" v-show="!loading">
+                <div class="article">
+    <div>
+        <h1>DOM</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/2
+        </span>
+        
+        
+    </div>
+
+    <div class="content" v-pre>
+        <h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p>DOM 是一个对象，它对应到 HTML 中的节点</p>
+<p><img src="1693638223423-7475ac44-f759-448f-a068-676d0d068eac.png"></p>
+<h3 id="获取-dom"><a href="#获取-dom" class="headerlink" title="获取 dom"></a>获取 dom</h3><table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>document.getElementById()</td>
+<td>根据元素 id 获取 dom</td>
+<td>得到单个 dom</td>
+</tr>
+<tr>
+<td>document.getElementsByTagName() dom.getElementsByTagName()</td>
+<td>根据元素名称获取 dom</td>
+<td>得到 dom 的伪数组</td>
+</tr>
+<tr>
+<td>document.getElementsByClassName()</td>
+<td>根据元素类样式获取 dom</td>
+<td>得到 dom 的伪数组</td>
+</tr>
+<tr>
+<td>document.querySelector()</td>
+<td>根据 CSS 选择器获取 dom</td>
+<td>得到第一个匹配的 dom</td>
+</tr>
+<tr>
+<td>document.querySelectorAll()</td>
+<td>根据 CSS 选择器获取 dom</td>
+<td>得到所有匹配的 dom 伪数组</td>
+</tr>
+<tr>
+<td>document.documentElement</td>
+<td>获取 html 元素</td>
+<td></td>
+</tr>
+<tr>
+<td>document.body</td>
+<td>获取 body</td>
+<td></td>
+</tr>
+<tr>
+<td>document.head</td>
+<td>获取 head</td>
+<td></td>
+</tr>
+<tr>
+<td>dom.children</td>
+<td>获取 dom 的子元素</td>
+<td>得到 dom 的伪数组</td>
+</tr>
+<tr>
+<td>dom.childNodes</td>
+<td>获取 dom 的子节点</td>
+<td>得到 dom 节点的伪数组</td>
+</tr>
+<tr>
+<td>dom.previousElementSibling</td>
+<td>得到 dom 前一个兄弟元素</td>
+<td></td>
+</tr>
+<tr>
+<td>dom.nextElementSibling</td>
+<td>得到 dom 后一个兄弟元素</td>
+<td></td>
+</tr>
+<tr>
+<td>dom.parentElement</td>
+<td>得到 dom 的父元素</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="创建-dom"><a href="#创建-dom" class="headerlink" title="创建 dom"></a>创建 dom</h3><table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>document.createElement()</td>
+<td>创建一个 dom 并返回</td>
+<td>传入元素名称</td>
+</tr>
+</tbody></table>
+<h3 id="更改-dom-结构"><a href="#更改-dom-结构" class="headerlink" title="更改 dom 结构"></a>更改 dom 结构</h3><p>这里是指更改文档树（DOM 树）</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dom.remove()</td>
+<td>从文档树中删除 dom</td>
+<td>不是删除对象</td>
+</tr>
+<tr>
+<td>dom.removeChild()</td>
+<td>删除 dom 的某个子节点</td>
+<td>传入 dom 对象</td>
+</tr>
+<tr>
+<td>dom.insertBefore()</td>
+<td>在 dom 的子节点中，添加一个新节点到另一个节点之前</td>
+<td></td>
+</tr>
+<tr>
+<td>dom.appendChild()</td>
+<td>添加一个新节点到 dom 的子节点末尾</td>
+<td>传入 dom 对象</td>
+</tr>
+</tbody></table>
+<h3 id="dom-属性"><a href="#dom-属性" class="headerlink" title="dom 属性"></a>dom 属性</h3><p>HTML 元素属性有两种：</p>
+<ul>
+<li>标准属性：HTML 元素本身拥有的属性，例如：<ul>
+<li>a 元素的 href、title</li>
+<li>input 的 value</li>
+<li>img 的 src</li>
+<li>……</li>
+</ul>
+</li>
+<li>自定义属性：HTML 元素标准中未定义的属性</li>
+</ul>
+<p><strong>所有标准属性均可通过 <strong><code>**dom.属性名**</code></strong> 得到，其中：</strong></p>
+<ul>
+<li>布尔属性会被自动转换为 boolean</li>
+<li>路径类的属性会被转换为绝对路径</li>
+<li>标准属性始终都是存在的，不管你是否有在元素中属性该属性</li>
+<li>class 由于和关键字重名，因此需要使用 className</li>
+</ul>
+<p><strong>所有的自定义属性均可通过下面的方式操作：</strong></p>
+<ul>
+<li><code>dom.setAttribute(name, value)</code>，设置属性键值对</li>
+<li><code>dom.getAttribute(name)</code>，获取属性值</li>
+</ul>
+<p>自定义属性和元素源码书写是对应的，可以尝试获取 a 元素的 href 属性对比标准属性，看看有什么不同。</p>
+<h3 id="dom-内容"><a href="#dom-内容" class="headerlink" title="dom 内容"></a>dom 内容</h3><table>
+<thead>
+<tr>
+<th>API</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dom.innerText</td>
+<td>获取或设置元素文本内容</td>
+<td>设置时会自动进行 HTML 实体编码</td>
+</tr>
+<tr>
+<td>dom.innerHTML</td>
+<td>获取或设置元素的 HTML 内容</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="dom-样式"><a href="#dom-样式" class="headerlink" title="dom 样式"></a>dom 样式</h3><p>在 JS 中，有两种样式：</p>
+<ul>
+<li>内联样式：元素的 style 属性中书写的样式</li>
+<li>计算样式（最终样式）：元素最终计算出来的样式</li>
+</ul>
+<p><strong>JS 可以获取内联样式和计算样式，但只能设置内联样式</strong></p>
+<p>下面罗列了样式的常见操作：</p>
+<ul>
+<li><code>dom.style</code>：获取元素的内联样式，得到样式对象<ul>
+<li>对象中的所有样式属性均可以被赋值，赋值后即可应用样式到元素的 style 中</li>
+</ul>
+</li>
+<li><code>window.getComputedStyle(dom)</code>：获取元素的计算样式，得到一个样式对象<ul>
+<li>该样式对象中的属性是只读的，无法被重新赋值</li>
+</ul>
+</li>
+</ul>
+<p>关于<strong>样式对象</strong>，注意：</p>
+<ul>
+<li>当给样式赋值为空字符串时，相当于删除内联样式</li>
+<li>当给样式的赋值不合法时，赋值语句无效，不会报错</li>
+<li>CSS 的短横线命名法，在属性名中表现为驼峰命名法</li>
+</ul>
+<h3 id="监听-dom-事件"><a href="#监听-dom-事件" class="headerlink" title="监听 dom 事件"></a>监听 dom 事件</h3><p>监听事件可以描述为一句话：</p>
+<p><strong>某个 DOM</strong>发生了<strong>某件事</strong>之后，我需要做<strong>某些处理</strong></p>
+<ul>
+<li>某个 DOM：监听谁？</li>
+<li>某件事（事件类型）：它发生了什么？</li>
+<li>某些处理（处理函数）：我要做什么？</li>
+</ul>
+<p>下面是一段事件监听代码：</p>
+<pre><code class="javascript">// 为dom注册点击事件，当被点击时，自动运行事件处理函数
+dom.onclick = function () &#123;
+  console.log(&quot;dom 被点击了&quot;);
+&#125;;
+</code></pre>
+<h4 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h4><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Events">https://developer.mozilla.org/zh-CN/docs/Web/Events</a></p>
+<h5 id="表单类事件"><a href="#表单类事件" class="headerlink" title="表单类事件"></a>表单类事件</h5><table>
+<thead>
+<tr>
+<th>事件名称</th>
+<th>触发时机</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>submit</td>
+<td>表单被提交时触发</td>
+<td>注册到 form 元素上</td>
+</tr>
+<tr>
+<td>input</td>
+<td>文本框改变后立即出发</td>
+<td>注册到 input、textarea 上</td>
+</tr>
+<tr>
+<td>change</td>
+<td>文本框改变后、失去焦点时触发 下拉列表、多选框、单选框改变后立即触发</td>
+<td>注册到 input、select、textarea 上</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>表单被重置时触发</td>
+<td>注册到 form 元素上</td>
+</tr>
+<tr>
+<td>focus</td>
+<td>元素聚焦时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>blur</td>
+<td>元素失去焦点时触发</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="鼠标类事件"><a href="#鼠标类事件" class="headerlink" title="鼠标类事件"></a>鼠标类事件</h5><table>
+<thead>
+<tr>
+<th>事件名称</th>
+<th>触发时机</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>click</td>
+<td>鼠标按下抬起后触发</td>
+<td></td>
+</tr>
+<tr>
+<td>contextmenu</td>
+<td>右键菜单显示前触发</td>
+<td></td>
+</tr>
+<tr>
+<td>mousedown</td>
+<td>鼠标按下时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>mouseup</td>
+<td>鼠标抬起时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>mousemove</td>
+<td>鼠标在元素上移动时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>mouseenter</td>
+<td>鼠标进入元素时触发（不冒泡）</td>
+<td></td>
+</tr>
+<tr>
+<td>mouseleave</td>
+<td>鼠标离开元素时触发（不冒泡）</td>
+<td></td>
+</tr>
+<tr>
+<td>mouseover</td>
+<td>鼠标进入元素时触发（冒泡）</td>
+<td></td>
+</tr>
+<tr>
+<td>mouseout</td>
+<td>鼠标离开元素时触发（冒泡）</td>
+<td></td>
+</tr>
+<tr>
+<td>wheel</td>
+<td>鼠标滚轮滚动时触发</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h5><table>
+<thead>
+<tr>
+<th>事件名称</th>
+<th>触发时机</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>keydown</td>
+<td>某个键被按下时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>keyup</td>
+<td>某个键被抬起时触发</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="注册事件"><a href="#注册事件" class="headerlink" title="注册事件"></a>注册事件</h4><p>JS 提供了三种方式注册事件</p>
+<p>方式 1：将事件注册写到元素上，这种方式基本被弃用</p>
+<pre><code class="html">&lt;button onclick=&quot;js代码&quot;&gt;按钮&lt;/button&gt;
+</code></pre>
+<p>方式 2：使用 dom 属性注册事件</p>
+<p>属性名为<code>on+事件类型</code></p>
+<pre><code class="javascript">// 监听事件
+dom.onclick = function () &#123;
+  // 处理函数
+&#125;;
+// 移除监听事件
+dom.onclick = null;
+</code></pre>
+<p>这种方式的特点是：</p>
+<ul>
+<li>优点：易于监听、覆盖、移除</li>
+<li>缺点：只能注册一个处理函数</li>
+<li>缺点：某些事件不支持用这种方式注册</li>
+</ul>
+<p>方式 3：使用 addEventListener 方法注册事件</p>
+<pre><code class="javascript">dom.addEventListener(&quot;click&quot;, function () &#123;
+  // 处理函数1
+&#125;);
+dom.addEventListener(&quot;click&quot;, function () &#123;
+  // 处理函数2
+&#125;);
+</code></pre>
+<p>这是最完美的事件注册方式，如果要移除用这种方式注册的事件，需要改写代码</p>
+<pre><code class="javascript">function handler1() &#123;
+  // 处理函数1
+&#125;
+function handler2() &#123;
+  // 处理函数2
+&#125;
+
+
+//这里handler1不能加括号addEventListener这个方法会运行handler1的返回结果
+dom.addEventListener(&#39;click&#39;, handler1);
+dom.addEventListener(&#39;click&#39;, handler2，);
+
+dom.removeEventListener(&#39;click&#39;, handler1); // 移除监听函数1
+</code></pre>
+<p>第三个参数</p>
+<p><font style="color:rgb(27, 27, 27);">capture：</font></p>
+<p><font style="color:rgba(0, 0, 0, 0.85);">true:捕获阶段</font></p>
+<p><font style="color:rgba(0, 0, 0, 0.85);">false:冒泡阶段(默认)</font></p>
+<p><font style="color:rgba(0, 0, 0, 0.85);"></font></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#once"><font style="color:rgb(27, 27, 27);">once</font></a><font style="color:rgb(27, 27, 27);">:</font></p>
+<p><font style="color:rgb(27, 27, 27);">一个布尔值，表示</font><font style="color:rgb(27, 27, 27);"> </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;listener&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> </font><font style="color:rgb(27, 27, 27);">在添加之后最多只调用一次。如果为</font><font style="color:rgb(27, 27, 27);"> </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;true&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">，</font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;listener&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> </font><font style="color:rgb(27, 27, 27);">会在其被调用之后自动移除。</font></p>
+<p><font style="color:rgb(27, 27, 27);"></font></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#passive"><font style="color:rgb(27, 27, 27);">passive</font></a><font style="color:rgb(27, 27, 27);">:</font></p>
+<p><font style="color:rgb(27, 27, 27);">一个布尔值，设置为 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;true&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 时，表示 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;listener&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);"> 永远不会调用 </font><code>&lt;font style=&quot;color:rgb(27, 27, 27);&quot;&gt;preventDefault()&lt;/font&gt;</code><font style="color:rgb(27, 27, 27);">。如果 listener 仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。查看</font><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#%E4%BD%BF%E7%94%A8_passive_%E6%94%B9%E5%96%84%E6%BB%9A%E5%B1%8F%E6%80%A7%E8%83%BD"><font style="color:rgb(27, 27, 27);">使用 passive 改善滚屏性能</font></a><font style="color:rgb(27, 27, 27);">以了解更多。</font></p>
+<h4 id="事件处理函数"><a href="#事件处理函数" class="headerlink" title="事件处理函数"></a>事件处理函数</h4><p>当事件发生时，会自动调用事件处理函数，并向函数传递一个参数，该参数称之为事件对象(event)，里面包含了事件发生的相关信息，比如鼠标位置、键盘按键等等</p>
+<pre><code class="javascript">dom.addEventListener(&quot;click&quot;, function (event) &#123;
+  console.log(event.clientX); //打印鼠标的横坐标
+&#125;);
+
+event.preventDefault(); // 阻止默认事件,例如a标签的跳转行为
+event.stopPropagation(); // 阻止冒泡
+event.stopImmediatePropagation(); // 事件响应优先级：例如同一元素绑定不同事件时，触发a事件不让b事件触发
+event.currentTarget; // 当前绑定事件的元素
+event.target; // 当前被点击的元素
+</code></pre>
+<p>在事件处理函数中，<code>this</code>始终指向注册事件的 dom</p>
+<pre><code class="plain">btn只保存了dom对象的地址
+let btn = dom;
+
+当修改了btn不会改变this的指向
+</code></pre>
+<p><img src="1693708394594-736a2e4f-cbd6-4e14-851f-f7403072eee5.png"></p>
+<h4 id="this-与-event-的区别"><a href="#this-与-event-的区别" class="headerlink" title="this 与 event 的区别"></a>this 与 event 的区别</h4><p>this 是绑定事件的元素，event.target 是触发事件的元素</p>
+<p>this 始终指向注册事件的 dom，事件对象(event)里面包含了事件发生的相关信息（event.clientX 点击的横坐标之类的）</p>
+<h3 id="dom-进阶"><a href="#dom-进阶" class="headerlink" title="dom 进阶"></a>dom 进阶</h3><h4 id="事件默认行为"><a href="#事件默认行为" class="headerlink" title="事件默认行为"></a>事件默认行为</h4><p>某些元素的某些事件，浏览器会有自己的默认行为</p>
+<p>比如：</p>
+<ul>
+<li>a 元素的 click 事件，浏览器会跳转页面</li>
+<li>form 元素的 submit 事件，浏览器会提交表单，最终导致页面刷新</li>
+<li>文本框的 keydown 事件，浏览器会将按键文本显示到文本框中</li>
+<li>……</li>
+</ul>
+<p>如果我们要阻止浏览器的默认行为，就需要在对应时间中加入以下代码：</p>
+<pre><code class="javascript">// 阻止浏览器的默认行为
+e.preventDefault();
+
+// 阻止浏览器的冒泡行为
+e.stopPropagation();
+
+e.target; // 获取事件源（目标阶段的dom）
+</code></pre>
+<h4 id="dom-尺寸和位置"><a href="#dom-尺寸和位置" class="headerlink" title="dom 尺寸和位置"></a>dom 尺寸和位置</h4><p><img src="20211216104505.png"></p>
+<p><img src="20220406223123.png"></p>
+<p><img src="20220213212313.png"></p>
+<p><img src="20211216104405.jpg"></p>
+<blockquote>
+<p>调用<code>dom.scrollTo(x, y)</code>可以设置元素的滚动位置，x 和 y 分别表示 scrollLeft 和 scrollTop</p>
+<p>该方法通用元素回到元素顶部<code>dom.scrollTo(0, 0)</code></p>
+<p>如果要监听元素的滚动，可以监听事件类型：scroll</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect">Element.getBoundingClientRect()</a></p>
+<p><img src="202210151248555.png"></p>
+<blockquote>
+<p>上图中的 top、left、right、bottom 均相对于视口</p>
+</blockquote>
+<h4 id="事件传播机制"><a href="#事件传播机制" class="headerlink" title="事件传播机制"></a>事件传播机制</h4><h5 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h5><p>事件开始时由最具体的元素（文档中嵌套层次最深的那个节点）接收，然后逐级向上传播到较为不具体的节点（文档）</p>
+<pre><code class="markdown">box.onclick = function () &#123;
+box.innerHTML += &#39;div\n&#39;;
+&#125;
+document.body.onclick = function () &#123;
+box.innerHTML += &#39;body\n&#39;;
+&#125;
+document.documentElement.onclick = function () &#123;
+box.innerHTML += &#39;html\n&#39;;
+&#125;
+document.onclick = function () &#123;
+box.innerHTML += &#39;document\n&#39;;
+&#125;
+window.onclick = function () &#123;
+box.innerHTML += &#39;window\n&#39;;
+&#125;
+</code></pre>
+<p>在上面的示例中，我们为 div 以及它的祖先元素绑定了点击事件，由于事件冒泡的存在，当我们点击 div 时，所有祖先元素的点击事件也会被触发。</p>
+<p><img src="1712155780714-d56a4323-d181-45db-8022-b9e49e7c7eb2.png"></p>
+<h5 id="捕获"><a href="#捕获" class="headerlink" title="捕获"></a>捕获</h5><p>事件捕获的思想是不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。</p>
+<p>事件捕获的思想是在事件到达预定目标之前就捕获它</p>
+<p>设置捕获的时候触发点击事件</p>
+<pre><code class="markdown">box.addEventListener(&#39;click&#39;, function () &#123;
+box.innerHTML += &#39;div\n&#39;
+&#125;, true)
+document.body.addEventListener(&#39;click&#39;, function () &#123;
+box.innerHTML += &#39;body\n&#39;;
+&#125;, true);
+document.documentElement.addEventListener(&#39;click&#39;, function () &#123;
+box.innerHTML += &#39;html\n&#39;;
+&#125;, true);
+document.addEventListener(&#39;click&#39;, function () &#123;
+box.innerHTML += &#39;document\n&#39;;
+&#125;, true);
+window.addEventListener(&#39;click&#39;, function () &#123;
+box.innerHTML += &#39;window\n&#39;;
+&#125;, true);
+</code></pre>
+<p><img src="1712155998171-ee69efd3-c0cb-4bee-91d8-eedefd88128e.png"></p>
+<h5 id="标准-DOM-事件流"><a href="#标准-DOM-事件流" class="headerlink" title="标准 DOM 事件流"></a>标准 DOM 事件流</h5><p>DOM 标准采用的是<strong>捕获 + 冒泡</strong>的方式。</p>
+<p>两种事件流都会触发 DOM 的所有对象，从 document 对象开始，也在 document 对象结束。</p>
+<p>换句话说，起点和终点都是 document 对象（很多浏览器可以一直捕获 + 冒泡到 window 对象）</p>
+<p>DOM 事件流示意图：</p>
+<p><img src="20211216105521.jpg"></p>
+<pre><code class="javascript">// 在冒泡阶段触发
+div.onclick = function () &#123;&#125;;
+
+// 在捕获阶段触发事件
+div.addEventListener(&quot;click&quot;, function () &#123;&#125;, true);
+
+// 在冒泡阶段触发事件（默认）
+div.addEventListener(&quot;click&quot;, function () &#123;&#125;, false);
+</code></pre>
+<h4 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h4><p>什么时候用事件委托</p>
+<p>1.子元素东西很多，且效果一致，不用重复去绑定事件</p>
+<p>2.有些东西是动态的，这样就不用动态的时候再去定义事件</p>
+<pre><code class="javascript">&lt;div class=&quot;container&quot;&gt;
+  &lt;button&gt;1&lt;/button&gt;
+  &lt;button&gt;2&lt;/button&gt;
+  &lt;button&gt;3&lt;/button&gt;
+  &lt;button&gt;4&lt;/button&gt;
+  &lt;button&gt;100&lt;/button&gt;
+&lt;/div&gt;;
+
+var container = document.querySelector(&quot;.container&quot;);
+
+container.onclick = function (e) &#123;
+  if (e.target.tagName === &quot;BUTTON&quot;) &#123;
+    console.log(e.target.innerText);
+  &#125;
+&#125;;
+</code></pre>
+<h3 id="拖拽"><a href="#拖拽" class="headerlink" title="拖拽"></a>拖拽</h3><p>使 html 元素可拖拽设置 draggable 属性</p>
+<pre><code class="javascript">//开始拖拽事件
+dom.ondragstart = (e) =&gt; &#123;
+  //这个e.target是你拖拽的那个元素
+  e.target;
+&#125;;
+
+//拖拽进入别的元素事件
+dom.ondragenter = (e) =&gt; &#123;
+  //浏览器有默认行为，拖拽元素放手后回到原来的位置
+  e.preventDefault();
+
+  //这个e.target是你拖拽进入的元素
+  e.target;
+&#125;;
+
+//将拖拽元素拖到可以放入的元素触发(不断触发)
+dom.ondragover = (e) =&gt; &#123;
+  //浏览器有默认行为，拖拽元素放手后回到原来的位置
+  e.preventDefault();
+  e.target; //进入的元素
+&#125;;
+
+//拖拽结束事件
+dom.ondragend = () =&gt; &#123;
+  //浏览器有默认行为，拖拽元素放手后回到原来的位置
+  e.preventDefault();
+&#125;;
+
+//拖拽结束放手触发（必须要目标位置允许拖拽）
+dom.ondrop = (e) =&gt; &#123;
+  e.preventDefault(); //可以取消默认行为
+  e.target; //进入的元素
+&#125;;
+</code></pre>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 后知后觉的个人主页
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;知乐
+        </div>
+    </div>
+</footer>
+
+            </div>
+            </transition>
+            
+            <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+            </transition>
+            
+        </div>
+        <script src='/js/main.js'></script>
+    </body>
+</html>

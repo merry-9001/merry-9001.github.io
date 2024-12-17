@@ -112,7 +112,8 @@
     </div>
 
     <div class="content" v-pre>
-        <h1 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h1><h2 id="查看配置"><a href="#查看配置" class="headerlink" title="查看配置"></a>查看配置</h2><p>npm config list //查看基本配置<br>npm config list -l //查看所有配置</p>
+        <h1 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h1><p>包管理工具只能在 node 环境中使用</p>
+<h1 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h1><h2 id="查看配置"><a href="#查看配置" class="headerlink" title="查看配置"></a>查看配置</h2><p>npm config list //查看基本配置<br>npm config list -l //查看所有配置</p>
 <p>已经配置的设置</p>
 <h2 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h2><p>npm -g 安装</p>
 <h2 id="查看所有全局安装的模块"><a href="#查看所有全局安装的模块" class="headerlink" title="查看所有全局安装的模块"></a>查看所有全局安装的模块</h2><p>npm list –depth=0 -global</p>
@@ -122,9 +123,10 @@
 <h1 id="dependencies-和-devDependencies"><a href="#dependencies-和-devDependencies" class="headerlink" title="dependencies 和 devDependencies"></a>dependencies 和 devDependencies</h1><p>只要是项目中用到的依赖（且安装到 node_modules 中），不管这个依赖是放在 devDependencies 还是放在 dependencies ，都会被打包工具解析、构建，最后都打进 dist 产物中。<br><strong>生产打包 与 devDependencies 字段无关</strong>。<br>这里提到了 <strong>npm 包</strong> ，敏感的同学可能就猜到 devDependencies 和 dependencies 的真正区别了。其实 devDependencies 这个字段的 <strong>dev</strong> 的真正含义，更多是指 <strong>npm 包</strong> 的开发阶段所需要的依赖。</p>
 <h1 id="npm-与-yarn-与-pnpm"><a href="#npm-与-yarn-与-pnpm" class="headerlink" title="npm 与 yarn 与 pnpm"></a>npm 与 yarn 与 pnpm</h1><p>npm 的 node_modules 是嵌套的。<br>多个包之间难免会有公共的依赖，这样嵌套的话，同样的依赖会复制很多次，会占据比较大的磁盘空间。<br>这个还不是最大的问题，致命问题是 windows 的文件路径最长是 260 多个字符，这样嵌套是会超过 windows 路径的长度限制的。</p>
 <p>yarn 全部铺平在了一层，展开下面的包大部分是没有二层 node_modules 的<br>当然也有的包还是有 node_modules 的,因为一个包是可能有多个版本的，提升只能提升一个，所以后面再遇到相同包的不同版本，依然还是用嵌套的方式。(不同版本的包，但名字是一样的，只能提升一个，剩下的还是嵌套在里面)<br>yarn 还实现了 yarn.lock 来锁定依赖版本的功能，不过这个 npm 也实现了。</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>最主要的一个问题是幽灵依赖，也就是你明明没有声明在 dependencies 里的依赖，但在代码里却可以 require 进来。<br>这个也很容易理解，因为都铺平了嘛，那依赖的依赖也是可以找到的。<br>但是这样是有隐患的，因为没有显式依赖，万一有一天别的包不依赖这个包了，那你的代码也就不能跑了，因为你依赖这个包，但是现在不会被安装了。<br>这就是幽灵依赖的问题。<br>而且还有一个问题，就是上面提到的依赖包有多个版本的时候，只会提升一个，那其余版本的包不还是复制了很</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>最主要的一个问题是幽灵依赖，也就是你明明没有声明在 dependencies 里的依赖，但在代码里却可以 require 进来。<br>这个也很容易理解，因为都铺平了嘛，那依赖的依赖也是可以找到的。<br>但是这样是有隐患的，因为没有显式依赖，万一有一天别的包不依赖这个包了，那你的代码也就不能跑了，因为你依赖这个包，但是现在不会被安装了。<br>这就是幽灵依赖的问题。<br>而且还有一个问题，就是上面提到的依赖包有多个版本的时候，只会提升一个，那其余版本的包不还是复制了很多份</p>
 <p>pnpm<br>如果你用到了某依赖项的不同版本,只会将不同版本间有差异的文件添加到仓库。例如,如果某个包有 100 个文件,而它的新版本只改变了其中 1 个文件。那么 pnpm update 时只会向存储中心额外添加 1 个新文件,而不会因为仅仅一个文件的改变复制整新版本包的内容。<br>所有文件都会存储在硬盘上的某一位置,当软件包被被安装时,包里的文件会硬链接到这一位置,而不会占用额外的磁盘空间,这允许你跨项目地共享同一版本的依赖。</p>
 <p>包是从全局 store 硬连接到虚拟 store 的，这里的虚拟 store 就是 node_modules/.pnpm。<br>我们打开 node_modules 看一下：<br><img src="1679134522300-6f4a8586-6f4b-437c-b7b5-1e020ead6fed.webp"><br>确实不是扁平化的了，依赖了 express，那 node_modules 下就只有 express，没有幽灵依赖。<br>展开 .pnpm 看一下：<br><img src="1679134522281-74b10d53-be44-49bc-96d1-11913e813a35.webp"><br>所有的依赖都在这里铺平了，都是从全局 store 硬连接过来的，然后包和包之间的依赖关系是通过软链接组织的。<br>比如 .pnpm 下的 expresss，这些都是软链接，<br><img src="1679134522286-c916d3ec-5764-496f-b3da-74be24f5e940.webp"><br>也就是说，所有的依赖都是从全局 store 硬连接到了 node_modules/.pnpm 下，然后之间通过软链接来相互依赖。<br>官方给了一张原理图，配合着看一下就明白了：<br><img src="1679134522304-2018ce96-06ef-4a2c-a066-dd475af573b7.webp"><br>问题<br>我装一个包，他的依赖全部装到全局了,那如果项目整个删除了，他的依赖还在全局目录中,执行 pnpm store prune 删除不再被引用的包</p>
+<p>我的全局安装的 yarn 为啥能运行<br><img src="1697700603826-7a874c2c-827b-4eff-ab0c-e3f19313c6b5.png#width=560" alt="image.png"><br>yarn 不会跟着 node 改变而清空</p>
 
     </div>
     
@@ -134,7 +136,7 @@
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

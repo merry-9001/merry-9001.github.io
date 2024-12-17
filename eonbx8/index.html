@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>异步与同步 | 后知后觉的个人主页</title>
+        <title>异步处理（Promise） | 后知后觉的个人主页</title>
         <meta name="author" content="知乐" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -98,7 +98,7 @@
             <div id="main" v-show="!loading">
                 <div class="article">
     <div>
-        <h1>异步与同步</h1>
+        <h1>异步处理（Promise）</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -112,14 +112,7 @@
     </div>
 
     <div class="content" v-pre>
-        <h1 id="javascript-是一个单线程语言"><a href="#javascript-是一个单线程语言" class="headerlink" title="javascript 是一个单线程语言"></a>javascript 是一个单线程语言</h1><p>javascript 中的所有任务被分为同步任务和异步任务两大类<br>事件循环机制（Event Loop）是 javascript 的执行机制<br>异步任务分为宏任务和微任务</p>
-<h2 id="常见宏任务与微任务"><a href="#常见宏任务与微任务" class="headerlink" title="常见宏任务与微任务"></a>常见宏任务与微任务</h2><ul>
-<li>宏任务一般是：包括整体代码 script，setTimeout，setInterval、setImmediate。</li>
-<li>微任务：原生 Promise(有些实现的 promise 将 then 方法放到了宏任务中)、process.nextTick、Object.observe(已废弃)、 MutationObserver 记住就行了。</li>
-</ul>
-<h2 id="事件循环机制"><a href="#事件循环机制" class="headerlink" title="事件循环机制"></a>事件循环机制</h2><p>同步和异步任务分别进入不同的执行”场所”，同步的进入主线程，异步的进入 Event Table 并注册函数<br>当指定的事情完成时，Event Table 会将这个函数移入 Event Queue。<br>主线程内的任务执行完毕为空，会去 Event Queue 读取对应的函数，进入主线程执行。<br>我们不禁要问了，那怎么知道主线程执行栈为空呢？js 引擎存在 monitoring process 进程，会持续不断的检查主线程执行栈是否为空，一旦为空，就会去 Event Queue 那里检查是否有等待被调用的函数。</p>
-<p>当有异步任务被压入异步任务队列时候，javascript 会将这些异步任务分为宏任务和微任务两个新的队列。然后，在所有同步任务执行完毕之后，异步任务会<em>优先执行所有已经存在任务队列中的微任务</em>。在所有的微任务执行完毕之后，再去宏任务队列中执行<em>一个</em>（注意是一个）宏任务，执行完一个宏任务之后会再去微任务队列中检查是否有新的微任务，有则<em>全部执行</em>，再回到宏任务队列执行一个宏任务，以此循环。_这一套流程，就是事件循环_（event loop）<br><img src="1677932509558-253e79a8-eeda-4409-b290-daec36803d34.webp"></p>
-<h2 id="早期异步代码困境"><a href="#早期异步代码困境" class="headerlink" title="早期异步代码困境"></a>早期异步代码困境</h2><ul>
+        <h2 id="回调处理异步"><a href="#回调处理异步" class="headerlink" title="回调处理异步"></a>回调处理异步</h2><ul>
 <li>众所周知，js 是单线程的，耗时操作都是交给浏览器来处理，等时间到了从队列中取出执行，设计到事件循环的概念，笔者也分享过，可以看以下，理解了可以更好的理解 promise。</li>
 <li>我以一个需求为切入点，我模拟网络请求(异步操作)<ul>
 <li>如果网络请求成功了，你告知我成功了</li>
@@ -127,7 +120,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="1-1-大聪明做法"><a href="#1-1-大聪明做法" class="headerlink" title="1.1 大聪明做法"></a>1.1 大聪明做法</h3><ul>
+<h3 id="大聪明做法"><a href="#大聪明做法" class="headerlink" title="大聪明做法"></a>大聪明做法</h3><ul>
 <li>首先你要理解 js 代码的执行顺序，而不是是想当然的，代码其实并不是按照你书写的顺序执行的。</li>
 <li>那么为什么是 undefined 呢？<ul>
 <li>首先当我执行 requestData 函数，开始执行函数。遇到了异步操作不会阻塞后面代码执行的，因为 js 是单线程的，所以你写的 return 成功或者失败并没有返回给 requestData，那我这个函数中，抛开异步操作，里面并没有返回值，所以值为 undefined。</li>
@@ -147,9 +140,10 @@ const result = requestData(&#39;iceweb.io&#39;)
 
 console.log(result) //undefined
 </code></pre>
-<h3 id="2-2-早期正确做法"><a href="#2-2-早期正确做法" class="headerlink" title="2.2 早期正确做法"></a>2.2 早期正确做法</h3><ul>
+<h3 id="早期正确做法"><a href="#早期正确做法" class="headerlink" title="早期正确做法"></a>早期正确做法</h3><ul>
 <li>早期解决方案都是传入两个回调，一个失败的，一个成功的。那很多开发者会问这不是挺好的吗？挺简单的，js 中函数是一等公民，可以传来传去，但是这样太灵活了，没有规范。</li>
 <li>如果使用的是框架，还要阅读一下框架源码，正确失败的传实参的顺序，如果传参顺序错误这样是非常危险的。</li>
+<li>最重要的是会形成回调地狱，非常不方便阅读和调试</li>
 </ul>
 <pre><code>function requestData(url, successCB, failureCB) &#123;
   setTimeout(() =&gt; &#123;
@@ -169,85 +163,169 @@ requestData(&#39;iceweb.io&#39;, (res, data) =&gt; console.log(res, data), rej =
 //url错误，请求失败
 requestData(&#39;icexxx.io&#39;, res =&gt; console.log(res) ,rej =&gt; console.log(rej))
 </code></pre>
-<h1 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h1><p><strong>如果需要获取一个函数中异步操作的结果，则必须通过回调函数来获取</strong></p>
-<pre><code>    function fn(callback) &#123;
-        setTimeout(function() &#123;
-            var data = &#39;hello&#39;
-            callback(data)
-        &#125;, 1000)
-    &#125;
+<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>Promise 是一套专门处理异步场景的规范，它能有效的避免回调地狱的产生，使异步代码更加清晰、简洁、统一<br>这套规范最早诞生于前端社区，规范名称为<a target="_blank" rel="noopener" href="https://promisesaplus.com/">Promise A+</a><br>该规范出现后，立即得到了很多开发者的响应<br>Promise A+ 规定：</p>
+<ol>
+<li> 所有的异步场景，都可以看作是一个异步任务，每个异步任务，在 JS 中应该表现为一个<strong>对象</strong>，该对象称之为<strong>Promise 对象</strong>，也叫做任务对象 <img src="20210618154556.png"></li>
+<li>每个任务对象，都应该有两个阶段、三个状态 <img src="20210618155145.png"><br> 根据常理，它们之间存在以下逻辑：</li>
+</ol>
+<ul>
+<li>任务总是从未决阶段变到已决阶段，无法逆行</li>
+<li>任务总是从挂起状态变到完成或失败状态，无法逆行</li>
+<li>时间不能倒流，历史不可改写，任务一旦完成或失败，状态就固定下来，永远无法改变</li>
+</ul>
+<ol start="3">
+<li><code>挂起-&gt;完成</code>，称之为<code>resolve</code>；<code>挂起-&gt;失败</code>称之为<code>reject</code>。任务完成时，可能有一个相关数据；任务失败时，可能有一个失败原因。<br> <img src="20210618160538.png"></li>
+<li>可以针对任务进行后续处理，针对完成状态的后续处理称之为 onFulfilled，针对失败的后续处理称之为 onRejected<br> <img src="20210618161125.png"></li>
+</ol>
+<h2 id="Promise-API"><a href="#Promise-API" class="headerlink" title="Promise API"></a>Promise API</h2><p>ES6 提供了一套 API，实现了 Promise A+规范<br>基本使用如下：</p>
+<pre><code class="javascript">// 创建一个任务对象，该任务立即进入 pending 状态
+const pro = new Promise((resolve, reject) =&gt; &#123;
+  // 任务的具体执行流程，该函数会立即被执行
+  // 调用 resolve(data)，可将任务变为 fulfilled 状态， data 为需要传递的相关数据
+  // 调用 reject(reason)，可将任务变为 rejected 状态，reason 为需要传递的失败原因
+&#125;);
 
-    fn(function(data) &#123;
-        console.log(data)
-    &#125;)
+pro.then(
+  (data) =&gt; &#123;
+    // onFulfilled 函数，当任务完成后，会自动运行该函数，data为任务完成的相关数据
+  &#125;,
+  (reason) =&gt; &#123;
+    // onRejected 函数，当任务失败后，会自动运行该函数，reason为任务失败的相关原因
+  &#125;
+);
+
+catch是只处理失败，不处理成功
+.catch(onRejected)= .then(null, onRejected)
 </code></pre>
-<p>如果想取到 data 的数据进行处理，就只能进行回调函数，因为定时器是异步的，函数不会等待执行完毕就直接结束了，只有在调用的时候传递一个函数给里面的定时器才行</p>
-<hr>
-<p>1). 你定义的<br>2). 你没有调<br>3). 但最终它执行了(在某个时刻或某个条件下)</p>
-<h1 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h1><p>Promise 的出现，让异步请求的执行更加语义化，它将<strong>异步请求串行</strong>。</p>
-<p>Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。</p>
-<p>所谓 Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。</p>
-<p>Promise 对象有以下两个特点。</p>
-<p>（1）对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：Pending（进行中）、Resolved（已完成，又称 Fulfilled）和 Rejected（已失败）。</p>
-<p>只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。</p>
-<p>（2）一旦状态改变，就不会再变，任何时候都可以得到这个结果。Promise 对象的状态改变，只有两种可能：从 Pending 变为 Resolved 和从 Pending 变为 Rejected。</p>
+<pre><code class="javascript">const pro = new Promise((resolve, reject) =&gt; &#123;
+  resolve(1);
+  //虽然此时promise的状态已经确定，但后续代码还是会执行的
+  console.log(2);
+  //此时promise的状态已经确定，再去修改promise的状态或者数据是无效
+  reject(1);
+&#125;);
+
+pro.then((data) =&gt; &#123;
+  console.log(3);
+&#125;);
+</code></pre>
+<h3 id="链式调用"><a href="#链式调用" class="headerlink" title="链式调用"></a>链式调用</h3><p><img src="20210621103501.png"></p>
+<ol>
+<li> <strong>then 方法必定会返回一个新的 Promise</strong>,可理解为<code>后续处理也是一个任务</code></li>
+<li> 新任务的状态取决于后续处理（因为.then 方法是没有 resolve 和 reject，所以他会有自己的规则）</li>
+</ol>
+<ul>
+<li>若没有相关的后续处理，新任务的状态和前任务一致，数据为前任务的数据</li>
+<li>若有后续处理但还未执行，新任务挂起。</li>
+<li>若后续处理执行了，则根据后续处理的情况确定新任务的状态<ul>
+<li>后续处理执行无错，新任务的状态为完成，数据为后续处理的返回值</li>
+<li>后续处理执行有错，新任务的状态为失败，数据为异常对象</li>
+<li>后续执行后返回的是一个任务对象，新任务的状态和数据与该任务对象一致</li>
+</ul>
+</li>
+</ul>
+<p><strong>若没有相关的后续处理，新任务的状态和前任务一致，数据为前任务的数据</strong><br>前面任务失败了，后面的任务跟着失败（在没有后续处理的情况下）</p>
+<pre><code class="javascript">let p = new Promise((resolve, reject) =&gt; &#123;
+  console.log(1);
+  reject(12);
+&#125;);
+let p2 = p.then(() =&gt; &#123;
+  console.log(&quot;成功了&quot;);
+&#125;);
+setTimeout(() =&gt; &#123;
+  console.log(p2);
+&#125;, 1000);
+</code></pre>
+<p><img src="1696148599885-79405ef0-b2fb-4e14-b4de-19f29f3a7172.png#width=317" alt="image.png"></p>
+<p>前面任务成功了，后面的任务跟着成功（在没有后续处理的情况下）</p>
+<pre><code class="javascript">let p = new Promise((resolve, reject) =&gt; &#123;
+  console.log(1);
+  resolve(12);
+&#125;);
+let p2 = p.catch(() =&gt; &#123;
+  console.log(&quot;成功了&quot;);
+&#125;);
+setTimeout(() =&gt; &#123;
+  console.log(p2);
+&#125;, 1000);
+</code></pre>
+<p><img src="1696148746328-41a8c722-d313-4f93-adec-013261f5d4dd.png#width=375.5" alt="image.png"><br><strong>若有后续处理但还未执行，新任务挂起</strong><br>当前面的任务还没完的时候，后续任务一定是挂起的</p>
+<pre><code class="javascript">let p = new Promise((resolve, reject) =&gt; &#123;
+  console.log(1);
+  setTimeout(() =&gt; &#123;
+    resolve(123);
+  &#125;, 2000);
+&#125;);
+let p2 = p.then(() =&gt; &#123;
+  console.log(&quot;成功了&quot;);
+&#125;);
+setTimeout(() =&gt; &#123;
+  console.log(p2);
+&#125;, 1000);
+</code></pre>
+<p>若后续处理执行了，则根据后续处理的情况确定新任务的状态</p>
+<ul>
+<li>后续处理执行无错，新任务的状态为完成，<strong>数据为后续处理的返回值</strong></li>
+<li>后续处理执行有错，新任务的状态为失败，<strong>数据为异常对象</strong></li>
+<li>后续执行后返回的是一个任务对象，新任务的状态和数据与该任务对象一致</li>
+</ul>
+<pre><code class="html">let p = new Promise((resolve,reject)=&gt;&#123; console.log(1) resolve(123); &#125;) let p2 =
+p.then(
+//后续处理这部分代码就是后续处理，只要你这部分的代码运行没报错就是成功，否则就是失败
+//(这个在描述的是p2的状态)
+//这里return的数据就是p2成功状态后携带的数据，如果是错误会携带错误的对象
+//这里如果处理了但没有设置return返回值的话，那么p2所携带的值就是undefined
+()=&gt;&#123;console.log(&quot;成功了&quot;); return 123&#125; ) let p2 = p.then(
+//后续执行后返回的是一个任务对象，新任务的状态和数据与该任务对象一致,这时候p2的状态完全
+// 取决于这个后续代码新写的这个promise的状态 ()=&gt;&#123;return new
+Promise((resolve,reject)=&gt;&#123;&#125;&#125; ) setTimeout(()=&gt;&#123; console.log(p2) &#125;,1000)
+</code></pre>
+<p>由于链式任务的存在，异步代码拥有了更强的表达力</p>
+<pre><code class="javascript">// 常见任务处理代码
+
+/*
+ * 任务成功后，执行处理1，失败则执行处理2
+ */
+pro.then(处理1).catch(处理2);
+
+/*
+ * 任务成功后，依次执行处理1、处理2
+ */
+pro.then(处理1).then(处理2);
+
+/*
+ * 任务成功后，依次执行处理1、处理2，若任务失败或前面的处理有错，执行处理3
+ */
+pro.then(处理1).then(处理2).catch(处理3);
+</code></pre>
+<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>含义</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Promise.resolve(data)</td>
+<td>直接返回一个完成状态的任务</td>
+<td></td>
+</tr>
+<tr>
+<td>Promise.reject(reason)</td>
+<td>直接返回一个拒绝状态的任务</td>
+<td></td>
+</tr>
+<tr>
+<td>Promise.all(任务数组)</td>
+<td>返回一个任务</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>任务数组全部成功则成功<br>任何一个失败则失败</strong> | 返回的数据是一个数组，数组的每一项就是 promise<br>传递的数据 |<br>| Promise.any(任务数组) | 返回一个任务<br>任务数组任一成功则成功<br>任务全部失败则失败 | 谁先成功就先返回谁的数据，<br>如果全部失败，他会得到一个数组 |<br>| Promise.allSettled(任务数组) | 返回一个任务<br>任务数组全部已决则成功<br>该任务不会失败 | 他会把失败和成功所有数据汇总 |<br>| Promise.race(任务数组) | 返回一个任务<br>任务数组任一已决则已决，状态和其一致 | 只要有一个成功或者失败就结束 |</p>
 <h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><h3 id="promise-的缺点"><a href="#promise-的缺点" class="headerlink" title="promise 的缺点"></a>promise 的缺点</h3><p>1、无法取消 Promise,一旦新建它就会立即执行，无法中途取消。<br>2、如果不设置回调函数，promise 内部抛出的错误，不会反应到外部。<br>3、当处于 pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</p>
-<h3 id="promise-的优点"><a href="#promise-的优点" class="headerlink" title="promise 的优点"></a>promise 的优点</h3><p>1.防止地狱回调<br>2 更好地进行错误捕获<br>多重嵌套 callback 除了会造成上面讲的代码缩进问题，更可怕的是可能会造成无法捕获异常或异常捕获不可控。<br>（1）比如下面代码我们使用 setTimeout 模拟异步操作，在其中抛出了个异常。但由于异步回调中，回调函数的执行栈与原函数分离开，导致外部无法抓住异常。</p>
-<pre><code>function fetch(callback) &#123;
-    setTimeout(() =&gt; &#123;
-        throw Error(&#39;请求失败&#39;)
-    &#125;, 2000)
-&#125;
-try &#123;
-    fetch(() =&gt; &#123;
-        console.log(&#39;请求处理&#39;) // 永远不会执行
-    &#125;)
-&#125; catch (error) &#123;
-    console.log(&#39;触发异常&#39;, error) // 永远不会执行
-&#125;
-</code></pre>
-<p>当 return 一个 Promise 对象的时候，后续的 then 中的 方法的第一个参数会作为 p2 的 resolve</p>
-<ul>
-<li><p>异步和同步</p>
-<ul>
-<li>异步，操作之间没有关系，同时执行多个操作， 代码复杂</li>
-<li>同步，同时只能做一件事，代码简单</li>
-</ul>
-</li>
-<li><p>Promise 对象</p>
-<ul>
-<li>用同步的方式来书写异步代码</li>
-<li>Promise 让异步操作写起来，像在写同步操作的流程，不必一层层地嵌套回调函数</li>
-<li>改善了可读性，对于多层嵌套的回调函数很方便</li>
-<li>充当异步操作与回调函数之间的中介，使得异步操作具备同步操作的接口</li>
-</ul>
-</li>
-<li><p>Promise 也是一个构造函数</p>
-<ul>
-<li>接受一个回调函数 f1 作为参数，f1 里面是异步操作的代码</li>
-<li>返回的 p1 就是一个 Promise 实例</li>
-<li>所有异步任务都返回一个 Promise 实例</li>
-<li>Promise 实例有一个 then 方法，用来指定下一步的回调函数</li>
-</ul>
-</li>
-<li><p>Promise.all(promiseArray)方法</p>
-<ul>
-<li>将多个 Promise 对象实例包装，生成并返回一个新的 Promise 实例</li>
-<li>promise 数组中所有的 promise 实例都变为 resolve 的时候，该方法才会返回</li>
-<li>并将所有结果传递 results 数组中</li>
-<li>promise 数组中任何一个 promise 为 reject 的话，则整个 Promise.all 调用会立即终止，并返回一个 reject 的新的 promise 对象</li>
-</ul>
-</li>
-<li><p>Promise.race([p1, p2, p3])</p>
-<ul>
-<li>Promse.race 就是赛跑的意思</li>
-<li>哪个结果获得的快，就返回那个结果</li>
-<li>不管结果本身是成功状态还是失败状态</li>
-</ul>
-</li>
-</ul>
-<p>Promise.all 和 Promise.race 都是有使用场景的。<br>有些时候我们做一个操作可能得同时需要不同的接口返回的数据，这时我们就可以使用 Promise.all；<br>有时我们比如说有好几个服务器的好几个接口都提供同样的服务，我们不知道哪个接口更快，就可以使用 Promise.race，哪个接口的数据先回来我们就用哪个接口的数据。<br>Promise.race 使用场景：把异步操作和定时器放到一起，如果定时器先触发，认为超时，告知用户</p>
-<h2 id="自己实现-promise-的大体思路"><a href="#自己实现-promise-的大体思路" class="headerlink" title="自己实现 promise 的大体思路"></a>自己实现 promise 的大体思路</h2><ol>
+<h3 id="promise-的优点"><a href="#promise-的优点" class="headerlink" title="promise 的优点"></a>promise 的优点</h3><p>1.防止地狱回调<br>2 更好地进行错误捕获</p>
+<h2 id="手写-promise"><a href="#手写-promise" class="headerlink" title="手写 promise"></a>手写 promise</h2><ol>
 <li>我们要明确我们需要一个异步的操作方法,满足异步回调。所以选择加入 setTimeout 作为实现的基础， 让函数实现延迟触发。</li>
 <li>保持一个原则，控制 promise 改变状态的只有 promise 构造函数里的 reslove 、 reject 函数。</li>
 <li>链式调用的原理， 类似 jQuery，它会在调用方法后， return this. 从而形成链式调用。所以我们采用在调用 then(fn)、 catch(fn) 后 会返回一个新的 promise 对象， 然而 这个 promise 对象 受到 它的上级 promise 对象的状态结果 和 fn 运行结果的控制。</li>
@@ -382,8 +460,122 @@ var p = new JcPromise(function(r, j) &#123;
     console.log(&#39;xxx&#39;, xx + 1)
 &#125;).catch(e =&gt; console.log(e)).then(data =&gt; console.log(data, &#39;end&#39;))
 </code></pre>
-<h2 id="理解-promise"><a href="#理解-promise" class="headerlink" title="理解 promise"></a>理解 promise</h2><p>Promise 概念介绍<br>1、Promise 是一个构造函数,既然是构造函数，那我们就可以 new Promise() 得到一个 Promise 的实例<br>2、在 Promise 上，有两个函数，分别叫做 resolve (成功之后的回调函数) 和 reject (失败之后的回调函数)<br>3、在 Promise 的构造函数 Prototype 属性上，又一个 .then() 方法，也就是说只要是 Promise 构造函数创建的实例，都可以访问到 .then() 方法<br>4、Promise 表示一个异步操作；每当我们 new 一个 Pormise 的实例，这个实例就表示一个具体的异步操作<br>5、既然 Promise 创建的实例是一个异步操作，那么这个异步操作的结果就只能有两种状态<br>5.1、状态一：异步执行成功了 需要在内部调用 成功的额回调函数 resolve 把结果返回给调用者<br>5.2、状态二：异步执行失败了 需要在内部调用失败的回调函数 reject 把结果返回给调用者<br>5.3、由于 Promise 的实例是一个异步操作，所以内部拿到操作结果之后，无法使用 return 把操作结果返回给调用者，只能使用回调函数的形式，来把成功或者失败的结果，返回给调用者。<br>6、我们可以在 new 出来的 Promise 实例上，调用.then() 方法，预先为这个 Promise 异步操作，指定 成功(resolve) 和失败(reject) 回调函数</p>
-<h2 id="promise-细节"><a href="#promise-细节" class="headerlink" title="promise 细节"></a>promise 细节</h2><p>只是 new 了一个对象，并没有调用它，我们传进去的函数就已经执行了<br>所以这个 let p 纯粹是定义一下，这样 then 就可以和 promise 分开了</p>
+<h2 id="promise-实践"><a href="#promise-实践" class="headerlink" title="promise 实践"></a>promise 实践</h2><h4 id="经典题分析-1"><a href="#经典题分析-1" class="headerlink" title="经典题分析 1"></a>经典题分析 1</h4><pre><code class="javascript">// 下面代码的输出结果是什么
+setTimeout(() =&gt; &#123;
+  console.log(1);
+&#125;);
+
+const promise = new Promise((resolve, reject) =&gt; &#123;
+  console.log(2);
+  resolve();
+&#125;);
+
+promise.then(() =&gt; &#123;
+  console.log(3);
+&#125;);
+
+console.log(4);
+</code></pre>
+<p>0 秒后运行 setTimeout，将回调函数放入宏队列,后面得到一个 promise，promise 的状态是 pending,然后输出一个 2,然后将 Promise 的状态改变为 fulfilled,数据是 undefined,然后 promise 的.then 方法跟你说当 promise 的状态完成以后去运行.then 里面的函数，这时候 promise 的状态已经完成，创建一个微队列任务,然后输出 4，执行栈清空，当执行栈清空的时候才会去看宏队列和微队列里面的任务，才会去调用，这时候微队列的优先级会高于宏队列，执行顺序根据优先级来确定。宏队列和微队列什么时候放入任务一定是，当一定条件达到以后，比如计时器时间到了，比如任务完成了，才会将后续任务放入队列之中</p>
+<p>宏队列：fn(setTimeout)<br>微队列 ：fn3(.then)<br>执行栈：一定会先执行<br>2,4,3,1</p>
+<h4 id="经典题分析-2"><a href="#经典题分析-2" class="headerlink" title="经典题分析 2"></a>经典题分析 2</h4><pre><code class="javascript">async function m() &#123;
+  console.log(0);
+  const n = await 1;
+  console.log(n);
+&#125;
+
+(async () =&gt; &#123;
+  await m();
+  console.log(2);
+&#125;)();
+
+console.log(3);
+</code></pre>
+<p>此时会输出 0,3,1,2，因为使用了 await 等于是异步了，等于后面的代码进入了微队列</p>
+<h4 id="经典题分析-3"><a href="#经典题分析-3" class="headerlink" title="经典题分析 3"></a>经典题分析 3</h4><pre><code class="javascript">var a;
+var b = new Promise((resolve, reject) =&gt; &#123;
+  console.log(&quot;promise1&quot;);
+  setTimeout(() =&gt; &#123;
+    resolve();
+  &#125;, 1000);
+&#125;)
+  .then(() =&gt; &#123;
+    console.log(&quot;promise2&quot;);
+  &#125;)
+  .then(() =&gt; &#123;
+    console.log(&quot;promise3&quot;);
+  &#125;)
+  .then(() =&gt; &#123;
+    console.log(&quot;promise4&quot;);
+  &#125;);
+
+a = new Promise(async (resolve, reject) =&gt; &#123;
+  //a的值要等promise里面的函数执行完毕才会赋值，现在只能是undefined
+  console.log(a);
+  await b;
+  console.log(a);
+  console.log(&quot;after1&quot;);
+
+  //虽然这边会循环等待，但js是异步的，不会卡住程序
+  await a;
+  resolve(true);
+  console.log(&quot;after2&quot;);
+&#125;);
+
+console.log(&quot;end&quot;);
+</code></pre>
+<p><img src="1696331327313-a464896f-8f63-4b82-ac4c-d45da6627ab8.png#width=478" alt="image.png"></p>
+<h4 id="经典题分析-4"><a href="#经典题分析-4" class="headerlink" title="经典题分析 4"></a>经典题分析 4</h4><pre><code class="javascript">async function async1() &#123;
+  console.log(&quot;async1 start&quot;);
+  //这句话的返回值以及后续代码的执行是放入.then的微队列，但不表示执行async2()这个函数
+  //是在.then里，这个函数的代码会立马执行
+  await async2();
+  console.log(&quot;async1 end&quot;);
+&#125;
+async function async2() &#123;
+  console.log(&quot;async2&quot;);
+&#125;
+
+console.log(&quot;script start&quot;);
+
+setTimeout(function () &#123;
+  console.log(&quot;setTimeout&quot;);
+&#125;, 0);
+
+async1();
+
+new Promise(function (resolve) &#123;
+  console.log(&quot;promise1&quot;);
+  resolve();
+&#125;).then(function () &#123;
+  console.log(&quot;promise2&quot;);
+&#125;);
+console.log(&quot;script end&quot;);
+</code></pre>
+<p><img src="1696331456304-217a3ba8-25ce-4220-ae85-4b510ba22d88.png#width=212.5" alt="image.png"></p>
+<pre><code class="javascript">// 下面代码的输出结果是什么
+
+const pro = new Promise((resolve, reject) =&gt; &#123;
+  resolve(1);
+&#125;)
+  .then((res) =&gt; &#123;
+    console.log(res);
+    return 2;
+  &#125;)
+  .catch((err) =&gt; &#123;
+    return 3;
+  &#125;)
+  .then((res) =&gt; &#123;
+    console.log(res);
+  &#125;);
+
+setTimeout(() =&gt; &#123;
+  console.log(pro);
+&#125;, 1000);
+
+这个pro会返回最后的一个then方法的调用返回值 promise&lt;fulfilled&gt; undefined
+</code></pre>
+<p>只是 new 了一个对象，并没有调用它，我们传进去的函数就已经执行了<br>所以这个 let p 纯粹是定义一下，这样 then 就可以和 promise 分开了</p>
 <pre><code>    let p = new Promise((resolve, reject)=&gt;&#123;
         setTimeout(()=&gt;&#123;
             console.log(&#39;执行完成Promise&#39;);
@@ -414,7 +606,7 @@ var p = new JcPromise(function(r, j) &#123;
     等价于
     new Promise(resolve =&gt; resolve(&#39;foo&#39;))
 </code></pre>
-<h2 id="promise-队列和循环"><a href="#promise-队列和循环" class="headerlink" title="promise 队列和循环"></a>promise 队列和循环</h2><pre><code>    //起一个Promise队列
+<h3 id="promise-队列和循环"><a href="#promise-队列和循环" class="headerlink" title="promise 队列和循环"></a>promise 队列和循环</h3><pre><code>    //起一个Promise队列
     let promise = Promise.resolve();
     let promises=[];
     let datas=[&#39;1.json&#39;,&#39;2.json&#39;];//异步读两个文件
@@ -453,8 +645,60 @@ var p = new JcPromise(function(r, j) &#123;
     console.log(&quot;*****&quot;)
   &#125;)
 </code></pre>
-<p>[</p>
-<p>](<a target="_blank" rel="noopener" href="http://demo.nimius.net/debounce_throttle/">http://demo.nimius.net/debounce_throttle/</a>)</p>
+<h1 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h1><p>Promise 只是一个社区规范，他不是语法，官方推出了语法(语法糖)让你写起来更加舒服</p>
+<p>标记了 async 的函数返回值一定是 Promise,如果返回的是值，则会包装成 promise，如果本身就是 promise 就不会去动他</p>
+<pre><code class="javascript">async function method1() &#123;
+  return 1; // 该函数的返回值是Promise完成后的数据
+&#125;
+
+method1(); // Promise &#123; 1 &#125;
+
+async function method2() &#123;
+  return Promise.resolve(1); // 若返回的是Promise，则method得到的Promise状态和其一致
+&#125;
+
+method2(); // Promise &#123; 1 &#125;
+
+async function method3() &#123;
+  throw new Error(1); // 若执行过程报错，则任务是rejected
+&#125;
+
+method3(); // Promise &#123; &lt;rejected&gt; Error(1) &#125;
+</code></pre>
+<h2 id="await"><a href="#await" class="headerlink" title="await"></a>await</h2><p><code>await</code>关键字表示等待某个 Promise 完成，<strong>它必须用于</strong><code>**async**</code><strong>函数中</strong></p>
+<pre><code class="javascript">async function method() &#123;
+  //n为等待promise完成后的数据
+  const n = await Promise.resolve(1);
+  console.log(n); // 1
+&#125;
+
+// 上面的函数等同于
+function method() &#123;
+  return new Promise((resolve, reject) =&gt; &#123;
+    Promise.resolve(1).then((n) =&gt; &#123;
+      console.log(n);
+      resolve(1);
+    &#125;);
+  &#125;);
+&#125;
+</code></pre>
+<p><code>await</code>也可以等待其他数据，await 本身是需要等待 promise,可是如果后面的值不是 Promise 他会给你变成 promise</p>
+<pre><code class="javascript">async function method() &#123;
+  const n = await 1; // 等同于 await Promise.resolve(1)
+&#125;
+</code></pre>
+<p>如果需要针对失败的任务进行处理，可以使用<code>try-catch</code>语法</p>
+<pre><code class="javascript">async function method() &#123;
+  try &#123;
+    const n = await Promise.reject(123); // 这句代码将抛出异常,不会执行后续代码，反而转向catch
+    console.log(&quot;成功&quot;, n);
+  &#125; catch (err) &#123;
+    console.log(&quot;失败&quot;, err);
+  &#125;
+&#125;
+
+method(); // 输出： 失败 123
+</code></pre>
 
     </div>
     
@@ -464,7 +708,7 @@ var p = new JcPromise(function(r, j) &#123;
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>jS | 后知后觉的个人主页</title>
+        <title>js | 后知后觉的个人主页</title>
         <meta name="author" content="知乐" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -98,7 +98,7 @@
             <div id="main" v-show="!loading">
                 <div class="article">
     <div>
-        <h1>jS</h1>
+        <h1>js</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -112,122 +112,212 @@
     </div>
 
     <div class="content" v-pre>
-        <h1 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h1><pre><code>     alert(&quot;hello&quot;);
-
-    document.write(&quot;hello&quot;);
-
-    console.log(&quot;hello&quot;); //该语句用来在控制台输出一个日志
-</code></pre>
-<ol>
-<li> 跳出一个弹窗输出</li>
-<li> 在页面中输出</li>
-<li> 在控制台中输出</li>
-</ol>
-<h1 id="六种数据类型"><a href="#六种数据类型" class="headerlink" title="六种数据类型"></a>六种数据类型</h1><ul>
-<li>String 字符串</li>
-<li>Number 数值</li>
-<li>Boolean 布尔值</li>
-<li>Null 空值</li>
-<li>Undefined 未定义</li>
-<li>Object 对象</li>
-</ul>
-<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ul>
+        <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ul>
 <li><strong>String Number Boolean Null Undefined 属于基本数据类型</strong></li>
-<li>基本数据类型的值直接在<strong>栈</strong>内存中存储，</li>
+<li>基本数据类型的值直接在<strong>栈</strong>内存中存储</li>
 <li>值与值之间是独立存在，修改一个变量不会影响其他的变量</li>
-<li>NaN 是一个特殊的数字，表示 Not A Number</li>
 </ul>
-<p>使用 typeof 检查一个 NaN 也会返回 number</p>
-<h3 id="而-Object-属于引用数据类"><a href="#而-Object-属于引用数据类" class="headerlink" title="而 Object 属于引用数据类"></a>而 Object 属于引用数据类</h3><ul>
-<li>对象是保存到堆内存中的，每创建一个新的对象，就会在堆内存中开辟出一个新的空间，而变量保存的是对象的内存地址（对象的引用），如果两个变量保存的是同一个对象引用，</li>
-<li>当一个通过一个变量修改属性时，另一个也会受到影响</li>
-</ul>
-<hr>
+<p>Null（空值）类型的值只有一个，就是 null,null 这个值专门用来表示一个为空的对象<br>使用 typeof 检查一个 null 值时，会返回 object</p>
+<p>Undefined（未定义）类型的值只有一个，就 undefind<br>当声明一个变量，但是并不给变量赋值时，它的值就是 undefined<br>使用 typeof 检查一个 undefined 时也会返回 undefined</p>
+<blockquote>
+<p>NaN 是一个特殊的数字，表示 Not A Number 使用 typeof 检查一个 NaN 也会返回 number</p>
+</blockquote>
+<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><p>Object 对象（包含普通对象、数组、函数）</p>
+<pre><code class="markdown">&#123;
+&#39;0&#39;: xxx,
+&#39;1&#39;: xxx,
+&#39;2&#39;: xxx,
+&#39;length&#39;: 3
+&#125;
+</code></pre>
 <ul>
-<li>当比较两个基本数据类型的值时，就是比较值。</li>
-<li>而比较两个引用数据类型时，它是比较的对象的内存地址，</li>
-<li>如果两个对象是一摸一样的，但是地址不同，它也会返回 false</li>
+<li>对象是保存到堆内存中的，每创建一个新的对象，就会在堆内存中开辟出一个新的空间，而变量保存的是对象的内存地址（对象的引用），如果两个变量保存的是同一个对象引用，当一个通过一个变量修改属性时，另一个也会受到影响</li>
 </ul>
-<h1 id="Null-和-Undefined"><a href="#Null-和-Undefined" class="headerlink" title="Null 和 Undefined"></a>Null 和 Undefined</h1><h2 id="typeof-方法"><a href="#typeof-方法" class="headerlink" title="typeof 方法"></a>typeof 方法</h2><p>检查字符串时，会返回 string<br>检查数值时，会返回 number</p>
-<pre><code>    console.log(typeof b);
-</code></pre>
-<h2 id="Null"><a href="#Null" class="headerlink" title="Null"></a>Null</h2><p>Null（空值）类型的值只有一个，就是 null null 这个值专门用来表示一个为空的对象<br>使用 typeof 检查一个 null 值时，会返回 object</p>
-<h2 id="Undefined"><a href="#Undefined" class="headerlink" title="Undefined"></a>Undefined</h2><p>Undefined（未定义）类型的值只有一个，就 undefind<br>当声明一个变量，但是并不给变量赋值时，它的值就是 undefined<br>使用 typeof 检查一个 undefined 时也会返回 undefined</p>
-<h1 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h1><h2 id="转换为字符串"><a href="#转换为字符串" class="headerlink" title="转换为字符串"></a>转换为字符串</h2><p><strong>任何值和字符串相加都会转换为字符串，并做拼串操作</strong></p>
-<p>可以利用这一点来转换为字符串</p>
-<ul>
-<li>对于 Number 和 Boolean 实际上就是调用的 toString()方法</li>
-<li>但是对于 null 和 undefined，就不会调用 toString()方法<br><strong>一般调用的都是 number 类型或者布尔</strong></li>
-</ul>
-<pre><code>     a = a.toString();
-    a = String(a);
-</code></pre>
-<h2 id="转换为数字"><a href="#转换为数字" class="headerlink" title="转换为数字"></a>转换为数字</h2><h3 id="使用-Number-函数"><a href="#使用-Number-函数" class="headerlink" title="使用 Number()函数"></a>使用 Number()函数</h3><pre><code>   a = Number(a);
-</code></pre>
-<h4 id="字符串-–-gt-数字"><a href="#字符串-–-gt-数字" class="headerlink" title="字符串 –&gt; 数字"></a>字符串 –&gt; 数字</h4><p>1.如果是纯数字的字符串，则直接将其转换为数字</p>
-<p>2.如果字符串中有非数字的内容，则转换为 NaN</p>
-<p>3.如果字符串是一个空串或者是一个全是空格的字符串，则转换为 0</p>
-<h4 id="布尔-–-gt-数字"><a href="#布尔-–-gt-数字" class="headerlink" title="布尔 –&gt; 数字"></a>布尔 –&gt; 数字</h4><p>true 转成 1</p>
-<p>false 转成 0</p>
-<h4 id="null-–-gt-数字-0"><a href="#null-–-gt-数字-0" class="headerlink" title="null –&gt; 数字     0"></a>null –&gt; 数字     0</h4><h4 id="undefined-–-gt-数字-NaN"><a href="#undefined-–-gt-数字-NaN" class="headerlink" title="undefined –&gt; 数字 NaN"></a>undefined –&gt; 数字 NaN</h4><h3 id="parseInt-和-parseFloat"><a href="#parseInt-和-parseFloat" class="headerlink" title="parseInt()和 parseFloat()"></a>parseInt()和 parseFloat()</h3><p>这种方式专门用来对付字符串</p>
-<p>parseInt()可以将一个字符串中的有效的整数内容去出来，然后转换为 Number</p>
-<pre><code>     a = parseFloat(a);第二个参数可以是进制数
+<pre><code class="markdown">var user1 = &#123;
+name: &#39;monica&#39;,
+addr: &#123;
+province: &#39;黑龙江&#39;,
+city: &#39;哈尔滨&#39;,
+&#125;,
+loves: [&#39;音乐&#39;, &#39;电影&#39;],
+&#125;;
 
-    a = parseInt(a);第二个参数可以是进制数
+var address = user1.addr;
+
+//这句话会使 address 指向一个新的地址，从而与 user1 指向的对象没有关系
+address = &#123;
+province: &#39;四川&#39;,
+city: &#39;成都&#39;,
+&#125;;
 </code></pre>
-<h2 id="转换为布尔"><a href="#转换为布尔" class="headerlink" title="转换为布尔"></a>转换为布尔</h2><h3 id="使用-Boolean-函数"><a href="#使用-Boolean-函数" class="headerlink" title="使用 Boolean()函数"></a>使用 Boolean()函数</h3><pre><code>a = Boolean(a);
+<h3 id="两者差异"><a href="#两者差异" class="headerlink" title="两者差异"></a>两者差异</h3><ol>
+<li>原始数据类型直接存储在栈（stack）中，占据空间小，大小固定，属于被频繁使用的数据，所以存储在栈中；引用数据类型存储在堆（heap）中的对象，占据空间大，大小不固定，如果存储在栈中，将会影响程序运行的性能。引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址，当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后，从堆中获得实体。</li>
+<li>当比较两个基本数据类型的值时，就是比较值；而比较两个引用数据类型时，它是比较的对象的内存地址， 如果两个对象是一摸一样的，但是地址不同，它也会返回 false</li>
+<li>基本数据类型按值传递，不可变，在 JS 中，任何看似对 string 值的 “修改” 操作，实际都是创建新的 string 值。任何方法都无法改变一个基本类型的值；引用类型的值是可变的，引用类型的值是同时保存在栈内存和堆内存中的对象。</li>
+</ol>
+<h1 id="数据表达"><a href="#数据表达" class="headerlink" title="数据表达"></a>数据表达</h1><h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>程序中有些可以自行命名的地方，称之为<strong>标识符</strong></p>
+<blockquote>
+<p>常见的标识符有：变量名、函数名、参数名</p>
+</blockquote>
+<p><em>js</em> 的标识符必须符合以下规则：</p>
+<ul>
+<li>允许数字、字母、下划线、$符号</li>
+<li>不得以数字开头</li>
+<li>不能和关键字冲突</li>
+<li>建议使用驼峰命名法</li>
+</ul>
+<p>一个完整的程序中，会涉及成百上千的标识符，好的名称不仅可以减少名称冲突，更有利于程序的阅读和维护。<br>名称要做到<strong>望文知意</strong></p>
+<h3 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h3><p>通过\来转义</p>
+<table>
+<thead>
+<tr>
+<th>转义符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\\&#39;</code></td>
+<td>普通英文单引号</td>
+</tr>
+<tr>
+<td><code>\\&quot;</code></td>
+<td>普通英文双引号</td>
+</tr>
+<tr>
+<td><code>\\r</code></td>
+<td>回车</td>
+</tr>
+<tr>
+<td><code>\\n</code></td>
+<td>换行</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>小技巧：常用<code>\r\n</code>表示换行</p>
+</blockquote>
+<h1 id="数据运算与类型转换"><a href="#数据运算与类型转换" class="headerlink" title="数据运算与类型转换"></a>数据运算与类型转换</h1><h2 id="转换为字符串"><a href="#转换为字符串" class="headerlink" title="转换为字符串"></a>转换为字符串</h2><pre><code>Number和Boolean可以采用这种方法
+a = a.toString();
+
+或者采用第二种
+a = String(a);
 </code></pre>
-<h3 id="数字-—-gt-布尔"><a href="#数字-—-gt-布尔" class="headerlink" title="数字 —&gt; 布尔"></a>数字 —&gt; 布尔</h3><p>除了 0 和 NaN，其余的都是 true</p>
-<h3 id="字符串-—-gt-布尔"><a href="#字符串-—-gt-布尔" class="headerlink" title="字符串 —&gt; 布尔"></a>字符串 —&gt; 布尔</h3><p>除了空串，其余的都是 true</p>
-<h3 id="null-和-undefined-都会转换为-false"><a href="#null-和-undefined-都会转换为-false" class="headerlink" title="null 和 undefined 都会转换为 false"></a>null 和 undefined 都会转换为 false</h3><p>对象也会转换为 true</p>
-<h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>如果使用基本数据类型的数据，我们所创建的变量都是独立，不能成为一个整体。<br>对象属于一种复合的数据类型，在对象中可以保存多个不同数据类型的属性。</p>
-<h1 id="对象的分类"><a href="#对象的分类" class="headerlink" title="对象的分类"></a>对象的分类</h1><p>1.内建对象<br>由 ES 标准中定义的对象，在任何的 ES 的实现中都可以使用<br>    - 比如：Math String Number Boolean Function Object….</p>
+<h2 id="转换为数字"><a href="#转换为数字" class="headerlink" title="转换为数字"></a>转换为数字</h2><p>使用 Number()函数</p>
+<pre><code>a = Number(a);
+</code></pre>
+<h4 id="字符串-–-gt-数字"><a href="#字符串-–-gt-数字" class="headerlink" title="字符串 –&gt; 数字"></a>字符串 –&gt; 数字</h4><p>1.如果是纯数字的字符串，则直接将其转换为数字 2.如果字符串中有非数字的内容，则转换为 NaN 3.如果字符串是一个空串或者是一个全是空格的字符串，则转换为 0</p>
+<h4 id="布尔-–-gt-数字"><a href="#布尔-–-gt-数字" class="headerlink" title="布尔 –&gt; 数字"></a>布尔 –&gt; 数字</h4><p>true 转成 1<br>false 转成 0<br>null 转成   0</p>
+<h4 id="undefined-–-gt-数字-NaN"><a href="#undefined-–-gt-数字-NaN" class="headerlink" title="undefined –&gt; 数字 NaN"></a>undefined –&gt; 数字 NaN</h4><p>parseInt()和 parseFloat()<br>这种方式专门用来对付字符串<br>parseInt()可以将一个字符串中的有效的整数内容去出来，然后转换为 Number</p>
+<h2 id="类型的隐式转换"><a href="#类型的隐式转换" class="headerlink" title="类型的隐式转换"></a>类型的隐式转换</h2><p>每个运算符都有自己期望的数据，比如期望两端都是数字<br>一旦数据不符合运算符的期望，js 就会悄悄的对数据进行类型转换，把它转换成期望的值后进行运算。<br>值得注意的是，这种转换是 <em>临时</em> 的，并不会对原数据造成影响</p>
+<blockquote>
+<p>在实际的开发中，我们可以利用类型的隐式转换完成以下功能：</p>
+</blockquote>
+<pre><code class="javascript">var n = +a; // 不管a是啥，都会被转换成数字，保存到n中
+var s = a + &quot;&quot;; // 不管a是啥，都会被转换成字符串，保存到s中
+var b = !!a; // 不管a是啥，都会被转换成boolean，保存到b中
+</code></pre>
+<pre><code>2的3次方可以写成
+2 ** 3
+</code></pre>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="和-amp-amp"><a href="#和-amp-amp" class="headerlink" title="|| 和 &amp;&amp;"></a>|| 和 &amp;&amp;</h3><pre><code class="markdown">if(1 &amp;&amp; 2)&#123;
+
+// 啰嗦的代码
+if(exp)&#123;
+n = exp;
+&#125;
+else&#123;
+n = 1;
+&#125;
+
+// 简洁的代码
+n = exp || 1;
+</code></pre>
+<h3 id="（强制类型转换）"><a href="#（强制类型转换）" class="headerlink" title="!!（强制类型转换）"></a>!!（强制类型转换）</h3><p>转化成 true 或 false,可以用来判断是否有值</p>
+<pre><code class="typescript">var a = undefined;
+var b = null;
+var c = &quot;&quot;;
+var d = 0;
+var e = NaN;
+var f = false;
+console.log(!!a); //输出false
+console.log(!!b); //输出false
+console.log(!!c); //输出false
+console.log(!!d); //输出false
+console.log(!!e); //输出false
+console.log(!!f); //输出false
+
+其他都为true;
+</code></pre>
+<h3 id="（可选链运算符）"><a href="#（可选链运算符）" class="headerlink" title="?. （可选链运算符）"></a>?. （可选链运算符）</h3><p>在 javascript 中如果一个值为 null、undefined，直接访问下面的属性，<br>会报 <code>UncaughtTypeError: Cannot read properties ofundefined</code> 异常错误。<br><img src="1706058650970-8bee8bfd-7d0a-477a-90d0-1af32c344d8d.png"></p>
+<p>采用?.就可以解决这个问题<br><img src="1706058686386-c050d23b-db44-4e11-9446-b0a3f90cfbb4.png"></p>
+<h3 id="（空值合并运算符）"><a href="#（空值合并运算符）" class="headerlink" title="??（空值合并运算符）"></a>??（空值合并运算符）</h3><p>?? 双问号后面是默认值（可常量、可变量）。<br>在 ?? 前面没有值得时候会默认 ?? 后边的值（类似于三木运算符中的:后面赋值）</p>
+<p>和 || 运算符的区别：<br>|| 只会在左边的值为假值时返回右边的值 (0, ‘’, undefined, null, false 等都为假值)<br>?? 是在左边的值为 undefined 或者 null 时才会返回右边的值</p>
+<h3 id="为空值赋值运算符"><a href="#为空值赋值运算符" class="headerlink" title="??=为空值赋值运算符"></a>??=为空值赋值运算符</h3><p><strong>??=<strong>为空值赋值运算符，当??=左边的的值为</strong>undefined</strong>或者<strong>null</strong>的时候,才会将右侧变量的值赋值给左侧变量.其他所有值都不会进行赋值</p>
+<pre><code class="javascript">let b = &#39;你好&#39;;
+
+let a = 0
+
+let c = null;
+
+let d = ’123‘
+
+b ??= a;  // b = “你好”
+
+c ??= d  // c = &#39;123&#39;
+</code></pre>
+<h3 id="三目运算"><a href="#三目运算" class="headerlink" title="三目运算"></a>三目运算</h3><p>三目运算，判定 a，为真时表达式返回 b，否则返回 c</p>
+<pre><code class="markdown">运算符：`? :`，格式`a ? b : c`
+</code></pre>
+<h2 id="布尔判定"><a href="#布尔判定" class="headerlink" title="布尔判定"></a>布尔判定</h2><pre><code>//可将a转化为布尔
+a = Boolean(a);
+</code></pre>
+<p>所有需要判断真假的地方都会使用下面的规则</p>
+<table>
+<thead>
+<tr>
+<th>数据</th>
+<th>判定</th>
+</tr>
+</thead>
+</table>
+<p>| <code>false</code><br><code>null</code><br><code>undefined</code><br><code>0</code><br><code>NaN</code><br><code>&#39;&#39;</code> | false |<br>| 剩余所有数据（对象） | true |</p>
+<h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>所有的对象都是通过构造函数的方式来创建的（{}，数组，函数都是对象）</strong><br>对象属于一种复合的数据类型，在对象中可以保存多个不同数据类型的属性。<br><strong>对象的分类</strong> 1.内建对象<br>由 ES 标准中定义的对象，在任何的 ES 的实现中都可以使用<br>    - 比如：Math String Number Boolean Function Object</p>
 <pre><code>alert(Math.ceil(x)); //13
 </code></pre>
 <p>2.宿主对象</p>
 <ul>
-<li><p>由 JS 的运行环境提供的对象，目前来讲主要指由浏览器提供的对象</p>
-</li>
-<li><p>比如 BOM DOM</p>
-<p>3.自定义对象</p>
-</li>
-<li><p>由开发人员自己创建的对象</p>
-</li>
+<li>由 JS 的运行环境提供的对象，目前来讲主要指由浏览器提供的对象</li>
+<li>比如 BOM DOM 3.自定义对象</li>
+<li>由开发人员自己创建的对象</li>
 </ul>
-<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><p>使用 new 关键字调用的函数，是构造函数 constructor</p>
-<p>构造函数是专门用来创建对象的函数</p>
-<p>使用 typeof 检查一个对象时，会返回 object</p>
-<pre><code>var obj = new Object();
-</code></pre>
-<p>对象的属性值可以是任何的数据类型，也可以是个函数</p>
-<pre><code>    obj.sayName = function()&#123;
-        console.log(obj.name);
-    &#125;;
-</code></pre>
-<h2 id="枚举对象"><a href="#枚举对象" class="headerlink" title="枚举对象"></a>枚举对象</h2><pre><code>      var obj = &#123;
-            name:&quot;孙悟空&quot;,
-            age:18,
-            gender:&quot;男&quot;,
-            address:&quot;花果山&quot;
-           &#125;;
-</code></pre>
-<h2 id="对象继承"><a href="#对象继承" class="headerlink" title="对象继承"></a>对象继承</h2><pre><code>  function Person(name, age) &#123;
-    this.name = name
-    this.age = age
-  &#125;
-  Person.prototype.setName = function (name) &#123;
-    this.name = name
-  &#125;
-  function Student(name, age, price) &#123;
-    Person.call(this, name, age) //得到父类型的属性
-    this.price = price
-  &#125;
-  Student.prototype = new Person()  //得到父类型的方法
-</code></pre>
-<pre><code>**这样子元素里面的原型就是父元素里面的原型了**
-</code></pre>
-<h1 id="in-运算符"><a href="#in-运算符" class="headerlink" title="in 运算符"></a>in 运算符</h1><p>通过该运算符可以检查一个对象中是否含有指定的属性<br>如果有则返回 true，没有则返回 false<br>语法：属性名” in 对象</p>
-<pre><code>console.log(&quot;name&quot; in obj);
+<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><pre><code>对象，数组，函数
+
+// 语法糖
+// var obj = &#123;
+//   a: 1,
+//   b: 2,
+// &#125;;
+
+// Object是一个函数
+// var obj = new Object(); // 创建一个空对象
+// obj.a = 1;
+// obj.b = 2;
+
+
+// var arr = [1, 2, 3];
+// var arr = new Array(1, 2, 3); // 创建一个数组
+
+function sum(a, b) &#123;
+  return a + b;
+&#125;
+// var sum = new Function(&#39;a&#39;, &#39;b&#39;, &#39;return a+b&#39;);
+
+console.log(sum(1, 2));
+
+
+对象的属性值可以是任何的数据类型，也可以是个函数
+obj.sayName = function()&#123;
+    console.log(obj.name);
+&#125;;
 </code></pre>
 <h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><h2 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h2><ul>
 <li>在全局作用域中有一个全局对象 window</li>
@@ -241,28 +331,108 @@
 <li>每调用一次函数就会创建一个新的函数作用域，他们之间是互相独立的</li>
 <li>在函数作用域中可以访问到全局作用域的变量</li>
 <li>当在函数作用域操作一个变量时，它会先在自身作用域中寻找，如果有就直接使用</li>
-<li>如果没有则向上一级作用域中寻找，直到找到全局作用域</li>
+<li>如果没有则向上一级作用域中寻找，直到找到全局作用域，如果使用了上级的作用域则形成了闭包</li>
 <li>如果全局作用域中依然没有找到，则会报错 ReferenceError</li>
 <li>在函数中要访问全局变量可以使用 window 对象</li>
+<li>内部作用域能访问的外部，取决于函数定义的位置，和调用无关</li>
 </ul>
-<h1 id="this"><a href="#this" class="headerlink" title="this"></a>this</h1><p>this 不能在执行期间被赋值，并且在每次函数被调用时 this 的值也可能会不同</p>
-<p>1.以函数形式调用时，this 永远都是 window 2.以方法的形式调用时，this 是调用方法的对象 3.以构造函数的形式调用时，this 是新创建的那个对象 4.使用 call 和 apply 调用时，this 是指定的那个对象</p>
-<p><strong>谁调用 this 就是指向谁</strong></p>
-<h1 id="原型，原型链"><a href="#原型，原型链" class="headerlink" title="原型，原型链"></a>原型，原型链</h1><h2 id="原型（prototype）"><a href="#原型（prototype）" class="headerlink" title="原型（prototype）"></a>原型（prototype）</h2><pre><code>function MyClass()&#123;
-
+<h2 id="全局对象"><a href="#全局对象" class="headerlink" title="全局对象"></a>全局对象</h2><p>无论是浏览器环境，还是 node 环境，都会提供一个全局对象</p>
+<ul>
+<li>浏览器环境：window</li>
+<li>node 环境：global</li>
+</ul>
+<p>全局对象有下面几个特点：</p>
+<ul>
+<li><p>全局对象的属性可以被直接访问</p>
+</li>
+<li><p>给未声明的变量赋值，实际就是给全局对象的属性赋值</p>
+<blockquote>
+<p>永远别这么干</p>
+</blockquote>
+</li>
+<li><p>所有的全局变量、全局函数都会附加到全局对象</p>
+<blockquote>
+<p>这称之为全局污染，又称之为全局暴露，或简称污染、暴露<br>如果要避免污染，需要使用<strong>立即执行函数</strong>改变其作用域<br>立即执行函数又称之为 IIFE，它的全称是 Immediately Invoked Function Expression<br><strong>IIFE 通常用于强行改变作用域</strong></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>this 不能在执行期间被赋值，并且在每次函数被调用时 this 的值也可能会不同<br><strong>在函数中使用 this，它的指向完全取决于函数是如何被调用的</strong></p>
+<table>
+<thead>
+<tr>
+<th>调用方式</th>
+<th>示例</th>
+<th>函数中的 this 指向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>通过 new 调用</strong></td>
+<td><code>new method()</code></td>
+<td>新对象（{}）</td>
+</tr>
+<tr>
+<td><strong>直接调用</strong></td>
+<td><code>method()</code></td>
+<td>全局对象</td>
+</tr>
+<tr>
+<td><strong>通过对象调用</strong></td>
+<td><code>obj.method()</code></td>
+<td>前面的对象</td>
+</tr>
+<tr>
+<td><strong>call</strong></td>
+<td><code>method.call(ctx)</code></td>
+<td>call 的第一个参数</td>
+</tr>
+<tr>
+<td><strong>apply</strong></td>
+<td><code>method.apply(ctx)</code></td>
+<td>apply 的第一个参数</td>
+</tr>
+</tbody></table>
+<h2 id="call-与-apply"><a href="#call-与-apply" class="headerlink" title="call 与 apply"></a>call 与 apply</h2><pre><code class="javascript">function m(a, b) &#123;
+  console.log(this, a, b);
 &#125;
-MyClass.prototype.a = 123;
-每一个函数都可以.出方法
+
+var arr = &#123;&#125;;
+// m.call(arr, 1, 2); // 调用m函数，让它里面的this指向arr
+//call与apply的不同是参数的传递方式
+m.apply(arr, [1, 2]);
 </code></pre>
-<p>我们所创建的每一个函数，解析器都会向函数中添加一个属性 prototype</p>
-<p>这个属性对应着一个对象，这个对象就是我们所谓的原型对象</p>
-<hr>
-<p>原型对象中有一个属性 constructor, 它指向函数对象</p>
-<pre><code>console.log(Date.prototype.constructor === Date)
+<h1 id="原型，原型链"><a href="#原型，原型链" class="headerlink" title="原型，原型链"></a>原型，原型链</h1><h2 id="原型（prototype）"><a href="#原型（prototype）" class="headerlink" title="原型（prototype）"></a>原型（prototype）</h2><pre><code class="javascript">//若用这种方式创建，等于说每个实例u1,u2,u3都创建了sayHi这个对象，于是就出现了冗余，
+//内存空间的浪费
+function User(name, age) &#123;
+  this.name = name;
+  this.age = age;
+  this.sayHi = function () &#123;
+    console.log(&quot;你好，我是&quot; + this.name + &quot;，今年&quot; + this.age + &quot;岁了&quot;);
+  &#125;;
+&#125;
+
+var u1 = new User(&quot;monica&quot;, 17);
+var u2 = new User(&quot;邓哥&quot;, 77);
+var u3 = new User(&quot;成哥&quot;, 18);
+
+//利用原型可让所有的实例都使用同一个方法
+User.prototype.sayHi = function () &#123;
+  console.log(&quot;你好，我是&quot; + this.name + &quot;，今年&quot; + this.age + &quot;岁了&quot;);
+&#125;;
 </code></pre>
-<pre><code>MyClass.prototype
-</code></pre>
-<p><strong>原型就是函数的方法和属性</strong>，js 内置类会有自己的方法和属性</p>
+<p><img src="1692450430597-bd66cd37-6ef1-44b7-be56-81207ea076d8.png"></p>
+<ol>
+<li><p><strong>原型</strong><br> 每个函数都会自动附带一个属性<code>prototype</code>，这个属性的值是一个普通对象，称之为原型对象</p>
+</li>
+<li><p><strong>实例</strong><br> 由构造函数创建的对象，instance，通过<code>new</code>产生的对象称之为实例。</p>
+<blockquote>
+<p>由于 JS 中所有对象都是通过<code>new</code>产生的，因此，严格来说，JS 中所有对象都称之为实例</p>
+</blockquote>
+</li>
+<li><p><strong>隐式原型</strong><br> 每个实例都拥有一个特殊的属性<code>__proto__</code>，称之为隐式原型，它指向构造函数的原型</p>
+</li>
+</ol>
+<p>这一切有何意义？<br><strong>当访问实例成员时，先找自身，如果不存在，会自动从隐式原型中寻找</strong><br><strong>这样一来，我们可以把那些公共成员，放到函数的原型中，即可被所有实例共享</strong></p>
+<p><img src="20211210143328.png"><br><strong>原型就是函数的方法和属性</strong>，js 内置类会有自己的方法和属性</p>
 <h2 id="显式原型和隐式原型"><a href="#显式原型和隐式原型" class="headerlink" title="显式原型和隐式原型"></a>显式原型和隐式原型</h2><ol>
 <li> 每个函数 function 都有一个 prototype，即显式原型（函数）</li>
 <li> 每个实例对象都有一个<strong>proto</strong>，可称为隐式原型(实例)</li>
@@ -273,206 +443,115 @@ MyClass.prototype.a = 123;
   console.log(Fn.prototype, fn.__proto__)
   console.log(Fn.prototype===fn.__proto__)
 </code></pre>
-<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><p>prototype 是一个对象，里面还有 prototype</p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>prototype 是一个对象，里面还有 prototype</p>
 <p>当我们访问对象的一个属性或方法时，它会先在对象自身中寻找，如果有则直接使用， 如果没有则会去原型对象中寻找，如果找到则直接使用,于是就这样一直找下去，也就是我们平时所说的原型链的概念。</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>JavaScript 对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>JavaScript 对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。</p>
 <p>当我们需要一个属性的时，Javascript 引擎会先看当前对象中是否有这个属性， 如果没有的话， 就会查找他的 Prototype 对象是否有这个属性，如此递推下去，一直检索到 Object 内建对象。</p>
-<h2 id="查找原型"><a href="#查找原型" class="headerlink" title="查找原型"></a>查找原型</h2><pre><code>mc.__proto__.hasOwnProperty(&quot;hasOwnProperty&quot;)
+<p><strong>所有的对象都是通过</strong><code>**new 函数**</code><strong>的方式创建的</strong></p>
+<pre><code class="javascript">var u1 = new User(&quot;邓&quot;, &quot;旭明&quot;); // 对象 u1 通过 new User 创建
+var u2 = &#123;
+  // 对象 u2 通过 new Object 创建
+  firstName: &quot;莫&quot;,
+  lastName: &quot;妮卡&quot;,
+&#125;;
+// 等效于
+var u2 = new Object();
+u2.firstName = &quot;莫&quot;;
+u2.lastName = &quot;妮卡&quot;;
+</code></pre>
+<p><img src="1692509710115-6011c8af-4ab0-43b9-b199-1be5dcbf711c.png"></p>
+<p>上面的代码形成的原型图如下</p>
+<p><img src="20210903081220.png"></p>
+<p>原型对象本身也是一个对象，默认情况下，是通过<code>new Object</code>创建的，因此，上面的两幅原型图是可以发生关联的</p>
+<p><img src="20210903082540.png"></p>
+<blockquote>
+<p><code>Object.prototype.__proto__</code>比较特殊，它固定指向 null</p>
+</blockquote>
+<p>可以看出，u1 的隐式原型形成了一个链条，称之为<strong>原型链</strong><br>当读取对象成员时，会先看对象自身是否有该成员，如果没有，就依次在其原型链上查找</p>
+<h3 id="完整的链条"><a href="#完整的链条" class="headerlink" title="完整的链条"></a>完整的链条</h3><p><img src="20210903152359.png"><br><strong>更改构造函数的原型会对所有原型链上有该构造函数的原型的对象产生影响</strong></p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>视频网站有两种会员：</p>
+<ul>
+<li>普通会员<ul>
+<li>属性：用户名、密码</li>
+<li>方法：观看免费视频</li>
+</ul>
+</li>
+<li>VIP 会员<ul>
+<li>属性：普通会员的所有属性、会员到期时间</li>
+<li>方法：普通会员的所有方法、观看付费视频</li>
+</ul>
+</li>
+</ul>
+<p>如果我们需要使用构造函数来创建会员，如何书写构造函数才能实现上面的需求？</p>
+<pre><code class="javascript">// 普通会员的构造函数
+function User(username, password) &#123;
+  this.username = username;
+  this.password = password;
+&#125;
+User.prototype.playFreeVideo = function () &#123;
+  console.log(&quot;观看免费视频&quot;);
+&#125;;
 
-console.log(&quot;name&quot; in obj);
+// VIP会员的构造函数
+function VIPUser(username, password, expires) &#123;
+  this.username = username;
+  this.password = password;
+  this.expires = expires;
+&#125;
+VIPUser.prototype.playFreeVideo = function () &#123;
+  console.log(&quot;观看免费视频&quot;);
+&#125;;
+VIPUser.prototype.playPayVideo = function () &#123;
+  console.log(&quot;观看付费视频&quot;);
+&#125;;
 </code></pre>
-<p>使用 in 检查对象中是否含有某个属性时，如果对象中没有但是原型中有，也会返回 true</p>
-<p>方法 hasOwnProperty()只有当对象自身中含有属性时，才会返回 true</p>
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h2><p>数组也是一个对象<br>使用 typeof 检查一个数组时，会返回 object</p>
-<pre><code>console.log(typeof arr);
+<p>上面的代码出现了两处重复代码：</p>
+<ol>
+<li> VIPUser 的构造函数中包含重复代码</li>
+</ol>
+<pre><code class="javascript">this.username = username;
+this.password = password;
 </code></pre>
-<h2 id="数组方法"><a href="#数组方法" class="headerlink" title="数组方法"></a>数组方法</h2><h3 id="push"><a href="#push" class="headerlink" title="push()"></a>push()</h3><p>该方法可以向数组的末尾添加一个或多个元素，并返回数组的新的长度</p>
-<pre><code>var result = arr.push(&quot;唐僧&quot;,&quot;蜘蛛精&quot;,&quot;白骨精&quot;,&quot;玉兔精&quot;);
+<p>这段代码和 User 构造函数并没有区别，可以想象得到，将来也不会有区别，即：<strong>普通用户该有的属性，VIP 用户一定有</strong></p>
+<ol start="2">
+<li> VIPUser 的原型上包含了重复代码</li>
+</ol>
+<pre><code class="javascript">VIPUser.prototype.playFreeVideo = function () &#123;
+  console.log(&quot;观看免费视频&quot;);
+&#125;;
 </code></pre>
-<h3 id="pop"><a href="#pop" class="headerlink" title="pop()"></a>pop()</h3><p>该方法可以删除数组的最后一个元素,并将被删除的元素作为返回值返回</p>
-<pre><code>result = arr.pop();
+<p>这个方法和 User 上的同名方法逻辑完全一致，可以想象得到，将来也不会有区别，即：<strong>普通用户该有的方法，VIP 用户一定有</strong></p>
+<h3 id="处理构造器内部的重复"><a href="#处理构造器内部的重复" class="headerlink" title="处理构造器内部的重复"></a>处理构造器内部的重复</h3><p>可以将 VIPUser 构造器改写为</p>
+<pre><code class="javascript">function VIPUser(username, password, expires) &#123;
+  User.call(this, username, password);
+  this.expires = expires;
+&#125;
 </code></pre>
-<h3 id="unshift"><a href="#unshift" class="headerlink" title="unshift()"></a>unshift()</h3><p>向数组开头添加一个或多个元素，并返回新的数组长度<br>向前边插入元素以后，其他的元素索引会依次调整</p>
-<pre><code> arr.unshift(&quot;牛魔王&quot;,&quot;二郎神&quot;);
+<h3 id="处理原型上的重复"><a href="#处理原型上的重复" class="headerlink" title="处理原型上的重复"></a>处理原型上的重复</h3><p>只需要将原型链设置为下面的结构即可<br><img src="20211214155347.png"></p>
+<p>方法一<br>仅需一句代码即可</p>
+<pre><code class="javascript">Object.setPrototypeOf(VIPUser.prototype, User.prototype);
 </code></pre>
-<h3 id="shift"><a href="#shift" class="headerlink" title="shift()"></a>shift()</h3><p>可以删除数组的第一个元素，并将被删除的元素作为返回值返回</p>
-<pre><code>result = arr.shift();
+<p>封装继承</p>
+<pre><code class="javascript">function inherit(Child, Parent) &#123;
+  // 在原型链上完成继承
+  Object.setPrototypeOf(Child.prototype, Parent.prototype);
+&#125;
 </code></pre>
-<p>删除末尾或者开头一个，添加末尾和开头一个或多个</p>
-<h3 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h3><p>可以用来从数组提取指定元素</p>
-<p><strong>该方法不会改变元素数组，而是将截取到的元素封装到一个新数组中返回</strong></p>
-<p>参数：</p>
-<p>1.截取开始的位置的索引,包含开始索引</p>
-<pre><code>      var result = arr.slice(1,4);
+<p>方法二</p>
+<pre><code class="javascript">VipUser.prototype = new User();
+VipUser.prototype = new User();
+VipUser.prototype.constructor = VipUser;
+//新增方法
+VipUser.prototype.showLevel = function () &#123;
+  console.log(this.level);
+&#125;;
 </code></pre>
-<p>2.截取结束的位置的索引,不包含结束索引</p>
-<p>第二个参数可以省略不写,此时会截取从开始索引往后的所有元素</p>
-<pre><code>      result = arr.slice(3);
-</code></pre>
-<p>索引可以传递一个负值，如果传递一个负值，则从后往前计算</p>
-<p>-1 倒数第一个</p>
-<p>-2 倒数第二个</p>
-<pre><code>      result = arr.slice(1,-2);
-</code></pre>
-<h3 id="splice"><a href="#splice" class="headerlink" title="splice()"></a>splice()</h3><p>可以用于删除数组中的指定元素</p>
-<p><strong>使用 splice()会影响到原数组，会将指定元素从原数组中删除</strong></p>
-<p><strong>并将被删除的元素作为返回值返回</strong></p>
-<p>参数：</p>
-<p>第一个，表示开始位置的索引</p>
-<p>第二个，表示删除的数量</p>
-<p>第三个，及以后可以传递一些新的元素，这些元素将会自动插入到开始位置索引前边</p>
-<pre><code>   var result = arr.splice(3,0,&quot;牛魔王&quot;,&quot;铁扇公主&quot;,&quot;红孩儿&quot;);
-</code></pre>
-<p><strong>splice 方法虽然说是删除，但是也可以用来添加可以选择位置，添加一个或者多个</strong></p>
-<h3 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h3><p>concat()可以连接两个或多个数组，并将新的数组返回<br>该方法不会对原数组产生影响</p>
-<pre><code>var result = arr.concat(arr2, arr3, &quot;牛魔王&quot;, &quot;铁扇公主&quot;);
-</code></pre>
-<p>这样可以连接数组，然后后面还可以字符串，都会拼起来</p>
-<h3 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h3><p>该方法可以将数组转换为一个<strong>字符串</strong><br>该方法不会对原数组产生影响，而是将转换后的字符串作为结果返回<br>在 join()中可以指定一个字符串作为参数，这个字符串将会成为数组中元素的连接符<br>如果不指定连接符，则默认使用,作为连接符</p>
-<pre><code>    result = arr.join(&quot;@-@&quot;);
-</code></pre>
-<h3 id="reverse"><a href="#reverse" class="headerlink" title="reverse()"></a>reverse()</h3><p>该方法用来反转数组（前边的去后边，后边的去前边）<br>该方法会直接修改原数组</p>
-<pre><code>arr.reverse();
-</code></pre>
-<h3 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h3><p>可以用来对数组中的元素进行排序<br>也会影响原数组，默认会按照 Unicode 编码进行排序<br><strong>sort()可以添加一个回调函数</strong><br>里面放两个形参</p>
-<pre><code>        arr = [5, 4, 2, 1, 3, 6, 8, 7];
-        arr.sort(function(a, b) &#123;
-            //降序排列
-            return b - a;
-        &#125;);
-</code></pre>
-<h2 id="数组遍历"><a href="#数组遍历" class="headerlink" title="数组遍历"></a>数组遍历</h2><p>第一个参数，就是当前正在遍历的元素<br>      第二个参数，就是当前正在遍历的元素的索引<br>      第三个参数，就是正在遍历的数组</p>
-<pre><code>arr.forEach(function(value , index , obj)&#123;
-        console.log(value);
-    &#125;);
-</code></pre>
-<h1 id="Date-对象"><a href="#Date-对象" class="headerlink" title="Date 对象"></a>Date 对象</h1><p>在 JS 中使用 Date 对象来表示一个时间</p>
+<p>至此，完美的解决了之前提到的两处重复代码的问题</p>
+<p><strong>子类的实例自动拥有父类的所有成员</strong><br>继承具有两个特性：</p>
 <ul>
-<li>如果直接使用构造函数创建一个 Date 对象，则会封装为当前代码执行的时间</li>
+<li>单根性：子类最多只有一个父类</li>
+<li>传递性：间接父类的成员会传递到子类中</li>
 </ul>
-<pre><code>   var d = new Date();
-</code></pre>
-<ul>
-<li>需要在构造函数中传递一个表示时间的字符串作为参数</li>
-</ul>
-<pre><code>      var d2 = new Date(&quot;2/18/2011 11:10:30&quot;);
-      日期的格式  月份/日/年 时:分:秒
-</code></pre>
-<ul>
-<li>获取当前日期对象是周几，天，月，年</li>
-</ul>
-<pre><code>var date = d2.getDate();
-var day = d2.getDay();
-var month = d2.getMonth();
-var year = d2.getFullYear();
-</code></pre>
-<ul>
-<li>获取当前日期对象的时间戳<br>获取当前的时间戳</li>
-</ul>
-<pre><code>var time = d2.getTime();
-</code></pre>
-<pre><code>var start = Date.now();
-</code></pre>
-<h1 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h1><p>Math.PI 表示的圆周率</p>
-<p>Math.abs(-1)</p>
-<pre><code>      var max = Math.max(10,45,30,100);
-
-      var min = Math.min(10,45,30,100);
-</code></pre>
-<pre><code>      console.log(Math.sqrt(2));
-</code></pre>
-<pre><code>Math.random()
-可以用来生成一个0-1之间的随机数
-</code></pre>
-<pre><code>生成一个x-y之间的随机数
-Math.round(Math.random()*(y-x)+x)
-</code></pre>
-<h1 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h1><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><pre><code>var str = new String(&quot;hello&quot;);
-</code></pre>
-<pre><code>String()
-</code></pre>
-<p>可以将基本数据类型字符串转换为 String 对象</p>
-<pre><code>Number()
-</code></pre>
-<p>可以将基本数据类型的数字转换为 Number 对象</p>
-<pre><code>Boolean()
-</code></pre>
-<p>可以将基本数据类型的布尔值转换为 Boolean 对象</p>
-<hr>
-<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p><strong>方法和属性之能添加给对象，不能添加给基本数据类型</strong></p>
-<p>当我们对一些基本数据类型的值去调用属性和方法时，浏览器会临时使用包装类将其转换为对象，然后在调用对象的属性和方法，调用完以后，在将其转换为基本数据类型</p>
-<pre><code>      var s = 123;
-      s = s.toString();
-</code></pre>
-<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="length-属性"><a href="#length-属性" class="headerlink" title="length 属性"></a>length 属性</h2><p>可以用来获取字符串的长度</p>
-<h2 id="indexof"><a href="#indexof" class="headerlink" title="indexof()"></a>indexof()</h2><p>该方法可以检索一个字符串中是否含有指定内容</p>
-<h2 id="substring"><a href="#substring" class="headerlink" title="substring"></a>substring</h2><p>result = str.substring(0,1); 可以用来截取一个字符串，可以 slice()类似</p>
-<h2 id="split"><a href="#split" class="headerlink" title="split"></a>split</h2><p>result = str.split(“d”);拆分</p>
-<h2 id="toUpperCase"><a href="#toUpperCase" class="headerlink" title="toUpperCase"></a>toUpperCase</h2><h2 id="toLowerCase-大小写"><a href="#toLowerCase-大小写" class="headerlink" title="toLowerCase 大小写"></a>toLowerCase 大小写</h2><h2 id="typeof-和-instanceof"><a href="#typeof-和-instanceof" class="headerlink" title="typeof 和 instanceof"></a>typeof 和 instanceof</h2><h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><p>可以区别: 数值, 字符串, 布尔值, undefined, function</p>
-<pre><code> console.log(typeof a === &#39;number&#39;)
-</code></pre>
-<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p>专门用来判断对象数据的类型: Object, Array 与 Function</p>
-<pre><code>  console.log(b1 instanceof Object, typeof b1) // true &#39;object&#39;
-</code></pre>
-<h1 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h1><p>浅拷贝只是拷贝一层, 更深层次对象级别的只拷贝引用.<br>深拷贝拷贝多层, 每一级别的数据都会拷贝.</p>
-<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><h3 id="拷贝方法"><a href="#拷贝方法" class="headerlink" title="拷贝方法"></a>拷贝方法</h3><pre><code>        var obj = &#123;
-            id: 1,
-            name: &#39;andy&#39;,
-            msg: &#123;
-                age: 18
-            &#125;
-        &#125;;
-        var o = &#123;&#125;;
-        for (var k in obj) &#123;
-            // k 是属性名   obj[k] 属性值
-            o[k] = obj[k];
-        &#125;
-</code></pre>
-<pre><code>        Object.assign(o, obj);
-</code></pre>
-<p>浅拷贝修改一个对象的值以后，两个对象的值都会改变</p>
-<pre><code>  o.msg.age = 20;
-</code></pre>
-<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><h3 id="拷贝方法-1"><a href="#拷贝方法-1" class="headerlink" title="拷贝方法"></a>拷贝方法</h3><pre><code>        var obj = &#123;
-            id: 1,
-            name: &#39;andy&#39;,
-            msg: &#123;
-                age: 18
-            &#125;,
-            color: [&#39;pink&#39;, &#39;red&#39;]
-        &#125;;
-        var o = &#123;&#125;;
-</code></pre>
-<p>封装函数</p>
-<pre><code>        function deepCopy(newobj, oldobj) &#123;
-            for (var k in oldobj) &#123;
-                // 判断我们的属性值属于那种数据类型
-                // 1. 获取属性值  oldobj[k]
-                var item = oldobj[k];
-                // 2. 判断这个值是否是数组
-                if (item instanceof Array) &#123;
-                    newobj[k] = [];
-                    deepCopy(newobj[k], item)
-                &#125; else if (item instanceof Object) &#123;
-                    // 3. 判断这个值是否是对象
-                    newobj[k] = &#123;&#125;;
-                    deepCopy(newobj[k], item)
-                &#125; else &#123;
-                    // 4. 属于简单数据类型
-                    newobj[k] = item;
-                &#125;
-            &#125;
-        &#125;
-</code></pre>
-<pre><code>        deepCopy(o, obj);
-</code></pre>
-<p>浅拷贝修改一个对象的值以后，另一个对象不变</p>
-<h1 id="事件机制"><a href="#事件机制" class="headerlink" title="事件机制"></a>事件机制</h1><pre><code>event.preventDefault()              // 阻止默认事件,例如a标签的跳转行为
-event.stopPropagation()             // 阻止冒泡
-event.stopImmediatePropagation()    // 事件响应优先级：例如同一元素绑定不同事件时，触发a事件不让b事件触发
-event.currentTarget                 // 当前绑定事件的元素
-event.target                        // 当前被点击的元素
-</code></pre>
 
     </div>
     
@@ -482,7 +561,7 @@ event.target                        // 当前被点击的元素
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

@@ -137,141 +137,216 @@
 </ul>
 </li>
 </ul>
-<h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><p><img src="1675683529674-2fd38f17-552d-47bb-be74-c60d18db9244.png#width=765" alt="image.png"></p>
-<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p><img src="1675683944274-d64c7670-6aae-400f-85f9-af1cf63fea5b.png#width=758.5" alt="image.png"></p>
-<p>-d 就是删除，会检验分支内容是不是都被合并到别的分支了，这样免得把修改内容弄丢了。<br>-D 就是强制删除，不做检验。</p>
-<h2 id="fetch-命令"><a href="#fetch-命令" class="headerlink" title="fetch 命令"></a>fetch 命令</h2><p><img src="1675684694041-b3fe5fd0-6a85-436c-a637-f3b665874e6f.png#width=762" alt="image.png"></p>
-<h2 id="状态查询"><a href="#状态查询" class="headerlink" title="状态查询"></a>状态查询</h2><ul>
-<li>查看状态<ul>
-<li>git status</li>
-</ul>
-</li>
-<li>查看历史操作记录<ul>
-<li>git reflog</li>
-</ul>
-</li>
-<li>查看日志<ul>
-<li>git log</li>
-</ul>
-</li>
-</ul>
-<h2 id="文档查询"><a href="#文档查询" class="headerlink" title="文档查询"></a>文档查询</h2><ul>
-<li>展示 Git 命令大纲<ul>
-<li>git help (–help)</li>
-</ul>
-</li>
-<li>展示 Git 命令大纲全部列表<ul>
-<li>git help -a</li>
-</ul>
-</li>
-<li>展示具体命令说明手册<ul>
-<li>git help</li>
-</ul>
-</li>
-</ul>
-<h2 id="花式撤销"><a href="#花式撤销" class="headerlink" title="花式撤销"></a>花式撤销</h2><h2 id="文件暂存"><a href="#文件暂存" class="headerlink" title="文件暂存"></a>文件暂存</h2><p><img src="1675864936199-8ed2b578-841d-459e-8b7f-671593209e6f.png#width=748" alt="image.png"></p>
-<h2 id="差异比较"><a href="#差异比较" class="headerlink" title="差异比较"></a>差异比较</h2><p><img src="1675865137851-140b486f-92b2-4941-8f18-2c0e3c9cdde3.png#width=755" alt="image.png"></p>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h2 id="基本操作-1"><a href="#基本操作-1" class="headerlink" title="基本操作"></a>基本操作</h2><p>有了上述的基本了解后，那么我们就来看看整体的一个流程吧。</p>
+<h2 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h2><p>列出当前配置</p>
+<pre><code>git config --list
+</code></pre>
+<p>列出 Repository 配置</p>
+<pre><code>git config --local --list
+</code></pre>
+<p>列出全局配置</p>
+<pre><code>git config --global --list
+</code></pre>
+<p>列出系统配置</p>
+<pre><code>git config --system --list
+</code></pre>
+<p>配置用户名</p>
+<pre><code>git config --global user.name &quot;your name&quot;
+</code></pre>
+<p>配置用户邮箱</p>
+<pre><code>git config --global user.email &quot;youremail@github.com&quot;
+</code></pre>
+<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p>查看本地分支</p>
+<pre><code>git branch
+</code></pre>
+<p>查看远程分支</p>
+<pre><code>git branch -r
+</code></pre>
+<p>查看本地和远程分支</p>
+<pre><code>git branch -a
+</code></pre>
+<p>切换分支</p>
+<pre><code>git checkout &lt;branch-name&gt;
+</code></pre>
+<p>创建并切换到新建分支</p>
+<pre><code>checkout -b &lt;branch-name&gt;
+</code></pre>
+<p>删除分支</p>
+<pre><code>git branch -d &lt;branch-name&gt;
+</code></pre>
+<p>当前分支与指定分支合并</p>
+<pre><code>git merge &lt;branch-name&gt;
+</code></pre>
+<p>查看哪些分支已经合并到当前分支</p>
+<pre><code>git branch --merged
+</code></pre>
+<p>查看哪些分支没有合并到当前分支</p>
+<pre><code>git branch --no-merged
+</code></pre>
 <ul>
-<li>创建本地仓库 git initgit init</li>
-<li>链接本地仓库与远端仓库 git remote add origin origin 默认是远端仓库别名 url 可以是<strong>可以使用 https 或者 ssh 的方式新建</strong></li>
-<li>检查配置信息<ul>
-<li>git config –list</li>
+<li>查看各个分支最后一个提交对象的信息</li>
 </ul>
-</li>
-<li>Git user name 与 emailgit config –global user.name “yourname”git config –global user.email “your_email”</li>
-<li>生成 SSH 密钥 ssh-keygen -t rsa -C “这里换上你的邮箱”cd ~/.ssh 里面有一个文件名为 id_rsa.pub,把里面的内容复制到 git 库的我的 SSHKEYs 中</li>
-<li>常看远端仓库信息<ul>
-<li>git remote -v</li>
+<pre><code>git branch -v
+</code></pre>
+<ul>
+<li>删除远程分支</li>
 </ul>
-</li>
-<li>远端仓库重新命名<ul>
-<li>git remote rename old new</li>
+<pre><code>git push origin -d &lt;branch-name&gt;
+</code></pre>
+<ul>
+<li>重命名分支</li>
 </ul>
-</li>
-<li>提交到缓存区<ul>
-<li>git add . 全部上传到缓存区</li>
-<li>git add 指定文件</li>
+<pre><code>git branch -m &lt;oldbranch-name&gt; &lt;newbranch-name&gt;
+</code></pre>
+<ul>
+<li>拉取远程分支并创建本地分支</li>
 </ul>
-</li>
-<li>提交到本地仓库<ul>
-<li>git commit -m ‘some message’</li>
-</ul>
-</li>
-<li>提交远程仓库<ul>
-<li>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</li>
-</ul>
-</li>
-<li>查看分支<ul>
-<li>git branch</li>
-</ul>
-</li>
-<li>创建新分支<ul>
-<li>git branch</li>
-</ul>
-</li>
-<li>切换分支<ul>
-<li>git checkout</li>
-</ul>
-</li>
-<li>创建分支并切换<ul>
-<li>git checkout -b</li>
-</ul>
-</li>
-<li>删除分支<ul>
-<li>git branch -d</li>
-</ul>
-</li>
-<li>删除远程分支<ul>
-<li>git push -d</li>
-</ul>
-</li>
-<li>切换分支<ul>
-<li>git checkout</li>
-</ul>
-</li>
-</ul>
-<h2 id="github-连接密钥"><a href="#github-连接密钥" class="headerlink" title="github 连接密钥"></a>github 连接密钥</h2><p>新建.ssh<br><img src="1641020361601-13b43199-1222-4184-b396-3db62c7a68f6.png#width=606" alt="image.png"><br>进入然后 git bash<br><code>ssh-keygen -t rsa -C &quot;739211562@qq.com&quot;</code></p>
-<h2 id="git-常见命令"><a href="#git-常见命令" class="headerlink" title="git 常见命令"></a>git 常见命令</h2><pre><code>查看仓库
-git remote
+<pre><code>git checkout -b 本地分支名x origin/远程分支名x
 
-创建仓库
-git remote add origin 地址
+// 另外一种方式,也可以完成这个操作。
+git fetch origin &lt;branch-name&gt;:&lt;local-branch-name&gt;
+// fetch这个指令的话,后续会梳理
+</code></pre>
+<p>-d 就是删除，会检验分支内容是不是都被合并到别的分支了，这样免得把修改内容弄丢了。<br>-D 就是强制删除，不做检验。</p>
+<h2 id="fetch-命令"><a href="#fetch-命令" class="headerlink" title="fetch 命令"></a>fetch 命令</h2><p>将远程仓库内容更新到本地（用到不多）</p>
+<h4 id="fetch-推荐写法"><a href="#fetch-推荐写法" class="headerlink" title="fetch 推荐写法"></a>fetch 推荐写法</h4><pre><code>git fetch origin &lt;branch-name&gt;:&lt;local-branch-name&gt;
+</code></pre>
+<ul>
+<li>一般而言，这个 origin 是远程主机名，一般默认就是 origin。</li>
+<li>branch-name 你要拉取的分支</li>
+<li>local-branch-name 通常而言，就是你本地新建一个新分支，将 origin 下的某个分支代码下载到本地分支。</li>
+</ul>
+<p>举个例子</p>
+<pre><code>git fetch origin feature/template_excellent:feature/template_layout
+// 你的工作目录下，就会有feature/template_layout
+</code></pre>
+<h4 id="fetch-其他写法"><a href="#fetch-其他写法" class="headerlink" title="fetch 其他写法"></a>fetch 其他写法</h4><p>将某个远程主机的更新，全部取回本地。</p>
+<pre><code>git fetch &lt;远程主机名&gt;
+</code></pre>
+<p>这样子的话，取回的是所有的分支更新，如果想取回特定分支，可以指定分支名 👇</p>
+<pre><code>git fetch &lt;远程主机名&gt; &lt;分支名&gt;
+</code></pre>
+<p>当你想将某个分支的内容取回到本地下某个分支的</p>
+<pre><code>git fetch origin :&lt;local-branch-name&gt;
+// 等价于👇
+git fetch origin master:&lt;local-branch-name&gt;
+</code></pre>
+<h2 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h2><p>撤销<strong>工作区</strong>修改（不懂）</p>
+<pre><code>git checkout --
+</code></pre>
+<p>暂存区文件撤销 (不覆盖工作区)</p>
+<pre><code>git reset HEAD
+</code></pre>
+<p>版本回退</p>
+<pre><code>git reset --(soft | mixed | hard ) &lt; HEAD ~(num) &gt; |
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>–hard</td>
+<td>回退全部，包括 HEAD，index，working tree</td>
+</tr>
+<tr>
+<td>–mixed</td>
+<td>回退部分,包括 HEAD，index</td>
+</tr>
+<tr>
+<td>–soft</td>
+<td>只回退 HEAD</td>
+</tr>
+</tbody></table>
+<h2 id="状态查询"><a href="#状态查询" class="headerlink" title="状态查询"></a>状态查询</h2><p>查看状态</p>
+<pre><code>git status
+</code></pre>
+<p>查看历史操作记录</p>
+<pre><code>git reflog
+</code></pre>
+<p>查看日志</p>
+<pre><code>git log
+</code></pre>
+<h2 id="文档查询"><a href="#文档查询" class="headerlink" title="文档查询"></a>文档查询</h2><p>展示 Git 命令大纲</p>
+<pre><code>git help (--help)
+</code></pre>
+<p>展示 Git 命令大纲全部列表</p>
+<pre><code>git help -a
+</code></pre>
+<p>展示具体命令说明手册</p>
+<pre><code>git help
+</code></pre>
+<h2 id="文件暂存"><a href="#文件暂存" class="headerlink" title="文件暂存"></a>文件暂存</h2><p>添加改动到 stash</p>
+<pre><code>git stash save -a &quot;给注释&quot;
+git stash //快捷命令
+</code></pre>
+<p>删除暂存</p>
+<pre><code>git stash drop &lt;stash@&#123;ID&#125;&gt;
+</code></pre>
+<p>查看 stash 列表</p>
+<pre><code>git stash list
+</code></pre>
+<p>删除全部缓存</p>
+<pre><code>git stash clear
+</code></pre>
+<p>恢复改动</p>
+<pre><code>git stash pop &lt;stash@&#123;ID&#125;&gt;
+</code></pre>
+<h2 id="差异比较"><a href="#差异比较" class="headerlink" title="差异比较"></a>差异比较</h2><p>比较工作区与缓存区</p>
+<pre><code>git diff
+</code></pre>
+<p>比较缓存区与本地库最近一次 commit 内容</p>
+<pre><code>git diff -- cached
+</code></pre>
+<p>比较工作区与本地最近一次 commit 内容</p>
+<pre><code>git diff HEAD
+</code></pre>
+<p>比较两个 commit 之间差异</p>
+<pre><code>git diff
+</code></pre>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>有了上述的基本了解后，那么我们就来看看整体的一个流程吧。<br>创建本地仓库</p>
+<pre><code>git init
+</code></pre>
+<p>链接本地仓库与远端仓库</p>
+<pre><code>git remote add origin &lt;远程Git仓库地址&gt;
+origin默认是远端仓库别名 url 可以是可以使用https或者ssh的方式新建
+</code></pre>
+<p>username 与 email</p>
+<pre><code>git config --global user.name &quot;yourname&quot;
+git config --global user.email &quot;your_email&quot;
+</code></pre>
+<p>生成秘钥</p>
+<pre><code>ssh-keygen -t rsa -C &quot;这里换上你的邮箱&quot;
 
-创建分支
-git checkout -b &quot;dev&quot;
-
-查看状态
-git status
-
-添加
-git add .
-
-提交（注释）
-git commit -m &quot;内容&quot;
-
-切换分支
-git checkout master
-
-合并分支
-git merge dev --no-ff
-
-退出注释
-: q
-
-查看日志
-git log
-
-上传至github
-git push origin master
-
-查看分支
-git branch
-
-删除
-git branch -d dev
-
+cd ~/.ssh 里面有一个文件名为id_rsa.pub,把里面的内容复制到git库的我的SSHKEYs中
+</code></pre>
+<p>新建.ssh<br><img src="1641020361601-13b43199-1222-4184-b396-3db62c7a68f6.png#width=606" alt="image.png"></p>
+<p>提交到缓存区</p>
+<pre><code>git add . 全部上传到缓存区
+git add 指定文件
+</code></pre>
+<p>提交到本地仓库</p>
+<pre><code>  git commit -m &#39;some message&#39;
+</code></pre>
+<p>提交远程仓库</p>
+<pre><code>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
 -f 可以强制执行
+</code></pre>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>查看远端仓库信息</p>
+<pre><code>  git remote -v
+</code></pre>
+<p>远端仓库重新命名</p>
+<pre><code>  git remote rename old new
+</code></pre>
+<p>合并分支</p>
+<pre><code>git merge dev --no-ff
+</code></pre>
+<p>退出注释</p>
+<pre><code>:q
+</code></pre>
+<p>查看日志</p>
+<pre><code>git log
 </code></pre>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>git -am 与 git -m</p>
 <h2 id="开发新功能时，需要切换另一分支修复-bug，又不想提交当前分支代码怎么办？"><a href="#开发新功能时，需要切换另一分支修复-bug，又不想提交当前分支代码怎么办？" class="headerlink" title="开发新功能时，需要切换另一分支修复 bug，又不想提交当前分支代码怎么办？"></a>开发新功能时，需要切换另一分支修复 bug，又不想提交当前分支代码怎么办？</h2><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>当你正在修改 A 分支的代码，而此时 B 分支有紧急任务。<br>这时你需要切换到 B 分支先执行紧急任务。<br>但是，你的 A 分支代码又修改了一半，你不想提交一个 commit，该怎么办呢？</p>
@@ -281,6 +356,10 @@ git branch -d dev
 <p>$ git push origin HEAD –force 复制代码</p>
 <h2 id="本地代码提交跟远程冲突时，想强制覆盖远程代码该怎么办？"><a href="#本地代码提交跟远程冲突时，想强制覆盖远程代码该怎么办？" class="headerlink" title="本地代码提交跟远程冲突时，想强制覆盖远程代码该怎么办？"></a>本地代码提交跟远程冲突时，想强制覆盖远程代码该怎么办？</h2><h4 id="push-force-强制推送"><a href="#push-force-强制推送" class="headerlink" title="push -force 强制推送"></a>push -force 强制推送</h4><p>众所周知，git 的 push -force 指令是不推荐被使用的，–force 会使用本地分支的提交覆盖远端推送分支的提交。也就是说，如果其他人在相同的分支推送了新的提交，你的这一举动将“删除”他的那些提交！所以这种只适合于你自己一人维护的分支强制推送，对于多人维护的分支，我们应该采用更加安全的方式。</p>
 <h4 id="–force-with-lease-更安全的方式"><a href="#–force-with-lease-更安全的方式" class="headerlink" title="–force-with-lease 更安全的方式"></a>–force-with-lease 更安全的方式</h4><p>使用了 –force-with-lease 参数之后，上面那种安全问题就没有那么危险了。<br>使用此参数推送，如果远端有其他人推送了新的提交，那么推送将被拒绝，这种拒绝和没有加 –force 参数时的拒绝是一样的。<br>walterlv$ git push –force-with-lease To <a target="_blank" rel="noopener" href="https://github.com/walterlv/walterlv.github.io.git">https://github.com/walterlv/walterlv.github.io.git</a> ! [rejected] master -&gt; master (fetch first) error: failed to push some refs to ‘<a target="_blank" rel="noopener" href="https://github.com/walterlv/walterlv.github.io.git&#39;">https://github.com/walterlv/walterlv.github.io.git&#39;</a> 复制代码<br><strong>请特别注意</strong>——如果你 fetch 之后在本地的 origin 相关分支上已经看到了别人的提交，依然进行强制推送，你还是会覆盖别人的提交。也就是说，–force-with-lease <strong>解决的是本地仓库不够新时，依然覆盖了远端新仓库的问题</strong>，如果你<strong>执意想要覆盖远端提交</strong>，只需要先 fetch 再推送，<strong>它也不会拒绝的</strong>。</p>
+<h2 id="git-添加-gitignore-后不生效问题"><a href="#git-添加-gitignore-后不生效问题" class="headerlink" title="git 添加.gitignore 后不生效问题"></a>git 添加.gitignore 后不生效问题</h2><p>该文件只能作用于 Untracked Files，也就是那些从来没有被 Git 记录过的文件（自添加以后，从未 add 及 commit 过的文件）。</p>
+<p>之所以你的规则不生效，是因为那些 .log 文件曾经被 Git 记录过，因此.gitignore 对它们完全无效。<br>解决方法</p>
+<pre><code class="vue">从 Git 的数据库中删除对于该文件的追踪； git rm -r --cached .
+</code></pre>
 
     </div>
     
@@ -290,7 +369,7 @@ git branch -d dev
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 后知后觉的个人主页
+            2022 - 2024 后知后觉的个人主页
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
